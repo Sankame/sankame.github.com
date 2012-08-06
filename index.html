@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>test1208 by Sankame</title>
+    <title>OpenX</title>
 
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/pygment_trac.css">
@@ -17,7 +17,7 @@
   <body>
     <div class="wrapper">
       <header>
-        <h1>test1208</h1>
+        <h1>OpenX調査 - 暫定ページ</h1>
         <p>sankame's blog</p>
         <p class="view"><a href="https://github.com/Sankame">View the Project on GitHub <small>Sankame</small></a></p>
         <ul>
@@ -25,37 +25,146 @@
         </ul>
       </header>
       <section>
-        <h3>Welcome to GitHub Pages.</h3>
+        <h3>目的</h3>
+<p>
+<ol>
+<li>現状：SOSによる、期間指定のベタ張り＋imp集計</li>
+<li>要望：imp配信、クリック集計、配信の自動最適化(クリエイティブ選択、配信面選択)、etc</li>
+<li>対策：商用アドサーバを検討。コスト高。</li>
+<li>OSS調査</li>
+</ol>
+</p>
 
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
+<h3>着目点</h3>
 
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
-</code></pre>
+<p>
+<ul>
+<li>負荷に耐えられるか？：7億PV/月
+	<br>↓
+	<br>作りを調査＋ベンチマーク(50imp/ページ)
+</li>
+<li>何ができるか？：機能洗い出し</li>
+</ul>
+</p>
 
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
+<h3>インストール</h3>
 
-<h3>Designer Templates</h3>
+<pre>
+<a href="http://www.openx.com/docs/qsg-install" style="color:orange;" target="_blank">マニュアルに従ってインストール</a>
 
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
+以下からソースをDL。
+アンケート回答が必須のため、wgetでは落とせない。
+Download the latest installation archive from: here
 
-<h3>Rather Drive Stick?</h3>
+ソースをサーバへアップし、解凍して公開ディレクトリへ配置する。
+<code>
+mv openx-2.8.10 openx
+mv openx /var/www/html/
+</code>
 
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
+/var/www/html/openx/varと/var/www/html/openx/www/images　に777を与える。
+<code>
+cd /var/www/html/openx/
+chmod -R 777 var
+chmod -R 777 ./www/images/
+</code>
 
-<h3>Authors and Contributors</h3>
+ブラウザでアクセスし、Webのインストーラを起動する。
+http://localhost/openx/
 
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
+※以下のディレクトリにも書き込み権限が必要というエラー。
+<code>
+/var/www/html/openx/plugins
+/var/www/html/openx/www/admin/plugins
+</code>
 
-<h3>Support or Contact</h3>
+画面にコマンドが書いてあったのでそのまま実行。
+<code>
+chmod -R a+w /var/www/html/openx/plugins
+chmod -R a+w /var/www/html/openx/www/admin/plugins
+</code>
 
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
+-------------------------------
+2.Registration
+-------------------------------
+Webインストーラを続行、以下の項目に入力。
+
+name:
+password:
+e-mail:
+
+
+-------------------------------
+3.Database
+-------------------------------
+画面にはDBがなかったら作成されると書いてあったが、エラーになったので
+以下のコマンドであらかじめDBとユーザを作成。
+(testxxの部分は適当に変更)
+
+<code>
+create database testdb;
+
+grant all on testdb.* to 'testuser'@'localhost' identified by 'testpassword';
+</code>
+
+-------------------------------
+4. Configuration
+-------------------------------
+Webインストーラを続行、以下の項目に入力。
+
+Admin User:
+Admin User Password:
+
+
+-------------------------------
+5. Finish
+-------------------------------
+エラーが出てるからログを見てね、と書いてあったが、そのままcontinue
+
+※特にエラーは書かれていなかった。
+<code>
+view /var/www/html/openx/var/install.log
+</code>
+
+-------------------------------
+
+そのまま広告設定の管理画面ぽいところへ遷移。
+
+ページ上部に以下のエラーが。
+<span>
+Warning: date_default_timezone_get(): It is not safe to rely
+ on the system's timezone settings.
+ You are *required* to use the date.timezone setting or the
+ date_default_timezone_set() function.
+ In case you used any of those methods and you are still getting
+ this warning, you most likely misspelled the timezone identifier.
+ We selected 'Asia/Tokyo' for 'JST/9.0/no DST' instead in
+ /var/www/html/openx/variables.php on line 82 
+</span>
+
+以下のソースに追記する。
+
+■ソース
+/var/www/html/openx/variables.php
+
+■追記
+//追記ここから
+if( ! ini_get('date.timezone') ){
+	date_default_timezone_set('Asia/Tokyo');
+}
+//追記ここまで
+	$GLOBALS['serverTimezone'] = date_default_timezone_get();
+
+<a href="http://www.jamescrowley.co.uk/2010/09/12/running-openx-under-iis-with-php-5-3-date-default-timezone-get-errors/" style="color:orange;" target="_blank">参考ページ</a>
+
+</pre>
+
+<p></p>
+
       </section>
     </div>
-    <footer>
-      <p>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></p>
-    </footer>
+
+    <footer></footer>
     <!--[if !IE]><script>fixScale(document);</script><![endif]-->
     
   </body>
