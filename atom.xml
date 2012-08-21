@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+ 
+ <title>Text Blog</title>
+ <link href="http://sankame.github.com/atom.xml" rel="self"/>
+ <link href="http://sankame.github.com"/>
+ <updated>2012-08-22T08:15:24+09:00</updated>
+ <id>http://sankame.github.com</id>
+ <author>
+   <name>sankame</name>
+   <email>mt_fuji_3776@live.jp</email>
+ </author>
+
+ 
+ <entry>
+   <title>Jekyll Tips 1</title>
+   <link href="http://sankame.github.com/Jekyll/2012/12/17/jekyll_tips1"/>
+   <updated>2012-12-17T00:00:00+09:00</updated>
+   <id>http://sankame.github.com/Jekyll/2012/12/17/jekyll_tips1</id>
+   <content type="html">&lt;p&gt;最終更新日： &lt;span&gt;17 Dec 2012&lt;/span&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h4 id='jekyll'&gt;Jekyllの設定に関するメモ。&lt;/h4&gt;
+
+&lt;p&gt;&lt;code&gt;test&lt;/code&gt;&lt;/p&gt;
+
+&lt;h4 id='6'&gt;6.メモ&lt;/h4&gt;
+
+&lt;p&gt;・ヘッダ部分のナビゲーションを消したい場合：&lt;/p&gt;
+
+&lt;p&gt;/var/www/html/jekyll/JEKYLL_HOME/archive.html&lt;/p&gt;
+
+&lt;p&gt;該当ファイルのヘッダ部分の&lt;code&gt;group: navigation&lt;/code&gt;を#でコメントアウト。&lt;/p&gt;
+
+&lt;p&gt;・記事名に日本語を使いたい場合：&lt;/p&gt;
+
+&lt;p&gt;YAMLのFomter Matterにtitle、dateなどをつけるとできる。&lt;/p&gt;
+
+&lt;p&gt;・これで最近の5件だけ記事が出る。 &lt;pre class='markdown-html-error' style='border: solid 3px red; background-color: pink'&gt;REXML could not parse this XML/HTML: 
+&amp;lt;ul class=&amp;quot;posts&amp;quot;&amp;gt;&lt;/pre&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;li&amp;gt;&amp;lt;span&amp;gt;17 Dec 2012&amp;lt;/span&amp;gt; &amp;amp;raquo; &amp;lt;a href=&amp;quot;/Jekyll/2012/12/17/jekyll_tips1&amp;quot;&amp;gt;Jekyll Tips 1&amp;lt;/a&amp;gt;&amp;lt;/li&amp;gt;
+
+&amp;lt;li&amp;gt;&amp;lt;span&amp;gt;16 Dec 2012&amp;lt;/span&amp;gt; &amp;amp;raquo; &amp;lt;a href=&amp;quot;/Jekyll/2012/12/16/jekyll_and_github&amp;quot;&amp;gt;Jekyllとgithubでブログ作成&amp;lt;/a&amp;gt;&amp;lt;/li&amp;gt;
+
+&amp;lt;/ul&amp;gt;&lt;/code&gt;&lt;/pre&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>Jekyllとgithubでブログ作成</title>
+   <link href="http://sankame.github.com/Jekyll/2012/12/16/jekyll_and_github"/>
+   <updated>2012-12-16T00:00:00+09:00</updated>
+   <id>http://sankame.github.com/Jekyll/2012/12/16/jekyll_and_github</id>
+   <content type="html">&lt;p&gt;最終更新日： &lt;span&gt;16 Dec 2012&lt;/span&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h4 id='pcvmwareplayerruby_rubygems_jekyll'&gt;ローカルPCのVmwarePlayerにRuby, RubyGems, Jekyllをインストール。&lt;/h4&gt;
+
+&lt;h4 id='jekyllgithub'&gt;Jekyllで作ったブログをGitHubに設置する。&lt;/h4&gt;
+
+&lt;h4 id='1ruby'&gt;1.Rubyインストール&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;# インストール済みか？
+# rpm -q ruby
+# インストールされていない場合、インストールを行う。
+# yum install ruby ruby-devel rdoc irb&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id='2rubygems'&gt;2.RubyGemsインストール&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;# wget http://rubyforge.org/frs/download.php/60718/rubygems-1.3.5.tgz
+# tar xzf rubygems-1.3.5.tgz
+# cd rubygems-1.3.5
+# ruby setup.rb
+# インストールされたgemsのバージョン確認。
+# gem -v&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id='3jekyll'&gt;3.Jekyllインストール&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;# gem install jekyll&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;下記メッセージ(抜粋)でインストール失敗…&lt;/p&gt;
+
+&lt;p&gt;buffer overflow detected&lt;/p&gt;
+
+&lt;h5 id='31_vmware_player192mb__256mb_'&gt;3-1. vmware playerの割り当てメモリ変更。192MB -&amp;gt; 256MB (問題の解決とは無関係と思われる)&lt;/h5&gt;
+
+&lt;h5 id='32_ruby'&gt;3-2. Ruby再インストール&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code&gt;# cd /etc/yum.repos.d/
+# wget http://rubyworks.rubyforge.org/RubyWorks.repo
+# yum install ruby
+
+# ruby -v
+ruby 1.8.6 (2007-09-24 patchlevel 111) [i386-linux]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id='33_jekyll'&gt;3-3. Jekyll再インストール&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code&gt;# gem install jekyll
+ERROR: Error installing jekyll:
+liquid requires RubyGems version &amp;gt;= 1.3.7
+# またもやエラー。&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id='34_rubygems'&gt;3-4. RubyGems再インストール&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code&gt;# 上記3-3でRubyGemsのバージョンが違うというエラーが出たのでRuby Forgeで当該バージョンのURLをコピー。
+# http://rubyforge.org/frs/?group_id=126
+
+# wget http://rubyforge.org/frs/download.php/60718/rubygems-1.3.7.tgz
+# cd rubygems-1.3.7
+# ruby setup.rb&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id='35_jekyll'&gt;3-5. Jekyll再インストール&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code&gt;# gem install jekyll
+# 今回はインストール成功。
+# jekyll -v
+Jekyll 0.11.2&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id='36_'&gt;3-6. &lt;a href='http://help.papertrailapp.com/discussions/questions/114-buffer-overflow-detected'&gt;参考ページ&lt;/a&gt;&lt;/h5&gt;
+
+&lt;h4 id='4jekyll_bootstrap'&gt;4.Jekyll Bootstrap取得&lt;/h4&gt;
+
+&lt;h5 id='1'&gt;1から作ると大変なのでテンプレートを利用。&lt;/h5&gt;
+
+&lt;h5 id='varwwwhtmlapache'&gt;※/var/www/html/はapacheのドキュメントルート&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code&gt;# cd /var/www/html/jekyll
+# git clone http://github.com/plusjade/jekyll-bootstrap.git JEKYLL_HOME&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id='5jekyll'&gt;5.Jekyll起動&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;# jekyll --server --auto
+
+WARNING: Could not read configuration. Using defaults (and options).
+No such file or directory - /root/_config.yml
+Auto-regenerating enabled: /root -&amp;gt; /root/_site
+
+# 起動失敗…
+# エラーメッセージを見ると、_config.ymlが見つからないと言っている。
+
+# Jekyll Bootstrapを配置したディレクトリへ移動して起動すると成功。
+# cd /var/www/html/jekyll/JEKYLL_HOME
+# jekyll --server --auto
+Configuration from /var/www/html/jekyll/JEKYLL_HOME/_config.yml
+Auto-regenerating enabled: /var/www/html/jekyll/JEKYLL_HOME -&amp;gt; /var/www/html/jekyll/JEKYLL_HOME/_site&lt;/code&gt;&lt;/pre&gt;</content>
+ </entry>
+ 
+ 
+</feed>
