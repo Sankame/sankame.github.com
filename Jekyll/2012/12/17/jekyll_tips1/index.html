@@ -1,0 +1,155 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Jekyll Tips 1</title>
+    
+    <meta name="author" content="sankame">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <link href="/assets/themes/twitter/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/themes/twitter/css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
+
+    <!-- Le fav and touch icons -->
+  <!-- Update these with your own images
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+  -->
+  </head>
+
+  <body>
+
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="brand" href="/">Text Blog</a>
+          <ul class="nav">
+            
+            
+            
+
+
+  
+    
+      
+      	
+      	<li><a href="/archive.html">Archive</a></li>
+      	
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/categories.html">Categories</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/tags.html">Tags</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+
+
+
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+
+      <div class="content">
+        
+
+<div class="page-header">
+  <h1>Jekyll Tips 1 </h1>
+</div>
+
+<div class="row">
+  <div class="span12" >
+  <!--[if IE 6 ]>
+    <div class="span12-for-ie6">
+  <![endif]-->
+    <p>最終更新日： <span>17 Dec 2012</span><br /></p>
+
+<h4 id='jekyll'>Jekyllの設定に関するメモ。</h4>
+
+<p><code>test</code></p>
+
+<h4 id='6'>6.メモ</h4>
+
+<p>・ヘッダ部分のナビゲーションを消したい場合：</p>
+
+<p>/var/www/html/jekyll/JEKYLL_HOME/archive.html</p>
+
+<p>該当ファイルのヘッダ部分の<code>group: navigation</code>を#でコメントアウト。</p>
+
+<p>・記事名に日本語を使いたい場合：</p>
+
+<p>YAMLのFomter Matterにtitle、dateなどをつけるとできる。</p>
+
+<p>・これで最近の5件だけ記事が出る。 <pre class='markdown-html-error' style='border: solid 3px red; background-color: pink'>REXML could not parse this XML/HTML: 
+&lt;ul class=&quot;posts&quot;&gt;</pre></p>
+
+<pre><code>&lt;li&gt;&lt;span&gt;17 Dec 2012&lt;/span&gt; &amp;raquo; &lt;a href=&quot;/Jekyll/2012/12/17/jekyll_tips1&quot;&gt;Jekyll Tips 1&lt;/a&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;span&gt;16 Dec 2012&lt;/span&gt; &amp;raquo; &lt;a href=&quot;/Jekyll/2012/12/16/jekyll_and_github&quot;&gt;Jekyllとgithubでブログ作成&lt;/a&gt;&lt;/li&gt;
+
+&lt;/ul&gt;</code></pre>
+  <!--[if IE 6 ]>
+    </div>
+  <![endif]-->
+  </div>
+</div>
+
+
+      </div>
+
+      <footer>
+        <p>&copy; sankame 2012 
+          with help from <a href="http://jekyllbootstrap.com" target="_blank" title="The Definitive Jekyll Blogging Framework">Jekyll Bootstrap</a>
+          and <a href="http://twitter.github.com/bootstrap/" target="_blank">Twitter Bootstrap</a>
+        </p>
+      </footer>
+
+    </div> <!-- /container -->
+
+    
+  </body>
+</html>
+
