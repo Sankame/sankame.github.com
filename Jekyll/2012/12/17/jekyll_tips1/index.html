@@ -4,7 +4,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Jekyll Tips 1</title>
+    <title>Jekyll Tips1</title>
     
     <meta name="author" content="sankame">
 
@@ -42,7 +42,7 @@
     
       
       	
-      	<li><a href="/archive.html">Archive</a></li>
+      	<li><a href="/archive.html">記事</a></li>
       	
       
     
@@ -50,12 +50,8 @@
     
       
       	
-      	<li><a href="/categories.html">Categories</a></li>
+      	<li><a href="/categories.html">カテゴリー</a></li>
       	
-      
-    
-  
-    
       
     
   
@@ -65,8 +61,12 @@
   
     
       
+    
+  
+    
+      
       	
-      	<li><a href="/tags.html">Tags</a></li>
+      	<li><a href="/tags.html">タグ</a></li>
       	
       
     
@@ -97,7 +97,7 @@
         
 
 <div class="page-header">
-  <h1>Jekyll Tips 1 </h1>
+  <h1>Jekyll Tips1 </h1>
 </div>
 
 <div class="row">
@@ -109,28 +109,48 @@
 
 <h4 id='jekyll'>Jekyllの設定に関するメモ。</h4>
 
-<p><code>test</code></p>
+<h4 id='jekyllbootstrap'>JekyllBootstrapの配置先は下記ディレクトリ。(<a href='/Jekyll/2012/12/23/jekyll_and_github/'>関連記事</a>)</h4>
 
-<h4 id='6'>6.メモ</h4>
+<h5 id='varwwwhtmljekylljekyll_home'>/var/www/html/jekyll/JEKYLL_HOME/</h5>
 
-<p>・ヘッダ部分のナビゲーションを消したい場合：</p>
+<h6 id='id393'>・画面ヘッダ部分のナビゲーションを変更したい。</h6>
 
-<p>/var/www/html/jekyll/JEKYLL_HOME/archive.html</p>
+<pre><code>(例)
+画面ヘッダ部分にArchiveを表示したくない場合
+下記ファイルのヘッダ部分の&quot;group: navigation&quot;を#でコメントアウトする。
+/var/www/html/jekyll/JEKYLL_HOME/archive.html</code></pre>
 
-<p>該当ファイルのヘッダ部分の<code>group: navigation</code>を#でコメントアウト。</p>
+<h6 id='id394'>・記事タイトルに日本語を使いたい。</h6>
 
-<p>・記事名に日本語を使いたい場合：</p>
+<pre><code>記事のファイル名に日本語は使えないので、YAMLのFront Matterでtitleを指定する。
+(例)
+---
+layout: page
+category: Jekyll
+tags: [Ruby, RubyGems, Jekyll, GitHub]
+date: 2012-12-23 00:00:00
+title: Jekyllとgithubでブログ作成
+---</code></pre>
 
-<p>YAMLのFomter Matterにtitle、dateなどをつけるとできる。</p>
+<h6 id='id395'>・ループ回数を制限したい。</h6>
 
-<p>・これで最近の5件だけ記事が出る。 <pre class='markdown-html-error' style='border: solid 3px red; background-color: pink'>REXML could not parse this XML/HTML: 
-&lt;ul class=&quot;posts&quot;&gt;</pre></p>
+<pre><code>limitを使う。
 
-<pre><code>&lt;li&gt;&lt;span&gt;23 Dec 2012&lt;/span&gt; &amp;raquo; &lt;a href=&quot;/Jekyll/2012/12/23/jekyll_and_github&quot;&gt;Jekyllとgithubでブログ作成&lt;/a&gt;&lt;/li&gt;
+(例)最近の5件だけ記事を表示。
 
-&lt;li&gt;&lt;span&gt;17 Dec 2012&lt;/span&gt; &amp;raquo; &lt;a href=&quot;/Jekyll/2012/12/17/jekyll_tips1&quot;&gt;Jekyll Tips 1&lt;/a&gt;&lt;/li&gt;
-
+&lt;ul class=&quot;posts&quot;&gt;
+  {% for post in site.posts limit:5 %}
+    &lt;li&gt;&lt;span&gt;{{ post.date | date_to_string }}&lt;/span&gt; &amp;raquo; &lt;a href=&quot;{{ BASE_PATH }}{{ post.url }}&quot;&gt;{{ post.title }}&lt;/a&gt;&lt;/li&gt;
+  {% endfor %}
 &lt;/ul&gt;</code></pre>
+
+<h6 id='liquid'>・liquidの文法をエスケープしたい。<a href='http://stackoverflow.com/questions/3426182/how-to-escape-liquid-template-tags'>参考ページ</a></h6>
+
+<pre><code>Markdownの中でif文やliquidの文法をそのまま出力したい場合、下記のタグを使用する。
+
+{% raw %}
+エスケープしたい表現
+{% endraw %}</code></pre>
   <!--[if IE 6 ]>
     </div>
   <![endif]-->

@@ -42,7 +42,7 @@
     
       
       	
-      	<li><a href="/archive.html">Archive</a></li>
+      	<li><a href="/archive.html">記事</a></li>
       	
       
     
@@ -50,12 +50,8 @@
     
       
       	
-      	<li><a href="/categories.html">Categories</a></li>
+      	<li><a href="/categories.html">カテゴリー</a></li>
       	
-      
-    
-  
-    
       
     
   
@@ -65,8 +61,12 @@
   
     
       
+    
+  
+    
+      
       	
-      	<li><a href="/tags.html">Tags</a></li>
+      	<li><a href="/tags.html">タグ</a></li>
       	
       
     
@@ -139,7 +139,7 @@ Here's a sample "posts list".
   
     <li><span>23 Dec 2012</span> &raquo; <a href="/Jekyll/2012/12/23/jekyll_and_github">Jekyllとgithubでブログ作成</a></li>
   
-    <li><span>17 Dec 2012</span> &raquo; <a href="/Jekyll/2012/12/17/jekyll_tips1">Jekyll Tips 1</a></li>
+    <li><span>17 Dec 2012</span> &raquo; <a href="/Jekyll/2012/12/17/jekyll_tips1">Jekyll Tips1</a></li>
   
 </ul>
 
