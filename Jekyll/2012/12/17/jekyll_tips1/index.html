@@ -113,14 +113,14 @@
 
 <h5 id='varwwwhtmljekylljekyll_home'>/var/www/html/jekyll/JEKYLL_HOME/</h5>
 
-<h6 id='id501'>・画面ヘッダ部分のナビゲーションを変更したい。</h6>
+<h6 id='id542'>・画面ヘッダ部分のナビゲーションを変更したい。</h6>
 
 <pre><code>(例)
 画面ヘッダ部分にArchiveを表示したくない場合
 下記ファイルのヘッダ部分の&quot;group: navigation&quot;を#でコメントアウトする。
 /var/www/html/jekyll/JEKYLL_HOME/archive.html</code></pre>
 
-<h6 id='id502'>・記事タイトルに日本語を使いたい。</h6>
+<h6 id='id543'>・記事タイトルに日本語を使いたい。</h6>
 
 <pre><code>記事のファイル名に日本語は使えないので、YAMLのFront Matterでtitleを指定する。
 (例)
@@ -132,7 +132,7 @@ date: 2012-12-23 00:00:00
 title: Jekyllとgithubでブログ作成
 ---</code></pre>
 
-<h6 id='id503'>・ループ回数を制限したい。</h6>
+<h6 id='id544'>・ループ回数を制限したい。</h6>
 
 <pre><code>limitを使う。
 
@@ -151,6 +151,14 @@ title: Jekyllとgithubでブログ作成
 {% raw %}
 エスケープしたい表現
 {% endraw %}</code></pre>
+
+<h6 id='id545'>・日付のフォーマット(書式)を変更したい。<a href='http://stackoverflow.com/questions/7395520/jekyll-date-format'>参考ページ</a></h6>
+
+<pre><code>日本語を使う場合、ファイルをUTF8で保存する。
+
+(例)
+
+{ post.date | date: &quot;%Y年%m月%d日&quot; }</code></pre>
   <!--[if IE 6 ]>
     </div>
   <![endif]-->
