@@ -4,13 +4,116 @@
  <title>Text Blog</title>
  <link href="http://sankame.github.com/atom.xml" rel="self"/>
  <link href="http://sankame.github.com"/>
- <updated>2012-08-24T03:24:07+09:00</updated>
+ <updated>2012-08-24T04:04:53+09:00</updated>
  <id>http://sankame.github.com</id>
  <author>
    <name>sankame</name>
    <email>mt_fuji_3776@live.jp</email>
  </author>
 
+ 
+ <entry>
+   <title>OpenXインストール</title>
+   <link href="http://sankame.github.com/OpenX/2012/12/24/openx_install"/>
+   <updated>2012-12-24T00:00:00+09:00</updated>
+   <id>http://sankame.github.com/OpenX/2012/12/24/openx_install</id>
+   <content type="html">&lt;p&gt;投稿日：&lt;span&gt;2012年12月24日&lt;/span&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h4 id='pcvmwareplayeropenx'&gt;ローカルPCのVmwarePlayerにOpenXをインストール。&lt;/h4&gt;
+
+&lt;h4 id='id969'&gt;&lt;a href='http://www.openx.com/docs/qsg-install'&gt;マニュアル&lt;/a&gt;に従ってインストールした。&lt;/h4&gt;
+
+&lt;h4 id='1'&gt;1.ソース取得&lt;/h4&gt;
+
+&lt;p&gt;マニュアルの下記リンクからソースをダウンロード。(アンケートあるためwgetでは落とせない)&lt;/p&gt;
+
+&lt;p&gt;Download the latest installation archive from: &lt;a href='http://www.openx.com/publisher/open-source-ad-server'&gt;here&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;ソースをWebサーバへアップし、解凍して公開ディレクトリへ配置する。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# mv openx-2.8.10 openx
+# mv openx /var/www/html/&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;/var/www/html/openx/varと/var/www/html/openx/www/images　に777を与える。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# cd /var/www/html/openx/
+# chmod -R 777 var
+# chmod -R 777 ./www/images/&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;ブラウザでhttp://localhost/openx/ へアクセスし、Webのインストーラを起動する。&lt;/p&gt;
+
+&lt;p&gt;下記のディレクトリにも書き込み権限が必要というエラーが出た。&lt;/p&gt;
+
+&lt;p&gt;/var/www/html/openx/plugins&lt;/p&gt;
+
+&lt;p&gt;/var/www/html/openx/www/admin/plugins&lt;/p&gt;
+
+&lt;p&gt;画面にコマンドが書いてあったのでそのまま実行。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# chmod -R a+w /var/www/html/openx/plugins
+# chmod -R a+w /var/www/html/openx/www/admin/plugins&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id='2registration'&gt;2.Registration&lt;/h4&gt;
+
+&lt;p&gt;Webインストーラを続行、下記項目に入力。&lt;/p&gt;
+
+&lt;p&gt;name, password, e-mail&lt;/p&gt;
+
+&lt;h4 id='3database'&gt;3.Database&lt;/h4&gt;
+
+&lt;p&gt;DBがなかったら作成されると画面に書いてあったが、エラーになったので&lt;/p&gt;
+
+&lt;p&gt;下記コマンドであらかじめDBとユーザを作成。(testxxxxの部分は適当に変更)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# create database testdb;
+# grant all on testdb.* to &amp;#39;testuser&amp;#39;@&amp;#39;localhost&amp;#39; identified by &amp;#39;testpassword&amp;#39;;&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id='4_configuration'&gt;4. Configuration&lt;/h4&gt;
+
+&lt;p&gt;Webインストーラを続行、下記項目に入力。&lt;/p&gt;
+
+&lt;p&gt;Admin User, Admin User Password&lt;/p&gt;
+
+&lt;h4 id='5_finish'&gt;5. Finish&lt;/h4&gt;
+
+&lt;p&gt;エラーが出たからログを見てね、と書いてあったが無視してそのままcontinue&lt;/p&gt;
+
+&lt;p&gt;※その後、ログを見たがエラーは出力されていなかった。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# view /var/www/html/openx/var/install.log&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id='6_'&gt;6. その他&lt;/h4&gt;
+
+&lt;p&gt;そのまま広告設定の管理画面ぽいところへ遷移。&lt;/p&gt;
+
+&lt;p&gt;ページ上部に下記のエラーメッセージが…&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Warning: date_default_timezone_get(): It is not safe to rely
+ on the system&amp;#39;s timezone settings.
+ You are *required* to use the date.timezone setting or the
+ date_default_timezone_set() function.
+ In case you used any of those methods and you are still getting
+ this warning, you most likely misspelled the timezone identifier.
+ We selected &amp;#39;Asia/Tokyo&amp;#39; for &amp;#39;JST/9.0/no DST&amp;#39; instead in
+ /var/www/html/openx/variables.php on line 82 &lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;下記ソースに追記する。&lt;/p&gt;
+
+&lt;p&gt;■ソース&lt;/p&gt;
+
+&lt;p&gt;/var/www/html/openx/variables.php&lt;/p&gt;
+
+&lt;p&gt;■追記&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;//追記ここから
+if( ! ini_get(&amp;#39;date.timezone&amp;#39;) ){
+	date_default_timezone_set(&amp;#39;Asia/Tokyo&amp;#39;);
+}
+//追記ここまで
+	$GLOBALS[&amp;#39;serverTimezone&amp;#39;] = date_default_timezone_get();&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href='http://www.jamescrowley.co.uk/2010/09/12/running-openx-under-iis-with-php-5-3-date-default-timezone-get-errors/'&gt;参考ページ&lt;/a&gt;&lt;/p&gt;</content>
+ </entry>
  
  <entry>
    <title>Jekyllとgithubでブログ作成</title>
@@ -119,7 +222,7 @@ Auto-regenerating enabled: /var/www/html/jekyll/JEKYLL_HOME -&amp;gt; /var/www/h
 
 &lt;h5 id='githtmlgithubpush'&gt;任意のディレクトリをGitの作業ツリーにして、そこからHTMLをGitHubへPushする。&lt;/h5&gt;
 
-&lt;h5 id='id742'&gt;&lt;code&gt;【注意】/var/www/html/jekyll/JEKYLL_HOME/_site/ を作業ツリーにするとJekyllを起動する度に.gitが削除されるので適さない。&lt;/code&gt;&lt;/h5&gt;
+&lt;h5 id='id968'&gt;&lt;code&gt;【注意】/var/www/html/jekyll/JEKYLL_HOME/_site/ を作業ツリーにするとJekyllを起動する度に.gitが削除されるので適さない。&lt;/code&gt;&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt;# Jekyllが生成したHTMLをGit作業ツリー(任意のディレクトリ)へコピーする。
 # cp -pr /var/www/html/jekyll/JEKYLL_HOME/_site/* /var/www/html/sankame.github.com/
@@ -146,14 +249,14 @@ Auto-regenerating enabled: /var/www/html/jekyll/JEKYLL_HOME -&amp;gt; /var/www/h
 
 &lt;h5 id='varwwwhtmljekylljekyll_home'&gt;/var/www/html/jekyll/JEKYLL_HOME/&lt;/h5&gt;
 
-&lt;h6 id='id738'&gt;・画面ヘッダ部分のナビゲーションを変更したい。&lt;/h6&gt;
+&lt;h6 id='id964'&gt;・画面ヘッダ部分のナビゲーションを変更したい。&lt;/h6&gt;
 
 &lt;pre&gt;&lt;code&gt;(例)
 画面ヘッダ部分にArchiveを表示したくない場合
 下記ファイルのヘッダ部分の&amp;quot;group: navigation&amp;quot;を#でコメントアウトする。
 /var/www/html/jekyll/JEKYLL_HOME/archive.html&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h6 id='id739'&gt;・記事タイトルに日本語を使いたい。&lt;/h6&gt;
+&lt;h6 id='id965'&gt;・記事タイトルに日本語を使いたい。&lt;/h6&gt;
 
 &lt;pre&gt;&lt;code&gt;記事のファイル名に日本語は使えないので、YAMLのFront Matterでtitleを指定する。
 (例)
@@ -165,7 +268,7 @@ date: 2012-12-23 00:00:00
 title: Jekyllとgithubでブログ作成
 ---&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h6 id='id740'&gt;・ループ回数を制限したい。&lt;/h6&gt;
+&lt;h6 id='id966'&gt;・ループ回数を制限したい。&lt;/h6&gt;
 
 &lt;pre&gt;&lt;code&gt;limitを使う。
 
@@ -185,7 +288,7 @@ title: Jekyllとgithubでブログ作成
 エスケープしたい表現
 {% endraw %}&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h6 id='id741'&gt;・日付のフォーマット(書式)を変更したい。&lt;a href='http://stackoverflow.com/questions/7395520/jekyll-date-format'&gt;参考ページ&lt;/a&gt;&lt;/h6&gt;
+&lt;h6 id='id967'&gt;・日付のフォーマット(書式)を変更したい。&lt;a href='http://stackoverflow.com/questions/7395520/jekyll-date-format'&gt;参考ページ&lt;/a&gt;&lt;/h6&gt;
 
 &lt;pre&gt;&lt;code&gt;日本語を使う場合、ファイルをUTF8で保存する。
 

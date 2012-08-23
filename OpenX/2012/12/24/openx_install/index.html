@@ -1,0 +1,225 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>OpenXインストール</title>
+    
+    <meta name="author" content="sankame">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <link href="/assets/themes/twitter/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/themes/twitter/css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
+
+    <!-- Le fav and touch icons -->
+  <!-- Update these with your own images
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+  -->
+  </head>
+
+  <body>
+
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="brand" href="/">Text Blog</a>
+          <ul class="nav">
+            
+            
+            
+
+
+  
+    
+      
+      	
+      	<li><a href="/archive.html">投稿</a></li>
+      	
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/categories.html">カテゴリー</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/tags.html">タグ</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+
+
+
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+
+      <div class="content">
+        
+
+<div class="page-header">
+  <h1>OpenXインストール </h1>
+</div>
+
+<div class="row">
+  <div class="span12" >
+  <!--[if IE 6 ]>
+    <div class="span12-for-ie6">
+  <![endif]-->
+    <p>投稿日：<span>2012年12月24日</span><br /></p>
+
+<h4 id='pcvmwareplayeropenx'>ローカルPCのVmwarePlayerにOpenXをインストール。</h4>
+
+<h4 id='id969'><a href='http://www.openx.com/docs/qsg-install'>マニュアル</a>に従ってインストールした。</h4>
+
+<h4 id='1'>1.ソース取得</h4>
+
+<p>マニュアルの下記リンクからソースをダウンロード。(アンケートあるためwgetでは落とせない)</p>
+
+<p>Download the latest installation archive from: <a href='http://www.openx.com/publisher/open-source-ad-server'>here</a></p>
+
+<p>ソースをWebサーバへアップし、解凍して公開ディレクトリへ配置する。</p>
+
+<pre><code># mv openx-2.8.10 openx
+# mv openx /var/www/html/</code></pre>
+
+<p>/var/www/html/openx/varと/var/www/html/openx/www/images　に777を与える。</p>
+
+<pre><code># cd /var/www/html/openx/
+# chmod -R 777 var
+# chmod -R 777 ./www/images/</code></pre>
+
+<p>ブラウザでhttp://localhost/openx/ へアクセスし、Webのインストーラを起動する。</p>
+
+<p>下記のディレクトリにも書き込み権限が必要というエラーが出た。</p>
+
+<p>/var/www/html/openx/plugins</p>
+
+<p>/var/www/html/openx/www/admin/plugins</p>
+
+<p>画面にコマンドが書いてあったのでそのまま実行。</p>
+
+<pre><code># chmod -R a+w /var/www/html/openx/plugins
+# chmod -R a+w /var/www/html/openx/www/admin/plugins</code></pre>
+
+<h4 id='2registration'>2.Registration</h4>
+
+<p>Webインストーラを続行、下記項目に入力。</p>
+
+<p>name, password, e-mail</p>
+
+<h4 id='3database'>3.Database</h4>
+
+<p>DBがなかったら作成されると画面に書いてあったが、エラーになったので</p>
+
+<p>下記コマンドであらかじめDBとユーザを作成。(testxxxxの部分は適当に変更)</p>
+
+<pre><code># create database testdb;
+# grant all on testdb.* to &#39;testuser&#39;@&#39;localhost&#39; identified by &#39;testpassword&#39;;</code></pre>
+
+<h4 id='4_configuration'>4. Configuration</h4>
+
+<p>Webインストーラを続行、下記項目に入力。</p>
+
+<p>Admin User, Admin User Password</p>
+
+<h4 id='5_finish'>5. Finish</h4>
+
+<p>エラーが出たからログを見てね、と書いてあったが無視してそのままcontinue</p>
+
+<p>※その後、ログを見たがエラーは出力されていなかった。</p>
+
+<pre><code># view /var/www/html/openx/var/install.log</code></pre>
+
+<h4 id='6_'>6. その他</h4>
+
+<p>そのまま広告設定の管理画面ぽいところへ遷移。</p>
+
+<p>ページ上部に下記のエラーメッセージが…</p>
+
+<pre><code>Warning: date_default_timezone_get(): It is not safe to rely
+ on the system&#39;s timezone settings.
+ You are *required* to use the date.timezone setting or the
+ date_default_timezone_set() function.
+ In case you used any of those methods and you are still getting
+ this warning, you most likely misspelled the timezone identifier.
+ We selected &#39;Asia/Tokyo&#39; for &#39;JST/9.0/no DST&#39; instead in
+ /var/www/html/openx/variables.php on line 82 </code></pre>
+
+<p>下記ソースに追記する。</p>
+
+<p>■ソース</p>
+
+<p>/var/www/html/openx/variables.php</p>
+
+<p>■追記</p>
+
+<pre><code>//追記ここから
+if( ! ini_get(&#39;date.timezone&#39;) ){
+	date_default_timezone_set(&#39;Asia/Tokyo&#39;);
+}
+//追記ここまで
+	$GLOBALS[&#39;serverTimezone&#39;] = date_default_timezone_get();</code></pre>
+
+<p><a href='http://www.jamescrowley.co.uk/2010/09/12/running-openx-under-iis-with-php-5-3-date-default-timezone-get-errors/'>参考ページ</a></p>
+  <!--[if IE 6 ]>
+    </div>
+  <![endif]-->
+  </div>
+</div>
+
+
+      </div>
+
+      <footer>
+        <p>&copy; sankame 2012 
+          with help from <a href="http://jekyllbootstrap.com" target="_blank" title="The Definitive Jekyll Blogging Framework">Jekyll Bootstrap</a>
+          and <a href="http://twitter.github.com/bootstrap/" target="_blank">Twitter Bootstrap</a>
+        </p>
+      </footer>
+
+    </div> <!-- /container -->
+
+    
+  </body>
+</html>
+
