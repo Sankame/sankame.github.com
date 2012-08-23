@@ -8,5 +8,5 @@ http://sankame.github.com/atom.xml
 http://sankame.github.com/index.html
 http://sankame.github.com/sitemap.txt
 
+http://sankame.github.com/Jekyll/2012/12/23/jekyll_and_github
 http://sankame.github.com/Jekyll/2012/12/17/jekyll_tips1
-http://sankame.github.com/Jekyll/2012/12/16/jekyll_and_github

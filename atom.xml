@@ -4,7 +4,7 @@
  <title>Text Blog</title>
  <link href="http://sankame.github.com/atom.xml" rel="self"/>
  <link href="http://sankame.github.com"/>
- <updated>2012-08-23T12:19:51+09:00</updated>
+ <updated>2012-08-23T14:08:05+09:00</updated>
  <id>http://sankame.github.com</id>
  <author>
    <name>sankame</name>
@@ -13,44 +13,11 @@
 
  
  <entry>
-   <title>Jekyll Tips 1</title>
-   <link href="http://sankame.github.com/Jekyll/2012/12/17/jekyll_tips1"/>
-   <updated>2012-12-17T00:00:00+09:00</updated>
-   <id>http://sankame.github.com/Jekyll/2012/12/17/jekyll_tips1</id>
-   <content type="html">&lt;p&gt;最終更新日： &lt;span&gt;17 Dec 2012&lt;/span&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h4 id='jekyll'&gt;Jekyllの設定に関するメモ。&lt;/h4&gt;
-
-&lt;p&gt;&lt;code&gt;test&lt;/code&gt;&lt;/p&gt;
-
-&lt;h4 id='6'&gt;6.メモ&lt;/h4&gt;
-
-&lt;p&gt;・ヘッダ部分のナビゲーションを消したい場合：&lt;/p&gt;
-
-&lt;p&gt;/var/www/html/jekyll/JEKYLL_HOME/archive.html&lt;/p&gt;
-
-&lt;p&gt;該当ファイルのヘッダ部分の&lt;code&gt;group: navigation&lt;/code&gt;を#でコメントアウト。&lt;/p&gt;
-
-&lt;p&gt;・記事名に日本語を使いたい場合：&lt;/p&gt;
-
-&lt;p&gt;YAMLのFomter Matterにtitle、dateなどをつけるとできる。&lt;/p&gt;
-
-&lt;p&gt;・これで最近の5件だけ記事が出る。 &lt;pre class='markdown-html-error' style='border: solid 3px red; background-color: pink'&gt;REXML could not parse this XML/HTML: 
-&amp;lt;ul class=&amp;quot;posts&amp;quot;&amp;gt;&lt;/pre&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;&amp;lt;li&amp;gt;&amp;lt;span&amp;gt;17 Dec 2012&amp;lt;/span&amp;gt; &amp;amp;raquo; &amp;lt;a href=&amp;quot;/Jekyll/2012/12/17/jekyll_tips1&amp;quot;&amp;gt;Jekyll Tips 1&amp;lt;/a&amp;gt;&amp;lt;/li&amp;gt;
-
-&amp;lt;li&amp;gt;&amp;lt;span&amp;gt;16 Dec 2012&amp;lt;/span&amp;gt; &amp;amp;raquo; &amp;lt;a href=&amp;quot;/Jekyll/2012/12/16/jekyll_and_github&amp;quot;&amp;gt;Jekyllとgithubでブログ作成&amp;lt;/a&amp;gt;&amp;lt;/li&amp;gt;
-
-&amp;lt;/ul&amp;gt;&lt;/code&gt;&lt;/pre&gt;</content>
- </entry>
- 
- <entry>
    <title>Jekyllとgithubでブログ作成</title>
-   <link href="http://sankame.github.com/Jekyll/2012/12/16/jekyll_and_github"/>
-   <updated>2012-12-16T00:00:00+09:00</updated>
-   <id>http://sankame.github.com/Jekyll/2012/12/16/jekyll_and_github</id>
-   <content type="html">&lt;p&gt;最終更新日： &lt;span&gt;16 Dec 2012&lt;/span&gt;&lt;br /&gt;&lt;/p&gt;
+   <link href="http://sankame.github.com/Jekyll/2012/12/23/jekyll_and_github"/>
+   <updated>2012-12-23T00:00:00+09:00</updated>
+   <id>http://sankame.github.com/Jekyll/2012/12/23/jekyll_and_github</id>
+   <content type="html">&lt;p&gt;最終更新日： &lt;span&gt;23 Dec 2012&lt;/span&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;h4 id='pcvmwareplayerruby_rubygems_jekyll'&gt;ローカルPCのVmwarePlayerにRuby, RubyGems, Jekyllをインストール。&lt;/h4&gt;
 
@@ -140,7 +107,63 @@ Auto-regenerating enabled: /root -&amp;gt; /root/_site
 # cd /var/www/html/jekyll/JEKYLL_HOME
 # jekyll --server --auto
 Configuration from /var/www/html/jekyll/JEKYLL_HOME/_config.yml
-Auto-regenerating enabled: /var/www/html/jekyll/JEKYLL_HOME -&amp;gt; /var/www/html/jekyll/JEKYLL_HOME/_site&lt;/code&gt;&lt;/pre&gt;</content>
+Auto-regenerating enabled: /var/www/html/jekyll/JEKYLL_HOME -&amp;gt; /var/www/html/jekyll/JEKYLL_HOME/_site
+
+# ブラウザで下記URLへアクセスすると初期画面が表示される。(localhostの部分は環境によって読み替える)
+# http://localhost:4000/
+
+# 後は下記ディレクトリに記事ファイルを追加していく。
+# /var/www/html/jekyll/JEKYLL_HOME/_posts/YYYY-MM-DD-*.md&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id='6github'&gt;6.GitHubへアップ&lt;/h4&gt;
+
+&lt;h5 id='githtmlgithubpush'&gt;任意のディレクトリをGitの作業ツリーにして、そこからHTMLをGitHubへPushする。&lt;/h5&gt;
+
+&lt;h5 id='id100'&gt;&lt;code&gt;【注意】/var/www/html/jekyll/JEKYLL_HOME/_site/ を作業ツリーにするとJekyllを起動する度に.gitが削除されるので適さない。&lt;/code&gt;&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code&gt;# Jekyllが生成したHTMLをGit作業ツリー(任意のディレクトリ)へコピーする。
+# cp -pr /var/www/html/jekyll/JEKYLL_HOME/_site/* /var/www/html/sankame.github.com/
+# cd /var/www/html/sankame.github.com
+# git init
+# git add .
+# git commit -m &amp;quot;initial commit.&amp;quot;
+# git remote add origin git@github.com:Sankame/sankame.github.com.git
+# git fetch
+# git merge -s ours origin/master
+# git push&lt;/code&gt;&lt;/pre&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>Jekyll Tips 1</title>
+   <link href="http://sankame.github.com/Jekyll/2012/12/17/jekyll_tips1"/>
+   <updated>2012-12-17T00:00:00+09:00</updated>
+   <id>http://sankame.github.com/Jekyll/2012/12/17/jekyll_tips1</id>
+   <content type="html">&lt;p&gt;最終更新日： &lt;span&gt;17 Dec 2012&lt;/span&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h4 id='jekyll'&gt;Jekyllの設定に関するメモ。&lt;/h4&gt;
+
+&lt;p&gt;&lt;code&gt;test&lt;/code&gt;&lt;/p&gt;
+
+&lt;h4 id='6'&gt;6.メモ&lt;/h4&gt;
+
+&lt;p&gt;・ヘッダ部分のナビゲーションを消したい場合：&lt;/p&gt;
+
+&lt;p&gt;/var/www/html/jekyll/JEKYLL_HOME/archive.html&lt;/p&gt;
+
+&lt;p&gt;該当ファイルのヘッダ部分の&lt;code&gt;group: navigation&lt;/code&gt;を#でコメントアウト。&lt;/p&gt;
+
+&lt;p&gt;・記事名に日本語を使いたい場合：&lt;/p&gt;
+
+&lt;p&gt;YAMLのFomter Matterにtitle、dateなどをつけるとできる。&lt;/p&gt;
+
+&lt;p&gt;・これで最近の5件だけ記事が出る。 &lt;pre class='markdown-html-error' style='border: solid 3px red; background-color: pink'&gt;REXML could not parse this XML/HTML: 
+&amp;lt;ul class=&amp;quot;posts&amp;quot;&amp;gt;&lt;/pre&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;li&amp;gt;&amp;lt;span&amp;gt;23 Dec 2012&amp;lt;/span&amp;gt; &amp;amp;raquo; &amp;lt;a href=&amp;quot;/Jekyll/2012/12/23/jekyll_and_github&amp;quot;&amp;gt;Jekyllとgithubでブログ作成&amp;lt;/a&amp;gt;&amp;lt;/li&amp;gt;
+
+&amp;lt;li&amp;gt;&amp;lt;span&amp;gt;17 Dec 2012&amp;lt;/span&amp;gt; &amp;amp;raquo; &amp;lt;a href=&amp;quot;/Jekyll/2012/12/17/jekyll_tips1&amp;quot;&amp;gt;Jekyll Tips 1&amp;lt;/a&amp;gt;&amp;lt;/li&amp;gt;
+
+&amp;lt;/ul&amp;gt;&lt;/code&gt;&lt;/pre&gt;</content>
  </entry>
  
  
