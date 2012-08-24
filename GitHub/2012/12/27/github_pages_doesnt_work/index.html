@@ -4,7 +4,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Jekyll Tips1</title>
+    <title>GitHubPagesが動かない</title>
     
     <meta name="author" content="sankame">
 
@@ -97,7 +97,7 @@
         
 
 <div class="page-header">
-  <h1>Jekyll Tips1 </h1>
+  <h1>GitHubPagesが動かない </h1>
 </div>
 
 <div class="row">
@@ -105,7 +105,7 @@
   <!--[if IE 6 ]>
     <div class="span12-for-ie6">
   <![endif]-->
-    <p>投稿日：<span>2012年12月17日</span><br /> <script type='text/javascript'><!--
+    <p>投稿日：<span>2012年12月27日</span><br /> <script type='text/javascript'><!--
 google_ad_client = "ca-pub-7590393515441008";
 /* TextBlogCenterTop */
 google_ad_slot = "5898581108";
@@ -115,68 +115,28 @@ google_ad_height = 60;
 </script> <script type='text/javascript' src='http://pagead2.googlesyndication.com/pagead/show_ads.js'>
 </script></p>
 
-<h4 id='jekyll'>Jekyllの設定に関するメモ。</h4>
+<h4 id='githubpagesindexhtml'>GitHubPagesでブログを公開しようと、下記ページに従って作業したがindex.htmlすら表示されない…</h4>
 
-<h4 id='jekyllbootstrap'>JekyllBootstrapの配置先は下記ディレクトリ。(<a href='/Jekyll/2012/12/23/jekyll_and_github/'>関連記事</a>)</h4>
+<h4 id='id156'><a href='http://tokkono.cute.coocan.jp/blog/slow/index.php/programming/github-pages-almost-perfect-guide/'>参考ページ</a></h4>
 
-<h5 id='varwwwhtmljekylljekyll_home'>/var/www/html/jekyll/JEKYLL_HOME/</h5>
+<h4 id='1github'>1.GitHubに登録したメールアドレスの受信箱をチェック</h4>
 
-<h6 id='id149'>・画面ヘッダ部分のナビゲーションを変更したい。</h6>
+<p>&#8220;Page build failure&#8221;というサブジェクトでGitHubからメールが届いていた。</p>
 
-<pre><code>(例)
-画面ヘッダ部分にArchiveを表示したくない場合
-下記ファイルのヘッダ部分の&quot;group: navigation&quot;を#でコメントアウトする。
-/var/www/html/jekyll/JEKYLL_HOME/archive.html</code></pre>
+<pre><code>The page build failed with the following error:
 
-<h6 id='id150'>・記事タイトルに日本語を使いたい。</h6>
+You need a verified email address in your GitHub account to publish Pages.
+You can verify your email addresses from your Settings panel:
 
-<pre><code>記事のファイル名に日本語は使えないので、YAMLのFront Matterでtitleを指定する。
-(例)
----
-layout: page
-category: Jekyll
-tags: [Ruby, RubyGems, Jekyll, GitHub]
-date: 2012-12-23 00:00:00
-title: Jekyllとgithubでブログ作成
----</code></pre>
+https://github.com/settings/emails</code></pre>
 
-<h6 id='id151'>・ループ回数を制限したい。</h6>
+<p>設定パネルであなたのメアドが正しいことを確認してください、と書いてある。</p>
 
-<pre><code>limitを使う。
+<p>上記メール内のリンクを押してページ遷移した後、メールアドレスの確認ボタンをクリック。</p>
 
-(例)最近の5件だけ記事を表示。
+<p>その後、github pagesのページ作成ボタンを押すと下記URLにアクセスできた。 (usernameは読み替え)</p>
 
-&lt;ul class=&quot;posts&quot;&gt;
-  {% for post in site.posts limit:5 %}
-    &lt;li&gt;&lt;span&gt;{{ post.date | date_to_string }}&lt;/span&gt; &amp;raquo; &lt;a href=&quot;{{ BASE_PATH }}{{ post.url }}&quot;&gt;{{ post.title }}&lt;/a&gt;&lt;/li&gt;
-  {% endfor %}
-&lt;/ul&gt;</code></pre>
-
-<h6 id='liquid'>・liquidの文法をエスケープしたい。<a href='http://stackoverflow.com/questions/3426182/how-to-escape-liquid-template-tags'>参考ページ</a></h6>
-
-<pre><code>Markdownの中でif文やliquidの文法をそのまま出力したい場合、下記のタグを使用する。
-
-{% raw %}
-エスケープしたい表現
-{% endraw %}</code></pre>
-
-<h6 id='id152'>・日付のフォーマット(書式)を変更したい。<a href='http://stackoverflow.com/questions/7395520/jekyll-date-format'>参考ページ</a></h6>
-
-<pre><code>日本語を使う場合、ファイルをUTF8で保存する。
-
-(例)
-
-{ post.date | date: &quot;%Y年%m月%d日&quot; }</code></pre>
-
-<h6 id='id153'>・文法に関する参考ページ</h6>
-
-<p>・<a href='https://github.com/mojombo/jekyll/wiki/template-data'>Jekyll変数</a></p>
-
-<p>・<a href='https://github.com/shopify/liquid/wiki/liquid-for-designers'>liquid文法</a></p>
-
-<p>・<a href='http://technetium.matrix.jp/markdown.html'>Markdown記法1</a></p>
-
-<p>・<a href='http://www.zone0.ne.jp/2011/markdown-cheatsheet.html'>Markdown記法2</a></p>
+<p>http://username.github.com/</p>
   <!--[if IE 6 ]>
     </div>
   <![endif]-->
