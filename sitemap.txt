@@ -8,6 +8,7 @@ http://sankame.github.com/atom.xml
 http://sankame.github.com/index.html
 http://sankame.github.com/sitemap.txt
 
+http://sankame.github.com/GitHub/2012/12/28/php_sample_viaisset
 http://sankame.github.com/GitHub/2012/12/27/github_pages_doesnt_work
 http://sankame.github.com/OpenX/2012/12/24/openx_install
 http://sankame.github.com/Jekyll/2012/12/23/jekyll_and_github

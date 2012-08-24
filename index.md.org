@@ -137,6 +137,8 @@ Here's a sample "posts list".
 
 <ul class="posts">
   
+    <li><span>28 Dec 2012</span> &raquo; <a href="/GitHub/2012/12/28/php_sample_viaisset">PHPサンプル isset関数化</a></li>
+  
     <li><span>27 Dec 2012</span> &raquo; <a href="/GitHub/2012/12/27/github_pages_doesnt_work">GitHubPagesが動かない</a></li>
   
     <li><span>24 Dec 2012</span> &raquo; <a href="/OpenX/2012/12/24/openx_install">OpenXインストール</a></li>
