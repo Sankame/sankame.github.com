@@ -4,13 +4,119 @@
  <title>Text Blog</title>
  <link href="http://sankame.github.com/atom.xml" rel="self"/>
  <link href="http://sankame.github.com"/>
- <updated>2012-09-10T14:42:13+09:00</updated>
+ <updated>2012-09-25T07:13:59+09:00</updated>
  <id>http://sankame.github.com</id>
  <author>
    <name>sankame</name>
    <email>mt_fuji_3776@live.jp</email>
  </author>
 
+ 
+ <entry>
+   <title>OpenX配信テスト</title>
+   <link href="http://sankame.github.com/OpenX/2013/01/15/openx_delivery_test"/>
+   <updated>2013-01-15T00:00:00+09:00</updated>
+   <id>http://sankame.github.com/OpenX/2013/01/15/openx_delivery_test</id>
+   <content type="html">&lt;p&gt;投稿日：&lt;span&gt;2013年01月15日&lt;/span&gt;&lt;br /&gt; &lt;script type='text/javascript'&gt;&lt;!--
+google_ad_client = &quot;ca-pub-7590393515441008&quot;;
+/* TextBlogCenterTop */
+google_ad_slot = &quot;5898581108&quot;;
+google_ad_width = 468;
+google_ad_height = 60;
+//--&gt;
+&lt;/script&gt; &lt;script type='text/javascript' src='http://pagead2.googlesyndication.com/pagead/show_ads.js'&gt;
+&lt;/script&gt;&lt;/p&gt;
+
+&lt;h4 id='openxver2810'&gt;OpenX(ver2.8.10)で広告配信テストをしてみる。&lt;/h4&gt;
+
+&lt;h4 id='1'&gt;1.管理画面ログイン&lt;/h4&gt;
+
+&lt;p&gt;管理画面にログイン後、画面右上でログインユーザが「Working as Default manager」であることを確認。&lt;/p&gt;
+
+&lt;p&gt;「インベントリ」タブをクリックし、左メニューの上から順に登録していく。&lt;/p&gt;
+
+&lt;h4 id='2'&gt;2.広告主&lt;/h4&gt;
+
+&lt;p&gt;「インベントリ」-「広告主」-「広告主の追加」とリンクを辿り、下記項目に入力して「変更の保存」クリック。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;名称、担当者名、メールアドレス&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;上記で登録した広告主をクリックすると広告主の詳細画面が表示されるので、&lt;/p&gt;
+
+&lt;p&gt;「ユーザアクセス」タブ -「アクション▼」-「ユーザを追加する」からユーザを追加。&lt;/p&gt;
+
+&lt;p&gt;※ログアウト後、入力した「ユーザー名」と「パスワード」で広告主ユーザーとしてログインできる。&lt;/p&gt;
+
+&lt;h4 id='3'&gt;3.キャンペーン&lt;/h4&gt;
+
+&lt;p&gt;「インベントリ」-「広告主」で登録済みの広告主の「キャンペーンの追加」をクリック。&lt;/p&gt;
+
+&lt;p&gt;キャンペーン追加画面で下記項目を入力して「変更の保存」をクリック。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;名称            :  (任意)
+キャンペーン名 ： 担当者名  (※各選択肢の意味は未確認)
+「日付」以下の項目はとりあえずデフォルトのまま。&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id='4'&gt;4.バナー&lt;/h4&gt;
+
+&lt;p&gt;「インベントリ」-「キャンペーン」で登録済みキャンペーンの「バナーの追加」をクリック。&lt;/p&gt;
+
+&lt;p&gt;バナーの追加画面で下記項目を入力して「Save changes」をクリック。(今回はGoogle AdSenseを配信してみる)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;バナーの種別 : html OpenX Generic HTML Banner
+名称 : (任意)
+HTMLバナー - banner code : (ここにGoogle AdSenseの広告ユニットコードを張り付ける)
+Alter HTML to enable click tracking for: Rich Media - Google AdSense
+Banner display : (Google AdSenseの広告ユニットコードと同じサイズを指定)&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;「インベントリ」-「バナー」で、登録済みバナーをクリックし、バナー詳細画面を表示。&lt;/p&gt;
+
+&lt;p&gt;「配信オプション」で下記のような値を設定しておくと、広告が毎回表示されるのでテストの際は便利。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;バナービュー上限数 : 20000 総配信数
+バナービュー上限数 : 20000／セッション
+カウンタリセット条件 : 15 分間&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href='http://www.openx.com/docs/tutorials/using-google-adsense-with-openx'&gt;マニュアル&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4 id='5_web'&gt;5. Webサイト&lt;/h4&gt;
+
+&lt;p&gt;「インベントリ」-「Webサイト」-「Webサイトの追加」から、広告を配信したいWebサイトを登録する。&lt;/p&gt;
+
+&lt;h4 id='6_'&gt;6. ゾーン&lt;/h4&gt;
+
+&lt;p&gt;「インベントリ」-「Webサイト」で登録済みのWebサイトの「ゾーンの追加」をクリック。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;名称：(任意)
+ゾーンタイプ：バナー・ボタン・レクタングル広告
+サイズ：(バナーのBanner displayで指定した値と合わせる)&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id='7_'&gt;7. リンク済バナー&lt;/h4&gt;
+
+&lt;p&gt;「インベントリ」-「ゾーン」で、登録済みゾーンの「リンク済みバナー」をクリック。&lt;/p&gt;
+
+&lt;p&gt;プルダウンで、広告主→キャンペーン　の順に選択。(※日本語は文字化けする…)&lt;/p&gt;
+
+&lt;p&gt;○で囲まれた小さな右矢印ボタンをクリックすると、選択したキャンペーンが表示される。&lt;/p&gt;
+
+&lt;p&gt;「バナーの表示」をクリックするとプレビューが表示される。&lt;/p&gt;
+
+&lt;h4 id='8_'&gt;8. 広告コード&lt;/h4&gt;
+
+&lt;p&gt;「インベントリ」-「ゾーン」で登録済みゾーンの「広告表示コードの生成」をクリック。&lt;/p&gt;
+
+&lt;p&gt;表示されたコードをコピーして、表示させたいWebサイトに貼り付ける。&lt;/p&gt;
+
+&lt;h4 id='9_'&gt;9. 疑問&lt;/h4&gt;
+
+&lt;p&gt;上記8の広告コードは、上記5のWebサイト以外のドメインでも表示することができる。&lt;/p&gt;
+
+&lt;p&gt;Webサイトとバナーを紐付けたのはなぜ？レポートのため？&lt;/p&gt;
+
+&lt;h4 id='10_'&gt;10. 参考ページ&lt;/h4&gt;
+
+&lt;p&gt;&lt;a href='http://ohwhsmm7.blog28.fc2.com/blog-entry-206.html'&gt;参考ページ&lt;/a&gt;&lt;/p&gt;</content>
+ </entry>
  
  <entry>
    <title>CentOSコマンド メモ</title>
@@ -29,7 +135,7 @@ google_ad_height = 60;
 
 &lt;h4 id='centos_'&gt;CentOSコマンド メモ&lt;/h4&gt;
 
-&lt;h5 id='id9'&gt;・ファイル検索&lt;/h5&gt;
+&lt;h5 id='id660'&gt;・ファイル検索&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt; find / -name filename&lt;/code&gt;&lt;/pre&gt;
 
@@ -84,7 +190,7 @@ google_ad_height = 60;
 
 &lt;h4 id='githubpagesindexhtml'&gt;GitHubPagesでブログを公開しようと、下記ページに従って作業したがindex.htmlすら表示されない…&lt;/h4&gt;
 
-&lt;h4 id='id8'&gt;&lt;a href='http://tokkono.cute.coocan.jp/blog/slow/index.php/programming/github-pages-almost-perfect-guide/'&gt;参考ページ&lt;/a&gt;&lt;/h4&gt;
+&lt;h4 id='id659'&gt;&lt;a href='http://tokkono.cute.coocan.jp/blog/slow/index.php/programming/github-pages-almost-perfect-guide/'&gt;参考ページ&lt;/a&gt;&lt;/h4&gt;
 
 &lt;h4 id='1github'&gt;1.GitHubに登録したメールアドレスの受信箱をチェック&lt;/h4&gt;
 
@@ -123,7 +229,7 @@ google_ad_height = 60;
 
 &lt;h4 id='pcvmwareplayeropenx'&gt;ローカルPCのVmwarePlayerにOpenXをインストール。&lt;/h4&gt;
 
-&lt;h4 id='id7'&gt;&lt;a href='http://www.openx.com/docs/qsg-install'&gt;マニュアル&lt;/a&gt;に従ってインストールした。&lt;/h4&gt;
+&lt;h4 id='id658'&gt;&lt;a href='http://www.openx.com/docs/qsg-install'&gt;マニュアル&lt;/a&gt;に従ってインストールした。&lt;/h4&gt;
 
 &lt;h4 id='1'&gt;1.ソース取得&lt;/h4&gt;
 
@@ -332,7 +438,7 @@ Auto-regenerating enabled: /var/www/html/jekyll/JEKYLL_HOME -&amp;gt; /var/www/h
 
 &lt;h5 id='githtmlgithubpush'&gt;任意のディレクトリをGitの作業ツリーにして、そこからHTMLをGitHubへPushする。&lt;/h5&gt;
 
-&lt;h5 id='id6'&gt;&lt;code&gt;【注意】/var/www/html/jekyll/JEKYLL_HOME/_site/ を作業ツリーにするとJekyllを起動する度に.gitが削除されるので適さない。&lt;/code&gt;&lt;/h5&gt;
+&lt;h5 id='id657'&gt;&lt;code&gt;【注意】/var/www/html/jekyll/JEKYLL_HOME/_site/ を作業ツリーにするとJekyllを起動する度に.gitが削除されるので適さない。&lt;/code&gt;&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt;# Jekyllが生成したHTMLをGit作業ツリー(任意のディレクトリ)へコピーする。
 # cp -pr /var/www/html/jekyll/JEKYLL_HOME/_site/* /var/www/html/sankame.github.com/
@@ -367,14 +473,14 @@ google_ad_height = 60;
 
 &lt;h5 id='varwwwhtmljekylljekyll_home'&gt;/var/www/html/jekyll/JEKYLL_HOME/&lt;/h5&gt;
 
-&lt;h6 id='id1'&gt;・画面ヘッダ部分のナビゲーションを変更したい。&lt;/h6&gt;
+&lt;h6 id='id652'&gt;・画面ヘッダ部分のナビゲーションを変更したい。&lt;/h6&gt;
 
 &lt;pre&gt;&lt;code&gt;(例)
 画面ヘッダ部分にArchiveを表示したくない場合
 下記ファイルのヘッダ部分の&amp;quot;group: navigation&amp;quot;を#でコメントアウトする。
 /var/www/html/jekyll/JEKYLL_HOME/archive.html&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h6 id='id2'&gt;・記事タイトルに日本語を使いたい。&lt;/h6&gt;
+&lt;h6 id='id653'&gt;・記事タイトルに日本語を使いたい。&lt;/h6&gt;
 
 &lt;pre&gt;&lt;code&gt;記事のファイル名に日本語は使えないので、YAMLのFront Matterでtitleを指定する。
 (例)
@@ -386,7 +492,7 @@ date: 2012-12-23 00:00:00
 title: Jekyllとgithubでブログ作成
 ---&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h6 id='id3'&gt;・ループ回数を制限したい。&lt;/h6&gt;
+&lt;h6 id='id654'&gt;・ループ回数を制限したい。&lt;/h6&gt;
 
 &lt;pre&gt;&lt;code&gt;limitを使う。
 
@@ -406,7 +512,7 @@ title: Jekyllとgithubでブログ作成
 エスケープしたい表現
 {% endraw %}&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h6 id='id4'&gt;・日付のフォーマット(書式)を変更したい。&lt;a href='http://stackoverflow.com/questions/7395520/jekyll-date-format'&gt;参考ページ&lt;/a&gt;&lt;/h6&gt;
+&lt;h6 id='id655'&gt;・日付のフォーマット(書式)を変更したい。&lt;a href='http://stackoverflow.com/questions/7395520/jekyll-date-format'&gt;参考ページ&lt;/a&gt;&lt;/h6&gt;
 
 &lt;pre&gt;&lt;code&gt;日本語を使う場合、ファイルをUTF8で保存する。
 
@@ -414,7 +520,7 @@ title: Jekyllとgithubでブログ作成
 
 { post.date | date: &amp;quot;%Y年%m月%d日&amp;quot; }&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h6 id='id5'&gt;・文法に関する参考ページ&lt;/h6&gt;
+&lt;h6 id='id656'&gt;・文法に関する参考ページ&lt;/h6&gt;
 
 &lt;p&gt;・&lt;a href='https://github.com/mojombo/jekyll/wiki/template-data'&gt;Jekyll変数&lt;/a&gt;&lt;/p&gt;
 
