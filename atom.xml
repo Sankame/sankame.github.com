@@ -4,13 +4,70 @@
  <title>Text Blog</title>
  <link href="http://sankame.github.com/atom.xml" rel="self"/>
  <link href="http://sankame.github.com"/>
- <updated>2012-09-25T10:14:34+09:00</updated>
+ <updated>2012-09-25T19:13:19+09:00</updated>
  <id>http://sankame.github.com</id>
  <author>
    <name>sankame</name>
    <email>mt_fuji_3776@live.jp</email>
  </author>
 
+ 
+ <entry>
+   <title>Subversionリポジトリ作成</title>
+   <link href="http://sankame.github.com/Subversion/2013/01/19/svn_create_repos"/>
+   <updated>2013-01-19T00:00:00+09:00</updated>
+   <id>http://sankame.github.com/Subversion/2013/01/19/svn_create_repos</id>
+   <content type="html">&lt;p&gt;投稿日：&lt;span&gt;2013年01月19日&lt;/span&gt;&lt;br /&gt; &lt;script type='text/javascript'&gt;&lt;!--
+google_ad_client = &quot;ca-pub-7590393515441008&quot;;
+/* TextBlogCenterTop */
+google_ad_slot = &quot;5898581108&quot;;
+google_ad_width = 468;
+google_ad_height = 60;
+//--&gt;
+&lt;/script&gt; &lt;script type='text/javascript' src='http://pagead2.googlesyndication.com/pagead/show_ads.js'&gt;
+&lt;/script&gt;&lt;/p&gt;
+
+&lt;h4 id='svnsubversion'&gt;SVN(Subversion)でのリポジトリ作成メモ&lt;/h4&gt;
+
+&lt;h4 id='_svn'&gt;手順 (SVNはインストール済みとする)&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;# ブラウザ経由でリポジトリ見るため、予めmod_dav_svnをインストール。
+# yum install mod_dav_svn
+
+# データが壊れにくいfsfsを指定し、リポジトリ作成。
+# svnadmin create /var/svn/repos/test --fs-type fsfs
+
+# SVNの作法通り、下記3つを用意。
+svn mkdir file:///var/svn/repos/test/trunk -m &amp;quot;create&amp;quot;
+svn mkdir file:///var/svn/repos/test/tags -m &amp;quot;create&amp;quot;
+svn mkdir file:///var/svn/repos/test/branches -m &amp;quot;create&amp;quot;
+
+# 他のリポジトリのソースを引き継ぐ場合。
+# (例)test_orgリポジトリを出力。
+# svn export file:///var/svn/repos/test_org/ /tmp/test_org
+
+# 上記で出力ソースを取りこむ。
+# svn import /tmp/test_org/trunk file:///var/svn/repos/test/trunk -m &amp;quot;first import&amp;quot;
+
+# ブラウザからアクセスするため、設定ファイルを変更。
+# vim /etc/httpd/conf.d/subversion.conf
+
+# 下記を追記。
+&amp;lt;Location /svn/test&amp;gt;
+    DAV svn
+    SVNPath /var/svn/repos/test
+&amp;lt;/Location&amp;gt;
+
+# apache再起動
+# /etc/init.d/httpd restart
+
+# 下記URLでブラウザからリポジトリにアクセス。(localhostは環境に応じて読み替え)
+# http://localhost/svn/test/
+
+# コミットしたらエラーが出たので、作成したリポジトリのパーミッションをゆるめに変更。
+# cd /var/svn/repos
+# chmod -R 777 test&lt;/code&gt;&lt;/pre&gt;</content>
+ </entry>
  
  <entry>
    <title>OpenX配信テスト</title>
@@ -135,7 +192,7 @@ google_ad_height = 60;
 
 &lt;h4 id='centos_'&gt;CentOSコマンド メモ&lt;/h4&gt;
 
-&lt;h5 id='id42'&gt;・ファイル検索&lt;/h5&gt;
+&lt;h5 id='id254'&gt;・ファイル検索&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt; find / -name filename&lt;/code&gt;&lt;/pre&gt;
 
@@ -190,7 +247,7 @@ google_ad_height = 60;
 
 &lt;h4 id='githubpagesindexhtml'&gt;GitHubPagesでブログを公開しようと、下記ページに従って作業したがindex.htmlすら表示されない…&lt;/h4&gt;
 
-&lt;h4 id='id41'&gt;&lt;a href='http://tokkono.cute.coocan.jp/blog/slow/index.php/programming/github-pages-almost-perfect-guide/'&gt;参考ページ&lt;/a&gt;&lt;/h4&gt;
+&lt;h4 id='id253'&gt;&lt;a href='http://tokkono.cute.coocan.jp/blog/slow/index.php/programming/github-pages-almost-perfect-guide/'&gt;参考ページ&lt;/a&gt;&lt;/h4&gt;
 
 &lt;h4 id='1github'&gt;1.GitHubに登録したメールアドレスの受信箱をチェック&lt;/h4&gt;
 
@@ -229,7 +286,7 @@ google_ad_height = 60;
 
 &lt;h4 id='pcvmwareplayeropenx'&gt;ローカルPCのVmwarePlayerにOpenXをインストール。&lt;/h4&gt;
 
-&lt;h4 id='id40'&gt;&lt;a href='http://www.openx.com/docs/qsg-install'&gt;マニュアル&lt;/a&gt;に従ってインストールした。&lt;/h4&gt;
+&lt;h4 id='id252'&gt;&lt;a href='http://www.openx.com/docs/qsg-install'&gt;マニュアル&lt;/a&gt;に従ってインストールした。&lt;/h4&gt;
 
 &lt;h4 id='1'&gt;1.ソース取得&lt;/h4&gt;
 
@@ -438,7 +495,7 @@ Auto-regenerating enabled: /var/www/html/jekyll/JEKYLL_HOME -&amp;gt; /var/www/h
 
 &lt;h5 id='githtmlgithubpush'&gt;任意のディレクトリをGitの作業ツリーにして、そこからHTMLをGitHubへPushする。&lt;/h5&gt;
 
-&lt;h5 id='id39'&gt;&lt;code&gt;【注意】/var/www/html/jekyll/JEKYLL_HOME/_site/ を作業ツリーにするとJekyllを起動する度に.gitが削除されるので適さない。&lt;/code&gt;&lt;/h5&gt;
+&lt;h5 id='id251'&gt;&lt;code&gt;【注意】/var/www/html/jekyll/JEKYLL_HOME/_site/ を作業ツリーにするとJekyllを起動する度に.gitが削除されるので適さない。&lt;/code&gt;&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt;# Jekyllが生成したHTMLをGit作業ツリー(任意のディレクトリ)へコピーする。
 # cp -pr /var/www/html/jekyll/JEKYLL_HOME/_site/* /var/www/html/sankame.github.com/
@@ -473,14 +530,14 @@ google_ad_height = 60;
 
 &lt;h5 id='varwwwhtmljekylljekyll_home'&gt;/var/www/html/jekyll/JEKYLL_HOME/&lt;/h5&gt;
 
-&lt;h6 id='id34'&gt;・画面ヘッダ部分のナビゲーションを変更したい。&lt;/h6&gt;
+&lt;h6 id='id246'&gt;・画面ヘッダ部分のナビゲーションを変更したい。&lt;/h6&gt;
 
 &lt;pre&gt;&lt;code&gt;(例)
 画面ヘッダ部分にArchiveを表示したくない場合
 下記ファイルのヘッダ部分の&amp;quot;group: navigation&amp;quot;を#でコメントアウトする。
 /var/www/html/jekyll/JEKYLL_HOME/archive.html&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h6 id='id35'&gt;・記事タイトルに日本語を使いたい。&lt;/h6&gt;
+&lt;h6 id='id247'&gt;・記事タイトルに日本語を使いたい。&lt;/h6&gt;
 
 &lt;pre&gt;&lt;code&gt;記事のファイル名に日本語は使えないので、YAMLのFront Matterでtitleを指定する。
 (例)
@@ -492,7 +549,7 @@ date: 2012-12-23 00:00:00
 title: Jekyllとgithubでブログ作成
 ---&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h6 id='id36'&gt;・ループ回数を制限したい。&lt;/h6&gt;
+&lt;h6 id='id248'&gt;・ループ回数を制限したい。&lt;/h6&gt;
 
 &lt;pre&gt;&lt;code&gt;limitを使う。
 
@@ -512,7 +569,7 @@ title: Jekyllとgithubでブログ作成
 エスケープしたい表現
 {% endraw %}&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h6 id='id37'&gt;・日付のフォーマット(書式)を変更したい。&lt;a href='http://stackoverflow.com/questions/7395520/jekyll-date-format'&gt;参考ページ&lt;/a&gt;&lt;/h6&gt;
+&lt;h6 id='id249'&gt;・日付のフォーマット(書式)を変更したい。&lt;a href='http://stackoverflow.com/questions/7395520/jekyll-date-format'&gt;参考ページ&lt;/a&gt;&lt;/h6&gt;
 
 &lt;pre&gt;&lt;code&gt;日本語を使う場合、ファイルをUTF8で保存する。
 
@@ -520,7 +577,7 @@ title: Jekyllとgithubでブログ作成
 
 { post.date | date: &amp;quot;%Y年%m月%d日&amp;quot; }&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h6 id='id38'&gt;・文法に関する参考ページ&lt;/h6&gt;
+&lt;h6 id='id250'&gt;・文法に関する参考ページ&lt;/h6&gt;
 
 &lt;p&gt;・&lt;a href='https://github.com/mojombo/jekyll/wiki/template-data'&gt;Jekyll変数&lt;/a&gt;&lt;/p&gt;
 

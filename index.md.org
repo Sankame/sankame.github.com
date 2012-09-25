@@ -150,6 +150,8 @@ Here's a sample "posts list".
 
 <ul class="posts">
   
+    <li><span>19 Jan 2013</span> &raquo; <a href="/Subversion/2013/01/19/svn_create_repos">Subversionリポジトリ作成</a></li>
+  
     <li><span>15 Jan 2013</span> &raquo; <a href="/OpenX/2013/01/15/openx_delivery_test">OpenX配信テスト</a></li>
   
     <li><span>31 Dec 2012</span> &raquo; <a href="/CentOS/2012/12/31/centos_command">CentOSコマンド メモ</a></li>

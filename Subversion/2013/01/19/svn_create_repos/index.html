@@ -4,7 +4,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>OpenXインストール</title>
+    <title>Subversionリポジトリ作成</title>
     
     <meta name="author" content="sankame">
 
@@ -110,7 +110,7 @@
         
 
 <div class="page-header">
-  <h1>OpenXインストール </h1>
+  <h1>Subversionリポジトリ作成 </h1>
 </div>
 
 <div class="row">
@@ -118,7 +118,7 @@
   <!--[if IE 6 ]>
     <div class="span12-for-ie6">
   <![endif]-->
-    <p>投稿日：<span>2012年12月24日</span><br /> <script type='text/javascript'><!--
+    <p>投稿日：<span>2013年01月19日</span><br /> <script type='text/javascript'><!--
 google_ad_client = "ca-pub-7590393515441008";
 /* TextBlogCenterTop */
 google_ad_slot = "5898581108";
@@ -128,100 +128,46 @@ google_ad_height = 60;
 </script> <script type='text/javascript' src='http://pagead2.googlesyndication.com/pagead/show_ads.js'>
 </script></p>
 
-<h4 id='pcvmwareplayeropenx'>ローカルPCのVmwarePlayerにOpenXをインストール。</h4>
+<h4 id='svnsubversion'>SVN(Subversion)でのリポジトリ作成メモ</h4>
 
-<h4 id='id252'><a href='http://www.openx.com/docs/qsg-install'>マニュアル</a>に従ってインストールした。</h4>
+<h4 id='_svn'>手順 (SVNはインストール済みとする)</h4>
 
-<h4 id='1'>1.ソース取得</h4>
+<pre><code># ブラウザ経由でリポジトリ見るため、予めmod_dav_svnをインストール。
+# yum install mod_dav_svn
 
-<p>マニュアルの下記リンクからソースをダウンロード。(アンケートあるためwgetでは落とせない)</p>
+# データが壊れにくいfsfsを指定し、リポジトリ作成。
+# svnadmin create /var/svn/repos/test --fs-type fsfs
 
-<p>Download the latest installation archive from: <a href='http://www.openx.com/publisher/open-source-ad-server'>here</a></p>
+# SVNの作法通り、下記3つを用意。
+svn mkdir file:///var/svn/repos/test/trunk -m &quot;create&quot;
+svn mkdir file:///var/svn/repos/test/tags -m &quot;create&quot;
+svn mkdir file:///var/svn/repos/test/branches -m &quot;create&quot;
 
-<p>ソースをWebサーバへアップし、解凍して公開ディレクトリへ配置する。</p>
+# 他のリポジトリのソースを引き継ぐ場合。
+# (例)test_orgリポジトリを出力。
+# svn export file:///var/svn/repos/test_org/ /tmp/test_org
 
-<pre><code># mv openx-2.8.10 openx
-# mv openx /var/www/html/</code></pre>
+# 上記で出力ソースを取りこむ。
+# svn import /tmp/test_org/trunk file:///var/svn/repos/test/trunk -m &quot;first import&quot;
 
-<p>/var/www/html/openx/varと/var/www/html/openx/www/images　に777を与える。</p>
+# ブラウザからアクセスするため、設定ファイルを変更。
+# vim /etc/httpd/conf.d/subversion.conf
 
-<pre><code># cd /var/www/html/openx/
-# chmod -R 777 var
-# chmod -R 777 ./www/images/</code></pre>
+# 下記を追記。
+&lt;Location /svn/test&gt;
+    DAV svn
+    SVNPath /var/svn/repos/test
+&lt;/Location&gt;
 
-<p>ブラウザでhttp://localhost/openx/ へアクセスし、Webのインストーラを起動する。</p>
+# apache再起動
+# /etc/init.d/httpd restart
 
-<p>下記のディレクトリにも書き込み権限が必要というエラーが出た。</p>
+# 下記URLでブラウザからリポジトリにアクセス。(localhostは環境に応じて読み替え)
+# http://localhost/svn/test/
 
-<p>/var/www/html/openx/plugins</p>
-
-<p>/var/www/html/openx/www/admin/plugins</p>
-
-<p>画面にコマンドが書いてあったのでそのまま実行。</p>
-
-<pre><code># chmod -R a+w /var/www/html/openx/plugins
-# chmod -R a+w /var/www/html/openx/www/admin/plugins</code></pre>
-
-<h4 id='2registration'>2.Registration</h4>
-
-<p>Webインストーラを続行、下記項目に入力。</p>
-
-<p>name, password, e-mail</p>
-
-<h4 id='3database'>3.Database</h4>
-
-<p>DBがなかったら作成されると画面に書いてあったが、エラーになったので</p>
-
-<p>下記コマンドであらかじめDBとユーザを作成。(testxxxxの部分は適当に変更)</p>
-
-<pre><code># create database testdb;
-# grant all on testdb.* to &#39;testuser&#39;@&#39;localhost&#39; identified by &#39;testpassword&#39;;</code></pre>
-
-<h4 id='4_configuration'>4. Configuration</h4>
-
-<p>Webインストーラを続行、下記項目に入力。</p>
-
-<p>Admin User, Admin User Password</p>
-
-<h4 id='5_finish'>5. Finish</h4>
-
-<p>エラーが出たからログを見てね、と書いてあったが無視してそのままcontinue</p>
-
-<p>※その後、ログを見たがエラーは出力されていなかった。</p>
-
-<pre><code># view /var/www/html/openx/var/install.log</code></pre>
-
-<h4 id='6_'>6. その他</h4>
-
-<p>そのまま広告設定の管理画面ぽいところへ遷移。</p>
-
-<p>ページ上部に下記のエラーメッセージが…</p>
-
-<pre><code>Warning: date_default_timezone_get(): It is not safe to rely
- on the system&#39;s timezone settings.
- You are *required* to use the date.timezone setting or the
- date_default_timezone_set() function.
- In case you used any of those methods and you are still getting
- this warning, you most likely misspelled the timezone identifier.
- We selected &#39;Asia/Tokyo&#39; for &#39;JST/9.0/no DST&#39; instead in
- /var/www/html/openx/variables.php on line 82 </code></pre>
-
-<p>下記ソースに追記する。</p>
-
-<p>■ソース</p>
-
-<p>/var/www/html/openx/variables.php</p>
-
-<p>■追記</p>
-
-<pre><code>//追記ここから
-if( ! ini_get(&#39;date.timezone&#39;) ){
-	date_default_timezone_set(&#39;Asia/Tokyo&#39;);
-}
-//追記ここまで
-	$GLOBALS[&#39;serverTimezone&#39;] = date_default_timezone_get();</code></pre>
-
-<p><a href='http://www.jamescrowley.co.uk/2010/09/12/running-openx-under-iis-with-php-5-3-date-default-timezone-get-errors/'>参考ページ</a></p>
+# コミットしたらエラーが出たので、作成したリポジトリのパーミッションをゆるめに変更。
+# cd /var/svn/repos
+# chmod -R 777 test</code></pre>
   <!--[if IE 6 ]>
     </div>
   <![endif]-->
