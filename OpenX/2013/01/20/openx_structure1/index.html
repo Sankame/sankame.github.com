@@ -4,7 +4,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Hello World!</title>
+    <title>OpenX仕組み1 配信処理</title>
     
     <meta name="author" content="sankame">
 
@@ -110,7 +110,7 @@
         
 
 <div class="page-header">
-  <h1>Hello World!  <small>Supporting tagline</small></h1>
+  <h1>OpenX仕組み1 配信処理 </h1>
 </div>
 
 <div class="row">
@@ -118,65 +118,29 @@
   <!--[if IE 6 ]>
     <div class="span12-for-ie6">
   <![endif]-->
-    
+    <p>投稿日：<span>2013年01月20日</span><br /> <script type='text/javascript'><!--
+google_ad_client = "ca-pub-7590393515441008";
+/* TextBlogCenterTop */
+google_ad_slot = "5898581108";
+google_ad_width = 468;
+google_ad_height = 60;
+//-->
+</script> <script type='text/javascript' src='http://pagead2.googlesyndication.com/pagead/show_ads.js'>
+</script></p>
 
+<h4 id='openx'>OpenX仕組みに関する自分用メモ　配信処理</h4>
 
-Read [Jekyll Quick Start](http://jekyllbootstrap.com/usage/jekyll-quick-start.html)
+<h4 id='1'>1.テーブル定義</h4>
 
-Complete usage and documentation available at: [Jekyll Bootstrap](http://jekyllbootstrap.com)
+<p><a href='http://www.zulutime.org/openxschema/index.html'>テーブル定義？</a></p>
 
-## Update Author Attributes
+<h4 id='2'>2.インプレッションカウント</h4>
 
-In `_config.yml` remember to specify your own data:
-    
-    title : My Blog =)
-    
-    author :
-      name : Name Lastname
-      email : blah@email.test
-      github : username
-      twitter : username
-
-The theme should reference these variables whenever needed.
-    
-## Sample Posts
-
-This blog contains sample posts which help stage pages and blog data.
-When you don't need the samples anymore just delete the `_posts/core-samples` folder.
-
-    $ rm -rf _posts/core-samples
-
-Here's a sample "posts list".
-
-<ul class="posts">
-  
-    <li><span>20 Jan 2013</span> &raquo; <a href="/OpenX/2013/01/20/openx_structure1">OpenX仕組み1 配信処理</a></li>
-  
-    <li><span>19 Jan 2013</span> &raquo; <a href="/Subversion/2013/01/19/svn_create_repos">Subversionリポジトリ作成</a></li>
-  
-    <li><span>15 Jan 2013</span> &raquo; <a href="/OpenX/2013/01/15/openx_delivery_test">OpenX配信テスト</a></li>
-  
-    <li><span>31 Dec 2012</span> &raquo; <a href="/CentOS/2012/12/31/centos_command">CentOSコマンド メモ</a></li>
-  
-    <li><span>28 Dec 2012</span> &raquo; <a href="/PHP/2012/12/28/php_sample_viaisset">PHPサンプル isset関数化</a></li>
-  
-    <li><span>27 Dec 2012</span> &raquo; <a href="/GitHub/2012/12/27/github_pages_doesnt_work">GitHubPagesが動かない</a></li>
-  
-    <li><span>24 Dec 2012</span> &raquo; <a href="/OpenX/2012/12/24/openx_install">OpenXインストール</a></li>
-  
-    <li><span>23 Dec 2012</span> &raquo; <a href="/Jekyll/2012/12/23/jekyll_and_github">Jekyllとgithubでブログ作成</a></li>
-  
-    <li><span>17 Dec 2012</span> &raquo; <a href="/Jekyll/2012/12/17/jekyll_tips1">Jekyll Tips1</a></li>
-  
-</ul>
-
-## To-Do
-
-This theme is still unfinished. If you'd like to be added as a contributor, [please fork](http://github.com/plusjade/jekyll-bootstrap)!
-We need to clean up the themes, make theme usage guides with theme-specific markup examples.
-
-
-
+<pre><code>PHP : plugins/deliveryLog/oxLogImpression/logImpression.delivery.php
+		→lib/OA/Dal/Delivery/mysql.php:function OX_bucket_updateTable
+DB	: ox_data_bkt_m
+処理: INSERT(1レコード)
+概要: </code></pre>
   <!--[if IE 6 ]>
     </div>
   <![endif]-->
