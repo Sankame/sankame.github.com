@@ -4,13 +4,108 @@
  <title>Text Blog</title>
  <link href="http://sankame.github.com/atom.xml" rel="self"/>
  <link href="http://sankame.github.com"/>
- <updated>2012-09-26T02:35:03+09:00</updated>
+ <updated>2013-01-28T00:58:49+09:00</updated>
  <id>http://sankame.github.com</id>
  <author>
    <name>sankame</name>
    <email>mt_fuji_3776@live.jp</email>
  </author>
 
+ 
+ <entry>
+   <title>MeCabインストール</title>
+   <link href="http://sankame.github.com/MeCab/2013/01/28/mecab_install"/>
+   <updated>2013-01-28T00:00:00+09:00</updated>
+   <id>http://sankame.github.com/MeCab/2013/01/28/mecab_install</id>
+   <content type="html">&lt;p&gt;投稿日：&lt;span&gt;2013年01月28日&lt;/span&gt;&lt;br /&gt; &lt;script type='text/javascript'&gt;&lt;!--
+google_ad_client = &quot;ca-pub-7590393515441008&quot;;
+/* TextBlogCenterTop */
+google_ad_slot = &quot;5898581108&quot;;
+google_ad_width = 468;
+google_ad_height = 60;
+//--&gt;
+&lt;/script&gt; &lt;script type='text/javascript' src='http://pagead2.googlesyndication.com/pagead/show_ads.js'&gt;
+&lt;/script&gt;&lt;/p&gt;
+
+&lt;h4 id='mecab'&gt;形態素解析エンジンMeCabをインストールしてみる。&lt;/h4&gt;
+
+&lt;h5 id='1'&gt;1.インストール&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code&gt;# mecabのソースを取得
+# wget http://mecab.googlecode.com/files/mecab-0.98.tar.gz
+# tar xzf mecab-0.98.tar.gz 
+# cd mecab-0.98
+# cd src
+
+# mecab.hを開いて点線で囲んだ部分を修正する。数字に付けられている()を削除する。
+# vim mecab.h 
+--------------------------------------
+	#define MECAB_NOR_NODE  0
+	#define MECAB_UNK_NODE  1
+	#define MECAB_BOS_NODE  2
+	#define MECAB_EOS_NODE  3
+	#define MECAB_EON_NODE  4
+
+	#define MECAB_USR_DIC   1
+	#define MECAB_SYS_DIC   0
+	#define MECAB_UNK_DIC   2
+--------------------------------------
+
+# cd ..
+
+# ./configure --with-charset=utf-8
+# make
+# make install
+
+# cd ..
+
+# 辞書のソースを取得
+# wget http://downloads.sourceforge.net/project/mecab/mecab-ipadic/2.7.0-20070801/mecab-ipadic-2.7.0-20070801.tar.gz
+# tar zxvf mecab-ipadic-2.7.0-20070801.tar.gz
+# cd mecab-ipadic-2.7.0-20070801
+
+# char.def を開いて点線で囲んだ部分を修正する。オリジナルの部分をコメントアウトし、7行追加。
+# vim char.def 
+--------------------------------------
+	# ASCII
+	 #0x0021..0x002F SYMBOL
+	 #0x0030..0x0039 NUMERIC
+	 #0x003A..0x0040 SYMBOL
+	 #0x0041..0x005A ALPHA
+	 #0x005B..0x0060 SYMBOL
+	 #0x0061..0x007A ALPHA
+	 #0x007B..0x007E SYMBOL
+	 0x0021..0x002F ALPHA
+	 0x0030..0x0039 ALPHA
+	 0x003A..0x0040 ALPHA
+	 0x0041..0x005A ALPHA
+	 0x005B..0x0060 ALPHA
+	 0x0061..0x007A ALPHA
+	 0x007B..0x007E ALPHA
+--------------------------------------
+
+./configure --with-charset=utf-8
+make
+make install&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id='2'&gt;2.テスト&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code&gt;# 以下のようにmecabと打ってEnterキーを押すと待機状態になるので、次に解析したい文字列を入力する。
+# mecab
+# すもももももももものうち
+
+すもももももももものうち
+すもも  名詞,一般,*,*,*,*,すもも,スモモ,スモモ
+も      助詞,係助詞,*,*,*,*,も,モ,モ
+もも    名詞,一般,*,*,*,*,もも,モモ,モモ
+も      助詞,係助詞,*,*,*,*,も,モ,モ
+もも    名詞,一般,*,*,*,*,もも,モモ,モモ
+の      助詞,連体化,*,*,*,*,の,ノ,ノ
+うち    名詞,非自立,副詞可能,*,*,*,うち,ウチ,ウチ
+EOS&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href='http://brandofme.vi-king.net/?p=197'&gt;参照したページ&lt;/a&gt;&lt;/p&gt;</content>
+ </entry>
  
  <entry>
    <title>OpenX仕組み1 配信処理</title>
@@ -226,7 +321,7 @@ google_ad_height = 60;
 
 &lt;h4 id='centos_'&gt;CentOSコマンド メモ&lt;/h4&gt;
 
-&lt;h5 id='id163'&gt;・ファイル検索&lt;/h5&gt;
+&lt;h5 id='id351'&gt;・ファイル検索&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt; find / -name filename&lt;/code&gt;&lt;/pre&gt;
 
@@ -242,7 +337,14 @@ google_ad_height = 60;
 /usr/bin/locate
 
 # 下記コマンドでDBを更新するとlocateが使えるようになる。
-# updatedb&lt;/code&gt;&lt;/pre&gt;</content>
+# updatedb&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id='date_20130127'&gt;・dateで日時設定 (更新日：2013/01/27)&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code&gt;# 引数を次の順番に設定。→ date [月][日][時間][分][年]
+
+# date 012723232013
+2013年  1月 27日 日曜日 23:23:00 JST&lt;/code&gt;&lt;/pre&gt;</content>
  </entry>
  
  <entry>
@@ -281,7 +383,7 @@ google_ad_height = 60;
 
 &lt;h4 id='githubpagesindexhtml'&gt;GitHubPagesでブログを公開しようと、下記ページに従って作業したがindex.htmlすら表示されない…&lt;/h4&gt;
 
-&lt;h4 id='id162'&gt;&lt;a href='http://tokkono.cute.coocan.jp/blog/slow/index.php/programming/github-pages-almost-perfect-guide/'&gt;参考ページ&lt;/a&gt;&lt;/h4&gt;
+&lt;h4 id='id350'&gt;&lt;a href='http://tokkono.cute.coocan.jp/blog/slow/index.php/programming/github-pages-almost-perfect-guide/'&gt;参考ページ&lt;/a&gt;&lt;/h4&gt;
 
 &lt;h4 id='1github'&gt;1.GitHubに登録したメールアドレスの受信箱をチェック&lt;/h4&gt;
 
@@ -320,7 +422,7 @@ google_ad_height = 60;
 
 &lt;h4 id='pcvmwareplayeropenx'&gt;ローカルPCのVmwarePlayerにOpenXをインストール。&lt;/h4&gt;
 
-&lt;h4 id='id161'&gt;&lt;a href='http://www.openx.com/docs/qsg-install'&gt;マニュアル&lt;/a&gt;に従ってインストールした。&lt;/h4&gt;
+&lt;h4 id='id349'&gt;&lt;a href='http://www.openx.com/docs/qsg-install'&gt;マニュアル&lt;/a&gt;に従ってインストールした。&lt;/h4&gt;
 
 &lt;h4 id='1'&gt;1.ソース取得&lt;/h4&gt;
 
@@ -529,7 +631,7 @@ Auto-regenerating enabled: /var/www/html/jekyll/JEKYLL_HOME -&amp;gt; /var/www/h
 
 &lt;h5 id='githtmlgithubpush'&gt;任意のディレクトリをGitの作業ツリーにして、そこからHTMLをGitHubへPushする。&lt;/h5&gt;
 
-&lt;h5 id='id160'&gt;&lt;code&gt;【注意】/var/www/html/jekyll/JEKYLL_HOME/_site/ を作業ツリーにするとJekyllを起動する度に.gitが削除されるので適さない。&lt;/code&gt;&lt;/h5&gt;
+&lt;h5 id='id348'&gt;&lt;code&gt;【注意】/var/www/html/jekyll/JEKYLL_HOME/_site/ を作業ツリーにするとJekyllを起動する度に.gitが削除されるので適さない。&lt;/code&gt;&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt;# Jekyllが生成したHTMLをGit作業ツリー(任意のディレクトリ)へコピーする。
 # cp -pr /var/www/html/jekyll/JEKYLL_HOME/_site/* /var/www/html/sankame.github.com/
@@ -564,14 +666,14 @@ google_ad_height = 60;
 
 &lt;h5 id='varwwwhtmljekylljekyll_home'&gt;/var/www/html/jekyll/JEKYLL_HOME/&lt;/h5&gt;
 
-&lt;h6 id='id155'&gt;・画面ヘッダ部分のナビゲーションを変更したい。&lt;/h6&gt;
+&lt;h6 id='id343'&gt;・画面ヘッダ部分のナビゲーションを変更したい。&lt;/h6&gt;
 
 &lt;pre&gt;&lt;code&gt;(例)
 画面ヘッダ部分にArchiveを表示したくない場合
 下記ファイルのヘッダ部分の&amp;quot;group: navigation&amp;quot;を#でコメントアウトする。
 /var/www/html/jekyll/JEKYLL_HOME/archive.html&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h6 id='id156'&gt;・記事タイトルに日本語を使いたい。&lt;/h6&gt;
+&lt;h6 id='id344'&gt;・記事タイトルに日本語を使いたい。&lt;/h6&gt;
 
 &lt;pre&gt;&lt;code&gt;記事のファイル名に日本語は使えないので、YAMLのFront Matterでtitleを指定する。
 (例)
@@ -583,7 +685,7 @@ date: 2012-12-23 00:00:00
 title: Jekyllとgithubでブログ作成
 ---&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h6 id='id157'&gt;・ループ回数を制限したい。&lt;/h6&gt;
+&lt;h6 id='id345'&gt;・ループ回数を制限したい。&lt;/h6&gt;
 
 &lt;pre&gt;&lt;code&gt;limitを使う。
 
@@ -603,7 +705,7 @@ title: Jekyllとgithubでブログ作成
 エスケープしたい表現
 {% endraw %}&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h6 id='id158'&gt;・日付のフォーマット(書式)を変更したい。&lt;a href='http://stackoverflow.com/questions/7395520/jekyll-date-format'&gt;参考ページ&lt;/a&gt;&lt;/h6&gt;
+&lt;h6 id='id346'&gt;・日付のフォーマット(書式)を変更したい。&lt;a href='http://stackoverflow.com/questions/7395520/jekyll-date-format'&gt;参考ページ&lt;/a&gt;&lt;/h6&gt;
 
 &lt;pre&gt;&lt;code&gt;日本語を使う場合、ファイルをUTF8で保存する。
 
@@ -611,7 +713,7 @@ title: Jekyllとgithubでブログ作成
 
 { post.date | date: &amp;quot;%Y年%m月%d日&amp;quot; }&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h6 id='id159'&gt;・文法に関する参考ページ&lt;/h6&gt;
+&lt;h6 id='id347'&gt;・文法に関する参考ページ&lt;/h6&gt;
 
 &lt;p&gt;・&lt;a href='https://github.com/mojombo/jekyll/wiki/template-data'&gt;Jekyll変数&lt;/a&gt;&lt;/p&gt;
 

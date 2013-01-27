@@ -4,7 +4,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Jekyll Tips1</title>
+    <title>MeCabインストール</title>
     
     <meta name="author" content="sankame">
 
@@ -110,7 +110,7 @@
         
 
 <div class="page-header">
-  <h1>Jekyll Tips1 </h1>
+  <h1>MeCabインストール </h1>
 </div>
 
 <div class="row">
@@ -118,7 +118,7 @@
   <!--[if IE 6 ]>
     <div class="span12-for-ie6">
   <![endif]-->
-    <p>投稿日：<span>2012年12月17日</span><br /> <script type='text/javascript'><!--
+    <p>投稿日：<span>2013年01月28日</span><br /> <script type='text/javascript'><!--
 google_ad_client = "ca-pub-7590393515441008";
 /* TextBlogCenterTop */
 google_ad_slot = "5898581108";
@@ -128,68 +128,84 @@ google_ad_height = 60;
 </script> <script type='text/javascript' src='http://pagead2.googlesyndication.com/pagead/show_ads.js'>
 </script></p>
 
-<h4 id='jekyll'>Jekyllの設定に関するメモ。</h4>
+<h4 id='mecab'>形態素解析エンジンMeCabをインストールしてみる。</h4>
 
-<h4 id='jekyllbootstrap'>JekyllBootstrapの配置先は下記ディレクトリ。(<a href='/Jekyll/2012/12/23/jekyll_and_github/'>関連記事</a>)</h4>
+<h5 id='1'>1.インストール</h5>
 
-<h5 id='varwwwhtmljekylljekyll_home'>/var/www/html/jekyll/JEKYLL_HOME/</h5>
+<pre><code># mecabのソースを取得
+# wget http://mecab.googlecode.com/files/mecab-0.98.tar.gz
+# tar xzf mecab-0.98.tar.gz 
+# cd mecab-0.98
+# cd src
 
-<h6 id='id343'>・画面ヘッダ部分のナビゲーションを変更したい。</h6>
+# mecab.hを開いて点線で囲んだ部分を修正する。数字に付けられている()を削除する。
+# vim mecab.h 
+--------------------------------------
+	#define MECAB_NOR_NODE  0
+	#define MECAB_UNK_NODE  1
+	#define MECAB_BOS_NODE  2
+	#define MECAB_EOS_NODE  3
+	#define MECAB_EON_NODE  4
 
-<pre><code>(例)
-画面ヘッダ部分にArchiveを表示したくない場合
-下記ファイルのヘッダ部分の&quot;group: navigation&quot;を#でコメントアウトする。
-/var/www/html/jekyll/JEKYLL_HOME/archive.html</code></pre>
+	#define MECAB_USR_DIC   1
+	#define MECAB_SYS_DIC   0
+	#define MECAB_UNK_DIC   2
+--------------------------------------
 
-<h6 id='id344'>・記事タイトルに日本語を使いたい。</h6>
+# cd ..
 
-<pre><code>記事のファイル名に日本語は使えないので、YAMLのFront Matterでtitleを指定する。
-(例)
----
-layout: page
-category: Jekyll
-tags: [Ruby, RubyGems, Jekyll, GitHub]
-date: 2012-12-23 00:00:00
-title: Jekyllとgithubでブログ作成
----</code></pre>
+# ./configure --with-charset=utf-8
+# make
+# make install
 
-<h6 id='id345'>・ループ回数を制限したい。</h6>
+# cd ..
 
-<pre><code>limitを使う。
+# 辞書のソースを取得
+# wget http://downloads.sourceforge.net/project/mecab/mecab-ipadic/2.7.0-20070801/mecab-ipadic-2.7.0-20070801.tar.gz
+# tar zxvf mecab-ipadic-2.7.0-20070801.tar.gz
+# cd mecab-ipadic-2.7.0-20070801
 
-(例)最近の5件だけ記事を表示。
+# char.def を開いて点線で囲んだ部分を修正する。オリジナルの部分をコメントアウトし、7行追加。
+# vim char.def 
+--------------------------------------
+	# ASCII
+	 #0x0021..0x002F SYMBOL
+	 #0x0030..0x0039 NUMERIC
+	 #0x003A..0x0040 SYMBOL
+	 #0x0041..0x005A ALPHA
+	 #0x005B..0x0060 SYMBOL
+	 #0x0061..0x007A ALPHA
+	 #0x007B..0x007E SYMBOL
+	 0x0021..0x002F ALPHA
+	 0x0030..0x0039 ALPHA
+	 0x003A..0x0040 ALPHA
+	 0x0041..0x005A ALPHA
+	 0x005B..0x0060 ALPHA
+	 0x0061..0x007A ALPHA
+	 0x007B..0x007E ALPHA
+--------------------------------------
 
-&lt;ul class=&quot;posts&quot;&gt;
-  {% for post in site.posts limit:5 %}
-    &lt;li&gt;&lt;span&gt;{{ post.date | date_to_string }}&lt;/span&gt; &amp;raquo; &lt;a href=&quot;{{ BASE_PATH }}{{ post.url }}&quot;&gt;{{ post.title }}&lt;/a&gt;&lt;/li&gt;
-  {% endfor %}
-&lt;/ul&gt;</code></pre>
+./configure --with-charset=utf-8
+make
+make install</code></pre>
 
-<h6 id='liquid'>・liquidの文法をエスケープしたい。<a href='http://stackoverflow.com/questions/3426182/how-to-escape-liquid-template-tags'>参考ページ</a></h6>
+<h5 id='2'>2.テスト</h5>
 
-<pre><code>Markdownの中でif文やliquidの文法をそのまま出力したい場合、下記のタグを使用する。
+<pre><code># 以下のようにmecabと打ってEnterキーを押すと待機状態になるので、次に解析したい文字列を入力する。
+# mecab
+# すもももももももものうち
 
-{% raw %}
-エスケープしたい表現
-{% endraw %}</code></pre>
+すもももももももものうち
+すもも  名詞,一般,*,*,*,*,すもも,スモモ,スモモ
+も      助詞,係助詞,*,*,*,*,も,モ,モ
+もも    名詞,一般,*,*,*,*,もも,モモ,モモ
+も      助詞,係助詞,*,*,*,*,も,モ,モ
+もも    名詞,一般,*,*,*,*,もも,モモ,モモ
+の      助詞,連体化,*,*,*,*,の,ノ,ノ
+うち    名詞,非自立,副詞可能,*,*,*,うち,ウチ,ウチ
+EOS</code></pre>
 
-<h6 id='id346'>・日付のフォーマット(書式)を変更したい。<a href='http://stackoverflow.com/questions/7395520/jekyll-date-format'>参考ページ</a></h6>
-
-<pre><code>日本語を使う場合、ファイルをUTF8で保存する。
-
-(例)
-
-{ post.date | date: &quot;%Y年%m月%d日&quot; }</code></pre>
-
-<h6 id='id347'>・文法に関する参考ページ</h6>
-
-<p>・<a href='https://github.com/mojombo/jekyll/wiki/template-data'>Jekyll変数</a></p>
-
-<p>・<a href='https://github.com/shopify/liquid/wiki/liquid-for-designers'>liquid文法</a></p>
-
-<p>・<a href='http://technetium.matrix.jp/markdown.html'>Markdown記法1</a></p>
-
-<p>・<a href='http://www.zone0.ne.jp/2011/markdown-cheatsheet.html'>Markdown記法2</a></p>
+<p><a href='http://brandofme.vi-king.net/?p=197'>参照したページ</a></p>
   <!--[if IE 6 ]>
     </div>
   <![endif]-->
