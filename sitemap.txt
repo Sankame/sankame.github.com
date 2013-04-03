@@ -8,6 +8,7 @@ http://sankame.github.com/atom.xml
 http://sankame.github.com/index.html
 http://sankame.github.com/sitemap.txt
 
+http://sankame.github.com/MeCab/2013/04/29/php_mecab
 http://sankame.github.com/MeCab/2013/01/28/mecab_install
 http://sankame.github.com/OpenX/2013/01/20/openx_structure1
 http://sankame.github.com/Subversion/2013/01/19/svn_create_repos

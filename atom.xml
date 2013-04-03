@@ -4,13 +4,88 @@
  <title>Text Blog</title>
  <link href="http://sankame.github.com/atom.xml" rel="self"/>
  <link href="http://sankame.github.com"/>
- <updated>2013-01-28T00:58:49+09:00</updated>
+ <updated>2013-04-04T03:52:54+09:00</updated>
  <id>http://sankame.github.com</id>
  <author>
    <name>sankame</name>
    <email>mt_fuji_3776@live.jp</email>
  </author>
 
+ 
+ <entry>
+   <title>PHPでMeCabを利用</title>
+   <link href="http://sankame.github.com/MeCab/2013/04/29/php_mecab"/>
+   <updated>2013-04-29T00:00:00+09:00</updated>
+   <id>http://sankame.github.com/MeCab/2013/04/29/php_mecab</id>
+   <content type="html">&lt;p&gt;投稿日：&lt;span&gt;2013年04月29日&lt;/span&gt;&lt;br /&gt; &lt;script type='text/javascript'&gt;&lt;!--
+google_ad_client = &quot;ca-pub-7590393515441008&quot;;
+/* TextBlogCenterTop */
+google_ad_slot = &quot;5898581108&quot;;
+google_ad_width = 468;
+google_ad_height = 60;
+//--&gt;
+&lt;/script&gt; &lt;script type='text/javascript' src='http://pagead2.googlesyndication.com/pagead/show_ads.js'&gt;
+&lt;/script&gt;&lt;/p&gt;
+
+&lt;h4 id='phpmecab'&gt;PHPからMeCabを使ってみる。&lt;/h4&gt;
+
+&lt;h5 id='1'&gt;1.インストール&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code&gt;# wget -O php_mecab-0.5.zip https://nodeload.github.com/rsky/php-mecab/zip/master --no-check-certificate
+# 
+# unzip php_mecab-0.5.zip
+# 
+# mv -f php-mecab-master php_mecab-0.5
+# 
+# cd php_mecab-0.5/mecab
+# 
+# phpize
+# 
+# ./configure
+# 
+# make
+# 
+# make test
+# 
+# make install&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id='2'&gt;2.テスト&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code&gt;# インストールが成功したら、phpからテスト
+# (Apache経由で動かす場合はhttpdを再起動して下さい)
+# 
+# echo &amp;quot;extension=mecab.so&amp;quot; &amp;gt; /etc/php.d/mecab.ini
+# vim mecabtest.php
+
+--------------(記述内容)--------------
+&amp;lt;?php
+dl(&amp;#39;mecab.so&amp;#39;);
+
+$t = new MeCab_Tagger();
+$str = &amp;#39;すもももももももものうち&amp;#39;;
+
+echo $t-&amp;gt;parse($str);
+--------------(記述内容)--------------
+
+
+# 作成したphpファイルを実行
+# php mecabtest.php 
+
+--------------(実行結果)--------------
+すもも  名詞,一般,*,*,*,*,すもも,スモモ,スモモ
+も      助詞,係助詞,*,*,*,*,も,モ,モ
+もも    名詞,一般,*,*,*,*,もも,モモ,モモ
+も      助詞,係助詞,*,*,*,*,も,モ,モ
+もも    名詞,一般,*,*,*,*,もも,モモ,モモ
+の      助詞,連体化,*,*,*,*,の,ノ,ノ
+うち    名詞,非自立,副詞可能,*,*,*,うち,ウチ,ウチ
+EOS
+--------------(実行結果)--------------&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href='http://kohkimakimoto.hatenablog.com/entry/2012/05/02/112020'&gt;参照したページ1&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href='http://kouhei.hatenablog.com/entry/2012/12/13/022040'&gt;参照したページ2&lt;/a&gt;&lt;/p&gt;</content>
+ </entry>
  
  <entry>
    <title>MeCabインストール</title>
@@ -321,7 +396,7 @@ google_ad_height = 60;
 
 &lt;h4 id='centos_'&gt;CentOSコマンド メモ&lt;/h4&gt;
 
-&lt;h5 id='id351'&gt;・ファイル検索&lt;/h5&gt;
+&lt;h5 id='id185'&gt;・ファイル検索&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt; find / -name filename&lt;/code&gt;&lt;/pre&gt;
 
@@ -383,7 +458,7 @@ google_ad_height = 60;
 
 &lt;h4 id='githubpagesindexhtml'&gt;GitHubPagesでブログを公開しようと、下記ページに従って作業したがindex.htmlすら表示されない…&lt;/h4&gt;
 
-&lt;h4 id='id350'&gt;&lt;a href='http://tokkono.cute.coocan.jp/blog/slow/index.php/programming/github-pages-almost-perfect-guide/'&gt;参考ページ&lt;/a&gt;&lt;/h4&gt;
+&lt;h4 id='id184'&gt;&lt;a href='http://tokkono.cute.coocan.jp/blog/slow/index.php/programming/github-pages-almost-perfect-guide/'&gt;参考ページ&lt;/a&gt;&lt;/h4&gt;
 
 &lt;h4 id='1github'&gt;1.GitHubに登録したメールアドレスの受信箱をチェック&lt;/h4&gt;
 
@@ -422,7 +497,7 @@ google_ad_height = 60;
 
 &lt;h4 id='pcvmwareplayeropenx'&gt;ローカルPCのVmwarePlayerにOpenXをインストール。&lt;/h4&gt;
 
-&lt;h4 id='id349'&gt;&lt;a href='http://www.openx.com/docs/qsg-install'&gt;マニュアル&lt;/a&gt;に従ってインストールした。&lt;/h4&gt;
+&lt;h4 id='id183'&gt;&lt;a href='http://www.openx.com/docs/qsg-install'&gt;マニュアル&lt;/a&gt;に従ってインストールした。&lt;/h4&gt;
 
 &lt;h4 id='1'&gt;1.ソース取得&lt;/h4&gt;
 
@@ -631,7 +706,7 @@ Auto-regenerating enabled: /var/www/html/jekyll/JEKYLL_HOME -&amp;gt; /var/www/h
 
 &lt;h5 id='githtmlgithubpush'&gt;任意のディレクトリをGitの作業ツリーにして、そこからHTMLをGitHubへPushする。&lt;/h5&gt;
 
-&lt;h5 id='id348'&gt;&lt;code&gt;【注意】/var/www/html/jekyll/JEKYLL_HOME/_site/ を作業ツリーにするとJekyllを起動する度に.gitが削除されるので適さない。&lt;/code&gt;&lt;/h5&gt;
+&lt;h5 id='id182'&gt;&lt;code&gt;【注意】/var/www/html/jekyll/JEKYLL_HOME/_site/ を作業ツリーにするとJekyllを起動する度に.gitが削除されるので適さない。&lt;/code&gt;&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt;# Jekyllが生成したHTMLをGit作業ツリー(任意のディレクトリ)へコピーする。
 # cp -pr /var/www/html/jekyll/JEKYLL_HOME/_site/* /var/www/html/sankame.github.com/
@@ -666,14 +741,14 @@ google_ad_height = 60;
 
 &lt;h5 id='varwwwhtmljekylljekyll_home'&gt;/var/www/html/jekyll/JEKYLL_HOME/&lt;/h5&gt;
 
-&lt;h6 id='id343'&gt;・画面ヘッダ部分のナビゲーションを変更したい。&lt;/h6&gt;
+&lt;h6 id='id177'&gt;・画面ヘッダ部分のナビゲーションを変更したい。&lt;/h6&gt;
 
 &lt;pre&gt;&lt;code&gt;(例)
 画面ヘッダ部分にArchiveを表示したくない場合
 下記ファイルのヘッダ部分の&amp;quot;group: navigation&amp;quot;を#でコメントアウトする。
 /var/www/html/jekyll/JEKYLL_HOME/archive.html&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h6 id='id344'&gt;・記事タイトルに日本語を使いたい。&lt;/h6&gt;
+&lt;h6 id='id178'&gt;・記事タイトルに日本語を使いたい。&lt;/h6&gt;
 
 &lt;pre&gt;&lt;code&gt;記事のファイル名に日本語は使えないので、YAMLのFront Matterでtitleを指定する。
 (例)
@@ -685,7 +760,7 @@ date: 2012-12-23 00:00:00
 title: Jekyllとgithubでブログ作成
 ---&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h6 id='id345'&gt;・ループ回数を制限したい。&lt;/h6&gt;
+&lt;h6 id='id179'&gt;・ループ回数を制限したい。&lt;/h6&gt;
 
 &lt;pre&gt;&lt;code&gt;limitを使う。
 
@@ -705,7 +780,7 @@ title: Jekyllとgithubでブログ作成
 エスケープしたい表現
 {% endraw %}&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h6 id='id346'&gt;・日付のフォーマット(書式)を変更したい。&lt;a href='http://stackoverflow.com/questions/7395520/jekyll-date-format'&gt;参考ページ&lt;/a&gt;&lt;/h6&gt;
+&lt;h6 id='id180'&gt;・日付のフォーマット(書式)を変更したい。&lt;a href='http://stackoverflow.com/questions/7395520/jekyll-date-format'&gt;参考ページ&lt;/a&gt;&lt;/h6&gt;
 
 &lt;pre&gt;&lt;code&gt;日本語を使う場合、ファイルをUTF8で保存する。
 
@@ -713,7 +788,7 @@ title: Jekyllとgithubでブログ作成
 
 { post.date | date: &amp;quot;%Y年%m月%d日&amp;quot; }&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h6 id='id347'&gt;・文法に関する参考ページ&lt;/h6&gt;
+&lt;h6 id='id181'&gt;・文法に関する参考ページ&lt;/h6&gt;
 
 &lt;p&gt;・&lt;a href='https://github.com/mojombo/jekyll/wiki/template-data'&gt;Jekyll変数&lt;/a&gt;&lt;/p&gt;
 
