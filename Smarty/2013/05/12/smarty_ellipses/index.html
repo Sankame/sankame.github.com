@@ -4,7 +4,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Jekyll Tips1</title>
+    <title>Smartyで3点リーダー(省略)表現</title>
     
     <meta name="author" content="sankame">
 
@@ -110,7 +110,7 @@
         
 
 <div class="page-header">
-  <h1>Jekyll Tips1 </h1>
+  <h1>Smartyで3点リーダー(省略)表現 </h1>
 </div>
 
 <div class="row">
@@ -118,7 +118,7 @@
   <!--[if IE 6 ]>
     <div class="span12-for-ie6">
   <![endif]-->
-    <p>投稿日：<span>2012年12月17日</span><br /> <script type='text/javascript'><!--
+    <p>投稿日：<span>2013年05月12日</span><br /> <script type='text/javascript'><!--
 google_ad_client = "ca-pub-7590393515441008";
 /* TextBlogCenterTop */
 google_ad_slot = "5898581108";
@@ -128,68 +128,26 @@ google_ad_height = 60;
 </script> <script type='text/javascript' src='http://pagead2.googlesyndication.com/pagead/show_ads.js'>
 </script></p>
 
-<h4 id='jekyll'>Jekyllの設定に関するメモ。</h4>
+<h5 id='109'>10文字以上の場合、9文字目を…にして残りを切り捨てる。</h5>
 
-<h4 id='jekyllbootstrap'>JekyllBootstrapの配置先は下記ディレクトリ。(<a href='/Jekyll/2012/12/23/jekyll_and_github/'>関連記事</a>)</h4>
+<h5 id='1'>(半角、全角ともに1文字として扱う)</h5>
 
-<h5 id='varwwwhtmljekylljekyll_home'>/var/www/html/jekyll/JEKYLL_HOME/</h5>
+<pre><code>{if mb_strlen($keyword) &gt; 9}
+	{assign var=cutKeyword value=$keyword|mb_substr:0:8|cat:&#39;…&#39;}
+{else}
+	{assign var=cutKeyword value=$keyword}
+{/if}
+&lt;a class=&quot;keyword-link&quot; href=&quot;#&quot; title=&quot;{$keyword}&quot;&gt;{$cutKeyword}&lt;/a&gt;</code></pre>
 
-<h6 id='id120'>・画面ヘッダ部分のナビゲーションを変更したい。</h6>
+<h5 id='id129'>上記コードで各文字列を変換した場合。</h5>
 
-<pre><code>(例)
-画面ヘッダ部分にArchiveを表示したくない場合
-下記ファイルのヘッダ部分の&quot;group: navigation&quot;を#でコメントアウトする。
-/var/www/html/jekyll/JEKYLL_HOME/archive.html</code></pre>
+<h5 id='_'>(&#8220;→&#8221; は変換前後を表す)</h5>
 
-<h6 id='id121'>・記事タイトルに日本語を使いたい。</h6>
-
-<pre><code>記事のファイル名に日本語は使えないので、YAMLのFront Matterでtitleを指定する。
-(例)
----
-layout: page
-category: Jekyll
-tags: [Ruby, RubyGems, Jekyll, GitHub]
-date: 2012-12-23 00:00:00
-title: Jekyllとgithubでブログ作成
----</code></pre>
-
-<h6 id='id122'>・ループ回数を制限したい。</h6>
-
-<pre><code>limitを使う。
-
-(例)最近の5件だけ記事を表示。
-
-&lt;ul class=&quot;posts&quot;&gt;
-  {% for post in site.posts limit:5 %}
-    &lt;li&gt;&lt;span&gt;{{ post.date | date_to_string }}&lt;/span&gt; &amp;raquo; &lt;a href=&quot;{{ BASE_PATH }}{{ post.url }}&quot;&gt;{{ post.title }}&lt;/a&gt;&lt;/li&gt;
-  {% endfor %}
-&lt;/ul&gt;</code></pre>
-
-<h6 id='liquid'>・liquidの文法をエスケープしたい。<a href='http://stackoverflow.com/questions/3426182/how-to-escape-liquid-template-tags'>参考ページ</a></h6>
-
-<pre><code>Markdownの中でif文やliquidの文法をそのまま出力したい場合、下記のタグを使用する。
-
-{% raw %}
-エスケープしたい表現
-{% endraw %}</code></pre>
-
-<h6 id='id123'>・日付のフォーマット(書式)を変更したい。<a href='http://stackoverflow.com/questions/7395520/jekyll-date-format'>参考ページ</a></h6>
-
-<pre><code>日本語を使う場合、ファイルをUTF8で保存する。
-
-(例)
-
-{ post.date | date: &quot;%Y年%m月%d日&quot; }</code></pre>
-
-<h6 id='id124'>・文法に関する参考ページ</h6>
-
-<p>・<a href='https://github.com/mojombo/jekyll/wiki/template-data'>Jekyll変数</a></p>
-
-<p>・<a href='https://github.com/shopify/liquid/wiki/liquid-for-designers'>liquid文法</a></p>
-
-<p>・<a href='http://technetium.matrix.jp/markdown.html'>Markdown記法1</a></p>
-
-<p>・<a href='http://www.zone0.ne.jp/2011/markdown-cheatsheet.html'>Markdown記法2</a></p>
+<pre><code>１２３４５６７８　　　→　１２３４５６７８
+１２３４５６７８９　　→　１２３４５６７８９
+１２３４５６７８９Ａ　→　１２３４５６７８…
+123456789          →　123456789
+123456789A         →　12345678…</code></pre>
   <!--[if IE 6 ]>
     </div>
   <![endif]-->

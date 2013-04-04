@@ -8,6 +8,7 @@ http://sankame.github.com/atom.xml
 http://sankame.github.com/index.html
 http://sankame.github.com/sitemap.txt
 
+http://sankame.github.com/Smarty/2013/05/12/smarty_ellipses
 http://sankame.github.com/MeCab/2013/04/29/php_mecab
 http://sankame.github.com/MeCab/2013/01/28/mecab_install
 http://sankame.github.com/OpenX/2013/01/20/openx_structure1
