@@ -4,7 +4,7 @@
  <title>Text Blog</title>
  <link href="http://sankame.github.com/atom.xml" rel="self"/>
  <link href="http://sankame.github.com"/>
- <updated>2013-04-05T02:26:30+09:00</updated>
+ <updated>2013-06-11T20:09:06+09:00</updated>
  <id>http://sankame.github.com</id>
  <author>
    <name>sankame</name>
@@ -13,19 +13,62 @@
 
  
  <entry>
+   <title>DELL E5520 のタッチパッドをOFFにする</title>
+   <link href="http://sankame.github.com/DELL/2013/07/05/dell_e5520_touchpad"/>
+   <updated>2013-07-05T00:00:00+09:00</updated>
+   <id>http://sankame.github.com/DELL/2013/07/05/dell_e5520_touchpad</id>
+   <content type="html">&lt;p&gt;投稿日：&lt;span&gt;2013年07月05日&lt;/span&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h5 id='id229'&gt;環境&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code&gt;[PC] DELL E5520
+[OS] Windows 7 Professional (SP1)&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id='1_'&gt;1. ドライバダウンロード&lt;/h5&gt;
+
+&lt;p&gt;&lt;a href='http://www.dell.com/support/drivers/jp/ja/jpdhs1/Product/latitude-e5520'&gt;ダウンロードページ&lt;/a&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;上記ダウンロードページを開く。
+&amp;quot;マウス、キーボード、入力デバイス&amp;quot; を開く。
+&amp;quot;Dell Multi-Touch Touchpad Driver&amp;quot; の右横にある「ファイルのダウンロード」をクリック。&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id='2_'&gt;2. ドライバファイルの選択&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code&gt;Hard-Drive-ALPS_MULTI-TOUCH-TOUCHPAD_A06_GGY5W_SETUP_ZPE.exe
+を選択して「続行」をクリック。&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id='3_'&gt;3. ダウンロードセレクタ&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;quot;単一ファイルのダウンロード&amp;quot;
+を選択して「続行」をクリック。&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id='4_'&gt;4. インストール&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code&gt;ダウンロード後、EXEファイルを実行。
+インストールしたら再起動。&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id='5_'&gt;5. アプリ起動&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code&gt;Windows[スタートメニュー] - [コントロールパネル]を開く。
+Dell Touchpad が増えているのでダブルクリック。&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id='6_off'&gt;6. タッチパッドOff&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code&gt;DELLポインティングデバイス　というダイアログが起動。
+左メニューで任意のものを選択して、タッチパッドのOn/Offで O をクリックして、保存ボタンクリック。
+こうするとタッチパッドがOffになる。
+
+※見つからない場合は右上の「表示方法」を「小さいアイコン」または「大きいアイコン」に変更する。&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href='http://detail.chiebukuro.yahoo.co.jp/qa/question_detail/q13104530838'&gt;参考ページ&lt;/a&gt;&lt;/p&gt;</content>
+ </entry>
+ 
+ <entry>
    <title>Smartyで3点リーダー(省略)表現</title>
    <link href="http://sankame.github.com/Smarty/2013/05/12/smarty_ellipses"/>
    <updated>2013-05-12T00:00:00+09:00</updated>
    <id>http://sankame.github.com/Smarty/2013/05/12/smarty_ellipses</id>
-   <content type="html">&lt;p&gt;投稿日：&lt;span&gt;2013年05月12日&lt;/span&gt;&lt;br /&gt; &lt;script type='text/javascript'&gt;&lt;!--
-google_ad_client = &quot;ca-pub-7590393515441008&quot;;
-/* TextBlogCenterTop */
-google_ad_slot = &quot;5898581108&quot;;
-google_ad_width = 468;
-google_ad_height = 60;
-//--&gt;
-&lt;/script&gt; &lt;script type='text/javascript' src='http://pagead2.googlesyndication.com/pagead/show_ads.js'&gt;
-&lt;/script&gt;&lt;/p&gt;
+   <content type="html">&lt;p&gt;投稿日：&lt;span&gt;2013年05月12日&lt;/span&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;h5 id='109'&gt;10文字以上の場合、9文字目を…にして残りを切り捨てる。&lt;/h5&gt;
 
@@ -38,7 +81,7 @@ google_ad_height = 60;
 {/if}
 &amp;lt;a class=&amp;quot;keyword-link&amp;quot; href=&amp;quot;#&amp;quot; title=&amp;quot;{$keyword}&amp;quot;&amp;gt;{$cutKeyword}&amp;lt;/a&amp;gt;&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h5 id='id129'&gt;上記コードで各文字列を変換した場合。&lt;/h5&gt;
+&lt;h5 id='id228'&gt;上記コードで各文字列を変換した場合。&lt;/h5&gt;
 
 &lt;h5 id='_'&gt;(&amp;#8220;→&amp;#8221; は変換前後を表す)&lt;/h5&gt;
 
@@ -54,15 +97,7 @@ google_ad_height = 60;
    <link href="http://sankame.github.com/MeCab/2013/04/29/php_mecab"/>
    <updated>2013-04-29T00:00:00+09:00</updated>
    <id>http://sankame.github.com/MeCab/2013/04/29/php_mecab</id>
-   <content type="html">&lt;p&gt;投稿日：&lt;span&gt;2013年04月29日&lt;/span&gt;&lt;br /&gt; &lt;script type='text/javascript'&gt;&lt;!--
-google_ad_client = &quot;ca-pub-7590393515441008&quot;;
-/* TextBlogCenterTop */
-google_ad_slot = &quot;5898581108&quot;;
-google_ad_width = 468;
-google_ad_height = 60;
-//--&gt;
-&lt;/script&gt; &lt;script type='text/javascript' src='http://pagead2.googlesyndication.com/pagead/show_ads.js'&gt;
-&lt;/script&gt;&lt;/p&gt;
+   <content type="html">&lt;p&gt;投稿日：&lt;span&gt;2013年04月29日&lt;/span&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;h4 id='phpmecab'&gt;PHPからMeCabを使ってみる。&lt;/h4&gt;
 
@@ -129,15 +164,7 @@ EOS
    <link href="http://sankame.github.com/MeCab/2013/01/28/mecab_install"/>
    <updated>2013-01-28T00:00:00+09:00</updated>
    <id>http://sankame.github.com/MeCab/2013/01/28/mecab_install</id>
-   <content type="html">&lt;p&gt;投稿日：&lt;span&gt;2013年01月28日&lt;/span&gt;&lt;br /&gt; &lt;script type='text/javascript'&gt;&lt;!--
-google_ad_client = &quot;ca-pub-7590393515441008&quot;;
-/* TextBlogCenterTop */
-google_ad_slot = &quot;5898581108&quot;;
-google_ad_width = 468;
-google_ad_height = 60;
-//--&gt;
-&lt;/script&gt; &lt;script type='text/javascript' src='http://pagead2.googlesyndication.com/pagead/show_ads.js'&gt;
-&lt;/script&gt;&lt;/p&gt;
+   <content type="html">&lt;p&gt;投稿日：&lt;span&gt;2013年01月28日&lt;/span&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;h4 id='mecab'&gt;形態素解析エンジンMeCabをインストールしてみる。&lt;/h4&gt;
 
@@ -224,15 +251,7 @@ EOS&lt;/code&gt;&lt;/pre&gt;
    <link href="http://sankame.github.com/OpenX/2013/01/20/openx_structure1"/>
    <updated>2013-01-20T00:00:00+09:00</updated>
    <id>http://sankame.github.com/OpenX/2013/01/20/openx_structure1</id>
-   <content type="html">&lt;p&gt;投稿日：&lt;span&gt;2013年01月20日&lt;/span&gt;&lt;br /&gt; &lt;script type='text/javascript'&gt;&lt;!--
-google_ad_client = &quot;ca-pub-7590393515441008&quot;;
-/* TextBlogCenterTop */
-google_ad_slot = &quot;5898581108&quot;;
-google_ad_width = 468;
-google_ad_height = 60;
-//--&gt;
-&lt;/script&gt; &lt;script type='text/javascript' src='http://pagead2.googlesyndication.com/pagead/show_ads.js'&gt;
-&lt;/script&gt;&lt;/p&gt;
+   <content type="html">&lt;p&gt;投稿日：&lt;span&gt;2013年01月20日&lt;/span&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;h4 id='openx'&gt;OpenX仕組みに関する自分用メモ　配信処理&lt;/h4&gt;
 
@@ -254,15 +273,7 @@ DB	: ox_data_bkt_m
    <link href="http://sankame.github.com/Subversion/2013/01/19/svn_create_repos"/>
    <updated>2013-01-19T00:00:00+09:00</updated>
    <id>http://sankame.github.com/Subversion/2013/01/19/svn_create_repos</id>
-   <content type="html">&lt;p&gt;投稿日：&lt;span&gt;2013年01月19日&lt;/span&gt;&lt;br /&gt; &lt;script type='text/javascript'&gt;&lt;!--
-google_ad_client = &quot;ca-pub-7590393515441008&quot;;
-/* TextBlogCenterTop */
-google_ad_slot = &quot;5898581108&quot;;
-google_ad_width = 468;
-google_ad_height = 60;
-//--&gt;
-&lt;/script&gt; &lt;script type='text/javascript' src='http://pagead2.googlesyndication.com/pagead/show_ads.js'&gt;
-&lt;/script&gt;&lt;/p&gt;
+   <content type="html">&lt;p&gt;投稿日：&lt;span&gt;2013年01月19日&lt;/span&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;h4 id='svnsubversion'&gt;SVN(Subversion)でのリポジトリ作成メモ&lt;/h4&gt;
 
@@ -312,15 +323,7 @@ svn mkdir file:///var/svn/repos/test/branches -m &amp;quot;create&amp;quot;
    <link href="http://sankame.github.com/OpenX/2013/01/15/openx_delivery_test"/>
    <updated>2013-01-15T00:00:00+09:00</updated>
    <id>http://sankame.github.com/OpenX/2013/01/15/openx_delivery_test</id>
-   <content type="html">&lt;p&gt;投稿日：&lt;span&gt;2013年01月15日&lt;/span&gt;&lt;br /&gt; &lt;script type='text/javascript'&gt;&lt;!--
-google_ad_client = &quot;ca-pub-7590393515441008&quot;;
-/* TextBlogCenterTop */
-google_ad_slot = &quot;5898581108&quot;;
-google_ad_width = 468;
-google_ad_height = 60;
-//--&gt;
-&lt;/script&gt; &lt;script type='text/javascript' src='http://pagead2.googlesyndication.com/pagead/show_ads.js'&gt;
-&lt;/script&gt;&lt;/p&gt;
+   <content type="html">&lt;p&gt;投稿日：&lt;span&gt;2013年01月15日&lt;/span&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;h4 id='openxver2810'&gt;OpenX(ver2.8.10)で広告配信テストをしてみる。&lt;/h4&gt;
 
@@ -421,19 +424,11 @@ Banner display : (Google AdSenseの広告ユニットコードと同じサイズ
    <link href="http://sankame.github.com/CentOS/2012/12/31/centos_command"/>
    <updated>2012-12-31T00:00:00+09:00</updated>
    <id>http://sankame.github.com/CentOS/2012/12/31/centos_command</id>
-   <content type="html">&lt;p&gt;投稿日：&lt;span&gt;2012年12月31日&lt;/span&gt;&lt;br /&gt; &lt;script type='text/javascript'&gt;&lt;!--
-google_ad_client = &quot;ca-pub-7590393515441008&quot;;
-/* TextBlogCenterTop */
-google_ad_slot = &quot;5898581108&quot;;
-google_ad_width = 468;
-google_ad_height = 60;
-//--&gt;
-&lt;/script&gt; &lt;script type='text/javascript' src='http://pagead2.googlesyndication.com/pagead/show_ads.js'&gt;
-&lt;/script&gt;&lt;/p&gt;
+   <content type="html">&lt;p&gt;投稿日：&lt;span&gt;2012年12月31日&lt;/span&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;h4 id='centos_'&gt;CentOSコマンド メモ&lt;/h4&gt;
 
-&lt;h5 id='id128'&gt;・ファイル検索&lt;/h5&gt;
+&lt;h5 id='id227'&gt;・ファイル検索&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt; find / -name filename&lt;/code&gt;&lt;/pre&gt;
 
@@ -464,15 +459,7 @@ google_ad_height = 60;
    <link href="http://sankame.github.com/PHP/2012/12/28/php_sample_viaisset"/>
    <updated>2012-12-28T00:00:00+09:00</updated>
    <id>http://sankame.github.com/PHP/2012/12/28/php_sample_viaisset</id>
-   <content type="html">&lt;p&gt;投稿日：&lt;span&gt;2012年12月28日&lt;/span&gt;&lt;br /&gt; &lt;script type='text/javascript'&gt;&lt;!--
-google_ad_client = &quot;ca-pub-7590393515441008&quot;;
-/* TextBlogCenterTop */
-google_ad_slot = &quot;5898581108&quot;;
-google_ad_width = 468;
-google_ad_height = 60;
-//--&gt;
-&lt;/script&gt; &lt;script type='text/javascript' src='http://pagead2.googlesyndication.com/pagead/show_ads.js'&gt;
-&lt;/script&gt;&lt;/p&gt;
+   <content type="html">&lt;p&gt;投稿日：&lt;span&gt;2012年12月28日&lt;/span&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;h4 id='undefined_index_noticeisset'&gt;&amp;#8220;Undefined index&amp;#8221; Noticeを防ぐためのissetが冗長なので関数化。&lt;/h4&gt;
 &lt;script src='https://gist.github.com/4389910.js' /&gt;</content>
@@ -483,19 +470,11 @@ google_ad_height = 60;
    <link href="http://sankame.github.com/GitHub/2012/12/27/github_pages_doesnt_work"/>
    <updated>2012-12-27T00:00:00+09:00</updated>
    <id>http://sankame.github.com/GitHub/2012/12/27/github_pages_doesnt_work</id>
-   <content type="html">&lt;p&gt;投稿日：&lt;span&gt;2012年12月27日&lt;/span&gt;&lt;br /&gt; &lt;script type='text/javascript'&gt;&lt;!--
-google_ad_client = &quot;ca-pub-7590393515441008&quot;;
-/* TextBlogCenterTop */
-google_ad_slot = &quot;5898581108&quot;;
-google_ad_width = 468;
-google_ad_height = 60;
-//--&gt;
-&lt;/script&gt; &lt;script type='text/javascript' src='http://pagead2.googlesyndication.com/pagead/show_ads.js'&gt;
-&lt;/script&gt;&lt;/p&gt;
+   <content type="html">&lt;p&gt;投稿日：&lt;span&gt;2012年12月27日&lt;/span&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;h4 id='githubpagesindexhtml'&gt;GitHubPagesでブログを公開しようと、下記ページに従って作業したがindex.htmlすら表示されない…&lt;/h4&gt;
 
-&lt;h4 id='id127'&gt;&lt;a href='http://tokkono.cute.coocan.jp/blog/slow/index.php/programming/github-pages-almost-perfect-guide/'&gt;参考ページ&lt;/a&gt;&lt;/h4&gt;
+&lt;h4 id='id226'&gt;&lt;a href='http://tokkono.cute.coocan.jp/blog/slow/index.php/programming/github-pages-almost-perfect-guide/'&gt;参考ページ&lt;/a&gt;&lt;/h4&gt;
 
 &lt;h4 id='1github'&gt;1.GitHubに登録したメールアドレスの受信箱をチェック&lt;/h4&gt;
 
@@ -522,19 +501,11 @@ https://github.com/settings/emails&lt;/code&gt;&lt;/pre&gt;
    <link href="http://sankame.github.com/OpenX/2012/12/24/openx_install"/>
    <updated>2012-12-24T00:00:00+09:00</updated>
    <id>http://sankame.github.com/OpenX/2012/12/24/openx_install</id>
-   <content type="html">&lt;p&gt;投稿日：&lt;span&gt;2012年12月24日&lt;/span&gt;&lt;br /&gt; &lt;script type='text/javascript'&gt;&lt;!--
-google_ad_client = &quot;ca-pub-7590393515441008&quot;;
-/* TextBlogCenterTop */
-google_ad_slot = &quot;5898581108&quot;;
-google_ad_width = 468;
-google_ad_height = 60;
-//--&gt;
-&lt;/script&gt; &lt;script type='text/javascript' src='http://pagead2.googlesyndication.com/pagead/show_ads.js'&gt;
-&lt;/script&gt;&lt;/p&gt;
+   <content type="html">&lt;p&gt;投稿日：&lt;span&gt;2012年12月24日&lt;/span&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;h4 id='pcvmwareplayeropenx'&gt;ローカルPCのVmwarePlayerにOpenXをインストール。&lt;/h4&gt;
 
-&lt;h4 id='id126'&gt;&lt;a href='http://www.openx.com/docs/qsg-install'&gt;マニュアル&lt;/a&gt;に従ってインストールした。&lt;/h4&gt;
+&lt;h4 id='id225'&gt;&lt;a href='http://www.openx.com/docs/qsg-install'&gt;マニュアル&lt;/a&gt;に従ってインストールした。&lt;/h4&gt;
 
 &lt;h4 id='1'&gt;1.ソース取得&lt;/h4&gt;
 
@@ -633,15 +604,7 @@ if( ! ini_get(&amp;#39;date.timezone&amp;#39;) ){
    <link href="http://sankame.github.com/Jekyll/2012/12/23/jekyll_and_github"/>
    <updated>2012-12-23T00:00:00+09:00</updated>
    <id>http://sankame.github.com/Jekyll/2012/12/23/jekyll_and_github</id>
-   <content type="html">&lt;p&gt;投稿日：&lt;span&gt;2012年12月23日&lt;/span&gt;&lt;br /&gt; &lt;script type='text/javascript'&gt;&lt;!--
-google_ad_client = &quot;ca-pub-7590393515441008&quot;;
-/* TextBlogCenterTop */
-google_ad_slot = &quot;5898581108&quot;;
-google_ad_width = 468;
-google_ad_height = 60;
-//--&gt;
-&lt;/script&gt; &lt;script type='text/javascript' src='http://pagead2.googlesyndication.com/pagead/show_ads.js'&gt;
-&lt;/script&gt;&lt;/p&gt;
+   <content type="html">&lt;p&gt;投稿日：&lt;span&gt;2012年12月23日&lt;/span&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;h4 id='pcvmwareplayerruby_rubygems_jekyll'&gt;ローカルPCのVmwarePlayerにRuby, RubyGems, Jekyllをインストール。&lt;/h4&gt;
 
@@ -743,7 +706,7 @@ Auto-regenerating enabled: /var/www/html/jekyll/JEKYLL_HOME -&amp;gt; /var/www/h
 
 &lt;h5 id='githtmlgithubpush'&gt;任意のディレクトリをGitの作業ツリーにして、そこからHTMLをGitHubへPushする。&lt;/h5&gt;
 
-&lt;h5 id='id125'&gt;&lt;code&gt;【注意】/var/www/html/jekyll/JEKYLL_HOME/_site/ を作業ツリーにするとJekyllを起動する度に.gitが削除されるので適さない。&lt;/code&gt;&lt;/h5&gt;
+&lt;h5 id='id224'&gt;&lt;code&gt;【注意】/var/www/html/jekyll/JEKYLL_HOME/_site/ を作業ツリーにするとJekyllを起動する度に.gitが削除されるので適さない。&lt;/code&gt;&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt;# Jekyllが生成したHTMLをGit作業ツリー(任意のディレクトリ)へコピーする。
 # cp -pr /var/www/html/jekyll/JEKYLL_HOME/_site/* /var/www/html/sankame.github.com/
@@ -762,15 +725,7 @@ Auto-regenerating enabled: /var/www/html/jekyll/JEKYLL_HOME -&amp;gt; /var/www/h
    <link href="http://sankame.github.com/Jekyll/2012/12/17/jekyll_tips1"/>
    <updated>2012-12-17T00:00:00+09:00</updated>
    <id>http://sankame.github.com/Jekyll/2012/12/17/jekyll_tips1</id>
-   <content type="html">&lt;p&gt;投稿日：&lt;span&gt;2012年12月17日&lt;/span&gt;&lt;br /&gt; &lt;script type='text/javascript'&gt;&lt;!--
-google_ad_client = &quot;ca-pub-7590393515441008&quot;;
-/* TextBlogCenterTop */
-google_ad_slot = &quot;5898581108&quot;;
-google_ad_width = 468;
-google_ad_height = 60;
-//--&gt;
-&lt;/script&gt; &lt;script type='text/javascript' src='http://pagead2.googlesyndication.com/pagead/show_ads.js'&gt;
-&lt;/script&gt;&lt;/p&gt;
+   <content type="html">&lt;p&gt;投稿日：&lt;span&gt;2012年12月17日&lt;/span&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;h4 id='jekyll'&gt;Jekyllの設定に関するメモ。&lt;/h4&gt;
 
@@ -778,14 +733,14 @@ google_ad_height = 60;
 
 &lt;h5 id='varwwwhtmljekylljekyll_home'&gt;/var/www/html/jekyll/JEKYLL_HOME/&lt;/h5&gt;
 
-&lt;h6 id='id120'&gt;・画面ヘッダ部分のナビゲーションを変更したい。&lt;/h6&gt;
+&lt;h6 id='id219'&gt;・画面ヘッダ部分のナビゲーションを変更したい。&lt;/h6&gt;
 
 &lt;pre&gt;&lt;code&gt;(例)
 画面ヘッダ部分にArchiveを表示したくない場合
 下記ファイルのヘッダ部分の&amp;quot;group: navigation&amp;quot;を#でコメントアウトする。
 /var/www/html/jekyll/JEKYLL_HOME/archive.html&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h6 id='id121'&gt;・記事タイトルに日本語を使いたい。&lt;/h6&gt;
+&lt;h6 id='id220'&gt;・記事タイトルに日本語を使いたい。&lt;/h6&gt;
 
 &lt;pre&gt;&lt;code&gt;記事のファイル名に日本語は使えないので、YAMLのFront Matterでtitleを指定する。
 (例)
@@ -797,7 +752,7 @@ date: 2012-12-23 00:00:00
 title: Jekyllとgithubでブログ作成
 ---&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h6 id='id122'&gt;・ループ回数を制限したい。&lt;/h6&gt;
+&lt;h6 id='id221'&gt;・ループ回数を制限したい。&lt;/h6&gt;
 
 &lt;pre&gt;&lt;code&gt;limitを使う。
 
@@ -817,7 +772,7 @@ title: Jekyllとgithubでブログ作成
 エスケープしたい表現
 {% endraw %}&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h6 id='id123'&gt;・日付のフォーマット(書式)を変更したい。&lt;a href='http://stackoverflow.com/questions/7395520/jekyll-date-format'&gt;参考ページ&lt;/a&gt;&lt;/h6&gt;
+&lt;h6 id='id222'&gt;・日付のフォーマット(書式)を変更したい。&lt;a href='http://stackoverflow.com/questions/7395520/jekyll-date-format'&gt;参考ページ&lt;/a&gt;&lt;/h6&gt;
 
 &lt;pre&gt;&lt;code&gt;日本語を使う場合、ファイルをUTF8で保存する。
 
@@ -825,7 +780,7 @@ title: Jekyllとgithubでブログ作成
 
 { post.date | date: &amp;quot;%Y年%m月%d日&amp;quot; }&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h6 id='id124'&gt;・文法に関する参考ページ&lt;/h6&gt;
+&lt;h6 id='id223'&gt;・文法に関する参考ページ&lt;/h6&gt;
 
 &lt;p&gt;・&lt;a href='https://github.com/mojombo/jekyll/wiki/template-data'&gt;Jekyll変数&lt;/a&gt;&lt;/p&gt;
 

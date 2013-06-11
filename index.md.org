@@ -150,6 +150,8 @@ Here's a sample "posts list".
 
 <ul class="posts">
   
+    <li><span>05 Jul 2013</span> &raquo; <a href="/DELL/2013/07/05/dell_e5520_touchpad">DELL E5520 のタッチパッドをOFFにする</a></li>
+  
     <li><span>12 May 2013</span> &raquo; <a href="/Smarty/2013/05/12/smarty_ellipses">Smartyで3点リーダー(省略)表現</a></li>
   
     <li><span>29 Apr 2013</span> &raquo; <a href="/MeCab/2013/04/29/php_mecab">PHPでMeCabを利用</a></li>
@@ -190,17 +192,7 @@ We need to clean up the themes, make theme usage guides with theme-specific mark
 </div>
 
 
-        <div><script type="text/javascript"><!--
-google_ad_client = "ca-pub-7590393515441008";
-/* TextBlogCenterBottom */
-google_ad_slot = "2805513907";
-google_ad_width = 468;
-google_ad_height = 60;
-//-->
-</script>
-<script type="text/javascript"
-src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-</script></div>
+        <div></div>
 		<div></div>
       </div>
 

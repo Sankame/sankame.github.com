@@ -4,7 +4,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>OpenX仕組み1 配信処理</title>
+    <title>DELL E5520 のタッチパッドをOFFにする</title>
     
     <meta name="author" content="sankame">
 
@@ -110,7 +110,7 @@
         
 
 <div class="page-header">
-  <h1>OpenX仕組み1 配信処理 </h1>
+  <h1>DELL E5520 のタッチパッドをOFFにする </h1>
 </div>
 
 <div class="row">
@@ -118,21 +118,50 @@
   <!--[if IE 6 ]>
     <div class="span12-for-ie6">
   <![endif]-->
-    <p>投稿日：<span>2013年01月20日</span><br /></p>
+    <p>投稿日：<span>2013年07月05日</span><br /></p>
 
-<h4 id='openx'>OpenX仕組みに関する自分用メモ　配信処理</h4>
+<h5 id='id229'>環境</h5>
 
-<h4 id='1'>1.テーブル定義</h4>
+<pre><code>[PC] DELL E5520
+[OS] Windows 7 Professional (SP1)</code></pre>
 
-<p><a href='http://www.zulutime.org/openxschema/index.html'>テーブル定義？</a></p>
+<h5 id='1_'>1. ドライバダウンロード</h5>
 
-<h4 id='2'>2.インプレッションカウント</h4>
+<p><a href='http://www.dell.com/support/drivers/jp/ja/jpdhs1/Product/latitude-e5520'>ダウンロードページ</a></p>
 
-<pre><code>PHP : plugins/deliveryLog/oxLogImpression/logImpression.delivery.php
-		→lib/OA/Dal/Delivery/mysql.php:function OX_bucket_updateTable
-DB	: ox_data_bkt_m
-処理: INSERT(1レコード)
-概要: </code></pre>
+<pre><code>上記ダウンロードページを開く。
+&quot;マウス、キーボード、入力デバイス&quot; を開く。
+&quot;Dell Multi-Touch Touchpad Driver&quot; の右横にある「ファイルのダウンロード」をクリック。</code></pre>
+
+<h5 id='2_'>2. ドライバファイルの選択</h5>
+
+<pre><code>Hard-Drive-ALPS_MULTI-TOUCH-TOUCHPAD_A06_GGY5W_SETUP_ZPE.exe
+を選択して「続行」をクリック。</code></pre>
+
+<h5 id='3_'>3. ダウンロードセレクタ</h5>
+
+<pre><code>&quot;単一ファイルのダウンロード&quot;
+を選択して「続行」をクリック。</code></pre>
+
+<h5 id='4_'>4. インストール</h5>
+
+<pre><code>ダウンロード後、EXEファイルを実行。
+インストールしたら再起動。</code></pre>
+
+<h5 id='5_'>5. アプリ起動</h5>
+
+<pre><code>Windows[スタートメニュー] - [コントロールパネル]を開く。
+Dell Touchpad が増えているのでダブルクリック。</code></pre>
+
+<h5 id='6_off'>6. タッチパッドOff</h5>
+
+<pre><code>DELLポインティングデバイス　というダイアログが起動。
+左メニューで任意のものを選択して、タッチパッドのOn/Offで O をクリックして、保存ボタンクリック。
+こうするとタッチパッドがOffになる。
+
+※見つからない場合は右上の「表示方法」を「小さいアイコン」または「大きいアイコン」に変更する。</code></pre>
+
+<p><a href='http://detail.chiebukuro.yahoo.co.jp/qa/question_detail/q13104530838'>参考ページ</a></p>
   <!--[if IE 6 ]>
     </div>
   <![endif]-->
