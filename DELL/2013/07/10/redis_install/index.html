@@ -4,7 +4,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Jekyll Tips1</title>
+    <title>Redisインストール</title>
     
     <meta name="author" content="sankame">
 
@@ -110,7 +110,7 @@
         
 
 <div class="page-header">
-  <h1>Jekyll Tips1 </h1>
+  <h1>Redisインストール </h1>
 </div>
 
 <div class="row">
@@ -118,70 +118,75 @@
   <!--[if IE 6 ]>
     <div class="span12-for-ie6">
   <![endif]-->
-    <p>投稿日：<span>2012年12月17日</span><br /></p>
+    <p>投稿日：<span>2013年07月10日</span><br /></p>
 
-<h4 id='jekyll'>Jekyllの設定に関するメモ。</h4>
+<h5 id='id627'>環境</h5>
 
-<h4 id='jekyllbootstrap'>JekyllBootstrapの配置先は下記ディレクトリ。(<a href='/Jekyll/2012/12/23/jekyll_and_github/'>関連記事</a>)</h4>
+<pre><code>[CentOS] 5.6 (32bit版カーネル)</code></pre>
 
-<h5 id='varwwwhtmljekylljekyll_home'>/var/www/html/jekyll/JEKYLL_HOME/</h5>
+<h5 id='id628'>インストール</h5>
 
-<h6 id='id614'>・画面ヘッダ部分のナビゲーションを変更したい。</h6>
+<pre><code># ソース取得。
+# wget http://redis.googlecode.com/files/redis-2.6.7.tar.gz
+#
+# tar xzf redis-2.6.7.tar.gz
+#
+# cd redis-2.6.7
+#
+# 続いてmakeを実行すると下記エラーが発生。
+# make
 
-<pre><code>(例)
-画面ヘッダ部分にArchiveを表示したくない場合
-下記ファイルのヘッダ部分の&quot;group: navigation&quot;を#でコメントアウトする。
-/var/www/html/jekyll/JEKYLL_HOME/archive.html</code></pre>
+cd src &amp;&amp; make all
+make[1]: ディレクトリ `/root/redis-2.6.7/src&#39; に入ります
+LINK redis-server
+zmalloc.o: In function `zmalloc_used_memory&#39;:
+/root/redis-2.6.7/src/zmalloc.c:223: undefined reference to `__sync_add_and_fetch_4&#39;
+collect2: ld はステータス 1 で終了しました
+make[1]: *** [redis-server] エラー 1
+make[1]: ディレクトリ `/root/redis-2.6.7/src&#39; から出ます
+make: *** [all] エラー 2
 
-<h6 id='id615'>・記事タイトルに日本語を使いたい。</h6>
+# アーキテクチャを調べて、コンパイルオプションを指定。
+# uname -m
 
-<pre><code>記事のファイル名に日本語は使えないので、YAMLのFront Matterでtitleを指定する。
-(例)
----
-layout: page
-category: Jekyll
-tags: [Ruby, RubyGems, Jekyll, GitHub]
-date: 2012-12-23 00:00:00
-title: Jekyllとgithubでブログ作成
----</code></pre>
+i686
 
-<h6 id='id616'>・ループ回数を制限したい。</h6>
+# 
+# export CFLAGS=-march=i686
+#
+# make distclean
+# make
+# 下記メッセージが出てmakeは通ったらしい。
 
-<pre><code>limitを使う。
+Hint: To run &#39;make test&#39; is a good idea ;)
 
-(例)最近の5件だけ記事を表示。
+# 続いてmake testを実行すると下記エラーが発生。
+# make test
 
-&lt;ul class=&quot;posts&quot;&gt;
-  {% for post in site.posts limit:5 %}
-    &lt;li&gt;&lt;span&gt;{{ post.date | date_to_string }}&lt;/span&gt; &amp;raquo; &lt;a href=&quot;{{ BASE_PATH }}{{ post.url }}&quot;&gt;{{ post.title }}&lt;/a&gt;&lt;/li&gt;
-  {% endfor %}
-&lt;/ul&gt;</code></pre>
+ERROR:
+*** [err]: SLOWLOG - RESET subcommand works in tests/unit/slowlog.tcl
+Expected &#39;0&#39; to equal or match &#39;1&#39;
+*** [err]: SLOWLOG - logged entry sanity check in tests/unit/slowlog.tcl
+Expected &#39;105&#39; to be equal to &#39;106&#39;
+Cleanup: may take some time... OK
+make[1]: *** [test] エラー 1
+make[1]: ディレクトリ `/root/redis-2.6.7/src&#39; から出ます
+make: *** [test] エラー 2
 
-<h6 id='liquid'>・liquidの文法をエスケープしたい。<a href='http://stackoverflow.com/questions/3426182/how-to-escape-liquid-template-tags'>参考ページ</a></h6>
+# 構わずインストール。
+# make install
+# 
+# 起動。
+# redis-server
+#
+# 動作確認。
+# redis-cli PING
 
-<pre><code>Markdownの中でif文やliquidの文法をそのまま出力したい場合、下記のタグを使用する。
+PONG
 
-{% raw %}
-エスケープしたい表現
-{% endraw %}</code></pre>
+# redisサーバは起動しているようだ…</code></pre>
 
-<h6 id='id617'>・日付のフォーマット(書式)を変更したい。<a href='http://stackoverflow.com/questions/7395520/jekyll-date-format'>参考ページ</a></h6>
-
-<pre><code>日本語を使う場合、ファイルをUTF8で保存する。
-
-(例)
-
-{ post.date | date: &quot;%Y年%m月%d日&quot; }</code></pre>
-
-<h6 id='id618'>・文法に関する参考ページ</h6>
-
-<p>・<a href='https://github.com/mojombo/jekyll/wiki/template-data'>Jekyll変数</a></p>
-
-<p>・<a href='https://github.com/shopify/liquid/wiki/liquid-for-designers'>liquid文法</a></p>
-
-<p>・<a href='http://technetium.matrix.jp/markdown.html'>Markdown記法1</a></p>
-
-<p>・<a href='http://www.zone0.ne.jp/2011/markdown-cheatsheet.html'>Markdown記法2</a></p>
+<p><a href='http://www.eschrade.com/page/undefined-reference-to-__sync_add_and_fetch_4/'>エラー時に参照したページ</a></p>
   <!--[if IE 6 ]>
     </div>
   <![endif]-->
