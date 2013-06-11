@@ -122,7 +122,7 @@
 
 <h4 id='centos_'>CentOSコマンド メモ</h4>
 
-<h5 id='id227'>・ファイル検索</h5>
+<h5 id='id263'>・ファイル検索</h5>
 
 <pre><code> find / -name filename</code></pre>
 
@@ -146,6 +146,29 @@
 
 # date 012723232013
 2013年  1月 27日 日曜日 23:23:00 JST</code></pre>
+
+<h5 id='centos_20130707'>・CentOSバージョン (更新日：2013/07/07)</h5>
+
+<pre><code># cat /etc/redhat-release</code></pre>
+
+<h5 id='cpu_20130707'>・CPUアーキテクチャ確認 (更新日：2013/07/07)</h5>
+
+<pre><code># grep flags /proc/cpuinfo | grep lm | wc -l
+# 上記が0ならCPU 32bit、1ならCPU 64bit
+# lm(long mode)フラグがあれば64bit</code></pre>
+
+<h5 id='_20130707'>・カーネルバージョン確認 (更新日：2013/07/07)</h5>
+
+<pre><code># uname -a|grep x86_64|wc -l
+# 上記が0なら32bitカーネル、1ならCPU 64bitカーネル
+# (x86_64 の場合、64bit)
+# (i386/i486/i586/i686 の場合、32bit)</code></pre>
+
+<p><a href='http://www.cyberciti.biz/faq/linux-how-to-find-if-processor-is-64-bit-or-not/'>参考ページ</a></p>
+
+<h5 id='php_20130707'>・PHPバージョン (更新日：2013/07/07)</h5>
+
+<pre><code># php -v</code></pre>
   <!--[if IE 6 ]>
     </div>
   <![endif]-->

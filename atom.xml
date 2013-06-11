@@ -4,7 +4,7 @@
  <title>Text Blog</title>
  <link href="http://sankame.github.com/atom.xml" rel="self"/>
  <link href="http://sankame.github.com"/>
- <updated>2013-06-11T20:09:06+09:00</updated>
+ <updated>2013-06-12T02:24:07+09:00</updated>
  <id>http://sankame.github.com</id>
  <author>
    <name>sankame</name>
@@ -19,7 +19,7 @@
    <id>http://sankame.github.com/DELL/2013/07/05/dell_e5520_touchpad</id>
    <content type="html">&lt;p&gt;投稿日：&lt;span&gt;2013年07月05日&lt;/span&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;h5 id='id229'&gt;環境&lt;/h5&gt;
+&lt;h5 id='id267'&gt;環境&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt;[PC] DELL E5520
 [OS] Windows 7 Professional (SP1)&lt;/code&gt;&lt;/pre&gt;
@@ -81,7 +81,7 @@ Dell Touchpad が増えているのでダブルクリック。&lt;/code&gt;&lt;/
 {/if}
 &amp;lt;a class=&amp;quot;keyword-link&amp;quot; href=&amp;quot;#&amp;quot; title=&amp;quot;{$keyword}&amp;quot;&amp;gt;{$cutKeyword}&amp;lt;/a&amp;gt;&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h5 id='id228'&gt;上記コードで各文字列を変換した場合。&lt;/h5&gt;
+&lt;h5 id='id266'&gt;上記コードで各文字列を変換した場合。&lt;/h5&gt;
 
 &lt;h5 id='_'&gt;(&amp;#8220;→&amp;#8221; は変換前後を表す)&lt;/h5&gt;
 
@@ -101,7 +101,18 @@ Dell Touchpad が増えているのでダブルクリック。&lt;/code&gt;&lt;/
 
 &lt;h4 id='phpmecab'&gt;PHPからMeCabを使ってみる。&lt;/h4&gt;
 
-&lt;h5 id='1'&gt;1.インストール&lt;/h5&gt;
+&lt;h5 id='id265'&gt;環境&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code&gt;[CentOS] 5.6 (32bit版カーネル)
+[PHP]    5.3.3&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id='0mecab'&gt;0.MeCabインストール&lt;/h5&gt;
+
+&lt;p&gt;&lt;a href='/MeCab/2013/01/28/mecab_install/'&gt;MeCabインストール方法&lt;/a&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# まずは上記の手順でMeCabをインストール。&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id='1php_mecab'&gt;1.php_mecabインストール&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt;# wget -O php_mecab-0.5.zip https://nodeload.github.com/rsky/php-mecab/zip/master --no-check-certificate
 # 
@@ -167,6 +178,10 @@ EOS
    <content type="html">&lt;p&gt;投稿日：&lt;span&gt;2013年01月28日&lt;/span&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;h4 id='mecab'&gt;形態素解析エンジンMeCabをインストールしてみる。&lt;/h4&gt;
+
+&lt;h5 id='id264'&gt;環境&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code&gt;[CentOS] 5.6 (32bit版カーネル)&lt;/code&gt;&lt;/pre&gt;
 
 &lt;h5 id='1'&gt;1.インストール&lt;/h5&gt;
 
@@ -242,6 +257,8 @@ make install&lt;/code&gt;&lt;/pre&gt;
 の      助詞,連体化,*,*,*,*,の,ノ,ノ
 うち    名詞,非自立,副詞可能,*,*,*,うち,ウチ,ウチ
 EOS&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href='/MeCab/2013/04/29/php_mecab/'&gt;PHPから利用する方法はこちら&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;a href='http://brandofme.vi-king.net/?p=197'&gt;参照したページ&lt;/a&gt;&lt;/p&gt;</content>
  </entry>
@@ -428,7 +445,7 @@ Banner display : (Google AdSenseの広告ユニットコードと同じサイズ
 
 &lt;h4 id='centos_'&gt;CentOSコマンド メモ&lt;/h4&gt;
 
-&lt;h5 id='id227'&gt;・ファイル検索&lt;/h5&gt;
+&lt;h5 id='id263'&gt;・ファイル検索&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt; find / -name filename&lt;/code&gt;&lt;/pre&gt;
 
@@ -451,7 +468,30 @@ Banner display : (Google AdSenseの広告ユニットコードと同じサイズ
 &lt;pre&gt;&lt;code&gt;# 引数を次の順番に設定。→ date [月][日][時間][分][年]
 
 # date 012723232013
-2013年  1月 27日 日曜日 23:23:00 JST&lt;/code&gt;&lt;/pre&gt;</content>
+2013年  1月 27日 日曜日 23:23:00 JST&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id='centos_20130707'&gt;・CentOSバージョン (更新日：2013/07/07)&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code&gt;# cat /etc/redhat-release&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id='cpu_20130707'&gt;・CPUアーキテクチャ確認 (更新日：2013/07/07)&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code&gt;# grep flags /proc/cpuinfo | grep lm | wc -l
+# 上記が0ならCPU 32bit、1ならCPU 64bit
+# lm(long mode)フラグがあれば64bit&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id='_20130707'&gt;・カーネルバージョン確認 (更新日：2013/07/07)&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code&gt;# uname -a|grep x86_64|wc -l
+# 上記が0なら32bitカーネル、1ならCPU 64bitカーネル
+# (x86_64 の場合、64bit)
+# (i386/i486/i586/i686 の場合、32bit)&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href='http://www.cyberciti.biz/faq/linux-how-to-find-if-processor-is-64-bit-or-not/'&gt;参考ページ&lt;/a&gt;&lt;/p&gt;
+
+&lt;h5 id='php_20130707'&gt;・PHPバージョン (更新日：2013/07/07)&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code&gt;# php -v&lt;/code&gt;&lt;/pre&gt;</content>
  </entry>
  
  <entry>
@@ -474,7 +514,7 @@ Banner display : (Google AdSenseの広告ユニットコードと同じサイズ
 
 &lt;h4 id='githubpagesindexhtml'&gt;GitHubPagesでブログを公開しようと、下記ページに従って作業したがindex.htmlすら表示されない…&lt;/h4&gt;
 
-&lt;h4 id='id226'&gt;&lt;a href='http://tokkono.cute.coocan.jp/blog/slow/index.php/programming/github-pages-almost-perfect-guide/'&gt;参考ページ&lt;/a&gt;&lt;/h4&gt;
+&lt;h4 id='id262'&gt;&lt;a href='http://tokkono.cute.coocan.jp/blog/slow/index.php/programming/github-pages-almost-perfect-guide/'&gt;参考ページ&lt;/a&gt;&lt;/h4&gt;
 
 &lt;h4 id='1github'&gt;1.GitHubに登録したメールアドレスの受信箱をチェック&lt;/h4&gt;
 
@@ -505,7 +545,7 @@ https://github.com/settings/emails&lt;/code&gt;&lt;/pre&gt;
 
 &lt;h4 id='pcvmwareplayeropenx'&gt;ローカルPCのVmwarePlayerにOpenXをインストール。&lt;/h4&gt;
 
-&lt;h4 id='id225'&gt;&lt;a href='http://www.openx.com/docs/qsg-install'&gt;マニュアル&lt;/a&gt;に従ってインストールした。&lt;/h4&gt;
+&lt;h4 id='id261'&gt;&lt;a href='http://www.openx.com/docs/qsg-install'&gt;マニュアル&lt;/a&gt;に従ってインストールした。&lt;/h4&gt;
 
 &lt;h4 id='1'&gt;1.ソース取得&lt;/h4&gt;
 
@@ -706,7 +746,7 @@ Auto-regenerating enabled: /var/www/html/jekyll/JEKYLL_HOME -&amp;gt; /var/www/h
 
 &lt;h5 id='githtmlgithubpush'&gt;任意のディレクトリをGitの作業ツリーにして、そこからHTMLをGitHubへPushする。&lt;/h5&gt;
 
-&lt;h5 id='id224'&gt;&lt;code&gt;【注意】/var/www/html/jekyll/JEKYLL_HOME/_site/ を作業ツリーにするとJekyllを起動する度に.gitが削除されるので適さない。&lt;/code&gt;&lt;/h5&gt;
+&lt;h5 id='id260'&gt;&lt;code&gt;【注意】/var/www/html/jekyll/JEKYLL_HOME/_site/ を作業ツリーにするとJekyllを起動する度に.gitが削除されるので適さない。&lt;/code&gt;&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt;# Jekyllが生成したHTMLをGit作業ツリー(任意のディレクトリ)へコピーする。
 # cp -pr /var/www/html/jekyll/JEKYLL_HOME/_site/* /var/www/html/sankame.github.com/
@@ -733,14 +773,14 @@ Auto-regenerating enabled: /var/www/html/jekyll/JEKYLL_HOME -&amp;gt; /var/www/h
 
 &lt;h5 id='varwwwhtmljekylljekyll_home'&gt;/var/www/html/jekyll/JEKYLL_HOME/&lt;/h5&gt;
 
-&lt;h6 id='id219'&gt;・画面ヘッダ部分のナビゲーションを変更したい。&lt;/h6&gt;
+&lt;h6 id='id255'&gt;・画面ヘッダ部分のナビゲーションを変更したい。&lt;/h6&gt;
 
 &lt;pre&gt;&lt;code&gt;(例)
 画面ヘッダ部分にArchiveを表示したくない場合
 下記ファイルのヘッダ部分の&amp;quot;group: navigation&amp;quot;を#でコメントアウトする。
 /var/www/html/jekyll/JEKYLL_HOME/archive.html&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h6 id='id220'&gt;・記事タイトルに日本語を使いたい。&lt;/h6&gt;
+&lt;h6 id='id256'&gt;・記事タイトルに日本語を使いたい。&lt;/h6&gt;
 
 &lt;pre&gt;&lt;code&gt;記事のファイル名に日本語は使えないので、YAMLのFront Matterでtitleを指定する。
 (例)
@@ -752,7 +792,7 @@ date: 2012-12-23 00:00:00
 title: Jekyllとgithubでブログ作成
 ---&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h6 id='id221'&gt;・ループ回数を制限したい。&lt;/h6&gt;
+&lt;h6 id='id257'&gt;・ループ回数を制限したい。&lt;/h6&gt;
 
 &lt;pre&gt;&lt;code&gt;limitを使う。
 
@@ -772,7 +812,7 @@ title: Jekyllとgithubでブログ作成
 エスケープしたい表現
 {% endraw %}&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h6 id='id222'&gt;・日付のフォーマット(書式)を変更したい。&lt;a href='http://stackoverflow.com/questions/7395520/jekyll-date-format'&gt;参考ページ&lt;/a&gt;&lt;/h6&gt;
+&lt;h6 id='id258'&gt;・日付のフォーマット(書式)を変更したい。&lt;a href='http://stackoverflow.com/questions/7395520/jekyll-date-format'&gt;参考ページ&lt;/a&gt;&lt;/h6&gt;
 
 &lt;pre&gt;&lt;code&gt;日本語を使う場合、ファイルをUTF8で保存する。
 
@@ -780,7 +820,7 @@ title: Jekyllとgithubでブログ作成
 
 { post.date | date: &amp;quot;%Y年%m月%d日&amp;quot; }&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h6 id='id223'&gt;・文法に関する参考ページ&lt;/h6&gt;
+&lt;h6 id='id259'&gt;・文法に関する参考ページ&lt;/h6&gt;
 
 &lt;p&gt;・&lt;a href='https://github.com/mojombo/jekyll/wiki/template-data'&gt;Jekyll変数&lt;/a&gt;&lt;/p&gt;
 
