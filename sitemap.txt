@@ -8,7 +8,7 @@ http://sankame.github.com/atom.xml
 http://sankame.github.com/index.html
 http://sankame.github.com/sitemap.txt
 
-http://sankame.github.com/Nexus7/2013/08/11/nexus7_dev_env
+http://sankame.github.com/Nexus7/2013/08/11/nexus7_github_devenv
 http://sankame.github.com/DELL/2013/07/10/redis_install
 http://sankame.github.com/DELL/2013/07/05/dell_e5520_touchpad
 http://sankame.github.com/Smarty/2013/05/12/smarty_ellipses
