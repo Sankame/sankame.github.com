@@ -150,6 +150,8 @@ Here's a sample "posts list".
 
 <ul class="posts">
   
+    <li><span>11 Aug 2013</span> &raquo; <a href="/Nexus7/2013/08/11/nexus7_dev_env">Nexus7とGitHubでプログラミング環境を作る</a></li>
+  
     <li><span>10 Jul 2013</span> &raquo; <a href="/DELL/2013/07/10/redis_install">Redisインストール</a></li>
   
     <li><span>05 Jul 2013</span> &raquo; <a href="/DELL/2013/07/05/dell_e5520_touchpad">DELL E5520 のタッチパッドをOFFにする</a></li>

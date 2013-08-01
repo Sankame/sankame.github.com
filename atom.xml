@@ -4,7 +4,7 @@
  <title>Text Blog</title>
  <link href="http://sankame.github.com/atom.xml" rel="self"/>
  <link href="http://sankame.github.com"/>
- <updated>2013-06-12T07:27:30+09:00</updated>
+ <updated>2013-08-02T07:28:55+09:00</updated>
  <id>http://sankame.github.com</id>
  <author>
    <name>sankame</name>
@@ -13,17 +13,122 @@
 
  
  <entry>
+   <title>Nexus7とGitHubでプログラミング環境を作る</title>
+   <link href="http://sankame.github.com/Nexus7/2013/08/11/nexus7_dev_env"/>
+   <updated>2013-08-11T00:00:00+09:00</updated>
+   <id>http://sankame.github.com/Nexus7/2013/08/11/nexus7_dev_env</id>
+   <content type="html">&lt;p&gt;投稿日：&lt;span&gt;2013年08月11日&lt;/span&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h5 id='1nexus7bit_web_server_'&gt;1.Nexus7にBit Web Serverをインストール &lt;a href='https://play.google.com/store/apps/details?id=com.andi.serverweb'&gt;(ダウンロード)&lt;/a&gt;&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code&gt;Android上でPHPとMySQLを動かせるアプリ。(有料 約230円)&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id='2nexus7terminal_ide_'&gt;2.Nexus7にTerminal IDEをインストール &lt;a href='https://play.google.com/store/apps/details?id=com.spartacusrex.spartacuside'&gt;(ダウンロード)&lt;/a&gt;&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code&gt;Android用の開発環境。java、c、c++等のコンパイラを含む。&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id='3hello_world'&gt;3.Hello World&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code&gt;Nexus7にBlueToothキーボードを接続。
+
+Nexus7でTerminal IDEを起動。
+
+いくつかのボタンが表示されるので、[Install System]をクリック。
+
+Overwrite ALLにチェックを入れ、[Install System]をクリックし、システムアップデート。
+
+[Terminal IDE]をクリック。
+
+コンソールが起動するので、ファイルを作成し、以下の内容を書き込む。
+
+$ cd $HOME/sdcard/wwww
+$
+$ vim hello.php
+--------------(追記内容)-----------
+&amp;lt;?php
+echo &amp;#39;hello&amp;#39;;
+--------------(追記内容)-----------
+
+Nexus7でBit Web Serverを起動。
+
+[Localhost]をクリック。
+
+ブラウザが起動し、表示されたファイル一覧から上記で作成したhello.phpをクリック。
+
+ブラウザにhelloと表示されれば成功。&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id='4github'&gt;4.GitHubにファイルをアップ(準備)&lt;/h5&gt;
+
+&lt;p&gt;せっかくなのでNexus7からGitHubにファイルをアップしてみる。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ 公開鍵と秘密鍵を作成。
+$ Nexus7で以下のコマンドを打つ。
+$ dropbearkey -t rsa -f $HOME/.ssh/id_rsa
+$
+$ 作成した鍵を表示。
+$ dropbearkey -y -f ~/.ssh/id_rsa
+$ 
+$ ssh-rsaの1行(公開鍵)をコピーする。
+
+GitHubダッシュボード画面の右上「Account Settings」をクリック。
+(GitHubアカウントは作成済みとします)
+左メニューの「SSH Keys」クリック。
+「Add SSH key」をクリックし、Titleに任意の値、Keyに上記でコピーした内容(公開鍵)を入力する。
+
+GitHubダッシュボード画面の「Repositories」-「New」をクリックし、新規リポジトリを作成する。
+
+$ Nexus7に戻り、以下のファイルを作成し、追記内容を書き込む。
+$ vim /data/data/com.spartacusrex.spartacuside/files/bin/ssh-with-default-key
+
+--------------(追記内容)-----------
+#!/data/data/com.spartacusrex.spartacuside/files/system/bin/bash
+exec ssh -i ~/.ssh/id_rsa &amp;quot;$@&amp;quot;
+--------------(追記内容)-----------
+
+$ chmod 755 /data/data/com.spartacusrex.spartacuside/files/bin/ssh-with-default-key
+
+$ さらに以下のファイルに追記内容を書き込む。
+$ vim $HOME/.bashrc
+
+--------------(追記内容)-----------
+export GIT_SSH=$HOME/bin/ssh-with-default-key
+--------------(追記内容)-----------&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id='5github'&gt;5.GitHubにファイルをアップ&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code&gt;$ Nexus7に戻って以下のコマンドを打つ。
+$ cd $HOME/sdcard/wwww
+$ git init
+$ touch new.txt
+$ git add .
+$ git commit -m &amp;#39;add new.txt&amp;#39;
+$ 【】内は自分の設定に読み替える。
+$ git remote add origin git@github.com:【アカウント名】/【リポジトリ名】.git
+$ git push origin master
+$
+$ これでGitHubにnew.txtがアップロードできたはず。&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id='id1790'&gt;参考ページ&lt;/h5&gt;
+
+&lt;p&gt;&lt;a href='https://play.google.com/store/apps/details?id=com.andi.serverweb'&gt;Terminal IDEの設定&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href='http://blog.katsuma.tv/2009/02/first_github.html'&gt;Githubへのpush&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href='https://jp.linux.com/linux-community/blog/236-mirainoitsuka/403358'&gt;Githubへのpush2&lt;/a&gt;&lt;/p&gt;</content>
+ </entry>
+ 
+ <entry>
    <title>Redisインストール</title>
    <link href="http://sankame.github.com/DELL/2013/07/10/redis_install"/>
    <updated>2013-07-10T00:00:00+09:00</updated>
    <id>http://sankame.github.com/DELL/2013/07/10/redis_install</id>
    <content type="html">&lt;p&gt;投稿日：&lt;span&gt;2013年07月10日&lt;/span&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;h5 id='id627'&gt;環境&lt;/h5&gt;
+&lt;h5 id='id1788'&gt;環境&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt;[CentOS] 5.6 (32bit版カーネル)&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h5 id='id628'&gt;インストール&lt;/h5&gt;
+&lt;h5 id='id1789'&gt;インストール&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt;# ソース取得。
 # wget http://redis.googlecode.com/files/redis-2.6.7.tar.gz
@@ -95,7 +200,7 @@ PONG
    <id>http://sankame.github.com/DELL/2013/07/05/dell_e5520_touchpad</id>
    <content type="html">&lt;p&gt;投稿日：&lt;span&gt;2013年07月05日&lt;/span&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;h5 id='id626'&gt;環境&lt;/h5&gt;
+&lt;h5 id='id1787'&gt;環境&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt;[PC] DELL E5520
 [OS] Windows 7 Professional (SP1)&lt;/code&gt;&lt;/pre&gt;
@@ -157,7 +262,7 @@ Dell Touchpad が増えているのでダブルクリック。&lt;/code&gt;&lt;/
 {/if}
 &amp;lt;a class=&amp;quot;keyword-link&amp;quot; href=&amp;quot;#&amp;quot; title=&amp;quot;{$keyword}&amp;quot;&amp;gt;{$cutKeyword}&amp;lt;/a&amp;gt;&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h5 id='id625'&gt;上記コードで各文字列を変換した場合。&lt;/h5&gt;
+&lt;h5 id='id1786'&gt;上記コードで各文字列を変換した場合。&lt;/h5&gt;
 
 &lt;h5 id='_'&gt;(&amp;#8220;→&amp;#8221; は変換前後を表す)&lt;/h5&gt;
 
@@ -177,7 +282,7 @@ Dell Touchpad が増えているのでダブルクリック。&lt;/code&gt;&lt;/
 
 &lt;h4 id='phpmecab'&gt;PHPからMeCabを使ってみる。&lt;/h4&gt;
 
-&lt;h5 id='id624'&gt;環境&lt;/h5&gt;
+&lt;h5 id='id1785'&gt;環境&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt;[CentOS] 5.6 (32bit版カーネル)
 [PHP]    5.3.3&lt;/code&gt;&lt;/pre&gt;
@@ -255,7 +360,7 @@ EOS
 
 &lt;h4 id='mecab'&gt;形態素解析エンジンMeCabをインストールしてみる。&lt;/h4&gt;
 
-&lt;h5 id='id623'&gt;環境&lt;/h5&gt;
+&lt;h5 id='id1784'&gt;環境&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt;[CentOS] 5.6 (32bit版カーネル)&lt;/code&gt;&lt;/pre&gt;
 
@@ -521,7 +626,7 @@ Banner display : (Google AdSenseの広告ユニットコードと同じサイズ
 
 &lt;h4 id='centos_'&gt;CentOSコマンド メモ&lt;/h4&gt;
 
-&lt;h5 id='id622'&gt;・ファイル検索&lt;/h5&gt;
+&lt;h5 id='id1783'&gt;・ファイル検索&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt; find / -name filename&lt;/code&gt;&lt;/pre&gt;
 
@@ -590,7 +695,7 @@ Banner display : (Google AdSenseの広告ユニットコードと同じサイズ
 
 &lt;h4 id='githubpagesindexhtml'&gt;GitHubPagesでブログを公開しようと、下記ページに従って作業したがindex.htmlすら表示されない…&lt;/h4&gt;
 
-&lt;h4 id='id621'&gt;&lt;a href='http://tokkono.cute.coocan.jp/blog/slow/index.php/programming/github-pages-almost-perfect-guide/'&gt;参考ページ&lt;/a&gt;&lt;/h4&gt;
+&lt;h4 id='id1782'&gt;&lt;a href='http://tokkono.cute.coocan.jp/blog/slow/index.php/programming/github-pages-almost-perfect-guide/'&gt;参考ページ&lt;/a&gt;&lt;/h4&gt;
 
 &lt;h4 id='1github'&gt;1.GitHubに登録したメールアドレスの受信箱をチェック&lt;/h4&gt;
 
@@ -621,7 +726,7 @@ https://github.com/settings/emails&lt;/code&gt;&lt;/pre&gt;
 
 &lt;h4 id='pcvmwareplayeropenx'&gt;ローカルPCのVmwarePlayerにOpenXをインストール。&lt;/h4&gt;
 
-&lt;h4 id='id620'&gt;&lt;a href='http://www.openx.com/docs/qsg-install'&gt;マニュアル&lt;/a&gt;に従ってインストールした。&lt;/h4&gt;
+&lt;h4 id='id1781'&gt;&lt;a href='http://www.openx.com/docs/qsg-install'&gt;マニュアル&lt;/a&gt;に従ってインストールした。&lt;/h4&gt;
 
 &lt;h4 id='1'&gt;1.ソース取得&lt;/h4&gt;
 
@@ -822,7 +927,7 @@ Auto-regenerating enabled: /var/www/html/jekyll/JEKYLL_HOME -&amp;gt; /var/www/h
 
 &lt;h5 id='githtmlgithubpush'&gt;任意のディレクトリをGitの作業ツリーにして、そこからHTMLをGitHubへPushする。&lt;/h5&gt;
 
-&lt;h5 id='id619'&gt;&lt;code&gt;【注意】/var/www/html/jekyll/JEKYLL_HOME/_site/ を作業ツリーにするとJekyllを起動する度に.gitが削除されるので適さない。&lt;/code&gt;&lt;/h5&gt;
+&lt;h5 id='id1780'&gt;&lt;code&gt;【注意】/var/www/html/jekyll/JEKYLL_HOME/_site/ を作業ツリーにするとJekyllを起動する度に.gitが削除されるので適さない。&lt;/code&gt;&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt;# Jekyllが生成したHTMLをGit作業ツリー(任意のディレクトリ)へコピーする。
 # cp -pr /var/www/html/jekyll/JEKYLL_HOME/_site/* /var/www/html/sankame.github.com/
@@ -849,14 +954,14 @@ Auto-regenerating enabled: /var/www/html/jekyll/JEKYLL_HOME -&amp;gt; /var/www/h
 
 &lt;h5 id='varwwwhtmljekylljekyll_home'&gt;/var/www/html/jekyll/JEKYLL_HOME/&lt;/h5&gt;
 
-&lt;h6 id='id614'&gt;・画面ヘッダ部分のナビゲーションを変更したい。&lt;/h6&gt;
+&lt;h6 id='id1775'&gt;・画面ヘッダ部分のナビゲーションを変更したい。&lt;/h6&gt;
 
 &lt;pre&gt;&lt;code&gt;(例)
 画面ヘッダ部分にArchiveを表示したくない場合
 下記ファイルのヘッダ部分の&amp;quot;group: navigation&amp;quot;を#でコメントアウトする。
 /var/www/html/jekyll/JEKYLL_HOME/archive.html&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h6 id='id615'&gt;・記事タイトルに日本語を使いたい。&lt;/h6&gt;
+&lt;h6 id='id1776'&gt;・記事タイトルに日本語を使いたい。&lt;/h6&gt;
 
 &lt;pre&gt;&lt;code&gt;記事のファイル名に日本語は使えないので、YAMLのFront Matterでtitleを指定する。
 (例)
@@ -868,7 +973,7 @@ date: 2012-12-23 00:00:00
 title: Jekyllとgithubでブログ作成
 ---&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h6 id='id616'&gt;・ループ回数を制限したい。&lt;/h6&gt;
+&lt;h6 id='id1777'&gt;・ループ回数を制限したい。&lt;/h6&gt;
 
 &lt;pre&gt;&lt;code&gt;limitを使う。
 
@@ -888,7 +993,7 @@ title: Jekyllとgithubでブログ作成
 エスケープしたい表現
 {% endraw %}&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h6 id='id617'&gt;・日付のフォーマット(書式)を変更したい。&lt;a href='http://stackoverflow.com/questions/7395520/jekyll-date-format'&gt;参考ページ&lt;/a&gt;&lt;/h6&gt;
+&lt;h6 id='id1778'&gt;・日付のフォーマット(書式)を変更したい。&lt;a href='http://stackoverflow.com/questions/7395520/jekyll-date-format'&gt;参考ページ&lt;/a&gt;&lt;/h6&gt;
 
 &lt;pre&gt;&lt;code&gt;日本語を使う場合、ファイルをUTF8で保存する。
 
@@ -896,7 +1001,7 @@ title: Jekyllとgithubでブログ作成
 
 { post.date | date: &amp;quot;%Y年%m月%d日&amp;quot; }&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h6 id='id618'&gt;・文法に関する参考ページ&lt;/h6&gt;
+&lt;h6 id='id1779'&gt;・文法に関する参考ページ&lt;/h6&gt;
 
 &lt;p&gt;・&lt;a href='https://github.com/mojombo/jekyll/wiki/template-data'&gt;Jekyll変数&lt;/a&gt;&lt;/p&gt;
 
