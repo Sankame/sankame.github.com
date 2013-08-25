@@ -4,13 +4,48 @@
  <title>Text Blog</title>
  <link href="http://sankame.github.com/atom.xml" rel="self"/>
  <link href="http://sankame.github.com"/>
- <updated>2013-08-02T07:31:30+09:00</updated>
+ <updated>2013-08-26T04:18:42+09:00</updated>
  <id>http://sankame.github.com</id>
  <author>
    <name>sankame</name>
    <email>mt_fuji_3776@live.jp</email>
  </author>
 
+ 
+ <entry>
+   <title>MySQLコマンド メモ</title>
+   <link href="http://sankame.github.com/MySQL/2013/08/26/mysql_command"/>
+   <updated>2013-08-26T00:00:00+09:00</updated>
+   <id>http://sankame.github.com/MySQL/2013/08/26/mysql_command</id>
+   <content type="html">&lt;p&gt;投稿日：&lt;span&gt;2013年08月26日&lt;/span&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h4 id='mysql_'&gt;MySQLコマンド メモ&lt;/h4&gt;
+
+&lt;h5 id='webdb1'&gt;WebサーバとDBサーバが1台のマシンにある場合によく行う操作。&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code&gt;# そのマシンのMySQLサーバにrootで接続
+# (パスワードを聞かれるので入力してEnter)
+# mysql -h 127.0.0.1 -u root -p
+
+mysql&amp;gt; -- UTF8でDBを作成し、接続ユーザを作成 (先頭がtestの文字は読み替えて下さい)
+mysql&amp;gt; create database testdb default character set utf8;
+mysql&amp;gt; grant all on testdb.* to &amp;#39;testuser&amp;#39;@&amp;#39;localhost&amp;#39; identified by &amp;#39;testpassword&amp;#39;;
+mysql&amp;gt; flush privileges;
+
+mysql&amp;gt; -- 別マシンからDBへ接続する必要がある場合は、以下のように別ユーザを作成
+mysql&amp;gt; -- (192.168.0.1の部分を別マシンのIPに読み替える)
+mysql&amp;gt; grant all on testdb.* to testuser@192.168.0.1 identified by &amp;#39;testpassword&amp;#39;;
+
+mysql&amp;gt; -- 作成したDBに切り替え、テーブルを作成
+mysql&amp;gt; use testdb;
+
+mysql&amp;gt; DROP TABLE IF EXISTS `users`;
+
+mysql&amp;gt; CREATE TABLE `users` (
+mysql&amp;gt;   `id`         bigint unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY,
+mysql&amp;gt;   `username`   varchar(32) NOT NULL
+mysql&amp;gt; ) ENGINE=InnoDB;&lt;/code&gt;&lt;/pre&gt;</content>
+ </entry>
  
  <entry>
    <title>Nexus7とGitHubでプログラミング環境を作る</title>
@@ -108,7 +143,7 @@ $ git push origin master
 $
 $ これでGitHubにnew.txtがアップロードできたはず。&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h5 id='id1826'&gt;参考ページ&lt;/h5&gt;
+&lt;h5 id='id326'&gt;参考ページ&lt;/h5&gt;
 
 &lt;p&gt;&lt;a href='https://play.google.com/store/apps/details?id=com.andi.serverweb'&gt;Terminal IDEの設定&lt;/a&gt;&lt;/p&gt;
 
@@ -124,11 +159,11 @@ $ これでGitHubにnew.txtがアップロードできたはず。&lt;/code&gt;&
    <id>http://sankame.github.com/DELL/2013/07/10/redis_install</id>
    <content type="html">&lt;p&gt;投稿日：&lt;span&gt;2013年07月10日&lt;/span&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;h5 id='id1824'&gt;環境&lt;/h5&gt;
+&lt;h5 id='id324'&gt;環境&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt;[CentOS] 5.6 (32bit版カーネル)&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h5 id='id1825'&gt;インストール&lt;/h5&gt;
+&lt;h5 id='id325'&gt;インストール&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt;# ソース取得。
 # wget http://redis.googlecode.com/files/redis-2.6.7.tar.gz
@@ -200,7 +235,7 @@ PONG
    <id>http://sankame.github.com/DELL/2013/07/05/dell_e5520_touchpad</id>
    <content type="html">&lt;p&gt;投稿日：&lt;span&gt;2013年07月05日&lt;/span&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;h5 id='id1823'&gt;環境&lt;/h5&gt;
+&lt;h5 id='id323'&gt;環境&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt;[PC] DELL E5520
 [OS] Windows 7 Professional (SP1)&lt;/code&gt;&lt;/pre&gt;
@@ -262,7 +297,7 @@ Dell Touchpad が増えているのでダブルクリック。&lt;/code&gt;&lt;/
 {/if}
 &amp;lt;a class=&amp;quot;keyword-link&amp;quot; href=&amp;quot;#&amp;quot; title=&amp;quot;{$keyword}&amp;quot;&amp;gt;{$cutKeyword}&amp;lt;/a&amp;gt;&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h5 id='id1822'&gt;上記コードで各文字列を変換した場合。&lt;/h5&gt;
+&lt;h5 id='id322'&gt;上記コードで各文字列を変換した場合。&lt;/h5&gt;
 
 &lt;h5 id='_'&gt;(&amp;#8220;→&amp;#8221; は変換前後を表す)&lt;/h5&gt;
 
@@ -282,7 +317,7 @@ Dell Touchpad が増えているのでダブルクリック。&lt;/code&gt;&lt;/
 
 &lt;h4 id='phpmecab'&gt;PHPからMeCabを使ってみる。&lt;/h4&gt;
 
-&lt;h5 id='id1821'&gt;環境&lt;/h5&gt;
+&lt;h5 id='id321'&gt;環境&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt;[CentOS] 5.6 (32bit版カーネル)
 [PHP]    5.3.3&lt;/code&gt;&lt;/pre&gt;
@@ -360,7 +395,7 @@ EOS
 
 &lt;h4 id='mecab'&gt;形態素解析エンジンMeCabをインストールしてみる。&lt;/h4&gt;
 
-&lt;h5 id='id1820'&gt;環境&lt;/h5&gt;
+&lt;h5 id='id320'&gt;環境&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt;[CentOS] 5.6 (32bit版カーネル)&lt;/code&gt;&lt;/pre&gt;
 
@@ -626,7 +661,7 @@ Banner display : (Google AdSenseの広告ユニットコードと同じサイズ
 
 &lt;h4 id='centos_'&gt;CentOSコマンド メモ&lt;/h4&gt;
 
-&lt;h5 id='id1819'&gt;・ファイル検索&lt;/h5&gt;
+&lt;h5 id='id319'&gt;・ファイル検索&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt; find / -name filename&lt;/code&gt;&lt;/pre&gt;
 
@@ -695,7 +730,7 @@ Banner display : (Google AdSenseの広告ユニットコードと同じサイズ
 
 &lt;h4 id='githubpagesindexhtml'&gt;GitHubPagesでブログを公開しようと、下記ページに従って作業したがindex.htmlすら表示されない…&lt;/h4&gt;
 
-&lt;h4 id='id1818'&gt;&lt;a href='http://tokkono.cute.coocan.jp/blog/slow/index.php/programming/github-pages-almost-perfect-guide/'&gt;参考ページ&lt;/a&gt;&lt;/h4&gt;
+&lt;h4 id='id318'&gt;&lt;a href='http://tokkono.cute.coocan.jp/blog/slow/index.php/programming/github-pages-almost-perfect-guide/'&gt;参考ページ&lt;/a&gt;&lt;/h4&gt;
 
 &lt;h4 id='1github'&gt;1.GitHubに登録したメールアドレスの受信箱をチェック&lt;/h4&gt;
 
@@ -726,7 +761,7 @@ https://github.com/settings/emails&lt;/code&gt;&lt;/pre&gt;
 
 &lt;h4 id='pcvmwareplayeropenx'&gt;ローカルPCのVmwarePlayerにOpenXをインストール。&lt;/h4&gt;
 
-&lt;h4 id='id1817'&gt;&lt;a href='http://www.openx.com/docs/qsg-install'&gt;マニュアル&lt;/a&gt;に従ってインストールした。&lt;/h4&gt;
+&lt;h4 id='id317'&gt;&lt;a href='http://www.openx.com/docs/qsg-install'&gt;マニュアル&lt;/a&gt;に従ってインストールした。&lt;/h4&gt;
 
 &lt;h4 id='1'&gt;1.ソース取得&lt;/h4&gt;
 
@@ -927,7 +962,7 @@ Auto-regenerating enabled: /var/www/html/jekyll/JEKYLL_HOME -&amp;gt; /var/www/h
 
 &lt;h5 id='githtmlgithubpush'&gt;任意のディレクトリをGitの作業ツリーにして、そこからHTMLをGitHubへPushする。&lt;/h5&gt;
 
-&lt;h5 id='id1816'&gt;&lt;code&gt;【注意】/var/www/html/jekyll/JEKYLL_HOME/_site/ を作業ツリーにするとJekyllを起動する度に.gitが削除されるので適さない。&lt;/code&gt;&lt;/h5&gt;
+&lt;h5 id='id316'&gt;&lt;code&gt;【注意】/var/www/html/jekyll/JEKYLL_HOME/_site/ を作業ツリーにするとJekyllを起動する度に.gitが削除されるので適さない。&lt;/code&gt;&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt;# Jekyllが生成したHTMLをGit作業ツリー(任意のディレクトリ)へコピーする。
 # cp -pr /var/www/html/jekyll/JEKYLL_HOME/_site/* /var/www/html/sankame.github.com/
@@ -954,14 +989,14 @@ Auto-regenerating enabled: /var/www/html/jekyll/JEKYLL_HOME -&amp;gt; /var/www/h
 
 &lt;h5 id='varwwwhtmljekylljekyll_home'&gt;/var/www/html/jekyll/JEKYLL_HOME/&lt;/h5&gt;
 
-&lt;h6 id='id1811'&gt;・画面ヘッダ部分のナビゲーションを変更したい。&lt;/h6&gt;
+&lt;h6 id='id311'&gt;・画面ヘッダ部分のナビゲーションを変更したい。&lt;/h6&gt;
 
 &lt;pre&gt;&lt;code&gt;(例)
 画面ヘッダ部分にArchiveを表示したくない場合
 下記ファイルのヘッダ部分の&amp;quot;group: navigation&amp;quot;を#でコメントアウトする。
 /var/www/html/jekyll/JEKYLL_HOME/archive.html&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h6 id='id1812'&gt;・記事タイトルに日本語を使いたい。&lt;/h6&gt;
+&lt;h6 id='id312'&gt;・記事タイトルに日本語を使いたい。&lt;/h6&gt;
 
 &lt;pre&gt;&lt;code&gt;記事のファイル名に日本語は使えないので、YAMLのFront Matterでtitleを指定する。
 (例)
@@ -973,7 +1008,7 @@ date: 2012-12-23 00:00:00
 title: Jekyllとgithubでブログ作成
 ---&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h6 id='id1813'&gt;・ループ回数を制限したい。&lt;/h6&gt;
+&lt;h6 id='id313'&gt;・ループ回数を制限したい。&lt;/h6&gt;
 
 &lt;pre&gt;&lt;code&gt;limitを使う。
 
@@ -993,7 +1028,7 @@ title: Jekyllとgithubでブログ作成
 エスケープしたい表現
 {% endraw %}&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h6 id='id1814'&gt;・日付のフォーマット(書式)を変更したい。&lt;a href='http://stackoverflow.com/questions/7395520/jekyll-date-format'&gt;参考ページ&lt;/a&gt;&lt;/h6&gt;
+&lt;h6 id='id314'&gt;・日付のフォーマット(書式)を変更したい。&lt;a href='http://stackoverflow.com/questions/7395520/jekyll-date-format'&gt;参考ページ&lt;/a&gt;&lt;/h6&gt;
 
 &lt;pre&gt;&lt;code&gt;日本語を使う場合、ファイルをUTF8で保存する。
 
@@ -1001,7 +1036,7 @@ title: Jekyllとgithubでブログ作成
 
 { post.date | date: &amp;quot;%Y年%m月%d日&amp;quot; }&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h6 id='id1815'&gt;・文法に関する参考ページ&lt;/h6&gt;
+&lt;h6 id='id315'&gt;・文法に関する参考ページ&lt;/h6&gt;
 
 &lt;p&gt;・&lt;a href='https://github.com/mojombo/jekyll/wiki/template-data'&gt;Jekyll変数&lt;/a&gt;&lt;/p&gt;
 
