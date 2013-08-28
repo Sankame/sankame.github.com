@@ -8,6 +8,7 @@ http://sankame.github.com/atom.xml
 http://sankame.github.com/index.html
 http://sankame.github.com/sitemap.txt
 
+http://sankame.github.com/Nexus7/2013/09/01/nexus7_projected_to_pc
 http://sankame.github.com/MySQL/2013/08/26/mysql_command
 http://sankame.github.com/Nexus7/2013/08/11/nexus7_github_devenv
 http://sankame.github.com/DELL/2013/07/10/redis_install

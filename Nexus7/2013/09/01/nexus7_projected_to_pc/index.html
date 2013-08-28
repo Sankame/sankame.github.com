@@ -1,0 +1,315 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Nexus7のスクリーンをプロジェクタに映したい</title>
+    
+    <meta name="author" content="sankame">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <link href="/assets/themes/twitter/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/themes/twitter/css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
+
+    <!-- Le fav and touch icons -->
+  <!-- Update these with your own images
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+  -->
+	<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-37675354-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+  </head>
+
+  <body>
+
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="brand" href="/">Text Blog</a>
+          <ul class="nav">
+            
+            
+            
+
+
+  
+    
+      
+      	
+      	<li><a href="/archive.html">投稿</a></li>
+      	
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/categories.html">カテゴリー</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/tags.html">タグ</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+
+
+
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+
+      <div class="content">
+        
+
+<div class="page-header">
+  <h1>Nexus7のスクリーンをプロジェクタに映したい </h1>
+</div>
+
+<div class="row">
+  <div class="span12" >
+  <!--[if IE 6 ]>
+    <div class="span12-for-ie6">
+  <![endif]-->
+    <p>投稿日：<span>2013年09月01日</span><br /></p>
+
+<h5 id='0'>0.環境</h5>
+
+<pre><code>[タブレット端末/OS]  Nexus7 / Android 4.2.2
+[PC端末/OS]        Gateway SX2800 / Windows Vista Home Premium</code></pre>
+
+<h5 id='0'>0.検討</h5>
+
+<p>プレゼン用途でNexus7のスクリーン映像をプロジェクタに映したいと考え、いくつか検討した結果、下記3で行うことにしました。</p>
+
+<ul>
+<li>
+<p><a href='http://www.amazon.co.jp/dp/B005RUM754/ref=as_li_ss_til?tag=uni6605-22&amp;camp=1027&amp;creative=7407&amp;linkCode=as4&amp;creativeASIN=B005RUM754&amp;adid=004HQM7Z4FR3M83JKTW2&amp;&amp;ref-refURL=http%3A%2F%2Flove-guava.com%2Fit-is-difficult-in-it-being-unexpected-to-output-the-screen-of-nexus7-to-a-display%2F'>1.変換器を使う</a> →Nexus7はMHL非対応…</p>
+</li>
+
+<li>
+<p><a href='https://play.google.com/store/apps/details?id=com.awindinc.sphone2tv'>2.ソフトで解決</a> →PCに映像を送信する方法。有料かつNexus7のRoot化が必要。</p>
+</li>
+
+<li>
+<p><a href='http://www.moongift.jp/2009/09/androidscreencast'>3.ソフトで解決</a> →PCに映像を送信する方法。無料かつRoot化の必要もなし。Nexus7の映像がPCに届くまで数秒のタイムラグあり。</p>
+</li>
+</ul>
+
+<h5 id='1pcandroid_sdk'>1.PCにAndroid SDKをインストール</h5>
+
+<ul>
+<li>
+<p>下記ページの[download here] - [Download the SDK]ボタンをクリック。</p>
+
+<p><a href='http://code.google.com/p/androidscreencast/'>ダウンロード</a></p>
+</li>
+
+<li>
+<p>規約に同意したら「I have read and agree…」にチェック。</p>
+</li>
+
+<li>
+<p>32ビットか64ビットかは、下記の手順で調べる。</p>
+
+<p>[スタート]メニュー - [コンピュータ]右クリック - [プロパティ]</p>
+
+<p>[システムの種類]に記載。</p>
+</li>
+</ul>
+
+<h5 id='2usbnexus7pc'>2.USBケーブルでNexus7とPCを接続</h5>
+
+<h5 id='3android_screen_cast'>3.Android Screen Cast</h5>
+
+<ul>
+<li>
+<p>3-1.下記リンクからAndroid Screen CastをPCにダウンロードし、任意のフォルダに保存する。</p>
+
+<p><a href='http://androidscreencast.googlecode.com/svn/trunk/AndroidScreencast/dist/androidscreencast.jnlp'>ダウンロード</a></p>
+</li>
+
+<li>
+<p>3-2.コマンドプロンプトで上記3-1のフォルダに移動し、下記コマンドを実行。</p>
+
+<pre><code>&gt; javaws androidscreencast.jnlp</code></pre>
+</li>
+
+<li>
+<p>3-3.JREをバージョンアップするよう警告が出たので、最新をインストールした結果、下記のバージョンになった。</p>
+
+<pre><code>&gt; java -version
+  java version &quot;1.7.0_25&quot;</code></pre>
+</li>
+
+<li>
+<p>3-4.再び3-2のコマンドを実行すると下記エラーが発生。</p>
+
+<p>Timeout getting device list</p>
+</li>
+
+<li>
+<p>3-5.adb usb 実行 <a href='http://code.google.com/p/androidscreencast/issues/detail?id=49'>(参考ページ)</a></p>
+
+<p>PCでコマンドプロンプトを起動し、&#8221;platform-tools&#8221;フォルダに移動。(パスは読み替えて下さい)</p>
+
+<pre><code>&gt; cd C:\soft\Android\adt-bundle-windows-x86-20130729\sdk\platform-tools
+&gt; adb usb
+ error: device not found</code></pre>
+</li>
+
+<li>
+<p>3-6.USBドライバ</p>
+
+<p>上記3-5でエラーになったので、下記ページの記載に従ってPCにPdaNetをダウンロード。</p>
+
+<p><a href='http://www.dominantwire.com/2012/11/how-to-solve-adb-device-not-found-error.html'>参考ページ</a></p>
+
+<p><a href='http://pdanet.co/'>PdaNet</a></p>
+</li>
+</ul>
+
+<h5 id='4pdanet'>4.PdaNet</h5>
+
+<ul>
+<li>
+<p>4-1.上記3-6でダウンロードしたインストーラ(PdaNetA4126.exe)を起動。</p>
+</li>
+
+<li>
+<p>4-2.インストール途中で下記メッセージが出た。</p>
+
+<p><img src='/assets/posts/img/nexus7_projected_to_pc/1.jpg' alt='画像1' /></p>
+</li>
+
+<li>
+<p>4-3.Nexus7 開発者メニュー</p>
+
+<p>Nexus7で[設定]-[タブレット情報]-[ビルド番号]を7回タップし、[設定]-[開発者向けオプション]を表示する。</p>
+</li>
+
+<li>
+<p>4-4.Nexus7 USBデバッグ</p>
+
+<p>Nexus7で[開発者向けオプション]-[USBデバッグ] をONにする。</p>
+
+<p>直後に、PC側でインストーラが再開した。</p>
+
+<p><img src='/assets/posts/img/nexus7_projected_to_pc/2.jpg' alt='画像2' /></p>
+</li>
+
+<li>
+<p>4-5.Nexus7で下記メッセージが出たので、&#8221;許可する&#8221;を選択する。</p>
+
+<p>&#8220;このパソコンのRSAキーのフィンガープリント…&#8221;</p>
+</li>
+
+<li>
+<p>4-6.PC側で下記メッセージが出たので、&#8221;インストール&#8221;をクリック。</p>
+
+<p><img src='/assets/posts/img/nexus7_projected_to_pc/3.jpg' alt='画像3' /></p>
+</li>
+
+<li>
+<p>4-6.Nexus7で下記メッセージが出たので、そのままOKを選択。</p>
+
+<p>&#8220;Googleが定期的にインストールされたアプリをチェックする&#8221;</p>
+</li>
+
+<li>
+<p>4-7.インストール完了</p>
+
+<p>下記画面が表示されればインストールは完了。</p>
+
+<p><img src='/assets/posts/img/nexus7_projected_to_pc/4.jpg' alt='画像4' /></p>
+
+<p>さらにPC側のデバイスにAndroid Phoneが追加されていればOK。</p>
+
+<pre><code>[スタート]-[コントロール パネル]-[デバイスマネージャ]-[Android Phone]</code></pre>
+</li>
+
+<li>
+<p>4-8.上記3-5のコマンドを再実行すると下記が表示される。</p>
+
+<pre><code>* daemon not running. starting it now on port 5037 *
+* daemon started successfully *
+restarting in USB mode</code></pre>
+</li>
+</ul>
+
+<h5 id='5android_screen_cast'>5.Android Screen Cast起動</h5>
+
+<ul>
+<li>5-1. 上記3-2の操作を再実行し、Nexus7の画面がPC側に表示されれば成功。</li>
+</ul>
+  <!--[if IE 6 ]>
+    </div>
+  <![endif]-->
+  </div>
+</div>
+
+
+        <div></div>
+		<div></div>
+      </div>
+
+      <footer>
+        <p>&copy; sankame 2012 
+          with help from <a href="http://jekyllbootstrap.com" target="_blank" title="The Definitive Jekyll Blogging Framework">Jekyll Bootstrap</a>
+          and <a href="http://twitter.github.com/bootstrap/" target="_blank">Twitter Bootstrap</a>
+        </p>
+      </footer>
+
+    </div> <!-- /container -->
+
+    
+  </body>
+</html>
+
