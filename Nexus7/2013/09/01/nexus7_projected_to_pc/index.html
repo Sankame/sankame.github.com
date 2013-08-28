@@ -4,7 +4,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Nexus7のスクリーンをプロジェクタに映したい</title>
+    <title>Nexus7のスクリーンをプロジェクタに映したい (Android Screen Cast)</title>
     
     <meta name="author" content="sankame">
 
@@ -110,7 +110,7 @@
         
 
 <div class="page-header">
-  <h1>Nexus7のスクリーンをプロジェクタに映したい </h1>
+  <h1>Nexus7のスクリーンをプロジェクタに映したい (Android Screen Cast) </h1>
 </div>
 
 <div class="row">
@@ -204,39 +204,77 @@
 &gt; adb usb
  error: device not found</code></pre>
 </li>
+</ul>
+
+<h5 id='4usb'>4.USBドライバ</h5>
+
+<ul>
+<li>
+<p>4-1.USBドライバ</p>
+
+<p>上記3-5でエラーになったので、USBドライバをインストールする。</p>
+</li>
 
 <li>
-<p>3-6.USBドライバ</p>
+<p>4-2.インストール</p>
 
-<p>上記3-5でエラーになったので、下記ページの記載に従ってPCにPdaNetをダウンロード。</p>
+<p>PC側で、上記1でダウンロードした&#8221;SDK Manager.exe&#8221;をダブルクリックして起動する。</p>
+
+<p>&#8220;Google USB Driver&#8221;にチェックして、[Install 1 package&#8230;]をクリック。</p>
+
+<p><img src='/assets/posts/img/nexus7_projected_to_pc/10.jpg' alt='画像10' /></p>
+
+<p>※もし&#8221;Failed to fetch URL&#8221;というエラーが出た場合は、代替策として下記5を参照。</p>
+
+<p>規約に同意したら[Install]をクリック。</p>
+
+<p><img src='/assets/posts/img/nexus7_projected_to_pc/11.jpg' alt='画像11' /></p>
+</li>
+
+<li>
+<p>4-3.USBドライバ更新</p>
+
+<p>さらにPC側で、下記ノードを右クリックしてプロパティから[ドライバの更新]をクリック。</p>
+
+<pre><code>[スタート]-[コントロール パネル]-[デバイスマネージャ]-[Android Phone]</code></pre>
+
+<p>下記パスを選択してドライバを指定する。(パスは読み替えて下さい)</p>
+
+<pre><code>C:\soft\Android\adt-bundle-windows-x86-20130729\sdk\extras</code></pre>
+
+<p>インストールが完了したらPCを再起動。 →下記5を飛ばして6以降を参照。</p>
+</li>
+</ul>
+
+<h5 id='5pdanet'>5.PdaNet</h5>
 
 <p><a href='http://www.dominantwire.com/2012/11/how-to-solve-adb-device-not-found-error.html'>参考ページ</a></p>
 
 <p><a href='http://pdanet.co/'>PdaNet</a></p>
-</li>
-</ul>
 
-<h5 id='4pdanet'>4.PdaNet</h5>
+<p><code>【注意】PdaNetがインストールするUSBドライバを利用します。</code></p>
+
+<p><code>PdaNetはモバイル端末経由でPCをネット接続するソフトなので、モバイル端末のネット接続が従量課金の場合は、注意して下さい。</code></p>
 
 <ul>
 <li>
-<p>4-1.上記3-6でダウンロードしたインストーラ(PdaNetA4126.exe)を起動。</p>
+<p>5-1.上記3-6でダウンロードしたインストーラ(PdaNetA4126.exe)を起動。</p>
 </li>
 
 <li>
-<p>4-2.インストール途中で下記メッセージが出た。</p>
+<p>5-2.インストール途中で下記メッセージが出た。</p>
 
 <p><img src='/assets/posts/img/nexus7_projected_to_pc/1.jpg' alt='画像1' /></p>
 </li>
 
 <li>
-<p>4-3.Nexus7 開発者メニュー</p>
+<p>5-3.Nexus7 開発者メニュー</p>
 
 <p>Nexus7で[設定]-[タブレット情報]-[ビルド番号]を7回タップし、[設定]-[開発者向けオプション]を表示する。</p>
 </li>
 
 <li>
-<p>4-4.Nexus7 USBデバッグ</p>
+<p>5-4.Nexus7 USBデバッグ</p>
 
 <p>Nexus7で[開発者向けオプション]-[USBデバッグ] をONにする。</p>
 
@@ -246,48 +284,54 @@
 </li>
 
 <li>
-<p>4-5.Nexus7で下記メッセージが出たので、&#8221;許可する&#8221;を選択する。</p>
+<p>5-5.Nexus7で下記メッセージが出たので、&#8221;許可する&#8221;を選択する。</p>
 
 <p>&#8220;このパソコンのRSAキーのフィンガープリント…&#8221;</p>
 </li>
 
 <li>
-<p>4-6.PC側で下記メッセージが出たので、&#8221;インストール&#8221;をクリック。</p>
+<p>5-6.PC側で下記メッセージが出たので、&#8221;インストール&#8221;をクリック。</p>
 
 <p><img src='/assets/posts/img/nexus7_projected_to_pc/3.jpg' alt='画像3' /></p>
 </li>
 
 <li>
-<p>4-6.Nexus7で下記メッセージが出たので、そのままOKを選択。</p>
+<p>5-6.Nexus7で下記メッセージが出たので、そのままOKを選択。</p>
 
 <p>&#8220;Googleが定期的にインストールされたアプリをチェックする&#8221;</p>
 </li>
 
 <li>
-<p>4-7.インストール完了</p>
+<p>5-7.インストール完了</p>
 
 <p>下記画面が表示されればインストールは完了。</p>
 
 <p><img src='/assets/posts/img/nexus7_projected_to_pc/4.jpg' alt='画像4' /></p>
+</li>
+</ul>
 
-<p>さらにPC側のデバイスにAndroid Phoneが追加されていればOK。</p>
+<h5 id='6android_screen_cast'>6.Android Screen Cast起動</h5>
+
+<ul>
+<li>
+<p>6-1.Android Phoneの認識</p>
+
+<p>PC側のデバイスにAndroid Phoneが追加されていればOK。</p>
 
 <pre><code>[スタート]-[コントロール パネル]-[デバイスマネージャ]-[Android Phone]</code></pre>
 </li>
 
 <li>
-<p>4-8.上記3-5のコマンドを再実行すると下記が表示される。</p>
+<p>6-2.上記3-5のコマンドを再実行すると下記が表示される。</p>
 
 <pre><code>* daemon not running. starting it now on port 5037 *
 * daemon started successfully *
 restarting in USB mode</code></pre>
 </li>
-</ul>
 
-<h5 id='5android_screen_cast'>5.Android Screen Cast起動</h5>
-
-<ul>
-<li>5-1. 上記3-2の操作を再実行し、Nexus7の画面がPC側に表示されれば成功。</li>
+<li>
+<p>6-3. 上記3-2の操作を再実行し、Nexus7の画面がPC側に表示されれば成功。</p>
+</li>
 </ul>
   <!--[if IE 6 ]>
     </div>

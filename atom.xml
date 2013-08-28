@@ -4,7 +4,7 @@
  <title>Text Blog</title>
  <link href="http://sankame.github.com/atom.xml" rel="self"/>
  <link href="http://sankame.github.com"/>
- <updated>2013-08-28T16:26:26+09:00</updated>
+ <updated>2013-08-28T23:49:34+09:00</updated>
  <id>http://sankame.github.com</id>
  <author>
    <name>sankame</name>
@@ -13,7 +13,7 @@
 
  
  <entry>
-   <title>Nexus7のスクリーンをプロジェクタに映したい</title>
+   <title>Nexus7のスクリーンをプロジェクタに映したい (Android Screen Cast)</title>
    <link href="http://sankame.github.com/Nexus7/2013/09/01/nexus7_projected_to_pc"/>
    <updated>2013-09-01T00:00:00+09:00</updated>
    <id>http://sankame.github.com/Nexus7/2013/09/01/nexus7_projected_to_pc</id>
@@ -103,39 +103,77 @@
 &amp;gt; adb usb
  error: device not found&lt;/code&gt;&lt;/pre&gt;
 &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h5 id='4usb'&gt;4.USBドライバ&lt;/h5&gt;
+
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;4-1.USBドライバ&lt;/p&gt;
+
+&lt;p&gt;上記3-5でエラーになったので、USBドライバをインストールする。&lt;/p&gt;
+&lt;/li&gt;
 
 &lt;li&gt;
-&lt;p&gt;3-6.USBドライバ&lt;/p&gt;
+&lt;p&gt;4-2.インストール&lt;/p&gt;
 
-&lt;p&gt;上記3-5でエラーになったので、下記ページの記載に従ってPCにPdaNetをダウンロード。&lt;/p&gt;
+&lt;p&gt;PC側で、上記1でダウンロードした&amp;#8221;SDK Manager.exe&amp;#8221;をダブルクリックして起動する。&lt;/p&gt;
+
+&lt;p&gt;&amp;#8220;Google USB Driver&amp;#8221;にチェックして、[Install 1 package&amp;#8230;]をクリック。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src='/assets/posts/img/nexus7_projected_to_pc/10.jpg' alt='画像10' /&gt;&lt;/p&gt;
+
+&lt;p&gt;※もし&amp;#8221;Failed to fetch URL&amp;#8221;というエラーが出た場合は、代替策として下記5を参照。&lt;/p&gt;
+
+&lt;p&gt;規約に同意したら[Install]をクリック。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src='/assets/posts/img/nexus7_projected_to_pc/11.jpg' alt='画像11' /&gt;&lt;/p&gt;
+&lt;/li&gt;
+
+&lt;li&gt;
+&lt;p&gt;4-3.USBドライバ更新&lt;/p&gt;
+
+&lt;p&gt;さらにPC側で、下記ノードを右クリックしてプロパティから[ドライバの更新]をクリック。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[スタート]-[コントロール パネル]-[デバイスマネージャ]-[Android Phone]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;下記パスを選択してドライバを指定する。(パスは読み替えて下さい)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;C:\soft\Android\adt-bundle-windows-x86-20130729\sdk\extras&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;インストールが完了したらPCを再起動。 →下記5を飛ばして6以降を参照。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h5 id='5pdanet'&gt;5.PdaNet&lt;/h5&gt;
 
 &lt;p&gt;&lt;a href='http://www.dominantwire.com/2012/11/how-to-solve-adb-device-not-found-error.html'&gt;参考ページ&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;a href='http://pdanet.co/'&gt;PdaNet&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
 
-&lt;h5 id='4pdanet'&gt;4.PdaNet&lt;/h5&gt;
+&lt;p&gt;&lt;code&gt;【注意】PdaNetがインストールするUSBドライバを利用します。&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;PdaNetはモバイル端末経由でPCをネット接続するソフトなので、モバイル端末のネット接続が従量課金の場合は、注意して下さい。&lt;/code&gt;&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;
-&lt;p&gt;4-1.上記3-6でダウンロードしたインストーラ(PdaNetA4126.exe)を起動。&lt;/p&gt;
+&lt;p&gt;5-1.上記3-6でダウンロードしたインストーラ(PdaNetA4126.exe)を起動。&lt;/p&gt;
 &lt;/li&gt;
 
 &lt;li&gt;
-&lt;p&gt;4-2.インストール途中で下記メッセージが出た。&lt;/p&gt;
+&lt;p&gt;5-2.インストール途中で下記メッセージが出た。&lt;/p&gt;
 
 &lt;p&gt;&lt;img src='/assets/posts/img/nexus7_projected_to_pc/1.jpg' alt='画像1' /&gt;&lt;/p&gt;
 &lt;/li&gt;
 
 &lt;li&gt;
-&lt;p&gt;4-3.Nexus7 開発者メニュー&lt;/p&gt;
+&lt;p&gt;5-3.Nexus7 開発者メニュー&lt;/p&gt;
 
 &lt;p&gt;Nexus7で[設定]-[タブレット情報]-[ビルド番号]を7回タップし、[設定]-[開発者向けオプション]を表示する。&lt;/p&gt;
 &lt;/li&gt;
 
 &lt;li&gt;
-&lt;p&gt;4-4.Nexus7 USBデバッグ&lt;/p&gt;
+&lt;p&gt;5-4.Nexus7 USBデバッグ&lt;/p&gt;
 
 &lt;p&gt;Nexus7で[開発者向けオプション]-[USBデバッグ] をONにする。&lt;/p&gt;
 
@@ -145,48 +183,54 @@
 &lt;/li&gt;
 
 &lt;li&gt;
-&lt;p&gt;4-5.Nexus7で下記メッセージが出たので、&amp;#8221;許可する&amp;#8221;を選択する。&lt;/p&gt;
+&lt;p&gt;5-5.Nexus7で下記メッセージが出たので、&amp;#8221;許可する&amp;#8221;を選択する。&lt;/p&gt;
 
 &lt;p&gt;&amp;#8220;このパソコンのRSAキーのフィンガープリント…&amp;#8221;&lt;/p&gt;
 &lt;/li&gt;
 
 &lt;li&gt;
-&lt;p&gt;4-6.PC側で下記メッセージが出たので、&amp;#8221;インストール&amp;#8221;をクリック。&lt;/p&gt;
+&lt;p&gt;5-6.PC側で下記メッセージが出たので、&amp;#8221;インストール&amp;#8221;をクリック。&lt;/p&gt;
 
 &lt;p&gt;&lt;img src='/assets/posts/img/nexus7_projected_to_pc/3.jpg' alt='画像3' /&gt;&lt;/p&gt;
 &lt;/li&gt;
 
 &lt;li&gt;
-&lt;p&gt;4-6.Nexus7で下記メッセージが出たので、そのままOKを選択。&lt;/p&gt;
+&lt;p&gt;5-6.Nexus7で下記メッセージが出たので、そのままOKを選択。&lt;/p&gt;
 
 &lt;p&gt;&amp;#8220;Googleが定期的にインストールされたアプリをチェックする&amp;#8221;&lt;/p&gt;
 &lt;/li&gt;
 
 &lt;li&gt;
-&lt;p&gt;4-7.インストール完了&lt;/p&gt;
+&lt;p&gt;5-7.インストール完了&lt;/p&gt;
 
 &lt;p&gt;下記画面が表示されればインストールは完了。&lt;/p&gt;
 
 &lt;p&gt;&lt;img src='/assets/posts/img/nexus7_projected_to_pc/4.jpg' alt='画像4' /&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;p&gt;さらにPC側のデバイスにAndroid Phoneが追加されていればOK。&lt;/p&gt;
+&lt;h5 id='6android_screen_cast'&gt;6.Android Screen Cast起動&lt;/h5&gt;
+
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;6-1.Android Phoneの認識&lt;/p&gt;
+
+&lt;p&gt;PC側のデバイスにAndroid Phoneが追加されていればOK。&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;[スタート]-[コントロール パネル]-[デバイスマネージャ]-[Android Phone]&lt;/code&gt;&lt;/pre&gt;
 &lt;/li&gt;
 
 &lt;li&gt;
-&lt;p&gt;4-8.上記3-5のコマンドを再実行すると下記が表示される。&lt;/p&gt;
+&lt;p&gt;6-2.上記3-5のコマンドを再実行すると下記が表示される。&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;* daemon not running. starting it now on port 5037 *
 * daemon started successfully *
 restarting in USB mode&lt;/code&gt;&lt;/pre&gt;
 &lt;/li&gt;
-&lt;/ul&gt;
 
-&lt;h5 id='5android_screen_cast'&gt;5.Android Screen Cast起動&lt;/h5&gt;
-
-&lt;ul&gt;
-&lt;li&gt;5-1. 上記3-2の操作を再実行し、Nexus7の画面がPC側に表示されれば成功。&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;6-3. 上記3-2の操作を再実行し、Nexus7の画面がPC側に表示されれば成功。&lt;/p&gt;
+&lt;/li&gt;
 &lt;/ul&gt;</content>
  </entry>
  
@@ -329,7 +373,7 @@ $ git push origin master
 $
 $ これでGitHubにnew.txtがアップロードできたはず。&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h5 id='id3802'&gt;参考ページ&lt;/h5&gt;
+&lt;h5 id='id574'&gt;参考ページ&lt;/h5&gt;
 
 &lt;p&gt;&lt;a href='https://play.google.com/store/apps/details?id=com.andi.serverweb'&gt;Terminal IDEの設定&lt;/a&gt;&lt;/p&gt;
 
@@ -345,11 +389,11 @@ $ これでGitHubにnew.txtがアップロードできたはず。&lt;/code&gt;&
    <id>http://sankame.github.com/DELL/2013/07/10/redis_install</id>
    <content type="html">&lt;p&gt;投稿日：&lt;span&gt;2013年07月10日&lt;/span&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;h5 id='id3800'&gt;環境&lt;/h5&gt;
+&lt;h5 id='id572'&gt;環境&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt;[CentOS] 5.6 (32bit版カーネル)&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h5 id='id3801'&gt;インストール&lt;/h5&gt;
+&lt;h5 id='id573'&gt;インストール&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt;# ソース取得。
 # wget http://redis.googlecode.com/files/redis-2.6.7.tar.gz
@@ -421,7 +465,7 @@ PONG
    <id>http://sankame.github.com/DELL/2013/07/05/dell_e5520_touchpad</id>
    <content type="html">&lt;p&gt;投稿日：&lt;span&gt;2013年07月05日&lt;/span&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;h5 id='id3799'&gt;環境&lt;/h5&gt;
+&lt;h5 id='id571'&gt;環境&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt;[PC] DELL E5520
 [OS] Windows 7 Professional (SP1)&lt;/code&gt;&lt;/pre&gt;
@@ -483,7 +527,7 @@ Dell Touchpad が増えているのでダブルクリック。&lt;/code&gt;&lt;/
 {/if}
 &amp;lt;a class=&amp;quot;keyword-link&amp;quot; href=&amp;quot;#&amp;quot; title=&amp;quot;{$keyword}&amp;quot;&amp;gt;{$cutKeyword}&amp;lt;/a&amp;gt;&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h5 id='id3798'&gt;上記コードで各文字列を変換した場合。&lt;/h5&gt;
+&lt;h5 id='id570'&gt;上記コードで各文字列を変換した場合。&lt;/h5&gt;
 
 &lt;h5 id='_'&gt;(&amp;#8220;→&amp;#8221; は変換前後を表す)&lt;/h5&gt;
 
@@ -503,7 +547,7 @@ Dell Touchpad が増えているのでダブルクリック。&lt;/code&gt;&lt;/
 
 &lt;h4 id='phpmecab'&gt;PHPからMeCabを使ってみる。&lt;/h4&gt;
 
-&lt;h5 id='id3797'&gt;環境&lt;/h5&gt;
+&lt;h5 id='id569'&gt;環境&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt;[CentOS] 5.6 (32bit版カーネル)
 [PHP]    5.3.3&lt;/code&gt;&lt;/pre&gt;
@@ -581,7 +625,7 @@ EOS
 
 &lt;h4 id='mecab'&gt;形態素解析エンジンMeCabをインストールしてみる。&lt;/h4&gt;
 
-&lt;h5 id='id3796'&gt;環境&lt;/h5&gt;
+&lt;h5 id='id568'&gt;環境&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt;[CentOS] 5.6 (32bit版カーネル)&lt;/code&gt;&lt;/pre&gt;
 
@@ -847,7 +891,7 @@ Banner display : (Google AdSenseの広告ユニットコードと同じサイズ
 
 &lt;h4 id='centos_'&gt;CentOSコマンド メモ&lt;/h4&gt;
 
-&lt;h5 id='id3795'&gt;・ファイル検索&lt;/h5&gt;
+&lt;h5 id='id567'&gt;・ファイル検索&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt; find / -name filename&lt;/code&gt;&lt;/pre&gt;
 
@@ -916,7 +960,7 @@ Banner display : (Google AdSenseの広告ユニットコードと同じサイズ
 
 &lt;h4 id='githubpagesindexhtml'&gt;GitHubPagesでブログを公開しようと、下記ページに従って作業したがindex.htmlすら表示されない…&lt;/h4&gt;
 
-&lt;h4 id='id3794'&gt;&lt;a href='http://tokkono.cute.coocan.jp/blog/slow/index.php/programming/github-pages-almost-perfect-guide/'&gt;参考ページ&lt;/a&gt;&lt;/h4&gt;
+&lt;h4 id='id566'&gt;&lt;a href='http://tokkono.cute.coocan.jp/blog/slow/index.php/programming/github-pages-almost-perfect-guide/'&gt;参考ページ&lt;/a&gt;&lt;/h4&gt;
 
 &lt;h4 id='1github'&gt;1.GitHubに登録したメールアドレスの受信箱をチェック&lt;/h4&gt;
 
@@ -947,7 +991,7 @@ https://github.com/settings/emails&lt;/code&gt;&lt;/pre&gt;
 
 &lt;h4 id='pcvmwareplayeropenx'&gt;ローカルPCのVmwarePlayerにOpenXをインストール。&lt;/h4&gt;
 
-&lt;h4 id='id3793'&gt;&lt;a href='http://www.openx.com/docs/qsg-install'&gt;マニュアル&lt;/a&gt;に従ってインストールした。&lt;/h4&gt;
+&lt;h4 id='id565'&gt;&lt;a href='http://www.openx.com/docs/qsg-install'&gt;マニュアル&lt;/a&gt;に従ってインストールした。&lt;/h4&gt;
 
 &lt;h4 id='1'&gt;1.ソース取得&lt;/h4&gt;
 
@@ -1148,7 +1192,7 @@ Auto-regenerating enabled: /var/www/html/jekyll/JEKYLL_HOME -&amp;gt; /var/www/h
 
 &lt;h5 id='githtmlgithubpush'&gt;任意のディレクトリをGitの作業ツリーにして、そこからHTMLをGitHubへPushする。&lt;/h5&gt;
 
-&lt;h5 id='id3792'&gt;&lt;code&gt;【注意】/var/www/html/jekyll/JEKYLL_HOME/_site/ を作業ツリーにするとJekyllを起動する度に.gitが削除されるので適さない。&lt;/code&gt;&lt;/h5&gt;
+&lt;h5 id='id564'&gt;&lt;code&gt;【注意】/var/www/html/jekyll/JEKYLL_HOME/_site/ を作業ツリーにするとJekyllを起動する度に.gitが削除されるので適さない。&lt;/code&gt;&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt;# Jekyllが生成したHTMLをGit作業ツリー(任意のディレクトリ)へコピーする。
 # cp -pr /var/www/html/jekyll/JEKYLL_HOME/_site/* /var/www/html/sankame.github.com/
@@ -1175,14 +1219,14 @@ Auto-regenerating enabled: /var/www/html/jekyll/JEKYLL_HOME -&amp;gt; /var/www/h
 
 &lt;h5 id='varwwwhtmljekylljekyll_home'&gt;/var/www/html/jekyll/JEKYLL_HOME/&lt;/h5&gt;
 
-&lt;h6 id='id3787'&gt;・画面ヘッダ部分のナビゲーションを変更したい。&lt;/h6&gt;
+&lt;h6 id='id559'&gt;・画面ヘッダ部分のナビゲーションを変更したい。&lt;/h6&gt;
 
 &lt;pre&gt;&lt;code&gt;(例)
 画面ヘッダ部分にArchiveを表示したくない場合
 下記ファイルのヘッダ部分の&amp;quot;group: navigation&amp;quot;を#でコメントアウトする。
 /var/www/html/jekyll/JEKYLL_HOME/archive.html&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h6 id='id3788'&gt;・記事タイトルに日本語を使いたい。&lt;/h6&gt;
+&lt;h6 id='id560'&gt;・記事タイトルに日本語を使いたい。&lt;/h6&gt;
 
 &lt;pre&gt;&lt;code&gt;記事のファイル名に日本語は使えないので、YAMLのFront Matterでtitleを指定する。
 (例)
@@ -1194,7 +1238,7 @@ date: 2012-12-23 00:00:00
 title: Jekyllとgithubでブログ作成
 ---&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h6 id='id3789'&gt;・ループ回数を制限したい。&lt;/h6&gt;
+&lt;h6 id='id561'&gt;・ループ回数を制限したい。&lt;/h6&gt;
 
 &lt;pre&gt;&lt;code&gt;limitを使う。
 
@@ -1214,7 +1258,7 @@ title: Jekyllとgithubでブログ作成
 エスケープしたい表現
 {% endraw %}&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h6 id='id3790'&gt;・日付のフォーマット(書式)を変更したい。&lt;a href='http://stackoverflow.com/questions/7395520/jekyll-date-format'&gt;参考ページ&lt;/a&gt;&lt;/h6&gt;
+&lt;h6 id='id562'&gt;・日付のフォーマット(書式)を変更したい。&lt;a href='http://stackoverflow.com/questions/7395520/jekyll-date-format'&gt;参考ページ&lt;/a&gt;&lt;/h6&gt;
 
 &lt;pre&gt;&lt;code&gt;日本語を使う場合、ファイルをUTF8で保存する。
 
@@ -1222,7 +1266,7 @@ title: Jekyllとgithubでブログ作成
 
 { post.date | date: &amp;quot;%Y年%m月%d日&amp;quot; }&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h6 id='id3791'&gt;・文法に関する参考ページ&lt;/h6&gt;
+&lt;h6 id='id563'&gt;・文法に関する参考ページ&lt;/h6&gt;
 
 &lt;p&gt;・&lt;a href='https://github.com/mojombo/jekyll/wiki/template-data'&gt;Jekyll変数&lt;/a&gt;&lt;/p&gt;
 
