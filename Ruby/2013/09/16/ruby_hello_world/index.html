@@ -4,7 +4,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Smartyで3点リーダー(省略)表現</title>
+    <title>Rubyを始める</title>
     
     <meta name="author" content="sankame">
 
@@ -110,7 +110,7 @@
         
 
 <div class="page-header">
-  <h1>Smartyで3点リーダー(省略)表現 </h1>
+  <h1>Rubyを始める </h1>
 </div>
 
 <div class="row">
@@ -118,28 +118,96 @@
   <!--[if IE 6 ]>
     <div class="span12-for-ie6">
   <![endif]-->
-    <p>投稿日：<span>2013年05月12日</span><br /></p>
+    <p>投稿日：<span>2013年09月16日</span><br /></p>
 
-<h5 id='109'>10文字以上の場合、9文字目を…にして残りを切り捨てる。</h5>
+<h3 id='ruby'>Rubyを始める</h3>
 
-<h5 id='1'>(半角、全角ともに1文字として扱う)</h5>
+<h4 id='1ruby'>1.Rubyインストール</h4>
 
-<pre><code>{if mb_strlen($keyword) &gt; 9}
-	{assign var=cutKeyword value=$keyword|mb_substr:0:8|cat:&#39;…&#39;}
-{else}
-	{assign var=cutKeyword value=$keyword}
-{/if}
-&lt;a class=&quot;keyword-link&quot; href=&quot;#&quot; title=&quot;{$keyword}&quot;&gt;{$cutKeyword}&lt;/a&gt;</code></pre>
+<ul>
+<li>
+<p>1-1.Rubyがすでにインストールされているか調べる。</p>
 
-<h5 id='id12'>上記コードで各文字列を変換した場合。</h5>
+<p>(インストールされている場合は下記のように表示される)</p>
 
-<h5 id='_'>(&#8220;→&#8221; は変換前後を表す)</h5>
+<pre><code># rpm -q ruby
+ruby-1.8.6.111-1</code></pre>
+</li>
 
-<pre><code>１２３４５６７８　　　→　１２３４５６７８
-１２３４５６７８９　　→　１２３４５６７８９
-１２３４５６７８９Ａ　→　１２３４５６７８…
-123456789          →　123456789
-123456789A         →　12345678…</code></pre>
+<li>
+<p>1-2.インストールされていない場合、下記コマンドでインストール。</p>
+
+<pre><code># yum install ruby ruby-devel rdoc irb</code></pre>
+</li>
+</ul>
+
+<h4 id='2apache'>2.Apache設定</h4>
+
+<ul>
+<li>
+<p>2-1.mod_cgiがロードされていることを確認。</p>
+
+<pre><code># cat /etc/httpd/conf/httpd.conf|grep mod_cgi
+LoadModule cgi_module modules/mod_cgi.so</code></pre>
+</li>
+</ul>
+
+<h4 id='3htacess'>3.htacess設定</h4>
+
+<ul>
+<li>
+<p>3-1.Apacheドキュメントルートの.htaccessに下記を追記。</p>
+
+<p>(ドキュメントルートのパスは読み替えて下さい)</p>
+
+<pre><code># cat /var/www/html/.htaccess 
+AddHandler cgi-script .cgi .rb
+Options +ExecCGI</code></pre>
+</li>
+</ul>
+
+<h4 id='4'>4.動作確認</h4>
+
+<ul>
+<li>
+<p>4-1.ファイル作成</p>
+
+<pre><code># touch /var/www/html/hello.rb</code></pre>
+</li>
+
+<li>
+<p>4-2.テストコード記述</p>
+
+<p>作成したファイルに下記コードを記述。</p>
+
+<p>(1行目のパスは、which ruby で調べて下さい)</p>
+
+<pre><code>#!/usr/bin/ruby
+print &quot;Content-type:text/html\n\n&quot;
+
+print &lt;&lt;EOS
+&lt;HTML&gt;
+&lt;HEAD&gt;
+&lt;/HEAD&gt;
+&lt;BODY&gt;
+Hello World!
+&lt;/BODY&gt;
+&lt;/HTML&gt;
+EOS</code></pre>
+</li>
+</ul>
+
+<h4 id='5'>5.参考にしたページ</h4>
+
+<ul>
+<li>
+<p><a href='http://blog.layer8.sh/ja/2011/12/21/yum%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%A6ruby%E3%82%92%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%99%E3%82%8B%E3%81%A8%E3%81%8D%E3%81%AE%E3%83%A1/'>インストール方法</a></p>
+</li>
+
+<li>
+<p><a href='http://w.livedoor.jp/notepad/d/Ruby%A4%F2apache%A4%C7%C6%B0%A4%AB%A4%B9'>Ruby動作確認</a></p>
+</li>
+</ul>
   <!--[if IE 6 ]>
     </div>
   <![endif]-->

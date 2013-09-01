@@ -150,6 +150,8 @@ Here's a sample "posts list".
 
 <ul class="posts">
   
+    <li><span>16 Sep 2013</span> &raquo; <a href="/Ruby/2013/09/16/ruby_hello_world">Rubyを始める</a></li>
+  
     <li><span>09 Sep 2013</span> &raquo; <a href="/Git/2013/09/09/git_command">Gitコマンド メモ</a></li>
   
     <li><span>01 Sep 2013</span> &raquo; <a href="/Nexus7/2013/09/01/nexus7_projected_to_pc">Nexus7のスクリーンをプロジェクタに映したい (Android Screen Cast)</a></li>
