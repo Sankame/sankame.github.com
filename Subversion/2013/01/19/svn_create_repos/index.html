@@ -4,7 +4,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Subversionリポジトリ作成</title>
+    <title>かんたんSubversionリポジトリ作成</title>
     
     <meta name="author" content="sankame">
 
@@ -110,7 +110,7 @@
         
 
 <div class="page-header">
-  <h1>Subversionリポジトリ作成 </h1>
+  <h1>かんたんSubversionリポジトリ作成 </h1>
 </div>
 
 <div class="row">
@@ -120,47 +120,79 @@
   <![endif]-->
     <p>投稿日：<span>2013年01月19日</span><br /></p>
 
-<h4 id='svnsubversion'>SVN(Subversion)でのリポジトリ作成メモ</h4>
+<h4 id='svnsubversion'>SVN(Subversion)でリポジトリ作成する際の最低限の手順をまとめました。</h4>
 
-<h4 id='_svn'>手順 (SVNはインストール済みとする)</h4>
+<h4 id='svn'>※SVNはインストール済みとします。</h4>
 
-<pre><code># ※最初だけ下記モジュールをインストール。
-# ブラウザ経由でリポジトリ見るため、予めmod_dav_svnをインストール。
-# yum install mod_dav_svn
+<h5 id='0'>0.環境</h5>
 
-# データが壊れにくいfsfsを指定し、リポジトリ作成。
-# svnadmin create /var/svn/repos/test --fs-type fsfs
+<pre><code>[CentOS]     5.6 (32bit版カーネル)
+[Apache]     2.2.3
+[Subversion] 1.6.11</code></pre>
 
-# SVNの作法通り、下記3つを用意。
-svn mkdir file:///var/svn/repos/test/trunk -m &quot;create&quot;
+<h5 id='1'>1.作成手順</h5>
+
+<ul>
+<li>
+<p>1-1.リポジトリ作成</p>
+
+<p>※最初だけ下記モジュールをインストール。</p>
+
+<p>ブラウザ経由でリポジトリを見るため、予めmod_dav_svnをインストール。</p>
+
+<pre><code># yum install mod_dav_svn</code></pre>
+
+<p>データが壊れにくいfsfsを指定し、リポジトリ作成。</p>
+
+<pre><code># svnadmin create /var/svn/repos/test --fs-type fsfs</code></pre>
+
+<p>SVNの作法通り、下記3つを用意。</p>
+
+<pre><code>svn mkdir file:///var/svn/repos/test/trunk -m &quot;create&quot;
 svn mkdir file:///var/svn/repos/test/tags -m &quot;create&quot;
-svn mkdir file:///var/svn/repos/test/branches -m &quot;create&quot;
+svn mkdir file:///var/svn/repos/test/branches -m &quot;create&quot;</code></pre>
+</li>
 
-# 他のリポジトリのソースを引き継ぐ場合。
-# (例)test_orgリポジトリを出力。
-# svn export file:///var/svn/repos/test_org/ /tmp/test_org
+<li>
+<p>1-2.既存リポジトリのソースを引き継ぐ場合</p>
 
-# 上記で出力ソースを取りこむ。
-# svn import /tmp/test_org/trunk file:///var/svn/repos/test/trunk -m &quot;first import&quot;
+<p>(例)test_orgリポジトリを出力。</p>
 
-# ブラウザからアクセスするため、設定ファイルを変更。
-# vim /etc/httpd/conf.d/subversion.conf
+<pre><code># svn export file:///var/svn/repos/test_org/ /tmp/test_org</code></pre>
 
-# 下記を追記。
-&lt;Location /svn/test&gt;
+<p>上記で出力したソースを取り込む。</p>
+
+<pre><code># svn import /tmp/test_org/trunk file:///var/svn/repos/test/trunk -m &quot;first import&quot;</code></pre>
+</li>
+
+<li>
+<p>1-3.アクセス設定</p>
+
+<p>ブラウザからアクセスするため、設定ファイルを変更。</p>
+
+<pre><code># vim /etc/httpd/conf.d/subversion.conf</code></pre>
+
+<p>下記を追記。</p>
+
+<pre><code>&lt;Location /svn/test&gt;
     DAV svn
     SVNPath /var/svn/repos/test
-&lt;/Location&gt;
+&lt;/Location&gt;</code></pre>
 
-# apache再起動
-# /etc/init.d/httpd restart
+<p>apache再起動</p>
 
-# 下記URLでブラウザからリポジトリにアクセス。(localhostは環境に応じて読み替え)
-# http://localhost/svn/test/
+<pre><code># /etc/init.d/httpd restart</code></pre>
 
-# コミットしたらエラーが出たので、作成したリポジトリのパーミッションをゆるめに変更。
-# cd /var/svn/repos
+<p>下記URLでブラウザからリポジトリにアクセス。(localhostは環境に応じて読み替え)</p>
+
+<pre><code># http://localhost/svn/test/</code></pre>
+
+<p>コミットしたらエラーが出たので、作成したリポジトリのパーミッションをゆるめに変更。</p>
+
+<pre><code># cd /var/svn/repos
 # chmod -R 777 test</code></pre>
+</li>
+</ul>
   <!--[if IE 6 ]>
     </div>
   <![endif]-->

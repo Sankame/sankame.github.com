@@ -4,7 +4,7 @@
  <title>Text Blog</title>
  <link href="http://sankame.github.com/atom.xml" rel="self"/>
  <link href="http://sankame.github.com"/>
- <updated>2013-09-04T07:05:50+09:00</updated>
+ <updated>2013-09-04T10:08:12+09:00</updated>
  <id>http://sankame.github.com</id>
  <author>
    <name>sankame</name>
@@ -630,7 +630,7 @@ $ git push origin master
 $
 $ これでGitHubにnew.txtがアップロードできたはず。&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h5 id='id769'&gt;参考ページ&lt;/h5&gt;
+&lt;h5 id='id433'&gt;参考ページ&lt;/h5&gt;
 
 &lt;p&gt;&lt;a href='https://play.google.com/store/apps/details?id=com.andi.serverweb'&gt;Terminal IDEの設定&lt;/a&gt;&lt;/p&gt;
 
@@ -646,11 +646,11 @@ $ これでGitHubにnew.txtがアップロードできたはず。&lt;/code&gt;&
    <id>http://sankame.github.com/DELL/2013/07/10/redis_install</id>
    <content type="html">&lt;p&gt;投稿日：&lt;span&gt;2013年07月10日&lt;/span&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;h5 id='id767'&gt;環境&lt;/h5&gt;
+&lt;h5 id='id431'&gt;環境&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt;[CentOS] 5.6 (32bit版カーネル)&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h5 id='id768'&gt;インストール&lt;/h5&gt;
+&lt;h5 id='id432'&gt;インストール&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt;# ソース取得。
 # wget http://redis.googlecode.com/files/redis-2.6.7.tar.gz
@@ -722,7 +722,7 @@ PONG
    <id>http://sankame.github.com/DELL/2013/07/05/dell_e5520_touchpad</id>
    <content type="html">&lt;p&gt;投稿日：&lt;span&gt;2013年07月05日&lt;/span&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;h5 id='id766'&gt;環境&lt;/h5&gt;
+&lt;h5 id='id430'&gt;環境&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt;[PC] DELL E5520
 [OS] Windows 7 Professional (SP1)&lt;/code&gt;&lt;/pre&gt;
@@ -784,7 +784,7 @@ Dell Touchpad が増えているのでダブルクリック。&lt;/code&gt;&lt;/
 {/if}
 &amp;lt;a class=&amp;quot;keyword-link&amp;quot; href=&amp;quot;#&amp;quot; title=&amp;quot;{$keyword}&amp;quot;&amp;gt;{$cutKeyword}&amp;lt;/a&amp;gt;&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h5 id='id765'&gt;上記コードで各文字列を変換した場合。&lt;/h5&gt;
+&lt;h5 id='id429'&gt;上記コードで各文字列を変換した場合。&lt;/h5&gt;
 
 &lt;h5 id='_'&gt;(&amp;#8220;→&amp;#8221; は変換前後を表す)&lt;/h5&gt;
 
@@ -804,7 +804,7 @@ Dell Touchpad が増えているのでダブルクリック。&lt;/code&gt;&lt;/
 
 &lt;h4 id='phpmecab'&gt;PHPからMeCabを使ってみる。&lt;/h4&gt;
 
-&lt;h5 id='id764'&gt;環境&lt;/h5&gt;
+&lt;h5 id='id428'&gt;環境&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt;[CentOS] 5.6 (32bit版カーネル)
 [PHP]    5.3.3&lt;/code&gt;&lt;/pre&gt;
@@ -882,7 +882,7 @@ EOS
 
 &lt;h4 id='mecab'&gt;形態素解析エンジンMeCabをインストールしてみる。&lt;/h4&gt;
 
-&lt;h5 id='id763'&gt;環境&lt;/h5&gt;
+&lt;h5 id='id427'&gt;環境&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt;[CentOS] 5.6 (32bit版カーネル)&lt;/code&gt;&lt;/pre&gt;
 
@@ -989,53 +989,85 @@ DB	: ox_data_bkt_m
  </entry>
  
  <entry>
-   <title>Subversionリポジトリ作成</title>
+   <title>かんたんSubversionリポジトリ作成</title>
    <link href="http://sankame.github.com/Subversion/2013/01/19/svn_create_repos"/>
    <updated>2013-01-19T00:00:00+09:00</updated>
    <id>http://sankame.github.com/Subversion/2013/01/19/svn_create_repos</id>
    <content type="html">&lt;p&gt;投稿日：&lt;span&gt;2013年01月19日&lt;/span&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;h4 id='svnsubversion'&gt;SVN(Subversion)でのリポジトリ作成メモ&lt;/h4&gt;
+&lt;h4 id='svnsubversion'&gt;SVN(Subversion)でリポジトリ作成する際の最低限の手順をまとめました。&lt;/h4&gt;
 
-&lt;h4 id='_svn'&gt;手順 (SVNはインストール済みとする)&lt;/h4&gt;
+&lt;h4 id='svn'&gt;※SVNはインストール済みとします。&lt;/h4&gt;
 
-&lt;pre&gt;&lt;code&gt;# ※最初だけ下記モジュールをインストール。
-# ブラウザ経由でリポジトリ見るため、予めmod_dav_svnをインストール。
-# yum install mod_dav_svn
+&lt;h5 id='0'&gt;0.環境&lt;/h5&gt;
 
-# データが壊れにくいfsfsを指定し、リポジトリ作成。
-# svnadmin create /var/svn/repos/test --fs-type fsfs
+&lt;pre&gt;&lt;code&gt;[CentOS]     5.6 (32bit版カーネル)
+[Apache]     2.2.3
+[Subversion] 1.6.11&lt;/code&gt;&lt;/pre&gt;
 
-# SVNの作法通り、下記3つを用意。
-svn mkdir file:///var/svn/repos/test/trunk -m &amp;quot;create&amp;quot;
+&lt;h5 id='1'&gt;1.作成手順&lt;/h5&gt;
+
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;1-1.リポジトリ作成&lt;/p&gt;
+
+&lt;p&gt;※最初だけ下記モジュールをインストール。&lt;/p&gt;
+
+&lt;p&gt;ブラウザ経由でリポジトリを見るため、予めmod_dav_svnをインストール。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# yum install mod_dav_svn&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;データが壊れにくいfsfsを指定し、リポジトリ作成。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# svnadmin create /var/svn/repos/test --fs-type fsfs&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;SVNの作法通り、下記3つを用意。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;svn mkdir file:///var/svn/repos/test/trunk -m &amp;quot;create&amp;quot;
 svn mkdir file:///var/svn/repos/test/tags -m &amp;quot;create&amp;quot;
-svn mkdir file:///var/svn/repos/test/branches -m &amp;quot;create&amp;quot;
+svn mkdir file:///var/svn/repos/test/branches -m &amp;quot;create&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
 
-# 他のリポジトリのソースを引き継ぐ場合。
-# (例)test_orgリポジトリを出力。
-# svn export file:///var/svn/repos/test_org/ /tmp/test_org
+&lt;li&gt;
+&lt;p&gt;1-2.既存リポジトリのソースを引き継ぐ場合&lt;/p&gt;
 
-# 上記で出力ソースを取りこむ。
-# svn import /tmp/test_org/trunk file:///var/svn/repos/test/trunk -m &amp;quot;first import&amp;quot;
+&lt;p&gt;(例)test_orgリポジトリを出力。&lt;/p&gt;
 
-# ブラウザからアクセスするため、設定ファイルを変更。
-# vim /etc/httpd/conf.d/subversion.conf
+&lt;pre&gt;&lt;code&gt;# svn export file:///var/svn/repos/test_org/ /tmp/test_org&lt;/code&gt;&lt;/pre&gt;
 
-# 下記を追記。
-&amp;lt;Location /svn/test&amp;gt;
+&lt;p&gt;上記で出力したソースを取り込む。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# svn import /tmp/test_org/trunk file:///var/svn/repos/test/trunk -m &amp;quot;first import&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+
+&lt;li&gt;
+&lt;p&gt;1-3.アクセス設定&lt;/p&gt;
+
+&lt;p&gt;ブラウザからアクセスするため、設定ファイルを変更。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# vim /etc/httpd/conf.d/subversion.conf&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;下記を追記。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;Location /svn/test&amp;gt;
     DAV svn
     SVNPath /var/svn/repos/test
-&amp;lt;/Location&amp;gt;
+&amp;lt;/Location&amp;gt;&lt;/code&gt;&lt;/pre&gt;
 
-# apache再起動
-# /etc/init.d/httpd restart
+&lt;p&gt;apache再起動&lt;/p&gt;
 
-# 下記URLでブラウザからリポジトリにアクセス。(localhostは環境に応じて読み替え)
-# http://localhost/svn/test/
+&lt;pre&gt;&lt;code&gt;# /etc/init.d/httpd restart&lt;/code&gt;&lt;/pre&gt;
 
-# コミットしたらエラーが出たので、作成したリポジトリのパーミッションをゆるめに変更。
-# cd /var/svn/repos
-# chmod -R 777 test&lt;/code&gt;&lt;/pre&gt;</content>
+&lt;p&gt;下記URLでブラウザからリポジトリにアクセス。(localhostは環境に応じて読み替え)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# http://localhost/svn/test/&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;コミットしたらエラーが出たので、作成したリポジトリのパーミッションをゆるめに変更。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# cd /var/svn/repos
+# chmod -R 777 test&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</content>
  </entry>
  
  <entry>
@@ -1148,7 +1180,7 @@ Banner display : (Google AdSenseの広告ユニットコードと同じサイズ
 
 &lt;h4 id='centos_'&gt;CentOSコマンド メモ&lt;/h4&gt;
 
-&lt;h5 id='id762'&gt;・ファイル検索&lt;/h5&gt;
+&lt;h5 id='id426'&gt;・ファイル検索&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt; find / -name filename&lt;/code&gt;&lt;/pre&gt;
 
@@ -1200,6 +1232,10 @@ Banner display : (Google AdSenseの広告ユニットコードと同じサイズ
 
 &lt;pre&gt;&lt;code&gt;# httpd -v&lt;/code&gt;&lt;/pre&gt;
 
+&lt;h5 id='svn_20130926'&gt;・SVNバージョン (更新日：2013/09/26)&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code&gt;# svn --version --quiet&lt;/code&gt;&lt;/pre&gt;
+
 &lt;h5 id='history_20130924'&gt;・historyコマンドに日時(タイムスタンプ)追加 (更新日：2013/09/24)&lt;/h5&gt;
 
 &lt;ul&gt;
@@ -1247,7 +1283,7 @@ Banner display : (Google AdSenseの広告ユニットコードと同じサイズ
 
 &lt;h4 id='githubpagesindexhtml'&gt;GitHubPagesでブログを公開しようと、下記ページに従って作業したがindex.htmlすら表示されない…&lt;/h4&gt;
 
-&lt;h4 id='id761'&gt;&lt;a href='http://tokkono.cute.coocan.jp/blog/slow/index.php/programming/github-pages-almost-perfect-guide/'&gt;参考ページ&lt;/a&gt;&lt;/h4&gt;
+&lt;h4 id='id425'&gt;&lt;a href='http://tokkono.cute.coocan.jp/blog/slow/index.php/programming/github-pages-almost-perfect-guide/'&gt;参考ページ&lt;/a&gt;&lt;/h4&gt;
 
 &lt;h4 id='1github'&gt;1.GitHubに登録したメールアドレスの受信箱をチェック&lt;/h4&gt;
 
@@ -1278,7 +1314,7 @@ https://github.com/settings/emails&lt;/code&gt;&lt;/pre&gt;
 
 &lt;h4 id='pcvmwareplayeropenx'&gt;ローカルPCのVmwarePlayerにOpenXをインストール。&lt;/h4&gt;
 
-&lt;h4 id='id760'&gt;&lt;a href='http://www.openx.com/docs/qsg-install'&gt;マニュアル&lt;/a&gt;に従ってインストールした。&lt;/h4&gt;
+&lt;h4 id='id424'&gt;&lt;a href='http://www.openx.com/docs/qsg-install'&gt;マニュアル&lt;/a&gt;に従ってインストールした。&lt;/h4&gt;
 
 &lt;h4 id='1'&gt;1.ソース取得&lt;/h4&gt;
 
@@ -1479,7 +1515,7 @@ Auto-regenerating enabled: /var/www/html/jekyll/JEKYLL_HOME -&amp;gt; /var/www/h
 
 &lt;h5 id='githtmlgithubpush'&gt;任意のディレクトリをGitの作業ツリーにして、そこからHTMLをGitHubへPushする。&lt;/h5&gt;
 
-&lt;h5 id='id759'&gt;&lt;code&gt;【注意】/var/www/html/jekyll/JEKYLL_HOME/_site/ を作業ツリーにするとJekyllを起動する度に.gitが削除されるので適さない。&lt;/code&gt;&lt;/h5&gt;
+&lt;h5 id='id423'&gt;&lt;code&gt;【注意】/var/www/html/jekyll/JEKYLL_HOME/_site/ を作業ツリーにするとJekyllを起動する度に.gitが削除されるので適さない。&lt;/code&gt;&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt;# Jekyllが生成したHTMLをGit作業ツリー(任意のディレクトリ)へコピーする。
 # cp -pr /var/www/html/jekyll/JEKYLL_HOME/_site/* /var/www/html/sankame.github.com/
@@ -1506,14 +1542,14 @@ Auto-regenerating enabled: /var/www/html/jekyll/JEKYLL_HOME -&amp;gt; /var/www/h
 
 &lt;h5 id='varwwwhtmljekylljekyll_home'&gt;/var/www/html/jekyll/JEKYLL_HOME/&lt;/h5&gt;
 
-&lt;h6 id='id754'&gt;・画面ヘッダ部分のナビゲーションを変更したい。&lt;/h6&gt;
+&lt;h6 id='id418'&gt;・画面ヘッダ部分のナビゲーションを変更したい。&lt;/h6&gt;
 
 &lt;pre&gt;&lt;code&gt;(例)
 画面ヘッダ部分にArchiveを表示したくない場合
 下記ファイルのヘッダ部分の&amp;quot;group: navigation&amp;quot;を#でコメントアウトする。
 /var/www/html/jekyll/JEKYLL_HOME/archive.html&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h6 id='id755'&gt;・記事タイトルに日本語を使いたい。&lt;/h6&gt;
+&lt;h6 id='id419'&gt;・記事タイトルに日本語を使いたい。&lt;/h6&gt;
 
 &lt;pre&gt;&lt;code&gt;記事のファイル名に日本語は使えないので、YAMLのFront Matterでtitleを指定する。
 (例)
@@ -1525,7 +1561,7 @@ date: 2012-12-23 00:00:00
 title: Jekyllとgithubでブログ作成
 ---&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h6 id='id756'&gt;・ループ回数を制限したい。&lt;/h6&gt;
+&lt;h6 id='id420'&gt;・ループ回数を制限したい。&lt;/h6&gt;
 
 &lt;pre&gt;&lt;code&gt;limitを使う。
 
@@ -1545,7 +1581,7 @@ title: Jekyllとgithubでブログ作成
 エスケープしたい表現
 {% endraw %}&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h6 id='id757'&gt;・日付のフォーマット(書式)を変更したい。&lt;a href='http://stackoverflow.com/questions/7395520/jekyll-date-format'&gt;参考ページ&lt;/a&gt;&lt;/h6&gt;
+&lt;h6 id='id421'&gt;・日付のフォーマット(書式)を変更したい。&lt;a href='http://stackoverflow.com/questions/7395520/jekyll-date-format'&gt;参考ページ&lt;/a&gt;&lt;/h6&gt;
 
 &lt;pre&gt;&lt;code&gt;日本語を使う場合、ファイルをUTF8で保存する。
 
@@ -1553,7 +1589,7 @@ title: Jekyllとgithubでブログ作成
 
 { post.date | date: &amp;quot;%Y年%m月%d日&amp;quot; }&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h6 id='id758'&gt;・文法に関する参考ページ&lt;/h6&gt;
+&lt;h6 id='id422'&gt;・文法に関する参考ページ&lt;/h6&gt;
 
 &lt;p&gt;・&lt;a href='https://github.com/mojombo/jekyll/wiki/template-data'&gt;Jekyll変数&lt;/a&gt;&lt;/p&gt;
 
