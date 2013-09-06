@@ -4,7 +4,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>CentOSコマンド メモ</title>
+    <title>スマホ(Android)とPCでMindMapを使う</title>
     
     <meta name="author" content="sankame">
 
@@ -110,7 +110,7 @@
         
 
 <div class="page-header">
-  <h1>CentOSコマンド メモ </h1>
+  <h1>スマホ(Android)とPCでMindMapを使う </h1>
 </div>
 
 <div class="row">
@@ -118,89 +118,54 @@
   <!--[if IE 6 ]>
     <div class="span12-for-ie6">
   <![endif]-->
-    <p>投稿日：<span>2012年12月31日</span><br /></p>
+    <p>投稿日：<span>2013年10月04日</span><br /></p>
 
-<h4 id='centos_'>CentOSコマンド メモ</h4>
+<h5 id='0'>0.環境</h5>
 
-<h5 id='id513'>・ファイル検索</h5>
+<pre><code>[スマホ端末/OS] GALAXY S SC-02B / Android2.2
+[PC端末/OS]    Gateway SX2800 / Windows Vista Home Premium</code></pre>
 
-<pre><code> find / -name filename</code></pre>
-
-<h5 id='locate_20130101'>・locateインストール (更新日：2013/01/01)</h5>
-
-<pre><code># which locate
-/usr/bin/which: no locate in ・・・以下省略
-
-# パッケージ名がlocateではないので注意。
-# yum install mlocate
-
-# which locate
-/usr/bin/locate
-
-# 下記コマンドでDBを更新するとlocateが使えるようになる。
-# updatedb</code></pre>
-
-<h5 id='date_20130127'>・dateで日時設定 (更新日：2013/01/27)</h5>
-
-<pre><code># 引数を次の順番に設定。→ date [月][日][時間][分][年]
-
-# date 012723232013
-2013年  1月 27日 日曜日 23:23:00 JST</code></pre>
-
-<h5 id='centos_20130707'>・CentOSバージョン (更新日：2013/07/07)</h5>
-
-<pre><code># cat /etc/redhat-release</code></pre>
-
-<h5 id='cpu_20130707'>・CPUアーキテクチャ確認 (更新日：2013/07/07)</h5>
-
-<pre><code># grep flags /proc/cpuinfo | grep lm | wc -l
-# 上記が0ならCPU 32bit、1ならCPU 64bit
-# lm(long mode)フラグがあれば64bit</code></pre>
-
-<h5 id='_20130707'>・カーネルバージョン確認 (更新日：2013/07/07)</h5>
-
-<pre><code># uname -a|grep x86_64|wc -l
-# 上記が0なら32bitカーネル、1ならCPU 64bitカーネル
-# (x86_64 の場合、64bit)
-# (i386/i486/i586/i686 の場合、32bit)</code></pre>
-
-<p><a href='http://www.cyberciti.biz/faq/linux-how-to-find-if-processor-is-64-bit-or-not/'>参考ページ</a></p>
-
-<h5 id='php_20130707'>・PHPバージョン (更新日：2013/07/07)</h5>
-
-<pre><code># php -v</code></pre>
-
-<h5 id='apache_20130916'>・Apacheバージョン (更新日：2013/09/16)</h5>
-
-<pre><code># httpd -v</code></pre>
-
-<h5 id='svn_20130926'>・SVNバージョン (更新日：2013/09/26)</h5>
-
-<pre><code># svn --version --quiet</code></pre>
-
-<h5 id='history_20130924'>・historyコマンドに日時(タイムスタンプ)追加 (更新日：2013/09/24)</h5>
+<h5 id='1'>1.スマホでマインドマップ作成</h5>
 
 <ul>
 <li>
-<ol>
-<li>
-<p>bashプロファイルを編集。</p>
-
-<p>$ vim ~/.bash_profile</p>
-</li>
-</ol>
+<p>1-1.スマホにMindMapMemoをインストールする。</p>
 </li>
 
 <li>
-<p>2.以下を記述。</p>
-
-<pre><code>HISTTIMEFORMAT=&#39;%Y-%m-%d %T &#39;</code></pre>
+<p>1-2.マインドマップのファイルを作成後、「オプション」-「メール送信(SD保存)」-「FreeMind(.mm)」を選択。</p>
 </li>
 
 <li>
-<p>3.すぐに反映させたい場合は以下のコマンドを実行。</p>
+<p>1-3.共有するためのアプリ一覧が表示されるので、PCへファイルを送信できるアプリを選択。</p>
+</li>
+</ul>
 
-<pre><code>$ source ~/.bash_profile</code></pre>
+<h5 id='2pcfreemind'>2.PCにFreeMindをインストール</h5>
+
+<ul>
+<li>
+<p>2-1.下記リンク先のページで<span>0.8.1</span>をクリック。</p>
+
+<p>(0.9.0では上記スマホで作成したファイルをうまく開けませんでした)</p>
+
+<p><a href='http://sourceforge.net/projects/freemind/files/freemind/'>FreeMindソース</a></p>
+</li>
+
+<li>
+<p>2-2.<span>freemind-bin-0_8_1.zip</span>をクリック。</p>
+</li>
+
+<li>
+<p>2-3.PCにダウンロード後、解凍してFreemind.exeをダブルクリック。</p>
+</li>
+
+<li>
+<p>2-4.メニューの「ファイル」-「開く」で、スマホから送信した拡張子がmmのファイルを選択。</p>
+</li>
+
+<li>
+<p>2-5.スマホではカラフルに作ったのにFreeMindで開くと白黒になっている。まあ内容が分かるからいいか…</p>
 </li>
 </ul>
   <!--[if IE 6 ]>

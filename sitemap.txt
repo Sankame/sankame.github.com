@@ -8,6 +8,7 @@ http://sankame.github.com/atom.xml
 http://sankame.github.com/index.html
 http://sankame.github.com/sitemap.txt
 
+http://sankame.github.com/MindMapMemo/2013/10/04/mind_map_tools
 http://sankame.github.com/PHPDebugBar/2013/09/23/php_debug_bar_install
 http://sankame.github.com/Ruby/2013/09/16/ruby_hello_world
 http://sankame.github.com/Git/2013/09/09/git_command
