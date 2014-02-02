@@ -4,7 +4,7 @@
  <title>Text Blog</title>
  <link href="http://sankame.github.com/atom.xml" rel="self"/>
  <link href="http://sankame.github.com"/>
- <updated>2014-02-03T04:37:29+09:00</updated>
+ <updated>2014-02-03T04:51:20+09:00</updated>
  <id>http://sankame.github.com</id>
  <author>
    <name>sankame</name>
@@ -847,7 +847,7 @@ $ git push origin master
 $
 $ これでGitHubにnew.txtがアップロードできたはず。&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h5 id='id1150'&gt;参考ページ&lt;/h5&gt;
+&lt;h5 id='id1258'&gt;参考ページ&lt;/h5&gt;
 
 &lt;p&gt;&lt;a href='https://play.google.com/store/apps/details?id=com.andi.serverweb'&gt;Terminal IDEの設定&lt;/a&gt;&lt;/p&gt;
 
@@ -863,11 +863,11 @@ $ これでGitHubにnew.txtがアップロードできたはず。&lt;/code&gt;&
    <id>http://sankame.github.com/DELL/2013/07/10/redis_install</id>
    <content type="html">&lt;span&gt;&lt;a href='https://twitter.com/handycola' class='twitter-follow-button' data-show-count='false' data-lang='ja' data-dnt='true' data-size='large' data-show-screen-name='false'&gt;@handycolaさんをフォロー&lt;/a&gt;
 &lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');&lt;/script&gt;&lt;/span&gt;&lt;span style='float:right;'&gt;投稿日：2013年07月10日&lt;/span&gt;
-&lt;h5 id='id1148'&gt;環境&lt;/h5&gt;
+&lt;h5 id='id1256'&gt;環境&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt;[CentOS] 5.6 (32bit版カーネル)&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h5 id='id1149'&gt;インストール&lt;/h5&gt;
+&lt;h5 id='id1257'&gt;インストール&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt;# ソース取得。
 # wget http://redis.googlecode.com/files/redis-2.6.7.tar.gz
@@ -939,7 +939,7 @@ PONG
    <id>http://sankame.github.com/DELL/2013/07/05/dell_e5520_touchpad</id>
    <content type="html">&lt;span&gt;&lt;a href='https://twitter.com/handycola' class='twitter-follow-button' data-show-count='false' data-lang='ja' data-dnt='true' data-size='large' data-show-screen-name='false'&gt;@handycolaさんをフォロー&lt;/a&gt;
 &lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');&lt;/script&gt;&lt;/span&gt;&lt;span style='float:right;'&gt;投稿日：2013年07月05日&lt;/span&gt;
-&lt;h5 id='id1147'&gt;環境&lt;/h5&gt;
+&lt;h5 id='id1255'&gt;環境&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt;[PC] DELL E5520
 [OS] Windows 7 Professional (SP1)&lt;/code&gt;&lt;/pre&gt;
@@ -1001,7 +1001,7 @@ Dell Touchpad が増えているのでダブルクリック。&lt;/code&gt;&lt;/
 {/if}
 &amp;lt;a class=&amp;quot;keyword-link&amp;quot; href=&amp;quot;#&amp;quot; title=&amp;quot;{$keyword}&amp;quot;&amp;gt;{$cutKeyword}&amp;lt;/a&amp;gt;&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h5 id='id1146'&gt;上記コードで各文字列を変換した場合。&lt;/h5&gt;
+&lt;h5 id='id1254'&gt;上記コードで各文字列を変換した場合。&lt;/h5&gt;
 
 &lt;h5 id='_'&gt;(&amp;#8220;→&amp;#8221; は変換前後を表す)&lt;/h5&gt;
 
@@ -1021,7 +1021,7 @@ Dell Touchpad が増えているのでダブルクリック。&lt;/code&gt;&lt;/
 &lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');&lt;/script&gt;&lt;/span&gt;&lt;span style='float:right;'&gt;投稿日：2013年04月29日&lt;/span&gt;
 &lt;h4 id='phpmecab'&gt;PHPからMeCabを使ってみる。&lt;/h4&gt;
 
-&lt;h5 id='id1145'&gt;環境&lt;/h5&gt;
+&lt;h5 id='id1253'&gt;環境&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt;[CentOS] 5.6 (32bit版カーネル)
 [PHP]    5.3.3&lt;/code&gt;&lt;/pre&gt;
@@ -1099,7 +1099,7 @@ EOS
 &lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');&lt;/script&gt;&lt;/span&gt;&lt;span style='float:right;'&gt;投稿日：2013年01月28日&lt;/span&gt;
 &lt;h4 id='mecab'&gt;形態素解析エンジンMeCabをインストールしてみる。&lt;/h4&gt;
 
-&lt;h5 id='id1144'&gt;環境&lt;/h5&gt;
+&lt;h5 id='id1252'&gt;環境&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt;[CentOS] 5.6 (32bit版カーネル)&lt;/code&gt;&lt;/pre&gt;
 
@@ -1397,7 +1397,7 @@ Banner display : (Google AdSenseの広告ユニットコードと同じサイズ
 &lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');&lt;/script&gt;&lt;/span&gt;&lt;span style='float:right;'&gt;投稿日：2012年12月31日&lt;/span&gt;
 &lt;h4 id='centos_'&gt;CentOSコマンド メモ&lt;/h4&gt;
 
-&lt;h5 id='id1143'&gt;・ファイル検索&lt;/h5&gt;
+&lt;h5 id='id1251'&gt;・ファイル検索&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt; find / -name filename&lt;/code&gt;&lt;/pre&gt;
 
@@ -1500,7 +1500,7 @@ Banner display : (Google AdSenseの広告ユニットコードと同じサイズ
 &lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');&lt;/script&gt;&lt;/span&gt;&lt;span style='float:right;'&gt;投稿日：2012年12月27日&lt;/span&gt;
 &lt;h4 id='githubpagesindexhtml'&gt;GitHubPagesでブログを公開しようと、下記ページに従って作業したがindex.htmlすら表示されない…&lt;/h4&gt;
 
-&lt;h4 id='id1142'&gt;&lt;a href='http://tokkono.cute.coocan.jp/blog/slow/index.php/programming/github-pages-almost-perfect-guide/'&gt;参考ページ&lt;/a&gt;&lt;/h4&gt;
+&lt;h4 id='id1250'&gt;&lt;a href='http://tokkono.cute.coocan.jp/blog/slow/index.php/programming/github-pages-almost-perfect-guide/'&gt;参考ページ&lt;/a&gt;&lt;/h4&gt;
 
 &lt;h4 id='1github'&gt;1.GitHubに登録したメールアドレスの受信箱をチェック&lt;/h4&gt;
 
@@ -1531,7 +1531,7 @@ https://github.com/settings/emails&lt;/code&gt;&lt;/pre&gt;
 &lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');&lt;/script&gt;&lt;/span&gt;&lt;span style='float:right;'&gt;投稿日：2012年12月24日&lt;/span&gt;
 &lt;h4 id='pcvmwareplayeropenx'&gt;ローカルPCのVmwarePlayerにOpenXをインストール。&lt;/h4&gt;
 
-&lt;h4 id='id1141'&gt;&lt;a href='http://www.openx.com/docs/qsg-install'&gt;マニュアル&lt;/a&gt;に従ってインストールした。&lt;/h4&gt;
+&lt;h4 id='id1249'&gt;&lt;a href='http://www.openx.com/docs/qsg-install'&gt;マニュアル&lt;/a&gt;に従ってインストールした。&lt;/h4&gt;
 
 &lt;h4 id='1'&gt;1.ソース取得&lt;/h4&gt;
 
@@ -1732,7 +1732,7 @@ Auto-regenerating enabled: /var/www/html/jekyll/JEKYLL_HOME -&amp;gt; /var/www/h
 
 &lt;h5 id='githtmlgithubpush'&gt;任意のディレクトリをGitの作業ツリーにして、そこからHTMLをGitHubへPushする。&lt;/h5&gt;
 
-&lt;h5 id='id1140'&gt;&lt;code&gt;【注意】/var/www/html/jekyll/JEKYLL_HOME/_site/ を作業ツリーにするとJekyllを起動する度に.gitが削除されるので適さない。&lt;/code&gt;&lt;/h5&gt;
+&lt;h5 id='id1248'&gt;&lt;code&gt;【注意】/var/www/html/jekyll/JEKYLL_HOME/_site/ を作業ツリーにするとJekyllを起動する度に.gitが削除されるので適さない。&lt;/code&gt;&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt;# Jekyllが生成したHTMLをGit作業ツリー(任意のディレクトリ)へコピーする。
 # cp -pr /var/www/html/jekyll/JEKYLL_HOME/_site/* /var/www/html/sankame.github.com/
@@ -1759,14 +1759,14 @@ Auto-regenerating enabled: /var/www/html/jekyll/JEKYLL_HOME -&amp;gt; /var/www/h
 
 &lt;h5 id='varwwwhtmljekylljekyll_home'&gt;/var/www/html/jekyll/JEKYLL_HOME/&lt;/h5&gt;
 
-&lt;h6 id='id1135'&gt;・画面ヘッダ部分のナビゲーションを変更したい。&lt;/h6&gt;
+&lt;h6 id='id1243'&gt;・画面ヘッダ部分のナビゲーションを変更したい。&lt;/h6&gt;
 
 &lt;pre&gt;&lt;code&gt;(例)
 画面ヘッダ部分にArchiveを表示したくない場合
 下記ファイルのヘッダ部分の&amp;quot;group: navigation&amp;quot;を#でコメントアウトする。
 /var/www/html/jekyll/JEKYLL_HOME/archive.html&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h6 id='id1136'&gt;・記事タイトルに日本語を使いたい。&lt;/h6&gt;
+&lt;h6 id='id1244'&gt;・記事タイトルに日本語を使いたい。&lt;/h6&gt;
 
 &lt;pre&gt;&lt;code&gt;記事のファイル名に日本語は使えないので、YAMLのFront Matterでtitleを指定する。
 (例)
@@ -1778,7 +1778,7 @@ date: 2012-12-23 00:00:00
 title: Jekyllとgithubでブログ作成
 ---&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h6 id='id1137'&gt;・ループ回数を制限したい。&lt;/h6&gt;
+&lt;h6 id='id1245'&gt;・ループ回数を制限したい。&lt;/h6&gt;
 
 &lt;pre&gt;&lt;code&gt;limitを使う。
 
@@ -1798,7 +1798,7 @@ title: Jekyllとgithubでブログ作成
 エスケープしたい表現
 {% endraw %}&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h6 id='id1138'&gt;・日付のフォーマット(書式)を変更したい。&lt;a href='http://stackoverflow.com/questions/7395520/jekyll-date-format'&gt;参考ページ&lt;/a&gt;&lt;/h6&gt;
+&lt;h6 id='id1246'&gt;・日付のフォーマット(書式)を変更したい。&lt;a href='http://stackoverflow.com/questions/7395520/jekyll-date-format'&gt;参考ページ&lt;/a&gt;&lt;/h6&gt;
 
 &lt;pre&gt;&lt;code&gt;日本語を使う場合、ファイルをUTF8で保存する。
 
@@ -1806,7 +1806,7 @@ title: Jekyllとgithubでブログ作成
 
 { post.date | date: &amp;quot;%Y年%m月%d日&amp;quot; }&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h6 id='id1139'&gt;・文法に関する参考ページ&lt;/h6&gt;
+&lt;h6 id='id1247'&gt;・文法に関する参考ページ&lt;/h6&gt;
 
 &lt;p&gt;・&lt;a href='https://github.com/mojombo/jekyll/wiki/template-data'&gt;Jekyll変数&lt;/a&gt;&lt;/p&gt;
 
