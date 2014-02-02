@@ -4,13 +4,110 @@
  <title>Text Blog</title>
  <link href="http://sankame.github.com/atom.xml" rel="self"/>
  <link href="http://sankame.github.com"/>
- <updated>2013-10-07T16:30:06+09:00</updated>
+ <updated>2014-02-03T04:37:29+09:00</updated>
  <id>http://sankame.github.com</id>
  <author>
    <name>sankame</name>
    <email>mt_fuji_3776@live.jp</email>
  </author>
 
+ 
+ <entry>
+   <title>PHPからfitbit API を使ってみる</title>
+   <link href="http://sankame.github.com/fitbit/2014/02/04/php_fitbit_api"/>
+   <updated>2014-02-04T00:00:00+09:00</updated>
+   <id>http://sankame.github.com/fitbit/2014/02/04/php_fitbit_api</id>
+   <content type="html">&lt;span&gt;&lt;a href='https://twitter.com/handycola' class='twitter-follow-button' data-show-count='false' data-lang='ja' data-dnt='true' data-size='large' data-show-screen-name='false'&gt;@handycolaさんをフォロー&lt;/a&gt;
+&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');&lt;/script&gt;&lt;/span&gt;&lt;span style='float:right;'&gt;投稿日：2014年02月04日&lt;/span&gt;
+&lt;h5 id='0'&gt;0.環境&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code&gt;[CentOS]  5.6 (32bit版カーネル)
+[Apache]  2.2.3
+[PHP]     5.4.1&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id='1oauth_extension__fitbit_api'&gt;1.OAuth Extensionインストール → fitbit API実行&lt;/h5&gt;
+
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;1-1.fitbit(活動量計)の&lt;a href='https://wiki.fitbit.com/display/API/API+PHP+Client'&gt;API使用手順&lt;/a&gt;にそって作業を進めます。&lt;/p&gt;
+
+&lt;p&gt;下記コマンドを実行。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# pecl install oauth-0.99.9&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;エラー発生。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;　：
+（割愛）
+　：
+/var/tmp/oauth/oauth.c:2058: warning: assignment from incompatible pointer type
+/var/tmp/oauth/oauth.c: In function &amp;#39;zm_shutdown_oauth&amp;#39;:
+/var/tmp/oauth/oauth.c:2092: warning: implicit declaration of function &amp;#39;curl_global_cleanup&amp;#39;
+make: *** [oauth.lo] エラー 1
+ERROR: `make&amp;#39; failed&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href='https://bugs.php.net/bug.php?id=59153'&gt;こんな情報&lt;/a&gt;を見つけ、下記コマンドを実行。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# yum install curl-devel&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;エラーは変わらず、さらに&lt;a href='http://blog.gmane.org/gmane.comp.php.install/month=20101201'&gt;こんな情報&lt;/a&gt;を見つけ、下記コマンドを実行。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# yum install pcre pcre-devel&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;またまたエラー発生。OAuthを使うための&lt;a href='http://www.php.net/manual/ja/oauth.requirements.php'&gt;条件&lt;/a&gt;を発見。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href='http://blog.flatlabs.net/20100611_062745/'&gt;良さそうなページ&lt;/a&gt;を見つけ、下記コマンドを実行。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# pecl install oauth-beta&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;お！成功した。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Build process completed successfully
+Installing &amp;#39;/usr/lib/php/modules/oauth.so&amp;#39;
+install ok: channel://pecl.php.net/oauth-1.2.3
+configuration option &amp;quot;php_ini&amp;quot; is not set to php.ini location
+You should add &amp;quot;extension=oauth.so&amp;quot; to php.ini&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;後は指示通りExtensionを追加。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# vi /etc/php.d/oauth.ini
+extension=oauth.so&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+
+&lt;li&gt;
+&lt;p&gt;1-2.サンプルプログラム実行。&lt;/p&gt;
+
+&lt;p&gt;準備ができたので、APIのページから&lt;a href='https://wiki.fitbit.com/download/attachments/884784/completeAuthorization.php?version=2&amp;amp;modificationDate=1297797897000&amp;amp;api=v2'&gt;サンプルプログラム&lt;/a&gt;をダウンロード。&lt;/p&gt;
+
+&lt;p&gt;サンプルプログラムを自分の設定に合わせて修正。(下記1-3参照)&lt;/p&gt;
+
+&lt;p&gt;Apacheのドキュメントルートに配置してブラウザからアクセスするとエラーが発生。&lt;/p&gt;
+
+&lt;p&gt;(localhost部分は自分の環境に読み替えて下さい)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;http://localhost/completeAuthorization.php&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;body_recv の値を見てみると、&amp;#8221;fieldName&amp;#8221;:&amp;#8221;oauth_timestamp&amp;#8221; があやしい。&lt;/p&gt;
+
+&lt;p&gt;(自分のVM(CentOS)では、時刻同期していないため時間が狂っている)&lt;/p&gt;
+
+&lt;p&gt;date コマンドで正しい時刻に合わせ、再度ブラウザからアクセスすると下記メッセージが画面に表示された。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;healthcheck（individual）がFitbit.com上のあなたのプロフィールおよびデータへのアクセスを要求しています：&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;「許可する」をクリックするとサンプルページが表示され、自分の健康データが表示されました。&lt;/p&gt;
+
+&lt;p&gt;(予め fitbitの「開発者ページ」で、callbackのページを上記URLにしておく)&lt;/p&gt;
+
+&lt;p&gt;※OAuthは&lt;a href='http://yuroyoro.hatenablog.com/entry/20100506/1273137673'&gt;こちらのページ&lt;/a&gt;で復習。&lt;/p&gt;
+&lt;/li&gt;
+
+&lt;li&gt;
+&lt;p&gt;1-3.サンプルプログラム修正(【変更】の部分を自分の設定に書き換えます)&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;script src='https://gist.github.com/Sankame/8787002.js' /&gt;</content>
+ </entry>
  
  <entry>
    <title>PHPメモ</title>
@@ -750,7 +847,7 @@ $ git push origin master
 $
 $ これでGitHubにnew.txtがアップロードできたはず。&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h5 id='id106'&gt;参考ページ&lt;/h5&gt;
+&lt;h5 id='id1150'&gt;参考ページ&lt;/h5&gt;
 
 &lt;p&gt;&lt;a href='https://play.google.com/store/apps/details?id=com.andi.serverweb'&gt;Terminal IDEの設定&lt;/a&gt;&lt;/p&gt;
 
@@ -766,11 +863,11 @@ $ これでGitHubにnew.txtがアップロードできたはず。&lt;/code&gt;&
    <id>http://sankame.github.com/DELL/2013/07/10/redis_install</id>
    <content type="html">&lt;span&gt;&lt;a href='https://twitter.com/handycola' class='twitter-follow-button' data-show-count='false' data-lang='ja' data-dnt='true' data-size='large' data-show-screen-name='false'&gt;@handycolaさんをフォロー&lt;/a&gt;
 &lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');&lt;/script&gt;&lt;/span&gt;&lt;span style='float:right;'&gt;投稿日：2013年07月10日&lt;/span&gt;
-&lt;h5 id='id104'&gt;環境&lt;/h5&gt;
+&lt;h5 id='id1148'&gt;環境&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt;[CentOS] 5.6 (32bit版カーネル)&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h5 id='id105'&gt;インストール&lt;/h5&gt;
+&lt;h5 id='id1149'&gt;インストール&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt;# ソース取得。
 # wget http://redis.googlecode.com/files/redis-2.6.7.tar.gz
@@ -842,7 +939,7 @@ PONG
    <id>http://sankame.github.com/DELL/2013/07/05/dell_e5520_touchpad</id>
    <content type="html">&lt;span&gt;&lt;a href='https://twitter.com/handycola' class='twitter-follow-button' data-show-count='false' data-lang='ja' data-dnt='true' data-size='large' data-show-screen-name='false'&gt;@handycolaさんをフォロー&lt;/a&gt;
 &lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');&lt;/script&gt;&lt;/span&gt;&lt;span style='float:right;'&gt;投稿日：2013年07月05日&lt;/span&gt;
-&lt;h5 id='id103'&gt;環境&lt;/h5&gt;
+&lt;h5 id='id1147'&gt;環境&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt;[PC] DELL E5520
 [OS] Windows 7 Professional (SP1)&lt;/code&gt;&lt;/pre&gt;
@@ -904,7 +1001,7 @@ Dell Touchpad が増えているのでダブルクリック。&lt;/code&gt;&lt;/
 {/if}
 &amp;lt;a class=&amp;quot;keyword-link&amp;quot; href=&amp;quot;#&amp;quot; title=&amp;quot;{$keyword}&amp;quot;&amp;gt;{$cutKeyword}&amp;lt;/a&amp;gt;&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h5 id='id102'&gt;上記コードで各文字列を変換した場合。&lt;/h5&gt;
+&lt;h5 id='id1146'&gt;上記コードで各文字列を変換した場合。&lt;/h5&gt;
 
 &lt;h5 id='_'&gt;(&amp;#8220;→&amp;#8221; は変換前後を表す)&lt;/h5&gt;
 
@@ -924,7 +1021,7 @@ Dell Touchpad が増えているのでダブルクリック。&lt;/code&gt;&lt;/
 &lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');&lt;/script&gt;&lt;/span&gt;&lt;span style='float:right;'&gt;投稿日：2013年04月29日&lt;/span&gt;
 &lt;h4 id='phpmecab'&gt;PHPからMeCabを使ってみる。&lt;/h4&gt;
 
-&lt;h5 id='id101'&gt;環境&lt;/h5&gt;
+&lt;h5 id='id1145'&gt;環境&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt;[CentOS] 5.6 (32bit版カーネル)
 [PHP]    5.3.3&lt;/code&gt;&lt;/pre&gt;
@@ -1002,7 +1099,7 @@ EOS
 &lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');&lt;/script&gt;&lt;/span&gt;&lt;span style='float:right;'&gt;投稿日：2013年01月28日&lt;/span&gt;
 &lt;h4 id='mecab'&gt;形態素解析エンジンMeCabをインストールしてみる。&lt;/h4&gt;
 
-&lt;h5 id='id100'&gt;環境&lt;/h5&gt;
+&lt;h5 id='id1144'&gt;環境&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt;[CentOS] 5.6 (32bit版カーネル)&lt;/code&gt;&lt;/pre&gt;
 
@@ -1300,7 +1397,7 @@ Banner display : (Google AdSenseの広告ユニットコードと同じサイズ
 &lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');&lt;/script&gt;&lt;/span&gt;&lt;span style='float:right;'&gt;投稿日：2012年12月31日&lt;/span&gt;
 &lt;h4 id='centos_'&gt;CentOSコマンド メモ&lt;/h4&gt;
 
-&lt;h5 id='id99'&gt;・ファイル検索&lt;/h5&gt;
+&lt;h5 id='id1143'&gt;・ファイル検索&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt; find / -name filename&lt;/code&gt;&lt;/pre&gt;
 
@@ -1403,7 +1500,7 @@ Banner display : (Google AdSenseの広告ユニットコードと同じサイズ
 &lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');&lt;/script&gt;&lt;/span&gt;&lt;span style='float:right;'&gt;投稿日：2012年12月27日&lt;/span&gt;
 &lt;h4 id='githubpagesindexhtml'&gt;GitHubPagesでブログを公開しようと、下記ページに従って作業したがindex.htmlすら表示されない…&lt;/h4&gt;
 
-&lt;h4 id='id98'&gt;&lt;a href='http://tokkono.cute.coocan.jp/blog/slow/index.php/programming/github-pages-almost-perfect-guide/'&gt;参考ページ&lt;/a&gt;&lt;/h4&gt;
+&lt;h4 id='id1142'&gt;&lt;a href='http://tokkono.cute.coocan.jp/blog/slow/index.php/programming/github-pages-almost-perfect-guide/'&gt;参考ページ&lt;/a&gt;&lt;/h4&gt;
 
 &lt;h4 id='1github'&gt;1.GitHubに登録したメールアドレスの受信箱をチェック&lt;/h4&gt;
 
@@ -1434,7 +1531,7 @@ https://github.com/settings/emails&lt;/code&gt;&lt;/pre&gt;
 &lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');&lt;/script&gt;&lt;/span&gt;&lt;span style='float:right;'&gt;投稿日：2012年12月24日&lt;/span&gt;
 &lt;h4 id='pcvmwareplayeropenx'&gt;ローカルPCのVmwarePlayerにOpenXをインストール。&lt;/h4&gt;
 
-&lt;h4 id='id97'&gt;&lt;a href='http://www.openx.com/docs/qsg-install'&gt;マニュアル&lt;/a&gt;に従ってインストールした。&lt;/h4&gt;
+&lt;h4 id='id1141'&gt;&lt;a href='http://www.openx.com/docs/qsg-install'&gt;マニュアル&lt;/a&gt;に従ってインストールした。&lt;/h4&gt;
 
 &lt;h4 id='1'&gt;1.ソース取得&lt;/h4&gt;
 
@@ -1635,7 +1732,7 @@ Auto-regenerating enabled: /var/www/html/jekyll/JEKYLL_HOME -&amp;gt; /var/www/h
 
 &lt;h5 id='githtmlgithubpush'&gt;任意のディレクトリをGitの作業ツリーにして、そこからHTMLをGitHubへPushする。&lt;/h5&gt;
 
-&lt;h5 id='id96'&gt;&lt;code&gt;【注意】/var/www/html/jekyll/JEKYLL_HOME/_site/ を作業ツリーにするとJekyllを起動する度に.gitが削除されるので適さない。&lt;/code&gt;&lt;/h5&gt;
+&lt;h5 id='id1140'&gt;&lt;code&gt;【注意】/var/www/html/jekyll/JEKYLL_HOME/_site/ を作業ツリーにするとJekyllを起動する度に.gitが削除されるので適さない。&lt;/code&gt;&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt;# Jekyllが生成したHTMLをGit作業ツリー(任意のディレクトリ)へコピーする。
 # cp -pr /var/www/html/jekyll/JEKYLL_HOME/_site/* /var/www/html/sankame.github.com/
@@ -1662,14 +1759,14 @@ Auto-regenerating enabled: /var/www/html/jekyll/JEKYLL_HOME -&amp;gt; /var/www/h
 
 &lt;h5 id='varwwwhtmljekylljekyll_home'&gt;/var/www/html/jekyll/JEKYLL_HOME/&lt;/h5&gt;
 
-&lt;h6 id='id91'&gt;・画面ヘッダ部分のナビゲーションを変更したい。&lt;/h6&gt;
+&lt;h6 id='id1135'&gt;・画面ヘッダ部分のナビゲーションを変更したい。&lt;/h6&gt;
 
 &lt;pre&gt;&lt;code&gt;(例)
 画面ヘッダ部分にArchiveを表示したくない場合
 下記ファイルのヘッダ部分の&amp;quot;group: navigation&amp;quot;を#でコメントアウトする。
 /var/www/html/jekyll/JEKYLL_HOME/archive.html&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h6 id='id92'&gt;・記事タイトルに日本語を使いたい。&lt;/h6&gt;
+&lt;h6 id='id1136'&gt;・記事タイトルに日本語を使いたい。&lt;/h6&gt;
 
 &lt;pre&gt;&lt;code&gt;記事のファイル名に日本語は使えないので、YAMLのFront Matterでtitleを指定する。
 (例)
@@ -1681,7 +1778,7 @@ date: 2012-12-23 00:00:00
 title: Jekyllとgithubでブログ作成
 ---&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h6 id='id93'&gt;・ループ回数を制限したい。&lt;/h6&gt;
+&lt;h6 id='id1137'&gt;・ループ回数を制限したい。&lt;/h6&gt;
 
 &lt;pre&gt;&lt;code&gt;limitを使う。
 
@@ -1701,7 +1798,7 @@ title: Jekyllとgithubでブログ作成
 エスケープしたい表現
 {% endraw %}&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h6 id='id94'&gt;・日付のフォーマット(書式)を変更したい。&lt;a href='http://stackoverflow.com/questions/7395520/jekyll-date-format'&gt;参考ページ&lt;/a&gt;&lt;/h6&gt;
+&lt;h6 id='id1138'&gt;・日付のフォーマット(書式)を変更したい。&lt;a href='http://stackoverflow.com/questions/7395520/jekyll-date-format'&gt;参考ページ&lt;/a&gt;&lt;/h6&gt;
 
 &lt;pre&gt;&lt;code&gt;日本語を使う場合、ファイルをUTF8で保存する。
 
@@ -1709,7 +1806,7 @@ title: Jekyllとgithubでブログ作成
 
 { post.date | date: &amp;quot;%Y年%m月%d日&amp;quot; }&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h6 id='id95'&gt;・文法に関する参考ページ&lt;/h6&gt;
+&lt;h6 id='id1139'&gt;・文法に関する参考ページ&lt;/h6&gt;
 
 &lt;p&gt;・&lt;a href='https://github.com/mojombo/jekyll/wiki/template-data'&gt;Jekyll変数&lt;/a&gt;&lt;/p&gt;
 
