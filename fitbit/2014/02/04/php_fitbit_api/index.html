@@ -123,9 +123,10 @@
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></span><span style='float:right;'>投稿日：2014年02月04日</span>
 <h5 id='0'>0.環境</h5>
 
-<pre><code>[CentOS]  5.6 (32bit版カーネル)
-[Apache]  2.2.3
-[PHP]     5.4.1</code></pre>
+<pre><code>[CentOS]   5.6 (32bit版カーネル)
+[Apache]   2.2.3
+[PHP]      5.4.1
+[device]   Fitbit One</code></pre>
 
 <h5 id='1oauth_extension__fitbit_api'>1.OAuth Extensionインストール → fitbit API実行</h5>
 
@@ -179,13 +180,13 @@ extension=oauth.so</code></pre>
 <li>
 <p>1-2.サンプルプログラム実行。</p>
 
-<p>準備ができたので、APIのページから<a href='https://wiki.fitbit.com/download/attachments/884784/completeAuthorization.php?version=2&amp;modificationDate=1297797897000&amp;api=v2'>サンプルプログラム</a>をダウンロード。</p>
+<p>準備ができたので、<a href='http://dev.fitbit.com/'>開発者用ページ</a>から<a href='https://wiki.fitbit.com/download/attachments/884784/completeAuthorization.php?version=2&amp;modificationDate=1297797897000&amp;api=v2'>サンプルプログラム</a>をダウンロード。</p>
 
 <p>サンプルプログラムを自分の設定に合わせて修正。(下記1-3参照)</p>
 
-<p>Apacheのドキュメントルートに配置してブラウザからアクセスするとエラーが発生。</p>
+<p>Apacheのドキュメントルートに配置して、ブラウザからアクセスするとエラーが発生。</p>
 
-<p>(localhost部分は自分の環境に読み替えて下さい)</p>
+<p>(localhostは自分の環境に読み替えて下さい)</p>
 
 <pre><code>http://localhost/completeAuthorization.php</code></pre>
 
@@ -199,7 +200,7 @@ extension=oauth.so</code></pre>
 
 <p>「許可する」をクリックするとサンプルページが表示され、自分の健康データが表示されました。</p>
 
-<p>(予め fitbitの「開発者ページ」で、callbackのページを上記URLにしておく)</p>
+<p>(予め fitbitの「<a href='https://dev.fitbit.com/apps/new'>開発者ページ</a>」で、callbackのページを上記URLにしておく)</p>
 
 <p>※OAuthは<a href='http://yuroyoro.hatenablog.com/entry/20100506/1273137673'>こちらのページ</a>で復習。</p>
 </li>
