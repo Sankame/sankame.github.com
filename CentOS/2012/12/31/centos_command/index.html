@@ -126,7 +126,7 @@
 </script></div>
 <h4 id='centos_'>CentOSコマンド メモ</h4>
 
-<h5 id='id256'>・ファイル検索</h5>
+<h5 id='id66'>・ファイル検索</h5>
 
 <pre><code> find / -name filename</code></pre>
 
@@ -207,6 +207,15 @@
 <pre><code>$ source ~/.bash_profile</code></pre>
 </li>
 </ul>
+
+<h5 id='port_20140507'>・port使用状況チェック (更新日：2014/05/07)</h5>
+
+<pre><code>$ netstat -anp
+$ netstat -anp | grep 【ポート番号】
+
+-a：接続待ち状態にあるソケットも、接続待ち状態にないソケットも表示する。
+-n：ホスト・ポート・ユーザーなどの名前を解決せずに、数字のアドレスで表示する。
+-p：各ソケットが属しているプログラムの PID と名前が表示される。</code></pre>
   <!--[if IE 6 ]>
     </div>
   <![endif]-->
