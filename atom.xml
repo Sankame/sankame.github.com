@@ -4,7 +4,7 @@
  <title>Text Blog</title>
  <link href="http://sankame.github.com/atom.xml" rel="self"/>
  <link href="http://sankame.github.com"/>
- <updated>2014-05-06T00:18:58+09:00</updated>
+ <updated>2014-05-06T01:52:11+09:00</updated>
  <id>http://sankame.github.com</id>
  <author>
    <name>sankame</name>
@@ -18,10 +18,11 @@
    <updated>2014-05-04T00:00:00+09:00</updated>
    <id>http://sankame.github.com/ReviveAdServer/2014/05/04/revive_adserver_install</id>
    <content type="html">&lt;span&gt;&lt;a href='https://twitter.com/handycola' class='twitter-follow-button' data-show-count='false' data-lang='ja' data-dnt='true' data-size='large' data-show-screen-name='false'&gt;@handycolaさんをフォロー&lt;/a&gt;
-&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');&lt;/script&gt;&lt;/span&gt;&lt;span style='float:right;'&gt;投稿日：2014年05月04日&lt;/span&gt;&lt;div&gt;&lt;ins class='adsbygoogle' data-ad-client='ca-pub-7938855665302783' data-ad-slot='3830449953' style='display:inline-block;width:125px;height:125px' /&gt;
+&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');&lt;/script&gt;&lt;/span&gt;&lt;span style='float:right;'&gt;投稿日：2014年05月04日&lt;/span&gt;&lt;div&gt;&lt;ins class='adsbygoogle' data-ad-client='ca-pub-7938855665302783' data-ad-slot='6346277556' style='display:inline-block;width:468px;height:60px' /&gt;
 &lt;script&gt;
 (adsbygoogle = window.adsbygoogle || []).push({});
-&lt;/script&gt;&lt;/div&gt;
+&lt;/script&gt;
+&lt;/div&gt;
 &lt;h5 id='0'&gt;0.環境&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt;[CentOS]           5.6 (32bit版カーネル)
@@ -118,10 +119,11 @@ Timezone:  (GMT+0900) Asia/Tokyo&lt;/code&gt;&lt;/pre&gt;
    <updated>2014-02-04T00:00:00+09:00</updated>
    <id>http://sankame.github.com/fitbit/2014/02/04/php_fitbit_api</id>
    <content type="html">&lt;span&gt;&lt;a href='https://twitter.com/handycola' class='twitter-follow-button' data-show-count='false' data-lang='ja' data-dnt='true' data-size='large' data-show-screen-name='false'&gt;@handycolaさんをフォロー&lt;/a&gt;
-&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');&lt;/script&gt;&lt;/span&gt;&lt;span style='float:right;'&gt;投稿日：2014年02月04日&lt;/span&gt;&lt;div&gt;&lt;ins class='adsbygoogle' data-ad-client='ca-pub-7938855665302783' data-ad-slot='3830449953' style='display:inline-block;width:125px;height:125px' /&gt;
+&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');&lt;/script&gt;&lt;/span&gt;&lt;span style='float:right;'&gt;投稿日：2014年02月04日&lt;/span&gt;&lt;div&gt;&lt;ins class='adsbygoogle' data-ad-client='ca-pub-7938855665302783' data-ad-slot='6346277556' style='display:inline-block;width:468px;height:60px' /&gt;
 &lt;script&gt;
 (adsbygoogle = window.adsbygoogle || []).push({});
-&lt;/script&gt;&lt;/div&gt;
+&lt;/script&gt;
+&lt;/div&gt;
 &lt;h5 id='0'&gt;0.環境&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt;[CentOS]   5.6 (32bit版カーネル)
@@ -219,10 +221,11 @@ extension=oauth.so&lt;/code&gt;&lt;/pre&gt;
    <updated>2014-02-02T00:00:00+09:00</updated>
    <id>http://sankame.github.com/PHP/2014/02/02/php_sample</id>
    <content type="html">&lt;span&gt;&lt;a href='https://twitter.com/handycola' class='twitter-follow-button' data-show-count='false' data-lang='ja' data-dnt='true' data-size='large' data-show-screen-name='false'&gt;@handycolaさんをフォロー&lt;/a&gt;
-&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');&lt;/script&gt;&lt;/span&gt;&lt;span style='float:right;'&gt;投稿日：2014年02月02日&lt;/span&gt;&lt;div&gt;&lt;ins class='adsbygoogle' data-ad-client='ca-pub-7938855665302783' data-ad-slot='3830449953' style='display:inline-block;width:125px;height:125px' /&gt;
+&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');&lt;/script&gt;&lt;/span&gt;&lt;span style='float:right;'&gt;投稿日：2014年02月02日&lt;/span&gt;&lt;div&gt;&lt;ins class='adsbygoogle' data-ad-client='ca-pub-7938855665302783' data-ad-slot='6346277556' style='display:inline-block;width:468px;height:60px' /&gt;
 &lt;script&gt;
 (adsbygoogle = window.adsbygoogle || []).push({});
-&lt;/script&gt;&lt;/div&gt;
+&lt;/script&gt;
+&lt;/div&gt;
 &lt;h4 id='php_'&gt;PHPメモ (自分用)&lt;/h4&gt;
 
 &lt;h5 id='1_extension'&gt;(1) extensionが追加されたかコマンドラインで確認&lt;/h5&gt;
@@ -244,10 +247,11 @@ OAuth support =&amp;gt; enabled&lt;/code&gt;&lt;/pre&gt;
    <updated>2013-10-04T00:00:00+09:00</updated>
    <id>http://sankame.github.com/MindMapMemo/2013/10/04/mind_map_tools</id>
    <content type="html">&lt;span&gt;&lt;a href='https://twitter.com/handycola' class='twitter-follow-button' data-show-count='false' data-lang='ja' data-dnt='true' data-size='large' data-show-screen-name='false'&gt;@handycolaさんをフォロー&lt;/a&gt;
-&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');&lt;/script&gt;&lt;/span&gt;&lt;span style='float:right;'&gt;投稿日：2013年10月04日&lt;/span&gt;&lt;div&gt;&lt;ins class='adsbygoogle' data-ad-client='ca-pub-7938855665302783' data-ad-slot='3830449953' style='display:inline-block;width:125px;height:125px' /&gt;
+&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');&lt;/script&gt;&lt;/span&gt;&lt;span style='float:right;'&gt;投稿日：2013年10月04日&lt;/span&gt;&lt;div&gt;&lt;ins class='adsbygoogle' data-ad-client='ca-pub-7938855665302783' data-ad-slot='6346277556' style='display:inline-block;width:468px;height:60px' /&gt;
 &lt;script&gt;
 (adsbygoogle = window.adsbygoogle || []).push({});
-&lt;/script&gt;&lt;/div&gt;
+&lt;/script&gt;
+&lt;/div&gt;
 &lt;h5 id='0'&gt;0.環境&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt;[スマホ端末/OS] GALAXY S SC-02B / Android2.2
@@ -304,10 +308,11 @@ OAuth support =&amp;gt; enabled&lt;/code&gt;&lt;/pre&gt;
    <updated>2013-09-23T00:00:00+09:00</updated>
    <id>http://sankame.github.com/PHPDebugBar/2013/09/23/php_debug_bar_install</id>
    <content type="html">&lt;span&gt;&lt;a href='https://twitter.com/handycola' class='twitter-follow-button' data-show-count='false' data-lang='ja' data-dnt='true' data-size='large' data-show-screen-name='false'&gt;@handycolaさんをフォロー&lt;/a&gt;
-&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');&lt;/script&gt;&lt;/span&gt;&lt;span style='float:right;'&gt;投稿日：2013年09月23日&lt;/span&gt;&lt;div&gt;&lt;ins class='adsbygoogle' data-ad-client='ca-pub-7938855665302783' data-ad-slot='3830449953' style='display:inline-block;width:125px;height:125px' /&gt;
+&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');&lt;/script&gt;&lt;/span&gt;&lt;span style='float:right;'&gt;投稿日：2013年09月23日&lt;/span&gt;&lt;div&gt;&lt;ins class='adsbygoogle' data-ad-client='ca-pub-7938855665302783' data-ad-slot='6346277556' style='display:inline-block;width:468px;height:60px' /&gt;
 &lt;script&gt;
 (adsbygoogle = window.adsbygoogle || []).push({});
-&lt;/script&gt;&lt;/div&gt;
+&lt;/script&gt;
+&lt;/div&gt;
 &lt;h5 id='0'&gt;0.環境&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt;PHPフレームワークPhalconでPHP Debug Barを使うときの例です。
@@ -435,10 +440,11 @@ public function indexAction()
    <updated>2013-09-16T00:00:00+09:00</updated>
    <id>http://sankame.github.com/Ruby/2013/09/16/ruby_hello_world</id>
    <content type="html">&lt;span&gt;&lt;a href='https://twitter.com/handycola' class='twitter-follow-button' data-show-count='false' data-lang='ja' data-dnt='true' data-size='large' data-show-screen-name='false'&gt;@handycolaさんをフォロー&lt;/a&gt;
-&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');&lt;/script&gt;&lt;/span&gt;&lt;span style='float:right;'&gt;投稿日：2013年09月16日&lt;/span&gt;&lt;div&gt;&lt;ins class='adsbygoogle' data-ad-client='ca-pub-7938855665302783' data-ad-slot='3830449953' style='display:inline-block;width:125px;height:125px' /&gt;
+&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');&lt;/script&gt;&lt;/span&gt;&lt;span style='float:right;'&gt;投稿日：2013年09月16日&lt;/span&gt;&lt;div&gt;&lt;ins class='adsbygoogle' data-ad-client='ca-pub-7938855665302783' data-ad-slot='6346277556' style='display:inline-block;width:468px;height:60px' /&gt;
 &lt;script&gt;
 (adsbygoogle = window.adsbygoogle || []).push({});
-&lt;/script&gt;&lt;/div&gt;
+&lt;/script&gt;
+&lt;/div&gt;
 &lt;h3 id='ruby'&gt;Rubyを始める&lt;/h3&gt;
 
 &lt;h4 id='0'&gt;0.環境&lt;/h4&gt;
@@ -543,10 +549,11 @@ EOS&lt;/code&gt;&lt;/pre&gt;
    <updated>2013-09-09T00:00:00+09:00</updated>
    <id>http://sankame.github.com/Git/2013/09/09/git_command</id>
    <content type="html">&lt;span&gt;&lt;a href='https://twitter.com/handycola' class='twitter-follow-button' data-show-count='false' data-lang='ja' data-dnt='true' data-size='large' data-show-screen-name='false'&gt;@handycolaさんをフォロー&lt;/a&gt;
-&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');&lt;/script&gt;&lt;/span&gt;&lt;span style='float:right;'&gt;投稿日：2013年09月09日&lt;/span&gt;&lt;div&gt;&lt;ins class='adsbygoogle' data-ad-client='ca-pub-7938855665302783' data-ad-slot='3830449953' style='display:inline-block;width:125px;height:125px' /&gt;
+&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');&lt;/script&gt;&lt;/span&gt;&lt;span style='float:right;'&gt;投稿日：2013年09月09日&lt;/span&gt;&lt;div&gt;&lt;ins class='adsbygoogle' data-ad-client='ca-pub-7938855665302783' data-ad-slot='6346277556' style='display:inline-block;width:468px;height:60px' /&gt;
 &lt;script&gt;
 (adsbygoogle = window.adsbygoogle || []).push({});
-&lt;/script&gt;&lt;/div&gt;
+&lt;/script&gt;
+&lt;/div&gt;
 &lt;h4 id='git__'&gt;Gitコマンド メモ (自分用)&lt;/h4&gt;
 
 &lt;h5 id='1_gitignore_'&gt;(1) .gitignoreファイル &lt;a href='http://www.omakase.org/misc/gitignore.html'&gt;参考ページ&lt;/a&gt;&lt;/h5&gt;
@@ -619,10 +626,11 @@ Enter passphrase for key &amp;#39;/root/.ssh/id_rsa&amp;#39;: &lt;/code&gt;&lt;/
    <updated>2013-09-01T00:00:00+09:00</updated>
    <id>http://sankame.github.com/Nexus7/2013/09/01/nexus7_projected_to_pc</id>
    <content type="html">&lt;span&gt;&lt;a href='https://twitter.com/handycola' class='twitter-follow-button' data-show-count='false' data-lang='ja' data-dnt='true' data-size='large' data-show-screen-name='false'&gt;@handycolaさんをフォロー&lt;/a&gt;
-&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');&lt;/script&gt;&lt;/span&gt;&lt;span style='float:right;'&gt;投稿日：2013年09月01日&lt;/span&gt;&lt;div&gt;&lt;ins class='adsbygoogle' data-ad-client='ca-pub-7938855665302783' data-ad-slot='3830449953' style='display:inline-block;width:125px;height:125px' /&gt;
+&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');&lt;/script&gt;&lt;/span&gt;&lt;span style='float:right;'&gt;投稿日：2013年09月01日&lt;/span&gt;&lt;div&gt;&lt;ins class='adsbygoogle' data-ad-client='ca-pub-7938855665302783' data-ad-slot='6346277556' style='display:inline-block;width:468px;height:60px' /&gt;
 &lt;script&gt;
 (adsbygoogle = window.adsbygoogle || []).push({});
-&lt;/script&gt;&lt;/div&gt;
+&lt;/script&gt;
+&lt;/div&gt;
 &lt;h5 id='0'&gt;0.環境&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt;[タブレット端末/OS]  Nexus7 / Android 4.2.2
@@ -844,10 +852,11 @@ restarting in USB mode&lt;/code&gt;&lt;/pre&gt;
    <updated>2013-08-26T00:00:00+09:00</updated>
    <id>http://sankame.github.com/MySQL/2013/08/26/mysql_command</id>
    <content type="html">&lt;span&gt;&lt;a href='https://twitter.com/handycola' class='twitter-follow-button' data-show-count='false' data-lang='ja' data-dnt='true' data-size='large' data-show-screen-name='false'&gt;@handycolaさんをフォロー&lt;/a&gt;
-&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');&lt;/script&gt;&lt;/span&gt;&lt;span style='float:right;'&gt;投稿日：2013年08月26日&lt;/span&gt;&lt;div&gt;&lt;ins class='adsbygoogle' data-ad-client='ca-pub-7938855665302783' data-ad-slot='3830449953' style='display:inline-block;width:125px;height:125px' /&gt;
+&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');&lt;/script&gt;&lt;/span&gt;&lt;span style='float:right;'&gt;投稿日：2013年08月26日&lt;/span&gt;&lt;div&gt;&lt;ins class='adsbygoogle' data-ad-client='ca-pub-7938855665302783' data-ad-slot='6346277556' style='display:inline-block;width:468px;height:60px' /&gt;
 &lt;script&gt;
 (adsbygoogle = window.adsbygoogle || []).push({});
-&lt;/script&gt;&lt;/div&gt;
+&lt;/script&gt;
+&lt;/div&gt;
 &lt;h4 id='mysql_'&gt;MySQLコマンド メモ&lt;/h4&gt;
 
 &lt;h5 id='webdb1'&gt;WebサーバとDBサーバが1台のマシンにある場合によく行う操作。&lt;/h5&gt;
@@ -882,10 +891,11 @@ mysql&amp;gt; ) ENGINE=InnoDB;&lt;/code&gt;&lt;/pre&gt;</content>
    <updated>2013-08-11T00:00:00+09:00</updated>
    <id>http://sankame.github.com/Nexus7/2013/08/11/nexus7_github_devenv</id>
    <content type="html">&lt;span&gt;&lt;a href='https://twitter.com/handycola' class='twitter-follow-button' data-show-count='false' data-lang='ja' data-dnt='true' data-size='large' data-show-screen-name='false'&gt;@handycolaさんをフォロー&lt;/a&gt;
-&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');&lt;/script&gt;&lt;/span&gt;&lt;span style='float:right;'&gt;投稿日：2013年08月11日&lt;/span&gt;&lt;div&gt;&lt;ins class='adsbygoogle' data-ad-client='ca-pub-7938855665302783' data-ad-slot='3830449953' style='display:inline-block;width:125px;height:125px' /&gt;
+&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');&lt;/script&gt;&lt;/span&gt;&lt;span style='float:right;'&gt;投稿日：2013年08月11日&lt;/span&gt;&lt;div&gt;&lt;ins class='adsbygoogle' data-ad-client='ca-pub-7938855665302783' data-ad-slot='6346277556' style='display:inline-block;width:468px;height:60px' /&gt;
 &lt;script&gt;
 (adsbygoogle = window.adsbygoogle || []).push({});
-&lt;/script&gt;&lt;/div&gt;
+&lt;/script&gt;
+&lt;/div&gt;
 &lt;h5 id='0'&gt;0.環境&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt;[端末] Nexus7
@@ -983,7 +993,7 @@ $ git push origin master
 $
 $ これでGitHubにnew.txtがアップロードできたはず。&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h5 id='id73'&gt;参考ページ&lt;/h5&gt;
+&lt;h5 id='id54'&gt;参考ページ&lt;/h5&gt;
 
 &lt;p&gt;&lt;a href='https://play.google.com/store/apps/details?id=com.andi.serverweb'&gt;Terminal IDEの設定&lt;/a&gt;&lt;/p&gt;
 
@@ -998,15 +1008,16 @@ $ これでGitHubにnew.txtがアップロードできたはず。&lt;/code&gt;&
    <updated>2013-07-10T00:00:00+09:00</updated>
    <id>http://sankame.github.com/DELL/2013/07/10/redis_install</id>
    <content type="html">&lt;span&gt;&lt;a href='https://twitter.com/handycola' class='twitter-follow-button' data-show-count='false' data-lang='ja' data-dnt='true' data-size='large' data-show-screen-name='false'&gt;@handycolaさんをフォロー&lt;/a&gt;
-&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');&lt;/script&gt;&lt;/span&gt;&lt;span style='float:right;'&gt;投稿日：2013年07月10日&lt;/span&gt;&lt;div&gt;&lt;ins class='adsbygoogle' data-ad-client='ca-pub-7938855665302783' data-ad-slot='3830449953' style='display:inline-block;width:125px;height:125px' /&gt;
+&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');&lt;/script&gt;&lt;/span&gt;&lt;span style='float:right;'&gt;投稿日：2013年07月10日&lt;/span&gt;&lt;div&gt;&lt;ins class='adsbygoogle' data-ad-client='ca-pub-7938855665302783' data-ad-slot='6346277556' style='display:inline-block;width:468px;height:60px' /&gt;
 &lt;script&gt;
 (adsbygoogle = window.adsbygoogle || []).push({});
-&lt;/script&gt;&lt;/div&gt;
-&lt;h5 id='id71'&gt;環境&lt;/h5&gt;
+&lt;/script&gt;
+&lt;/div&gt;
+&lt;h5 id='id52'&gt;環境&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt;[CentOS] 5.6 (32bit版カーネル)&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h5 id='id72'&gt;インストール&lt;/h5&gt;
+&lt;h5 id='id53'&gt;インストール&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt;# ソース取得。
 # wget http://redis.googlecode.com/files/redis-2.6.7.tar.gz
@@ -1077,11 +1088,12 @@ PONG
    <updated>2013-07-05T00:00:00+09:00</updated>
    <id>http://sankame.github.com/DELL/2013/07/05/dell_e5520_touchpad</id>
    <content type="html">&lt;span&gt;&lt;a href='https://twitter.com/handycola' class='twitter-follow-button' data-show-count='false' data-lang='ja' data-dnt='true' data-size='large' data-show-screen-name='false'&gt;@handycolaさんをフォロー&lt;/a&gt;
-&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');&lt;/script&gt;&lt;/span&gt;&lt;span style='float:right;'&gt;投稿日：2013年07月05日&lt;/span&gt;&lt;div&gt;&lt;ins class='adsbygoogle' data-ad-client='ca-pub-7938855665302783' data-ad-slot='3830449953' style='display:inline-block;width:125px;height:125px' /&gt;
+&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');&lt;/script&gt;&lt;/span&gt;&lt;span style='float:right;'&gt;投稿日：2013年07月05日&lt;/span&gt;&lt;div&gt;&lt;ins class='adsbygoogle' data-ad-client='ca-pub-7938855665302783' data-ad-slot='6346277556' style='display:inline-block;width:468px;height:60px' /&gt;
 &lt;script&gt;
 (adsbygoogle = window.adsbygoogle || []).push({});
-&lt;/script&gt;&lt;/div&gt;
-&lt;h5 id='id70'&gt;環境&lt;/h5&gt;
+&lt;/script&gt;
+&lt;/div&gt;
+&lt;h5 id='id51'&gt;環境&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt;[PC] DELL E5520
 [OS] Windows 7 Professional (SP1)&lt;/code&gt;&lt;/pre&gt;
@@ -1131,10 +1143,11 @@ Dell Touchpad が増えているのでダブルクリック。&lt;/code&gt;&lt;/
    <updated>2013-05-12T00:00:00+09:00</updated>
    <id>http://sankame.github.com/Smarty/2013/05/12/smarty_ellipses</id>
    <content type="html">&lt;span&gt;&lt;a href='https://twitter.com/handycola' class='twitter-follow-button' data-show-count='false' data-lang='ja' data-dnt='true' data-size='large' data-show-screen-name='false'&gt;@handycolaさんをフォロー&lt;/a&gt;
-&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');&lt;/script&gt;&lt;/span&gt;&lt;span style='float:right;'&gt;投稿日：2013年05月12日&lt;/span&gt;&lt;div&gt;&lt;ins class='adsbygoogle' data-ad-client='ca-pub-7938855665302783' data-ad-slot='3830449953' style='display:inline-block;width:125px;height:125px' /&gt;
+&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');&lt;/script&gt;&lt;/span&gt;&lt;span style='float:right;'&gt;投稿日：2013年05月12日&lt;/span&gt;&lt;div&gt;&lt;ins class='adsbygoogle' data-ad-client='ca-pub-7938855665302783' data-ad-slot='6346277556' style='display:inline-block;width:468px;height:60px' /&gt;
 &lt;script&gt;
 (adsbygoogle = window.adsbygoogle || []).push({});
-&lt;/script&gt;&lt;/div&gt;
+&lt;/script&gt;
+&lt;/div&gt;
 &lt;h5 id='109'&gt;10文字以上の場合、9文字目を…にして残りを切り捨てる。&lt;/h5&gt;
 
 &lt;h5 id='1'&gt;(半角、全角ともに1文字として扱う)&lt;/h5&gt;
@@ -1146,7 +1159,7 @@ Dell Touchpad が増えているのでダブルクリック。&lt;/code&gt;&lt;/
 {/if}
 &amp;lt;a class=&amp;quot;keyword-link&amp;quot; href=&amp;quot;#&amp;quot; title=&amp;quot;{$keyword}&amp;quot;&amp;gt;{$cutKeyword}&amp;lt;/a&amp;gt;&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h5 id='id69'&gt;上記コードで各文字列を変換した場合。&lt;/h5&gt;
+&lt;h5 id='id50'&gt;上記コードで各文字列を変換した場合。&lt;/h5&gt;
 
 &lt;h5 id='_'&gt;(&amp;#8220;→&amp;#8221; は変換前後を表す)&lt;/h5&gt;
 
@@ -1163,13 +1176,14 @@ Dell Touchpad が増えているのでダブルクリック。&lt;/code&gt;&lt;/
    <updated>2013-04-29T00:00:00+09:00</updated>
    <id>http://sankame.github.com/MeCab/2013/04/29/php_mecab</id>
    <content type="html">&lt;span&gt;&lt;a href='https://twitter.com/handycola' class='twitter-follow-button' data-show-count='false' data-lang='ja' data-dnt='true' data-size='large' data-show-screen-name='false'&gt;@handycolaさんをフォロー&lt;/a&gt;
-&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');&lt;/script&gt;&lt;/span&gt;&lt;span style='float:right;'&gt;投稿日：2013年04月29日&lt;/span&gt;&lt;div&gt;&lt;ins class='adsbygoogle' data-ad-client='ca-pub-7938855665302783' data-ad-slot='3830449953' style='display:inline-block;width:125px;height:125px' /&gt;
+&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');&lt;/script&gt;&lt;/span&gt;&lt;span style='float:right;'&gt;投稿日：2013年04月29日&lt;/span&gt;&lt;div&gt;&lt;ins class='adsbygoogle' data-ad-client='ca-pub-7938855665302783' data-ad-slot='6346277556' style='display:inline-block;width:468px;height:60px' /&gt;
 &lt;script&gt;
 (adsbygoogle = window.adsbygoogle || []).push({});
-&lt;/script&gt;&lt;/div&gt;
+&lt;/script&gt;
+&lt;/div&gt;
 &lt;h4 id='phpmecab'&gt;PHPからMeCabを使ってみる。&lt;/h4&gt;
 
-&lt;h5 id='id68'&gt;環境&lt;/h5&gt;
+&lt;h5 id='id49'&gt;環境&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt;[CentOS] 5.6 (32bit版カーネル)
 [PHP]    5.3.3&lt;/code&gt;&lt;/pre&gt;
@@ -1244,13 +1258,14 @@ EOS
    <updated>2013-01-28T00:00:00+09:00</updated>
    <id>http://sankame.github.com/MeCab/2013/01/28/mecab_install</id>
    <content type="html">&lt;span&gt;&lt;a href='https://twitter.com/handycola' class='twitter-follow-button' data-show-count='false' data-lang='ja' data-dnt='true' data-size='large' data-show-screen-name='false'&gt;@handycolaさんをフォロー&lt;/a&gt;
-&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');&lt;/script&gt;&lt;/span&gt;&lt;span style='float:right;'&gt;投稿日：2013年01月28日&lt;/span&gt;&lt;div&gt;&lt;ins class='adsbygoogle' data-ad-client='ca-pub-7938855665302783' data-ad-slot='3830449953' style='display:inline-block;width:125px;height:125px' /&gt;
+&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');&lt;/script&gt;&lt;/span&gt;&lt;span style='float:right;'&gt;投稿日：2013年01月28日&lt;/span&gt;&lt;div&gt;&lt;ins class='adsbygoogle' data-ad-client='ca-pub-7938855665302783' data-ad-slot='6346277556' style='display:inline-block;width:468px;height:60px' /&gt;
 &lt;script&gt;
 (adsbygoogle = window.adsbygoogle || []).push({});
-&lt;/script&gt;&lt;/div&gt;
+&lt;/script&gt;
+&lt;/div&gt;
 &lt;h4 id='mecab'&gt;形態素解析エンジンMeCabをインストールしてみる。&lt;/h4&gt;
 
-&lt;h5 id='id67'&gt;環境&lt;/h5&gt;
+&lt;h5 id='id48'&gt;環境&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt;[CentOS] 5.6 (32bit版カーネル)&lt;/code&gt;&lt;/pre&gt;
 
@@ -1340,10 +1355,11 @@ EOS&lt;/code&gt;&lt;/pre&gt;
    <updated>2013-01-20T00:00:00+09:00</updated>
    <id>http://sankame.github.com/OpenX/2013/01/20/openx_structure1</id>
    <content type="html">&lt;span&gt;&lt;a href='https://twitter.com/handycola' class='twitter-follow-button' data-show-count='false' data-lang='ja' data-dnt='true' data-size='large' data-show-screen-name='false'&gt;@handycolaさんをフォロー&lt;/a&gt;
-&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');&lt;/script&gt;&lt;/span&gt;&lt;span style='float:right;'&gt;投稿日：2013年01月20日&lt;/span&gt;&lt;div&gt;&lt;ins class='adsbygoogle' data-ad-client='ca-pub-7938855665302783' data-ad-slot='3830449953' style='display:inline-block;width:125px;height:125px' /&gt;
+&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');&lt;/script&gt;&lt;/span&gt;&lt;span style='float:right;'&gt;投稿日：2013年01月20日&lt;/span&gt;&lt;div&gt;&lt;ins class='adsbygoogle' data-ad-client='ca-pub-7938855665302783' data-ad-slot='6346277556' style='display:inline-block;width:468px;height:60px' /&gt;
 &lt;script&gt;
 (adsbygoogle = window.adsbygoogle || []).push({});
-&lt;/script&gt;&lt;/div&gt;
+&lt;/script&gt;
+&lt;/div&gt;
 &lt;h4 id='openx'&gt;OpenX仕組みに関する自分用メモ　配信処理&lt;/h4&gt;
 
 &lt;h4 id='1'&gt;1.テーブル定義&lt;/h4&gt;
@@ -1365,10 +1381,11 @@ DB	: ox_data_bkt_m
    <updated>2013-01-19T00:00:00+09:00</updated>
    <id>http://sankame.github.com/Subversion/2013/01/19/svn_create_repos</id>
    <content type="html">&lt;span&gt;&lt;a href='https://twitter.com/handycola' class='twitter-follow-button' data-show-count='false' data-lang='ja' data-dnt='true' data-size='large' data-show-screen-name='false'&gt;@handycolaさんをフォロー&lt;/a&gt;
-&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');&lt;/script&gt;&lt;/span&gt;&lt;span style='float:right;'&gt;投稿日：2013年01月19日&lt;/span&gt;&lt;div&gt;&lt;ins class='adsbygoogle' data-ad-client='ca-pub-7938855665302783' data-ad-slot='3830449953' style='display:inline-block;width:125px;height:125px' /&gt;
+&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');&lt;/script&gt;&lt;/span&gt;&lt;span style='float:right;'&gt;投稿日：2013年01月19日&lt;/span&gt;&lt;div&gt;&lt;ins class='adsbygoogle' data-ad-client='ca-pub-7938855665302783' data-ad-slot='6346277556' style='display:inline-block;width:468px;height:60px' /&gt;
 &lt;script&gt;
 (adsbygoogle = window.adsbygoogle || []).push({});
-&lt;/script&gt;&lt;/div&gt;
+&lt;/script&gt;
+&lt;/div&gt;
 &lt;h4 id='svnsubversion'&gt;SVN(Subversion)でリポジトリ作成する際の最低限の手順をまとめました。&lt;/h4&gt;
 
 &lt;h4 id='svn'&gt;※SVNはインストール済みとします。&lt;/h4&gt;
@@ -1450,10 +1467,11 @@ svn mkdir file:///var/svn/repos/test/branches -m &amp;quot;create&amp;quot;&lt;/
    <updated>2013-01-15T00:00:00+09:00</updated>
    <id>http://sankame.github.com/OpenX/2013/01/15/openx_delivery_test</id>
    <content type="html">&lt;span&gt;&lt;a href='https://twitter.com/handycola' class='twitter-follow-button' data-show-count='false' data-lang='ja' data-dnt='true' data-size='large' data-show-screen-name='false'&gt;@handycolaさんをフォロー&lt;/a&gt;
-&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');&lt;/script&gt;&lt;/span&gt;&lt;span style='float:right;'&gt;投稿日：2013年01月15日&lt;/span&gt;&lt;div&gt;&lt;ins class='adsbygoogle' data-ad-client='ca-pub-7938855665302783' data-ad-slot='3830449953' style='display:inline-block;width:125px;height:125px' /&gt;
+&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');&lt;/script&gt;&lt;/span&gt;&lt;span style='float:right;'&gt;投稿日：2013年01月15日&lt;/span&gt;&lt;div&gt;&lt;ins class='adsbygoogle' data-ad-client='ca-pub-7938855665302783' data-ad-slot='6346277556' style='display:inline-block;width:468px;height:60px' /&gt;
 &lt;script&gt;
 (adsbygoogle = window.adsbygoogle || []).push({});
-&lt;/script&gt;&lt;/div&gt;
+&lt;/script&gt;
+&lt;/div&gt;
 &lt;h4 id='openxver2810'&gt;OpenX(ver2.8.10)で広告配信テストをしてみる。&lt;/h4&gt;
 
 &lt;h4 id='1'&gt;1.管理画面ログイン&lt;/h4&gt;
@@ -1554,13 +1572,14 @@ Banner display : (Google AdSenseの広告ユニットコードと同じサイズ
    <updated>2012-12-31T00:00:00+09:00</updated>
    <id>http://sankame.github.com/CentOS/2012/12/31/centos_command</id>
    <content type="html">&lt;span&gt;&lt;a href='https://twitter.com/handycola' class='twitter-follow-button' data-show-count='false' data-lang='ja' data-dnt='true' data-size='large' data-show-screen-name='false'&gt;@handycolaさんをフォロー&lt;/a&gt;
-&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');&lt;/script&gt;&lt;/span&gt;&lt;span style='float:right;'&gt;投稿日：2012年12月31日&lt;/span&gt;&lt;div&gt;&lt;ins class='adsbygoogle' data-ad-client='ca-pub-7938855665302783' data-ad-slot='3830449953' style='display:inline-block;width:125px;height:125px' /&gt;
+&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');&lt;/script&gt;&lt;/span&gt;&lt;span style='float:right;'&gt;投稿日：2012年12月31日&lt;/span&gt;&lt;div&gt;&lt;ins class='adsbygoogle' data-ad-client='ca-pub-7938855665302783' data-ad-slot='6346277556' style='display:inline-block;width:468px;height:60px' /&gt;
 &lt;script&gt;
 (adsbygoogle = window.adsbygoogle || []).push({});
-&lt;/script&gt;&lt;/div&gt;
+&lt;/script&gt;
+&lt;/div&gt;
 &lt;h4 id='centos_'&gt;CentOSコマンド メモ&lt;/h4&gt;
 
-&lt;h5 id='id66'&gt;・ファイル検索&lt;/h5&gt;
+&lt;h5 id='id47'&gt;・ファイル検索&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt; find / -name filename&lt;/code&gt;&lt;/pre&gt;
 
@@ -1658,10 +1677,11 @@ $ netstat -anp | grep 【ポート番号】
    <updated>2012-12-28T00:00:00+09:00</updated>
    <id>http://sankame.github.com/PHP/2012/12/28/php_sample_viaisset</id>
    <content type="html">&lt;span&gt;&lt;a href='https://twitter.com/handycola' class='twitter-follow-button' data-show-count='false' data-lang='ja' data-dnt='true' data-size='large' data-show-screen-name='false'&gt;@handycolaさんをフォロー&lt;/a&gt;
-&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');&lt;/script&gt;&lt;/span&gt;&lt;span style='float:right;'&gt;投稿日：2012年12月28日&lt;/span&gt;&lt;div&gt;&lt;ins class='adsbygoogle' data-ad-client='ca-pub-7938855665302783' data-ad-slot='3830449953' style='display:inline-block;width:125px;height:125px' /&gt;
+&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');&lt;/script&gt;&lt;/span&gt;&lt;span style='float:right;'&gt;投稿日：2012年12月28日&lt;/span&gt;&lt;div&gt;&lt;ins class='adsbygoogle' data-ad-client='ca-pub-7938855665302783' data-ad-slot='6346277556' style='display:inline-block;width:468px;height:60px' /&gt;
 &lt;script&gt;
 (adsbygoogle = window.adsbygoogle || []).push({});
-&lt;/script&gt;&lt;/div&gt;
+&lt;/script&gt;
+&lt;/div&gt;
 &lt;h4 id='undefined_index_noticeisset'&gt;&amp;#8220;Undefined index&amp;#8221; Noticeを防ぐためのissetが冗長なので関数化。&lt;/h4&gt;
 &lt;script src='https://gist.github.com/4389910.js' /&gt;</content>
  </entry>
@@ -1672,13 +1692,14 @@ $ netstat -anp | grep 【ポート番号】
    <updated>2012-12-27T00:00:00+09:00</updated>
    <id>http://sankame.github.com/GitHub/2012/12/27/github_pages_doesnt_work</id>
    <content type="html">&lt;span&gt;&lt;a href='https://twitter.com/handycola' class='twitter-follow-button' data-show-count='false' data-lang='ja' data-dnt='true' data-size='large' data-show-screen-name='false'&gt;@handycolaさんをフォロー&lt;/a&gt;
-&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');&lt;/script&gt;&lt;/span&gt;&lt;span style='float:right;'&gt;投稿日：2012年12月27日&lt;/span&gt;&lt;div&gt;&lt;ins class='adsbygoogle' data-ad-client='ca-pub-7938855665302783' data-ad-slot='3830449953' style='display:inline-block;width:125px;height:125px' /&gt;
+&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');&lt;/script&gt;&lt;/span&gt;&lt;span style='float:right;'&gt;投稿日：2012年12月27日&lt;/span&gt;&lt;div&gt;&lt;ins class='adsbygoogle' data-ad-client='ca-pub-7938855665302783' data-ad-slot='6346277556' style='display:inline-block;width:468px;height:60px' /&gt;
 &lt;script&gt;
 (adsbygoogle = window.adsbygoogle || []).push({});
-&lt;/script&gt;&lt;/div&gt;
+&lt;/script&gt;
+&lt;/div&gt;
 &lt;h4 id='githubpagesindexhtml'&gt;GitHubPagesでブログを公開しようと、下記ページに従って作業したがindex.htmlすら表示されない…&lt;/h4&gt;
 
-&lt;h4 id='id65'&gt;&lt;a href='http://tokkono.cute.coocan.jp/blog/slow/index.php/programming/github-pages-almost-perfect-guide/'&gt;参考ページ&lt;/a&gt;&lt;/h4&gt;
+&lt;h4 id='id46'&gt;&lt;a href='http://tokkono.cute.coocan.jp/blog/slow/index.php/programming/github-pages-almost-perfect-guide/'&gt;参考ページ&lt;/a&gt;&lt;/h4&gt;
 
 &lt;h4 id='1github'&gt;1.GitHubに登録したメールアドレスの受信箱をチェック&lt;/h4&gt;
 
@@ -1706,13 +1727,14 @@ https://github.com/settings/emails&lt;/code&gt;&lt;/pre&gt;
    <updated>2012-12-24T00:00:00+09:00</updated>
    <id>http://sankame.github.com/OpenX/2012/12/24/openx_install</id>
    <content type="html">&lt;span&gt;&lt;a href='https://twitter.com/handycola' class='twitter-follow-button' data-show-count='false' data-lang='ja' data-dnt='true' data-size='large' data-show-screen-name='false'&gt;@handycolaさんをフォロー&lt;/a&gt;
-&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');&lt;/script&gt;&lt;/span&gt;&lt;span style='float:right;'&gt;投稿日：2012年12月24日&lt;/span&gt;&lt;div&gt;&lt;ins class='adsbygoogle' data-ad-client='ca-pub-7938855665302783' data-ad-slot='3830449953' style='display:inline-block;width:125px;height:125px' /&gt;
+&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');&lt;/script&gt;&lt;/span&gt;&lt;span style='float:right;'&gt;投稿日：2012年12月24日&lt;/span&gt;&lt;div&gt;&lt;ins class='adsbygoogle' data-ad-client='ca-pub-7938855665302783' data-ad-slot='6346277556' style='display:inline-block;width:468px;height:60px' /&gt;
 &lt;script&gt;
 (adsbygoogle = window.adsbygoogle || []).push({});
-&lt;/script&gt;&lt;/div&gt;
+&lt;/script&gt;
+&lt;/div&gt;
 &lt;h4 id='pcvmwareplayeropenx'&gt;ローカルPCのVmwarePlayerにOpenXをインストール。&lt;/h4&gt;
 
-&lt;h4 id='id64'&gt;&lt;a href='http://www.openx.com/docs/qsg-install'&gt;マニュアル&lt;/a&gt;に従ってインストールした。&lt;/h4&gt;
+&lt;h4 id='id45'&gt;&lt;a href='http://www.openx.com/docs/qsg-install'&gt;マニュアル&lt;/a&gt;に従ってインストールした。&lt;/h4&gt;
 
 &lt;h4 id='1'&gt;1.ソース取得&lt;/h4&gt;
 
@@ -1812,10 +1834,11 @@ if( ! ini_get(&amp;#39;date.timezone&amp;#39;) ){
    <updated>2012-12-23T00:00:00+09:00</updated>
    <id>http://sankame.github.com/Jekyll/2012/12/23/jekyll_and_github</id>
    <content type="html">&lt;span&gt;&lt;a href='https://twitter.com/handycola' class='twitter-follow-button' data-show-count='false' data-lang='ja' data-dnt='true' data-size='large' data-show-screen-name='false'&gt;@handycolaさんをフォロー&lt;/a&gt;
-&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');&lt;/script&gt;&lt;/span&gt;&lt;span style='float:right;'&gt;投稿日：2012年12月23日&lt;/span&gt;&lt;div&gt;&lt;ins class='adsbygoogle' data-ad-client='ca-pub-7938855665302783' data-ad-slot='3830449953' style='display:inline-block;width:125px;height:125px' /&gt;
+&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');&lt;/script&gt;&lt;/span&gt;&lt;span style='float:right;'&gt;投稿日：2012年12月23日&lt;/span&gt;&lt;div&gt;&lt;ins class='adsbygoogle' data-ad-client='ca-pub-7938855665302783' data-ad-slot='6346277556' style='display:inline-block;width:468px;height:60px' /&gt;
 &lt;script&gt;
 (adsbygoogle = window.adsbygoogle || []).push({});
-&lt;/script&gt;&lt;/div&gt;
+&lt;/script&gt;
+&lt;/div&gt;
 &lt;h4 id='pcvmwareplayerruby_rubygems_jekyll'&gt;ローカルPCのVmwarePlayerにRuby, RubyGems, Jekyllをインストール。&lt;/h4&gt;
 
 &lt;h4 id='jekyllgithub'&gt;Jekyllで作ったブログをGitHubに設置する。&lt;/h4&gt;
@@ -1916,7 +1939,7 @@ Auto-regenerating enabled: /var/www/html/jekyll/JEKYLL_HOME -&amp;gt; /var/www/h
 
 &lt;h5 id='githtmlgithubpush'&gt;任意のディレクトリをGitの作業ツリーにして、そこからHTMLをGitHubへPushする。&lt;/h5&gt;
 
-&lt;h5 id='id63'&gt;&lt;code&gt;【注意】/var/www/html/jekyll/JEKYLL_HOME/_site/ を作業ツリーにするとJekyllを起動する度に.gitが削除されるので適さない。&lt;/code&gt;&lt;/h5&gt;
+&lt;h5 id='id44'&gt;&lt;code&gt;【注意】/var/www/html/jekyll/JEKYLL_HOME/_site/ を作業ツリーにするとJekyllを起動する度に.gitが削除されるので適さない。&lt;/code&gt;&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt;# Jekyllが生成したHTMLをGit作業ツリー(任意のディレクトリ)へコピーする。
 # cp -pr /var/www/html/jekyll/JEKYLL_HOME/_site/* /var/www/html/sankame.github.com/
@@ -1936,24 +1959,25 @@ Auto-regenerating enabled: /var/www/html/jekyll/JEKYLL_HOME -&amp;gt; /var/www/h
    <updated>2012-12-17T00:00:00+09:00</updated>
    <id>http://sankame.github.com/Jekyll/2012/12/17/jekyll_tips1</id>
    <content type="html">&lt;span&gt;&lt;a href='https://twitter.com/handycola' class='twitter-follow-button' data-show-count='false' data-lang='ja' data-dnt='true' data-size='large' data-show-screen-name='false'&gt;@handycolaさんをフォロー&lt;/a&gt;
-&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');&lt;/script&gt;&lt;/span&gt;&lt;span style='float:right;'&gt;投稿日：2012年12月17日&lt;/span&gt;&lt;div&gt;&lt;ins class='adsbygoogle' data-ad-client='ca-pub-7938855665302783' data-ad-slot='3830449953' style='display:inline-block;width:125px;height:125px' /&gt;
+&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');&lt;/script&gt;&lt;/span&gt;&lt;span style='float:right;'&gt;投稿日：2012年12月17日&lt;/span&gt;&lt;div&gt;&lt;ins class='adsbygoogle' data-ad-client='ca-pub-7938855665302783' data-ad-slot='6346277556' style='display:inline-block;width:468px;height:60px' /&gt;
 &lt;script&gt;
 (adsbygoogle = window.adsbygoogle || []).push({});
-&lt;/script&gt;&lt;/div&gt;
+&lt;/script&gt;
+&lt;/div&gt;
 &lt;h4 id='jekyll'&gt;Jekyllの設定に関するメモ。&lt;/h4&gt;
 
 &lt;h4 id='jekyllbootstrap'&gt;JekyllBootstrapの配置先は下記ディレクトリ。(&lt;a href='/Jekyll/2012/12/23/jekyll_and_github/'&gt;関連記事&lt;/a&gt;)&lt;/h4&gt;
 
 &lt;h5 id='varwwwhtmljekylljekyll_home'&gt;/var/www/html/jekyll/JEKYLL_HOME/&lt;/h5&gt;
 
-&lt;h6 id='id58'&gt;・画面ヘッダ部分のナビゲーションを変更したい。&lt;/h6&gt;
+&lt;h6 id='id39'&gt;・画面ヘッダ部分のナビゲーションを変更したい。&lt;/h6&gt;
 
 &lt;pre&gt;&lt;code&gt;(例)
 画面ヘッダ部分にArchiveを表示したくない場合
 下記ファイルのヘッダ部分の&amp;quot;group: navigation&amp;quot;を#でコメントアウトする。
 /var/www/html/jekyll/JEKYLL_HOME/archive.html&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h6 id='id59'&gt;・記事タイトルに日本語を使いたい。&lt;/h6&gt;
+&lt;h6 id='id40'&gt;・記事タイトルに日本語を使いたい。&lt;/h6&gt;
 
 &lt;pre&gt;&lt;code&gt;記事のファイル名に日本語は使えないので、YAMLのFront Matterでtitleを指定する。
 (例)
@@ -1965,7 +1989,7 @@ date: 2012-12-23 00:00:00
 title: Jekyllとgithubでブログ作成
 ---&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h6 id='id60'&gt;・ループ回数を制限したい。&lt;/h6&gt;
+&lt;h6 id='id41'&gt;・ループ回数を制限したい。&lt;/h6&gt;
 
 &lt;pre&gt;&lt;code&gt;limitを使う。
 
@@ -1985,7 +2009,7 @@ title: Jekyllとgithubでブログ作成
 エスケープしたい表現
 {% endraw %}&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h6 id='id61'&gt;・日付のフォーマット(書式)を変更したい。&lt;a href='http://stackoverflow.com/questions/7395520/jekyll-date-format'&gt;参考ページ&lt;/a&gt;&lt;/h6&gt;
+&lt;h6 id='id42'&gt;・日付のフォーマット(書式)を変更したい。&lt;a href='http://stackoverflow.com/questions/7395520/jekyll-date-format'&gt;参考ページ&lt;/a&gt;&lt;/h6&gt;
 
 &lt;pre&gt;&lt;code&gt;日本語を使う場合、ファイルをUTF8で保存する。
 
@@ -1993,7 +2017,7 @@ title: Jekyllとgithubでブログ作成
 
 { post.date | date: &amp;quot;%Y年%m月%d日&amp;quot; }&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h6 id='id62'&gt;・文法に関する参考ページ&lt;/h6&gt;
+&lt;h6 id='id43'&gt;・文法に関する参考ページ&lt;/h6&gt;
 
 &lt;p&gt;・&lt;a href='https://github.com/mojombo/jekyll/wiki/template-data'&gt;Jekyll変数&lt;/a&gt;&lt;/p&gt;
 
