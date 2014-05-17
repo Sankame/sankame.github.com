@@ -74,13 +74,13 @@
   
     
       
-    
-  
-    
-      
       	
       	<li><a href="/tags.html">タグ</a></li>
       	
+      
+    
+  
+    
       
     
   
@@ -105,9 +105,7 @@
     </div>
 
     <div class="container">
-
       <div class="content">
-
         
 
 <div class="page-header">
@@ -119,21 +117,23 @@
   <!--[if IE 6 ]>
     <div class="span12-for-ie6">
   <![endif]-->
-    <span><a href='https://twitter.com/handycola' class='twitter-follow-button' data-show-count='false' data-lang='ja' data-dnt='true' data-size='large' data-show-screen-name='false'>@handycolaさんをフォロー</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></span><span style='float:right;'>投稿日：2012年12月24日</span><div><ins class='adsbygoogle' data-ad-client='ca-pub-7938855665302783' data-ad-slot='6346277556' style='display:inline-block;width:468px;height:60px' />
+    
+<p><span><a class='twitter-follow-button' data-dnt='true' data-lang='ja' data-show-count='false' data-show-screen-name='false' data-size='large' href='https://twitter.com/handycola'>@handycolaさんをフォロー</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?&#39;http&#39;:&#39;https&#39;;if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+&#39;://platform.twitter.com/widgets.js&#39;;fjs.parentNode.insertBefore(js,fjs);}}(document, &#39;script&#39;, &#39;twitter-wjs&#39;);</script></span><span style='float:right;'>投稿日：2012年12月24日</span></p>
+<div><ins class='adsbygoogle' data-ad-client='ca-pub-7938855665302783' data-ad-slot='6346277556' style='display:inline-block;width:468px;height:60px' />
 <script>
 (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
 </div>
-<h4 id='pcvmwareplayeropenx'>ローカルPCのVmwarePlayerにOpenXをインストール。</h4>
+<h4 id="pcvmwareplayeropenx">ローカルPCのVmwarePlayerにOpenXをインストール。</h4>
 
-<h4 id='id45'><a href='http://www.openx.com/docs/qsg-install'>マニュアル</a>に従ってインストールした。</h4>
+<h4 id=""><a href="http://www.openx.com/docs/qsg-install">マニュアル</a>に従ってインストールした。</h4>
 
-<h4 id='1'>1.ソース取得</h4>
+<h4 id="1">1.ソース取得</h4>
 
 <p>マニュアルの下記リンクからソースをダウンロード。(アンケートあるためwgetでは落とせない)</p>
 
-<p>Download the latest installation archive from: <a href='http://www.openx.com/publisher/open-source-ad-server'>here</a></p>
+<p>Download the latest installation archive from: <a href="http://www.openx.com/publisher/open-source-ad-server">here</a></p>
 
 <p>ソースをWebサーバへアップし、解凍して公開ディレクトリへ配置する。</p>
 
@@ -159,13 +159,13 @@
 <pre><code># chmod -R a+w /var/www/html/openx/plugins
 # chmod -R a+w /var/www/html/openx/www/admin/plugins</code></pre>
 
-<h4 id='2registration'>2.Registration</h4>
+<h4 id="2registration">2.Registration</h4>
 
 <p>Webインストーラを続行、下記項目に入力。</p>
 
 <p>name, password, e-mail</p>
 
-<h4 id='3database'>3.Database</h4>
+<h4 id="3database">3.Database</h4>
 
 <p>DBがなかったら作成されると画面に書いてあったが、エラーになったので</p>
 
@@ -174,13 +174,13 @@
 <pre><code># create database testdb;
 # grant all on testdb.* to &#39;testuser&#39;@&#39;localhost&#39; identified by &#39;testpassword&#39;;</code></pre>
 
-<h4 id='4_configuration'>4. Configuration</h4>
+<h4 id="4_configuration">4. Configuration</h4>
 
 <p>Webインストーラを続行、下記項目に入力。</p>
 
 <p>Admin User, Admin User Password</p>
 
-<h4 id='5_finish'>5. Finish</h4>
+<h4 id="5_finish">5. Finish</h4>
 
 <p>エラーが出たからログを見てね、と書いてあったが無視してそのままcontinue</p>
 
@@ -188,7 +188,7 @@
 
 <pre><code># view /var/www/html/openx/var/install.log</code></pre>
 
-<h4 id='6_'>6. その他</h4>
+<h4 id="6_">6. その他</h4>
 
 <p>そのまま広告設定の管理画面ぽいところへ遷移。</p>
 
@@ -218,7 +218,8 @@ if( ! ini_get(&#39;date.timezone&#39;) ){
 //追記ここまで
 	$GLOBALS[&#39;serverTimezone&#39;] = date_default_timezone_get();</code></pre>
 
-<p><a href='http://www.jamescrowley.co.uk/2010/09/12/running-openx-under-iis-with-php-5-3-date-default-timezone-get-errors/'>参考ページ</a></p>
+<p><a href="http://www.jamescrowley.co.uk/2010/09/12/running-openx-under-iis-with-php-5-3-date-default-timezone-get-errors/">参考ページ</a></p>
+
   <!--[if IE 6 ]>
     </div>
   <![endif]-->

@@ -74,13 +74,13 @@
   
     
       
-    
-  
-    
-      
       	
       	<li><a href="/tags.html">タグ</a></li>
       	
+      
+    
+  
+    
       
     
   
@@ -105,9 +105,7 @@
     </div>
 
     <div class="container">
-
       <div class="content">
-
         
 
 <div class="page-header">
@@ -119,24 +117,26 @@
   <!--[if IE 6 ]>
     <div class="span12-for-ie6">
   <![endif]-->
-    <span><a href='https://twitter.com/handycola' class='twitter-follow-button' data-show-count='false' data-lang='ja' data-dnt='true' data-size='large' data-show-screen-name='false'>@handycolaさんをフォロー</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></span><span style='float:right;'>投稿日：2012年12月23日</span><div><ins class='adsbygoogle' data-ad-client='ca-pub-7938855665302783' data-ad-slot='6346277556' style='display:inline-block;width:468px;height:60px' />
+    
+<p><span><a class='twitter-follow-button' data-dnt='true' data-lang='ja' data-show-count='false' data-show-screen-name='false' data-size='large' href='https://twitter.com/handycola'>@handycolaさんをフォロー</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?&#39;http&#39;:&#39;https&#39;;if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+&#39;://platform.twitter.com/widgets.js&#39;;fjs.parentNode.insertBefore(js,fjs);}}(document, &#39;script&#39;, &#39;twitter-wjs&#39;);</script></span><span style='float:right;'>投稿日：2012年12月23日</span></p>
+<div><ins class='adsbygoogle' data-ad-client='ca-pub-7938855665302783' data-ad-slot='6346277556' style='display:inline-block;width:468px;height:60px' />
 <script>
 (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
 </div>
-<h4 id='pcvmwareplayerruby_rubygems_jekyll'>ローカルPCのVmwarePlayerにRuby, RubyGems, Jekyllをインストール。</h4>
+<h4 id="pcvmwareplayerruby_rubygems_jekyll">ローカルPCのVmwarePlayerにRuby, RubyGems, Jekyllをインストール。</h4>
 
-<h4 id='jekyllgithub'>Jekyllで作ったブログをGitHubに設置する。</h4>
+<h4 id="jekyllgithub">Jekyllで作ったブログをGitHubに設置する。</h4>
 
-<h4 id='1ruby'>1.Rubyインストール</h4>
+<h4 id="1ruby">1.Rubyインストール</h4>
 
 <pre><code># インストール済みか？
 # rpm -q ruby
 # インストールされていない場合、インストールを行う。
 # yum install ruby ruby-devel rdoc irb</code></pre>
 
-<h4 id='2rubygems'>2.RubyGemsインストール</h4>
+<h4 id="2rubygems">2.RubyGemsインストール</h4>
 
 <pre><code># wget http://rubyforge.org/frs/download.php/60718/rubygems-1.3.5.tgz
 # tar xzf rubygems-1.3.5.tgz
@@ -145,7 +145,7 @@
 # インストールされたgemsのバージョン確認。
 # gem -v</code></pre>
 
-<h4 id='3jekyll'>3.Jekyllインストール</h4>
+<h4 id="3jekyll">3.Jekyllインストール</h4>
 
 <pre><code># gem install jekyll</code></pre>
 
@@ -153,9 +153,9 @@
 
 <p>buffer overflow detected</p>
 
-<h5 id='31_vmware_player192mb__256mb_'>3-1. vmware playerの割り当てメモリ変更。192MB -&gt; 256MB (問題の解決とは無関係と思われる)</h5>
+<h5 id="31_vmware_player192mb__256mb_">3-1. vmware playerの割り当てメモリ変更。192MB -&gt; 256MB (問題の解決とは無関係と思われる)</h5>
 
-<h5 id='32_ruby'>3-2. Ruby再インストール</h5>
+<h5 id="32_ruby">3-2. Ruby再インストール</h5>
 
 <pre><code># cd /etc/yum.repos.d/
 # wget http://rubyworks.rubyforge.org/RubyWorks.repo
@@ -164,14 +164,14 @@
 # ruby -v
 ruby 1.8.6 (2007-09-24 patchlevel 111) [i386-linux]</code></pre>
 
-<h5 id='33_jekyll'>3-3. Jekyll再インストール</h5>
+<h5 id="33_jekyll">3-3. Jekyll再インストール</h5>
 
 <pre><code># gem install jekyll
 ERROR: Error installing jekyll:
 liquid requires RubyGems version &gt;= 1.3.7
 # またもやエラー。</code></pre>
 
-<h5 id='34_rubygems'>3-4. RubyGems再インストール</h5>
+<h5 id="34_rubygems">3-4. RubyGems再インストール</h5>
 
 <pre><code># 上記3-3でRubyGemsのバージョンが違うというエラーが出たのでRuby Forgeで当該バージョンのURLをコピー。
 # http://rubyforge.org/frs/?group_id=126
@@ -180,25 +180,25 @@ liquid requires RubyGems version &gt;= 1.3.7
 # cd rubygems-1.3.7
 # ruby setup.rb</code></pre>
 
-<h5 id='35_jekyll'>3-5. Jekyll再インストール</h5>
+<h5 id="35_jekyll">3-5. Jekyll再インストール</h5>
 
 <pre><code># gem install jekyll
 # 今回はインストール成功。
 # jekyll -v
 Jekyll 0.11.2</code></pre>
 
-<h5 id='36_'>3-6. <a href='http://help.papertrailapp.com/discussions/questions/114-buffer-overflow-detected'>参考ページ</a></h5>
+<h5 id="36_">3-6. <a href="http://help.papertrailapp.com/discussions/questions/114-buffer-overflow-detected">参考ページ</a></h5>
 
-<h4 id='4jekyll_bootstrap'>4.Jekyll Bootstrap取得</h4>
+<h4 id="4jekyll_bootstrap">4.Jekyll Bootstrap取得</h4>
 
-<h5 id='1'>1から作ると大変なのでテンプレートを利用。</h5>
+<h5 id="1">1から作ると大変なのでテンプレートを利用。</h5>
 
-<h5 id='varwwwhtmlapache'>※/var/www/html/はapacheのドキュメントルート</h5>
+<h5 id="varwwwhtmlapache">※/var/www/html/はapacheのドキュメントルート</h5>
 
 <pre><code># cd /var/www/html/jekyll
 # git clone http://github.com/plusjade/jekyll-bootstrap.git JEKYLL_HOME</code></pre>
 
-<h4 id='5jekyll'>5.Jekyll起動</h4>
+<h4 id="5jekyll">5.Jekyll起動</h4>
 
 <pre><code># jekyll --server --auto
 
@@ -221,11 +221,11 @@ Auto-regenerating enabled: /var/www/html/jekyll/JEKYLL_HOME -&gt; /var/www/html/
 # 後は下記ディレクトリに記事ファイルを追加していく。
 # /var/www/html/jekyll/JEKYLL_HOME/_posts/YYYY-MM-DD-*.md</code></pre>
 
-<h4 id='6github'>6.GitHubへアップ</h4>
+<h4 id="6github">6.GitHubへアップ</h4>
 
-<h5 id='githtmlgithubpush'>任意のディレクトリをGitの作業ツリーにして、そこからHTMLをGitHubへPushする。</h5>
+<h5 id="githtmlgithubpush">任意のディレクトリをGitの作業ツリーにして、そこからHTMLをGitHubへPushする。</h5>
 
-<h5 id='id44'><code>【注意】/var/www/html/jekyll/JEKYLL_HOME/_site/ を作業ツリーにするとJekyllを起動する度に.gitが削除されるので適さない。</code></h5>
+<h5 id=""><code>【注意】/var/www/html/jekyll/JEKYLL_HOME/_site/ を作業ツリーにするとJekyllを起動する度に.gitが削除されるので適さない。</code></h5>
 
 <pre><code># Jekyllが生成したHTMLをGit作業ツリー(任意のディレクトリ)へコピーする。
 # cp -pr /var/www/html/jekyll/JEKYLL_HOME/_site/* /var/www/html/sankame.github.com/
@@ -237,6 +237,7 @@ Auto-regenerating enabled: /var/www/html/jekyll/JEKYLL_HOME -&gt; /var/www/html/
 # git fetch
 # git merge -s ours origin/master
 # git push</code></pre>
+
   <!--[if IE 6 ]>
     </div>
   <![endif]-->

@@ -2,35 +2,37 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
  
  <title>Text Blog</title>
- <link href="http://sankame.github.com/atom.xml" rel="self"/>
- <link href="http://sankame.github.com"/>
- <updated>2014-05-06T01:52:11+09:00</updated>
- <id>http://sankame.github.com</id>
+ <link href="http://sankame.github.io//" rel="self"/>
+ <link href="http://sankame.github.io/"/>
+ <updated>2014-05-18T00:49:37+09:00</updated>
+ <id>http://sankame.github.io/</id>
  <author>
    <name>sankame</name>
-   <email>mt_fuji_3776@live.jp</email>
+   <email>m2ad0504@outlook.jp</email>
  </author>
 
  
  <entry>
    <title>Revive Ad Server インストール (旧OpenX)</title>
-   <link href="http://sankame.github.com/ReviveAdServer/2014/05/04/revive_adserver_install"/>
-   <updated>2014-05-04T00:00:00+09:00</updated>
-   <id>http://sankame.github.com/ReviveAdServer/2014/05/04/revive_adserver_install</id>
-   <content type="html">&lt;span&gt;&lt;a href='https://twitter.com/handycola' class='twitter-follow-button' data-show-count='false' data-lang='ja' data-dnt='true' data-size='large' data-show-screen-name='false'&gt;@handycolaさんをフォロー&lt;/a&gt;
-&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');&lt;/script&gt;&lt;/span&gt;&lt;span style='float:right;'&gt;投稿日：2014年05月04日&lt;/span&gt;&lt;div&gt;&lt;ins class='adsbygoogle' data-ad-client='ca-pub-7938855665302783' data-ad-slot='6346277556' style='display:inline-block;width:468px;height:60px' /&gt;
+   <link href="http://sankame.github.io//ReviveAdServer/2014/05/04/revive_adserver_install"/>
+   <updated>2014-05-04T09:00:00+09:00</updated>
+   <id>http://sankame.github.io//ReviveAdServer/2014/05/04/revive_adserver_install</id>
+   <content type="html">
+&lt;p&gt;&lt;span&gt;&lt;a class=&#39;twitter-follow-button&#39; data-dnt=&#39;true&#39; data-lang=&#39;ja&#39; data-show-count=&#39;false&#39; data-show-screen-name=&#39;false&#39; data-size=&#39;large&#39; href=&#39;https://twitter.com/handycola&#39;&gt;@handycolaさんをフォロー&lt;/a&gt;
+&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?&amp;#39;http&amp;#39;:&amp;#39;https&amp;#39;;if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+&amp;#39;://platform.twitter.com/widgets.js&amp;#39;;fjs.parentNode.insertBefore(js,fjs);}}(document, &amp;#39;script&amp;#39;, &amp;#39;twitter-wjs&amp;#39;);&lt;/script&gt;&lt;/span&gt;&lt;span style=&#39;float:right;&#39;&gt;投稿日：2014年05月04日&lt;/span&gt;&lt;/p&gt;
+&lt;div&gt;&lt;ins class=&#39;adsbygoogle&#39; data-ad-client=&#39;ca-pub-7938855665302783&#39; data-ad-slot=&#39;6346277556&#39; style=&#39;display:inline-block;width:468px;height:60px&#39; /&gt;
 &lt;script&gt;
 (adsbygoogle = window.adsbygoogle || []).push({});
 &lt;/script&gt;
 &lt;/div&gt;
-&lt;h5 id='0'&gt;0.環境&lt;/h5&gt;
+&lt;h5 id=&quot;0&quot;&gt;0.環境&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt;[CentOS]           5.6 (32bit版カーネル)
 [Apache]           2.2.3
 [PHP]              5.4.17
 [Revive AdServer]  3.0.4&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h5 id='1_'&gt;1.インストール &lt;a href='http://tec-blog.menue.jp/?p=278'&gt;参考ページ&lt;/a&gt;&lt;/h5&gt;
+&lt;h5 id=&quot;1_&quot;&gt;1.インストール &lt;a href=&quot;http://tec-blog.menue.jp/?p=278&quot;&gt;参考ページ&lt;/a&gt;&lt;/h5&gt;
 
 &lt;ul&gt;
 &lt;li&gt;
@@ -55,9 +57,9 @@
 
 &lt;p&gt;ウィザードに従ってインストールを進めます。&lt;/p&gt;
 
-&lt;p&gt;&lt;img src='/assets/posts/img/revive_adserver_install/step1.png' alt='step1' /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/posts/img/revive_adserver_install/step1.png&quot; alt=&quot;step1&quot; title=&quot;step1&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;&amp;#8220;I Agree&amp;#160;&amp;#187;&amp;#8220;ボタンを押すと、&amp;#8221;File Permissions - 7 errors&amp;#8221; というエラーが表示されました。&lt;/p&gt;
+&lt;p&gt;“I Agree »“ボタンを押すと、”File Permissions - 7 errors” というエラーが表示されました。&lt;/p&gt;
 
 &lt;p&gt;画面に表示されたコマンドをそのままコンソールで実行。&lt;/p&gt;
 
@@ -69,7 +71,7 @@
 # chmod -R a+w /app/revive-adserver/www/admin/plugins
 # chmod -R a+w /app/revive-adserver/www/images&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;再びインストール画面へ戻って&amp;#8221;Retry&amp;#8221;を押すと、次のステップへ進めます。&lt;/p&gt;
+&lt;p&gt;再びインストール画面へ戻って”Retry”を押すと、次のステップへ進めます。&lt;/p&gt;
 &lt;/li&gt;
 
 &lt;li&gt;
@@ -77,7 +79,7 @@
 
 &lt;p&gt;DB情報の入力画面が表示されますが、その前に下記コマンド(※1)でMySQL上にDBを作成。&lt;/p&gt;
 
-&lt;p&gt;&lt;img src='/assets/posts/img/revive_adserver_install/step2.png' alt='step2' /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/posts/img/revive_adserver_install/step2.png&quot; alt=&quot;step2&quot; title=&quot;step2&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;(※1) コマンド (DB名、ユーザ名、パスワードは任意に設定して下さい)&lt;/p&gt;
 
@@ -85,7 +87,7 @@
 mysql&amp;gt; create database reviveadserver;
 mysql&amp;gt; grant all privileges on reviveadserver.* to admin@localhost identified by &amp;#39;password&amp;#39;;&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;再びインストール画面へ戻り、上記のDB情報を入力後、&amp;#8221;Continue&amp;#160;&amp;#187;&amp;#8221; を押します。&lt;/p&gt;
+&lt;p&gt;再びインストール画面へ戻り、上記のDB情報を入力後、”Continue »” を押します。&lt;/p&gt;
 &lt;/li&gt;
 
 &lt;li&gt;
@@ -93,7 +95,7 @@ mysql&amp;gt; grant all privileges on reviveadserver.* to admin@localhost identi
 
 &lt;p&gt;Revive AdServerの管理ユーザを登録します。&lt;/p&gt;
 
-&lt;p&gt;&lt;img src='/assets/posts/img/revive_adserver_install/step3.png' alt='step3' /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/posts/img/revive_adserver_install/step3.png&quot; alt=&quot;step3&quot; title=&quot;step3&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;言語とタイムゾーンを変更。&lt;/p&gt;
 
@@ -108,34 +110,37 @@ Timezone:  (GMT+0900) Asia/Tokyo&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;「インストール中にエラーが発生しました」と表示されましたが、指定されたログを見てもエラーの記述はありませんでした。&lt;/p&gt;
 
-&lt;p&gt;&lt;img src='/assets/posts/img/revive_adserver_install/step4.png' alt='step4' /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/posts/img/revive_adserver_install/step4.png&quot; alt=&quot;step4&quot; title=&quot;step4&quot; /&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;/ul&gt;</content>
+&lt;/ul&gt;
+</content>
  </entry>
  
  <entry>
    <title>PHPからfitbit API を使ってみる</title>
-   <link href="http://sankame.github.com/fitbit/2014/02/04/php_fitbit_api"/>
-   <updated>2014-02-04T00:00:00+09:00</updated>
-   <id>http://sankame.github.com/fitbit/2014/02/04/php_fitbit_api</id>
-   <content type="html">&lt;span&gt;&lt;a href='https://twitter.com/handycola' class='twitter-follow-button' data-show-count='false' data-lang='ja' data-dnt='true' data-size='large' data-show-screen-name='false'&gt;@handycolaさんをフォロー&lt;/a&gt;
-&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');&lt;/script&gt;&lt;/span&gt;&lt;span style='float:right;'&gt;投稿日：2014年02月04日&lt;/span&gt;&lt;div&gt;&lt;ins class='adsbygoogle' data-ad-client='ca-pub-7938855665302783' data-ad-slot='6346277556' style='display:inline-block;width:468px;height:60px' /&gt;
+   <link href="http://sankame.github.io//fitbit/2014/02/04/php_fitbit_api"/>
+   <updated>2014-02-04T09:00:00+09:00</updated>
+   <id>http://sankame.github.io//fitbit/2014/02/04/php_fitbit_api</id>
+   <content type="html">
+&lt;p&gt;&lt;span&gt;&lt;a class=&#39;twitter-follow-button&#39; data-dnt=&#39;true&#39; data-lang=&#39;ja&#39; data-show-count=&#39;false&#39; data-show-screen-name=&#39;false&#39; data-size=&#39;large&#39; href=&#39;https://twitter.com/handycola&#39;&gt;@handycolaさんをフォロー&lt;/a&gt;
+&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?&amp;#39;http&amp;#39;:&amp;#39;https&amp;#39;;if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+&amp;#39;://platform.twitter.com/widgets.js&amp;#39;;fjs.parentNode.insertBefore(js,fjs);}}(document, &amp;#39;script&amp;#39;, &amp;#39;twitter-wjs&amp;#39;);&lt;/script&gt;&lt;/span&gt;&lt;span style=&#39;float:right;&#39;&gt;投稿日：2014年02月04日&lt;/span&gt;&lt;/p&gt;
+&lt;div&gt;&lt;ins class=&#39;adsbygoogle&#39; data-ad-client=&#39;ca-pub-7938855665302783&#39; data-ad-slot=&#39;6346277556&#39; style=&#39;display:inline-block;width:468px;height:60px&#39; /&gt;
 &lt;script&gt;
 (adsbygoogle = window.adsbygoogle || []).push({});
 &lt;/script&gt;
 &lt;/div&gt;
-&lt;h5 id='0'&gt;0.環境&lt;/h5&gt;
+&lt;h5 id=&quot;0&quot;&gt;0.環境&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt;[CentOS]   5.6 (32bit版カーネル)
 [Apache]   2.2.3
 [PHP]      5.4.1
 [device]   Fitbit One&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h5 id='1oauth_extension__fitbit_api'&gt;1.OAuth Extensionインストール → fitbit API実行&lt;/h5&gt;
+&lt;h5 id=&quot;1oauth_extension__fitbit_api&quot;&gt;1.OAuth Extensionインストール → fitbit API実行&lt;/h5&gt;
 
 &lt;ul&gt;
 &lt;li&gt;
-&lt;p&gt;1-1.fitbit(活動量計)の&lt;a href='https://wiki.fitbit.com/display/API/API+PHP+Client'&gt;API使用手順&lt;/a&gt;にそって作業を進めます。&lt;/p&gt;
+&lt;p&gt;1-1.fitbit(活動量計)の&lt;a href=&quot;https://wiki.fitbit.com/display/API/API+PHP+Client&quot;&gt;API使用手順&lt;/a&gt;にそって作業を進めます。&lt;/p&gt;
 
 &lt;p&gt;下記コマンドを実行。&lt;/p&gt;
 
@@ -152,17 +157,17 @@ Timezone:  (GMT+0900) Asia/Tokyo&lt;/code&gt;&lt;/pre&gt;
 make: *** [oauth.lo] エラー 1
 ERROR: `make&amp;#39; failed&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;a href='https://bugs.php.net/bug.php?id=59153'&gt;こんな情報&lt;/a&gt;を見つけ、下記コマンドを実行。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://bugs.php.net/bug.php?id=59153&quot;&gt;こんな情報&lt;/a&gt;を見つけ、下記コマンドを実行。&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;# yum install curl-devel&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;エラーは変わらず、さらに&lt;a href='http://blog.gmane.org/gmane.comp.php.install/month=20101201'&gt;こんな情報&lt;/a&gt;を見つけ、下記コマンドを実行。&lt;/p&gt;
+&lt;p&gt;エラーは変わらず、さらに&lt;a href=&quot;http://blog.gmane.org/gmane.comp.php.install/month=20101201&quot;&gt;こんな情報&lt;/a&gt;を見つけ、下記コマンドを実行。&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;# yum install pcre pcre-devel&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;またまたエラー発生。OAuthを使うための&lt;a href='http://www.php.net/manual/ja/oauth.requirements.php'&gt;条件&lt;/a&gt;を発見。&lt;/p&gt;
+&lt;p&gt;またまたエラー発生。OAuthを使うための&lt;a href=&quot;http://www.php.net/manual/ja/oauth.requirements.php&quot;&gt;条件&lt;/a&gt;を発見。&lt;/p&gt;
 
-&lt;p&gt;&lt;a href='http://blog.flatlabs.net/20100611_062745/'&gt;良さそうなページ&lt;/a&gt;を見つけ、下記コマンドを実行。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://blog.flatlabs.net/20100611_062745/&quot;&gt;良さそうなページ&lt;/a&gt;を見つけ、下記コマンドを実行。&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;# pecl install oauth-beta&lt;/code&gt;&lt;/pre&gt;
 
@@ -183,7 +188,7 @@ extension=oauth.so&lt;/code&gt;&lt;/pre&gt;
 &lt;li&gt;
 &lt;p&gt;1-2.サンプルプログラム実行。&lt;/p&gt;
 
-&lt;p&gt;準備ができたので、&lt;a href='http://dev.fitbit.com/'&gt;開発者用ページ&lt;/a&gt;から&lt;a href='https://wiki.fitbit.com/download/attachments/884784/completeAuthorization.php?version=2&amp;amp;modificationDate=1297797897000&amp;amp;api=v2'&gt;サンプルプログラム&lt;/a&gt;をダウンロード。&lt;/p&gt;
+&lt;p&gt;準備ができたので、&lt;a href=&quot;http://dev.fitbit.com/&quot;&gt;開発者用ページ&lt;/a&gt;から&lt;a href=&quot;https://wiki.fitbit.com/download/attachments/884784/completeAuthorization.php?version=2&amp;modificationDate=1297797897000&amp;api=v2&quot;&gt;サンプルプログラム&lt;/a&gt;をダウンロード。&lt;/p&gt;
 
 &lt;p&gt;サンプルプログラムを自分の設定に合わせて修正。(下記1-3参照)&lt;/p&gt;
 
@@ -193,7 +198,7 @@ extension=oauth.so&lt;/code&gt;&lt;/pre&gt;
 
 &lt;pre&gt;&lt;code&gt;http://localhost/completeAuthorization.php&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;body_recv の値を見てみると、&amp;#8221;fieldName&amp;#8221;:&amp;#8221;oauth_timestamp&amp;#8221; があやしい。&lt;/p&gt;
+&lt;p&gt;body_recv の値を見てみると、”fieldName”:”oauth_timestamp” があやしい。&lt;/p&gt;
 
 &lt;p&gt;(自分のVM(CentOS)では、時刻同期していないため時間が狂っている)&lt;/p&gt;
 
@@ -203,32 +208,34 @@ extension=oauth.so&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;「許可する」をクリックするとサンプルページが表示され、自分の健康データが表示されました。&lt;/p&gt;
 
-&lt;p&gt;(予め fitbitの「&lt;a href='https://dev.fitbit.com/apps/new'&gt;開発者ページ&lt;/a&gt;」で、callbackのページを上記URLにしておく)&lt;/p&gt;
+&lt;p&gt;(予め fitbitの「&lt;a href=&quot;https://dev.fitbit.com/apps/new&quot;&gt;開発者ページ&lt;/a&gt;」で、callbackのページを上記URLにしておく)&lt;/p&gt;
 
-&lt;p&gt;※OAuthは&lt;a href='http://yuroyoro.hatenablog.com/entry/20100506/1273137673'&gt;こちらのページ&lt;/a&gt;で復習。&lt;/p&gt;
+&lt;p&gt;※OAuthは&lt;a href=&quot;http://yuroyoro.hatenablog.com/entry/20100506/1273137673&quot;&gt;こちらのページ&lt;/a&gt;で復習。&lt;/p&gt;
 &lt;/li&gt;
 
 &lt;li&gt;
 &lt;p&gt;1-3.サンプルプログラム修正(【変更】の部分を自分の設定に書き換えます)&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;script src='https://gist.github.com/Sankame/8787002.js' /&gt;</content>
+&lt;script src=&#39;https://gist.github.com/Sankame/8787002.js&#39; /&gt;</content>
  </entry>
  
  <entry>
    <title>PHPメモ</title>
-   <link href="http://sankame.github.com/PHP/2014/02/02/php_sample"/>
-   <updated>2014-02-02T00:00:00+09:00</updated>
-   <id>http://sankame.github.com/PHP/2014/02/02/php_sample</id>
-   <content type="html">&lt;span&gt;&lt;a href='https://twitter.com/handycola' class='twitter-follow-button' data-show-count='false' data-lang='ja' data-dnt='true' data-size='large' data-show-screen-name='false'&gt;@handycolaさんをフォロー&lt;/a&gt;
-&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');&lt;/script&gt;&lt;/span&gt;&lt;span style='float:right;'&gt;投稿日：2014年02月02日&lt;/span&gt;&lt;div&gt;&lt;ins class='adsbygoogle' data-ad-client='ca-pub-7938855665302783' data-ad-slot='6346277556' style='display:inline-block;width:468px;height:60px' /&gt;
+   <link href="http://sankame.github.io//PHP/2014/02/02/php_sample"/>
+   <updated>2014-02-02T09:00:00+09:00</updated>
+   <id>http://sankame.github.io//PHP/2014/02/02/php_sample</id>
+   <content type="html">
+&lt;p&gt;&lt;span&gt;&lt;a class=&#39;twitter-follow-button&#39; data-dnt=&#39;true&#39; data-lang=&#39;ja&#39; data-show-count=&#39;false&#39; data-show-screen-name=&#39;false&#39; data-size=&#39;large&#39; href=&#39;https://twitter.com/handycola&#39;&gt;@handycolaさんをフォロー&lt;/a&gt;
+&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?&amp;#39;http&amp;#39;:&amp;#39;https&amp;#39;;if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+&amp;#39;://platform.twitter.com/widgets.js&amp;#39;;fjs.parentNode.insertBefore(js,fjs);}}(document, &amp;#39;script&amp;#39;, &amp;#39;twitter-wjs&amp;#39;);&lt;/script&gt;&lt;/span&gt;&lt;span style=&#39;float:right;&#39;&gt;投稿日：2014年02月02日&lt;/span&gt;&lt;/p&gt;
+&lt;div&gt;&lt;ins class=&#39;adsbygoogle&#39; data-ad-client=&#39;ca-pub-7938855665302783&#39; data-ad-slot=&#39;6346277556&#39; style=&#39;display:inline-block;width:468px;height:60px&#39; /&gt;
 &lt;script&gt;
 (adsbygoogle = window.adsbygoogle || []).push({});
 &lt;/script&gt;
 &lt;/div&gt;
-&lt;h4 id='php_'&gt;PHPメモ (自分用)&lt;/h4&gt;
+&lt;h4 id=&quot;php_&quot;&gt;PHPメモ (自分用)&lt;/h4&gt;
 
-&lt;h5 id='1_extension'&gt;(1) extensionが追加されたかコマンドラインで確認&lt;/h5&gt;
+&lt;h5 id=&quot;1_extension&quot;&gt;(1) extensionが追加されたかコマンドラインで確認&lt;/h5&gt;
 
 &lt;ul&gt;
 &lt;li&gt;
@@ -238,26 +245,29 @@ extension=oauth.so&lt;/code&gt;&lt;/pre&gt;
 OAuth
 OAuth support =&amp;gt; enabled&lt;/code&gt;&lt;/pre&gt;
 &lt;/li&gt;
-&lt;/ul&gt;</content>
+&lt;/ul&gt;
+</content>
  </entry>
  
  <entry>
    <title>スマホ(Android)とPCでMindMapを使う</title>
-   <link href="http://sankame.github.com/MindMapMemo/2013/10/04/mind_map_tools"/>
-   <updated>2013-10-04T00:00:00+09:00</updated>
-   <id>http://sankame.github.com/MindMapMemo/2013/10/04/mind_map_tools</id>
-   <content type="html">&lt;span&gt;&lt;a href='https://twitter.com/handycola' class='twitter-follow-button' data-show-count='false' data-lang='ja' data-dnt='true' data-size='large' data-show-screen-name='false'&gt;@handycolaさんをフォロー&lt;/a&gt;
-&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');&lt;/script&gt;&lt;/span&gt;&lt;span style='float:right;'&gt;投稿日：2013年10月04日&lt;/span&gt;&lt;div&gt;&lt;ins class='adsbygoogle' data-ad-client='ca-pub-7938855665302783' data-ad-slot='6346277556' style='display:inline-block;width:468px;height:60px' /&gt;
+   <link href="http://sankame.github.io//MindMapMemo/2013/10/04/mind_map_tools"/>
+   <updated>2013-10-04T09:00:00+09:00</updated>
+   <id>http://sankame.github.io//MindMapMemo/2013/10/04/mind_map_tools</id>
+   <content type="html">
+&lt;p&gt;&lt;span&gt;&lt;a class=&#39;twitter-follow-button&#39; data-dnt=&#39;true&#39; data-lang=&#39;ja&#39; data-show-count=&#39;false&#39; data-show-screen-name=&#39;false&#39; data-size=&#39;large&#39; href=&#39;https://twitter.com/handycola&#39;&gt;@handycolaさんをフォロー&lt;/a&gt;
+&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?&amp;#39;http&amp;#39;:&amp;#39;https&amp;#39;;if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+&amp;#39;://platform.twitter.com/widgets.js&amp;#39;;fjs.parentNode.insertBefore(js,fjs);}}(document, &amp;#39;script&amp;#39;, &amp;#39;twitter-wjs&amp;#39;);&lt;/script&gt;&lt;/span&gt;&lt;span style=&#39;float:right;&#39;&gt;投稿日：2013年10月04日&lt;/span&gt;&lt;/p&gt;
+&lt;div&gt;&lt;ins class=&#39;adsbygoogle&#39; data-ad-client=&#39;ca-pub-7938855665302783&#39; data-ad-slot=&#39;6346277556&#39; style=&#39;display:inline-block;width:468px;height:60px&#39; /&gt;
 &lt;script&gt;
 (adsbygoogle = window.adsbygoogle || []).push({});
 &lt;/script&gt;
 &lt;/div&gt;
-&lt;h5 id='0'&gt;0.環境&lt;/h5&gt;
+&lt;h5 id=&quot;0&quot;&gt;0.環境&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt;[スマホ端末/OS] GALAXY S SC-02B / Android2.2
 [PC端末/OS]    Gateway SX2800 / Windows Vista Home Premium&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h5 id='1'&gt;1.スマホでマインドマップ作成&lt;/h5&gt;
+&lt;h5 id=&quot;1&quot;&gt;1.スマホでマインドマップ作成&lt;/h5&gt;
 
 &lt;ul&gt;
 &lt;li&gt;
@@ -273,19 +283,19 @@ OAuth support =&amp;gt; enabled&lt;/code&gt;&lt;/pre&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h5 id='2pcfreemind'&gt;2.PCにFreeMindをインストール&lt;/h5&gt;
+&lt;h5 id=&quot;2pcfreemind&quot;&gt;2.PCにFreeMindをインストール&lt;/h5&gt;
 
 &lt;ul&gt;
 &lt;li&gt;
-&lt;p&gt;2-1.下記リンク先のページで&lt;span&gt;0.8.1&lt;/span&gt;をクリック。&lt;/p&gt;
+&lt;p&gt;2-1.下記リンク先のページで[0.8.1]をクリック。&lt;/p&gt;
 
 &lt;p&gt;(0.9.0では上記スマホで作成したファイルをうまく開けませんでした)&lt;/p&gt;
 
-&lt;p&gt;&lt;a href='http://sourceforge.net/projects/freemind/files/freemind/'&gt;FreeMindソース&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://sourceforge.net/projects/freemind/files/freemind/&quot;&gt;FreeMindソース&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 
 &lt;li&gt;
-&lt;p&gt;2-2.&lt;span&gt;freemind-bin-0_8_1.zip&lt;/span&gt;をクリック。&lt;/p&gt;
+&lt;p&gt;2-2.[freemind-bin-0_8_1.zip]をクリック。&lt;/p&gt;
 &lt;/li&gt;
 
 &lt;li&gt;
@@ -299,21 +309,24 @@ OAuth support =&amp;gt; enabled&lt;/code&gt;&lt;/pre&gt;
 &lt;li&gt;
 &lt;p&gt;2-5.スマホではカラフルに作ったのにFreeMindで開くと白黒になっている。まあ内容が分かるからいいか…&lt;/p&gt;
 &lt;/li&gt;
-&lt;/ul&gt;</content>
+&lt;/ul&gt;
+</content>
  </entry>
  
  <entry>
    <title>PHP Debug Bar インストール</title>
-   <link href="http://sankame.github.com/PHPDebugBar/2013/09/23/php_debug_bar_install"/>
-   <updated>2013-09-23T00:00:00+09:00</updated>
-   <id>http://sankame.github.com/PHPDebugBar/2013/09/23/php_debug_bar_install</id>
-   <content type="html">&lt;span&gt;&lt;a href='https://twitter.com/handycola' class='twitter-follow-button' data-show-count='false' data-lang='ja' data-dnt='true' data-size='large' data-show-screen-name='false'&gt;@handycolaさんをフォロー&lt;/a&gt;
-&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');&lt;/script&gt;&lt;/span&gt;&lt;span style='float:right;'&gt;投稿日：2013年09月23日&lt;/span&gt;&lt;div&gt;&lt;ins class='adsbygoogle' data-ad-client='ca-pub-7938855665302783' data-ad-slot='6346277556' style='display:inline-block;width:468px;height:60px' /&gt;
+   <link href="http://sankame.github.io//PHPDebugBar/2013/09/23/php_debug_bar_install"/>
+   <updated>2013-09-23T09:00:00+09:00</updated>
+   <id>http://sankame.github.io//PHPDebugBar/2013/09/23/php_debug_bar_install</id>
+   <content type="html">
+&lt;p&gt;&lt;span&gt;&lt;a class=&#39;twitter-follow-button&#39; data-dnt=&#39;true&#39; data-lang=&#39;ja&#39; data-show-count=&#39;false&#39; data-show-screen-name=&#39;false&#39; data-size=&#39;large&#39; href=&#39;https://twitter.com/handycola&#39;&gt;@handycolaさんをフォロー&lt;/a&gt;
+&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?&amp;#39;http&amp;#39;:&amp;#39;https&amp;#39;;if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+&amp;#39;://platform.twitter.com/widgets.js&amp;#39;;fjs.parentNode.insertBefore(js,fjs);}}(document, &amp;#39;script&amp;#39;, &amp;#39;twitter-wjs&amp;#39;);&lt;/script&gt;&lt;/span&gt;&lt;span style=&#39;float:right;&#39;&gt;投稿日：2013年09月23日&lt;/span&gt;&lt;/p&gt;
+&lt;div&gt;&lt;ins class=&#39;adsbygoogle&#39; data-ad-client=&#39;ca-pub-7938855665302783&#39; data-ad-slot=&#39;6346277556&#39; style=&#39;display:inline-block;width:468px;height:60px&#39; /&gt;
 &lt;script&gt;
 (adsbygoogle = window.adsbygoogle || []).push({});
 &lt;/script&gt;
 &lt;/div&gt;
-&lt;h5 id='0'&gt;0.環境&lt;/h5&gt;
+&lt;h5 id=&quot;0&quot;&gt;0.環境&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt;PHPフレームワークPhalconでPHP Debug Barを使うときの例です。
 
@@ -322,7 +335,7 @@ OAuth support =&amp;gt; enabled&lt;/code&gt;&lt;/pre&gt;
 [PHP]     5.4.1
 [phalcon] 1.2.1&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h5 id='1php_debug_bar'&gt;1.PHP Debug Barをインストール&lt;/h5&gt;
+&lt;h5 id=&quot;1php_debug_bar&quot;&gt;1.PHP Debug Barをインストール&lt;/h5&gt;
 
 &lt;ul&gt;
 &lt;li&gt;
@@ -340,7 +353,7 @@ OAuth support =&amp;gt; enabled&lt;/code&gt;&lt;/pre&gt;
 
 &lt;pre&gt;&lt;code&gt;# composer install&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;※composerが未インストールの場合、&lt;a href='http://9ensan.com/blog/programming/php/php-composer-dependency-management/'&gt;こちら&lt;/a&gt;を参考にインストールして下さい。&lt;/p&gt;
+&lt;p&gt;※composerが未インストールの場合、&lt;a href=&quot;http://9ensan.com/blog/programming/php/php-composer-dependency-management/&quot;&gt;こちら&lt;/a&gt;を参考にインストールして下さい。&lt;/p&gt;
 &lt;/li&gt;
 
 &lt;li&gt;
@@ -352,17 +365,14 @@ OAuth support =&amp;gt; enabled&lt;/code&gt;&lt;/pre&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;img src='/assets/posts/img/php_debug_bar_install/directory_image.jpg' alt='ディレクトリ構成' /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/posts/img/php_debug_bar_install/directory_image.jpg&quot; alt=&quot;ディレクトリ構成&quot; title=&quot;ディレクトリ構成&quot; /&gt;&lt;/p&gt;
 
-&lt;h5 id='2_'&gt;2.コードを記述 (ポイント以外は割愛)&lt;/h5&gt;
+&lt;h5 id=&quot;2_&quot;&gt;2.コードを記述 (ポイント以外は割愛)&lt;/h5&gt;
 
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;2-0.index.php(フレームワークのエントリポイント)に次の内容を追記。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;&amp;lt;?php
-require &amp;#39;./vendor/autoload.php&amp;#39;;&lt;/code&gt;&lt;/pre&gt;
-
+&lt;script src=&#39;https://gist.github.com/d953437cd1ac4a5df725.js?file=require_autoload.php&#39;&gt; &lt;/script&gt;
 &lt;p&gt;&lt;code&gt;composer関係のファイルをバージョン管理(svn, git等)から除外した場合、この記述だけ残してリリースしないよう注意。&lt;/code&gt;&lt;/p&gt;
 &lt;/li&gt;
 
@@ -399,16 +409,7 @@ public function indexAction()
 
 &lt;li&gt;
 &lt;p&gt;2-3.index.volt(全viewが使う共通ファイル)に次の内容を追記。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;&amp;lt;html&amp;gt;
-    &amp;lt;head&amp;gt;
-	&amp;lt;?php echo $debugbarHeader ?&amp;gt;
-    &amp;lt;/head&amp;gt;
-    &amp;lt;body&amp;gt;
-	&amp;lt;?php echo $debugbarBody ?&amp;gt;
-    &amp;lt;/body&amp;gt;
-&amp;lt;/html&amp;gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
+&lt;script src=&#39;https://gist.github.com/eb6d098e2ef1f473ff7d.js?file=php_debugbar.volt&#39;&gt; &lt;/script&gt;&lt;/li&gt;
 
 &lt;li&gt;
 &lt;p&gt;2-4.画面イメージ&lt;/p&gt;
@@ -417,45 +418,48 @@ public function indexAction()
 
 &lt;p&gt;実行時のその他の情報も表示されます。&lt;/p&gt;
 
-&lt;p&gt;&lt;img src='/assets/posts/img/php_debug_bar_install/screen_image.jpg' alt='画面イメージ' /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/posts/img/php_debug_bar_install/screen_image.jpg&quot; alt=&quot;画面イメージ&quot; title=&quot;画面イメージ&quot; /&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h5 id='3'&gt;3.参考ページ&lt;/h5&gt;
+&lt;h5 id=&quot;3&quot;&gt;3.参考ページ&lt;/h5&gt;
 
 &lt;ul&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;a href='http://www.moongift.jp/2013/08/20130829-3/'&gt;紹介ページ&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://www.moongift.jp/2013/08/20130829-3/&quot;&gt;紹介ページ&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 
 &lt;li&gt;
-&lt;p&gt;&lt;a href='http://phpdebugbar.com/docs/'&gt;PHP Debug Bar&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://phpdebugbar.com/docs/&quot;&gt;PHP Debug Bar&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;/ul&gt;</content>
+&lt;/ul&gt;
+</content>
  </entry>
  
  <entry>
    <title>Rubyを始める</title>
-   <link href="http://sankame.github.com/Ruby/2013/09/16/ruby_hello_world"/>
-   <updated>2013-09-16T00:00:00+09:00</updated>
-   <id>http://sankame.github.com/Ruby/2013/09/16/ruby_hello_world</id>
-   <content type="html">&lt;span&gt;&lt;a href='https://twitter.com/handycola' class='twitter-follow-button' data-show-count='false' data-lang='ja' data-dnt='true' data-size='large' data-show-screen-name='false'&gt;@handycolaさんをフォロー&lt;/a&gt;
-&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');&lt;/script&gt;&lt;/span&gt;&lt;span style='float:right;'&gt;投稿日：2013年09月16日&lt;/span&gt;&lt;div&gt;&lt;ins class='adsbygoogle' data-ad-client='ca-pub-7938855665302783' data-ad-slot='6346277556' style='display:inline-block;width:468px;height:60px' /&gt;
+   <link href="http://sankame.github.io//Ruby/2013/09/16/ruby_hello_world"/>
+   <updated>2013-09-16T09:00:00+09:00</updated>
+   <id>http://sankame.github.io//Ruby/2013/09/16/ruby_hello_world</id>
+   <content type="html">
+&lt;p&gt;&lt;span&gt;&lt;a class=&#39;twitter-follow-button&#39; data-dnt=&#39;true&#39; data-lang=&#39;ja&#39; data-show-count=&#39;false&#39; data-show-screen-name=&#39;false&#39; data-size=&#39;large&#39; href=&#39;https://twitter.com/handycola&#39;&gt;@handycolaさんをフォロー&lt;/a&gt;
+&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?&amp;#39;http&amp;#39;:&amp;#39;https&amp;#39;;if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+&amp;#39;://platform.twitter.com/widgets.js&amp;#39;;fjs.parentNode.insertBefore(js,fjs);}}(document, &amp;#39;script&amp;#39;, &amp;#39;twitter-wjs&amp;#39;);&lt;/script&gt;&lt;/span&gt;&lt;span style=&#39;float:right;&#39;&gt;投稿日：2013年09月16日&lt;/span&gt;&lt;/p&gt;
+&lt;div&gt;&lt;ins class=&#39;adsbygoogle&#39; data-ad-client=&#39;ca-pub-7938855665302783&#39; data-ad-slot=&#39;6346277556&#39; style=&#39;display:inline-block;width:468px;height:60px&#39; /&gt;
 &lt;script&gt;
 (adsbygoogle = window.adsbygoogle || []).push({});
 &lt;/script&gt;
 &lt;/div&gt;
-&lt;h3 id='ruby'&gt;Rubyを始める&lt;/h3&gt;
+&lt;h3 id=&quot;ruby&quot;&gt;Rubyを始める&lt;/h3&gt;
 
-&lt;h4 id='0'&gt;0.環境&lt;/h4&gt;
+&lt;h4 id=&quot;0&quot;&gt;0.環境&lt;/h4&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;span&gt;CentOS&lt;/span&gt; 5.6 (32bit版カーネル)&lt;/li&gt;
+&lt;li&gt;[CentOS] 5.6 (32bit版カーネル)&lt;/li&gt;
 
-&lt;li&gt;&lt;span&gt;Apache&lt;/span&gt; 2.2.3&lt;/li&gt;
+&lt;li&gt;[Apache] 2.2.3&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h4 id='1ruby'&gt;1.Rubyインストール&lt;/h4&gt;
+&lt;h4 id=&quot;1ruby&quot;&gt;1.Rubyインストール&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;
@@ -474,7 +478,7 @@ ruby-1.8.6.111-1&lt;/code&gt;&lt;/pre&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h4 id='2apache'&gt;2.Apache設定&lt;/h4&gt;
+&lt;h4 id=&quot;2apache&quot;&gt;2.Apache設定&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;
@@ -485,7 +489,7 @@ LoadModule cgi_module modules/mod_cgi.so&lt;/code&gt;&lt;/pre&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h4 id='3htacess'&gt;3.htacess設定&lt;/h4&gt;
+&lt;h4 id=&quot;3htacess&quot;&gt;3.htacess設定&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;
@@ -499,7 +503,7 @@ Options +ExecCGI&lt;/code&gt;&lt;/pre&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h4 id='4'&gt;4.動作確認&lt;/h4&gt;
+&lt;h4 id=&quot;4&quot;&gt;4.動作確認&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;
@@ -530,39 +534,42 @@ EOS&lt;/code&gt;&lt;/pre&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h4 id='5'&gt;5.参考にしたページ&lt;/h4&gt;
+&lt;h4 id=&quot;5&quot;&gt;5.参考にしたページ&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;a href='http://blog.layer8.sh/ja/2011/12/21/yum%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%A6ruby%E3%82%92%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%99%E3%82%8B%E3%81%A8%E3%81%8D%E3%81%AE%E3%83%A1/'&gt;インストール方法&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://blog.layer8.sh/ja/2011/12/21/yum%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%A6ruby%E3%82%92%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%99%E3%82%8B%E3%81%A8%E3%81%8D%E3%81%AE%E3%83%A1/&quot;&gt;インストール方法&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 
 &lt;li&gt;
-&lt;p&gt;&lt;a href='http://w.livedoor.jp/notepad/d/Ruby%A4%F2apache%A4%C7%C6%B0%A4%AB%A4%B9'&gt;Ruby動作確認&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://w.livedoor.jp/notepad/d/Ruby%A4%F2apache%A4%C7%C6%B0%A4%AB%A4%B9&quot;&gt;Ruby動作確認&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;/ul&gt;</content>
+&lt;/ul&gt;
+</content>
  </entry>
  
  <entry>
    <title>Gitコマンド メモ</title>
-   <link href="http://sankame.github.com/Git/2013/09/09/git_command"/>
-   <updated>2013-09-09T00:00:00+09:00</updated>
-   <id>http://sankame.github.com/Git/2013/09/09/git_command</id>
-   <content type="html">&lt;span&gt;&lt;a href='https://twitter.com/handycola' class='twitter-follow-button' data-show-count='false' data-lang='ja' data-dnt='true' data-size='large' data-show-screen-name='false'&gt;@handycolaさんをフォロー&lt;/a&gt;
-&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');&lt;/script&gt;&lt;/span&gt;&lt;span style='float:right;'&gt;投稿日：2013年09月09日&lt;/span&gt;&lt;div&gt;&lt;ins class='adsbygoogle' data-ad-client='ca-pub-7938855665302783' data-ad-slot='6346277556' style='display:inline-block;width:468px;height:60px' /&gt;
+   <link href="http://sankame.github.io//Git/2013/09/09/git_command"/>
+   <updated>2013-09-09T09:00:00+09:00</updated>
+   <id>http://sankame.github.io//Git/2013/09/09/git_command</id>
+   <content type="html">
+&lt;p&gt;&lt;span&gt;&lt;a class=&#39;twitter-follow-button&#39; data-dnt=&#39;true&#39; data-lang=&#39;ja&#39; data-show-count=&#39;false&#39; data-show-screen-name=&#39;false&#39; data-size=&#39;large&#39; href=&#39;https://twitter.com/handycola&#39;&gt;@handycolaさんをフォロー&lt;/a&gt;
+&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?&amp;#39;http&amp;#39;:&amp;#39;https&amp;#39;;if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+&amp;#39;://platform.twitter.com/widgets.js&amp;#39;;fjs.parentNode.insertBefore(js,fjs);}}(document, &amp;#39;script&amp;#39;, &amp;#39;twitter-wjs&amp;#39;);&lt;/script&gt;&lt;/span&gt;&lt;span style=&#39;float:right;&#39;&gt;投稿日：2013年09月09日&lt;/span&gt;&lt;/p&gt;
+&lt;div&gt;&lt;ins class=&#39;adsbygoogle&#39; data-ad-client=&#39;ca-pub-7938855665302783&#39; data-ad-slot=&#39;6346277556&#39; style=&#39;display:inline-block;width:468px;height:60px&#39; /&gt;
 &lt;script&gt;
 (adsbygoogle = window.adsbygoogle || []).push({});
 &lt;/script&gt;
 &lt;/div&gt;
-&lt;h4 id='git__'&gt;Gitコマンド メモ (自分用)&lt;/h4&gt;
+&lt;h4 id=&quot;git__&quot;&gt;Gitコマンド メモ (自分用)&lt;/h4&gt;
 
-&lt;h5 id='1_gitignore_'&gt;(1) .gitignoreファイル &lt;a href='http://www.omakase.org/misc/gitignore.html'&gt;参考ページ&lt;/a&gt;&lt;/h5&gt;
+&lt;h5 id=&quot;1_gitignore_&quot;&gt;(1) .gitignoreファイル &lt;a href=&quot;http://www.omakase.org/misc/gitignore.html&quot;&gt;参考ページ&lt;/a&gt;&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt;# gitの管理外にしたいファイルを定義。下記のようにディレクトリ指定も可能。
 # view .gitignore
 app/logs/&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h5 id='2_git'&gt;(2) インデックスから降ろす(git管理外にする)&lt;/h5&gt;
+&lt;h5 id=&quot;2_git&quot;&gt;(2) インデックスから降ろす(git管理外にする)&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt;# インデックスから降ろすだけ。
 # git rm --cached -f hoge.txt
@@ -570,7 +577,7 @@ app/logs/&lt;/code&gt;&lt;/pre&gt;
 # インデックスから降ろして、ファイルを物理削除。
 # git rm -f hoge.txt&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h5 id='3_20131007'&gt;(3) ブランチ操作(2013/10/07)&lt;/h5&gt;
+&lt;h5 id=&quot;3_20131007&quot;&gt;(3) ブランチ操作(2013/10/07)&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt;# 今いるブランチは？
 # git branch
@@ -591,13 +598,13 @@ Deleted branch test1 (was 0854f22).
 # git branch
 * master&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h5 id='4_github20131007'&gt;(4) GitHubからソースを取得(2013/10/07)&lt;/h5&gt;
+&lt;h5 id=&quot;4_github20131007&quot;&gt;(4) GitHubからソースを取得(2013/10/07)&lt;/h5&gt;
 
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;4-1.GitHubで対象のリポジトリに移動後、画面右下のボタン(下記)をクリックしてURLをクリップボードにコピー。&lt;/p&gt;
 
-&lt;p&gt;&lt;img src='/assets/posts/img/git_command/github-clone.jpg' alt='github-clone' /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/posts/img/git_command/github-clone.jpg&quot; alt=&quot;github-clone&quot; title=&quot;github-clone&quot; /&gt;&lt;/p&gt;
 &lt;/li&gt;
 
 &lt;li&gt;
@@ -611,56 +618,59 @@ Enter passphrase for key &amp;#39;/root/.ssh/id_rsa&amp;#39;: &lt;/code&gt;&lt;/
 &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h5 id='5_20140224'&gt;(5) ローカル変更の取り消し(2014/02/24)&lt;/h5&gt;
+&lt;h5 id=&quot;5_20140224&quot;&gt;(5) ローカル変更の取り消し(2014/02/24)&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt;# ファイル指定でローカル変更を取り消し。
 # git checkout filename
 # 
 # 全てのローカル変更を取り消し。
-# git checkout .&lt;/code&gt;&lt;/pre&gt;</content>
+# git checkout .&lt;/code&gt;&lt;/pre&gt;
+</content>
  </entry>
  
  <entry>
    <title>Nexus7のスクリーンをプロジェクタに映したい (Android Screen Cast)</title>
-   <link href="http://sankame.github.com/Nexus7/2013/09/01/nexus7_projected_to_pc"/>
-   <updated>2013-09-01T00:00:00+09:00</updated>
-   <id>http://sankame.github.com/Nexus7/2013/09/01/nexus7_projected_to_pc</id>
-   <content type="html">&lt;span&gt;&lt;a href='https://twitter.com/handycola' class='twitter-follow-button' data-show-count='false' data-lang='ja' data-dnt='true' data-size='large' data-show-screen-name='false'&gt;@handycolaさんをフォロー&lt;/a&gt;
-&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');&lt;/script&gt;&lt;/span&gt;&lt;span style='float:right;'&gt;投稿日：2013年09月01日&lt;/span&gt;&lt;div&gt;&lt;ins class='adsbygoogle' data-ad-client='ca-pub-7938855665302783' data-ad-slot='6346277556' style='display:inline-block;width:468px;height:60px' /&gt;
+   <link href="http://sankame.github.io//Nexus7/2013/09/01/nexus7_projected_to_pc"/>
+   <updated>2013-09-01T09:00:00+09:00</updated>
+   <id>http://sankame.github.io//Nexus7/2013/09/01/nexus7_projected_to_pc</id>
+   <content type="html">
+&lt;p&gt;&lt;span&gt;&lt;a class=&#39;twitter-follow-button&#39; data-dnt=&#39;true&#39; data-lang=&#39;ja&#39; data-show-count=&#39;false&#39; data-show-screen-name=&#39;false&#39; data-size=&#39;large&#39; href=&#39;https://twitter.com/handycola&#39;&gt;@handycolaさんをフォロー&lt;/a&gt;
+&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?&amp;#39;http&amp;#39;:&amp;#39;https&amp;#39;;if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+&amp;#39;://platform.twitter.com/widgets.js&amp;#39;;fjs.parentNode.insertBefore(js,fjs);}}(document, &amp;#39;script&amp;#39;, &amp;#39;twitter-wjs&amp;#39;);&lt;/script&gt;&lt;/span&gt;&lt;span style=&#39;float:right;&#39;&gt;投稿日：2013年09月01日&lt;/span&gt;&lt;/p&gt;
+&lt;div&gt;&lt;ins class=&#39;adsbygoogle&#39; data-ad-client=&#39;ca-pub-7938855665302783&#39; data-ad-slot=&#39;6346277556&#39; style=&#39;display:inline-block;width:468px;height:60px&#39; /&gt;
 &lt;script&gt;
 (adsbygoogle = window.adsbygoogle || []).push({});
 &lt;/script&gt;
 &lt;/div&gt;
-&lt;h5 id='0'&gt;0.環境&lt;/h5&gt;
+&lt;h5 id=&quot;0&quot;&gt;0.環境&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt;[タブレット端末/OS]  Nexus7 / Android 4.2.2
 [PC端末/OS]        Gateway SX2800 / Windows Vista Home Premium&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h5 id='0'&gt;0.検討&lt;/h5&gt;
+&lt;h5 id=&quot;0_2&quot;&gt;0.検討&lt;/h5&gt;
 
 &lt;p&gt;プレゼン用途でNexus7のスクリーン映像をプロジェクタに映したいと考え、いくつか検討した結果、下記3で行うことにしました。&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;a href='http://www.amazon.co.jp/dp/B005RUM754/ref=as_li_ss_til?tag=uni6605-22&amp;amp;camp=1027&amp;amp;creative=7407&amp;amp;linkCode=as4&amp;amp;creativeASIN=B005RUM754&amp;amp;adid=004HQM7Z4FR3M83JKTW2&amp;amp;&amp;amp;ref-refURL=http%3A%2F%2Flove-guava.com%2Fit-is-difficult-in-it-being-unexpected-to-output-the-screen-of-nexus7-to-a-display%2F'&gt;1.変換器を使う&lt;/a&gt; →Nexus7はMHL非対応…&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://www.amazon.co.jp/dp/B005RUM754/ref=as_li_ss_til?tag=uni6605-22&amp;camp=1027&amp;creative=7407&amp;linkCode=as4&amp;creativeASIN=B005RUM754&amp;adid=004HQM7Z4FR3M83JKTW2&amp;&amp;ref-refURL=http%3A%2F%2Flove-guava.com%2Fit-is-difficult-in-it-being-unexpected-to-output-the-screen-of-nexus7-to-a-display%2F&quot;&gt;1.変換器を使う&lt;/a&gt; →Nexus7はMHL非対応…&lt;/p&gt;
 &lt;/li&gt;
 
 &lt;li&gt;
-&lt;p&gt;&lt;a href='https://play.google.com/store/apps/details?id=com.awindinc.sphone2tv'&gt;2.ソフトで解決&lt;/a&gt; →PCに映像を送信する方法。有料かつNexus7のRoot化が必要。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://play.google.com/store/apps/details?id=com.awindinc.sphone2tv&quot;&gt;2.ソフトで解決&lt;/a&gt; →PCに映像を送信する方法。有料かつNexus7のRoot化が必要。&lt;/p&gt;
 &lt;/li&gt;
 
 &lt;li&gt;
-&lt;p&gt;&lt;a href='http://www.moongift.jp/2009/09/androidscreencast'&gt;3.ソフトで解決&lt;/a&gt; →PCに映像を送信する方法。無料かつRoot化の必要もなし。Nexus7の映像がPCに届くまで数秒のタイムラグあり。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://www.moongift.jp/2009/09/androidscreencast&quot;&gt;3.ソフトで解決&lt;/a&gt; →PCに映像を送信する方法。無料かつRoot化の必要もなし。Nexus7の映像がPCに届くまで数秒のタイムラグあり。&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h5 id='1pcandroid_sdk'&gt;1.PCにAndroid SDKをインストール&lt;/h5&gt;
+&lt;h5 id=&quot;1pcandroid_sdk&quot;&gt;1.PCにAndroid SDKをインストール&lt;/h5&gt;
 
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;下記ページの[download here] - [Download the SDK]ボタンをクリック。&lt;/p&gt;
 
-&lt;p&gt;&lt;a href='http://code.google.com/p/androidscreencast/'&gt;ダウンロード&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://code.google.com/p/androidscreencast/&quot;&gt;ダウンロード&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 
 &lt;li&gt;
@@ -676,15 +686,15 @@ Enter passphrase for key &amp;#39;/root/.ssh/id_rsa&amp;#39;: &lt;/code&gt;&lt;/
 &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h5 id='2usbnexus7pc'&gt;2.USBケーブルでNexus7とPCを接続&lt;/h5&gt;
+&lt;h5 id=&quot;2usbnexus7pc&quot;&gt;2.USBケーブルでNexus7とPCを接続&lt;/h5&gt;
 
-&lt;h5 id='3android_screen_cast'&gt;3.Android Screen Cast&lt;/h5&gt;
+&lt;h5 id=&quot;3android_screen_cast&quot;&gt;3.Android Screen Cast&lt;/h5&gt;
 
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;3-1.下記リンクからAndroid Screen CastをPCにダウンロードし、任意のフォルダに保存する。&lt;/p&gt;
 
-&lt;p&gt;&lt;a href='http://androidscreencast.googlecode.com/svn/trunk/AndroidScreencast/dist/androidscreencast.jnlp'&gt;ダウンロード&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://androidscreencast.googlecode.com/svn/trunk/AndroidScreencast/dist/androidscreencast.jnlp&quot;&gt;ダウンロード&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 
 &lt;li&gt;
@@ -707,9 +717,9 @@ Enter passphrase for key &amp;#39;/root/.ssh/id_rsa&amp;#39;: &lt;/code&gt;&lt;/
 &lt;/li&gt;
 
 &lt;li&gt;
-&lt;p&gt;3-5.adb usb 実行 &lt;a href='http://code.google.com/p/androidscreencast/issues/detail?id=49'&gt;(参考ページ)&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;3-5.adb usb 実行 &lt;a href=&quot;http://code.google.com/p/androidscreencast/issues/detail?id=49&quot;&gt;(参考ページ)&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;PCでコマンドプロンプトを起動し、&amp;#8221;platform-tools&amp;#8221;フォルダに移動。(パスは読み替えて下さい)&lt;/p&gt;
+&lt;p&gt;PCでコマンドプロンプトを起動し、”platform-tools”フォルダに移動。(パスは読み替えて下さい)&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;&amp;gt; cd C:\soft\Android\adt-bundle-windows-x86-20130729\sdk\platform-tools
 &amp;gt; adb usb
@@ -717,7 +727,7 @@ Enter passphrase for key &amp;#39;/root/.ssh/id_rsa&amp;#39;: &lt;/code&gt;&lt;/
 &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h5 id='4usb'&gt;4.USBドライバ&lt;/h5&gt;
+&lt;h5 id=&quot;4usb&quot;&gt;4.USBドライバ&lt;/h5&gt;
 
 &lt;ul&gt;
 &lt;li&gt;
@@ -729,17 +739,17 @@ Enter passphrase for key &amp;#39;/root/.ssh/id_rsa&amp;#39;: &lt;/code&gt;&lt;/
 &lt;li&gt;
 &lt;p&gt;4-2.インストール&lt;/p&gt;
 
-&lt;p&gt;PC側で、上記1でダウンロードした&amp;#8221;SDK Manager.exe&amp;#8221;をダブルクリックして起動する。&lt;/p&gt;
+&lt;p&gt;PC側で、上記1でダウンロードした”SDK Manager.exe”をダブルクリックして起動する。&lt;/p&gt;
 
-&lt;p&gt;&amp;#8220;Google USB Driver&amp;#8221;にチェックして、[Install 1 package&amp;#8230;]をクリック。&lt;/p&gt;
+&lt;p&gt;“Google USB Driver”にチェックして、[Install 1 package…]をクリック。&lt;/p&gt;
 
-&lt;p&gt;&lt;img src='/assets/posts/img/nexus7_projected_to_pc/10.jpg' alt='画像10' /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/posts/img/nexus7_projected_to_pc/10.jpg&quot; alt=&quot;画像10&quot; title=&quot;画像10&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;※もし&amp;#8221;Failed to fetch URL&amp;#8221;というエラーが出た場合は、代替策として下記5を参照。&lt;/p&gt;
+&lt;p&gt;※もし”Failed to fetch URL”というエラーが出た場合は、代替策として下記5を参照。&lt;/p&gt;
 
 &lt;p&gt;規約に同意したら[Install]をクリック。&lt;/p&gt;
 
-&lt;p&gt;&lt;img src='/assets/posts/img/nexus7_projected_to_pc/11.jpg' alt='画像11' /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/posts/img/nexus7_projected_to_pc/11.jpg&quot; alt=&quot;画像11&quot; title=&quot;画像11&quot; /&gt;&lt;/p&gt;
 &lt;/li&gt;
 
 &lt;li&gt;
@@ -757,11 +767,11 @@ Enter passphrase for key &amp;#39;/root/.ssh/id_rsa&amp;#39;: &lt;/code&gt;&lt;/
 &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h5 id='5pdanet'&gt;5.PdaNet&lt;/h5&gt;
+&lt;h5 id=&quot;5pdanet&quot;&gt;5.PdaNet&lt;/h5&gt;
 
-&lt;p&gt;&lt;a href='http://www.dominantwire.com/2012/11/how-to-solve-adb-device-not-found-error.html'&gt;参考ページ&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://www.dominantwire.com/2012/11/how-to-solve-adb-device-not-found-error.html&quot;&gt;参考ページ&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;a href='http://pdanet.co/'&gt;PdaNet&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://pdanet.co/&quot;&gt;PdaNet&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;code&gt;【注意】PdaNetがインストールするUSBドライバを利用します。&lt;/code&gt;&lt;/p&gt;
 
@@ -775,7 +785,7 @@ Enter passphrase for key &amp;#39;/root/.ssh/id_rsa&amp;#39;: &lt;/code&gt;&lt;/
 &lt;li&gt;
 &lt;p&gt;5-2.インストール途中で下記メッセージが出た。&lt;/p&gt;
 
-&lt;p&gt;&lt;img src='/assets/posts/img/nexus7_projected_to_pc/1.jpg' alt='画像1' /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/posts/img/nexus7_projected_to_pc/1.jpg&quot; alt=&quot;画像1&quot; title=&quot;画像1&quot; /&gt;&lt;/p&gt;
 &lt;/li&gt;
 
 &lt;li&gt;
@@ -791,25 +801,25 @@ Enter passphrase for key &amp;#39;/root/.ssh/id_rsa&amp;#39;: &lt;/code&gt;&lt;/
 
 &lt;p&gt;直後に、PC側でインストーラが再開した。&lt;/p&gt;
 
-&lt;p&gt;&lt;img src='/assets/posts/img/nexus7_projected_to_pc/2.jpg' alt='画像2' /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/posts/img/nexus7_projected_to_pc/2.jpg&quot; alt=&quot;画像2&quot; title=&quot;画像2&quot; /&gt;&lt;/p&gt;
 &lt;/li&gt;
 
 &lt;li&gt;
-&lt;p&gt;5-5.Nexus7で下記メッセージが出たので、&amp;#8221;許可する&amp;#8221;を選択する。&lt;/p&gt;
+&lt;p&gt;5-5.Nexus7で下記メッセージが出たので、”許可する”を選択する。&lt;/p&gt;
 
-&lt;p&gt;&amp;#8220;このパソコンのRSAキーのフィンガープリント…&amp;#8221;&lt;/p&gt;
+&lt;p&gt;“このパソコンのRSAキーのフィンガープリント…”&lt;/p&gt;
 &lt;/li&gt;
 
 &lt;li&gt;
-&lt;p&gt;5-6.PC側で下記メッセージが出たので、&amp;#8221;インストール&amp;#8221;をクリック。&lt;/p&gt;
+&lt;p&gt;5-6.PC側で下記メッセージが出たので、”インストール”をクリック。&lt;/p&gt;
 
-&lt;p&gt;&lt;img src='/assets/posts/img/nexus7_projected_to_pc/3.jpg' alt='画像3' /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/posts/img/nexus7_projected_to_pc/3.jpg&quot; alt=&quot;画像3&quot; title=&quot;画像3&quot; /&gt;&lt;/p&gt;
 &lt;/li&gt;
 
 &lt;li&gt;
 &lt;p&gt;5-6.Nexus7で下記メッセージが出たので、そのままOKを選択。&lt;/p&gt;
 
-&lt;p&gt;&amp;#8220;Googleが定期的にインストールされたアプリをチェックする&amp;#8221;&lt;/p&gt;
+&lt;p&gt;“Googleが定期的にインストールされたアプリをチェックする”&lt;/p&gt;
 &lt;/li&gt;
 
 &lt;li&gt;
@@ -817,11 +827,11 @@ Enter passphrase for key &amp;#39;/root/.ssh/id_rsa&amp;#39;: &lt;/code&gt;&lt;/
 
 &lt;p&gt;下記画面が表示されればインストールは完了。&lt;/p&gt;
 
-&lt;p&gt;&lt;img src='/assets/posts/img/nexus7_projected_to_pc/4.jpg' alt='画像4' /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/posts/img/nexus7_projected_to_pc/4.jpg&quot; alt=&quot;画像4&quot; title=&quot;画像4&quot; /&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h5 id='6android_screen_cast'&gt;6.Android Screen Cast起動&lt;/h5&gt;
+&lt;h5 id=&quot;6android_screen_cast&quot;&gt;6.Android Screen Cast起動&lt;/h5&gt;
 
 &lt;ul&gt;
 &lt;li&gt;
@@ -843,23 +853,26 @@ restarting in USB mode&lt;/code&gt;&lt;/pre&gt;
 &lt;li&gt;
 &lt;p&gt;6-3. 上記3-2の操作を再実行し、Nexus7の画面がPC側に表示されれば成功。&lt;/p&gt;
 &lt;/li&gt;
-&lt;/ul&gt;</content>
+&lt;/ul&gt;
+</content>
  </entry>
  
  <entry>
    <title>MySQLコマンド メモ</title>
-   <link href="http://sankame.github.com/MySQL/2013/08/26/mysql_command"/>
-   <updated>2013-08-26T00:00:00+09:00</updated>
-   <id>http://sankame.github.com/MySQL/2013/08/26/mysql_command</id>
-   <content type="html">&lt;span&gt;&lt;a href='https://twitter.com/handycola' class='twitter-follow-button' data-show-count='false' data-lang='ja' data-dnt='true' data-size='large' data-show-screen-name='false'&gt;@handycolaさんをフォロー&lt;/a&gt;
-&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');&lt;/script&gt;&lt;/span&gt;&lt;span style='float:right;'&gt;投稿日：2013年08月26日&lt;/span&gt;&lt;div&gt;&lt;ins class='adsbygoogle' data-ad-client='ca-pub-7938855665302783' data-ad-slot='6346277556' style='display:inline-block;width:468px;height:60px' /&gt;
+   <link href="http://sankame.github.io//MySQL/2013/08/26/mysql_command"/>
+   <updated>2013-08-26T09:00:00+09:00</updated>
+   <id>http://sankame.github.io//MySQL/2013/08/26/mysql_command</id>
+   <content type="html">
+&lt;p&gt;&lt;span&gt;&lt;a class=&#39;twitter-follow-button&#39; data-dnt=&#39;true&#39; data-lang=&#39;ja&#39; data-show-count=&#39;false&#39; data-show-screen-name=&#39;false&#39; data-size=&#39;large&#39; href=&#39;https://twitter.com/handycola&#39;&gt;@handycolaさんをフォロー&lt;/a&gt;
+&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?&amp;#39;http&amp;#39;:&amp;#39;https&amp;#39;;if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+&amp;#39;://platform.twitter.com/widgets.js&amp;#39;;fjs.parentNode.insertBefore(js,fjs);}}(document, &amp;#39;script&amp;#39;, &amp;#39;twitter-wjs&amp;#39;);&lt;/script&gt;&lt;/span&gt;&lt;span style=&#39;float:right;&#39;&gt;投稿日：2013年08月26日&lt;/span&gt;&lt;/p&gt;
+&lt;div&gt;&lt;ins class=&#39;adsbygoogle&#39; data-ad-client=&#39;ca-pub-7938855665302783&#39; data-ad-slot=&#39;6346277556&#39; style=&#39;display:inline-block;width:468px;height:60px&#39; /&gt;
 &lt;script&gt;
 (adsbygoogle = window.adsbygoogle || []).push({});
 &lt;/script&gt;
 &lt;/div&gt;
-&lt;h4 id='mysql_'&gt;MySQLコマンド メモ&lt;/h4&gt;
+&lt;h4 id=&quot;mysql_&quot;&gt;MySQLコマンド メモ&lt;/h4&gt;
 
-&lt;h5 id='webdb1'&gt;WebサーバとDBサーバが1台のマシンにある場合によく行う操作。&lt;/h5&gt;
+&lt;h5 id=&quot;webdb1&quot;&gt;WebサーバとDBサーバが1台のマシンにある場合によく行う操作。&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt;# そのマシンのMySQLサーバにrootで接続
 # (パスワードを聞かれるので入力してEnter)
@@ -882,37 +895,40 @@ mysql&amp;gt; DROP TABLE IF EXISTS `users`;
 mysql&amp;gt; CREATE TABLE `users` (
 mysql&amp;gt;   `id`         bigint unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY,
 mysql&amp;gt;   `username`   varchar(32) NOT NULL
-mysql&amp;gt; ) ENGINE=InnoDB;&lt;/code&gt;&lt;/pre&gt;</content>
+mysql&amp;gt; ) ENGINE=InnoDB;&lt;/code&gt;&lt;/pre&gt;
+</content>
  </entry>
  
  <entry>
    <title>Nexus7とGitHubでプログラミング環境を作る</title>
-   <link href="http://sankame.github.com/Nexus7/2013/08/11/nexus7_github_devenv"/>
-   <updated>2013-08-11T00:00:00+09:00</updated>
-   <id>http://sankame.github.com/Nexus7/2013/08/11/nexus7_github_devenv</id>
-   <content type="html">&lt;span&gt;&lt;a href='https://twitter.com/handycola' class='twitter-follow-button' data-show-count='false' data-lang='ja' data-dnt='true' data-size='large' data-show-screen-name='false'&gt;@handycolaさんをフォロー&lt;/a&gt;
-&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');&lt;/script&gt;&lt;/span&gt;&lt;span style='float:right;'&gt;投稿日：2013年08月11日&lt;/span&gt;&lt;div&gt;&lt;ins class='adsbygoogle' data-ad-client='ca-pub-7938855665302783' data-ad-slot='6346277556' style='display:inline-block;width:468px;height:60px' /&gt;
+   <link href="http://sankame.github.io//Nexus7/2013/08/11/nexus7_github_devenv"/>
+   <updated>2013-08-11T09:00:00+09:00</updated>
+   <id>http://sankame.github.io//Nexus7/2013/08/11/nexus7_github_devenv</id>
+   <content type="html">
+&lt;p&gt;&lt;span&gt;&lt;a class=&#39;twitter-follow-button&#39; data-dnt=&#39;true&#39; data-lang=&#39;ja&#39; data-show-count=&#39;false&#39; data-show-screen-name=&#39;false&#39; data-size=&#39;large&#39; href=&#39;https://twitter.com/handycola&#39;&gt;@handycolaさんをフォロー&lt;/a&gt;
+&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?&amp;#39;http&amp;#39;:&amp;#39;https&amp;#39;;if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+&amp;#39;://platform.twitter.com/widgets.js&amp;#39;;fjs.parentNode.insertBefore(js,fjs);}}(document, &amp;#39;script&amp;#39;, &amp;#39;twitter-wjs&amp;#39;);&lt;/script&gt;&lt;/span&gt;&lt;span style=&#39;float:right;&#39;&gt;投稿日：2013年08月11日&lt;/span&gt;&lt;/p&gt;
+&lt;div&gt;&lt;ins class=&#39;adsbygoogle&#39; data-ad-client=&#39;ca-pub-7938855665302783&#39; data-ad-slot=&#39;6346277556&#39; style=&#39;display:inline-block;width:468px;height:60px&#39; /&gt;
 &lt;script&gt;
 (adsbygoogle = window.adsbygoogle || []).push({});
 &lt;/script&gt;
 &lt;/div&gt;
-&lt;h5 id='0'&gt;0.環境&lt;/h5&gt;
+&lt;h5 id=&quot;0&quot;&gt;0.環境&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt;[端末] Nexus7
 [OS]   Android 4.2.2
 [BlueToothキーボード] ELECOM TK-FBP013&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h5 id='1nexus7bit_web_server_'&gt;1.Nexus7にBit Web Serverをインストール &lt;a href='https://play.google.com/store/apps/details?id=com.andi.serverweb'&gt;(ダウンロード)&lt;/a&gt;&lt;/h5&gt;
+&lt;h5 id=&quot;1nexus7bit_web_server_&quot;&gt;1.Nexus7にBit Web Serverをインストール &lt;a href=&quot;https://play.google.com/store/apps/details?id=com.andi.serverweb&quot;&gt;(ダウンロード)&lt;/a&gt;&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt;Android上でPHPとMySQLを動かせるアプリ。(有料 約230円)
 root化しないで使用可能。&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h5 id='2nexus7terminal_ide_'&gt;2.Nexus7にTerminal IDEをインストール &lt;a href='https://play.google.com/store/apps/details?id=com.spartacusrex.spartacuside'&gt;(ダウンロード)&lt;/a&gt;&lt;/h5&gt;
+&lt;h5 id=&quot;2nexus7terminal_ide_&quot;&gt;2.Nexus7にTerminal IDEをインストール &lt;a href=&quot;https://play.google.com/store/apps/details?id=com.spartacusrex.spartacuside&quot;&gt;(ダウンロード)&lt;/a&gt;&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt;Android用の開発環境。java、c、c++等のコンパイラを含む。
 root化しないで使用可能。&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h5 id='3hello_world'&gt;3.Hello World&lt;/h5&gt;
+&lt;h5 id=&quot;3hello_world&quot;&gt;3.Hello World&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt;Nexus7にBlueToothキーボードを接続。
 
@@ -928,13 +944,9 @@ Overwrite ALLにチェックを入れ、[Install System]をクリックし、シ
 
 $ cd $HOME/sdcard/wwww
 $
-$ vim hello.php
---------------(追記内容)-----------
-&amp;lt;?php
-echo &amp;#39;hello&amp;#39;;
---------------(追記内容)-----------
-
-Nexus7でBit Web Serverを起動。
+$ vim hello.php&lt;/code&gt;&lt;/pre&gt;
+&lt;script src=&#39;https://gist.github.com/29b89884b38df722f9c6.js?file=test_hello.php&#39;&gt; &lt;/script&gt;
+&lt;pre&gt;&lt;code&gt;Nexus7でBit Web Serverを起動。
 
 [Localhost]をクリック。
 
@@ -942,7 +954,7 @@ Nexus7でBit Web Serverを起動。
 
 ブラウザにhelloと表示されれば成功。&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h5 id='4github'&gt;4.GitHubにファイルをアップ(準備)&lt;/h5&gt;
+&lt;h5 id=&quot;4github&quot;&gt;4.GitHubにファイルをアップ(準備)&lt;/h5&gt;
 
 &lt;p&gt;せっかくなのでNexus7からGitHubにファイルをアップしてみる。&lt;/p&gt;
 
@@ -979,7 +991,7 @@ $ vim $HOME/.bashrc
 export GIT_SSH=$HOME/bin/ssh-with-default-key
 --------------(追記内容)-----------&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h5 id='5github'&gt;5.GitHubにファイルをアップ&lt;/h5&gt;
+&lt;h5 id=&quot;5github&quot;&gt;5.GitHubにファイルをアップ&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt;$ Nexus7に戻って以下のコマンドを打つ。
 $ cd $HOME/sdcard/wwww
@@ -993,31 +1005,34 @@ $ git push origin master
 $
 $ これでGitHubにnew.txtがアップロードできたはず。&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h5 id='id54'&gt;参考ページ&lt;/h5&gt;
+&lt;h5 id=&quot;&quot;&gt;参考ページ&lt;/h5&gt;
 
-&lt;p&gt;&lt;a href='https://play.google.com/store/apps/details?id=com.andi.serverweb'&gt;Terminal IDEの設定&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://play.google.com/store/apps/details?id=com.andi.serverweb&quot;&gt;Terminal IDEの設定&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;a href='http://blog.katsuma.tv/2009/02/first_github.html'&gt;Githubへのpush&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://blog.katsuma.tv/2009/02/first_github.html&quot;&gt;Githubへのpush&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;a href='https://jp.linux.com/linux-community/blog/236-mirainoitsuka/403358'&gt;Githubへのpush2&lt;/a&gt;&lt;/p&gt;</content>
+&lt;p&gt;&lt;a href=&quot;https://jp.linux.com/linux-community/blog/236-mirainoitsuka/403358&quot;&gt;Githubへのpush2&lt;/a&gt;&lt;/p&gt;
+</content>
  </entry>
  
  <entry>
    <title>Redisインストール</title>
-   <link href="http://sankame.github.com/DELL/2013/07/10/redis_install"/>
-   <updated>2013-07-10T00:00:00+09:00</updated>
-   <id>http://sankame.github.com/DELL/2013/07/10/redis_install</id>
-   <content type="html">&lt;span&gt;&lt;a href='https://twitter.com/handycola' class='twitter-follow-button' data-show-count='false' data-lang='ja' data-dnt='true' data-size='large' data-show-screen-name='false'&gt;@handycolaさんをフォロー&lt;/a&gt;
-&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');&lt;/script&gt;&lt;/span&gt;&lt;span style='float:right;'&gt;投稿日：2013年07月10日&lt;/span&gt;&lt;div&gt;&lt;ins class='adsbygoogle' data-ad-client='ca-pub-7938855665302783' data-ad-slot='6346277556' style='display:inline-block;width:468px;height:60px' /&gt;
+   <link href="http://sankame.github.io//DELL/2013/07/10/redis_install"/>
+   <updated>2013-07-10T09:00:00+09:00</updated>
+   <id>http://sankame.github.io//DELL/2013/07/10/redis_install</id>
+   <content type="html">
+&lt;p&gt;&lt;span&gt;&lt;a class=&#39;twitter-follow-button&#39; data-dnt=&#39;true&#39; data-lang=&#39;ja&#39; data-show-count=&#39;false&#39; data-show-screen-name=&#39;false&#39; data-size=&#39;large&#39; href=&#39;https://twitter.com/handycola&#39;&gt;@handycolaさんをフォロー&lt;/a&gt;
+&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?&amp;#39;http&amp;#39;:&amp;#39;https&amp;#39;;if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+&amp;#39;://platform.twitter.com/widgets.js&amp;#39;;fjs.parentNode.insertBefore(js,fjs);}}(document, &amp;#39;script&amp;#39;, &amp;#39;twitter-wjs&amp;#39;);&lt;/script&gt;&lt;/span&gt;&lt;span style=&#39;float:right;&#39;&gt;投稿日：2013年07月10日&lt;/span&gt;&lt;/p&gt;
+&lt;div&gt;&lt;ins class=&#39;adsbygoogle&#39; data-ad-client=&#39;ca-pub-7938855665302783&#39; data-ad-slot=&#39;6346277556&#39; style=&#39;display:inline-block;width:468px;height:60px&#39; /&gt;
 &lt;script&gt;
 (adsbygoogle = window.adsbygoogle || []).push({});
 &lt;/script&gt;
 &lt;/div&gt;
-&lt;h5 id='id52'&gt;環境&lt;/h5&gt;
+&lt;h5 id=&quot;&quot;&gt;環境&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt;[CentOS] 5.6 (32bit版カーネル)&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h5 id='id53'&gt;インストール&lt;/h5&gt;
+&lt;h5 id=&quot;_2&quot;&gt;インストール&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt;# ソース取得。
 # wget http://redis.googlecode.com/files/redis-2.6.7.tar.gz
@@ -1079,54 +1094,57 @@ PONG
 
 # redisサーバは起動しているようだ…&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;a href='http://www.eschrade.com/page/undefined-reference-to-__sync_add_and_fetch_4/'&gt;エラー時に参照したページ&lt;/a&gt;&lt;/p&gt;</content>
+&lt;p&gt;&lt;a href=&quot;http://www.eschrade.com/page/undefined-reference-to-__sync_add_and_fetch_4/&quot;&gt;エラー時に参照したページ&lt;/a&gt;&lt;/p&gt;
+</content>
  </entry>
  
  <entry>
    <title>DELL E5520 のタッチパッドをOFFにする</title>
-   <link href="http://sankame.github.com/DELL/2013/07/05/dell_e5520_touchpad"/>
-   <updated>2013-07-05T00:00:00+09:00</updated>
-   <id>http://sankame.github.com/DELL/2013/07/05/dell_e5520_touchpad</id>
-   <content type="html">&lt;span&gt;&lt;a href='https://twitter.com/handycola' class='twitter-follow-button' data-show-count='false' data-lang='ja' data-dnt='true' data-size='large' data-show-screen-name='false'&gt;@handycolaさんをフォロー&lt;/a&gt;
-&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');&lt;/script&gt;&lt;/span&gt;&lt;span style='float:right;'&gt;投稿日：2013年07月05日&lt;/span&gt;&lt;div&gt;&lt;ins class='adsbygoogle' data-ad-client='ca-pub-7938855665302783' data-ad-slot='6346277556' style='display:inline-block;width:468px;height:60px' /&gt;
+   <link href="http://sankame.github.io//DELL/2013/07/05/dell_e5520_touchpad"/>
+   <updated>2013-07-05T09:00:00+09:00</updated>
+   <id>http://sankame.github.io//DELL/2013/07/05/dell_e5520_touchpad</id>
+   <content type="html">
+&lt;p&gt;&lt;span&gt;&lt;a class=&#39;twitter-follow-button&#39; data-dnt=&#39;true&#39; data-lang=&#39;ja&#39; data-show-count=&#39;false&#39; data-show-screen-name=&#39;false&#39; data-size=&#39;large&#39; href=&#39;https://twitter.com/handycola&#39;&gt;@handycolaさんをフォロー&lt;/a&gt;
+&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?&amp;#39;http&amp;#39;:&amp;#39;https&amp;#39;;if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+&amp;#39;://platform.twitter.com/widgets.js&amp;#39;;fjs.parentNode.insertBefore(js,fjs);}}(document, &amp;#39;script&amp;#39;, &amp;#39;twitter-wjs&amp;#39;);&lt;/script&gt;&lt;/span&gt;&lt;span style=&#39;float:right;&#39;&gt;投稿日：2013年07月05日&lt;/span&gt;&lt;/p&gt;
+&lt;div&gt;&lt;ins class=&#39;adsbygoogle&#39; data-ad-client=&#39;ca-pub-7938855665302783&#39; data-ad-slot=&#39;6346277556&#39; style=&#39;display:inline-block;width:468px;height:60px&#39; /&gt;
 &lt;script&gt;
 (adsbygoogle = window.adsbygoogle || []).push({});
 &lt;/script&gt;
 &lt;/div&gt;
-&lt;h5 id='id51'&gt;環境&lt;/h5&gt;
+&lt;h5 id=&quot;&quot;&gt;環境&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt;[PC] DELL E5520
 [OS] Windows 7 Professional (SP1)&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h5 id='1_'&gt;1. ドライバダウンロード&lt;/h5&gt;
+&lt;h5 id=&quot;1_&quot;&gt;1. ドライバダウンロード&lt;/h5&gt;
 
-&lt;p&gt;&lt;a href='http://www.dell.com/support/drivers/jp/ja/jpdhs1/Product/latitude-e5520'&gt;ダウンロードページ&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://www.dell.com/support/drivers/jp/ja/jpdhs1/Product/latitude-e5520&quot;&gt;ダウンロードページ&lt;/a&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;上記ダウンロードページを開く。
 &amp;quot;マウス、キーボード、入力デバイス&amp;quot; を開く。
 &amp;quot;Dell Multi-Touch Touchpad Driver&amp;quot; の右横にある「ファイルのダウンロード」をクリック。&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h5 id='2_'&gt;2. ドライバファイルの選択&lt;/h5&gt;
+&lt;h5 id=&quot;2_&quot;&gt;2. ドライバファイルの選択&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt;Hard-Drive-ALPS_MULTI-TOUCH-TOUCHPAD_A06_GGY5W_SETUP_ZPE.exe
 を選択して「続行」をクリック。&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h5 id='3_'&gt;3. ダウンロードセレクタ&lt;/h5&gt;
+&lt;h5 id=&quot;3_&quot;&gt;3. ダウンロードセレクタ&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt;&amp;quot;単一ファイルのダウンロード&amp;quot;
 を選択して「続行」をクリック。&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h5 id='4_'&gt;4. インストール&lt;/h5&gt;
+&lt;h5 id=&quot;4_&quot;&gt;4. インストール&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt;ダウンロード後、EXEファイルを実行。
 インストールしたら再起動。&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h5 id='5_'&gt;5. アプリ起動&lt;/h5&gt;
+&lt;h5 id=&quot;5_&quot;&gt;5. アプリ起動&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt;Windows[スタートメニュー] - [コントロールパネル]を開く。
 Dell Touchpad が増えているのでダブルクリック。&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h5 id='6_off'&gt;6. タッチパッドOff&lt;/h5&gt;
+&lt;h5 id=&quot;6_off&quot;&gt;6. タッチパッドOff&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt;DELLポインティングデバイス　というダイアログが起動。
 左メニューで任意のものを選択して、タッチパッドのOn/Offで O をクリックして、保存ボタンクリック。
@@ -1134,23 +1152,26 @@ Dell Touchpad が増えているのでダブルクリック。&lt;/code&gt;&lt;/
 
 ※見つからない場合は右上の「表示方法」を「小さいアイコン」または「大きいアイコン」に変更する。&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;a href='http://detail.chiebukuro.yahoo.co.jp/qa/question_detail/q13104530838'&gt;参考ページ&lt;/a&gt;&lt;/p&gt;</content>
+&lt;p&gt;&lt;a href=&quot;http://detail.chiebukuro.yahoo.co.jp/qa/question_detail/q13104530838&quot;&gt;参考ページ&lt;/a&gt;&lt;/p&gt;
+</content>
  </entry>
  
  <entry>
    <title>Smartyで3点リーダー(省略)表現</title>
-   <link href="http://sankame.github.com/Smarty/2013/05/12/smarty_ellipses"/>
-   <updated>2013-05-12T00:00:00+09:00</updated>
-   <id>http://sankame.github.com/Smarty/2013/05/12/smarty_ellipses</id>
-   <content type="html">&lt;span&gt;&lt;a href='https://twitter.com/handycola' class='twitter-follow-button' data-show-count='false' data-lang='ja' data-dnt='true' data-size='large' data-show-screen-name='false'&gt;@handycolaさんをフォロー&lt;/a&gt;
-&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');&lt;/script&gt;&lt;/span&gt;&lt;span style='float:right;'&gt;投稿日：2013年05月12日&lt;/span&gt;&lt;div&gt;&lt;ins class='adsbygoogle' data-ad-client='ca-pub-7938855665302783' data-ad-slot='6346277556' style='display:inline-block;width:468px;height:60px' /&gt;
+   <link href="http://sankame.github.io//Smarty/2013/05/12/smarty_ellipses"/>
+   <updated>2013-05-12T09:00:00+09:00</updated>
+   <id>http://sankame.github.io//Smarty/2013/05/12/smarty_ellipses</id>
+   <content type="html">
+&lt;p&gt;&lt;span&gt;&lt;a class=&#39;twitter-follow-button&#39; data-dnt=&#39;true&#39; data-lang=&#39;ja&#39; data-show-count=&#39;false&#39; data-show-screen-name=&#39;false&#39; data-size=&#39;large&#39; href=&#39;https://twitter.com/handycola&#39;&gt;@handycolaさんをフォロー&lt;/a&gt;
+&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?&amp;#39;http&amp;#39;:&amp;#39;https&amp;#39;;if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+&amp;#39;://platform.twitter.com/widgets.js&amp;#39;;fjs.parentNode.insertBefore(js,fjs);}}(document, &amp;#39;script&amp;#39;, &amp;#39;twitter-wjs&amp;#39;);&lt;/script&gt;&lt;/span&gt;&lt;span style=&#39;float:right;&#39;&gt;投稿日：2013年05月12日&lt;/span&gt;&lt;/p&gt;
+&lt;div&gt;&lt;ins class=&#39;adsbygoogle&#39; data-ad-client=&#39;ca-pub-7938855665302783&#39; data-ad-slot=&#39;6346277556&#39; style=&#39;display:inline-block;width:468px;height:60px&#39; /&gt;
 &lt;script&gt;
 (adsbygoogle = window.adsbygoogle || []).push({});
 &lt;/script&gt;
 &lt;/div&gt;
-&lt;h5 id='109'&gt;10文字以上の場合、9文字目を…にして残りを切り捨てる。&lt;/h5&gt;
+&lt;h5 id=&quot;109&quot;&gt;10文字以上の場合、9文字目を…にして残りを切り捨てる。&lt;/h5&gt;
 
-&lt;h5 id='1'&gt;(半角、全角ともに1文字として扱う)&lt;/h5&gt;
+&lt;h5 id=&quot;1&quot;&gt;(半角、全角ともに1文字として扱う)&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt;{if mb_strlen($keyword) &amp;gt; 9}
 	{assign var=cutKeyword value=$keyword|mb_substr:0:8|cat:&amp;#39;…&amp;#39;}
@@ -1159,42 +1180,45 @@ Dell Touchpad が増えているのでダブルクリック。&lt;/code&gt;&lt;/
 {/if}
 &amp;lt;a class=&amp;quot;keyword-link&amp;quot; href=&amp;quot;#&amp;quot; title=&amp;quot;{$keyword}&amp;quot;&amp;gt;{$cutKeyword}&amp;lt;/a&amp;gt;&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h5 id='id50'&gt;上記コードで各文字列を変換した場合。&lt;/h5&gt;
+&lt;h5 id=&quot;&quot;&gt;上記コードで各文字列を変換した場合。&lt;/h5&gt;
 
-&lt;h5 id='_'&gt;(&amp;#8220;→&amp;#8221; は変換前後を表す)&lt;/h5&gt;
+&lt;h5 id=&quot;_&quot;&gt;(“→” は変換前後を表す)&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt;１２３４５６７８　　　→　１２３４５６７８
 １２３４５６７８９　　→　１２３４５６７８９
 １２３４５６７８９Ａ　→　１２３４５６７８…
 123456789          →　123456789
-123456789A         →　12345678…&lt;/code&gt;&lt;/pre&gt;</content>
+123456789A         →　12345678…&lt;/code&gt;&lt;/pre&gt;
+</content>
  </entry>
  
  <entry>
    <title>PHPでMeCabを利用</title>
-   <link href="http://sankame.github.com/MeCab/2013/04/29/php_mecab"/>
-   <updated>2013-04-29T00:00:00+09:00</updated>
-   <id>http://sankame.github.com/MeCab/2013/04/29/php_mecab</id>
-   <content type="html">&lt;span&gt;&lt;a href='https://twitter.com/handycola' class='twitter-follow-button' data-show-count='false' data-lang='ja' data-dnt='true' data-size='large' data-show-screen-name='false'&gt;@handycolaさんをフォロー&lt;/a&gt;
-&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');&lt;/script&gt;&lt;/span&gt;&lt;span style='float:right;'&gt;投稿日：2013年04月29日&lt;/span&gt;&lt;div&gt;&lt;ins class='adsbygoogle' data-ad-client='ca-pub-7938855665302783' data-ad-slot='6346277556' style='display:inline-block;width:468px;height:60px' /&gt;
+   <link href="http://sankame.github.io//MeCab/2013/04/29/php_mecab"/>
+   <updated>2013-04-29T09:00:00+09:00</updated>
+   <id>http://sankame.github.io//MeCab/2013/04/29/php_mecab</id>
+   <content type="html">
+&lt;p&gt;&lt;span&gt;&lt;a class=&#39;twitter-follow-button&#39; data-dnt=&#39;true&#39; data-lang=&#39;ja&#39; data-show-count=&#39;false&#39; data-show-screen-name=&#39;false&#39; data-size=&#39;large&#39; href=&#39;https://twitter.com/handycola&#39;&gt;@handycolaさんをフォロー&lt;/a&gt;
+&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?&amp;#39;http&amp;#39;:&amp;#39;https&amp;#39;;if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+&amp;#39;://platform.twitter.com/widgets.js&amp;#39;;fjs.parentNode.insertBefore(js,fjs);}}(document, &amp;#39;script&amp;#39;, &amp;#39;twitter-wjs&amp;#39;);&lt;/script&gt;&lt;/span&gt;&lt;span style=&#39;float:right;&#39;&gt;投稿日：2013年04月29日&lt;/span&gt;&lt;/p&gt;
+&lt;div&gt;&lt;ins class=&#39;adsbygoogle&#39; data-ad-client=&#39;ca-pub-7938855665302783&#39; data-ad-slot=&#39;6346277556&#39; style=&#39;display:inline-block;width:468px;height:60px&#39; /&gt;
 &lt;script&gt;
 (adsbygoogle = window.adsbygoogle || []).push({});
 &lt;/script&gt;
 &lt;/div&gt;
-&lt;h4 id='phpmecab'&gt;PHPからMeCabを使ってみる。&lt;/h4&gt;
+&lt;h4 id=&quot;phpmecab&quot;&gt;PHPからMeCabを使ってみる。&lt;/h4&gt;
 
-&lt;h5 id='id49'&gt;環境&lt;/h5&gt;
+&lt;h5 id=&quot;&quot;&gt;環境&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt;[CentOS] 5.6 (32bit版カーネル)
 [PHP]    5.3.3&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h5 id='0mecab'&gt;0.MeCabインストール&lt;/h5&gt;
+&lt;h5 id=&quot;0mecab&quot;&gt;0.MeCabインストール&lt;/h5&gt;
 
-&lt;p&gt;&lt;a href='/MeCab/2013/01/28/mecab_install/'&gt;MeCabインストール方法&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;/MeCab/2013/01/28/mecab_install/&quot;&gt;MeCabインストール方法&lt;/a&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;# まずは上記の手順でMeCabをインストール。&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h5 id='1php_mecab'&gt;1.php_mecabインストール&lt;/h5&gt;
+&lt;h5 id=&quot;1php_mecab&quot;&gt;1.php_mecabインストール&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt;# wget -O php_mecab-0.5.zip https://nodeload.github.com/rsky/php-mecab/zip/master --no-check-certificate
 # 
@@ -1214,7 +1238,7 @@ Dell Touchpad が増えているのでダブルクリック。&lt;/code&gt;&lt;/
 # 
 # make install&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h5 id='2'&gt;2.テスト&lt;/h5&gt;
+&lt;h5 id=&quot;2&quot;&gt;2.テスト&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt;# インストールが成功したら、phpからテスト
 # (Apache経由で動かす場合はhttpdを再起動して下さい)
@@ -1222,19 +1246,11 @@ Dell Touchpad が増えているのでダブルクリック。&lt;/code&gt;&lt;/
 # echo &amp;quot;extension=mecab.so&amp;quot; &amp;gt; /etc/php.d/mecab.ini
 # vim mecabtest.php
 
---------------(記述内容)--------------
-&amp;lt;?php
-dl(&amp;#39;mecab.so&amp;#39;);
+&amp;lt;script src=&amp;quot;https://gist.github.com/d0ff28564c451c4372cf.js?file=test_php_mecab.php&amp;quot;&amp;gt; &amp;lt;/script&amp;gt;&lt;/code&gt;&lt;/pre&gt;
 
-$t = new MeCab_Tagger();
-$str = &amp;#39;すもももももももものうち&amp;#39;;
+&lt;h6 id=&quot;3php&quot;&gt;3.作成したphpファイルを実行&lt;/h6&gt;
 
-echo $t-&amp;gt;parse($str);
---------------(記述内容)--------------
-
-
-# 作成したphpファイルを実行
-# php mecabtest.php 
+&lt;pre&gt;&lt;code&gt;# php mecabtest.php 
 
 --------------(実行結果)--------------
 すもも  名詞,一般,*,*,*,*,すもも,スモモ,スモモ
@@ -1247,29 +1263,32 @@ echo $t-&amp;gt;parse($str);
 EOS
 --------------(実行結果)--------------&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;a href='http://kohkimakimoto.hatenablog.com/entry/2012/05/02/112020'&gt;参照したページ1&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://kohkimakimoto.hatenablog.com/entry/2012/05/02/112020&quot;&gt;参照したページ1&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;a href='http://kouhei.hatenablog.com/entry/2012/12/13/022040'&gt;参照したページ2&lt;/a&gt;&lt;/p&gt;</content>
+&lt;p&gt;&lt;a href=&quot;http://kouhei.hatenablog.com/entry/2012/12/13/022040&quot;&gt;参照したページ2&lt;/a&gt;&lt;/p&gt;
+</content>
  </entry>
  
  <entry>
    <title>MeCabインストール</title>
-   <link href="http://sankame.github.com/MeCab/2013/01/28/mecab_install"/>
-   <updated>2013-01-28T00:00:00+09:00</updated>
-   <id>http://sankame.github.com/MeCab/2013/01/28/mecab_install</id>
-   <content type="html">&lt;span&gt;&lt;a href='https://twitter.com/handycola' class='twitter-follow-button' data-show-count='false' data-lang='ja' data-dnt='true' data-size='large' data-show-screen-name='false'&gt;@handycolaさんをフォロー&lt;/a&gt;
-&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');&lt;/script&gt;&lt;/span&gt;&lt;span style='float:right;'&gt;投稿日：2013年01月28日&lt;/span&gt;&lt;div&gt;&lt;ins class='adsbygoogle' data-ad-client='ca-pub-7938855665302783' data-ad-slot='6346277556' style='display:inline-block;width:468px;height:60px' /&gt;
+   <link href="http://sankame.github.io//MeCab/2013/01/28/mecab_install"/>
+   <updated>2013-01-28T09:00:00+09:00</updated>
+   <id>http://sankame.github.io//MeCab/2013/01/28/mecab_install</id>
+   <content type="html">
+&lt;p&gt;&lt;span&gt;&lt;a class=&#39;twitter-follow-button&#39; data-dnt=&#39;true&#39; data-lang=&#39;ja&#39; data-show-count=&#39;false&#39; data-show-screen-name=&#39;false&#39; data-size=&#39;large&#39; href=&#39;https://twitter.com/handycola&#39;&gt;@handycolaさんをフォロー&lt;/a&gt;
+&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?&amp;#39;http&amp;#39;:&amp;#39;https&amp;#39;;if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+&amp;#39;://platform.twitter.com/widgets.js&amp;#39;;fjs.parentNode.insertBefore(js,fjs);}}(document, &amp;#39;script&amp;#39;, &amp;#39;twitter-wjs&amp;#39;);&lt;/script&gt;&lt;/span&gt;&lt;span style=&#39;float:right;&#39;&gt;投稿日：2013年01月28日&lt;/span&gt;&lt;/p&gt;
+&lt;div&gt;&lt;ins class=&#39;adsbygoogle&#39; data-ad-client=&#39;ca-pub-7938855665302783&#39; data-ad-slot=&#39;6346277556&#39; style=&#39;display:inline-block;width:468px;height:60px&#39; /&gt;
 &lt;script&gt;
 (adsbygoogle = window.adsbygoogle || []).push({});
 &lt;/script&gt;
 &lt;/div&gt;
-&lt;h4 id='mecab'&gt;形態素解析エンジンMeCabをインストールしてみる。&lt;/h4&gt;
+&lt;h4 id=&quot;mecab&quot;&gt;形態素解析エンジンMeCabをインストールしてみる。&lt;/h4&gt;
 
-&lt;h5 id='id48'&gt;環境&lt;/h5&gt;
+&lt;h5 id=&quot;&quot;&gt;環境&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt;[CentOS] 5.6 (32bit版カーネル)&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h5 id='1'&gt;1.インストール&lt;/h5&gt;
+&lt;h5 id=&quot;1&quot;&gt;1.インストール&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt;# mecabのソースを取得
 # wget http://mecab.googlecode.com/files/mecab-0.98.tar.gz
@@ -1278,9 +1297,9 @@ EOS
 # cd src
 
 # mecab.hを開いて点線で囲んだ部分を修正する。数字に付けられている()を削除する。
-# vim mecab.h 
---------------------------------------
-	#define MECAB_NOR_NODE  0
+# vim mecab.h &lt;/code&gt;&lt;/pre&gt;
+&lt;hr /&gt;
+&lt;pre&gt;&lt;code&gt;	#define MECAB_NOR_NODE  0
 	#define MECAB_UNK_NODE  1
 	#define MECAB_BOS_NODE  2
 	#define MECAB_EOS_NODE  3
@@ -1288,10 +1307,9 @@ EOS
 
 	#define MECAB_USR_DIC   1
 	#define MECAB_SYS_DIC   0
-	#define MECAB_UNK_DIC   2
---------------------------------------
-
-# cd ..
+	#define MECAB_UNK_DIC   2&lt;/code&gt;&lt;/pre&gt;
+&lt;hr /&gt;
+&lt;pre&gt;&lt;code&gt;# cd ..
 
 # ./configure --with-charset=utf-8
 # make
@@ -1305,9 +1323,9 @@ EOS
 # cd mecab-ipadic-2.7.0-20070801
 
 # char.def を開いて点線で囲んだ部分を修正する。オリジナルの部分をコメントアウトし、7行追加。
-# vim char.def 
---------------------------------------
-	# ASCII
+# vim char.def &lt;/code&gt;&lt;/pre&gt;
+&lt;hr /&gt;
+&lt;pre&gt;&lt;code&gt;	# ASCII
 	 #0x0021..0x002F SYMBOL
 	 #0x0030..0x0039 NUMERIC
 	 #0x003A..0x0040 SYMBOL
@@ -1321,14 +1339,13 @@ EOS
 	 0x0041..0x005A ALPHA
 	 0x005B..0x0060 ALPHA
 	 0x0061..0x007A ALPHA
-	 0x007B..0x007E ALPHA
---------------------------------------
-
-./configure --with-charset=utf-8
+	 0x007B..0x007E ALPHA&lt;/code&gt;&lt;/pre&gt;
+&lt;hr /&gt;
+&lt;pre&gt;&lt;code&gt;./configure --with-charset=utf-8
 make
 make install&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h5 id='2'&gt;2.テスト&lt;/h5&gt;
+&lt;h5 id=&quot;2&quot;&gt;2.テスト&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt;# 以下のようにmecabと打ってEnterキーを押すと待機状態になるので、次に解析したい文字列を入力する。
 # mecab
@@ -1344,59 +1361,65 @@ make install&lt;/code&gt;&lt;/pre&gt;
 うち    名詞,非自立,副詞可能,*,*,*,うち,ウチ,ウチ
 EOS&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;a href='/MeCab/2013/04/29/php_mecab/'&gt;PHPから利用する方法はこちら&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;/MeCab/2013/04/29/php_mecab/&quot;&gt;PHPから利用する方法はこちら&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;a href='http://brandofme.vi-king.net/?p=197'&gt;参照したページ&lt;/a&gt;&lt;/p&gt;</content>
+&lt;p&gt;&lt;a href=&quot;http://brandofme.vi-king.net/?p=197&quot;&gt;参照したページ&lt;/a&gt;&lt;/p&gt;
+</content>
  </entry>
  
  <entry>
    <title>OpenX仕組み1 配信処理</title>
-   <link href="http://sankame.github.com/OpenX/2013/01/20/openx_structure1"/>
-   <updated>2013-01-20T00:00:00+09:00</updated>
-   <id>http://sankame.github.com/OpenX/2013/01/20/openx_structure1</id>
-   <content type="html">&lt;span&gt;&lt;a href='https://twitter.com/handycola' class='twitter-follow-button' data-show-count='false' data-lang='ja' data-dnt='true' data-size='large' data-show-screen-name='false'&gt;@handycolaさんをフォロー&lt;/a&gt;
-&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');&lt;/script&gt;&lt;/span&gt;&lt;span style='float:right;'&gt;投稿日：2013年01月20日&lt;/span&gt;&lt;div&gt;&lt;ins class='adsbygoogle' data-ad-client='ca-pub-7938855665302783' data-ad-slot='6346277556' style='display:inline-block;width:468px;height:60px' /&gt;
+   <link href="http://sankame.github.io//OpenX/2013/01/20/openx_structure1"/>
+   <updated>2013-01-20T09:00:00+09:00</updated>
+   <id>http://sankame.github.io//OpenX/2013/01/20/openx_structure1</id>
+   <content type="html">
+&lt;p&gt;&lt;span&gt;&lt;a class=&#39;twitter-follow-button&#39; data-dnt=&#39;true&#39; data-lang=&#39;ja&#39; data-show-count=&#39;false&#39; data-show-screen-name=&#39;false&#39; data-size=&#39;large&#39; href=&#39;https://twitter.com/handycola&#39;&gt;@handycolaさんをフォロー&lt;/a&gt;
+&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?&amp;#39;http&amp;#39;:&amp;#39;https&amp;#39;;if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+&amp;#39;://platform.twitter.com/widgets.js&amp;#39;;fjs.parentNode.insertBefore(js,fjs);}}(document, &amp;#39;script&amp;#39;, &amp;#39;twitter-wjs&amp;#39;);&lt;/script&gt;&lt;/span&gt;&lt;span style=&#39;float:right;&#39;&gt;投稿日：2013年01月20日&lt;/span&gt;&lt;/p&gt;
+&lt;div&gt;&lt;ins class=&#39;adsbygoogle&#39; data-ad-client=&#39;ca-pub-7938855665302783&#39; data-ad-slot=&#39;6346277556&#39; style=&#39;display:inline-block;width:468px;height:60px&#39; /&gt;
 &lt;script&gt;
 (adsbygoogle = window.adsbygoogle || []).push({});
 &lt;/script&gt;
 &lt;/div&gt;
-&lt;h4 id='openx'&gt;OpenX仕組みに関する自分用メモ　配信処理&lt;/h4&gt;
+&lt;h4 id=&quot;openx&quot;&gt;OpenX仕組みに関する自分用メモ　配信処理&lt;/h4&gt;
 
-&lt;h4 id='1'&gt;1.テーブル定義&lt;/h4&gt;
+&lt;h4 id=&quot;1&quot;&gt;1.テーブル定義&lt;/h4&gt;
 
-&lt;p&gt;&lt;a href='http://www.zulutime.org/openxschema/index.html'&gt;テーブル定義？&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://www.zulutime.org/openxschema/index.html&quot;&gt;テーブル定義？&lt;/a&gt;&lt;/p&gt;
 
-&lt;h4 id='2'&gt;2.インプレッションカウント&lt;/h4&gt;
+&lt;h4 id=&quot;2&quot;&gt;2.インプレッションカウント&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code&gt;PHP : plugins/deliveryLog/oxLogImpression/logImpression.delivery.php
 		→lib/OA/Dal/Delivery/mysql.php:function OX_bucket_updateTable
 DB	: ox_data_bkt_m
 処理: INSERT(1レコード)
-概要: &lt;/code&gt;&lt;/pre&gt;</content>
+概要: &lt;/code&gt;&lt;/pre&gt;
+</content>
  </entry>
  
  <entry>
    <title>かんたんSubversionリポジトリ作成</title>
-   <link href="http://sankame.github.com/Subversion/2013/01/19/svn_create_repos"/>
-   <updated>2013-01-19T00:00:00+09:00</updated>
-   <id>http://sankame.github.com/Subversion/2013/01/19/svn_create_repos</id>
-   <content type="html">&lt;span&gt;&lt;a href='https://twitter.com/handycola' class='twitter-follow-button' data-show-count='false' data-lang='ja' data-dnt='true' data-size='large' data-show-screen-name='false'&gt;@handycolaさんをフォロー&lt;/a&gt;
-&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');&lt;/script&gt;&lt;/span&gt;&lt;span style='float:right;'&gt;投稿日：2013年01月19日&lt;/span&gt;&lt;div&gt;&lt;ins class='adsbygoogle' data-ad-client='ca-pub-7938855665302783' data-ad-slot='6346277556' style='display:inline-block;width:468px;height:60px' /&gt;
+   <link href="http://sankame.github.io//Subversion/2013/01/19/svn_create_repos"/>
+   <updated>2013-01-19T09:00:00+09:00</updated>
+   <id>http://sankame.github.io//Subversion/2013/01/19/svn_create_repos</id>
+   <content type="html">
+&lt;p&gt;&lt;span&gt;&lt;a class=&#39;twitter-follow-button&#39; data-dnt=&#39;true&#39; data-lang=&#39;ja&#39; data-show-count=&#39;false&#39; data-show-screen-name=&#39;false&#39; data-size=&#39;large&#39; href=&#39;https://twitter.com/handycola&#39;&gt;@handycolaさんをフォロー&lt;/a&gt;
+&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?&amp;#39;http&amp;#39;:&amp;#39;https&amp;#39;;if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+&amp;#39;://platform.twitter.com/widgets.js&amp;#39;;fjs.parentNode.insertBefore(js,fjs);}}(document, &amp;#39;script&amp;#39;, &amp;#39;twitter-wjs&amp;#39;);&lt;/script&gt;&lt;/span&gt;&lt;span style=&#39;float:right;&#39;&gt;投稿日：2013年01月19日&lt;/span&gt;&lt;/p&gt;
+&lt;div&gt;&lt;ins class=&#39;adsbygoogle&#39; data-ad-client=&#39;ca-pub-7938855665302783&#39; data-ad-slot=&#39;6346277556&#39; style=&#39;display:inline-block;width:468px;height:60px&#39; /&gt;
 &lt;script&gt;
 (adsbygoogle = window.adsbygoogle || []).push({});
 &lt;/script&gt;
 &lt;/div&gt;
-&lt;h4 id='svnsubversion'&gt;SVN(Subversion)でリポジトリ作成する際の最低限の手順をまとめました。&lt;/h4&gt;
+&lt;h4 id=&quot;svnsubversion&quot;&gt;SVN(Subversion)でリポジトリ作成する際の最低限の手順をまとめました。&lt;/h4&gt;
 
-&lt;h4 id='svn'&gt;※SVNはインストール済みとします。&lt;/h4&gt;
+&lt;h4 id=&quot;svn&quot;&gt;※SVNはインストール済みとします。&lt;/h4&gt;
 
-&lt;h5 id='0'&gt;0.環境&lt;/h5&gt;
+&lt;h5 id=&quot;0&quot;&gt;0.環境&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt;[CentOS]     5.6 (32bit版カーネル)
 [Apache]     2.2.3
 [Subversion] 1.6.11&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h5 id='1'&gt;1.作成手順&lt;/h5&gt;
+&lt;h5 id=&quot;1&quot;&gt;1.作成手順&lt;/h5&gt;
 
 &lt;ul&gt;
 &lt;li&gt;
@@ -1458,29 +1481,32 @@ svn mkdir file:///var/svn/repos/test/branches -m &amp;quot;create&amp;quot;&lt;/
 &lt;pre&gt;&lt;code&gt;# cd /var/svn/repos
 # chmod -R 777 test&lt;/code&gt;&lt;/pre&gt;
 &lt;/li&gt;
-&lt;/ul&gt;</content>
+&lt;/ul&gt;
+</content>
  </entry>
  
  <entry>
    <title>OpenX配信テスト</title>
-   <link href="http://sankame.github.com/OpenX/2013/01/15/openx_delivery_test"/>
-   <updated>2013-01-15T00:00:00+09:00</updated>
-   <id>http://sankame.github.com/OpenX/2013/01/15/openx_delivery_test</id>
-   <content type="html">&lt;span&gt;&lt;a href='https://twitter.com/handycola' class='twitter-follow-button' data-show-count='false' data-lang='ja' data-dnt='true' data-size='large' data-show-screen-name='false'&gt;@handycolaさんをフォロー&lt;/a&gt;
-&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');&lt;/script&gt;&lt;/span&gt;&lt;span style='float:right;'&gt;投稿日：2013年01月15日&lt;/span&gt;&lt;div&gt;&lt;ins class='adsbygoogle' data-ad-client='ca-pub-7938855665302783' data-ad-slot='6346277556' style='display:inline-block;width:468px;height:60px' /&gt;
+   <link href="http://sankame.github.io//OpenX/2013/01/15/openx_delivery_test"/>
+   <updated>2013-01-15T09:00:00+09:00</updated>
+   <id>http://sankame.github.io//OpenX/2013/01/15/openx_delivery_test</id>
+   <content type="html">
+&lt;p&gt;&lt;span&gt;&lt;a class=&#39;twitter-follow-button&#39; data-dnt=&#39;true&#39; data-lang=&#39;ja&#39; data-show-count=&#39;false&#39; data-show-screen-name=&#39;false&#39; data-size=&#39;large&#39; href=&#39;https://twitter.com/handycola&#39;&gt;@handycolaさんをフォロー&lt;/a&gt;
+&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?&amp;#39;http&amp;#39;:&amp;#39;https&amp;#39;;if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+&amp;#39;://platform.twitter.com/widgets.js&amp;#39;;fjs.parentNode.insertBefore(js,fjs);}}(document, &amp;#39;script&amp;#39;, &amp;#39;twitter-wjs&amp;#39;);&lt;/script&gt;&lt;/span&gt;&lt;span style=&#39;float:right;&#39;&gt;投稿日：2013年01月15日&lt;/span&gt;&lt;/p&gt;
+&lt;div&gt;&lt;ins class=&#39;adsbygoogle&#39; data-ad-client=&#39;ca-pub-7938855665302783&#39; data-ad-slot=&#39;6346277556&#39; style=&#39;display:inline-block;width:468px;height:60px&#39; /&gt;
 &lt;script&gt;
 (adsbygoogle = window.adsbygoogle || []).push({});
 &lt;/script&gt;
 &lt;/div&gt;
-&lt;h4 id='openxver2810'&gt;OpenX(ver2.8.10)で広告配信テストをしてみる。&lt;/h4&gt;
+&lt;h4 id=&quot;openxver2810&quot;&gt;OpenX(ver2.8.10)で広告配信テストをしてみる。&lt;/h4&gt;
 
-&lt;h4 id='1'&gt;1.管理画面ログイン&lt;/h4&gt;
+&lt;h4 id=&quot;1&quot;&gt;1.管理画面ログイン&lt;/h4&gt;
 
 &lt;p&gt;管理画面にログイン後、画面右上でログインユーザが「Working as Default manager」であることを確認。&lt;/p&gt;
 
 &lt;p&gt;「インベントリ」タブをクリックし、左メニューの上から順に登録していく。&lt;/p&gt;
 
-&lt;h4 id='2'&gt;2.広告主&lt;/h4&gt;
+&lt;h4 id=&quot;2&quot;&gt;2.広告主&lt;/h4&gt;
 
 &lt;p&gt;「インベントリ」-「広告主」-「広告主の追加」とリンクを辿り、下記項目に入力して「変更の保存」クリック。&lt;/p&gt;
 
@@ -1492,7 +1518,7 @@ svn mkdir file:///var/svn/repos/test/branches -m &amp;quot;create&amp;quot;&lt;/
 
 &lt;p&gt;※ログアウト後、入力した「ユーザー名」と「パスワード」で広告主ユーザーとしてログインできる。&lt;/p&gt;
 
-&lt;h4 id='3'&gt;3.キャンペーン&lt;/h4&gt;
+&lt;h4 id=&quot;3&quot;&gt;3.キャンペーン&lt;/h4&gt;
 
 &lt;p&gt;「インベントリ」-「広告主」で登録済みの広告主の「キャンペーンの追加」をクリック。&lt;/p&gt;
 
@@ -1505,7 +1531,7 @@ svn mkdir file:///var/svn/repos/test/branches -m &amp;quot;create&amp;quot;&lt;/
 (2013/01/20,追記) 「他のキャンペーンに対する優先度」が未設定だとアラートメッセージが出るので下記のように設定。
 優先度レベル=10、Limit=インプレッション、終了=15000/日&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h4 id='4'&gt;4.バナー&lt;/h4&gt;
+&lt;h4 id=&quot;4&quot;&gt;4.バナー&lt;/h4&gt;
 
 &lt;p&gt;「インベントリ」-「キャンペーン」で登録済みキャンペーンの「バナーの追加」をクリック。&lt;/p&gt;
 
@@ -1525,13 +1551,13 @@ Banner display : (Google AdSenseの広告ユニットコードと同じサイズ
 バナービュー上限数 : 20000／セッション
 カウンタリセット条件 : 15 分間&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;a href='http://www.openx.com/docs/tutorials/using-google-adsense-with-openx'&gt;マニュアル&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://www.openx.com/docs/tutorials/using-google-adsense-with-openx&quot;&gt;マニュアル&lt;/a&gt;&lt;/p&gt;
 
-&lt;h4 id='5_web'&gt;5. Webサイト&lt;/h4&gt;
+&lt;h4 id=&quot;5_web&quot;&gt;5. Webサイト&lt;/h4&gt;
 
 &lt;p&gt;「インベントリ」-「Webサイト」-「Webサイトの追加」から、広告を配信したいWebサイトを登録する。&lt;/p&gt;
 
-&lt;h4 id='6_'&gt;6. ゾーン&lt;/h4&gt;
+&lt;h4 id=&quot;6_&quot;&gt;6. ゾーン&lt;/h4&gt;
 
 &lt;p&gt;「インベントリ」-「Webサイト」で登録済みのWebサイトの「ゾーンの追加」をクリック。&lt;/p&gt;
 
@@ -1539,7 +1565,7 @@ Banner display : (Google AdSenseの広告ユニットコードと同じサイズ
 ゾーンタイプ：バナー・ボタン・レクタングル広告
 サイズ：(バナーのBanner displayで指定した値と合わせる)&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h4 id='7_'&gt;7. リンク済バナー&lt;/h4&gt;
+&lt;h4 id=&quot;7_&quot;&gt;7. リンク済バナー&lt;/h4&gt;
 
 &lt;p&gt;「インベントリ」-「ゾーン」で、登録済みゾーンの「リンク済みバナー」をクリック。&lt;/p&gt;
 
@@ -1549,41 +1575,44 @@ Banner display : (Google AdSenseの広告ユニットコードと同じサイズ
 
 &lt;p&gt;「バナーの表示」をクリックするとプレビューが表示される。&lt;/p&gt;
 
-&lt;h4 id='8_'&gt;8. 広告コード&lt;/h4&gt;
+&lt;h4 id=&quot;8_&quot;&gt;8. 広告コード&lt;/h4&gt;
 
 &lt;p&gt;「インベントリ」-「ゾーン」で登録済みゾーンの「広告表示コードの生成」をクリック。&lt;/p&gt;
 
 &lt;p&gt;表示されたコードをコピーして、表示させたいWebサイトに貼り付ける。&lt;/p&gt;
 
-&lt;h4 id='9_'&gt;9. 疑問&lt;/h4&gt;
+&lt;h4 id=&quot;9_&quot;&gt;9. 疑問&lt;/h4&gt;
 
 &lt;p&gt;上記8の広告コードは、上記5のWebサイト以外のドメインでも表示することができる。&lt;/p&gt;
 
 &lt;p&gt;Webサイトとバナーを紐付けたのはなぜ？レポートのため？&lt;/p&gt;
 
-&lt;h4 id='10_'&gt;10. 参考ページ&lt;/h4&gt;
+&lt;h4 id=&quot;10_&quot;&gt;10. 参考ページ&lt;/h4&gt;
 
-&lt;p&gt;&lt;a href='http://ohwhsmm7.blog28.fc2.com/blog-entry-206.html'&gt;参考ページ&lt;/a&gt;&lt;/p&gt;</content>
+&lt;p&gt;&lt;a href=&quot;http://ohwhsmm7.blog28.fc2.com/blog-entry-206.html&quot;&gt;参考ページ&lt;/a&gt;&lt;/p&gt;
+</content>
  </entry>
  
  <entry>
    <title>CentOSコマンド メモ</title>
-   <link href="http://sankame.github.com/CentOS/2012/12/31/centos_command"/>
-   <updated>2012-12-31T00:00:00+09:00</updated>
-   <id>http://sankame.github.com/CentOS/2012/12/31/centos_command</id>
-   <content type="html">&lt;span&gt;&lt;a href='https://twitter.com/handycola' class='twitter-follow-button' data-show-count='false' data-lang='ja' data-dnt='true' data-size='large' data-show-screen-name='false'&gt;@handycolaさんをフォロー&lt;/a&gt;
-&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');&lt;/script&gt;&lt;/span&gt;&lt;span style='float:right;'&gt;投稿日：2012年12月31日&lt;/span&gt;&lt;div&gt;&lt;ins class='adsbygoogle' data-ad-client='ca-pub-7938855665302783' data-ad-slot='6346277556' style='display:inline-block;width:468px;height:60px' /&gt;
+   <link href="http://sankame.github.io//CentOS/2012/12/31/centos_command"/>
+   <updated>2012-12-31T09:00:00+09:00</updated>
+   <id>http://sankame.github.io//CentOS/2012/12/31/centos_command</id>
+   <content type="html">
+&lt;p&gt;&lt;span&gt;&lt;a class=&#39;twitter-follow-button&#39; data-dnt=&#39;true&#39; data-lang=&#39;ja&#39; data-show-count=&#39;false&#39; data-show-screen-name=&#39;false&#39; data-size=&#39;large&#39; href=&#39;https://twitter.com/handycola&#39;&gt;@handycolaさんをフォロー&lt;/a&gt;
+&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?&amp;#39;http&amp;#39;:&amp;#39;https&amp;#39;;if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+&amp;#39;://platform.twitter.com/widgets.js&amp;#39;;fjs.parentNode.insertBefore(js,fjs);}}(document, &amp;#39;script&amp;#39;, &amp;#39;twitter-wjs&amp;#39;);&lt;/script&gt;&lt;/span&gt;&lt;span style=&#39;float:right;&#39;&gt;投稿日：2012年12月31日&lt;/span&gt;&lt;/p&gt;
+&lt;div&gt;&lt;ins class=&#39;adsbygoogle&#39; data-ad-client=&#39;ca-pub-7938855665302783&#39; data-ad-slot=&#39;6346277556&#39; style=&#39;display:inline-block;width:468px;height:60px&#39; /&gt;
 &lt;script&gt;
 (adsbygoogle = window.adsbygoogle || []).push({});
 &lt;/script&gt;
 &lt;/div&gt;
-&lt;h4 id='centos_'&gt;CentOSコマンド メモ&lt;/h4&gt;
+&lt;h4 id=&quot;centos_&quot;&gt;CentOSコマンド メモ&lt;/h4&gt;
 
-&lt;h5 id='id47'&gt;・ファイル検索&lt;/h5&gt;
+&lt;h5 id=&quot;&quot;&gt;・ファイル検索&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt; find / -name filename&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h5 id='locate_20130101'&gt;・locateインストール (更新日：2013/01/01)&lt;/h5&gt;
+&lt;h5 id=&quot;locate_20130101&quot;&gt;・locateインストール (更新日：2013/01/01)&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt;# which locate
 /usr/bin/which: no locate in ・・・以下省略
@@ -1597,55 +1626,51 @@ Banner display : (Google AdSenseの広告ユニットコードと同じサイズ
 # 下記コマンドでDBを更新するとlocateが使えるようになる。
 # updatedb&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h5 id='date_20130127'&gt;・dateで日時設定 (更新日：2013/01/27)&lt;/h5&gt;
+&lt;h5 id=&quot;date_20130127&quot;&gt;・dateで日時設定 (更新日：2013/01/27)&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt;# 引数を次の順番に設定。→ date [月][日][時間][分][年]
 
 # date 012723232013
 2013年  1月 27日 日曜日 23:23:00 JST&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h5 id='centos_20130707'&gt;・CentOSバージョン (更新日：2013/07/07)&lt;/h5&gt;
+&lt;h5 id=&quot;centos_20130707&quot;&gt;・CentOSバージョン (更新日：2013/07/07)&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt;# cat /etc/redhat-release&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h5 id='cpu_20130707'&gt;・CPUアーキテクチャ確認 (更新日：2013/07/07)&lt;/h5&gt;
+&lt;h5 id=&quot;cpu_20130707&quot;&gt;・CPUアーキテクチャ確認 (更新日：2013/07/07)&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt;# grep flags /proc/cpuinfo | grep lm | wc -l
 # 上記が0ならCPU 32bit、1ならCPU 64bit
 # lm(long mode)フラグがあれば64bit&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h5 id='_20130707'&gt;・カーネルバージョン確認 (更新日：2013/07/07)&lt;/h5&gt;
+&lt;h5 id=&quot;_20130707&quot;&gt;・カーネルバージョン確認 (更新日：2013/07/07)&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt;# uname -a|grep x86_64|wc -l
 # 上記が0なら32bitカーネル、1ならCPU 64bitカーネル
 # (x86_64 の場合、64bit)
 # (i386/i486/i586/i686 の場合、32bit)&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;a href='http://www.cyberciti.biz/faq/linux-how-to-find-if-processor-is-64-bit-or-not/'&gt;参考ページ&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://www.cyberciti.biz/faq/linux-how-to-find-if-processor-is-64-bit-or-not/&quot;&gt;参考ページ&lt;/a&gt;&lt;/p&gt;
 
-&lt;h5 id='php_20130707'&gt;・PHPバージョン (更新日：2013/07/07)&lt;/h5&gt;
+&lt;h5 id=&quot;php_20130707&quot;&gt;・PHPバージョン (更新日：2013/07/07)&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt;# php -v&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h5 id='apache_20130916'&gt;・Apacheバージョン (更新日：2013/09/16)&lt;/h5&gt;
+&lt;h5 id=&quot;apache_20130916&quot;&gt;・Apacheバージョン (更新日：2013/09/16)&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt;# httpd -v&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h5 id='svn_20130926'&gt;・SVNバージョン (更新日：2013/09/26)&lt;/h5&gt;
+&lt;h5 id=&quot;svn_20130926&quot;&gt;・SVNバージョン (更新日：2013/09/26)&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt;# svn --version --quiet&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h5 id='history_20130924'&gt;・historyコマンドに日時(タイムスタンプ)追加 (更新日：2013/09/24)&lt;/h5&gt;
+&lt;h5 id=&quot;history_20130924&quot;&gt;・historyコマンドに日時(タイムスタンプ)追加 (更新日：2013/09/24)&lt;/h5&gt;
 
 &lt;ul&gt;
 &lt;li&gt;
-&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;bashプロファイルを編集。&lt;/p&gt;
+&lt;p&gt;1.bashプロファイルを編集。&lt;/p&gt;
 
-&lt;p&gt;$ vim ~/.bash_profile&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
+&lt;pre&gt;&lt;code&gt;$ vim ~/.bash_profile&lt;/code&gt;&lt;/pre&gt;
 &lt;/li&gt;
 
 &lt;li&gt;
@@ -1661,49 +1686,54 @@ Banner display : (Google AdSenseの広告ユニットコードと同じサイズ
 &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h5 id='port_20140507'&gt;・port使用状況チェック (更新日：2014/05/07)&lt;/h5&gt;
+&lt;h5 id=&quot;port_20140507&quot;&gt;・port使用状況チェック (更新日：2014/05/07)&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt;$ netstat -anp
 $ netstat -anp | grep 【ポート番号】
 
 -a：接続待ち状態にあるソケットも、接続待ち状態にないソケットも表示する。
 -n：ホスト・ポート・ユーザーなどの名前を解決せずに、数字のアドレスで表示する。
--p：各ソケットが属しているプログラムの PID と名前が表示される。&lt;/code&gt;&lt;/pre&gt;</content>
+-p：各ソケットが属しているプログラムの PID と名前が表示される。&lt;/code&gt;&lt;/pre&gt;
+</content>
  </entry>
  
  <entry>
    <title>PHPサンプル isset関数化</title>
-   <link href="http://sankame.github.com/PHP/2012/12/28/php_sample_viaisset"/>
-   <updated>2012-12-28T00:00:00+09:00</updated>
-   <id>http://sankame.github.com/PHP/2012/12/28/php_sample_viaisset</id>
-   <content type="html">&lt;span&gt;&lt;a href='https://twitter.com/handycola' class='twitter-follow-button' data-show-count='false' data-lang='ja' data-dnt='true' data-size='large' data-show-screen-name='false'&gt;@handycolaさんをフォロー&lt;/a&gt;
-&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');&lt;/script&gt;&lt;/span&gt;&lt;span style='float:right;'&gt;投稿日：2012年12月28日&lt;/span&gt;&lt;div&gt;&lt;ins class='adsbygoogle' data-ad-client='ca-pub-7938855665302783' data-ad-slot='6346277556' style='display:inline-block;width:468px;height:60px' /&gt;
+   <link href="http://sankame.github.io//PHP/2012/12/28/php_sample_viaisset"/>
+   <updated>2012-12-28T09:00:00+09:00</updated>
+   <id>http://sankame.github.io//PHP/2012/12/28/php_sample_viaisset</id>
+   <content type="html">
+&lt;p&gt;&lt;span&gt;&lt;a class=&#39;twitter-follow-button&#39; data-dnt=&#39;true&#39; data-lang=&#39;ja&#39; data-show-count=&#39;false&#39; data-show-screen-name=&#39;false&#39; data-size=&#39;large&#39; href=&#39;https://twitter.com/handycola&#39;&gt;@handycolaさんをフォロー&lt;/a&gt;
+&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?&amp;#39;http&amp;#39;:&amp;#39;https&amp;#39;;if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+&amp;#39;://platform.twitter.com/widgets.js&amp;#39;;fjs.parentNode.insertBefore(js,fjs);}}(document, &amp;#39;script&amp;#39;, &amp;#39;twitter-wjs&amp;#39;);&lt;/script&gt;&lt;/span&gt;&lt;span style=&#39;float:right;&#39;&gt;投稿日：2012年12月28日&lt;/span&gt;&lt;/p&gt;
+&lt;div&gt;&lt;ins class=&#39;adsbygoogle&#39; data-ad-client=&#39;ca-pub-7938855665302783&#39; data-ad-slot=&#39;6346277556&#39; style=&#39;display:inline-block;width:468px;height:60px&#39; /&gt;
 &lt;script&gt;
 (adsbygoogle = window.adsbygoogle || []).push({});
 &lt;/script&gt;
 &lt;/div&gt;
-&lt;h4 id='undefined_index_noticeisset'&gt;&amp;#8220;Undefined index&amp;#8221; Noticeを防ぐためのissetが冗長なので関数化。&lt;/h4&gt;
-&lt;script src='https://gist.github.com/4389910.js' /&gt;</content>
+&lt;h4 id=&quot;undefined_index_noticeisset&quot;&gt;“Undefined index” Noticeを防ぐためのissetが冗長なので関数化。&lt;/h4&gt;
+&lt;script src=&#39;https://gist.github.com/4389910.js&#39; /&gt;</content>
  </entry>
  
  <entry>
    <title>GitHubPagesが動かない</title>
-   <link href="http://sankame.github.com/GitHub/2012/12/27/github_pages_doesnt_work"/>
-   <updated>2012-12-27T00:00:00+09:00</updated>
-   <id>http://sankame.github.com/GitHub/2012/12/27/github_pages_doesnt_work</id>
-   <content type="html">&lt;span&gt;&lt;a href='https://twitter.com/handycola' class='twitter-follow-button' data-show-count='false' data-lang='ja' data-dnt='true' data-size='large' data-show-screen-name='false'&gt;@handycolaさんをフォロー&lt;/a&gt;
-&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');&lt;/script&gt;&lt;/span&gt;&lt;span style='float:right;'&gt;投稿日：2012年12月27日&lt;/span&gt;&lt;div&gt;&lt;ins class='adsbygoogle' data-ad-client='ca-pub-7938855665302783' data-ad-slot='6346277556' style='display:inline-block;width:468px;height:60px' /&gt;
+   <link href="http://sankame.github.io//GitHub/2012/12/27/github_pages_doesnt_work"/>
+   <updated>2012-12-27T09:00:00+09:00</updated>
+   <id>http://sankame.github.io//GitHub/2012/12/27/github_pages_doesnt_work</id>
+   <content type="html">
+&lt;p&gt;&lt;span&gt;&lt;a class=&#39;twitter-follow-button&#39; data-dnt=&#39;true&#39; data-lang=&#39;ja&#39; data-show-count=&#39;false&#39; data-show-screen-name=&#39;false&#39; data-size=&#39;large&#39; href=&#39;https://twitter.com/handycola&#39;&gt;@handycolaさんをフォロー&lt;/a&gt;
+&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?&amp;#39;http&amp;#39;:&amp;#39;https&amp;#39;;if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+&amp;#39;://platform.twitter.com/widgets.js&amp;#39;;fjs.parentNode.insertBefore(js,fjs);}}(document, &amp;#39;script&amp;#39;, &amp;#39;twitter-wjs&amp;#39;);&lt;/script&gt;&lt;/span&gt;&lt;span style=&#39;float:right;&#39;&gt;投稿日：2012年12月27日&lt;/span&gt;&lt;/p&gt;
+&lt;div&gt;&lt;ins class=&#39;adsbygoogle&#39; data-ad-client=&#39;ca-pub-7938855665302783&#39; data-ad-slot=&#39;6346277556&#39; style=&#39;display:inline-block;width:468px;height:60px&#39; /&gt;
 &lt;script&gt;
 (adsbygoogle = window.adsbygoogle || []).push({});
 &lt;/script&gt;
 &lt;/div&gt;
-&lt;h4 id='githubpagesindexhtml'&gt;GitHubPagesでブログを公開しようと、下記ページに従って作業したがindex.htmlすら表示されない…&lt;/h4&gt;
+&lt;h4 id=&quot;githubpagesindexhtml&quot;&gt;GitHubPagesでブログを公開しようと、下記ページに従って作業したがindex.htmlすら表示されない…&lt;/h4&gt;
 
-&lt;h4 id='id46'&gt;&lt;a href='http://tokkono.cute.coocan.jp/blog/slow/index.php/programming/github-pages-almost-perfect-guide/'&gt;参考ページ&lt;/a&gt;&lt;/h4&gt;
+&lt;h4 id=&quot;&quot;&gt;&lt;a href=&quot;http://tokkono.cute.coocan.jp/blog/slow/index.php/programming/github-pages-almost-perfect-guide/&quot;&gt;参考ページ&lt;/a&gt;&lt;/h4&gt;
 
-&lt;h4 id='1github'&gt;1.GitHubに登録したメールアドレスの受信箱をチェック&lt;/h4&gt;
+&lt;h4 id=&quot;1github&quot;&gt;1.GitHubに登録したメールアドレスの受信箱をチェック&lt;/h4&gt;
 
-&lt;p&gt;&amp;#8220;Page build failure&amp;#8221;というサブジェクトでGitHubからメールが届いていた。&lt;/p&gt;
+&lt;p&gt;“Page build failure”というサブジェクトでGitHubからメールが届いていた。&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;The page build failed with the following error:
 
@@ -1718,29 +1748,32 @@ https://github.com/settings/emails&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;その後、github pagesのページ作成ボタンを押すと下記URLにアクセスできた。 (usernameは読み替え)&lt;/p&gt;
 
-&lt;p&gt;http://username.github.com/&lt;/p&gt;</content>
+&lt;p&gt;http://username.github.com/&lt;/p&gt;
+</content>
  </entry>
  
  <entry>
    <title>OpenXインストール</title>
-   <link href="http://sankame.github.com/OpenX/2012/12/24/openx_install"/>
-   <updated>2012-12-24T00:00:00+09:00</updated>
-   <id>http://sankame.github.com/OpenX/2012/12/24/openx_install</id>
-   <content type="html">&lt;span&gt;&lt;a href='https://twitter.com/handycola' class='twitter-follow-button' data-show-count='false' data-lang='ja' data-dnt='true' data-size='large' data-show-screen-name='false'&gt;@handycolaさんをフォロー&lt;/a&gt;
-&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');&lt;/script&gt;&lt;/span&gt;&lt;span style='float:right;'&gt;投稿日：2012年12月24日&lt;/span&gt;&lt;div&gt;&lt;ins class='adsbygoogle' data-ad-client='ca-pub-7938855665302783' data-ad-slot='6346277556' style='display:inline-block;width:468px;height:60px' /&gt;
+   <link href="http://sankame.github.io//OpenX/2012/12/24/openx_install"/>
+   <updated>2012-12-24T09:00:00+09:00</updated>
+   <id>http://sankame.github.io//OpenX/2012/12/24/openx_install</id>
+   <content type="html">
+&lt;p&gt;&lt;span&gt;&lt;a class=&#39;twitter-follow-button&#39; data-dnt=&#39;true&#39; data-lang=&#39;ja&#39; data-show-count=&#39;false&#39; data-show-screen-name=&#39;false&#39; data-size=&#39;large&#39; href=&#39;https://twitter.com/handycola&#39;&gt;@handycolaさんをフォロー&lt;/a&gt;
+&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?&amp;#39;http&amp;#39;:&amp;#39;https&amp;#39;;if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+&amp;#39;://platform.twitter.com/widgets.js&amp;#39;;fjs.parentNode.insertBefore(js,fjs);}}(document, &amp;#39;script&amp;#39;, &amp;#39;twitter-wjs&amp;#39;);&lt;/script&gt;&lt;/span&gt;&lt;span style=&#39;float:right;&#39;&gt;投稿日：2012年12月24日&lt;/span&gt;&lt;/p&gt;
+&lt;div&gt;&lt;ins class=&#39;adsbygoogle&#39; data-ad-client=&#39;ca-pub-7938855665302783&#39; data-ad-slot=&#39;6346277556&#39; style=&#39;display:inline-block;width:468px;height:60px&#39; /&gt;
 &lt;script&gt;
 (adsbygoogle = window.adsbygoogle || []).push({});
 &lt;/script&gt;
 &lt;/div&gt;
-&lt;h4 id='pcvmwareplayeropenx'&gt;ローカルPCのVmwarePlayerにOpenXをインストール。&lt;/h4&gt;
+&lt;h4 id=&quot;pcvmwareplayeropenx&quot;&gt;ローカルPCのVmwarePlayerにOpenXをインストール。&lt;/h4&gt;
 
-&lt;h4 id='id45'&gt;&lt;a href='http://www.openx.com/docs/qsg-install'&gt;マニュアル&lt;/a&gt;に従ってインストールした。&lt;/h4&gt;
+&lt;h4 id=&quot;&quot;&gt;&lt;a href=&quot;http://www.openx.com/docs/qsg-install&quot;&gt;マニュアル&lt;/a&gt;に従ってインストールした。&lt;/h4&gt;
 
-&lt;h4 id='1'&gt;1.ソース取得&lt;/h4&gt;
+&lt;h4 id=&quot;1&quot;&gt;1.ソース取得&lt;/h4&gt;
 
 &lt;p&gt;マニュアルの下記リンクからソースをダウンロード。(アンケートあるためwgetでは落とせない)&lt;/p&gt;
 
-&lt;p&gt;Download the latest installation archive from: &lt;a href='http://www.openx.com/publisher/open-source-ad-server'&gt;here&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Download the latest installation archive from: &lt;a href=&quot;http://www.openx.com/publisher/open-source-ad-server&quot;&gt;here&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;ソースをWebサーバへアップし、解凍して公開ディレクトリへ配置する。&lt;/p&gt;
 
@@ -1766,13 +1799,13 @@ https://github.com/settings/emails&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;# chmod -R a+w /var/www/html/openx/plugins
 # chmod -R a+w /var/www/html/openx/www/admin/plugins&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h4 id='2registration'&gt;2.Registration&lt;/h4&gt;
+&lt;h4 id=&quot;2registration&quot;&gt;2.Registration&lt;/h4&gt;
 
 &lt;p&gt;Webインストーラを続行、下記項目に入力。&lt;/p&gt;
 
 &lt;p&gt;name, password, e-mail&lt;/p&gt;
 
-&lt;h4 id='3database'&gt;3.Database&lt;/h4&gt;
+&lt;h4 id=&quot;3database&quot;&gt;3.Database&lt;/h4&gt;
 
 &lt;p&gt;DBがなかったら作成されると画面に書いてあったが、エラーになったので&lt;/p&gt;
 
@@ -1781,13 +1814,13 @@ https://github.com/settings/emails&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;# create database testdb;
 # grant all on testdb.* to &amp;#39;testuser&amp;#39;@&amp;#39;localhost&amp;#39; identified by &amp;#39;testpassword&amp;#39;;&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h4 id='4_configuration'&gt;4. Configuration&lt;/h4&gt;
+&lt;h4 id=&quot;4_configuration&quot;&gt;4. Configuration&lt;/h4&gt;
 
 &lt;p&gt;Webインストーラを続行、下記項目に入力。&lt;/p&gt;
 
 &lt;p&gt;Admin User, Admin User Password&lt;/p&gt;
 
-&lt;h4 id='5_finish'&gt;5. Finish&lt;/h4&gt;
+&lt;h4 id=&quot;5_finish&quot;&gt;5. Finish&lt;/h4&gt;
 
 &lt;p&gt;エラーが出たからログを見てね、と書いてあったが無視してそのままcontinue&lt;/p&gt;
 
@@ -1795,7 +1828,7 @@ https://github.com/settings/emails&lt;/code&gt;&lt;/pre&gt;
 
 &lt;pre&gt;&lt;code&gt;# view /var/www/html/openx/var/install.log&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h4 id='6_'&gt;6. その他&lt;/h4&gt;
+&lt;h4 id=&quot;6_&quot;&gt;6. その他&lt;/h4&gt;
 
 &lt;p&gt;そのまま広告設定の管理画面ぽいところへ遷移。&lt;/p&gt;
 
@@ -1825,32 +1858,35 @@ if( ! ini_get(&amp;#39;date.timezone&amp;#39;) ){
 //追記ここまで
 	$GLOBALS[&amp;#39;serverTimezone&amp;#39;] = date_default_timezone_get();&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;a href='http://www.jamescrowley.co.uk/2010/09/12/running-openx-under-iis-with-php-5-3-date-default-timezone-get-errors/'&gt;参考ページ&lt;/a&gt;&lt;/p&gt;</content>
+&lt;p&gt;&lt;a href=&quot;http://www.jamescrowley.co.uk/2010/09/12/running-openx-under-iis-with-php-5-3-date-default-timezone-get-errors/&quot;&gt;参考ページ&lt;/a&gt;&lt;/p&gt;
+</content>
  </entry>
  
  <entry>
    <title>Jekyllとgithubでブログ作成</title>
-   <link href="http://sankame.github.com/Jekyll/2012/12/23/jekyll_and_github"/>
-   <updated>2012-12-23T00:00:00+09:00</updated>
-   <id>http://sankame.github.com/Jekyll/2012/12/23/jekyll_and_github</id>
-   <content type="html">&lt;span&gt;&lt;a href='https://twitter.com/handycola' class='twitter-follow-button' data-show-count='false' data-lang='ja' data-dnt='true' data-size='large' data-show-screen-name='false'&gt;@handycolaさんをフォロー&lt;/a&gt;
-&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');&lt;/script&gt;&lt;/span&gt;&lt;span style='float:right;'&gt;投稿日：2012年12月23日&lt;/span&gt;&lt;div&gt;&lt;ins class='adsbygoogle' data-ad-client='ca-pub-7938855665302783' data-ad-slot='6346277556' style='display:inline-block;width:468px;height:60px' /&gt;
+   <link href="http://sankame.github.io//Jekyll/2012/12/23/jekyll_and_github"/>
+   <updated>2012-12-23T09:00:00+09:00</updated>
+   <id>http://sankame.github.io//Jekyll/2012/12/23/jekyll_and_github</id>
+   <content type="html">
+&lt;p&gt;&lt;span&gt;&lt;a class=&#39;twitter-follow-button&#39; data-dnt=&#39;true&#39; data-lang=&#39;ja&#39; data-show-count=&#39;false&#39; data-show-screen-name=&#39;false&#39; data-size=&#39;large&#39; href=&#39;https://twitter.com/handycola&#39;&gt;@handycolaさんをフォロー&lt;/a&gt;
+&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?&amp;#39;http&amp;#39;:&amp;#39;https&amp;#39;;if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+&amp;#39;://platform.twitter.com/widgets.js&amp;#39;;fjs.parentNode.insertBefore(js,fjs);}}(document, &amp;#39;script&amp;#39;, &amp;#39;twitter-wjs&amp;#39;);&lt;/script&gt;&lt;/span&gt;&lt;span style=&#39;float:right;&#39;&gt;投稿日：2012年12月23日&lt;/span&gt;&lt;/p&gt;
+&lt;div&gt;&lt;ins class=&#39;adsbygoogle&#39; data-ad-client=&#39;ca-pub-7938855665302783&#39; data-ad-slot=&#39;6346277556&#39; style=&#39;display:inline-block;width:468px;height:60px&#39; /&gt;
 &lt;script&gt;
 (adsbygoogle = window.adsbygoogle || []).push({});
 &lt;/script&gt;
 &lt;/div&gt;
-&lt;h4 id='pcvmwareplayerruby_rubygems_jekyll'&gt;ローカルPCのVmwarePlayerにRuby, RubyGems, Jekyllをインストール。&lt;/h4&gt;
+&lt;h4 id=&quot;pcvmwareplayerruby_rubygems_jekyll&quot;&gt;ローカルPCのVmwarePlayerにRuby, RubyGems, Jekyllをインストール。&lt;/h4&gt;
 
-&lt;h4 id='jekyllgithub'&gt;Jekyllで作ったブログをGitHubに設置する。&lt;/h4&gt;
+&lt;h4 id=&quot;jekyllgithub&quot;&gt;Jekyllで作ったブログをGitHubに設置する。&lt;/h4&gt;
 
-&lt;h4 id='1ruby'&gt;1.Rubyインストール&lt;/h4&gt;
+&lt;h4 id=&quot;1ruby&quot;&gt;1.Rubyインストール&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code&gt;# インストール済みか？
 # rpm -q ruby
 # インストールされていない場合、インストールを行う。
 # yum install ruby ruby-devel rdoc irb&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h4 id='2rubygems'&gt;2.RubyGemsインストール&lt;/h4&gt;
+&lt;h4 id=&quot;2rubygems&quot;&gt;2.RubyGemsインストール&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code&gt;# wget http://rubyforge.org/frs/download.php/60718/rubygems-1.3.5.tgz
 # tar xzf rubygems-1.3.5.tgz
@@ -1859,7 +1895,7 @@ if( ! ini_get(&amp;#39;date.timezone&amp;#39;) ){
 # インストールされたgemsのバージョン確認。
 # gem -v&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h4 id='3jekyll'&gt;3.Jekyllインストール&lt;/h4&gt;
+&lt;h4 id=&quot;3jekyll&quot;&gt;3.Jekyllインストール&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code&gt;# gem install jekyll&lt;/code&gt;&lt;/pre&gt;
 
@@ -1867,9 +1903,9 @@ if( ! ini_get(&amp;#39;date.timezone&amp;#39;) ){
 
 &lt;p&gt;buffer overflow detected&lt;/p&gt;
 
-&lt;h5 id='31_vmware_player192mb__256mb_'&gt;3-1. vmware playerの割り当てメモリ変更。192MB -&amp;gt; 256MB (問題の解決とは無関係と思われる)&lt;/h5&gt;
+&lt;h5 id=&quot;31_vmware_player192mb__256mb_&quot;&gt;3-1. vmware playerの割り当てメモリ変更。192MB -&amp;gt; 256MB (問題の解決とは無関係と思われる)&lt;/h5&gt;
 
-&lt;h5 id='32_ruby'&gt;3-2. Ruby再インストール&lt;/h5&gt;
+&lt;h5 id=&quot;32_ruby&quot;&gt;3-2. Ruby再インストール&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt;# cd /etc/yum.repos.d/
 # wget http://rubyworks.rubyforge.org/RubyWorks.repo
@@ -1878,14 +1914,14 @@ if( ! ini_get(&amp;#39;date.timezone&amp;#39;) ){
 # ruby -v
 ruby 1.8.6 (2007-09-24 patchlevel 111) [i386-linux]&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h5 id='33_jekyll'&gt;3-3. Jekyll再インストール&lt;/h5&gt;
+&lt;h5 id=&quot;33_jekyll&quot;&gt;3-3. Jekyll再インストール&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt;# gem install jekyll
 ERROR: Error installing jekyll:
 liquid requires RubyGems version &amp;gt;= 1.3.7
 # またもやエラー。&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h5 id='34_rubygems'&gt;3-4. RubyGems再インストール&lt;/h5&gt;
+&lt;h5 id=&quot;34_rubygems&quot;&gt;3-4. RubyGems再インストール&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt;# 上記3-3でRubyGemsのバージョンが違うというエラーが出たのでRuby Forgeで当該バージョンのURLをコピー。
 # http://rubyforge.org/frs/?group_id=126
@@ -1894,25 +1930,25 @@ liquid requires RubyGems version &amp;gt;= 1.3.7
 # cd rubygems-1.3.7
 # ruby setup.rb&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h5 id='35_jekyll'&gt;3-5. Jekyll再インストール&lt;/h5&gt;
+&lt;h5 id=&quot;35_jekyll&quot;&gt;3-5. Jekyll再インストール&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt;# gem install jekyll
 # 今回はインストール成功。
 # jekyll -v
 Jekyll 0.11.2&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h5 id='36_'&gt;3-6. &lt;a href='http://help.papertrailapp.com/discussions/questions/114-buffer-overflow-detected'&gt;参考ページ&lt;/a&gt;&lt;/h5&gt;
+&lt;h5 id=&quot;36_&quot;&gt;3-6. &lt;a href=&quot;http://help.papertrailapp.com/discussions/questions/114-buffer-overflow-detected&quot;&gt;参考ページ&lt;/a&gt;&lt;/h5&gt;
 
-&lt;h4 id='4jekyll_bootstrap'&gt;4.Jekyll Bootstrap取得&lt;/h4&gt;
+&lt;h4 id=&quot;4jekyll_bootstrap&quot;&gt;4.Jekyll Bootstrap取得&lt;/h4&gt;
 
-&lt;h5 id='1'&gt;1から作ると大変なのでテンプレートを利用。&lt;/h5&gt;
+&lt;h5 id=&quot;1&quot;&gt;1から作ると大変なのでテンプレートを利用。&lt;/h5&gt;
 
-&lt;h5 id='varwwwhtmlapache'&gt;※/var/www/html/はapacheのドキュメントルート&lt;/h5&gt;
+&lt;h5 id=&quot;varwwwhtmlapache&quot;&gt;※/var/www/html/はapacheのドキュメントルート&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt;# cd /var/www/html/jekyll
 # git clone http://github.com/plusjade/jekyll-bootstrap.git JEKYLL_HOME&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h4 id='5jekyll'&gt;5.Jekyll起動&lt;/h4&gt;
+&lt;h4 id=&quot;5jekyll&quot;&gt;5.Jekyll起動&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code&gt;# jekyll --server --auto
 
@@ -1935,11 +1971,11 @@ Auto-regenerating enabled: /var/www/html/jekyll/JEKYLL_HOME -&amp;gt; /var/www/h
 # 後は下記ディレクトリに記事ファイルを追加していく。
 # /var/www/html/jekyll/JEKYLL_HOME/_posts/YYYY-MM-DD-*.md&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h4 id='6github'&gt;6.GitHubへアップ&lt;/h4&gt;
+&lt;h4 id=&quot;6github&quot;&gt;6.GitHubへアップ&lt;/h4&gt;
 
-&lt;h5 id='githtmlgithubpush'&gt;任意のディレクトリをGitの作業ツリーにして、そこからHTMLをGitHubへPushする。&lt;/h5&gt;
+&lt;h5 id=&quot;githtmlgithubpush&quot;&gt;任意のディレクトリをGitの作業ツリーにして、そこからHTMLをGitHubへPushする。&lt;/h5&gt;
 
-&lt;h5 id='id44'&gt;&lt;code&gt;【注意】/var/www/html/jekyll/JEKYLL_HOME/_site/ を作業ツリーにするとJekyllを起動する度に.gitが削除されるので適さない。&lt;/code&gt;&lt;/h5&gt;
+&lt;h5 id=&quot;&quot;&gt;&lt;code&gt;【注意】/var/www/html/jekyll/JEKYLL_HOME/_site/ を作業ツリーにするとJekyllを起動する度に.gitが削除されるので適さない。&lt;/code&gt;&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt;# Jekyllが生成したHTMLをGit作業ツリー(任意のディレクトリ)へコピーする。
 # cp -pr /var/www/html/jekyll/JEKYLL_HOME/_site/* /var/www/html/sankame.github.com/
@@ -1950,46 +1986,48 @@ Auto-regenerating enabled: /var/www/html/jekyll/JEKYLL_HOME -&amp;gt; /var/www/h
 # git remote add origin git@github.com:Sankame/sankame.github.com.git
 # git fetch
 # git merge -s ours origin/master
-# git push&lt;/code&gt;&lt;/pre&gt;</content>
+# git push&lt;/code&gt;&lt;/pre&gt;
+</content>
  </entry>
  
  <entry>
    <title>Jekyll Tips1</title>
-   <link href="http://sankame.github.com/Jekyll/2012/12/17/jekyll_tips1"/>
-   <updated>2012-12-17T00:00:00+09:00</updated>
-   <id>http://sankame.github.com/Jekyll/2012/12/17/jekyll_tips1</id>
-   <content type="html">&lt;span&gt;&lt;a href='https://twitter.com/handycola' class='twitter-follow-button' data-show-count='false' data-lang='ja' data-dnt='true' data-size='large' data-show-screen-name='false'&gt;@handycolaさんをフォロー&lt;/a&gt;
-&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');&lt;/script&gt;&lt;/span&gt;&lt;span style='float:right;'&gt;投稿日：2012年12月17日&lt;/span&gt;&lt;div&gt;&lt;ins class='adsbygoogle' data-ad-client='ca-pub-7938855665302783' data-ad-slot='6346277556' style='display:inline-block;width:468px;height:60px' /&gt;
+   <link href="http://sankame.github.io//Jekyll/2012/12/17/jekyll_tips1"/>
+   <updated>2012-12-17T09:00:00+09:00</updated>
+   <id>http://sankame.github.io//Jekyll/2012/12/17/jekyll_tips1</id>
+   <content type="html">
+&lt;p&gt;&lt;span&gt;&lt;a class=&#39;twitter-follow-button&#39; data-dnt=&#39;true&#39; data-lang=&#39;ja&#39; data-show-count=&#39;false&#39; data-show-screen-name=&#39;false&#39; data-size=&#39;large&#39; href=&#39;https://twitter.com/handycola&#39;&gt;@handycolaさんをフォロー&lt;/a&gt;
+&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?&amp;#39;http&amp;#39;:&amp;#39;https&amp;#39;;if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+&amp;#39;://platform.twitter.com/widgets.js&amp;#39;;fjs.parentNode.insertBefore(js,fjs);}}(document, &amp;#39;script&amp;#39;, &amp;#39;twitter-wjs&amp;#39;);&lt;/script&gt;&lt;/span&gt;&lt;span style=&#39;float:right;&#39;&gt;投稿日：2012年12月17日&lt;/span&gt;&lt;/p&gt;
+&lt;div&gt;&lt;ins class=&#39;adsbygoogle&#39; data-ad-client=&#39;ca-pub-7938855665302783&#39; data-ad-slot=&#39;6346277556&#39; style=&#39;display:inline-block;width:468px;height:60px&#39; /&gt;
 &lt;script&gt;
 (adsbygoogle = window.adsbygoogle || []).push({});
 &lt;/script&gt;
 &lt;/div&gt;
-&lt;h4 id='jekyll'&gt;Jekyllの設定に関するメモ。&lt;/h4&gt;
+&lt;h4 id=&quot;jekyll&quot;&gt;Jekyllの設定に関するメモ。&lt;/h4&gt;
 
-&lt;h4 id='jekyllbootstrap'&gt;JekyllBootstrapの配置先は下記ディレクトリ。(&lt;a href='/Jekyll/2012/12/23/jekyll_and_github/'&gt;関連記事&lt;/a&gt;)&lt;/h4&gt;
+&lt;h4 id=&quot;jekyllbootstrap&quot;&gt;JekyllBootstrapの配置先は下記ディレクトリ。(&lt;a href=&quot;/Jekyll/2012/12/23/jekyll_and_github/&quot;&gt;関連記事&lt;/a&gt;)&lt;/h4&gt;
 
-&lt;h5 id='varwwwhtmljekylljekyll_home'&gt;/var/www/html/jekyll/JEKYLL_HOME/&lt;/h5&gt;
+&lt;h5 id=&quot;varwwwhtmljekylljekyll_home&quot;&gt;/var/www/html/jekyll/JEKYLL_HOME/&lt;/h5&gt;
 
-&lt;h6 id='id39'&gt;・画面ヘッダ部分のナビゲーションを変更したい。&lt;/h6&gt;
+&lt;h6 id=&quot;&quot;&gt;・画面ヘッダ部分のナビゲーションを変更したい。&lt;/h6&gt;
 
 &lt;pre&gt;&lt;code&gt;(例)
 画面ヘッダ部分にArchiveを表示したくない場合
 下記ファイルのヘッダ部分の&amp;quot;group: navigation&amp;quot;を#でコメントアウトする。
 /var/www/html/jekyll/JEKYLL_HOME/archive.html&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h6 id='id40'&gt;・記事タイトルに日本語を使いたい。&lt;/h6&gt;
+&lt;h6 id=&quot;_2&quot;&gt;・記事タイトルに日本語を使いたい。&lt;/h6&gt;
 
 &lt;pre&gt;&lt;code&gt;記事のファイル名に日本語は使えないので、YAMLのFront Matterでtitleを指定する。
-(例)
----
-layout: page
+(例)&lt;/code&gt;&lt;/pre&gt;
+&lt;hr /&gt;
+&lt;pre&gt;&lt;code&gt;layout: page
 category: Jekyll
 tags: [Ruby, RubyGems, Jekyll, GitHub]
 date: 2012-12-23 00:00:00
-title: Jekyllとgithubでブログ作成
----&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h6 id='id41'&gt;・ループ回数を制限したい。&lt;/h6&gt;
+title: Jekyllとgithubでブログ作成&lt;/code&gt;&lt;/pre&gt;
+&lt;hr /&gt;
+&lt;h6 id=&quot;_3&quot;&gt;・ループ回数を制限したい。&lt;/h6&gt;
 
 &lt;pre&gt;&lt;code&gt;limitを使う。
 
@@ -2001,7 +2039,7 @@ title: Jekyllとgithubでブログ作成
   {% endfor %}
 &amp;lt;/ul&amp;gt;&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h6 id='liquid'&gt;・liquidの文法をエスケープしたい。&lt;a href='http://stackoverflow.com/questions/3426182/how-to-escape-liquid-template-tags'&gt;参考ページ&lt;/a&gt;&lt;/h6&gt;
+&lt;h6 id=&quot;liquid&quot;&gt;・liquidの文法をエスケープしたい。&lt;a href=&quot;http://stackoverflow.com/questions/3426182/how-to-escape-liquid-template-tags&quot;&gt;参考ページ&lt;/a&gt;&lt;/h6&gt;
 
 &lt;pre&gt;&lt;code&gt;Markdownの中でif文やliquidの文法をそのまま出力したい場合、下記のタグを使用する。
 
@@ -2009,7 +2047,7 @@ title: Jekyllとgithubでブログ作成
 エスケープしたい表現
 {% endraw %}&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h6 id='id42'&gt;・日付のフォーマット(書式)を変更したい。&lt;a href='http://stackoverflow.com/questions/7395520/jekyll-date-format'&gt;参考ページ&lt;/a&gt;&lt;/h6&gt;
+&lt;h6 id=&quot;_4&quot;&gt;・日付のフォーマット(書式)を変更したい。&lt;a href=&quot;http://stackoverflow.com/questions/7395520/jekyll-date-format&quot;&gt;参考ページ&lt;/a&gt;&lt;/h6&gt;
 
 &lt;pre&gt;&lt;code&gt;日本語を使う場合、ファイルをUTF8で保存する。
 
@@ -2017,15 +2055,16 @@ title: Jekyllとgithubでブログ作成
 
 { post.date | date: &amp;quot;%Y年%m月%d日&amp;quot; }&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h6 id='id43'&gt;・文法に関する参考ページ&lt;/h6&gt;
+&lt;h6 id=&quot;_5&quot;&gt;・文法に関する参考ページ&lt;/h6&gt;
 
-&lt;p&gt;・&lt;a href='https://github.com/mojombo/jekyll/wiki/template-data'&gt;Jekyll変数&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;・&lt;a href=&quot;https://github.com/mojombo/jekyll/wiki/template-data&quot;&gt;Jekyll変数&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;・&lt;a href='https://github.com/shopify/liquid/wiki/liquid-for-designers'&gt;liquid文法&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;・&lt;a href=&quot;https://github.com/shopify/liquid/wiki/liquid-for-designers&quot;&gt;liquid文法&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;・&lt;a href='http://technetium.matrix.jp/markdown.html'&gt;Markdown記法1&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;・&lt;a href=&quot;http://technetium.matrix.jp/markdown.html&quot;&gt;Markdown記法1&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;・&lt;a href='http://www.zone0.ne.jp/2011/markdown-cheatsheet.html'&gt;Markdown記法2&lt;/a&gt;&lt;/p&gt;</content>
+&lt;p&gt;・&lt;a href=&quot;http://www.zone0.ne.jp/2011/markdown-cheatsheet.html&quot;&gt;Markdown記法2&lt;/a&gt;&lt;/p&gt;
+</content>
  </entry>
  
  

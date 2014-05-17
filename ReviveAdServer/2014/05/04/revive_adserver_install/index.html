@@ -74,13 +74,13 @@
   
     
       
-    
-  
-    
-      
       	
       	<li><a href="/tags.html">タグ</a></li>
       	
+      
+    
+  
+    
       
     
   
@@ -105,9 +105,7 @@
     </div>
 
     <div class="container">
-
       <div class="content">
-
         
 
 <div class="page-header">
@@ -119,20 +117,22 @@
   <!--[if IE 6 ]>
     <div class="span12-for-ie6">
   <![endif]-->
-    <span><a href='https://twitter.com/handycola' class='twitter-follow-button' data-show-count='false' data-lang='ja' data-dnt='true' data-size='large' data-show-screen-name='false'>@handycolaさんをフォロー</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></span><span style='float:right;'>投稿日：2014年05月04日</span><div><ins class='adsbygoogle' data-ad-client='ca-pub-7938855665302783' data-ad-slot='6346277556' style='display:inline-block;width:468px;height:60px' />
+    
+<p><span><a class='twitter-follow-button' data-dnt='true' data-lang='ja' data-show-count='false' data-show-screen-name='false' data-size='large' href='https://twitter.com/handycola'>@handycolaさんをフォロー</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?&#39;http&#39;:&#39;https&#39;;if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+&#39;://platform.twitter.com/widgets.js&#39;;fjs.parentNode.insertBefore(js,fjs);}}(document, &#39;script&#39;, &#39;twitter-wjs&#39;);</script></span><span style='float:right;'>投稿日：2014年05月04日</span></p>
+<div><ins class='adsbygoogle' data-ad-client='ca-pub-7938855665302783' data-ad-slot='6346277556' style='display:inline-block;width:468px;height:60px' />
 <script>
 (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
 </div>
-<h5 id='0'>0.環境</h5>
+<h5 id="0">0.環境</h5>
 
 <pre><code>[CentOS]           5.6 (32bit版カーネル)
 [Apache]           2.2.3
 [PHP]              5.4.17
 [Revive AdServer]  3.0.4</code></pre>
 
-<h5 id='1_'>1.インストール <a href='http://tec-blog.menue.jp/?p=278'>参考ページ</a></h5>
+<h5 id="1_">1.インストール <a href="http://tec-blog.menue.jp/?p=278">参考ページ</a></h5>
 
 <ul>
 <li>
@@ -157,9 +157,9 @@
 
 <p>ウィザードに従ってインストールを進めます。</p>
 
-<p><img src='/assets/posts/img/revive_adserver_install/step1.png' alt='step1' /></p>
+<p><img src="/assets/posts/img/revive_adserver_install/step1.png" alt="step1" title="step1" /></p>
 
-<p>&#8220;I Agree&#160;&#187;&#8220;ボタンを押すと、&#8221;File Permissions - 7 errors&#8221; というエラーが表示されました。</p>
+<p>“I Agree »“ボタンを押すと、”File Permissions - 7 errors” というエラーが表示されました。</p>
 
 <p>画面に表示されたコマンドをそのままコンソールで実行。</p>
 
@@ -171,7 +171,7 @@
 # chmod -R a+w /app/revive-adserver/www/admin/plugins
 # chmod -R a+w /app/revive-adserver/www/images</code></pre>
 
-<p>再びインストール画面へ戻って&#8221;Retry&#8221;を押すと、次のステップへ進めます。</p>
+<p>再びインストール画面へ戻って”Retry”を押すと、次のステップへ進めます。</p>
 </li>
 
 <li>
@@ -179,7 +179,7 @@
 
 <p>DB情報の入力画面が表示されますが、その前に下記コマンド(※1)でMySQL上にDBを作成。</p>
 
-<p><img src='/assets/posts/img/revive_adserver_install/step2.png' alt='step2' /></p>
+<p><img src="/assets/posts/img/revive_adserver_install/step2.png" alt="step2" title="step2" /></p>
 
 <p>(※1) コマンド (DB名、ユーザ名、パスワードは任意に設定して下さい)</p>
 
@@ -187,7 +187,7 @@
 mysql&gt; create database reviveadserver;
 mysql&gt; grant all privileges on reviveadserver.* to admin@localhost identified by &#39;password&#39;;</code></pre>
 
-<p>再びインストール画面へ戻り、上記のDB情報を入力後、&#8221;Continue&#160;&#187;&#8221; を押します。</p>
+<p>再びインストール画面へ戻り、上記のDB情報を入力後、”Continue »” を押します。</p>
 </li>
 
 <li>
@@ -195,7 +195,7 @@ mysql&gt; grant all privileges on reviveadserver.* to admin@localhost identified
 
 <p>Revive AdServerの管理ユーザを登録します。</p>
 
-<p><img src='/assets/posts/img/revive_adserver_install/step3.png' alt='step3' /></p>
+<p><img src="/assets/posts/img/revive_adserver_install/step3.png" alt="step3" title="step3" /></p>
 
 <p>言語とタイムゾーンを変更。</p>
 
@@ -210,9 +210,10 @@ Timezone:  (GMT+0900) Asia/Tokyo</code></pre>
 
 <p>「インストール中にエラーが発生しました」と表示されましたが、指定されたログを見てもエラーの記述はありませんでした。</p>
 
-<p><img src='/assets/posts/img/revive_adserver_install/step4.png' alt='step4' /></p>
+<p><img src="/assets/posts/img/revive_adserver_install/step4.png" alt="step4" title="step4" /></p>
 </li>
 </ul>
+
   <!--[if IE 6 ]>
     </div>
   <![endif]-->

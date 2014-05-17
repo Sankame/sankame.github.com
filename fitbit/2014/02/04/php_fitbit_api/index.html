@@ -74,13 +74,13 @@
   
     
       
-    
-  
-    
-      
       	
       	<li><a href="/tags.html">タグ</a></li>
       	
+      
+    
+  
+    
       
     
   
@@ -105,9 +105,7 @@
     </div>
 
     <div class="container">
-
       <div class="content">
-
         
 
 <div class="page-header">
@@ -119,24 +117,26 @@
   <!--[if IE 6 ]>
     <div class="span12-for-ie6">
   <![endif]-->
-    <span><a href='https://twitter.com/handycola' class='twitter-follow-button' data-show-count='false' data-lang='ja' data-dnt='true' data-size='large' data-show-screen-name='false'>@handycolaさんをフォロー</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></span><span style='float:right;'>投稿日：2014年02月04日</span><div><ins class='adsbygoogle' data-ad-client='ca-pub-7938855665302783' data-ad-slot='6346277556' style='display:inline-block;width:468px;height:60px' />
+    
+<p><span><a class='twitter-follow-button' data-dnt='true' data-lang='ja' data-show-count='false' data-show-screen-name='false' data-size='large' href='https://twitter.com/handycola'>@handycolaさんをフォロー</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?&#39;http&#39;:&#39;https&#39;;if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+&#39;://platform.twitter.com/widgets.js&#39;;fjs.parentNode.insertBefore(js,fjs);}}(document, &#39;script&#39;, &#39;twitter-wjs&#39;);</script></span><span style='float:right;'>投稿日：2014年02月04日</span></p>
+<div><ins class='adsbygoogle' data-ad-client='ca-pub-7938855665302783' data-ad-slot='6346277556' style='display:inline-block;width:468px;height:60px' />
 <script>
 (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
 </div>
-<h5 id='0'>0.環境</h5>
+<h5 id="0">0.環境</h5>
 
 <pre><code>[CentOS]   5.6 (32bit版カーネル)
 [Apache]   2.2.3
 [PHP]      5.4.1
 [device]   Fitbit One</code></pre>
 
-<h5 id='1oauth_extension__fitbit_api'>1.OAuth Extensionインストール → fitbit API実行</h5>
+<h5 id="1oauth_extension__fitbit_api">1.OAuth Extensionインストール → fitbit API実行</h5>
 
 <ul>
 <li>
-<p>1-1.fitbit(活動量計)の<a href='https://wiki.fitbit.com/display/API/API+PHP+Client'>API使用手順</a>にそって作業を進めます。</p>
+<p>1-1.fitbit(活動量計)の<a href="https://wiki.fitbit.com/display/API/API+PHP+Client">API使用手順</a>にそって作業を進めます。</p>
 
 <p>下記コマンドを実行。</p>
 
@@ -153,17 +153,17 @@
 make: *** [oauth.lo] エラー 1
 ERROR: `make&#39; failed</code></pre>
 
-<p><a href='https://bugs.php.net/bug.php?id=59153'>こんな情報</a>を見つけ、下記コマンドを実行。</p>
+<p><a href="https://bugs.php.net/bug.php?id=59153">こんな情報</a>を見つけ、下記コマンドを実行。</p>
 
 <pre><code># yum install curl-devel</code></pre>
 
-<p>エラーは変わらず、さらに<a href='http://blog.gmane.org/gmane.comp.php.install/month=20101201'>こんな情報</a>を見つけ、下記コマンドを実行。</p>
+<p>エラーは変わらず、さらに<a href="http://blog.gmane.org/gmane.comp.php.install/month=20101201">こんな情報</a>を見つけ、下記コマンドを実行。</p>
 
 <pre><code># yum install pcre pcre-devel</code></pre>
 
-<p>またまたエラー発生。OAuthを使うための<a href='http://www.php.net/manual/ja/oauth.requirements.php'>条件</a>を発見。</p>
+<p>またまたエラー発生。OAuthを使うための<a href="http://www.php.net/manual/ja/oauth.requirements.php">条件</a>を発見。</p>
 
-<p><a href='http://blog.flatlabs.net/20100611_062745/'>良さそうなページ</a>を見つけ、下記コマンドを実行。</p>
+<p><a href="http://blog.flatlabs.net/20100611_062745/">良さそうなページ</a>を見つけ、下記コマンドを実行。</p>
 
 <pre><code># pecl install oauth-beta</code></pre>
 
@@ -184,7 +184,7 @@ extension=oauth.so</code></pre>
 <li>
 <p>1-2.サンプルプログラム実行。</p>
 
-<p>準備ができたので、<a href='http://dev.fitbit.com/'>開発者用ページ</a>から<a href='https://wiki.fitbit.com/download/attachments/884784/completeAuthorization.php?version=2&amp;modificationDate=1297797897000&amp;api=v2'>サンプルプログラム</a>をダウンロード。</p>
+<p>準備ができたので、<a href="http://dev.fitbit.com/">開発者用ページ</a>から<a href="https://wiki.fitbit.com/download/attachments/884784/completeAuthorization.php?version=2&modificationDate=1297797897000&api=v2">サンプルプログラム</a>をダウンロード。</p>
 
 <p>サンプルプログラムを自分の設定に合わせて修正。(下記1-3参照)</p>
 
@@ -194,7 +194,7 @@ extension=oauth.so</code></pre>
 
 <pre><code>http://localhost/completeAuthorization.php</code></pre>
 
-<p>body_recv の値を見てみると、&#8221;fieldName&#8221;:&#8221;oauth_timestamp&#8221; があやしい。</p>
+<p>body_recv の値を見てみると、”fieldName”:”oauth_timestamp” があやしい。</p>
 
 <p>(自分のVM(CentOS)では、時刻同期していないため時間が狂っている)</p>
 
@@ -204,9 +204,9 @@ extension=oauth.so</code></pre>
 
 <p>「許可する」をクリックするとサンプルページが表示され、自分の健康データが表示されました。</p>
 
-<p>(予め fitbitの「<a href='https://dev.fitbit.com/apps/new'>開発者ページ</a>」で、callbackのページを上記URLにしておく)</p>
+<p>(予め fitbitの「<a href="https://dev.fitbit.com/apps/new">開発者ページ</a>」で、callbackのページを上記URLにしておく)</p>
 
-<p>※OAuthは<a href='http://yuroyoro.hatenablog.com/entry/20100506/1273137673'>こちらのページ</a>で復習。</p>
+<p>※OAuthは<a href="http://yuroyoro.hatenablog.com/entry/20100506/1273137673">こちらのページ</a>で復習。</p>
 </li>
 
 <li>

@@ -74,13 +74,13 @@
   
     
       
-    
-  
-    
-      
       	
       	<li><a href="/tags.html">タグ</a></li>
       	
+      
+    
+  
+    
       
     
   
@@ -105,9 +105,7 @@
     </div>
 
     <div class="container">
-
       <div class="content">
-
         
 
 <div class="page-header">
@@ -119,13 +117,15 @@
   <!--[if IE 6 ]>
     <div class="span12-for-ie6">
   <![endif]-->
-    <span><a href='https://twitter.com/handycola' class='twitter-follow-button' data-show-count='false' data-lang='ja' data-dnt='true' data-size='large' data-show-screen-name='false'>@handycolaさんをフォロー</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></span><span style='float:right;'>投稿日：2013年09月23日</span><div><ins class='adsbygoogle' data-ad-client='ca-pub-7938855665302783' data-ad-slot='6346277556' style='display:inline-block;width:468px;height:60px' />
+    
+<p><span><a class='twitter-follow-button' data-dnt='true' data-lang='ja' data-show-count='false' data-show-screen-name='false' data-size='large' href='https://twitter.com/handycola'>@handycolaさんをフォロー</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?&#39;http&#39;:&#39;https&#39;;if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+&#39;://platform.twitter.com/widgets.js&#39;;fjs.parentNode.insertBefore(js,fjs);}}(document, &#39;script&#39;, &#39;twitter-wjs&#39;);</script></span><span style='float:right;'>投稿日：2013年09月23日</span></p>
+<div><ins class='adsbygoogle' data-ad-client='ca-pub-7938855665302783' data-ad-slot='6346277556' style='display:inline-block;width:468px;height:60px' />
 <script>
 (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
 </div>
-<h5 id='0'>0.環境</h5>
+<h5 id="0">0.環境</h5>
 
 <pre><code>PHPフレームワークPhalconでPHP Debug Barを使うときの例です。
 
@@ -134,7 +134,7 @@
 [PHP]     5.4.1
 [phalcon] 1.2.1</code></pre>
 
-<h5 id='1php_debug_bar'>1.PHP Debug Barをインストール</h5>
+<h5 id="1php_debug_bar">1.PHP Debug Barをインストール</h5>
 
 <ul>
 <li>
@@ -152,7 +152,7 @@
 
 <pre><code># composer install</code></pre>
 
-<p>※composerが未インストールの場合、<a href='http://9ensan.com/blog/programming/php/php-composer-dependency-management/'>こちら</a>を参考にインストールして下さい。</p>
+<p>※composerが未インストールの場合、<a href="http://9ensan.com/blog/programming/php/php-composer-dependency-management/">こちら</a>を参考にインストールして下さい。</p>
 </li>
 
 <li>
@@ -164,17 +164,14 @@
 </li>
 </ul>
 
-<p><img src='/assets/posts/img/php_debug_bar_install/directory_image.jpg' alt='ディレクトリ構成' /></p>
+<p><img src="/assets/posts/img/php_debug_bar_install/directory_image.jpg" alt="ディレクトリ構成" title="ディレクトリ構成" /></p>
 
-<h5 id='2_'>2.コードを記述 (ポイント以外は割愛)</h5>
+<h5 id="2_">2.コードを記述 (ポイント以外は割愛)</h5>
 
 <ul>
 <li>
 <p>2-0.index.php(フレームワークのエントリポイント)に次の内容を追記。</p>
-
-<pre><code>&lt;?php
-require &#39;./vendor/autoload.php&#39;;</code></pre>
-
+<script src='https://gist.github.com/d953437cd1ac4a5df725.js?file=require_autoload.php'> </script>
 <p><code>composer関係のファイルをバージョン管理(svn, git等)から除外した場合、この記述だけ残してリリースしないよう注意。</code></p>
 </li>
 
@@ -211,16 +208,7 @@ public function indexAction()
 
 <li>
 <p>2-3.index.volt(全viewが使う共通ファイル)に次の内容を追記。</p>
-
-<pre><code>&lt;html&gt;
-    &lt;head&gt;
-	&lt;?php echo $debugbarHeader ?&gt;
-    &lt;/head&gt;
-    &lt;body&gt;
-	&lt;?php echo $debugbarBody ?&gt;
-    &lt;/body&gt;
-&lt;/html&gt;</code></pre>
-</li>
+<script src='https://gist.github.com/eb6d098e2ef1f473ff7d.js?file=php_debugbar.volt'> </script></li>
 
 <li>
 <p>2-4.画面イメージ</p>
@@ -229,21 +217,22 @@ public function indexAction()
 
 <p>実行時のその他の情報も表示されます。</p>
 
-<p><img src='/assets/posts/img/php_debug_bar_install/screen_image.jpg' alt='画面イメージ' /></p>
+<p><img src="/assets/posts/img/php_debug_bar_install/screen_image.jpg" alt="画面イメージ" title="画面イメージ" /></p>
 </li>
 </ul>
 
-<h5 id='3'>3.参考ページ</h5>
+<h5 id="3">3.参考ページ</h5>
 
 <ul>
 <li>
-<p><a href='http://www.moongift.jp/2013/08/20130829-3/'>紹介ページ</a></p>
+<p><a href="http://www.moongift.jp/2013/08/20130829-3/">紹介ページ</a></p>
 </li>
 
 <li>
-<p><a href='http://phpdebugbar.com/docs/'>PHP Debug Bar</a></p>
+<p><a href="http://phpdebugbar.com/docs/">PHP Debug Bar</a></p>
 </li>
 </ul>
+
   <!--[if IE 6 ]>
     </div>
   <![endif]-->

@@ -74,13 +74,13 @@
   
     
       
-    
-  
-    
-      
       	
       	<li><a href="/tags.html">タグ</a></li>
       	
+      
+    
+  
+    
       
     
   
@@ -105,9 +105,7 @@
     </div>
 
     <div class="container">
-
       <div class="content">
-
         
 
 <div class="page-header">
@@ -119,26 +117,28 @@
   <!--[if IE 6 ]>
     <div class="span12-for-ie6">
   <![endif]-->
-    <span><a href='https://twitter.com/handycola' class='twitter-follow-button' data-show-count='false' data-lang='ja' data-dnt='true' data-size='large' data-show-screen-name='false'>@handycolaさんをフォロー</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></span><span style='float:right;'>投稿日：2013年04月29日</span><div><ins class='adsbygoogle' data-ad-client='ca-pub-7938855665302783' data-ad-slot='6346277556' style='display:inline-block;width:468px;height:60px' />
+    
+<p><span><a class='twitter-follow-button' data-dnt='true' data-lang='ja' data-show-count='false' data-show-screen-name='false' data-size='large' href='https://twitter.com/handycola'>@handycolaさんをフォロー</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?&#39;http&#39;:&#39;https&#39;;if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+&#39;://platform.twitter.com/widgets.js&#39;;fjs.parentNode.insertBefore(js,fjs);}}(document, &#39;script&#39;, &#39;twitter-wjs&#39;);</script></span><span style='float:right;'>投稿日：2013年04月29日</span></p>
+<div><ins class='adsbygoogle' data-ad-client='ca-pub-7938855665302783' data-ad-slot='6346277556' style='display:inline-block;width:468px;height:60px' />
 <script>
 (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
 </div>
-<h4 id='phpmecab'>PHPからMeCabを使ってみる。</h4>
+<h4 id="phpmecab">PHPからMeCabを使ってみる。</h4>
 
-<h5 id='id49'>環境</h5>
+<h5 id="">環境</h5>
 
 <pre><code>[CentOS] 5.6 (32bit版カーネル)
 [PHP]    5.3.3</code></pre>
 
-<h5 id='0mecab'>0.MeCabインストール</h5>
+<h5 id="0mecab">0.MeCabインストール</h5>
 
-<p><a href='/MeCab/2013/01/28/mecab_install/'>MeCabインストール方法</a></p>
+<p><a href="/MeCab/2013/01/28/mecab_install/">MeCabインストール方法</a></p>
 
 <pre><code># まずは上記の手順でMeCabをインストール。</code></pre>
 
-<h5 id='1php_mecab'>1.php_mecabインストール</h5>
+<h5 id="1php_mecab">1.php_mecabインストール</h5>
 
 <pre><code># wget -O php_mecab-0.5.zip https://nodeload.github.com/rsky/php-mecab/zip/master --no-check-certificate
 # 
@@ -158,7 +158,7 @@
 # 
 # make install</code></pre>
 
-<h5 id='2'>2.テスト</h5>
+<h5 id="2">2.テスト</h5>
 
 <pre><code># インストールが成功したら、phpからテスト
 # (Apache経由で動かす場合はhttpdを再起動して下さい)
@@ -166,19 +166,11 @@
 # echo &quot;extension=mecab.so&quot; &gt; /etc/php.d/mecab.ini
 # vim mecabtest.php
 
---------------(記述内容)--------------
-&lt;?php
-dl(&#39;mecab.so&#39;);
+&lt;script src=&quot;https://gist.github.com/d0ff28564c451c4372cf.js?file=test_php_mecab.php&quot;&gt; &lt;/script&gt;</code></pre>
 
-$t = new MeCab_Tagger();
-$str = &#39;すもももももももものうち&#39;;
+<h6 id="3php">3.作成したphpファイルを実行</h6>
 
-echo $t-&gt;parse($str);
---------------(記述内容)--------------
-
-
-# 作成したphpファイルを実行
-# php mecabtest.php 
+<pre><code># php mecabtest.php 
 
 --------------(実行結果)--------------
 すもも  名詞,一般,*,*,*,*,すもも,スモモ,スモモ
@@ -191,9 +183,10 @@ echo $t-&gt;parse($str);
 EOS
 --------------(実行結果)--------------</code></pre>
 
-<p><a href='http://kohkimakimoto.hatenablog.com/entry/2012/05/02/112020'>参照したページ1</a></p>
+<p><a href="http://kohkimakimoto.hatenablog.com/entry/2012/05/02/112020">参照したページ1</a></p>
 
-<p><a href='http://kouhei.hatenablog.com/entry/2012/12/13/022040'>参照したページ2</a></p>
+<p><a href="http://kouhei.hatenablog.com/entry/2012/12/13/022040">参照したページ2</a></p>
+
   <!--[if IE 6 ]>
     </div>
   <![endif]-->
