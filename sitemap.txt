@@ -8,6 +8,7 @@ http://sankame.github.io//atom.xml
 http://sankame.github.io//index.html
 http://sankame.github.io//sitemap.txt
 
+http://sankame.github.io//Jekyll/2014/05/18/jekyll_version_up
 http://sankame.github.io//ReviveAdServer/2014/05/04/revive_adserver_install
 http://sankame.github.io//fitbit/2014/02/04/php_fitbit_api
 http://sankame.github.io//PHP/2014/02/02/php_sample
