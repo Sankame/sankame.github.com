@@ -1,0 +1,260 @@
+
+
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <title>Jenkins から Seleniumを動かしてみる</title>
+    
+    <meta name="author" content="sankame">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=yes">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <link href="/assets/themes/twitter/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/themes/twitter/css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
+
+    <!-- Le fav and touch icons -->
+  <!-- Update these with your own images
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+  -->
+	
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-37675354-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+
+  </head>
+
+  <body>
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="brand" href="/">Text Blog</a>
+          <ul class="nav">
+            
+            
+            
+
+
+  
+    
+      
+      	
+      	<li><a href="/archive.html">投稿</a></li>
+      	
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/categories.html">カテゴリー</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/tags.html">タグ</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+
+
+
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="content">
+        
+
+<div class="page-header">
+  <h1>Jenkins から Seleniumを動かしてみる </h1>
+</div>
+
+<div class="row">
+  <div class="span12" >
+  <!--[if IE 6 ]>
+    <div class="span12-for-ie6">
+  <![endif]-->
+    
+<p><span><a class='twitter-follow-button' data-dnt='true' data-lang='ja' data-show-count='false' data-show-screen-name='false' data-size='large' href='https://twitter.com/handycola'>@handycolaさんをフォロー</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?&#39;http&#39;:&#39;https&#39;;if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+&#39;://platform.twitter.com/widgets.js&#39;;fjs.parentNode.insertBefore(js,fjs);}}(document, &#39;script&#39;, &#39;twitter-wjs&#39;);</script></span><span style='float:right;'>投稿日：2014年06月04日</span></p>
+<div>
+<ins class='adsbygoogle' data-ad-client='ca-pub-7938855665302783' data-ad-slot='6346277556' style='display:inline-block;width:468px;height:60px' />
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+<h5 id="0">0.環境</h5>
+
+<pre><code>・親ノード端末
+  [CentOS]   5.6 (32bit版カーネル)
+  [ruby]     2.1.1p76
+  [rvm]      1.25.25
+  [java]     1.7.0_51
+  [Jenkins]  1.562
+
+・子ノード端末
+  [Windows]  Vista Home Premium (32bit)
+  [java]     1.7.0_51
+  [IE]       8</code></pre>
+
+<h5 id="1">1.準備</h5>
+
+<ul>
+<li>
+<p>Jenkinsインストール</p>
+
+<p>下記のリンクを参考にJenkinsをインストールしました。</p>
+
+<p><a href="http://d.hatena.ne.jp/katsuren/20121030/1351569655">俺の成長日記</a></p>
+
+<p><a href="http://oscasierra.net/2013/05/jenkins-to-redhat/">OSCALOG</a></p>
+
+<p><a href="http://kohkimakimoto.hatenablog.com/entry/2013/11/22/192646">JenkinsをCentOSにインストールしたときのメモ</a></p>
+</li>
+
+<li>
+<p>前回の続き</p>
+
+<p>親ノードと子ノードでSelenium Serverを起動します。(下記リンク参照)</p>
+
+<p><a href="/Selenium/2014/05/24/selenium_webdriver/">Selenium WebDriverを動かしてみる</a></p>
+
+<p>前回と異なる点は、Jenkinsがポート4444を使っていたので、Selenium Serverは4445を使って起動します。</p>
+
+<p>・親ノード</p>
+
+<pre><code># java -jar selenium-server-standalone-2.41.0.jar -role hub -port 4445</code></pre>
+
+<p>・子ノード</p>
+
+<pre><code>&gt; java -jar selenium-server-standalone-2.41.0.jar -role webdriver -hub http://192.168.130.130:4445/grid/register -Dwebdriver.ie.driver=./IEDriverServer.exe</code></pre>
+</li>
+
+<li>
+<p>Jenkins プラグイン追加</p>
+
+<p>rvmでrubyを使っているので、予めJenkinsにrvmプラグインを追加。</p>
+
+<p>Jenkinsのダッシュボードから[Jenkinsの管理]-[プラグインの管理]-[利用可能]</p>
+
+<p>右上のフィルターでrvmと打つとRVMプラグインが表示されるのでチェックをつけ、[再起動せずにインストール]クリック。</p>
+
+<p>(インストールは何回か失敗することがあります)</p>
+</li>
+
+<li>
+<p>Jenkins ジョブ追加</p>
+
+<p>Jenkinsのダッシュボードから[新規ジョブ作成]、ジョブ名を入力し、[フリースタイル・プロジェクトのビルド]を選択して[OK]クリック。</p>
+
+<p>ビルド環境のRVMで使用したいrubyのバージョンを指定。(自分の場合 2.1.1) (下図参照)</p>
+
+<p>シェルスクリプトで下記のように指定。(パス等は読み替えて下さい) (下図参照)</p>
+
+<pre><code>/usr/local/rvm/rubies/ruby-2.1.1/bin/ruby /app/seleniumtest/seleniumtest_4445.rb</code></pre>
+
+<p>「保存」ボタンクリック。</p>
+
+<p><img src="/assets/posts/img/jenkins_selenium/jenkins_project.png" alt="Jenkinsプロジェクト設定" title="Jenkinsプロジェクト設定" /></p>
+</li>
+
+<li>
+<p>rubyスクリプト</p>
+
+<p>上記でJenkinsに設定した “seleniumtest_4445.rb” は以下の内容です。(ポート番号4445でアクセス)</p>
+<script src='https://gist.github.com/dc5fb2d680b67acefbf3.js?file=seleniumtest_4445.rb'> </script></li>
+</ul>
+
+<h5 id="2">2.起動</h5>
+
+<ul>
+<li>ビルド実行
+<p>上記で作成したジョブで「ビルド実行」をクリック。</p>
+
+<p>子ノードでIEが起動すれば成功です。</p>
+</li>
+</ul>
+
+  <!--[if IE 6 ]>
+    </div>
+  <![endif]-->
+  </div>
+</div>
+
+
+        <div>
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 300_250_rec_bottom -->
+<ins class="adsbygoogle"
+     style="display:inline-block;width:300px;height:250px"
+     data-ad-client="ca-pub-7938855665302783"
+     data-ad-slot="9160143159"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+		<div></div>
+		<b>sankameのつぶやき</b><br>
+		<a href="https://twitter.com/handycola" class="twitter-follow-button" data-show-count="false" data-lang="ja" data-size="large" data-show-screen-name="false" data-dnt="true">@handycolaさんをフォロー</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+      </div>
+
+      <footer>
+        <p>&copy; sankame 2012 
+          with help from <a href="http://jekyllbootstrap.com" target="_blank" title="The Definitive Jekyll Blogging Framework">Jekyll Bootstrap</a>
+          and <a href="http://twitter.github.com/bootstrap/" target="_blank">Twitter Bootstrap</a>
+        </p>
+      </footer>
+
+    </div> <!-- /container -->
+
+    
+  </body>
+</html>
+
