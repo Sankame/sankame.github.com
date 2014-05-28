@@ -150,6 +150,14 @@
 <p>(n : リクエスト数　c : 同時接続数)</p>
 
 <pre><code>ab -n 10000 -c 100 &quot;http://test.vm/test.php&quot;</code></pre>
+
+<p>※abでテストできるのはサーバ側の処理だけなので、HTMLレンダリングやJavascript実行等、</p>
+
+<p>　トータルの計測を行いたい場合は、下記のようなツールを検討して下さい。</p>
+
+<p><a href="http://gtmetrix.com/">GTmetrix</a></p>
+
+<p><a href="http://knowledge.sakura.ad.jp/tech/1599/">PageSpeed</a></p>
 </li>
 
 <li>

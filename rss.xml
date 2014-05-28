@@ -5,8 +5,8 @@
         <description>Text Blog - sankame</description>
         <link>http://sankame.github.io/</link>
         <link>http://sankame.github.io/</link>
-        <lastBuildDate>2014-05-28T10:54:17+09:00</lastBuildDate>
-        <pubDate>2014-05-28T10:54:17+09:00</pubDate>
+        <lastBuildDate>2014-05-28T13:18:15+09:00</lastBuildDate>
+        <pubDate>2014-05-28T13:18:15+09:00</pubDate>
         <ttl>1800</ttl>
 
 
@@ -42,6 +42,14 @@
 &lt;p&gt;(n : リクエスト数　c : 同時接続数)&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;ab -n 10000 -c 100 &amp;quot;http://test.vm/test.php&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;※abでテストできるのはサーバ側の処理だけなので、HTMLレンダリングやJavascript実行等、&lt;/p&gt;
+
+&lt;p&gt;　トータルの計測を行いたい場合は、下記のようなツールを検討して下さい。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://gtmetrix.com/&quot;&gt;GTmetrix&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://knowledge.sakura.ad.jp/tech/1599/&quot;&gt;PageSpeed&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 
 &lt;li&gt;
