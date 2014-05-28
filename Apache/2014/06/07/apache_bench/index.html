@@ -1,0 +1,328 @@
+
+
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <title>ポイントだけ Apache Bench</title>
+    
+    <meta name="author" content="sankame">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=yes">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <link href="/assets/themes/twitter/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/themes/twitter/css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
+
+    <!-- Le fav and touch icons -->
+  <!-- Update these with your own images
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+  -->
+	
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-37675354-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+
+  </head>
+
+  <body>
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="brand" href="/">Text Blog</a>
+          <ul class="nav">
+            
+            
+            
+
+
+  
+    
+      
+      	
+      	<li><a href="/archive.html">投稿</a></li>
+      	
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/categories.html">カテゴリー</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/tags.html">タグ</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+
+
+
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="content">
+        
+
+<div class="page-header">
+  <h1>ポイントだけ Apache Bench </h1>
+</div>
+
+<div class="row">
+  <div class="span12" >
+  <!--[if IE 6 ]>
+    <div class="span12-for-ie6">
+  <![endif]-->
+    
+<p><span><a class='twitter-follow-button' data-dnt='true' data-lang='ja' data-show-count='false' data-show-screen-name='false' data-size='large' href='https://twitter.com/handycola'>@handycolaさんをフォロー</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?&#39;http&#39;:&#39;https&#39;;if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+&#39;://platform.twitter.com/widgets.js&#39;;fjs.parentNode.insertBefore(js,fjs);}}(document, &#39;script&#39;, &#39;twitter-wjs&#39;);</script></span><span style='float:right;'>投稿日：2014年06月07日</span></p>
+<div>
+<ins class='adsbygoogle' data-ad-client='ca-pub-7938855665302783' data-ad-slot='6346277556' style='display:inline-block;width:468px;height:60px' />
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+<h5 id="0">0.環境</h5>
+
+<pre><code>  [CentOS]      5.6 (32bit版カーネル)
+  [Apache]      2.2.3
+  [ApacheBench] 2.0.40-dev</code></pre>
+
+<h5 id="1">1.基本</h5>
+
+<ul>
+<li>
+<p>実行</p>
+
+<p>Apacheをインストールすると ab というコマンドで負荷テストが行えます。</p>
+
+<p>主に使うのは2つのオプションで、下記のように実行します。</p>
+
+<p>後述の “Requests per second” が十分な値になるよう、n と c の値を増やして負荷をかけます。</p>
+
+<p>(n : リクエスト数　c : 同時接続数)</p>
+
+<pre><code>ab -n 10000 -c 100 &quot;http://test.vm/test.php&quot;</code></pre>
+</li>
+
+<li>
+<p>結果</p>
+
+<p>下記のような実行結果が表示されるので、主に2つの項目を確認します。</p>
+
+<ul>
+<li>
+<p>Failed requests (失敗したリクエスト数)</p>
+
+<p>この項目が0であることを確認します。</p>
+
+<p>但し、表示毎にHTMLのバイト数が異なるサイトの場合、ここがカウントされ、さらに内訳を表す “Length:” もカウントされます。</p>
+
+<p>(1つ前の結果とHTMLのバイト数を比較し、異なる場合は Length がカウントされる仕様)</p>
+
+<p>上記のようなサイトの場合、”Failed requests” に数字があっても、全て Length が原因ならば無視してかまいませんが、</p>
+
+<p>念のため、Apacheのアクセスログを確認し、HTTP Response Code が全て200になっていることを確認して下さい。</p>
+</li>
+
+<li>
+<p>Requests per second (秒間に処理したリクエスト数)</p>
+
+<p>対象WEBサイトのアクセス数などから算出した基準を達成しているか確認します。</p>
+
+<p>(例) 月間 1億 PVのサイトの場合、アクセスが均等という前提で、秒間 38.5 リクエストは達成する必要がありそうです。</p>
+
+<pre><code>100,000,000 / 30 / 24 / 60 / 60 ≒ 38.5</code></pre>
+
+<p><code>(注意) 下記 &quot;ab 実行結果&quot; は文字を表示するだけのページなので &quot;Requests per second&quot; はかなり高い数字になっています。</code></p>
+</li>
+
+<li>
+<p>ab 実行結果</p>
+
+<pre><code># ab -n 10000 -c 100 &quot;http://test.vm/test.php&quot;
+
+This is ApacheBench, Version 2.0.40-dev &lt;$Revision: 1.146 $&gt; apache-2.0
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Copyright 2006 The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking test.vm (be patient)
+Completed 1000 requests
+Completed 2000 requests
+Completed 3000 requests
+Completed 4000 requests
+Completed 5000 requests
+Completed 6000 requests
+Completed 7000 requests
+Completed 8000 requests
+Completed 9000 requests
+Finished 10000 requests
+
+Server Software:        Apache/2.2.3
+Server Hostname:        test.vm
+Server Port:            80
+
+Document Path:          /test.php
+Document Length:        80 bytes
+
+Concurrency Level:      100
+Time taken for tests:   5.772060 seconds
+Complete requests:      10000
+Failed requests:        9899
+   (Connect: 0, Length: 9899, Exceptions: 0)
+Write errors:           0
+Total transferred:      2418216 bytes
+HTML transferred:       499081 bytes
+Requests per second:    1732.48 [#/sec] (mean)
+Time per request:       57.721 [ms] (mean)
+Time per request:       0.577 [ms] (mean, across all concurrent requests)
+Transfer rate:          409.04 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    0   0.3      0       6
+Processing:     5   56 112.2     55    5769
+Waiting:        5   54  77.3     55    4398
+Total:          5   57 112.2     55    5769
+
+Percentage of the requests served within a certain time (ms)
+  50%     55
+  66%     56
+  75%     58
+  80%     59
+  90%     62
+  95%     69
+  98%     77
+  99%    284
+ 100%   5769 (longest request)</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+
+<h5 id="2">2.応用</h5>
+
+<ul>
+<li>
+<p>コマンドサンプル</p>
+
+<p>他によく使うオプションを記載しておきます。</p>
+
+<p>Cookieを指定。(C : [Cookie名]=[値])</p>
+
+<pre><code>ab -n 100 -c 10 -C &#39;id=test&#39; &quot;http://test.vm/test.php&quot;</code></pre>
+
+<p>複数のCookieを指定。</p>
+
+<pre><code>ab -n 100 -c 10 -C &#39;id=test;flag=1&#39; &quot;http://test.vm/test.php&quot;</code></pre>
+</li>
+
+<li>
+<p>host名の指定が必要な場合</p>
+
+<p>host名の指定が必須のWEBサイトで、かつ ab 実行環境で /etc/hosts に記載ができない場合、</p>
+
+<p>下記のようにヘッダオプション(-H) と Host を使います。</p>
+
+<p>これに対応した ab はApache 2.2.22 以降で、自分の環境は未対応だったのでソースを落としてきてビルドしました。</p>
+
+<p><code>(注意) ab を使うだけなので、Apacheのインストール(make install)は行わない。</code></p>
+
+<pre><code># cd /usr/local/src/
+# wget http://ftp.meisei-u.ac.jp/mirror/apache/dist//httpd/httpd-2.2.27.tar.gz
+# tar xzf httpd-2.2.27.tar.gz
+# cd httpd-2.2.27
+# ./configure
+# make
+# 
+# /usr/local/src/httpd-2.2.27/support/ab -n 100 -c 10 -H &#39;Host: test.vm&#39; &quot;http://192.168.130.130/test.php&quot;
+#
+# /usr/local/src/httpd-2.2.27/support/ab -V
+#This is ApacheBench, Version 2.3 &lt;$Revision: 655654 $&gt;</code></pre>
+</li>
+</ul>
+
+  <!--[if IE 6 ]>
+    </div>
+  <![endif]-->
+  </div>
+</div>
+
+
+        <div>
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 300_250_rec_bottom -->
+<ins class="adsbygoogle"
+     style="display:inline-block;width:300px;height:250px"
+     data-ad-client="ca-pub-7938855665302783"
+     data-ad-slot="9160143159"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+		<div></div>
+		<b>sankameのつぶやき</b><br>
+		<a href="https://twitter.com/handycola" class="twitter-follow-button" data-show-count="false" data-lang="ja" data-size="large" data-show-screen-name="false" data-dnt="true">@handycolaさんをフォロー</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+      </div>
+
+      <footer>
+        <p>&copy; sankame 2012 
+          with help from <a href="http://jekyllbootstrap.com" target="_blank" title="The Definitive Jekyll Blogging Framework">Jekyll Bootstrap</a>
+          and <a href="http://twitter.github.com/bootstrap/" target="_blank">Twitter Bootstrap</a>
+        </p>
+      </footer>
+
+    </div> <!-- /container -->
+
+    
+  </body>
+</html>
+

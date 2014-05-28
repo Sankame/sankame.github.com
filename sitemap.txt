@@ -8,6 +8,7 @@ http://sankame.github.io//atom.xml
 http://sankame.github.io//index.html
 http://sankame.github.io//sitemap.txt
 
+http://sankame.github.io//ApacheBench/2014/06/07/apache_bench
 http://sankame.github.io//Selenium/2014/06/04/jenkins_selenium
 http://sankame.github.io//Selenium/2014/05/24/selenium_webdriver
 http://sankame.github.io//Jekyll/2014/05/18/jekyll_version_up
