@@ -1,0 +1,250 @@
+
+
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <title>GithubからBitbucketへソース移行</title>
+    
+    <meta name="author" content="sankame">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=yes">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <link href="/assets/themes/twitter/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/themes/twitter/css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
+
+    <!-- Le fav and touch icons -->
+  <!-- Update these with your own images
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+  -->
+	
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-37675354-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+
+  </head>
+
+  <body>
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="brand" href="/">Text Blog</a>
+          <ul class="nav">
+            
+            
+            
+
+
+  
+    
+      
+      	
+      	<li><a href="/archive.html">投稿</a></li>
+      	
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/categories.html">カテゴリー</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/tags.html">タグ</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+
+
+
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="content">
+        
+
+<div class="page-header">
+  <h1>GithubからBitbucketへソース移行 </h1>
+</div>
+
+<div class="row">
+  <div class="span12" >
+  <!--[if IE 6 ]>
+    <div class="span12-for-ie6">
+  <![endif]-->
+    
+<p><span><a class='twitter-follow-button' data-dnt='true' data-lang='ja' data-show-count='false' data-show-screen-name='false' data-size='large' href='https://twitter.com/handycola'>@handycolaさんをフォロー</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?&#39;http&#39;:&#39;https&#39;;if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+&#39;://platform.twitter.com/widgets.js&#39;;fjs.parentNode.insertBefore(js,fjs);}}(document, &#39;script&#39;, &#39;twitter-wjs&#39;);</script></span><span style='float:right;'>投稿日：2014年06月21日</span></p>
+<div>
+<ins class='adsbygoogle' data-ad-client='ca-pub-7938855665302783' data-ad-slot='6346277556' style='display:inline-block;width:468px;height:60px' />
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+<h5 id="0">0.環境</h5>
+
+<pre><code>  [CentOS]   5.6 (32bit版カーネル)
+  [Git]      1.9.4</code></pre>
+
+<h5 id="1">1.ダウンロード</h5>
+
+<ul>
+<li>
+<p>Githubのソース取得</p>
+
+<p><a href='/assets/posts/img/github_to_bitbucket/1.github.png' target='_blank'><img alt='githubリポジトリ' height='50%' src='/assets/posts/img/github_to_bitbucket/1.github.png' title='githubリポジトリ' width='50%' /></a></p>
+
+<p>任意のディレクトリへ移動。</p>
+
+<p>GitHubのリポジトリから対象ソースを取得。(上図の画面右下がURL)</p>
+
+<pre><code># git clone git@github.com:Sankame/repo-of-github.git</code></pre>
+
+<p>取得したソースの第1階層へ移動。</p>
+
+<pre><code># cd repo-of-github/</code></pre>
+</li>
+
+<li>
+<p>Bitbucketへソースアップ</p>
+
+<p>予めBitbucket上で任意のリポジトリを作っておきます。</p>
+
+<p><a href='/assets/posts/img/github_to_bitbucket/2.bitbucket_make_repo.png' target='_blank'><img alt='bitbucketリポジトリ作成' height='50%' src='/assets/posts/img/github_to_bitbucket/2.bitbucket_make_repo.png' title='bitbucketリポジトリ作成' width='50%' /></a></p>
+
+<p>空のリポジトリができました。</p>
+
+<p><a href='/assets/posts/img/github_to_bitbucket/3.bitbucket_new_repo.png' target='_blank'><img alt='bitbucket新規リポジトリ' height='50%' src='/assets/posts/img/github_to_bitbucket/3.bitbucket_new_repo.png' title='bitbucket新規リポジトリ' width='50%' /></a></p>
+
+<p>上記で GitHub から取得したソースは origin がGitHubになっているので、 Bitbucket へ変更。</p>
+
+<pre><code># git remote -v
+origin  git@github.com:Sankame/repo-of-github.git (fetch)
+origin  git@github.com:Sankame/repo-of-github.git (push)
+
+# git remote rm origin
+# git remote add origin git@bitbucket.org:Sankame/repo-of-bitbucket.git
+# git push -u origin --all # pushes up the repo and its refs for the first time
+# git push -u origin --tags # pushes up any tags</code></pre>
+
+<p>GithubのソースがBitbucketへ取り込まれました。</p>
+
+<p><a href='/assets/posts/img/github_to_bitbucket/4.bitbucket_imported_repo.png' target='_blank'><img alt='bitbucket取り込んだソース' height='50%' src='/assets/posts/img/github_to_bitbucket/4.bitbucket_imported_repo.png' title='bitbucket取り込んだソース' width='50%' /></a></p>
+
+<p><code>※上記 &quot;git remote add origin&quot; でプロトコルにhttpsを指定していて、&quot;git push&quot; で下記エラーが出た場合は「2.git pushが動かない場合」参照。</code></p>
+
+<pre><code>fatal: Unable to find remote helper for &#39;https&#39;</code></pre>
+</li>
+</ul>
+
+<h5 id="2git_push">2.git pushが動かない場合</h5>
+
+<ul>
+<li>
+<p>Gitをhttpsへ対応させる</p>
+
+<p>下記URLを見るとcurl-develがないのが原因と書いてあったが、自分の環境には既に入っていたので、</p>
+
+<p>gitを再コンパイル＆インストールしたところうまくいきました。</p>
+
+<p><a href='http://clavier.hatenablog.com/entry/2013/05/18/204050' target='_blank'>CentOSに最新のgitをインストールする</a></p>
+
+<p>※gitのソースが手元にある場合は再取得しなくてもOKです。</p>
+
+<p>※rootで操作しているのでインストール時にprefix指定</p>
+
+<pre><code># wget https://www.kernel.org/pub/software/scm/git/git-1.9.4.tar.gz
+# tar xzf git-1.9.4.tar.gz
+# cd git-1.9.4
+# ./configure
+# make clean
+# make
+# make prefix=/usr install</code></pre>
+</li>
+</ul>
+
+  <!--[if IE 6 ]>
+    </div>
+  <![endif]-->
+  </div>
+</div>
+
+
+        <div>
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 300_250_rec_bottom -->
+<ins class="adsbygoogle"
+     style="display:inline-block;width:300px;height:250px"
+     data-ad-client="ca-pub-7938855665302783"
+     data-ad-slot="9160143159"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+		<div></div>
+		<b>sankameのつぶやき</b><br>
+		<a href="https://twitter.com/handycola" class="twitter-follow-button" data-show-count="false" data-lang="ja" data-size="large" data-show-screen-name="false" data-dnt="true">@handycolaさんをフォロー</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+      </div>
+
+      <footer>
+        <p>&copy; sankame 2012 
+          with help from <a href="http://jekyllbootstrap.com" target="_blank" title="The Definitive Jekyll Blogging Framework">Jekyll Bootstrap</a>
+          and <a href="http://twitter.github.com/bootstrap/" target="_blank">Twitter Bootstrap</a>
+        </p>
+      </footer>
+
+    </div> <!-- /container -->
+
+    
+  </body>
+</html>
+

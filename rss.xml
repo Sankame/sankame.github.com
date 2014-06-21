@@ -5,10 +5,108 @@
         <description>Text Blog - sankame</description>
         <link>http://sankame.github.io/</link>
         <link>http://sankame.github.io/</link>
-        <lastBuildDate>2014-05-28T13:18:15+09:00</lastBuildDate>
-        <pubDate>2014-05-28T13:18:15+09:00</pubDate>
+        <lastBuildDate>2014-06-22T04:22:32+09:00</lastBuildDate>
+        <pubDate>2014-06-22T04:22:32+09:00</pubDate>
         <ttl>1800</ttl>
 
+
+        <item>
+                <title>GithubからBitbucketへソース移行</title>
+                <description>
+&lt;p&gt;&lt;span&gt;&lt;a class=&#39;twitter-follow-button&#39; data-dnt=&#39;true&#39; data-lang=&#39;ja&#39; data-show-count=&#39;false&#39; data-show-screen-name=&#39;false&#39; data-size=&#39;large&#39; href=&#39;https://twitter.com/handycola&#39;&gt;@handycolaさんをフォロー&lt;/a&gt;
+&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?&amp;#39;http&amp;#39;:&amp;#39;https&amp;#39;;if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+&amp;#39;://platform.twitter.com/widgets.js&amp;#39;;fjs.parentNode.insertBefore(js,fjs);}}(document, &amp;#39;script&amp;#39;, &amp;#39;twitter-wjs&amp;#39;);&lt;/script&gt;&lt;/span&gt;&lt;span style=&#39;float:right;&#39;&gt;投稿日：2014年06月21日&lt;/span&gt;&lt;/p&gt;
+&lt;div&gt;
+&lt;ins class=&#39;adsbygoogle&#39; data-ad-client=&#39;ca-pub-7938855665302783&#39; data-ad-slot=&#39;6346277556&#39; style=&#39;display:inline-block;width:468px;height:60px&#39; /&gt;
+&lt;script&gt;
+(adsbygoogle = window.adsbygoogle || []).push({});
+&lt;/script&gt;
+&lt;/div&gt;
+&lt;h5 id=&quot;0&quot;&gt;0.環境&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code&gt;  [CentOS]   5.6 (32bit版カーネル)
+  [Git]      1.9.4&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id=&quot;1&quot;&gt;1.ダウンロード&lt;/h5&gt;
+
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Githubのソース取得&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#39;/assets/posts/img/github_to_bitbucket/1.github.png&#39; target=&#39;_blank&#39;&gt;&lt;img alt=&#39;githubリポジトリ&#39; height=&#39;50%&#39; src=&#39;/assets/posts/img/github_to_bitbucket/1.github.png&#39; title=&#39;githubリポジトリ&#39; width=&#39;50%&#39; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;任意のディレクトリへ移動。&lt;/p&gt;
+
+&lt;p&gt;GitHubのリポジトリから対象ソースを取得。(上図の画面右下がURL)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# git clone git@github.com:Sankame/repo-of-github.git&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;取得したソースの第1階層へ移動。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# cd repo-of-github/&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+
+&lt;li&gt;
+&lt;p&gt;Bitbucketへソースアップ&lt;/p&gt;
+
+&lt;p&gt;予めBitbucket上で任意のリポジトリを作っておきます。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#39;/assets/posts/img/github_to_bitbucket/2.bitbucket_make_repo.png&#39; target=&#39;_blank&#39;&gt;&lt;img alt=&#39;bitbucketリポジトリ作成&#39; height=&#39;50%&#39; src=&#39;/assets/posts/img/github_to_bitbucket/2.bitbucket_make_repo.png&#39; title=&#39;bitbucketリポジトリ作成&#39; width=&#39;50%&#39; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;空のリポジトリができました。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#39;/assets/posts/img/github_to_bitbucket/3.bitbucket_new_repo.png&#39; target=&#39;_blank&#39;&gt;&lt;img alt=&#39;bitbucket新規リポジトリ&#39; height=&#39;50%&#39; src=&#39;/assets/posts/img/github_to_bitbucket/3.bitbucket_new_repo.png&#39; title=&#39;bitbucket新規リポジトリ&#39; width=&#39;50%&#39; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;上記で GitHub から取得したソースは origin がGitHubになっているので、 Bitbucket へ変更。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# git remote -v
+origin  git@github.com:Sankame/repo-of-github.git (fetch)
+origin  git@github.com:Sankame/repo-of-github.git (push)
+
+# git remote rm origin
+# git remote add origin git@bitbucket.org:Sankame/repo-of-bitbucket.git
+# git push -u origin --all # pushes up the repo and its refs for the first time
+# git push -u origin --tags # pushes up any tags&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;GithubのソースがBitbucketへ取り込まれました。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#39;/assets/posts/img/github_to_bitbucket/4.bitbucket_imported_repo.png&#39; target=&#39;_blank&#39;&gt;&lt;img alt=&#39;bitbucket取り込んだソース&#39; height=&#39;50%&#39; src=&#39;/assets/posts/img/github_to_bitbucket/4.bitbucket_imported_repo.png&#39; title=&#39;bitbucket取り込んだソース&#39; width=&#39;50%&#39; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;※上記 &amp;quot;git remote add origin&amp;quot; でプロトコルにhttpsを指定していて、&amp;quot;git push&amp;quot; で下記エラーが出た場合は「2.git pushが動かない場合」参照。&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;fatal: Unable to find remote helper for &amp;#39;https&amp;#39;&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h5 id=&quot;2git_push&quot;&gt;2.git pushが動かない場合&lt;/h5&gt;
+
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Gitをhttpsへ対応させる&lt;/p&gt;
+
+&lt;p&gt;下記URLを見るとcurl-develがないのが原因と書いてあったが、自分の環境には既に入っていたので、&lt;/p&gt;
+
+&lt;p&gt;gitを再コンパイル＆インストールしたところうまくいきました。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#39;http://clavier.hatenablog.com/entry/2013/05/18/204050&#39; target=&#39;_blank&#39;&gt;CentOSに最新のgitをインストールする&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;※gitのソースが手元にある場合は再取得しなくてもOKです。&lt;/p&gt;
+
+&lt;p&gt;※rootで操作しているのでインストール時にprefix指定&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# wget https://www.kernel.org/pub/software/scm/git/git-1.9.4.tar.gz
+# tar xzf git-1.9.4.tar.gz
+# cd git-1.9.4
+# ./configure
+# make clean
+# make
+# make prefix=/usr install&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+                <link>http://sankame.github.io//GitHub/2014/06/21/github_to_bitbucket</link>
+                <guid>http://sankame.github.io//GitHub/2014/06/21/github_to_bitbucket</guid>
+                <pubDate>2014-06-21T09:00:00+09:00</pubDate>
+        </item>
 
         <item>
                 <title>ポイントだけ ApacheBench</title>
