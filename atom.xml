@@ -4,13 +4,88 @@
  <title>Text Blog</title>
  <link href="http://sankame.github.io//" rel="self"/>
  <link href="http://sankame.github.io/"/>
- <updated>2014-06-22T04:22:32+09:00</updated>
+ <updated>2014-06-25T01:46:23+09:00</updated>
  <id>http://sankame.github.io/</id>
  <author>
    <name>sankame</name>
    <email>m2ad0504@outlook.jp</email>
  </author>
 
+ 
+ <entry>
+   <title>開発環境用 NTP 設定</title>
+   <link href="http://sankame.github.io//NTP/2014/06/25/ntp_for_dev"/>
+   <updated>2014-06-25T09:00:00+09:00</updated>
+   <id>http://sankame.github.io//NTP/2014/06/25/ntp_for_dev</id>
+   <content type="html">
+&lt;p&gt;&lt;span&gt;&lt;a class=&#39;twitter-follow-button&#39; data-dnt=&#39;true&#39; data-lang=&#39;ja&#39; data-show-count=&#39;false&#39; data-show-screen-name=&#39;false&#39; data-size=&#39;large&#39; href=&#39;https://twitter.com/handycola&#39;&gt;@handycolaさんをフォロー&lt;/a&gt;
+&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?&amp;#39;http&amp;#39;:&amp;#39;https&amp;#39;;if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+&amp;#39;://platform.twitter.com/widgets.js&amp;#39;;fjs.parentNode.insertBefore(js,fjs);}}(document, &amp;#39;script&amp;#39;, &amp;#39;twitter-wjs&amp;#39;);&lt;/script&gt;&lt;/span&gt;&lt;span style=&#39;float:right;&#39;&gt;投稿日：2014年06月25日&lt;/span&gt;&lt;/p&gt;
+&lt;div&gt;
+&lt;ins class=&#39;adsbygoogle&#39; data-ad-client=&#39;ca-pub-7938855665302783&#39; data-ad-slot=&#39;6346277556&#39; style=&#39;display:inline-block;width:468px;height:60px&#39; /&gt;
+&lt;script&gt;
+(adsbygoogle = window.adsbygoogle || []).push({});
+&lt;/script&gt;
+&lt;/div&gt;
+&lt;h5 id=&quot;0&quot;&gt;0.環境&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code&gt;  [VMware Player] 3.0.0
+  [CentOS]        5.6 (32bit版カーネル) (Windows上でゲストOSとして使用)
+  [NTP]           4.2.6&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id=&quot;1&quot;&gt;1.セットアップ&lt;/h5&gt;
+
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;ソース取得&lt;/p&gt;
+
+&lt;p&gt;任意のディレクトリにNTPのソースをダウンロード。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# cd /usr/local/src/
+# wget http://www.eecis.udel.edu/~ntp/ntp_spool/ntp4/ntp-4.2/ntp-4.2.6p5.tar.gz&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+
+&lt;li&gt;
+&lt;p&gt;インストール&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# tar xzf ntp-4.2.6p5.tar.gz
+# cd ntp-4.2.6p5
+# ./configure
+# make
+# make install&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+
+&lt;li&gt;
+&lt;p&gt;設定&lt;/p&gt;
+
+&lt;p&gt;下記URL①の設定を行ったところうまく同期されませんでした。(VMをサスペンドすると時刻が離れ過ぎるため？)&lt;/p&gt;
+
+&lt;p&gt;結局、自分用の開発環境で、ログイン時に1回同期させれば十分なので下記のようにしました。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# echo &amp;#39;ntpdate -u ntp.nict.jp&amp;#39; &amp;gt;&amp;gt; ~/.bash_profile&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h5 id=&quot;2url&quot;&gt;2.参考URL&lt;/h5&gt;
+
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#39;http://www.ipa.go.jp/security/awareness/administrator/secure-web/chap4/4_ntpd.html&#39; target=&#39;_blank&#39;&gt;①ntpdのインストールと設定&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#39;http://www.turbolinux.co.jp/products/server/11s/user_guide/x6278.html&#39; target=&#39;_blank&#39;&gt;②ntpd の起動と動作確認&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#39;http://tech.n-linux.com/index.php?%A5%C6%A5%AF%A5%CB%A5%AB%A5%EB%A5%CE%A1%BC%A5%C8%2FNTP%2FNTP%20%A5%B7%A5%EA%A1%BC%A5%BA%20%A5%D1%A1%BC%A5%C8%203%20ntpdate%20%A5%B3%A5%DE%A5%F3%A5%C9%A4%CB%A4%C4%A4%A4%A4%C6&#39; target=&#39;_blank&#39;&gt;③ntpdate コマンドについて&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#39;http://wiki.nothing.sh/page/NTP/%BF%E4%BE%A9%B8%F8%B3%AB%A5%B5%A1%BC%A5%D0&#39; target=&#39;_blank&#39;&gt;④推奨公開サーバ&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+ </entry>
  
  <entry>
    <title>GithubからBitbucketへソース移行</title>
