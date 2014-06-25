@@ -4,7 +4,7 @@
  <title>Text Blog</title>
  <link href="http://sankame.github.io//" rel="self"/>
  <link href="http://sankame.github.io/"/>
- <updated>2014-06-25T01:46:23+09:00</updated>
+ <updated>2014-06-26T00:42:27+09:00</updated>
  <id>http://sankame.github.io/</id>
  <author>
    <name>sankame</name>
@@ -455,7 +455,7 @@ Percentage of the requests served within a certain time (ms)
 
 &lt;p&gt;「保存」ボタンクリック。&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/posts/img/jenkins_selenium/jenkins_project.png&quot; alt=&quot;Jenkinsプロジェクト設定&quot; title=&quot;Jenkinsプロジェクト設定&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#39;/assets/posts/img/jenkins_selenium/jenkins_project.png&#39; target=&#39;_blank&#39;&gt;&lt;img alt=&#39;Jenkinsプロジェクト設定&#39; height=&#39;50%&#39; src=&#39;/assets/posts/img/jenkins_selenium/jenkins_project.png&#39; title=&#39;Jenkinsプロジェクト設定&#39; width=&#39;50%&#39; /&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 
 &lt;li&gt;
@@ -809,7 +809,7 @@ http://localhost:4000/jekyll/2014/05/18/jekyll_version_up/&lt;/code&gt;&lt;/pre&
 
 &lt;p&gt;ウィザードに従ってインストールを進めます。&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/posts/img/revive_adserver_install/step1.png&quot; alt=&quot;step1&quot; title=&quot;step1&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#39;/assets/posts/img/revive_adserver_install/step1.png&#39; target=&#39;_blank&#39;&gt;&lt;img alt=&#39;step1&#39; height=&#39;50%&#39; src=&#39;/assets/posts/img/revive_adserver_install/step1.png&#39; title=&#39;step1&#39; width=&#39;50%&#39; /&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;“I Agree »“ボタンを押すと、”File Permissions - 7 errors” というエラーが表示されました。&lt;/p&gt;
 
@@ -831,7 +831,7 @@ http://localhost:4000/jekyll/2014/05/18/jekyll_version_up/&lt;/code&gt;&lt;/pre&
 
 &lt;p&gt;DB情報の入力画面が表示されますが、その前に下記コマンド(※1)でMySQL上にDBを作成。&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/posts/img/revive_adserver_install/step2.png&quot; alt=&quot;step2&quot; title=&quot;step2&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#39;/assets/posts/img/revive_adserver_install/step2.png&#39; target=&#39;_blank&#39;&gt;&lt;img alt=&#39;step2&#39; height=&#39;50%&#39; src=&#39;/assets/posts/img/revive_adserver_install/step2.png&#39; title=&#39;step2&#39; width=&#39;50%&#39; /&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;(※1) コマンド (DB名、ユーザ名、パスワードは任意に設定して下さい)&lt;/p&gt;
 
@@ -847,7 +847,7 @@ mysql&amp;gt; grant all privileges on reviveadserver.* to admin@localhost identi
 
 &lt;p&gt;Revive AdServerの管理ユーザを登録します。&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/posts/img/revive_adserver_install/step3.png&quot; alt=&quot;step3&quot; title=&quot;step3&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#39;/assets/posts/img/revive_adserver_install/step3.png&#39; target=&#39;_blank&#39;&gt;&lt;img alt=&#39;step3&#39; height=&#39;50%&#39; src=&#39;/assets/posts/img/revive_adserver_install/step3.png&#39; title=&#39;step3&#39; width=&#39;50%&#39; /&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;言語とタイムゾーンを変更。&lt;/p&gt;
 
@@ -862,7 +862,7 @@ Timezone:  (GMT+0900) Asia/Tokyo&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;「インストール中にエラーが発生しました」と表示されましたが、指定されたログを見てもエラーの記述はありませんでした。&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/posts/img/revive_adserver_install/step4.png&quot; alt=&quot;step4&quot; title=&quot;step4&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#39;/assets/posts/img/revive_adserver_install/step4.png&#39; target=&#39;_blank&#39;&gt;&lt;img alt=&#39;step4&#39; height=&#39;50%&#39; src=&#39;/assets/posts/img/revive_adserver_install/step4.png&#39; title=&#39;step4&#39; width=&#39;50%&#39; /&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 </content>
