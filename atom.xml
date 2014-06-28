@@ -4,7 +4,7 @@
  <title>Text Blog</title>
  <link href="http://sankame.github.io//" rel="self"/>
  <link href="http://sankame.github.io/"/>
- <updated>2014-06-26T00:42:27+09:00</updated>
+ <updated>2014-06-29T00:47:36+09:00</updated>
  <id>http://sankame.github.io/</id>
  <author>
    <name>sankame</name>
@@ -38,7 +38,7 @@
 &lt;li&gt;
 &lt;p&gt;ソース取得&lt;/p&gt;
 
-&lt;p&gt;任意のディレクトリにNTPのソースをダウンロード。&lt;/p&gt;
+&lt;p&gt;任意のディレクトリにNTPのソース(ntpd)をダウンロード。&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;# cd /usr/local/src/
 # wget http://www.eecis.udel.edu/~ntp/ntp_spool/ntp4/ntp-4.2/ntp-4.2.6p5.tar.gz&lt;/code&gt;&lt;/pre&gt;
@@ -57,7 +57,9 @@
 &lt;li&gt;
 &lt;p&gt;設定&lt;/p&gt;
 
-&lt;p&gt;下記URL①の設定を行ったところうまく同期されませんでした。(VMをサスペンドすると時刻が離れ過ぎるため？)&lt;/p&gt;
+&lt;p&gt;下記URL①の設定を行ったところうまく時刻同期されませんでした。&lt;/p&gt;
+
+&lt;p&gt;(VMwareをサスペンドすると時刻が離れ過ぎるため？)&lt;/p&gt;
 
 &lt;p&gt;結局、自分用の開発環境で、ログイン時に1回同期させれば十分なので下記のようにしました。&lt;/p&gt;
 
