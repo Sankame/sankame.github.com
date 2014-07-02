@@ -4,7 +4,7 @@
 <html lang="ja">
   <head>
     <meta charset="utf-8">
-    <title>テキストブログ</title>
+    <title>wget ファイル名を指定してダウンロード</title>
     
     <meta name="author" content="sankame">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=yes">
@@ -112,7 +112,7 @@
         
 
 <div class="page-header">
-  <h1>テキストブログ </h1>
+  <h1>wget ファイル名を指定してダウンロード </h1>
 </div>
 
 <div class="row">
@@ -121,41 +121,23 @@
     <div class="span12-for-ie6">
   <![endif]-->
     
-<p>ネット企業のプログラマー sankameです。</p>
-
-<p>主にIT系の調べ物を思い出すためのブログです。</p>
-
-<h3 id=""><font color='#20B2AA'>最近の投稿</font></h3>
-<ul class='posts'>
-  
-    <li><span>2014年07月03日</span> &raquo; <a href='/wget/2014/07/03/wget_option_O'>wget ファイル名を指定してダウンロード</a></li>
-  
-    <li><span>2014年06月25日</span> &raquo; <a href='/NTP/2014/06/25/ntp_for_dev'>開発環境用 NTP 設定</a></li>
-  
-    <li><span>2014年06月21日</span> &raquo; <a href='/GitHub/2014/06/21/github_to_bitbucket'>GithubからBitbucketへソース移行</a></li>
-  
-    <li><span>2014年06月07日</span> &raquo; <a href='/ApacheBench/2014/06/07/apache_bench'>ポイントだけ ApacheBench</a></li>
-  
-    <li><span>2014年06月04日</span> &raquo; <a href='/Selenium/2014/06/04/jenkins_selenium'>Jenkins から Seleniumを動かしてみる</a></li>
-  
-</ul>
-<h4 id="_2"><font color='#20B2AA'>免責事項</font></h4>
-
-<pre><code>本ブログのご利用につき、何らかのトラブルや損失・損害等につきましては一切責任を問わないものとします。</code></pre>
-
-<h4 id="_3"><font color='#20B2AA'>運営</font></h4>
+<p><span><a class='twitter-follow-button' data-dnt='true' data-lang='ja' data-show-count='false' data-show-screen-name='false' data-size='large' href='https://twitter.com/handycola'>@handycolaさんをフォロー</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?&#39;http&#39;:&#39;https&#39;;if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+&#39;://platform.twitter.com/widgets.js&#39;;fjs.parentNode.insertBefore(js,fjs);}}(document, &#39;script&#39;, &#39;twitter-wjs&#39;);</script></span><span style='float:right;'>投稿日：2014年07月03日</span></p>
+<div>
+<ins class='adsbygoogle' data-ad-client='ca-pub-7938855665302783' data-ad-slot='6346277556' style='display:inline-block;width:468px;height:60px' />
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+<h5 id="o_">-O オプションを使って、ダウンロードファイル名を指定します。</h5>
 
 <ul>
 <li>
-<p>運営者：sankame</p>
-</li>
+<p>下記例では MyWget という名前に変更。</p>
 
-<li>
-<p>連絡先：<a href='mailto:m2ad0504@outlook.jp'>メール</a></p>
-</li>
-
-<li>
-<p>住所　：千葉</p>
+<pre><code># wget -O MyWget http://ftp.gnu.org/gnu/wget/wget-1.15.tar.gz
+# ls
+# -rw-r--r--  1 root  root  3417936  1月 19 19:17 MyWget</code></pre>
 </li>
 </ul>
 

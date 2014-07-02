@@ -5,10 +5,38 @@
         <description>Text Blog - sankame</description>
         <link>http://sankame.github.io/</link>
         <link>http://sankame.github.io/</link>
-        <lastBuildDate>2014-06-29T00:47:36+09:00</lastBuildDate>
-        <pubDate>2014-06-29T00:47:36+09:00</pubDate>
+        <lastBuildDate>2014-07-03T02:20:41+09:00</lastBuildDate>
+        <pubDate>2014-07-03T02:20:41+09:00</pubDate>
         <ttl>1800</ttl>
 
+
+        <item>
+                <title>wget ファイル名を指定してダウンロード</title>
+                <description>
+&lt;p&gt;&lt;span&gt;&lt;a class=&#39;twitter-follow-button&#39; data-dnt=&#39;true&#39; data-lang=&#39;ja&#39; data-show-count=&#39;false&#39; data-show-screen-name=&#39;false&#39; data-size=&#39;large&#39; href=&#39;https://twitter.com/handycola&#39;&gt;@handycolaさんをフォロー&lt;/a&gt;
+&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?&amp;#39;http&amp;#39;:&amp;#39;https&amp;#39;;if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+&amp;#39;://platform.twitter.com/widgets.js&amp;#39;;fjs.parentNode.insertBefore(js,fjs);}}(document, &amp;#39;script&amp;#39;, &amp;#39;twitter-wjs&amp;#39;);&lt;/script&gt;&lt;/span&gt;&lt;span style=&#39;float:right;&#39;&gt;投稿日：2014年07月03日&lt;/span&gt;&lt;/p&gt;
+&lt;div&gt;
+&lt;ins class=&#39;adsbygoogle&#39; data-ad-client=&#39;ca-pub-7938855665302783&#39; data-ad-slot=&#39;6346277556&#39; style=&#39;display:inline-block;width:468px;height:60px&#39; /&gt;
+&lt;script&gt;
+(adsbygoogle = window.adsbygoogle || []).push({});
+&lt;/script&gt;
+&lt;/div&gt;
+&lt;h5 id=&quot;o_&quot;&gt;-O オプションを使って、ダウンロードファイル名を指定します。&lt;/h5&gt;
+
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;下記例では MyWget という名前に変更。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# wget -O MyWget http://ftp.gnu.org/gnu/wget/wget-1.15.tar.gz
+# ls
+# -rw-r--r--  1 root  root  3417936  1月 19 19:17 MyWget&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+                <link>http://sankame.github.io//wget/2014/07/03/wget_option_O</link>
+                <guid>http://sankame.github.io//wget/2014/07/03/wget_option_O</guid>
+                <pubDate>2014-07-03T09:00:00+09:00</pubDate>
+        </item>
 
         <item>
                 <title>開発環境用 NTP 設定</title>
