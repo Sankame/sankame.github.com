@@ -8,6 +8,7 @@ http://sankame.github.io//atom.xml
 http://sankame.github.io//index.html
 http://sankame.github.io//sitemap.txt
 
+http://sankame.github.io//Laravel/2014/07/15/laravel_trailing_slash_redirect
 http://sankame.github.io//wget/2014/07/03/wget_option_O
 http://sankame.github.io//NTP/2014/06/25/ntp_for_dev
 http://sankame.github.io//GitHub/2014/06/21/github_to_bitbucket

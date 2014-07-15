@@ -4,7 +4,7 @@
 <html lang="ja">
   <head>
     <meta charset="utf-8">
-    <title>テキストブログ</title>
+    <title>【Laravel】AjaxでPOSTできない</title>
     
     <meta name="author" content="sankame">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=yes">
@@ -112,7 +112,7 @@
         
 
 <div class="page-header">
-  <h1>テキストブログ </h1>
+  <h1>【Laravel】AjaxでPOSTできない </h1>
 </div>
 
 <div class="row">
@@ -121,41 +121,117 @@
     <div class="span12-for-ie6">
   <![endif]-->
     
-<p>ネット企業のプログラマー sankameです。</p>
+<p><span><a class='twitter-follow-button' data-dnt='true' data-lang='ja' data-show-count='false' data-show-screen-name='false' data-size='large' href='https://twitter.com/handycola'>@handycolaさんをフォロー</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?&#39;http&#39;:&#39;https&#39;;if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+&#39;://platform.twitter.com/widgets.js&#39;;fjs.parentNode.insertBefore(js,fjs);}}(document, &#39;script&#39;, &#39;twitter-wjs&#39;);</script></span><span style='float:right;'>投稿日：2014年07月15日</span></p>
+<div>
+<ins class='adsbygoogle' data-ad-client='ca-pub-7938855665302783' data-ad-slot='6346277556' style='display:inline-block;width:468px;height:60px' />
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+<h5 id="0">0.環境</h5>
 
-<p>主にIT系の調べ物を思い出すためのブログです。</p>
+<pre><code>[CentOS]   5.6 (32bit版カーネル)
+[Apache]   2.2.3
+[PHP]      5.4.1
+[Laravel]  4.1.23</code></pre>
 
-<h3 id=""><font color='#20B2AA'>最近の投稿</font></h3>
-<ul class='posts'>
-  
-    <li><span>2014年07月15日</span> &raquo; <a href='/Laravel/2014/07/15/laravel_trailing_slash_redirect'>【Laravel】AjaxでPOSTできない</a></li>
-  
-    <li><span>2014年07月03日</span> &raquo; <a href='/wget/2014/07/03/wget_option_O'>wget ファイル名を指定してダウンロード</a></li>
-  
-    <li><span>2014年06月25日</span> &raquo; <a href='/NTP/2014/06/25/ntp_for_dev'>開発環境用 NTP 設定</a></li>
-  
-    <li><span>2014年06月21日</span> &raquo; <a href='/GitHub/2014/06/21/github_to_bitbucket'>GithubからBitbucketへソース移行</a></li>
-  
-    <li><span>2014年06月07日</span> &raquo; <a href='/ApacheBench/2014/06/07/apache_bench'>ポイントだけ ApacheBench</a></li>
-  
-</ul>
-<h4 id="_2"><font color='#20B2AA'>免責事項</font></h4>
-
-<pre><code>本ブログのご利用につき、何らかのトラブルや損失・損害等につきましては一切責任を問わないものとします。</code></pre>
-
-<h4 id="_3"><font color='#20B2AA'>運営</font></h4>
+<h5 id="1">1.問題</h5>
 
 <ul>
 <li>
-<p>運営者：sankame</p>
+<p>PHPのLaravelフレームワークを使っていたら、AjaxでPOSTした値がサーバ側で取得できずにはまりました。</p>
+
+<p>①から②へ test という名前で hoge という値を送信します。</p>
+
+<ul>
+<li>
+<p>① Javascript側</p>
+<script src='https://gist.github.com/a9da32445d224fb1df63.js?file=ajax-test.js'> </script></li>
+
+<li>
+<p>② PHP側</p>
+<script src='https://gist.github.com/649420870dc9835cb08c.js?file=routes.php'> </script></li>
+
+<li>
+<p>ログ出力結果を見ると、下記のようにPOST値が取得できていません。</p>
+
+<pre><code>[2014-07-16 12:09:36] local.DEBUG:  [] []</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+
+<h5 id="2">2.原因</h5>
+
+<ul>
+<li>
+<p>Firefox の “Live HTTP headers” アドオンでURLの遷移を見たところ、下記のようにリダイレクトしていることがわかりました。</p>
+
+<pre><code>http://local.vm/test/
+	↓↓↓
+http://local.vm/test</code></pre>
 </li>
 
 <li>
-<p>連絡先：<a href='mailto:m2ad0504@outlook.jp'>メール</a></p>
+<p>grepしたところ、.htaccessでリダイレクトしてました。</p>
+
+<ul>
+<li>
+<p>ソース</p>
+
+<p>app-root/public/.htaccess</p>
 </li>
 
 <li>
-<p>住所　：千葉</p>
+<p>記述</p>
+
+<pre><code># Redirect Trailing Slashes...
+RewriteRule ^(.*)/$ /$1 [L,R=301]</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+
+<h5 id="3">3.対策</h5>
+
+<ul>
+<li>
+<p>Laravelはtrailing slash非推奨なのか？ とにかく下記のように修正。</p>
+
+<ul>
+<li>
+<p>箇所</p>
+
+<p>ajax-test.js (6行目)</p>
+</li>
+
+<li>
+<p>内容</p>
+
+<p>URLの末尾のスラッシュを削除し、/test に修正。</p>
+</li>
+
+<li>
+<p>ログにもPOST値が出力されました。</p>
+
+<pre><code>[2014-07-16 13:03:39] local.DEBUG: hoge [] []</code></pre>
+</li>
+</ul>
+</li>
+
+<li>
+<p>参考</p>
+
+<ul>
+<li>
+<p><a href='http://www.suzukikenichi.com/blog/do-we-need-a-trailing-slash-at-the-end-of-url/' target='_blank'>URLの終りに「/」(スラッシュ)は必要?、不要?</a></p>
+</li>
+
+<li>
+<p><a href='http://stackoverflow.com/questions/22063520/laravel-slash-after-url-redirects-to-root-folder' target='_blank'>Laravel slash after url redirects to root folder</a></p>
+</li>
+</ul>
 </li>
 </ul>
 

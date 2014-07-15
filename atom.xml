@@ -4,13 +4,135 @@
  <title>Text Blog</title>
  <link href="http://sankame.github.io//" rel="self"/>
  <link href="http://sankame.github.io/"/>
- <updated>2014-07-03T02:20:41+09:00</updated>
+ <updated>2014-07-16T22:07:33+09:00</updated>
  <id>http://sankame.github.io/</id>
  <author>
    <name>sankame</name>
    <email>m2ad0504@outlook.jp</email>
  </author>
 
+ 
+ <entry>
+   <title>【Laravel】AjaxでPOSTできない</title>
+   <link href="http://sankame.github.io//Laravel/2014/07/15/laravel_trailing_slash_redirect"/>
+   <updated>2014-07-15T09:00:00+09:00</updated>
+   <id>http://sankame.github.io//Laravel/2014/07/15/laravel_trailing_slash_redirect</id>
+   <content type="html">
+&lt;p&gt;&lt;span&gt;&lt;a class=&#39;twitter-follow-button&#39; data-dnt=&#39;true&#39; data-lang=&#39;ja&#39; data-show-count=&#39;false&#39; data-show-screen-name=&#39;false&#39; data-size=&#39;large&#39; href=&#39;https://twitter.com/handycola&#39;&gt;@handycolaさんをフォロー&lt;/a&gt;
+&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?&amp;#39;http&amp;#39;:&amp;#39;https&amp;#39;;if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+&amp;#39;://platform.twitter.com/widgets.js&amp;#39;;fjs.parentNode.insertBefore(js,fjs);}}(document, &amp;#39;script&amp;#39;, &amp;#39;twitter-wjs&amp;#39;);&lt;/script&gt;&lt;/span&gt;&lt;span style=&#39;float:right;&#39;&gt;投稿日：2014年07月15日&lt;/span&gt;&lt;/p&gt;
+&lt;div&gt;
+&lt;ins class=&#39;adsbygoogle&#39; data-ad-client=&#39;ca-pub-7938855665302783&#39; data-ad-slot=&#39;6346277556&#39; style=&#39;display:inline-block;width:468px;height:60px&#39; /&gt;
+&lt;script&gt;
+(adsbygoogle = window.adsbygoogle || []).push({});
+&lt;/script&gt;
+&lt;/div&gt;
+&lt;h5 id=&quot;0&quot;&gt;0.環境&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code&gt;[CentOS]   5.6 (32bit版カーネル)
+[Apache]   2.2.3
+[PHP]      5.4.1
+[Laravel]  4.1.23&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id=&quot;1&quot;&gt;1.問題&lt;/h5&gt;
+
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;PHPのLaravelフレームワークを使っていたら、AjaxでPOSTした値がサーバ側で取得できずにはまりました。&lt;/p&gt;
+
+&lt;p&gt;①から②へ test という名前で hoge という値を送信します。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;① Javascript側&lt;/p&gt;
+&lt;script src=&#39;https://gist.github.com/a9da32445d224fb1df63.js?file=ajax-test.js&#39;&gt; &lt;/script&gt;&lt;/li&gt;
+
+&lt;li&gt;
+&lt;p&gt;② PHP側&lt;/p&gt;
+&lt;script src=&#39;https://gist.github.com/649420870dc9835cb08c.js?file=routes.php&#39;&gt; &lt;/script&gt;&lt;/li&gt;
+
+&lt;li&gt;
+&lt;p&gt;ログ出力結果を見ると、下記のようにPOST値が取得できていません。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[2014-07-16 12:09:36] local.DEBUG:  [] []&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h5 id=&quot;2&quot;&gt;2.原因&lt;/h5&gt;
+
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Firefox の “Live HTTP headers” アドオンでURLの遷移を見たところ、下記のようにリダイレクトしていることがわかりました。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;http://local.vm/test/
+	↓↓↓
+http://local.vm/test&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+
+&lt;li&gt;
+&lt;p&gt;grepしたところ、.htaccessでリダイレクトしてました。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;ソース&lt;/p&gt;
+
+&lt;p&gt;app-root/public/.htaccess&lt;/p&gt;
+&lt;/li&gt;
+
+&lt;li&gt;
+&lt;p&gt;記述&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# Redirect Trailing Slashes...
+RewriteRule ^(.*)/$ /$1 [L,R=301]&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h5 id=&quot;3&quot;&gt;3.対策&lt;/h5&gt;
+
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Laravelはtrailing slash非推奨なのか？ とにかく下記のように修正。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;箇所&lt;/p&gt;
+
+&lt;p&gt;ajax-test.js (6行目)&lt;/p&gt;
+&lt;/li&gt;
+
+&lt;li&gt;
+&lt;p&gt;内容&lt;/p&gt;
+
+&lt;p&gt;URLの末尾のスラッシュを削除し、/test に修正。&lt;/p&gt;
+&lt;/li&gt;
+
+&lt;li&gt;
+&lt;p&gt;ログにもPOST値が出力されました。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[2014-07-16 13:03:39] local.DEBUG: hoge [] []&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+
+&lt;li&gt;
+&lt;p&gt;参考&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#39;http://www.suzukikenichi.com/blog/do-we-need-a-trailing-slash-at-the-end-of-url/&#39; target=&#39;_blank&#39;&gt;URLの終りに「/」(スラッシュ)は必要?、不要?&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#39;http://stackoverflow.com/questions/22063520/laravel-slash-after-url-redirects-to-root-folder&#39; target=&#39;_blank&#39;&gt;Laravel slash after url redirects to root folder&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+ </entry>
  
  <entry>
    <title>wget ファイル名を指定してダウンロード</title>
