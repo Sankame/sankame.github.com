@@ -4,7 +4,7 @@
 <html lang="ja">
   <head>
     <meta charset="utf-8">
-    <title>テキストブログ</title>
+    <title>ベーシック認証設定 (VirtualHostの場合)</title>
     
     <meta name="author" content="sankame">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=yes">
@@ -112,7 +112,7 @@
         
 
 <div class="page-header">
-  <h1>テキストブログ </h1>
+  <h1>ベーシック認証設定 (VirtualHostの場合) </h1>
 </div>
 
 <div class="row">
@@ -121,41 +121,62 @@
     <div class="span12-for-ie6">
   <![endif]-->
     
-<p>ネット企業のプログラマー sankameです。</p>
+<p><span><a class='twitter-follow-button' data-dnt='true' data-lang='ja' data-show-count='false' data-show-screen-name='false' data-size='large' href='https://twitter.com/handycola'>@handycolaさんをフォロー</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?&#39;http&#39;:&#39;https&#39;;if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+&#39;://platform.twitter.com/widgets.js&#39;;fjs.parentNode.insertBefore(js,fjs);}}(document, &#39;script&#39;, &#39;twitter-wjs&#39;);</script></span><span style='float:right;'>投稿日：2014年08月20日</span></p>
+<div>
+<ins class='adsbygoogle' data-ad-client='ca-pub-7938855665302783' data-ad-slot='6346277556' style='display:inline-block;width:468px;height:60px' />
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+<h5 id="0">0.環境</h5>
 
-<p>主にIT系の調べ物を思い出すためのブログです。</p>
+<pre><code>[CentOS]   5.6 (32bit版カーネル)
+[Apache]   2.2.3</code></pre>
 
-<h3 id=""><font color='#20B2AA'>最近の投稿</font></h3>
-<ul class='posts'>
-  
-    <li><span>2014年08月20日</span> &raquo; <a href='/Apache/2014/08/20/http_basic_authentication'>ベーシック認証設定 (VirtualHostの場合)</a></li>
-  
-    <li><span>2014年07月26日</span> &raquo; <a href='/AndroidWear/2014/07/26/android_wear_chage_face'>【Android Wear】ホーム画面の時計を変更</a></li>
-  
-    <li><span>2014年07月21日</span> &raquo; <a href='/Laravel/2014/07/21/laravel_passing_data_from_basecontroller'>【Laravel】全てのビューに値を渡す</a></li>
-  
-    <li><span>2014年07月15日</span> &raquo; <a href='/Laravel/2014/07/15/laravel_trailing_slash_redirect'>【Laravel】AjaxでPOSTできない</a></li>
-  
-    <li><span>2014年07月03日</span> &raquo; <a href='/wget/2014/07/03/wget_option_O'>wget ファイル名を指定してダウンロード</a></li>
-  
-</ul>
-<h4 id="_2"><font color='#20B2AA'>免責事項</font></h4>
-
-<pre><code>本ブログのご利用につき、何らかのトラブルや損失・損害等につきましては一切責任を問わないものとします。</code></pre>
-
-<h4 id="_3"><font color='#20B2AA'>運営</font></h4>
+<h5 id="1">1.パスワードファイル作成</h5>
 
 <ul>
 <li>
-<p>運営者：sankame</p>
-</li>
+<p>適当な場所にパスワードファイルを作成。(“user1”は作成したいユーザー名で読み替え)</p>
 
-<li>
-<p>連絡先：<a href='mailto:m2ad0504@outlook.jp'>メール</a></p>
+<pre><code># htpasswd -c /etc/httpd/conf/.htpasswd user1
+New password: 
+Re-type new password: 
+Adding password for user user1</code></pre>
 </li>
+</ul>
 
+<h5 id="2">2.パスワードファイル設定</h5>
+
+<ul>
 <li>
-<p>住所　：千葉</p>
+<p>VirtualHostを設定している場合、Directoryディレクティブ内にパスワードファイルを設定。</p>
+
+<p>下記、Apache設定ファイル(/etc/httpd/conf/httpd.conf) の抜粋。</p>
+
+<pre><code>NameVirtualHost *:80
+
+&lt;Directory /web/test&gt;
+    Options FollowSymLinks
+    AllowOverride FileInfo Options=All,MultiViews
+    
+    # --- ベーシック認証追加 ---
+    AuthType Basic
+    AuthUserFile &quot;/etc/httpd/conf/.htpasswd&quot;
+    AuthName &quot;The title of dialogue box&quot;
+    Require valid-user
+    # --- ベーシック認証追加 ---
+    
+&lt;/Directory&gt;
+
+&lt;VirtualHost *:80&gt;
+    ServerAdmin test@sample.co.jp
+    DocumentRoot &quot;/web/test&quot;
+    ServerName test.net
+    ErrorLog logs/test.net-error_log
+    CustomLog logs/test.net-access_log common
+&lt;/VirtualHost&gt;</code></pre>
 </li>
 </ul>
 

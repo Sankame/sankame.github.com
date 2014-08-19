@@ -4,13 +4,80 @@
  <title>Text Blog</title>
  <link href="http://sankame.github.io//" rel="self"/>
  <link href="http://sankame.github.io/"/>
- <updated>2014-07-30T00:11:08+09:00</updated>
+ <updated>2014-08-20T00:33:56+09:00</updated>
  <id>http://sankame.github.io/</id>
  <author>
    <name>sankame</name>
    <email>m2ad0504@outlook.jp</email>
  </author>
 
+ 
+ <entry>
+   <title>ベーシック認証設定 (VirtualHostの場合)</title>
+   <link href="http://sankame.github.io//Apache/2014/08/20/http_basic_authentication"/>
+   <updated>2014-08-20T09:00:00+09:00</updated>
+   <id>http://sankame.github.io//Apache/2014/08/20/http_basic_authentication</id>
+   <content type="html">
+&lt;p&gt;&lt;span&gt;&lt;a class=&#39;twitter-follow-button&#39; data-dnt=&#39;true&#39; data-lang=&#39;ja&#39; data-show-count=&#39;false&#39; data-show-screen-name=&#39;false&#39; data-size=&#39;large&#39; href=&#39;https://twitter.com/handycola&#39;&gt;@handycolaさんをフォロー&lt;/a&gt;
+&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?&amp;#39;http&amp;#39;:&amp;#39;https&amp;#39;;if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+&amp;#39;://platform.twitter.com/widgets.js&amp;#39;;fjs.parentNode.insertBefore(js,fjs);}}(document, &amp;#39;script&amp;#39;, &amp;#39;twitter-wjs&amp;#39;);&lt;/script&gt;&lt;/span&gt;&lt;span style=&#39;float:right;&#39;&gt;投稿日：2014年08月20日&lt;/span&gt;&lt;/p&gt;
+&lt;div&gt;
+&lt;ins class=&#39;adsbygoogle&#39; data-ad-client=&#39;ca-pub-7938855665302783&#39; data-ad-slot=&#39;6346277556&#39; style=&#39;display:inline-block;width:468px;height:60px&#39; /&gt;
+&lt;script&gt;
+(adsbygoogle = window.adsbygoogle || []).push({});
+&lt;/script&gt;
+&lt;/div&gt;
+&lt;h5 id=&quot;0&quot;&gt;0.環境&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code&gt;[CentOS]   5.6 (32bit版カーネル)
+[Apache]   2.2.3&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id=&quot;1&quot;&gt;1.パスワードファイル作成&lt;/h5&gt;
+
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;適当な場所にパスワードファイルを作成。(“user1”は作成したいユーザー名で読み替え)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# htpasswd -c /etc/httpd/conf/.htpasswd user1
+New password: 
+Re-type new password: 
+Adding password for user user1&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h5 id=&quot;2&quot;&gt;2.パスワードファイル設定&lt;/h5&gt;
+
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;VirtualHostを設定している場合、Directoryディレクティブ内にパスワードファイルを設定。&lt;/p&gt;
+
+&lt;p&gt;下記、Apache設定ファイル(/etc/httpd/conf/httpd.conf) の抜粋。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;NameVirtualHost *:80
+
+&amp;lt;Directory /web/test&amp;gt;
+    Options FollowSymLinks
+    AllowOverride FileInfo Options=All,MultiViews
+    
+    # --- ベーシック認証追加 ---
+    AuthType Basic
+    AuthUserFile &amp;quot;/etc/httpd/conf/.htpasswd&amp;quot;
+    AuthName &amp;quot;The title of dialogue box&amp;quot;
+    Require valid-user
+    # --- ベーシック認証追加 ---
+    
+&amp;lt;/Directory&amp;gt;
+
+&amp;lt;VirtualHost *:80&amp;gt;
+    ServerAdmin test@sample.co.jp
+    DocumentRoot &amp;quot;/web/test&amp;quot;
+    ServerName test.net
+    ErrorLog logs/test.net-error_log
+    CustomLog logs/test.net-access_log common
+&amp;lt;/VirtualHost&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+ </entry>
  
  <entry>
    <title>【Android Wear】ホーム画面の時計を変更</title>

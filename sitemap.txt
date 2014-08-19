@@ -8,6 +8,7 @@ http://sankame.github.io//atom.xml
 http://sankame.github.io//index.html
 http://sankame.github.io//sitemap.txt
 
+http://sankame.github.io//Apache/2014/08/20/http_basic_authentication
 http://sankame.github.io//AndroidWear/2014/07/26/android_wear_chage_face
 http://sankame.github.io//Laravel/2014/07/21/laravel_passing_data_from_basecontroller
 http://sankame.github.io//Laravel/2014/07/15/laravel_trailing_slash_redirect
