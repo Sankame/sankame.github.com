@@ -151,9 +151,15 @@ Adding password for user user1</code></pre>
 
 <ul>
 <li>
-<p>VirtualHostを設定している場合、Directoryディレクティブ内にパスワードファイルを設定。</p>
+<p>VirtualHostを設定している場合、Directoryディレクティブ内に下記を追加。</p>
 
-<p>下記、Apache設定ファイル(/etc/httpd/conf/httpd.conf) の抜粋。</p>
+<p>AuthUserFileには上記1で作ったパスワードファイルを指定。</p>
+
+<p>AuthNameはブラウザの認証ダイアログに表示されるメッセージとなります。</p>
+
+<p>(マルチバイト文字は化ける可能性あり)</p>
+
+<p><code>※下記はApache設定ファイル(/etc/httpd/conf/httpd.conf) の抜粋</code></p>
 
 <pre><code>NameVirtualHost *:80
 
@@ -164,7 +170,7 @@ Adding password for user user1</code></pre>
     # --- ベーシック認証追加 ---
     AuthType Basic
     AuthUserFile &quot;/etc/httpd/conf/.htpasswd&quot;
-    AuthName &quot;The title of dialogue box&quot;
+    AuthName &quot;Here is a message.&quot;
     Require valid-user
     # --- ベーシック認証追加 ---
     
@@ -177,6 +183,16 @@ Adding password for user user1</code></pre>
     ErrorLog logs/test.net-error_log
     CustomLog logs/test.net-access_log common
 &lt;/VirtualHost&gt;</code></pre>
+</li>
+</ul>
+
+<h5 id="3">3.再起動</h5>
+
+<ul>
+<li>
+<p>最後にApacheを再起動します。</p>
+
+<pre><code># service httpd restart</code></pre>
 </li>
 </ul>
 

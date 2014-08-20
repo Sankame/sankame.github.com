@@ -5,8 +5,8 @@
         <description>Text Blog - sankame</description>
         <link>http://sankame.github.io/</link>
         <link>http://sankame.github.io/</link>
-        <lastBuildDate>2014-08-20T00:33:56+09:00</lastBuildDate>
-        <pubDate>2014-08-20T00:33:56+09:00</pubDate>
+        <lastBuildDate>2014-08-21T00:51:27+09:00</lastBuildDate>
+        <pubDate>2014-08-21T00:51:27+09:00</pubDate>
         <ttl>1800</ttl>
 
 
@@ -43,9 +43,15 @@ Adding password for user user1&lt;/code&gt;&lt;/pre&gt;
 
 &lt;ul&gt;
 &lt;li&gt;
-&lt;p&gt;VirtualHostを設定している場合、Directoryディレクティブ内にパスワードファイルを設定。&lt;/p&gt;
+&lt;p&gt;VirtualHostを設定している場合、Directoryディレクティブ内に下記を追加。&lt;/p&gt;
 
-&lt;p&gt;下記、Apache設定ファイル(/etc/httpd/conf/httpd.conf) の抜粋。&lt;/p&gt;
+&lt;p&gt;AuthUserFileには上記1で作ったパスワードファイルを指定。&lt;/p&gt;
+
+&lt;p&gt;AuthNameはブラウザの認証ダイアログに表示されるメッセージとなります。&lt;/p&gt;
+
+&lt;p&gt;(マルチバイト文字は化ける可能性あり)&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;※下記はApache設定ファイル(/etc/httpd/conf/httpd.conf) の抜粋&lt;/code&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;NameVirtualHost *:80
 
@@ -56,7 +62,7 @@ Adding password for user user1&lt;/code&gt;&lt;/pre&gt;
     # --- ベーシック認証追加 ---
     AuthType Basic
     AuthUserFile &amp;quot;/etc/httpd/conf/.htpasswd&amp;quot;
-    AuthName &amp;quot;The title of dialogue box&amp;quot;
+    AuthName &amp;quot;Here is a message.&amp;quot;
     Require valid-user
     # --- ベーシック認証追加 ---
     
@@ -69,6 +75,16 @@ Adding password for user user1&lt;/code&gt;&lt;/pre&gt;
     ErrorLog logs/test.net-error_log
     CustomLog logs/test.net-access_log common
 &amp;lt;/VirtualHost&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h5 id=&quot;3&quot;&gt;3.再起動&lt;/h5&gt;
+
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;最後にApacheを再起動します。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# service httpd restart&lt;/code&gt;&lt;/pre&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 </description>
