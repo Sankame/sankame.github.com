@@ -5,8 +5,8 @@
         <description>Text Blog - sankame</description>
         <link>http://sankame.github.io/</link>
         <link>http://sankame.github.io/</link>
-        <lastBuildDate>2015-02-08T04:54:22+09:00</lastBuildDate>
-        <pubDate>2015-02-08T04:54:22+09:00</pubDate>
+        <lastBuildDate>2015-02-08T05:19:51+09:00</lastBuildDate>
+        <pubDate>2015-02-08T05:19:51+09:00</pubDate>
         <ttl>1800</ttl>
 
 
@@ -1255,7 +1255,7 @@ Timezone:  (GMT+0900) Asia/Tokyo&lt;/code&gt;&lt;/pre&gt;
 
         <item>
                 <title>PHPからfitbit API を使ってみる</title>
-                <description>
+                <description>&lt;p&gt;&lt;span&gt;&amp;nbsp;&lt;/span&gt;&lt;span style=&#39;color:#d14; float:right;&#39;&gt;更新日：2015年02月08日&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;&lt;span&gt;&lt;a class=&#39;twitter-follow-button&#39; data-dnt=&#39;true&#39; data-lang=&#39;ja&#39; data-show-count=&#39;false&#39; data-show-screen-name=&#39;false&#39; data-size=&#39;large&#39; href=&#39;https://twitter.com/handycola&#39;&gt;@handycolaさんをフォロー&lt;/a&gt;
 &lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?&amp;#39;http&amp;#39;:&amp;#39;https&amp;#39;;if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+&amp;#39;://platform.twitter.com/widgets.js&amp;#39;;fjs.parentNode.insertBefore(js,fjs);}}(document, &amp;#39;script&amp;#39;, &amp;#39;twitter-wjs&amp;#39;);&lt;/script&gt;&lt;/span&gt;&lt;span style=&#39;float:right;&#39;&gt;投稿日：2014年02月04日&lt;/span&gt;&lt;/p&gt;
 &lt;div&gt;
@@ -1264,8 +1264,6 @@ Timezone:  (GMT+0900) Asia/Tokyo&lt;/code&gt;&lt;/pre&gt;
 (adsbygoogle = window.adsbygoogle || []).push({});
 &lt;/script&gt;
 &lt;/div&gt;
-&lt;p&gt;&lt;span style=&#39;color:#d14; float:right;&#39;&gt;更新日：2015年02月08日&lt;/span&gt;&lt;/p&gt;
-
 &lt;h5 id=&quot;0&quot;&gt;0.環境&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt;[CentOS]   5.6 (32bit版カーネル)
