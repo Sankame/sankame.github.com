@@ -120,7 +120,7 @@
   <!--[if IE 6 ]>
     <div class="span12-for-ie6">
   <![endif]-->
-    
+    <p><span>&nbsp;</span><span style='color:#d14; float:right;'>更新日：2015年03月18日</span></p>
 <p><span><a class='twitter-follow-button' data-dnt='true' data-lang='ja' data-show-count='false' data-show-screen-name='false' data-size='large' href='https://twitter.com/handycola'>@handycolaさんをフォロー</a>
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?&#39;http&#39;:&#39;https&#39;;if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+&#39;://platform.twitter.com/widgets.js&#39;;fjs.parentNode.insertBefore(js,fjs);}}(document, &#39;script&#39;, &#39;twitter-wjs&#39;);</script></span><span style='float:right;'>投稿日：2012年12月31日</span></p>
 <div>
@@ -217,6 +217,15 @@ $ netstat -anp | grep 【ポート番号】
 -a：接続待ち状態にあるソケットも、接続待ち状態にないソケットも表示する。
 -n：ホスト・ポート・ユーザーなどの名前を解決せずに、数字のアドレスで表示する。
 -p：各ソケットが属しているプログラムの PID と名前が表示される。</code></pre>
+
+<h5 id="crontab_20150318">・crontabバックアップ (更新日：2015/03/18)</h5>
+
+<pre><code>$ crontab -l &gt; crontab.bak
+$ crontab -e
+
+クーロンの設定を変更後、バックアップとの差分を見る。
+
+$ crontab -l | diff crontab.bak -</code></pre>
 
   <!--[if IE 6 ]>
     </div>
