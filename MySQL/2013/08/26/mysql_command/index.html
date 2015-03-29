@@ -1,31 +1,33 @@
 
 
-<!DOCTYPE html>
-<html lang="ja">
+<!doctype html>
+<html>
   <head>
     <meta charset="utf-8">
-    <title>MySQLコマンド メモ</title>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
     
     <meta name="author" content="sankame">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=yes">
+    <title>MySQLコマンド メモ</title>
+    <link rel="stylesheet" href="/theme/midnight/stylesheets/styles.css">
+    <link rel="stylesheet" href="/theme/midnight/stylesheets/pygment_trac.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="/theme/midnight/javascripts/respond.js"></script>
 
-    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+<script>
+	$(function(){
+		$('#menu').click(function(e){
+			$('#header nav').slideToggle( 450, 'linear' );
+		});
+	});
+</script>
     <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-
-    <!-- Le styles -->
-    <link href="/assets/themes/twitter/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/assets/themes/twitter/css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
-
-    <!-- Le fav and touch icons -->
-  <!-- Update these with your own images
-    <link rel="shortcut icon" href="images/favicon.ico">
-    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
-  -->
-	
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="/theme/midnight/stylesheets/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    
 <script type="text/javascript">
 
   var _gaq = _gaq || [];
@@ -42,16 +44,15 @@
 
 
   </head>
-
   <body>
-    <div class="navbar">
-      <div class="navbar-inner">
-        <div class="container">
-          <a class="brand" href="/">Text Blog</a>
-          <ul class="nav">
-            
-            
-            
+
+  <div id="header">
+    <a href="#" id="menu">メニュー</a>
+    <nav>
+        <li><a href="/">トップ</a></li>
+        
+        
+        
 
 
   
@@ -102,12 +103,13 @@
 
 
 
-          </ul>
-        </div>
-      </div>
-    </div>
+    </nav>
+  </div><!-- end header -->
 
-    <div class="container">
+    <div class="wrapper">
+
+      <section>
+
       <div class="content">
         
 
@@ -116,6 +118,7 @@
 </div>
 
 <div class="row">
+
   <div class="span12" >
   <!--[if IE 6 ]>
     <div class="span12-for-ie6">
@@ -196,14 +199,14 @@ mysql&gt; ) ENGINE=InnoDB;</code></pre>
 
       <footer>
         <p>&copy; sankame 2012 
-          with help from <a href="http://jekyllbootstrap.com" target="_blank" title="The Definitive Jekyll Blogging Framework">Jekyll Bootstrap</a>
-          and <a href="http://twitter.github.com/bootstrap/" target="_blank">Twitter Bootstrap</a>
+          with help from <a href="http://jekyllthemes.org/themes/midnight/" target="_blank" title="Midnight">Midnight</a>
         </p>
       </footer>
 
-    </div> <!-- /container -->
-
-    
+      </section>
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><!--<![endif]-->
+  
   </body>
 </html>
 
