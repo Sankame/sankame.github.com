@@ -1,0 +1,2354 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+<title type="text">テキストブログ</title>
+<generator uri="https://github.com/mojombo/jekyll">Jekyll</generator>
+<link rel="self" type="application/atom+xml" href="/feed.xml" />
+<link rel="alternate" type="text/html" href="" />
+<updated>2015-04-03T13:19:18-04:00</updated>
+<id>/</id>
+<author>
+  <name>sankame</name>
+  <uri>/</uri>
+  <email>m2ad0504@outlook.jp</email>
+</author>
+
+
+<entry>
+  <title type="html"><![CDATA[ベーシック認証設定 (VirtualHostの場合)]]></title>
+ <link rel="alternate" type="text/html" href="/apache/http_basic_authentication/" />
+  <id>/apache/http_basic_authentication</id>
+  <published>2014-08-19T20:00:00-04:00</published>
+  <updated>2014-08-19T20:00:00-04:00</updated>
+  <author>
+    <name>sankame</name>
+    <uri></uri>
+    <email>m2ad0504@outlook.jp</email>
+  </author>
+  <content type="html">
+    
+&lt;p&gt;&lt;span&gt;&lt;a href=&quot;https://twitter.com/handycola&quot; class=&quot;twitter-follow-button&quot; data-show-count=&quot;false&quot; data-lang=&quot;ja&quot; data-size=&quot;large&quot; data-show-screen-name=&quot;false&quot; data-dnt=&quot;true&quot;&gt;@handycolaさんをフォロー&lt;/a&gt;
+&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?&#39;http&#39;:&#39;https&#39;;if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+&#39;://platform.twitter.com/widgets.js&#39;;fjs.parentNode.insertBefore(js,fjs);}}(document, &#39;script&#39;, &#39;twitter-wjs&#39;);&lt;/script&gt;&lt;/span&gt;&lt;span style=&quot;float:right;&quot;&gt;投稿日：2014年08月19日&lt;/span&gt;&lt;/p&gt;
+&lt;div&gt;
+&lt;script async=&quot;&quot; src=&quot;//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js&quot;&gt;&lt;/script&gt;
+&lt;!-- 468_60_banner_header --&gt;
+&lt;ins class=&quot;adsbygoogle&quot; style=&quot;display:inline-block;width:468px;height:60px&quot; data-ad-client=&quot;ca-pub-7938855665302783&quot; data-ad-slot=&quot;6346277556&quot;&gt;&lt;/ins&gt;
+&lt;script&gt;
+(adsbygoogle = window.adsbygoogle || []).push({});
+&lt;/script&gt;
+&lt;/div&gt;
+
+&lt;h5 id=&quot;section&quot;&gt;0.環境&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code&gt;[CentOS]   5.6 (32bit版カーネル)
+[Apache]   2.2.3
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id=&quot;section-1&quot;&gt;1.パスワードファイル作成&lt;/h5&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;適当な場所にパスワードファイルを作成。(“user1”は作成したいユーザー名で読み替え)&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt;  # htpasswd -c /etc/httpd/conf/.htpasswd user1
+  New password: 
+  Re-type new password: 
+  Adding password for user user1
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h5 id=&quot;section-2&quot;&gt;2.パスワードファイル設定&lt;/h5&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;VirtualHostを設定している場合、Directoryディレクティブ内に下記を追加。&lt;/p&gt;
+
+    &lt;p&gt;AuthUserFileには上記1で作ったパスワードファイルを指定。&lt;/p&gt;
+
+    &lt;p&gt;AuthNameはブラウザの認証ダイアログに表示されるメッセージとなります。&lt;/p&gt;
+
+    &lt;p&gt;(マルチバイト文字は化ける可能性あり)&lt;/p&gt;
+
+    &lt;p&gt;&lt;code&gt;※下記はApache設定ファイル(/etc/httpd/conf/httpd.conf) の抜粋&lt;/code&gt;&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt;  NameVirtualHost *:80
+
+  &amp;lt;Directory /web/test&amp;gt;
+      Options FollowSymLinks
+      AllowOverride FileInfo Options=All,MultiViews
+	    
+      # --- ベーシック認証追加 ---
+      AuthType Basic
+      AuthUserFile &quot;/etc/httpd/conf/.htpasswd&quot;
+      AuthName &quot;Here is a message.&quot;
+      Require valid-user
+      # --- ベーシック認証追加 ---
+	    
+  &amp;lt;/Directory&amp;gt;
+
+  &amp;lt;VirtualHost *:80&amp;gt;
+      ServerAdmin test@sample.co.jp
+      DocumentRoot &quot;/web/test&quot;
+      ServerName test.net
+      ErrorLog logs/test.net-error_log
+      CustomLog logs/test.net-access_log common
+  &amp;lt;/VirtualHost&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h5 id=&quot;section-3&quot;&gt;3.再起動&lt;/h5&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;最後にApacheを再起動します。&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt;  # service httpd restart
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+    &lt;p&gt;&lt;a href=&quot;/apache/http_basic_authentication/&quot;&gt;ベーシック認証設定 (VirtualHostの場合)&lt;/a&gt; was originally published by sankame at &lt;a href=&quot;&quot;&gt;テキストブログ&lt;/a&gt; on August 19, 2014.&lt;/p&gt;
+  </content>
+</entry>
+
+
+<entry>
+  <title type="html"><![CDATA[【Android Wear】ホーム画面の時計を変更]]></title>
+ <link rel="alternate" type="text/html" href="/androidwear/android_wear_chage_face/" />
+  <id>/androidwear/android_wear_chage_face</id>
+  <published>2014-07-25T20:00:00-04:00</published>
+  <updated>2014-07-25T20:00:00-04:00</updated>
+  <author>
+    <name>sankame</name>
+    <uri></uri>
+    <email>m2ad0504@outlook.jp</email>
+  </author>
+  <content type="html">
+    
+&lt;p&gt;&lt;span&gt;&lt;a href=&quot;https://twitter.com/handycola&quot; class=&quot;twitter-follow-button&quot; data-show-count=&quot;false&quot; data-lang=&quot;ja&quot; data-size=&quot;large&quot; data-show-screen-name=&quot;false&quot; data-dnt=&quot;true&quot;&gt;@handycolaさんをフォロー&lt;/a&gt;
+&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?&#39;http&#39;:&#39;https&#39;;if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+&#39;://platform.twitter.com/widgets.js&#39;;fjs.parentNode.insertBefore(js,fjs);}}(document, &#39;script&#39;, &#39;twitter-wjs&#39;);&lt;/script&gt;&lt;/span&gt;&lt;span style=&quot;float:right;&quot;&gt;投稿日：2014年07月25日&lt;/span&gt;&lt;/p&gt;
+&lt;div&gt;
+&lt;script async=&quot;&quot; src=&quot;//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js&quot;&gt;&lt;/script&gt;
+&lt;!-- 468_60_banner_header --&gt;
+&lt;ins class=&quot;adsbygoogle&quot; style=&quot;display:inline-block;width:468px;height:60px&quot; data-ad-client=&quot;ca-pub-7938855665302783&quot; data-ad-slot=&quot;6346277556&quot;&gt;&lt;/ins&gt;
+&lt;script&gt;
+(adsbygoogle = window.adsbygoogle || []).push({});
+&lt;/script&gt;
+&lt;/div&gt;
+
+&lt;h5 id=&quot;section&quot;&gt;0.環境&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code&gt;[スマートフォン(OS)]  GALAXY S4 (Android 4.4.2)
+[スマートウォッチ(OS)] Gear Live (4.4W)
+※以下、スマートフォンは「スマホ」、スマートウォッチは「ウォッチ」と記載。
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id=&quot;section-1&quot;&gt;1.ホーム画面の時計(ウォッチフェイス)を変更&lt;/h5&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Samsung Gear Live のホーム画面の時計デザインを変える方法は下記の通りです。&lt;/p&gt;
+
+    &lt;p&gt;(スマホとウォッチはBluetoothで同期されている前提)&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;①【スマホ】Playストアから好みのデザインの時計アプリをインストールします。(&lt;a href=&quot;http://weekly.ascii.jp/elem/000/000/239/239437/&quot; target=&quot;_blank&quot;&gt;参考リンク&lt;/a&gt;)&lt;/p&gt;
+
+        &lt;p&gt;(例) Playストアで “WearFaces” で検索。&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;②【スマホ】Android Wearアプリを起動し、右上のネジマークをタップ。&lt;/p&gt;
+
+        &lt;p&gt;&lt;a href=&quot;/assets/posts/img/android_wear_chage_face/phone-1.png&quot; target=&quot;_blank&quot;&gt;&lt;img width=&quot;20%&quot; height=&quot;20%&quot; title=&quot;スマホ-設定&quot; alt=&quot;スマホ-設定&quot; src=&quot;/assets/posts/img/android_wear_chage_face/phone-1.png&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;③【スマホ】一番下までスクロールし、「アプリの再同期」をタップ。&lt;/p&gt;
+
+        &lt;p&gt;&lt;a href=&quot;/assets/posts/img/android_wear_chage_face/phone-2.png&quot; target=&quot;_blank&quot;&gt;&lt;img width=&quot;20%&quot; height=&quot;20%&quot; title=&quot;スマホ-アプリ同期&quot; alt=&quot;スマホ-アプリ同期&quot; src=&quot;/assets/posts/img/android_wear_chage_face/phone-2.png&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;④【ウォッチ】ホーム画面をタップし、メニュー画面を一番下までスクロールした後「設定」をタップ。&lt;/p&gt;
+
+        &lt;p&gt;&lt;code&gt;(2014/07/30, 追記) 後日気づきました。ホーム画面で時計を長押し(ロングタップ)すると一気に時計変更画面に行けます。(下記⑦)&lt;/code&gt;&lt;/p&gt;
+
+        &lt;p&gt;&lt;a href=&quot;/assets/posts/img/android_wear_chage_face/watch-1.jpeg&quot; target=&quot;_blank&quot;&gt;&lt;img width=&quot;20%&quot; height=&quot;20%&quot; title=&quot;ウォッチ-設定&quot; alt=&quot;ウォッチ-設定&quot; src=&quot;/assets/posts/img/android_wear_chage_face/watch-1.jpeg&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;⑤【ウォッチ】設定画面で上にフリック。&lt;/p&gt;
+
+        &lt;p&gt;&lt;a href=&quot;/assets/posts/img/android_wear_chage_face/watch-2.jpeg&quot; target=&quot;_blank&quot;&gt;&lt;img width=&quot;20%&quot; height=&quot;20%&quot; title=&quot;ウォッチ-設定2&quot; alt=&quot;ウォッチ-設定2&quot; src=&quot;/assets/posts/img/android_wear_chage_face/watch-2.jpeg&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;⑥【ウォッチ】一番下までスクロールした後、「ウォッチフェイスの変更」をタップ。&lt;/p&gt;
+
+        &lt;p&gt;&lt;a href=&quot;/assets/posts/img/android_wear_chage_face/watch-3.jpeg&quot; target=&quot;_blank&quot;&gt;&lt;img width=&quot;20%&quot; height=&quot;20%&quot; title=&quot;ウォッチ-ウォッチフェイス変更&quot; alt=&quot;ウォッチ-ウォッチフェイス変更&quot; src=&quot;/assets/posts/img/android_wear_chage_face/watch-3.jpeg&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;⑦【ウォッチ】上記でPlayストアからインストールした時計アプリを見つけ、タップするとホーム画面に設定されます。&lt;/p&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+    &lt;p&gt;&lt;a href=&quot;/androidwear/android_wear_chage_face/&quot;&gt;【Android Wear】ホーム画面の時計を変更&lt;/a&gt; was originally published by sankame at &lt;a href=&quot;&quot;&gt;テキストブログ&lt;/a&gt; on July 25, 2014.&lt;/p&gt;
+  </content>
+</entry>
+
+
+<entry>
+  <title type="html"><![CDATA[【Laravel】全てのビューに値を渡す]]></title>
+ <link rel="alternate" type="text/html" href="/laravel/laravel_passing_data_from_basecontroller/" />
+  <id>/laravel/laravel_passing_data_from_basecontroller</id>
+  <published>2014-07-20T20:00:00-04:00</published>
+  <updated>2014-07-20T20:00:00-04:00</updated>
+  <author>
+    <name>sankame</name>
+    <uri></uri>
+    <email>m2ad0504@outlook.jp</email>
+  </author>
+  <content type="html">
+    
+&lt;p&gt;&lt;span&gt;&lt;a href=&quot;https://twitter.com/handycola&quot; class=&quot;twitter-follow-button&quot; data-show-count=&quot;false&quot; data-lang=&quot;ja&quot; data-size=&quot;large&quot; data-show-screen-name=&quot;false&quot; data-dnt=&quot;true&quot;&gt;@handycolaさんをフォロー&lt;/a&gt;
+&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?&#39;http&#39;:&#39;https&#39;;if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+&#39;://platform.twitter.com/widgets.js&#39;;fjs.parentNode.insertBefore(js,fjs);}}(document, &#39;script&#39;, &#39;twitter-wjs&#39;);&lt;/script&gt;&lt;/span&gt;&lt;span style=&quot;float:right;&quot;&gt;投稿日：2014年07月20日&lt;/span&gt;&lt;/p&gt;
+&lt;div&gt;
+&lt;script async=&quot;&quot; src=&quot;//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js&quot;&gt;&lt;/script&gt;
+&lt;!-- 468_60_banner_header --&gt;
+&lt;ins class=&quot;adsbygoogle&quot; style=&quot;display:inline-block;width:468px;height:60px&quot; data-ad-client=&quot;ca-pub-7938855665302783&quot; data-ad-slot=&quot;6346277556&quot;&gt;&lt;/ins&gt;
+&lt;script&gt;
+(adsbygoogle = window.adsbygoogle || []).push({});
+&lt;/script&gt;
+&lt;/div&gt;
+
+&lt;h5 id=&quot;section&quot;&gt;0.環境&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code&gt;[CentOS]   5.6 (32bit版カーネル)
+[Apache]   2.2.3
+[PHP]      5.4.1
+[Laravel]  4.1.23
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id=&quot;section-1&quot;&gt;1.課題&lt;/h5&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;全ビュー(Bladeテンプレート)で使う値をBaseControllerから渡したい。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h5 id=&quot;section-2&quot;&gt;2.対策&lt;/h5&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Laravelの作法としてあっているか不明ですが、一旦これで値は渡せました。&lt;/p&gt;
+
+    &lt;p&gt;下記例では、設定ファイルの基底URL(app.php内のurl変数)をビューに渡しています。&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;①　app/config/local/app.php&lt;/p&gt;
+
+        &lt;p&gt;(本番環境の場合、app/config/app.php に定義して下さい)&lt;/p&gt;
+
+        &lt;script src=&quot;https://gist.github.com/2a3ec0e21cea5584245b.js?file=app.php&quot;&gt; &lt;/script&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;②　app/controllers/BaseController.php&lt;/p&gt;
+
+        &lt;p&gt;getBaseUrl() メソッドを定義し、基底URLを返します。&lt;/p&gt;
+
+        &lt;p&gt;(staticでないとビューで実行できない)&lt;/p&gt;
+
+        &lt;script src=&quot;https://gist.github.com/fa1b2701da0e48c1a939.js?file=BaseController.php&quot;&gt; &lt;/script&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;各コントローラは②を継承します。(コード抜粋)&lt;/p&gt;
+
+        &lt;pre&gt;&lt;code&gt;  class EachController extends BaseController
+  {
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;③　app/views/layout.blade.php (コード抜粋)&lt;/p&gt;
+
+        &lt;p&gt;全てのビューで共通に使っているビューで、BaseControllerから値を取得します。&lt;/p&gt;
+
+        &lt;script src=&quot;https://gist.github.com/97b5ca9f99076723dbae.js?file=layout.blade.php&quot;&gt; &lt;/script&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;参考&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;http://forumsarchive.laravel.io/viewtopic.php?id=8123&quot; target=&quot;_blank&quot;&gt;Passing data from base controller to default blade.&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+
+    &lt;p&gt;&lt;a href=&quot;/laravel/laravel_passing_data_from_basecontroller/&quot;&gt;【Laravel】全てのビューに値を渡す&lt;/a&gt; was originally published by sankame at &lt;a href=&quot;&quot;&gt;テキストブログ&lt;/a&gt; on July 20, 2014.&lt;/p&gt;
+  </content>
+</entry>
+
+
+<entry>
+  <title type="html"><![CDATA[【Laravel】AjaxでPOSTできない]]></title>
+ <link rel="alternate" type="text/html" href="/laravel/laravel_trailing_slash_redirect/" />
+  <id>/laravel/laravel_trailing_slash_redirect</id>
+  <published>2014-07-14T20:00:00-04:00</published>
+  <updated>2014-07-14T20:00:00-04:00</updated>
+  <author>
+    <name>sankame</name>
+    <uri></uri>
+    <email>m2ad0504@outlook.jp</email>
+  </author>
+  <content type="html">
+    
+&lt;p&gt;&lt;span&gt;&lt;a href=&quot;https://twitter.com/handycola&quot; class=&quot;twitter-follow-button&quot; data-show-count=&quot;false&quot; data-lang=&quot;ja&quot; data-size=&quot;large&quot; data-show-screen-name=&quot;false&quot; data-dnt=&quot;true&quot;&gt;@handycolaさんをフォロー&lt;/a&gt;
+&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?&#39;http&#39;:&#39;https&#39;;if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+&#39;://platform.twitter.com/widgets.js&#39;;fjs.parentNode.insertBefore(js,fjs);}}(document, &#39;script&#39;, &#39;twitter-wjs&#39;);&lt;/script&gt;&lt;/span&gt;&lt;span style=&quot;float:right;&quot;&gt;投稿日：2014年07月14日&lt;/span&gt;&lt;/p&gt;
+&lt;div&gt;
+&lt;script async=&quot;&quot; src=&quot;//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js&quot;&gt;&lt;/script&gt;
+&lt;!-- 468_60_banner_header --&gt;
+&lt;ins class=&quot;adsbygoogle&quot; style=&quot;display:inline-block;width:468px;height:60px&quot; data-ad-client=&quot;ca-pub-7938855665302783&quot; data-ad-slot=&quot;6346277556&quot;&gt;&lt;/ins&gt;
+&lt;script&gt;
+(adsbygoogle = window.adsbygoogle || []).push({});
+&lt;/script&gt;
+&lt;/div&gt;
+
+&lt;h5 id=&quot;section&quot;&gt;0.環境&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code&gt;[CentOS]   5.6 (32bit版カーネル)
+[Apache]   2.2.3
+[PHP]      5.4.1
+[Laravel]  4.1.23
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id=&quot;section-1&quot;&gt;1.問題&lt;/h5&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;PHPのLaravelフレームワークを使っていたら、AjaxでPOSTした値がサーバ側で取得できずにはまりました。&lt;/p&gt;
+
+    &lt;p&gt;①から②へ test という名前で hoge という値を送信します。&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;① Javascript側&lt;/p&gt;
+
+        &lt;script src=&quot;https://gist.github.com/a9da32445d224fb1df63.js?file=ajax-test.js&quot;&gt; &lt;/script&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;② PHP側&lt;/p&gt;
+
+        &lt;script src=&quot;https://gist.github.com/649420870dc9835cb08c.js?file=routes.php&quot;&gt; &lt;/script&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;ログ出力結果を見ると、下記のようにPOST値が取得できていません。&lt;/p&gt;
+
+        &lt;pre&gt;&lt;code&gt;  [2014-07-16 12:09:36] local.DEBUG:  [] []
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h5 id=&quot;section-2&quot;&gt;2.原因&lt;/h5&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Firefox の “Live HTTP headers” アドオンでURLの遷移を見たところ、下記のようにリダイレクトしていることがわかりました。&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt;  http://local.vm/test/
+      ↓↓↓
+  http://local.vm/test
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;grepしたところ、.htaccessでリダイレクトしてました。&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;ソース&lt;/p&gt;
+
+        &lt;p&gt;app-root/public/.htaccess&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;記述&lt;/p&gt;
+
+        &lt;pre&gt;&lt;code&gt;  # Redirect Trailing Slashes...
+  RewriteRule ^(.*)/$ /$1 [L,R=301]
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h5 id=&quot;section-3&quot;&gt;3.対策&lt;/h5&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Laravelはtrailing slash非推奨なのか？ とにかく下記のように修正。&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;箇所&lt;/p&gt;
+
+        &lt;p&gt;ajax-test.js (6行目)&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;内容&lt;/p&gt;
+
+        &lt;p&gt;URLの末尾のスラッシュを削除し、/test に修正。&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;ログにもPOST値が出力されました。&lt;/p&gt;
+
+        &lt;pre&gt;&lt;code&gt;  [2014-07-16 13:03:39] local.DEBUG: hoge [] []
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;参考&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;&lt;a href=&quot;http://www.suzukikenichi.com/blog/do-we-need-a-trailing-slash-at-the-end-of-url/&quot; target=&quot;_blank&quot;&gt;URLの終りに「/」(スラッシュ)は必要?、不要?&lt;/a&gt;&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;&lt;a href=&quot;http://stackoverflow.com/questions/22063520/laravel-slash-after-url-redirects-to-root-folder&quot; target=&quot;_blank&quot;&gt;Laravel slash after url redirects to root folder&lt;/a&gt;&lt;/p&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+
+    &lt;p&gt;&lt;a href=&quot;/laravel/laravel_trailing_slash_redirect/&quot;&gt;【Laravel】AjaxでPOSTできない&lt;/a&gt; was originally published by sankame at &lt;a href=&quot;&quot;&gt;テキストブログ&lt;/a&gt; on July 14, 2014.&lt;/p&gt;
+  </content>
+</entry>
+
+
+<entry>
+  <title type="html"><![CDATA[wget ファイル名を指定してダウンロード]]></title>
+ <link rel="alternate" type="text/html" href="/wget/wget_option_O/" />
+  <id>/wget/wget_option_O</id>
+  <published>2014-07-02T20:00:00-04:00</published>
+  <updated>2014-07-02T20:00:00-04:00</updated>
+  <author>
+    <name>sankame</name>
+    <uri></uri>
+    <email>m2ad0504@outlook.jp</email>
+  </author>
+  <content type="html">
+    
+&lt;p&gt;&lt;span&gt;&lt;a href=&quot;https://twitter.com/handycola&quot; class=&quot;twitter-follow-button&quot; data-show-count=&quot;false&quot; data-lang=&quot;ja&quot; data-size=&quot;large&quot; data-show-screen-name=&quot;false&quot; data-dnt=&quot;true&quot;&gt;@handycolaさんをフォロー&lt;/a&gt;
+&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?&#39;http&#39;:&#39;https&#39;;if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+&#39;://platform.twitter.com/widgets.js&#39;;fjs.parentNode.insertBefore(js,fjs);}}(document, &#39;script&#39;, &#39;twitter-wjs&#39;);&lt;/script&gt;&lt;/span&gt;&lt;span style=&quot;float:right;&quot;&gt;投稿日：2014年07月02日&lt;/span&gt;&lt;/p&gt;
+&lt;div&gt;
+&lt;script async=&quot;&quot; src=&quot;//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js&quot;&gt;&lt;/script&gt;
+&lt;!-- 468_60_banner_header --&gt;
+&lt;ins class=&quot;adsbygoogle&quot; style=&quot;display:inline-block;width:468px;height:60px&quot; data-ad-client=&quot;ca-pub-7938855665302783&quot; data-ad-slot=&quot;6346277556&quot;&gt;&lt;/ins&gt;
+&lt;script&gt;
+(adsbygoogle = window.adsbygoogle || []).push({});
+&lt;/script&gt;
+&lt;/div&gt;
+
+&lt;h5 id=&quot;o-&quot;&gt;-O オプションを使って、ダウンロードファイル名を指定します。&lt;/h5&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;下記例では MyWget という名前に変更。&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt;  # wget -O MyWget http://ftp.gnu.org/gnu/wget/wget-1.15.tar.gz
+  # ls
+  # -rw-r--r--  1 root  root  3417936  1月 19 19:17 MyWget
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+    &lt;p&gt;&lt;a href=&quot;/wget/wget_option_O/&quot;&gt;wget ファイル名を指定してダウンロード&lt;/a&gt; was originally published by sankame at &lt;a href=&quot;&quot;&gt;テキストブログ&lt;/a&gt; on July 02, 2014.&lt;/p&gt;
+  </content>
+</entry>
+
+
+<entry>
+  <title type="html"><![CDATA[開発環境用 NTP 設定]]></title>
+ <link rel="alternate" type="text/html" href="/ntp/ntp_for_dev/" />
+  <id>/ntp/ntp_for_dev</id>
+  <published>2014-06-24T20:00:00-04:00</published>
+  <updated>2014-06-24T20:00:00-04:00</updated>
+  <author>
+    <name>sankame</name>
+    <uri></uri>
+    <email>m2ad0504@outlook.jp</email>
+  </author>
+  <content type="html">
+    
+&lt;p&gt;&lt;span&gt;&lt;a href=&quot;https://twitter.com/handycola&quot; class=&quot;twitter-follow-button&quot; data-show-count=&quot;false&quot; data-lang=&quot;ja&quot; data-size=&quot;large&quot; data-show-screen-name=&quot;false&quot; data-dnt=&quot;true&quot;&gt;@handycolaさんをフォロー&lt;/a&gt;
+&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?&#39;http&#39;:&#39;https&#39;;if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+&#39;://platform.twitter.com/widgets.js&#39;;fjs.parentNode.insertBefore(js,fjs);}}(document, &#39;script&#39;, &#39;twitter-wjs&#39;);&lt;/script&gt;&lt;/span&gt;&lt;span style=&quot;float:right;&quot;&gt;投稿日：2014年06月24日&lt;/span&gt;&lt;/p&gt;
+&lt;div&gt;
+&lt;script async=&quot;&quot; src=&quot;//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js&quot;&gt;&lt;/script&gt;
+&lt;!-- 468_60_banner_header --&gt;
+&lt;ins class=&quot;adsbygoogle&quot; style=&quot;display:inline-block;width:468px;height:60px&quot; data-ad-client=&quot;ca-pub-7938855665302783&quot; data-ad-slot=&quot;6346277556&quot;&gt;&lt;/ins&gt;
+&lt;script&gt;
+(adsbygoogle = window.adsbygoogle || []).push({});
+&lt;/script&gt;
+&lt;/div&gt;
+
+&lt;h5 id=&quot;section&quot;&gt;0.環境&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code&gt;  [VMware Player] 3.0.0
+  [CentOS]        5.6 (32bit版カーネル) (Windows上でゲストOSとして使用)
+  [NTP]           4.2.6
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id=&quot;section-1&quot;&gt;1.セットアップ&lt;/h5&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;ソース取得&lt;/p&gt;
+
+    &lt;p&gt;任意のディレクトリにNTPのソース(ntpd)をダウンロード。&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt;  # cd /usr/local/src/
+  # wget http://www.eecis.udel.edu/~ntp/ntp_spool/ntp4/ntp-4.2/ntp-4.2.6p5.tar.gz
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;インストール&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt;  # tar xzf ntp-4.2.6p5.tar.gz
+  # cd ntp-4.2.6p5
+  # ./configure
+  # make
+  # make install
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;設定&lt;/p&gt;
+
+    &lt;p&gt;下記URL①の設定を行ったところうまく時刻同期されませんでした。&lt;/p&gt;
+
+    &lt;p&gt;(VMwareをサスペンドすると時刻が離れ過ぎるため？)&lt;/p&gt;
+
+    &lt;p&gt;結局、自分用の開発環境で、ログイン時に1回同期させれば十分なので下記のようにしました。&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt;  # echo &#39;ntpdate -u ntp.nict.jp&#39; &amp;gt;&amp;gt; ~/.bash_profile
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h5 id=&quot;url&quot;&gt;2.参考URL&lt;/h5&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;http://www.ipa.go.jp/security/awareness/administrator/secure-web/chap4/4_ntpd.html&quot; target=&quot;_blank&quot;&gt;①ntpdのインストールと設定&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;http://www.turbolinux.co.jp/products/server/11s/user_guide/x6278.html&quot; target=&quot;_blank&quot;&gt;②ntpd の起動と動作確認&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;http://tech.n-linux.com/index.php?%A5%C6%A5%AF%A5%CB%A5%AB%A5%EB%A5%CE%A1%BC%A5%C8%2FNTP%2FNTP%20%A5%B7%A5%EA%A1%BC%A5%BA%20%A5%D1%A1%BC%A5%C8%203%20ntpdate%20%A5%B3%A5%DE%A5%F3%A5%C9%A4%CB%A4%C4%A4%A4%A4%C6&quot; target=&quot;_blank&quot;&gt;③ntpdate コマンドについて&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;http://wiki.nothing.sh/page/NTP/%BF%E4%BE%A9%B8%F8%B3%AB%A5%B5%A1%BC%A5%D0&quot; target=&quot;_blank&quot;&gt;④推奨公開サーバ&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+    &lt;p&gt;&lt;a href=&quot;/ntp/ntp_for_dev/&quot;&gt;開発環境用 NTP 設定&lt;/a&gt; was originally published by sankame at &lt;a href=&quot;&quot;&gt;テキストブログ&lt;/a&gt; on June 24, 2014.&lt;/p&gt;
+  </content>
+</entry>
+
+
+<entry>
+  <title type="html"><![CDATA[GithubからBitbucketへソース移行]]></title>
+ <link rel="alternate" type="text/html" href="/github/github_to_bitbucket/" />
+  <id>/github/github_to_bitbucket</id>
+  <published>2014-06-20T20:00:00-04:00</published>
+  <updated>2014-06-20T20:00:00-04:00</updated>
+  <author>
+    <name>sankame</name>
+    <uri></uri>
+    <email>m2ad0504@outlook.jp</email>
+  </author>
+  <content type="html">
+    
+&lt;p&gt;&lt;span&gt;&lt;a href=&quot;https://twitter.com/handycola&quot; class=&quot;twitter-follow-button&quot; data-show-count=&quot;false&quot; data-lang=&quot;ja&quot; data-size=&quot;large&quot; data-show-screen-name=&quot;false&quot; data-dnt=&quot;true&quot;&gt;@handycolaさんをフォロー&lt;/a&gt;
+&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?&#39;http&#39;:&#39;https&#39;;if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+&#39;://platform.twitter.com/widgets.js&#39;;fjs.parentNode.insertBefore(js,fjs);}}(document, &#39;script&#39;, &#39;twitter-wjs&#39;);&lt;/script&gt;&lt;/span&gt;&lt;span style=&quot;float:right;&quot;&gt;投稿日：2014年06月20日&lt;/span&gt;&lt;/p&gt;
+&lt;div&gt;
+&lt;script async=&quot;&quot; src=&quot;//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js&quot;&gt;&lt;/script&gt;
+&lt;!-- 468_60_banner_header --&gt;
+&lt;ins class=&quot;adsbygoogle&quot; style=&quot;display:inline-block;width:468px;height:60px&quot; data-ad-client=&quot;ca-pub-7938855665302783&quot; data-ad-slot=&quot;6346277556&quot;&gt;&lt;/ins&gt;
+&lt;script&gt;
+(adsbygoogle = window.adsbygoogle || []).push({});
+&lt;/script&gt;
+&lt;/div&gt;
+
+&lt;h5 id=&quot;section&quot;&gt;0.環境&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code&gt;  [CentOS]   5.6 (32bit版カーネル)
+  [Git]      1.9.4
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id=&quot;section-1&quot;&gt;1.ダウンロード&lt;/h5&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Githubのソース取得&lt;/p&gt;
+
+    &lt;p&gt;&lt;a href=&quot;/assets/posts/img/github_to_bitbucket/1.github.png&quot; target=&quot;_blank&quot;&gt;&lt;img width=&quot;50%&quot; height=&quot;50%&quot; title=&quot;githubリポジトリ&quot; alt=&quot;githubリポジトリ&quot; src=&quot;/assets/posts/img/github_to_bitbucket/1.github.png&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+    &lt;p&gt;任意のディレクトリへ移動。&lt;/p&gt;
+
+    &lt;p&gt;GitHubのリポジトリから対象ソースを取得。(上図の画面右下がURL)&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt;  # git clone git@github.com:Sankame/repo-of-github.git
+&lt;/code&gt;&lt;/pre&gt;
+
+    &lt;p&gt;取得したソースの第1階層へ移動。&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt;  # cd repo-of-github/
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Bitbucketへソースアップ&lt;/p&gt;
+
+    &lt;p&gt;予めBitbucket上で任意のリポジトリを作っておきます。&lt;/p&gt;
+
+    &lt;p&gt;&lt;a href=&quot;/assets/posts/img/github_to_bitbucket/2.bitbucket_make_repo.png&quot; target=&quot;_blank&quot;&gt;&lt;img width=&quot;50%&quot; height=&quot;50%&quot; title=&quot;bitbucketリポジトリ作成&quot; alt=&quot;bitbucketリポジトリ作成&quot; src=&quot;/assets/posts/img/github_to_bitbucket/2.bitbucket_make_repo.png&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+    &lt;p&gt;空のリポジトリができました。&lt;/p&gt;
+
+    &lt;p&gt;&lt;a href=&quot;/assets/posts/img/github_to_bitbucket/3.bitbucket_new_repo.png&quot; target=&quot;_blank&quot;&gt;&lt;img width=&quot;50%&quot; height=&quot;50%&quot; title=&quot;bitbucket新規リポジトリ&quot; alt=&quot;bitbucket新規リポジトリ&quot; src=&quot;/assets/posts/img/github_to_bitbucket/3.bitbucket_new_repo.png&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+    &lt;p&gt;上記で GitHub から取得したソースは origin がGitHubになっているので、 Bitbucket へ変更。&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt;  # git remote -v
+  origin  git@github.com:Sankame/repo-of-github.git (fetch)
+  origin  git@github.com:Sankame/repo-of-github.git (push)
+
+  # git remote rm origin
+  # git remote add origin git@bitbucket.org:Sankame/repo-of-bitbucket.git
+  # git push -u origin --all # pushes up the repo and its refs for the first time
+  # git push -u origin --tags # pushes up any tags
+&lt;/code&gt;&lt;/pre&gt;
+
+    &lt;p&gt;GithubのソースがBitbucketへ取り込まれました。&lt;/p&gt;
+
+    &lt;p&gt;&lt;a href=&quot;/assets/posts/img/github_to_bitbucket/4.bitbucket_imported_repo.png&quot; target=&quot;_blank&quot;&gt;&lt;img width=&quot;50%&quot; height=&quot;50%&quot; title=&quot;bitbucket取り込んだソース&quot; alt=&quot;bitbucket取り込んだソース&quot; src=&quot;/assets/posts/img/github_to_bitbucket/4.bitbucket_imported_repo.png&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+    &lt;p&gt;&lt;code&gt;※上記 &quot;git remote add origin&quot; でプロトコルにhttpsを指定していて、&quot;git push&quot; で下記エラーが出た場合は「2.git pushが動かない場合」参照。&lt;/code&gt;&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt;  fatal: Unable to find remote helper for &#39;https&#39;
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h5 id=&quot;git-push&quot;&gt;2.git pushが動かない場合&lt;/h5&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Gitをhttpsへ対応させる&lt;/p&gt;
+
+    &lt;p&gt;下記URLを見るとcurl-develがないのが原因と書いてあったが、自分の環境には既に入っていたので、&lt;/p&gt;
+
+    &lt;p&gt;gitを再コンパイル＆インストールしたところうまくいきました。&lt;/p&gt;
+
+    &lt;p&gt;&lt;a href=&quot;http://clavier.hatenablog.com/entry/2013/05/18/204050&quot; target=&quot;_blank&quot;&gt;CentOSに最新のgitをインストールする&lt;/a&gt;&lt;/p&gt;
+
+    &lt;p&gt;※gitのソースが手元にある場合は再取得しなくてもOKです。&lt;/p&gt;
+
+    &lt;p&gt;※rootで操作しているのでインストール時にprefix指定&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt;  # wget https://www.kernel.org/pub/software/scm/git/git-1.9.4.tar.gz
+  # tar xzf git-1.9.4.tar.gz
+  # cd git-1.9.4
+  # ./configure
+  # make clean
+  # make
+  # make prefix=/usr install
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+
+    &lt;p&gt;&lt;a href=&quot;/github/github_to_bitbucket/&quot;&gt;GithubからBitbucketへソース移行&lt;/a&gt; was originally published by sankame at &lt;a href=&quot;&quot;&gt;テキストブログ&lt;/a&gt; on June 20, 2014.&lt;/p&gt;
+  </content>
+</entry>
+
+
+<entry>
+  <title type="html"><![CDATA[ポイントだけ ApacheBench]]></title>
+ <link rel="alternate" type="text/html" href="/apachebench/apache_bench/" />
+  <id>/apachebench/apache_bench</id>
+  <published>2014-06-06T20:00:00-04:00</published>
+  <updated>2014-06-06T20:00:00-04:00</updated>
+  <author>
+    <name>sankame</name>
+    <uri></uri>
+    <email>m2ad0504@outlook.jp</email>
+  </author>
+  <content type="html">
+    
+&lt;p&gt;&lt;span&gt;&lt;a href=&quot;https://twitter.com/handycola&quot; class=&quot;twitter-follow-button&quot; data-show-count=&quot;false&quot; data-lang=&quot;ja&quot; data-size=&quot;large&quot; data-show-screen-name=&quot;false&quot; data-dnt=&quot;true&quot;&gt;@handycolaさんをフォロー&lt;/a&gt;
+&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?&#39;http&#39;:&#39;https&#39;;if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+&#39;://platform.twitter.com/widgets.js&#39;;fjs.parentNode.insertBefore(js,fjs);}}(document, &#39;script&#39;, &#39;twitter-wjs&#39;);&lt;/script&gt;&lt;/span&gt;&lt;span style=&quot;float:right;&quot;&gt;投稿日：2014年06月06日&lt;/span&gt;&lt;/p&gt;
+&lt;div&gt;
+&lt;script async=&quot;&quot; src=&quot;//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js&quot;&gt;&lt;/script&gt;
+&lt;!-- 468_60_banner_header --&gt;
+&lt;ins class=&quot;adsbygoogle&quot; style=&quot;display:inline-block;width:468px;height:60px&quot; data-ad-client=&quot;ca-pub-7938855665302783&quot; data-ad-slot=&quot;6346277556&quot;&gt;&lt;/ins&gt;
+&lt;script&gt;
+(adsbygoogle = window.adsbygoogle || []).push({});
+&lt;/script&gt;
+&lt;/div&gt;
+
+&lt;h5 id=&quot;section&quot;&gt;0.環境&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code&gt;  [CentOS]      5.6 (32bit版カーネル)
+  [Apache]      2.2.3
+  [ApacheBench] 2.0.40-dev
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id=&quot;section-1&quot;&gt;1.基本&lt;/h5&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;実行&lt;/p&gt;
+
+    &lt;p&gt;Apacheをインストールすると ab というコマンドで負荷テストが行えます。&lt;/p&gt;
+
+    &lt;p&gt;主に使うのは2つのオプションで、下記のように実行します。&lt;/p&gt;
+
+    &lt;p&gt;後述の “Requests per second” が十分な値になるよう、n と c の値を増やして負荷をかけます。&lt;/p&gt;
+
+    &lt;p&gt;(n : リクエスト数　c : 同時接続数)&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt;  ab -n 10000 -c 100 &quot;http://test.vm/test.php&quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+    &lt;p&gt;※abでテストできるのはサーバ側の処理だけなので、HTMLレンダリングやJavascript実行等、&lt;/p&gt;
+
+    &lt;p&gt;　トータルの計測を行いたい場合は、下記のようなツールを検討して下さい。&lt;/p&gt;
+
+    &lt;p&gt;&lt;a href=&quot;http://gtmetrix.com/&quot;&gt;GTmetrix&lt;/a&gt;&lt;/p&gt;
+
+    &lt;p&gt;&lt;a href=&quot;http://knowledge.sakura.ad.jp/tech/1599/&quot;&gt;PageSpeed&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;結果&lt;/p&gt;
+
+    &lt;p&gt;下記のような実行結果が表示されるので、主に2つの項目を確認します。&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;Failed requests (失敗したリクエスト数)&lt;/p&gt;
+
+        &lt;p&gt;この項目が0であることを確認します。&lt;/p&gt;
+
+        &lt;p&gt;但し、表示毎にHTMLのバイト数が異なるサイトの場合、ここがカウントされ、さらに内訳を表す “Length:” もカウントされます。&lt;/p&gt;
+
+        &lt;p&gt;(1つ前の結果とHTMLのバイト数を比較し、異なる場合は Length がカウントされる仕様)&lt;/p&gt;
+
+        &lt;p&gt;上記のようなサイトの場合、”Failed requests” に数字があっても、全て Length が原因ならば無視してかまいませんが、&lt;/p&gt;
+
+        &lt;p&gt;念のため、Apacheのアクセスログを確認し、HTTP Response Code が全て200になっていることを確認して下さい。&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Requests per second (秒間に処理したリクエスト数)&lt;/p&gt;
+
+        &lt;p&gt;対象WEBサイトのアクセス数などから算出した基準を達成しているか確認します。&lt;/p&gt;
+
+        &lt;p&gt;(例) 月間 1億 PVのサイトの場合、アクセスが均等という前提で、秒間 38.5 リクエストは達成する必要がありそうです。&lt;/p&gt;
+
+        &lt;pre&gt;&lt;code&gt;  100,000,000 / 30 / 24 / 60 / 60 ≒ 38.5
+&lt;/code&gt;&lt;/pre&gt;
+
+        &lt;p&gt;&lt;code&gt;(注意) 下記 &quot;ab 実行結果&quot; は文字を表示するだけのページなので &quot;Requests per second&quot; はかなり高い数字になっています。&lt;/code&gt;&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;ab 実行結果&lt;/p&gt;
+
+        &lt;pre&gt;&lt;code&gt;  # ab -n 10000 -c 100 &quot;http://test.vm/test.php&quot;
+		
+  This is ApacheBench, Version 2.0.40-dev &amp;lt;$Revision: 1.146 $&amp;gt; apache-2.0
+  Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+  Copyright 2006 The Apache Software Foundation, http://www.apache.org/
+		
+  Benchmarking test.vm (be patient)
+  Completed 1000 requests
+  Completed 2000 requests
+  Completed 3000 requests
+  Completed 4000 requests
+  Completed 5000 requests
+  Completed 6000 requests
+  Completed 7000 requests
+  Completed 8000 requests
+  Completed 9000 requests
+  Finished 10000 requests
+		
+  Server Software:        Apache/2.2.3
+  Server Hostname:        test.vm
+  Server Port:            80
+		
+  Document Path:          /test.php
+  Document Length:        80 bytes
+		
+  Concurrency Level:      100
+  Time taken for tests:   5.772060 seconds
+  Complete requests:      10000
+  Failed requests:        9899
+     (Connect: 0, Length: 9899, Exceptions: 0)
+  Write errors:           0
+  Total transferred:      2418216 bytes
+  HTML transferred:       499081 bytes
+  Requests per second:    1732.48 [#/sec] (mean)
+  Time per request:       57.721 [ms] (mean)
+  Time per request:       0.577 [ms] (mean, across all concurrent requests)
+  Transfer rate:          409.04 [Kbytes/sec] received
+		
+  Connection Times (ms)
+                min  mean[+/-sd] median   max
+  Connect:        0    0   0.3      0       6
+  Processing:     5   56 112.2     55    5769
+  Waiting:        5   54  77.3     55    4398
+  Total:          5   57 112.2     55    5769
+		
+  Percentage of the requests served within a certain time (ms)
+    50%     55
+    66%     56
+    75%     58
+    80%     59
+    90%     62
+    95%     69
+    98%     77
+    99%    284
+   100%   5769 (longest request)
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h5 id=&quot;section-2&quot;&gt;2.応用&lt;/h5&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;コマンドサンプル&lt;/p&gt;
+
+    &lt;p&gt;他によく使うオプションを記載しておきます。&lt;/p&gt;
+
+    &lt;p&gt;Cookieを指定。(C : [Cookie名]=[値])&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt;  ab -n 100 -c 10 -C &#39;id=test&#39; &quot;http://test.vm/test.php&quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+    &lt;p&gt;複数のCookieを指定。&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt;  ab -n 100 -c 10 -C &#39;id=test;flag=1&#39; &quot;http://test.vm/test.php&quot;
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;host名の指定が必要な場合&lt;/p&gt;
+
+    &lt;p&gt;host名の指定が必須のWEBサイトで、かつ ab 実行環境で /etc/hosts に記載ができない場合、&lt;/p&gt;
+
+    &lt;p&gt;下記のようにヘッダオプション(-H) と Host を使います。&lt;/p&gt;
+
+    &lt;p&gt;これに対応した ab はApache 2.2.22 以降で、自分の環境は未対応だったのでソースを落としてきてビルドしました。&lt;/p&gt;
+
+    &lt;p&gt;&lt;code&gt;(注意) ab を使うだけなので、Apacheのインストール(make install)は行わない。&lt;/code&gt;&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt;  # cd /usr/local/src/
+  # wget http://ftp.meisei-u.ac.jp/mirror/apache/dist//httpd/httpd-2.2.27.tar.gz
+  # tar xzf httpd-2.2.27.tar.gz
+  # cd httpd-2.2.27
+  # ./configure
+  # make
+  # 
+  # /usr/local/src/httpd-2.2.27/support/ab -n 100 -c 10 -H &#39;Host: test.vm&#39; &quot;http://192.168.130.130/test.php&quot;
+  #
+  # /usr/local/src/httpd-2.2.27/support/ab -V
+  #This is ApacheBench, Version 2.3 &amp;lt;$Revision: 655654 $&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+    &lt;p&gt;&lt;a href=&quot;/apachebench/apache_bench/&quot;&gt;ポイントだけ ApacheBench&lt;/a&gt; was originally published by sankame at &lt;a href=&quot;&quot;&gt;テキストブログ&lt;/a&gt; on June 06, 2014.&lt;/p&gt;
+  </content>
+</entry>
+
+
+<entry>
+  <title type="html"><![CDATA[Jenkins から Seleniumを動かしてみる]]></title>
+ <link rel="alternate" type="text/html" href="/selenium/jenkins_selenium/" />
+  <id>/selenium/jenkins_selenium</id>
+  <published>2014-06-03T20:00:00-04:00</published>
+  <updated>2014-06-03T20:00:00-04:00</updated>
+  <author>
+    <name>sankame</name>
+    <uri></uri>
+    <email>m2ad0504@outlook.jp</email>
+  </author>
+  <content type="html">
+    
+&lt;p&gt;&lt;span&gt;&lt;a href=&quot;https://twitter.com/handycola&quot; class=&quot;twitter-follow-button&quot; data-show-count=&quot;false&quot; data-lang=&quot;ja&quot; data-size=&quot;large&quot; data-show-screen-name=&quot;false&quot; data-dnt=&quot;true&quot;&gt;@handycolaさんをフォロー&lt;/a&gt;
+&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?&#39;http&#39;:&#39;https&#39;;if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+&#39;://platform.twitter.com/widgets.js&#39;;fjs.parentNode.insertBefore(js,fjs);}}(document, &#39;script&#39;, &#39;twitter-wjs&#39;);&lt;/script&gt;&lt;/span&gt;&lt;span style=&quot;float:right;&quot;&gt;投稿日：2014年06月03日&lt;/span&gt;&lt;/p&gt;
+&lt;div&gt;
+&lt;script async=&quot;&quot; src=&quot;//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js&quot;&gt;&lt;/script&gt;
+&lt;!-- 468_60_banner_header --&gt;
+&lt;ins class=&quot;adsbygoogle&quot; style=&quot;display:inline-block;width:468px;height:60px&quot; data-ad-client=&quot;ca-pub-7938855665302783&quot; data-ad-slot=&quot;6346277556&quot;&gt;&lt;/ins&gt;
+&lt;script&gt;
+(adsbygoogle = window.adsbygoogle || []).push({});
+&lt;/script&gt;
+&lt;/div&gt;
+
+&lt;h5 id=&quot;section&quot;&gt;0.環境&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code&gt;・親ノード端末
+  [CentOS]   5.6 (32bit版カーネル)
+  [ruby]     2.1.1p76
+  [rvm]      1.25.25
+  [java]     1.7.0_51
+  [Jenkins]  1.562
+
+・子ノード端末
+  [Windows]  Vista Home Premium (32bit)
+  [java]     1.7.0_51
+  [IE]       8
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id=&quot;section-1&quot;&gt;1.準備&lt;/h5&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Jenkinsインストール&lt;/p&gt;
+
+    &lt;p&gt;下記のリンクを参考にJenkinsをインストールしました。&lt;/p&gt;
+
+    &lt;p&gt;&lt;a href=&quot;http://d.hatena.ne.jp/katsuren/20121030/1351569655&quot;&gt;俺の成長日記&lt;/a&gt;&lt;/p&gt;
+
+    &lt;p&gt;&lt;a href=&quot;http://oscasierra.net/2013/05/jenkins-to-redhat/&quot;&gt;OSCALOG&lt;/a&gt;&lt;/p&gt;
+
+    &lt;p&gt;&lt;a href=&quot;http://kohkimakimoto.hatenablog.com/entry/2013/11/22/192646&quot;&gt;JenkinsをCentOSにインストールしたときのメモ&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;前回の続き&lt;/p&gt;
+
+    &lt;p&gt;親ノードと子ノードでSelenium Serverを起動します。(下記リンク参照)&lt;/p&gt;
+
+    &lt;p&gt;&lt;a href=&quot;/Selenium/2014/05/24/selenium_webdriver/&quot;&gt;Selenium WebDriverを動かしてみる&lt;/a&gt;&lt;/p&gt;
+
+    &lt;p&gt;前回と異なる点は、Jenkinsがポート4444を使っていたので、Selenium Serverは4445を使って起動します。&lt;/p&gt;
+
+    &lt;p&gt;・親ノード&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt;  # java -jar selenium-server-standalone-2.41.0.jar -role hub -port 4445
+&lt;/code&gt;&lt;/pre&gt;
+
+    &lt;p&gt;・子ノード&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt;  &amp;gt; java -jar selenium-server-standalone-2.41.0.jar -role webdriver -hub http://192.168.130.130:4445/grid/register -Dwebdriver.ie.driver=./IEDriverServer.exe
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Jenkins プラグイン追加&lt;/p&gt;
+
+    &lt;p&gt;rvmでrubyを使っているので、予めJenkinsにrvmプラグインを追加。&lt;/p&gt;
+
+    &lt;p&gt;Jenkinsのダッシュボードから[Jenkinsの管理]-[プラグインの管理]-[利用可能]&lt;/p&gt;
+
+    &lt;p&gt;右上のフィルターでrvmと打つとRVMプラグインが表示されるのでチェックをつけ、[再起動せずにインストール]クリック。&lt;/p&gt;
+
+    &lt;p&gt;(インストールは何回か失敗することがあります)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Jenkins ジョブ追加&lt;/p&gt;
+
+    &lt;p&gt;Jenkinsのダッシュボードから[新規ジョブ作成]、ジョブ名を入力し、[フリースタイル・プロジェクトのビルド]を選択して[OK]クリック。&lt;/p&gt;
+
+    &lt;p&gt;ビルド環境のRVMで使用したいrubyのバージョンを指定。(自分の場合 2.1.1) (下図参照)&lt;/p&gt;
+
+    &lt;p&gt;シェルスクリプトで下記のように指定。(パス等は読み替えて下さい) (下図参照)&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt;  /usr/local/rvm/rubies/ruby-2.1.1/bin/ruby /app/seleniumtest/seleniumtest_4445.rb
+&lt;/code&gt;&lt;/pre&gt;
+
+    &lt;p&gt;「保存」ボタンクリック。&lt;/p&gt;
+
+    &lt;p&gt;&lt;a href=&quot;/assets/posts/img/jenkins_selenium/jenkins_project.png&quot; target=&quot;_blank&quot;&gt;&lt;img width=&quot;50%&quot; height=&quot;50%&quot; title=&quot;Jenkinsプロジェクト設定&quot; alt=&quot;Jenkinsプロジェクト設定&quot; src=&quot;/assets/posts/img/jenkins_selenium/jenkins_project.png&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;rubyスクリプト&lt;/p&gt;
+
+    &lt;p&gt;上記でJenkinsに設定した “seleniumtest_4445.rb” は以下の内容です。(ポート番号4445でアクセス)&lt;/p&gt;
+
+    &lt;script src=&quot;https://gist.github.com/dc5fb2d680b67acefbf3.js?file=seleniumtest_4445.rb&quot;&gt; &lt;/script&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h5 id=&quot;section-2&quot;&gt;2.起動&lt;/h5&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;ビルド実行&lt;/p&gt;
+
+    &lt;p&gt;上記で作成したジョブで「ビルド実行」をクリック。&lt;/p&gt;
+
+    &lt;p&gt;子ノードでIEが起動すれば成功です。&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+    &lt;p&gt;&lt;a href=&quot;/selenium/jenkins_selenium/&quot;&gt;Jenkins から Seleniumを動かしてみる&lt;/a&gt; was originally published by sankame at &lt;a href=&quot;&quot;&gt;テキストブログ&lt;/a&gt; on June 03, 2014.&lt;/p&gt;
+  </content>
+</entry>
+
+
+<entry>
+  <title type="html"><![CDATA[Selenium WebDriverを動かしてみる]]></title>
+ <link rel="alternate" type="text/html" href="/selenium/selenium_webdriver/" />
+  <id>/selenium/selenium_webdriver</id>
+  <published>2014-05-23T20:00:00-04:00</published>
+  <updated>2014-05-23T20:00:00-04:00</updated>
+  <author>
+    <name>sankame</name>
+    <uri></uri>
+    <email>m2ad0504@outlook.jp</email>
+  </author>
+  <content type="html">
+    
+&lt;p&gt;&lt;span&gt;&lt;a href=&quot;https://twitter.com/handycola&quot; class=&quot;twitter-follow-button&quot; data-show-count=&quot;false&quot; data-lang=&quot;ja&quot; data-size=&quot;large&quot; data-show-screen-name=&quot;false&quot; data-dnt=&quot;true&quot;&gt;@handycolaさんをフォロー&lt;/a&gt;
+&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?&#39;http&#39;:&#39;https&#39;;if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+&#39;://platform.twitter.com/widgets.js&#39;;fjs.parentNode.insertBefore(js,fjs);}}(document, &#39;script&#39;, &#39;twitter-wjs&#39;);&lt;/script&gt;&lt;/span&gt;&lt;span style=&quot;float:right;&quot;&gt;投稿日：2014年05月23日&lt;/span&gt;&lt;/p&gt;
+&lt;div&gt;
+&lt;script async=&quot;&quot; src=&quot;//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js&quot;&gt;&lt;/script&gt;
+&lt;!-- 468_60_banner_header --&gt;
+&lt;ins class=&quot;adsbygoogle&quot; style=&quot;display:inline-block;width:468px;height:60px&quot; data-ad-client=&quot;ca-pub-7938855665302783&quot; data-ad-slot=&quot;6346277556&quot;&gt;&lt;/ins&gt;
+&lt;script&gt;
+(adsbygoogle = window.adsbygoogle || []).push({});
+&lt;/script&gt;
+&lt;/div&gt;
+
+&lt;h5 id=&quot;section&quot;&gt;0.環境&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code&gt;・親ノード端末
+  [CentOS]   5.6 (32bit版カーネル)
+  [ruby]     2.1.1p76
+  [rvm]      1.25.25
+  [java]     1.7.0_51
+  
+・子ノード端末
+  [Windows]  Vista Home Premium (32bit)
+  [java]     1.7.0_51
+  [IE]       8
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id=&quot;section-1&quot;&gt;1.準備&lt;/h5&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;動機&lt;/p&gt;
+
+    &lt;p&gt;ブラウザテストの自動化に興味があり、面白そうな記事があったので自分でも試してみました。&lt;/p&gt;
+
+    &lt;p&gt;(Jenkinsとの連携は今回やっていません)&lt;/p&gt;
+
+    &lt;p&gt;&lt;a href=&quot;http://blog.takuros.net/entry/20130305/1362437720&quot;&gt;JenkinsとSelenium WebDriverでUI層のテストも自動化＆永続化する&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;親ノード&lt;/p&gt;
+
+    &lt;p&gt;親ノード端末の適当なディレクトリに Selenium Server をダウンロード後、起動します。&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt;  # cd /usr/local/bin/
+  # wget http://selenium-release.storage.googleapis.com/2.41/selenium-server-standalone-2.41.0.jar
+  # java -jar selenium-server-standalone-2.41.0.jar -role hub
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;子ノード&lt;/p&gt;
+
+    &lt;p&gt;子ノード端末の適当なフォルダに Selenium Server とIEドライバーをダウンロード後、起動します。&lt;/p&gt;
+
+    &lt;p&gt;&lt;a href=&quot;http://docs.seleniumhq.org/download/&quot;&gt;ダウンロードサイト&lt;/a&gt;&lt;/p&gt;
+
+    &lt;p&gt;まず、”Selenium Server (formerly the Selenium RC Server)” をダウンロード。&lt;/p&gt;
+
+    &lt;p&gt;次に、”The Internet Explorer Driver Server” をダウンロード。&lt;/p&gt;
+
+    &lt;p&gt;(アーキテクチャによって32bitまたは64bitを選択)&lt;/p&gt;
+
+    &lt;p&gt;コマンドプロンプトを開いて、ダウンロードしたフォルダに移動し Selenium Server を起動。&lt;/p&gt;
+
+    &lt;p&gt;(192.168.130.130 は自分の環境の親ノードIPに読み替え)&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt;  &amp;gt; cd C:\apps\selenium
+  &amp;gt; java -jar selenium-server-standalone-2.41.0.jar -role webdriver -hub http://192.168.130.130:4444/grid/register -Dwebdriver.ie.driver=./IEDriverServer.exe
+&lt;/code&gt;&lt;/pre&gt;
+
+    &lt;p&gt;IEドライバーを起動するには、IEの[ツール]-[インターネットオプション]-[セキュリティ]で全ての&lt;/p&gt;
+
+    &lt;p&gt;ゾーンの「保護モード」を同じにしておく必要があります。&lt;a href=&quot;https://selenium.googlecode.com/issues/attachment?aid=17950019000&amp;amp;name=1.png&amp;amp;token=ABZ6GAdCiZEHCiZBk5mmjW1I9awHy0ZHtQ%3A1400944855099&amp;amp;inline=1&quot;&gt;画面キャプチャ&lt;/a&gt;&lt;/p&gt;
+
+    &lt;p&gt;&lt;a href=&quot;http://qiita.com/Kackey/items/c5dded9a6762c1a8cccf&quot;&gt;参考記事&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h5 id=&quot;section-2&quot;&gt;2.起動&lt;/h5&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;IE起動&lt;/p&gt;
+
+    &lt;p&gt;親ノード端末に置いたプログラムから、子ノード端末のIEを起動します。&lt;/p&gt;
+
+    &lt;p&gt;親ノード端末の適当なディレクトリに下記スクリプトを配置。&lt;/p&gt;
+
+    &lt;p&gt;(192.168.130.130 は自分の環境の親ノードIPに読み替え)&lt;/p&gt;
+
+    &lt;script src=&quot;https://gist.github.com/105475ff842cd9bf6ad6.js?file=seleniumtest.rb&quot;&gt; &lt;/script&gt;
+
+    &lt;p&gt;スクリプト内で selenium-webdriver を使っているので、予めインストールしておきます。&lt;/p&gt;
+
+    &lt;p&gt;(適当なディレクトリへ移動し、依存関係を気にしたくないのでbundleを使ってインストール)&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt;  # bundle init
+  # echo &quot;gem &#39;selenium-webdriver&#39;&quot; &amp;gt;&amp;gt; Gemfile
+  # bundle install
+&lt;/code&gt;&lt;/pre&gt;
+
+    &lt;p&gt;プログラムを実行し、子ノード端末でIEが起動すれば成功です。&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt;  # ruby /app/seleniumtest/seleniumtest.rb
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+
+    &lt;p&gt;&lt;a href=&quot;/selenium/selenium_webdriver/&quot;&gt;Selenium WebDriverを動かしてみる&lt;/a&gt; was originally published by sankame at &lt;a href=&quot;&quot;&gt;テキストブログ&lt;/a&gt; on May 23, 2014.&lt;/p&gt;
+  </content>
+</entry>
+
+
+<entry>
+  <title type="html"><![CDATA[Jekyllを1.0.2へバージョンアップ]]></title>
+ <link rel="alternate" type="text/html" href="/jekyll/jekyll_version_up/" />
+  <id>/jekyll/jekyll_version_up</id>
+  <published>2014-05-17T20:00:00-04:00</published>
+  <updated>2014-05-17T20:00:00-04:00</updated>
+  <author>
+    <name>sankame</name>
+    <uri></uri>
+    <email>m2ad0504@outlook.jp</email>
+  </author>
+  <content type="html">
+    
+&lt;p&gt;&lt;span&gt;&lt;a href=&quot;https://twitter.com/handycola&quot; class=&quot;twitter-follow-button&quot; data-show-count=&quot;false&quot; data-lang=&quot;ja&quot; data-size=&quot;large&quot; data-show-screen-name=&quot;false&quot; data-dnt=&quot;true&quot;&gt;@handycolaさんをフォロー&lt;/a&gt;
+&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?&#39;http&#39;:&#39;https&#39;;if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+&#39;://platform.twitter.com/widgets.js&#39;;fjs.parentNode.insertBefore(js,fjs);}}(document, &#39;script&#39;, &#39;twitter-wjs&#39;);&lt;/script&gt;&lt;/span&gt;&lt;span style=&quot;float:right;&quot;&gt;投稿日：2014年05月17日&lt;/span&gt;&lt;/p&gt;
+&lt;div&gt;
+&lt;script async=&quot;&quot; src=&quot;//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js&quot;&gt;&lt;/script&gt;
+&lt;!-- 468_60_banner_header --&gt;
+&lt;ins class=&quot;adsbygoogle&quot; style=&quot;display:inline-block;width:468px;height:60px&quot; data-ad-client=&quot;ca-pub-7938855665302783&quot; data-ad-slot=&quot;6346277556&quot;&gt;&lt;/ins&gt;
+&lt;script&gt;
+(adsbygoogle = window.adsbygoogle || []).push({});
+&lt;/script&gt;
+&lt;/div&gt;
+
+&lt;h5 id=&quot;section&quot;&gt;0.環境&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code&gt;[CentOS]     5.6 (32bit版カーネル)
+[ruby]       2.1.1p76
+[rvm]        1.25.25
+[jekyll]     0.11.2 =&amp;gt; 1.0.2
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id=&quot;httpmelbornegithubio20130520now-the-time-to-start-jekyll&quot;&gt;1.インストール &lt;a href=&quot;http://melborne.github.io/2013/05/20/now-the-time-to-start-jekyll/&quot;&gt;参考ページ&lt;/a&gt;&lt;/h5&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;インストール&lt;/p&gt;
+
+    &lt;p&gt;本ブログはjekyll 0.11.2で作成してきましたが、別件でrubyのバージョンを上げたことでjekyllが動か&lt;/p&gt;
+
+    &lt;p&gt;なくなってしまったため、思い切って1.0.2への移行を行いました。&lt;a href=&quot;http://sankame.github.io/Jekyll/2012/12/23/jekyll_and_github/&quot;&gt;初期インストールの内容&lt;/a&gt;&lt;/p&gt;
+
+    &lt;p&gt;いくつかハマった点を共有します。&lt;/p&gt;
+
+    &lt;p&gt;まず、複数バージョンのrubyを使いたかったので下記ページに沿ってrvmをインストール。&lt;/p&gt;
+
+    &lt;p&gt;&lt;a href=&quot;http://d.hatena.ne.jp/mrgoofy33/20110518/1305649544&quot;&gt;rvmインストール&lt;/a&gt;&lt;/p&gt;
+
+    &lt;p&gt;rootで実行したためか /usr/local/rvm にインストールされたので、上記記事内のパスは読み替えました。&lt;/p&gt;
+
+    &lt;p&gt;ruby 2.1.1をインストール。&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt;  # rvm install 2.1.1
+  # rvm use  2.1.1
+&lt;/code&gt;&lt;/pre&gt;
+
+    &lt;p&gt;適当な場所にGemfileを作成し、jekyllを追記してインストール開始。&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt;  # bundle init
+  # echo &quot;gem &#39;jekyll&#39;, &#39;1.0.2&#39;&quot; &amp;gt;&amp;gt; Gemfile
+  # bundle install
+&lt;/code&gt;&lt;/pre&gt;
+
+    &lt;p&gt;インストールされたことを確認します。&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt;  # gem list|grep jekyll
+  jekyll (1.0.2)
+  jekyll-coffeescript (1.0.0)
+  jekyll-sass-converter (1.0.0)
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;起動&lt;/p&gt;
+
+    &lt;p&gt;任意の場所へ移動し、bootstrapをダウンロードします。&lt;a href=&quot;http://jekyllbootstrap.com/usage/jekyll-quick-start.html&quot;&gt;bootstrapクイックスタート&lt;/a&gt;&lt;/p&gt;
+
+    &lt;p&gt;(前バージョンとは別の場所にしました)&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt;  # cd /var/www/html/jekyll2/
+  # git clone https://github.com/plusjade/jekyll-bootstrap.git
+  # cd jekyll-bootstrap
+  # jekyll serve --watch
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h5 id=&quot;section-1&quot;&gt;2.引越し&lt;/h5&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;ファイルコピー&lt;/p&gt;
+
+    &lt;p&gt;前バージョンの設定ファイルや記事を新バージョンへコピーします。&lt;/p&gt;
+
+    &lt;p&gt;(自分の環境に合わせて必要なものをコピーして下さい)&lt;/p&gt;
+
+    &lt;p&gt;(1) diffを確認しながら部分ごとコピー&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt;  index.md
+  _config.yml
+  categories.html
+  tags.html
+  pages.html
+  archive.html
+  404.html
+&lt;/code&gt;&lt;/pre&gt;
+
+    &lt;p&gt;(2) ディレクトリ単位で上書きコピー&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt;  _includes/JB
+  _includes/themes/twitter
+  _layouts
+  _posts
+  assets
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;動かない①&lt;/p&gt;
+
+    &lt;p&gt;_posts 内でサンプルコードとして下記の記述があると、jekyllが停止してしまいました。&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt;  　&amp;lt;?php
+&lt;/code&gt;&lt;/pre&gt;
+
+    &lt;p&gt;原因が分からなかったので、gistにコード部分をアップしjekyllで読み込ませることにしました。&lt;/p&gt;
+
+    &lt;p&gt;gistは下記のように記述する必要があります。(【】 内は読み替え)&lt;/p&gt;
+
+    &lt;p&gt;{% gist     【gistのID】  【ファイル名】 %}&lt;/p&gt;
+
+    &lt;p&gt;ところが、gistのIDにアルファベットが含まれるのに、jekyll側は数字のみしか対応していなか&lt;/p&gt;
+
+    &lt;p&gt;ったためローカルjekyllの下記箇所を修正しました。(jekyll 1.x系の最新(1.4)では直ってました)&lt;/p&gt;
+
+    &lt;p&gt;・ソース&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt;  /usr/local/rvm/gems/ruby-2.1.1/gems/jekyll-1.0.2/lib/jekyll/tags/gist.rb
+&lt;/code&gt;&lt;/pre&gt;
+
+    &lt;p&gt;・修正内容 (IDにアルファベットを許可)&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt;  # diff  gist.rb.org  gist.rb
+  10c10
+  &amp;lt; if tag_contents = @markup.strip.match(/\A(\d+) ?(\S*)\Z/)
+  　---
+  &amp;gt; if tag_contents = @markup.strip.match(/\A([0-9a-fA-F]+) ?(\S*)\Z/)
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;動かない②&lt;/p&gt;
+
+    &lt;p&gt;新旧の記事ページの比較をしていたところ、URLが違うことに気付きました。&lt;/p&gt;
+
+    &lt;p&gt;前バージョンだと _posts 内の記事のヘッダ部分で定義するカテゴリに大文字を使っている場合、&lt;/p&gt;
+
+    &lt;p&gt;_site に生成されるディレクトリもそのまま大文字になります。&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt;  category : Jekyll
+&lt;/code&gt;&lt;/pre&gt;
+
+    &lt;p&gt;ところが、新バージョンだと全部小文字に変換され、下記の差が出てしまいます。&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt;  (前バージョン)
+  http://localhost:4000/Jekyll/2014/05/18/jekyll_version_up/
+
+  (新バージョン)
+  http://localhost:4000/jekyll/2014/05/18/jekyll_version_up/
+&lt;/code&gt;&lt;/pre&gt;
+
+    &lt;p&gt;一度インターネットに公開したURLが変わるのは困ります…&lt;/p&gt;
+
+    &lt;p&gt;仕方がないので、ローカルのjekyllソースを下記のように修正しました。&lt;/p&gt;
+
+    &lt;p&gt;・ソース&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt;  /usr/local/rvm/gems/ruby-2.1.1/gems/jekyll-1.0.2/lib/jekyll/post.rb
+&lt;/code&gt;&lt;/pre&gt;
+
+    &lt;p&gt;・修正内容 (小文字変換を削除)&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt;  # diff post.rb.org post.rb
+  79c79
+  &amp;lt; self.categories = self.data.pluralized_array(&#39;category&#39;, &#39;categories&#39;).map {|c| c.to_s.downcase}
+  　---
+  &amp;gt; self.categories = self.data.pluralized_array(&#39;category&#39;, &#39;categories&#39;).map {|c| c.to_s}
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;参考ページ&lt;/p&gt;
+
+    &lt;p&gt;&lt;a href=&quot;http://melborne.github.io/2013/05/20/now-the-time-to-start-jekyll/&quot;&gt;Jekyll Version 1.0&lt;/a&gt;&lt;/p&gt;
+
+    &lt;p&gt;&lt;a href=&quot;http://melborne.github.io/2012/05/13/first-step-of-jekyll/&quot;&gt;Jekyllを理解する&lt;/a&gt;&lt;/p&gt;
+
+    &lt;p&gt;&lt;a href=&quot;http://krakenbeal.blogspot.jp/2012/05/ruby-jekyll-jekyll-bootstrap.html&quot;&gt;jekyllとjekyll-bootstrapで静的サイトを作る&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+    &lt;p&gt;&lt;a href=&quot;/jekyll/jekyll_version_up/&quot;&gt;Jekyllを1.0.2へバージョンアップ&lt;/a&gt; was originally published by sankame at &lt;a href=&quot;&quot;&gt;テキストブログ&lt;/a&gt; on May 17, 2014.&lt;/p&gt;
+  </content>
+</entry>
+
+
+<entry>
+  <title type="html"><![CDATA[Revive Ad Server インストール (旧OpenX)]]></title>
+ <link rel="alternate" type="text/html" href="/reviveadserver/revive_adserver_install/" />
+  <id>/reviveadserver/revive_adserver_install</id>
+  <published>2014-05-03T20:00:00-04:00</published>
+  <updated>2014-05-03T20:00:00-04:00</updated>
+  <author>
+    <name>sankame</name>
+    <uri></uri>
+    <email>m2ad0504@outlook.jp</email>
+  </author>
+  <content type="html">
+    
+&lt;p&gt;&lt;span&gt;&lt;a href=&quot;https://twitter.com/handycola&quot; class=&quot;twitter-follow-button&quot; data-show-count=&quot;false&quot; data-lang=&quot;ja&quot; data-size=&quot;large&quot; data-show-screen-name=&quot;false&quot; data-dnt=&quot;true&quot;&gt;@handycolaさんをフォロー&lt;/a&gt;
+&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?&#39;http&#39;:&#39;https&#39;;if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+&#39;://platform.twitter.com/widgets.js&#39;;fjs.parentNode.insertBefore(js,fjs);}}(document, &#39;script&#39;, &#39;twitter-wjs&#39;);&lt;/script&gt;&lt;/span&gt;&lt;span style=&quot;float:right;&quot;&gt;投稿日：2014年05月03日&lt;/span&gt;&lt;/p&gt;
+&lt;div&gt;
+&lt;script async=&quot;&quot; src=&quot;//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js&quot;&gt;&lt;/script&gt;
+&lt;!-- 468_60_banner_header --&gt;
+&lt;ins class=&quot;adsbygoogle&quot; style=&quot;display:inline-block;width:468px;height:60px&quot; data-ad-client=&quot;ca-pub-7938855665302783&quot; data-ad-slot=&quot;6346277556&quot;&gt;&lt;/ins&gt;
+&lt;script&gt;
+(adsbygoogle = window.adsbygoogle || []).push({});
+&lt;/script&gt;
+&lt;/div&gt;
+
+&lt;h5 id=&quot;section&quot;&gt;0.環境&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code&gt;[CentOS]           5.6 (32bit版カーネル)
+[Apache]           2.2.3
+[PHP]              5.4.17
+[Revive AdServer]  3.0.4
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id=&quot;httptec-blogmenuejpp278&quot;&gt;1.インストール &lt;a href=&quot;http://tec-blog.menue.jp/?p=278&quot;&gt;参考ページ&lt;/a&gt;&lt;/h5&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;1-0.ダウンロード&lt;/p&gt;
+
+    &lt;p&gt;適当なディレクトリにソースをダウンロードし、Apache公開ディレクトリへ移動。&lt;/p&gt;
+
+    &lt;p&gt;(公開ディレクトリは自分の環境に読み替えて下さい)&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt;  # wget http://download.revive-adserver.com/revive-adserver-3.0.4.tar.gz
+  # tar xzf revive-adserver-3.0.4.tar.gz
+  # mv revive-adserver-3.0.4 revive-adserver
+  # mv revive-adserver /app/.
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;1-1.インストール開始&lt;/p&gt;
+
+    &lt;p&gt;ブラウザから、上記インストール先URLへアクセス。&lt;/p&gt;
+
+    &lt;p&gt;(例) http://localhost/revive-adserver&lt;/p&gt;
+
+    &lt;p&gt;ウィザードに従ってインストールを進めます。&lt;/p&gt;
+
+    &lt;p&gt;&lt;a href=&quot;/assets/posts/img/revive_adserver_install/step1.png&quot; target=&quot;_blank&quot;&gt;&lt;img width=&quot;50%&quot; height=&quot;50%&quot; title=&quot;step1&quot; alt=&quot;step1&quot; src=&quot;/assets/posts/img/revive_adserver_install/step1.png&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+    &lt;p&gt;“I Agree »“ボタンを押すと、”File Permissions - 7 errors” というエラーが表示されました。&lt;/p&gt;
+
+    &lt;p&gt;画面に表示されたコマンドをそのままコンソールで実行。&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt;  # chmod -R a+w /app/revive-adserver/var
+  # chmod -R a+w /app/revive-adserver/var/cache
+  # chmod -R a+w /app/revive-adserver/var/plugins
+  # chmod -R a+w /app/revive-adserver/var/templates_compiled
+  # chmod -R a+w /app/revive-adserver/plugins
+  # chmod -R a+w /app/revive-adserver/www/admin/plugins
+  # chmod -R a+w /app/revive-adserver/www/images
+&lt;/code&gt;&lt;/pre&gt;
+
+    &lt;p&gt;再びインストール画面へ戻って”Retry”を押すと、次のステップへ進めます。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;1-2.DB設定&lt;/p&gt;
+
+    &lt;p&gt;DB情報の入力画面が表示されますが、その前に下記コマンド(※1)でMySQL上にDBを作成。&lt;/p&gt;
+
+    &lt;p&gt;&lt;a href=&quot;/assets/posts/img/revive_adserver_install/step2.png&quot; target=&quot;_blank&quot;&gt;&lt;img width=&quot;50%&quot; height=&quot;50%&quot; title=&quot;step2&quot; alt=&quot;step2&quot; src=&quot;/assets/posts/img/revive_adserver_install/step2.png&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+    &lt;p&gt;(※1) コマンド (DB名、ユーザ名、パスワードは任意に設定して下さい)&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt;  # mysql -h 127.0.0.1 -u root -p
+  mysql&amp;gt; create database reviveadserver;
+  mysql&amp;gt; grant all privileges on reviveadserver.* to admin@localhost identified by &#39;password&#39;;
+&lt;/code&gt;&lt;/pre&gt;
+
+    &lt;p&gt;再びインストール画面へ戻り、上記のDB情報を入力後、”Continue »” を押します。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;1-3.管理ユーザ登録&lt;/p&gt;
+
+    &lt;p&gt;Revive AdServerの管理ユーザを登録します。&lt;/p&gt;
+
+    &lt;p&gt;&lt;a href=&quot;/assets/posts/img/revive_adserver_install/step3.png&quot; target=&quot;_blank&quot;&gt;&lt;img width=&quot;50%&quot; height=&quot;50%&quot; title=&quot;step3&quot; alt=&quot;step3&quot; src=&quot;/assets/posts/img/revive_adserver_install/step3.png&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+    &lt;p&gt;言語とタイムゾーンを変更。&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt;  Language:  Japanese
+  Timezone:  (GMT+0900) Asia/Tokyo
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;1-4.登録完了&lt;/p&gt;
+
+    &lt;p&gt;登録完了しました。&lt;/p&gt;
+
+    &lt;p&gt;「インストール中にエラーが発生しました」と表示されましたが、指定されたログを見てもエラーの記述はありませんでした。&lt;/p&gt;
+
+    &lt;p&gt;&lt;a href=&quot;/assets/posts/img/revive_adserver_install/step4.png&quot; target=&quot;_blank&quot;&gt;&lt;img width=&quot;50%&quot; height=&quot;50%&quot; title=&quot;step4&quot; alt=&quot;step4&quot; src=&quot;/assets/posts/img/revive_adserver_install/step4.png&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+    &lt;p&gt;&lt;a href=&quot;/reviveadserver/revive_adserver_install/&quot;&gt;Revive Ad Server インストール (旧OpenX)&lt;/a&gt; was originally published by sankame at &lt;a href=&quot;&quot;&gt;テキストブログ&lt;/a&gt; on May 03, 2014.&lt;/p&gt;
+  </content>
+</entry>
+
+
+<entry>
+  <title type="html"><![CDATA[PHPからfitbit API を使ってみる]]></title>
+ <link rel="alternate" type="text/html" href="/fitbit/php_fitbit_api/" />
+  <id>/fitbit/php_fitbit_api</id>
+  <published>2014-02-03T19:00:00-05:00</published>
+  <updated>2014-02-03T19:00:00-05:00</updated>
+  <author>
+    <name>sankame</name>
+    <uri></uri>
+    <email>m2ad0504@outlook.jp</email>
+  </author>
+  <content type="html">
+    
+&lt;p&gt;&lt;span&gt;&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;color:#d14; float:right;&quot;&gt;更新日：2015年02月08日&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span&gt;&lt;a href=&quot;https://twitter.com/handycola&quot; class=&quot;twitter-follow-button&quot; data-show-count=&quot;false&quot; data-lang=&quot;ja&quot; data-size=&quot;large&quot; data-show-screen-name=&quot;false&quot; data-dnt=&quot;true&quot;&gt;@handycolaさんをフォロー&lt;/a&gt;
+&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?&#39;http&#39;:&#39;https&#39;;if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+&#39;://platform.twitter.com/widgets.js&#39;;fjs.parentNode.insertBefore(js,fjs);}}(document, &#39;script&#39;, &#39;twitter-wjs&#39;);&lt;/script&gt;&lt;/span&gt;&lt;span style=&quot;float:right;&quot;&gt;投稿日：2014年02月03日&lt;/span&gt;&lt;/p&gt;
+&lt;div&gt;
+&lt;script async=&quot;&quot; src=&quot;//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js&quot;&gt;&lt;/script&gt;
+&lt;!-- 468_60_banner_header --&gt;
+&lt;ins class=&quot;adsbygoogle&quot; style=&quot;display:inline-block;width:468px;height:60px&quot; data-ad-client=&quot;ca-pub-7938855665302783&quot; data-ad-slot=&quot;6346277556&quot;&gt;&lt;/ins&gt;
+&lt;script&gt;
+(adsbygoogle = window.adsbygoogle || []).push({});
+&lt;/script&gt;
+&lt;/div&gt;
+
+&lt;h5 id=&quot;section&quot;&gt;0.環境&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code&gt;[CentOS]   5.6 (32bit版カーネル)
+[Apache]   2.2.3
+[PHP]      5.4.1
+[device]   Fitbit One
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id=&quot;oauth-extension--fitbit-api&quot;&gt;1.OAuth Extensionインストール → fitbit API実行&lt;/h5&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;1-1.fitbit(活動量計)の&lt;a href=&quot;https://wiki.fitbit.com/display/API/API+PHP+Client&quot;&gt;API使用手順&lt;/a&gt;にそって作業を進めます。&lt;/p&gt;
+
+    &lt;p&gt;下記コマンドを実行。&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt;  # pecl install oauth-0.99.9
+&lt;/code&gt;&lt;/pre&gt;
+
+    &lt;p&gt;エラー発生。&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt;  　：
+  （割愛）
+  　：
+  /var/tmp/oauth/oauth.c:2058: warning: assignment from incompatible pointer type
+  /var/tmp/oauth/oauth.c: In function &#39;zm_shutdown_oauth&#39;:
+  /var/tmp/oauth/oauth.c:2092: warning: implicit declaration of function &#39;curl_global_cleanup&#39;
+  make: *** [oauth.lo] エラー 1
+  ERROR: `make&#39; failed
+&lt;/code&gt;&lt;/pre&gt;
+
+    &lt;p&gt;&lt;a href=&quot;https://bugs.php.net/bug.php?id=59153&quot;&gt;こんな情報&lt;/a&gt;を見つけ、下記コマンドを実行。&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt;  # yum install curl-devel
+&lt;/code&gt;&lt;/pre&gt;
+
+    &lt;p&gt;エラーは変わらず、さらに&lt;a href=&quot;http://blog.gmane.org/gmane.comp.php.install/month=20101201&quot;&gt;こんな情報&lt;/a&gt;を見つけ、下記コマンドを実行。&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt;  # yum install pcre pcre-devel
+&lt;/code&gt;&lt;/pre&gt;
+
+    &lt;p&gt;またまたエラー発生。OAuthを使うための&lt;a href=&quot;http://www.php.net/manual/ja/oauth.requirements.php&quot;&gt;条件&lt;/a&gt;を発見。&lt;/p&gt;
+
+    &lt;p&gt;&lt;a href=&quot;http://blog.flatlabs.net/20100611_062745/&quot;&gt;良さそうなページ&lt;/a&gt;を見つけ、下記コマンドを実行。&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt;  # pecl install oauth-beta
+&lt;/code&gt;&lt;/pre&gt;
+
+    &lt;p&gt;お！成功した。&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt;  Build process completed successfully
+  Installing &#39;/usr/lib/php/modules/oauth.so&#39;
+  install ok: channel://pecl.php.net/oauth-1.2.3
+  configuration option &quot;php_ini&quot; is not set to php.ini location
+  You should add &quot;extension=oauth.so&quot; to php.ini
+&lt;/code&gt;&lt;/pre&gt;
+
+    &lt;p&gt;後は指示通りExtensionを追加。&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt;  # vi /etc/php.d/oauth.ini
+  extension=oauth.so
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;1-2.サンプルプログラム実行。&lt;/p&gt;
+
+    &lt;p&gt;準備ができたので、&lt;a href=&quot;http://dev.fitbit.com/&quot;&gt;開発者用ページ&lt;/a&gt;から&lt;a href=&quot;https://wiki.fitbit.com/download/attachments/884784/completeAuthorization.php?version=2&amp;amp;modificationDate=1297797897000&amp;amp;api=v2&quot;&gt;サンプルプログラム&lt;/a&gt;をダウンロード。&lt;/p&gt;
+
+    &lt;p&gt;サンプルプログラムを自分の設定に合わせて修正。(下記1-3参照)&lt;/p&gt;
+
+    &lt;p&gt;Apacheのドキュメントルートに配置して、ブラウザからアクセスするとエラーが発生。&lt;/p&gt;
+
+    &lt;p&gt;(localhostは自分の環境に読み替えて下さい)&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt;  http://localhost/completeAuthorization.php
+&lt;/code&gt;&lt;/pre&gt;
+
+    &lt;p&gt;body_recv の値を見てみると、”fieldName”:”oauth_timestamp” があやしい。&lt;/p&gt;
+
+    &lt;p&gt;(自分のVM(CentOS)では、時刻同期していないため時間が狂っている)&lt;/p&gt;
+
+    &lt;p&gt;date コマンドで正しい時刻に合わせ、再度ブラウザからアクセスすると下記メッセージが画面に表示された。&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt;  healthcheck（individual）がFitbit.com上のあなたのプロフィールおよびデータへのアクセスを要求しています：
+&lt;/code&gt;&lt;/pre&gt;
+
+    &lt;p&gt;「許可する」をクリックするとサンプルページが表示され、自分の健康データが表示されました。&lt;/p&gt;
+
+    &lt;p&gt;(予め fitbitの「&lt;a href=&quot;https://dev.fitbit.com/apps/new&quot;&gt;開発者ページ&lt;/a&gt;」で、callbackのページを上記URLにしておく)&lt;/p&gt;
+
+    &lt;p&gt;※OAuthは&lt;a href=&quot;http://yuroyoro.hatenablog.com/entry/20100506/1273137673&quot;&gt;こちらのページ&lt;/a&gt;で復習。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;1-3.サンプルプログラム修正(【変更】の部分を自分の設定に書き換えます)&lt;/p&gt;
+
+    &lt;p&gt;&lt;code&gt;(2015/02/08, 更新) APIアクセスをhttpsに変更。&lt;/code&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;script src=&quot;https://gist.github.com/Sankame/8787002.js&quot;&gt;&lt;/script&gt;
+
+
+    &lt;p&gt;&lt;a href=&quot;/fitbit/php_fitbit_api/&quot;&gt;PHPからfitbit API を使ってみる&lt;/a&gt; was originally published by sankame at &lt;a href=&quot;&quot;&gt;テキストブログ&lt;/a&gt; on February 03, 2014.&lt;/p&gt;
+  </content>
+</entry>
+
+
+<entry>
+  <title type="html"><![CDATA[PHPメモ]]></title>
+ <link rel="alternate" type="text/html" href="/php/php_sample/" />
+  <id>/php/php_sample</id>
+  <published>2014-02-01T19:00:00-05:00</published>
+  <updated>2014-02-01T19:00:00-05:00</updated>
+  <author>
+    <name>sankame</name>
+    <uri></uri>
+    <email>m2ad0504@outlook.jp</email>
+  </author>
+  <content type="html">
+    
+&lt;p&gt;&lt;span&gt;&lt;a href=&quot;https://twitter.com/handycola&quot; class=&quot;twitter-follow-button&quot; data-show-count=&quot;false&quot; data-lang=&quot;ja&quot; data-size=&quot;large&quot; data-show-screen-name=&quot;false&quot; data-dnt=&quot;true&quot;&gt;@handycolaさんをフォロー&lt;/a&gt;
+&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?&#39;http&#39;:&#39;https&#39;;if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+&#39;://platform.twitter.com/widgets.js&#39;;fjs.parentNode.insertBefore(js,fjs);}}(document, &#39;script&#39;, &#39;twitter-wjs&#39;);&lt;/script&gt;&lt;/span&gt;&lt;span style=&quot;float:right;&quot;&gt;投稿日：2014年02月01日&lt;/span&gt;&lt;/p&gt;
+&lt;div&gt;
+&lt;script async=&quot;&quot; src=&quot;//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js&quot;&gt;&lt;/script&gt;
+&lt;!-- 468_60_banner_header --&gt;
+&lt;ins class=&quot;adsbygoogle&quot; style=&quot;display:inline-block;width:468px;height:60px&quot; data-ad-client=&quot;ca-pub-7938855665302783&quot; data-ad-slot=&quot;6346277556&quot;&gt;&lt;/ins&gt;
+&lt;script&gt;
+(adsbygoogle = window.adsbygoogle || []).push({});
+&lt;/script&gt;
+&lt;/div&gt;
+
+&lt;h4 id=&quot;php-&quot;&gt;PHPメモ (自分用)&lt;/h4&gt;
+
+&lt;h5 id=&quot;extension&quot;&gt;(1) extensionが追加されたかコマンドラインで確認&lt;/h5&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;下記は例。OAuthの部分は任意のextension名に置き換える。&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt;  # php -r &quot;echo phpinfo();&quot;|grep OAuth
+  OAuth
+  OAuth support =&amp;gt; enabled
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+    &lt;p&gt;&lt;a href=&quot;/php/php_sample/&quot;&gt;PHPメモ&lt;/a&gt; was originally published by sankame at &lt;a href=&quot;&quot;&gt;テキストブログ&lt;/a&gt; on February 01, 2014.&lt;/p&gt;
+  </content>
+</entry>
+
+
+<entry>
+  <title type="html"><![CDATA[スマホ(Android)とPCでMindMapを使う]]></title>
+ <link rel="alternate" type="text/html" href="/mindmapmemo/mind_map_tools/" />
+  <id>/mindmapmemo/mind_map_tools</id>
+  <published>2013-10-03T20:00:00-04:00</published>
+  <updated>2013-10-03T20:00:00-04:00</updated>
+  <author>
+    <name>sankame</name>
+    <uri></uri>
+    <email>m2ad0504@outlook.jp</email>
+  </author>
+  <content type="html">
+    
+&lt;p&gt;&lt;span&gt;&lt;a href=&quot;https://twitter.com/handycola&quot; class=&quot;twitter-follow-button&quot; data-show-count=&quot;false&quot; data-lang=&quot;ja&quot; data-size=&quot;large&quot; data-show-screen-name=&quot;false&quot; data-dnt=&quot;true&quot;&gt;@handycolaさんをフォロー&lt;/a&gt;
+&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?&#39;http&#39;:&#39;https&#39;;if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+&#39;://platform.twitter.com/widgets.js&#39;;fjs.parentNode.insertBefore(js,fjs);}}(document, &#39;script&#39;, &#39;twitter-wjs&#39;);&lt;/script&gt;&lt;/span&gt;&lt;span style=&quot;float:right;&quot;&gt;投稿日：2013年10月03日&lt;/span&gt;&lt;/p&gt;
+&lt;div&gt;
+&lt;script async=&quot;&quot; src=&quot;//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js&quot;&gt;&lt;/script&gt;
+&lt;!-- 468_60_banner_header --&gt;
+&lt;ins class=&quot;adsbygoogle&quot; style=&quot;display:inline-block;width:468px;height:60px&quot; data-ad-client=&quot;ca-pub-7938855665302783&quot; data-ad-slot=&quot;6346277556&quot;&gt;&lt;/ins&gt;
+&lt;script&gt;
+(adsbygoogle = window.adsbygoogle || []).push({});
+&lt;/script&gt;
+&lt;/div&gt;
+
+&lt;h5 id=&quot;section&quot;&gt;0.環境&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code&gt;[スマホ端末/OS] GALAXY S SC-02B / Android2.2
+[PC端末/OS]    Gateway SX2800 / Windows Vista Home Premium
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id=&quot;section-1&quot;&gt;1.スマホでマインドマップ作成&lt;/h5&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;1-1.スマホにMindMapMemoをインストールする。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;1-2.マインドマップのファイルを作成後、「オプション」-「メール送信(SD保存)」-「FreeMind(.mm)」を選択。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;1-3.共有するためのアプリ一覧が表示されるので、PCへファイルを送信できるアプリを選択。&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h5 id=&quot;pcfreemind&quot;&gt;2.PCにFreeMindをインストール&lt;/h5&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;2-1.下記リンク先のページで[0.8.1]をクリック。&lt;/p&gt;
+
+    &lt;p&gt;(0.9.0では上記スマホで作成したファイルをうまく開けませんでした)&lt;/p&gt;
+
+    &lt;p&gt;&lt;a href=&quot;http://sourceforge.net/projects/freemind/files/freemind/&quot;&gt;FreeMindソース&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;2-2.[freemind-bin-0_8_1.zip]をクリック。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;2-3.PCにダウンロード後、解凍してFreemind.exeをダブルクリック。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;2-4.メニューの「ファイル」-「開く」で、スマホから送信した拡張子がmmのファイルを選択。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;2-5.スマホではカラフルに作ったのにFreeMindで開くと白黒になっている。まあ内容が分かるからいいか…&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+    &lt;p&gt;&lt;a href=&quot;/mindmapmemo/mind_map_tools/&quot;&gt;スマホ(Android)とPCでMindMapを使う&lt;/a&gt; was originally published by sankame at &lt;a href=&quot;&quot;&gt;テキストブログ&lt;/a&gt; on October 03, 2013.&lt;/p&gt;
+  </content>
+</entry>
+
+
+<entry>
+  <title type="html"><![CDATA[PHP Debug Bar インストール]]></title>
+ <link rel="alternate" type="text/html" href="/phpdebugbar/php_debug_bar_install/" />
+  <id>/phpdebugbar/php_debug_bar_install</id>
+  <published>2013-09-22T20:00:00-04:00</published>
+  <updated>2013-09-22T20:00:00-04:00</updated>
+  <author>
+    <name>sankame</name>
+    <uri></uri>
+    <email>m2ad0504@outlook.jp</email>
+  </author>
+  <content type="html">
+    
+&lt;p&gt;&lt;span&gt;&lt;a href=&quot;https://twitter.com/handycola&quot; class=&quot;twitter-follow-button&quot; data-show-count=&quot;false&quot; data-lang=&quot;ja&quot; data-size=&quot;large&quot; data-show-screen-name=&quot;false&quot; data-dnt=&quot;true&quot;&gt;@handycolaさんをフォロー&lt;/a&gt;
+&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?&#39;http&#39;:&#39;https&#39;;if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+&#39;://platform.twitter.com/widgets.js&#39;;fjs.parentNode.insertBefore(js,fjs);}}(document, &#39;script&#39;, &#39;twitter-wjs&#39;);&lt;/script&gt;&lt;/span&gt;&lt;span style=&quot;float:right;&quot;&gt;投稿日：2013年09月22日&lt;/span&gt;&lt;/p&gt;
+&lt;div&gt;
+&lt;script async=&quot;&quot; src=&quot;//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js&quot;&gt;&lt;/script&gt;
+&lt;!-- 468_60_banner_header --&gt;
+&lt;ins class=&quot;adsbygoogle&quot; style=&quot;display:inline-block;width:468px;height:60px&quot; data-ad-client=&quot;ca-pub-7938855665302783&quot; data-ad-slot=&quot;6346277556&quot;&gt;&lt;/ins&gt;
+&lt;script&gt;
+(adsbygoogle = window.adsbygoogle || []).push({});
+&lt;/script&gt;
+&lt;/div&gt;
+
+&lt;h5 id=&quot;section&quot;&gt;0.環境&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code&gt;PHPフレームワークPhalconでPHP Debug Barを使うときの例です。
+
+[CentOS]  5.6 (32bit版カーネル)
+[Apache]  2.2.3
+[PHP]     5.4.1
+[phalcon] 1.2.1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id=&quot;php-debug-bar&quot;&gt;1.PHP Debug Barをインストール&lt;/h5&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;1-1.Webサーバのドキュメントルートにcomposer.jsonを配置し次の内容を記述。(下図1-3参照)&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt;  {
+      &quot;require&quot;: {
+          &quot;maximebf/debugbar&quot;: &quot;&amp;gt;=1.0.0&quot;
+      }
+  }
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;1-2.Webサーバのドキュメントルートで次のコマンドを実行。&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt;  # composer install
+&lt;/code&gt;&lt;/pre&gt;
+
+    &lt;p&gt;※composerが未インストールの場合、&lt;a href=&quot;http://9ensan.com/blog/programming/php/php-composer-dependency-management/&quot;&gt;こちら&lt;/a&gt;を参考にインストールして下さい。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;1-3.ディレクトリ構成&lt;/p&gt;
+
+    &lt;p&gt;app_rootはWebサイトのルートディレクトリで、publicが公開ディレクトリです。&lt;/p&gt;
+
+    &lt;p&gt;薄オレンジはcomposerで設置されたもの。&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/posts/img/php_debug_bar_install/directory_image.jpg&quot; alt=&quot;ディレクトリ構成&quot; title=&quot;ディレクトリ構成&quot; /&gt;&lt;/p&gt;
+
+&lt;h5 id=&quot;section-1&quot;&gt;2.コードを記述 (ポイント以外は割愛)&lt;/h5&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;2-0.index.php(フレームワークのエントリポイント)に次の内容を追記。&lt;/p&gt;
+
+    &lt;script src=&quot;https://gist.github.com/d953437cd1ac4a5df725.js?file=require_autoload.php&quot;&gt; &lt;/script&gt;
+
+    &lt;p&gt;&lt;code&gt;composer関係のファイルをバージョン管理(svn, git等)から除外した場合、この記述だけ残してリリースしないよう注意。&lt;/code&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;2-1.ControllerBase(全コントローラの親クラス)に次の内容を追記。&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt;  use DebugBar\StandardDebugBar;
+
+  class ControllerBase extends Phalcon\Mvc\Controller
+  {
+      protected $debugbar;
+
+      // Actionメソッドの後処理
+      public function afterExecuteRoute($dispatcher)
+      {
+      	$debugbarRenderer	= $this-&amp;gt;debugbar-&amp;gt;getJavascriptRenderer();
+
+      	$this-&amp;gt;view-&amp;gt;setVar(&#39;debugbarHeader&#39;, $debugbarRenderer-&amp;gt;renderHead());
+      	$this-&amp;gt;view-&amp;gt;setVar(&#39;debugbarBody&#39;, $debugbarRenderer-&amp;gt;render());
+
+      }
+  }
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;2-2.ContactControllerに次の内容を追記。&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt;  // お問い合わせ画面
+  public function indexAction()
+  {
+  	$this-&amp;gt;debugbar[&quot;messages&quot;]-&amp;gt;addMessage(&quot;DebugBarのテスト&quot;);
+  }
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;2-3.index.volt(全viewが使う共通ファイル)に次の内容を追記。&lt;/p&gt;
+
+    &lt;script src=&quot;https://gist.github.com/eb6d098e2ef1f473ff7d.js?file=php_debugbar.volt&quot;&gt; &lt;/script&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;2-4.画面イメージ&lt;/p&gt;
+
+    &lt;p&gt;上記2-2で書いたメッセージが表示されています。&lt;/p&gt;
+
+    &lt;p&gt;実行時のその他の情報も表示されます。&lt;/p&gt;
+
+    &lt;p&gt;&lt;img src=&quot;/assets/posts/img/php_debug_bar_install/screen_image.jpg&quot; alt=&quot;画面イメージ&quot; title=&quot;画面イメージ&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h5 id=&quot;section-2&quot;&gt;3.参考ページ&lt;/h5&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;http://www.moongift.jp/2013/08/20130829-3/&quot;&gt;紹介ページ&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;http://phpdebugbar.com/docs/&quot;&gt;PHP Debug Bar&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+    &lt;p&gt;&lt;a href=&quot;/phpdebugbar/php_debug_bar_install/&quot;&gt;PHP Debug Bar インストール&lt;/a&gt; was originally published by sankame at &lt;a href=&quot;&quot;&gt;テキストブログ&lt;/a&gt; on September 22, 2013.&lt;/p&gt;
+  </content>
+</entry>
+
+
+<entry>
+  <title type="html"><![CDATA[Rubyを始める]]></title>
+ <link rel="alternate" type="text/html" href="/ruby/ruby_hello_world/" />
+  <id>/ruby/ruby_hello_world</id>
+  <published>2013-09-15T20:00:00-04:00</published>
+  <updated>2013-09-15T20:00:00-04:00</updated>
+  <author>
+    <name>sankame</name>
+    <uri></uri>
+    <email>m2ad0504@outlook.jp</email>
+  </author>
+  <content type="html">
+    
+&lt;p&gt;&lt;span&gt;&lt;a href=&quot;https://twitter.com/handycola&quot; class=&quot;twitter-follow-button&quot; data-show-count=&quot;false&quot; data-lang=&quot;ja&quot; data-size=&quot;large&quot; data-show-screen-name=&quot;false&quot; data-dnt=&quot;true&quot;&gt;@handycolaさんをフォロー&lt;/a&gt;
+&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?&#39;http&#39;:&#39;https&#39;;if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+&#39;://platform.twitter.com/widgets.js&#39;;fjs.parentNode.insertBefore(js,fjs);}}(document, &#39;script&#39;, &#39;twitter-wjs&#39;);&lt;/script&gt;&lt;/span&gt;&lt;span style=&quot;float:right;&quot;&gt;投稿日：2013年09月15日&lt;/span&gt;&lt;/p&gt;
+&lt;div&gt;
+&lt;script async=&quot;&quot; src=&quot;//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js&quot;&gt;&lt;/script&gt;
+&lt;!-- 468_60_banner_header --&gt;
+&lt;ins class=&quot;adsbygoogle&quot; style=&quot;display:inline-block;width:468px;height:60px&quot; data-ad-client=&quot;ca-pub-7938855665302783&quot; data-ad-slot=&quot;6346277556&quot;&gt;&lt;/ins&gt;
+&lt;script&gt;
+(adsbygoogle = window.adsbygoogle || []).push({});
+&lt;/script&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;ruby&quot;&gt;Rubyを始める&lt;/h3&gt;
+
+&lt;h4 id=&quot;section&quot;&gt;0.環境&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;[CentOS] 5.6 (32bit版カーネル)&lt;/li&gt;
+  &lt;li&gt;[Apache] 2.2.3&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;ruby-1&quot;&gt;1.Rubyインストール&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;1-1.Rubyがすでにインストールされているか調べる。&lt;/p&gt;
+
+    &lt;p&gt;(インストールされている場合は下記のように表示される)&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt;  # rpm -q ruby
+  ruby-1.8.6.111-1
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;1-2.インストールされていない場合、下記コマンドでインストール。&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt;  # yum install ruby ruby-devel rdoc irb
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;apache&quot;&gt;2.Apache設定&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;2-1.mod_cgiがロードされていることを確認。&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt;  # cat /etc/httpd/conf/httpd.conf|grep mod_cgi
+  LoadModule cgi_module modules/mod_cgi.so
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;htacess&quot;&gt;3.htacess設定&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;3-1.Apacheドキュメントルートの.htaccessに下記を追記。&lt;/p&gt;
+
+    &lt;p&gt;(ドキュメントルートのパスは読み替えて下さい)&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt;  # cat /var/www/html/.htaccess 
+  AddHandler cgi-script .cgi .rb
+  Options +ExecCGI
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;section-1&quot;&gt;4.動作確認&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;4-1.ファイル作成&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt;  # touch /var/www/html/hello.rb
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;4-2.テストコード記述&lt;/p&gt;
+
+    &lt;p&gt;作成したファイルに下記コードを記述。&lt;/p&gt;
+
+    &lt;p&gt;(1行目のrubyのパスは、which ruby で調べて読み替えて下さい)&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt;  #!/usr/bin/ruby
+  print &quot;Content-type:text/html\n\n&quot;
+
+  print &amp;lt;&amp;lt;EOS
+  &amp;lt;HTML&amp;gt;
+  &amp;lt;HEAD&amp;gt;
+  &amp;lt;/HEAD&amp;gt;
+  &amp;lt;BODY&amp;gt;
+  Hello World!
+  &amp;lt;/BODY&amp;gt;
+  &amp;lt;/HTML&amp;gt;
+  EOS
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;section-2&quot;&gt;5.参考にしたページ&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;http://blog.layer8.sh/ja/2011/12/21/yum%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%A6ruby%E3%82%92%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%99%E3%82%8B%E3%81%A8%E3%81%8D%E3%81%AE%E3%83%A1/&quot;&gt;インストール方法&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;http://w.livedoor.jp/notepad/d/Ruby%A4%F2apache%A4%C7%C6%B0%A4%AB%A4%B9&quot;&gt;Ruby動作確認&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+    &lt;p&gt;&lt;a href=&quot;/ruby/ruby_hello_world/&quot;&gt;Rubyを始める&lt;/a&gt; was originally published by sankame at &lt;a href=&quot;&quot;&gt;テキストブログ&lt;/a&gt; on September 15, 2013.&lt;/p&gt;
+  </content>
+</entry>
+
+
+<entry>
+  <title type="html"><![CDATA[Gitコマンド メモ]]></title>
+ <link rel="alternate" type="text/html" href="/git/git_command/" />
+  <id>/git/git_command</id>
+  <published>2013-09-08T20:00:00-04:00</published>
+  <updated>2013-09-08T20:00:00-04:00</updated>
+  <author>
+    <name>sankame</name>
+    <uri></uri>
+    <email>m2ad0504@outlook.jp</email>
+  </author>
+  <content type="html">
+    
+&lt;p&gt;&lt;span&gt;&lt;a href=&quot;https://twitter.com/handycola&quot; class=&quot;twitter-follow-button&quot; data-show-count=&quot;false&quot; data-lang=&quot;ja&quot; data-size=&quot;large&quot; data-show-screen-name=&quot;false&quot; data-dnt=&quot;true&quot;&gt;@handycolaさんをフォロー&lt;/a&gt;
+&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?&#39;http&#39;:&#39;https&#39;;if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+&#39;://platform.twitter.com/widgets.js&#39;;fjs.parentNode.insertBefore(js,fjs);}}(document, &#39;script&#39;, &#39;twitter-wjs&#39;);&lt;/script&gt;&lt;/span&gt;&lt;span style=&quot;float:right;&quot;&gt;投稿日：2013年09月08日&lt;/span&gt;&lt;/p&gt;
+&lt;div&gt;
+&lt;script async=&quot;&quot; src=&quot;//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js&quot;&gt;&lt;/script&gt;
+&lt;!-- 468_60_banner_header --&gt;
+&lt;ins class=&quot;adsbygoogle&quot; style=&quot;display:inline-block;width:468px;height:60px&quot; data-ad-client=&quot;ca-pub-7938855665302783&quot; data-ad-slot=&quot;6346277556&quot;&gt;&lt;/ins&gt;
+&lt;script&gt;
+(adsbygoogle = window.adsbygoogle || []).push({});
+&lt;/script&gt;
+&lt;/div&gt;
+
+&lt;h4 id=&quot;git--&quot;&gt;Gitコマンド メモ (自分用)&lt;/h4&gt;
+
+&lt;h5 id=&quot;gitignore-httpwwwomakaseorgmiscgitignorehtml&quot;&gt;(1) .gitignoreファイル &lt;a href=&quot;http://www.omakase.org/misc/gitignore.html&quot;&gt;参考ページ&lt;/a&gt;&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code&gt;# gitの管理外にしたいファイルを定義。下記のようにディレクトリ指定も可能。
+# view .gitignore
+app/logs/
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id=&quot;git&quot;&gt;(2) インデックスから降ろす(git管理外にする)&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code&gt;# インデックスから降ろすだけ。
+# git rm --cached -f hoge.txt
+
+# インデックスから降ろして、ファイルを物理削除。
+# git rm -f hoge.txt
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id=&quot;section&quot;&gt;(3) ブランチ操作(2013/10/07)&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code&gt;# 今いるブランチは？
+# git branch
+* master
+
+# ブランチtest1を作って、test1へ切り替える。
+# git branch test1
+# git checkout test1
+Switched to branch &#39;test1&#39;
+
+# masterブランチへ戻る。
+# git checkout master
+Switched to branch &#39;master&#39;
+
+# 使わなくなったブランチtest1を削除。
+# git branch -d test1
+Deleted branch test1 (was 0854f22).
+# git branch
+* master
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id=&quot;github20131007&quot;&gt;(4) GitHubからソースを取得(2013/10/07)&lt;/h5&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;4-1.GitHubで対象のリポジトリに移動後、画面右下のボタン(下記)をクリックしてURLをクリップボードにコピー。&lt;/p&gt;
+
+    &lt;p&gt;&lt;img src=&quot;/assets/posts/img/git_command/github-clone.jpg&quot; alt=&quot;github-clone&quot; title=&quot;github-clone&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;4-2.git clone の後に上記4-1でコピーしたURLを貼り付ける。&lt;/p&gt;
+
+    &lt;p&gt;予めGitHubに登録した公開鍵のパスフレーズを入力。&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt;  # git clone git@github.com:Sankame/test.git
+  Cloning into &#39;test&#39;...
+  Enter passphrase for key &#39;/root/.ssh/id_rsa&#39;: 
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h5 id=&quot;section-1&quot;&gt;(5) ローカル変更の取り消し(2014/02/24)&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code&gt;# ファイル指定でローカル変更を取り消し。
+# git checkout filename
+# 
+# 全てのローカル変更を取り消し。
+# git checkout .
+&lt;/code&gt;&lt;/pre&gt;
+
+    &lt;p&gt;&lt;a href=&quot;/git/git_command/&quot;&gt;Gitコマンド メモ&lt;/a&gt; was originally published by sankame at &lt;a href=&quot;&quot;&gt;テキストブログ&lt;/a&gt; on September 08, 2013.&lt;/p&gt;
+  </content>
+</entry>
+
+
+<entry>
+  <title type="html"><![CDATA[Nexus7のスクリーンをプロジェクタに映したい (Android Screen Cast)]]></title>
+ <link rel="alternate" type="text/html" href="/nexus7/nexus7_projected_to_pc/" />
+  <id>/nexus7/nexus7_projected_to_pc</id>
+  <published>2013-08-31T20:00:00-04:00</published>
+  <updated>2013-08-31T20:00:00-04:00</updated>
+  <author>
+    <name>sankame</name>
+    <uri></uri>
+    <email>m2ad0504@outlook.jp</email>
+  </author>
+  <content type="html">
+    
+&lt;p&gt;&lt;span&gt;&lt;a href=&quot;https://twitter.com/handycola&quot; class=&quot;twitter-follow-button&quot; data-show-count=&quot;false&quot; data-lang=&quot;ja&quot; data-size=&quot;large&quot; data-show-screen-name=&quot;false&quot; data-dnt=&quot;true&quot;&gt;@handycolaさんをフォロー&lt;/a&gt;
+&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?&#39;http&#39;:&#39;https&#39;;if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+&#39;://platform.twitter.com/widgets.js&#39;;fjs.parentNode.insertBefore(js,fjs);}}(document, &#39;script&#39;, &#39;twitter-wjs&#39;);&lt;/script&gt;&lt;/span&gt;&lt;span style=&quot;float:right;&quot;&gt;投稿日：2013年08月31日&lt;/span&gt;&lt;/p&gt;
+&lt;div&gt;
+&lt;script async=&quot;&quot; src=&quot;//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js&quot;&gt;&lt;/script&gt;
+&lt;!-- 468_60_banner_header --&gt;
+&lt;ins class=&quot;adsbygoogle&quot; style=&quot;display:inline-block;width:468px;height:60px&quot; data-ad-client=&quot;ca-pub-7938855665302783&quot; data-ad-slot=&quot;6346277556&quot;&gt;&lt;/ins&gt;
+&lt;script&gt;
+(adsbygoogle = window.adsbygoogle || []).push({});
+&lt;/script&gt;
+&lt;/div&gt;
+
+&lt;h5 id=&quot;section&quot;&gt;0.環境&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code&gt;[タブレット端末/OS]  Nexus7 / Android 4.2.2
+[PC端末/OS]        Gateway SX2800 / Windows Vista Home Premium
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id=&quot;section-1&quot;&gt;0.検討&lt;/h5&gt;
+
+&lt;p&gt;プレゼン用途でNexus7のスクリーン映像をプロジェクタに映したいと考え、いくつか検討した結果、下記3で行うことにしました。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;http://www.amazon.co.jp/dp/B005RUM754/ref=as_li_ss_til?tag=uni6605-22&amp;amp;camp=1027&amp;amp;creative=7407&amp;amp;linkCode=as4&amp;amp;creativeASIN=B005RUM754&amp;amp;adid=004HQM7Z4FR3M83JKTW2&amp;amp;&amp;amp;ref-refURL=http%3A%2F%2Flove-guava.com%2Fit-is-difficult-in-it-being-unexpected-to-output-the-screen-of-nexus7-to-a-display%2F&quot;&gt;1.変換器を使う&lt;/a&gt; →Nexus7はMHL非対応…&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://play.google.com/store/apps/details?id=com.awindinc.sphone2tv&quot;&gt;2.ソフトで解決&lt;/a&gt; →PCに映像を送信する方法。有料かつNexus7のRoot化が必要。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;http://www.moongift.jp/2009/09/androidscreencast&quot;&gt;3.ソフトで解決&lt;/a&gt; →PCに映像を送信する方法。無料かつRoot化の必要もなし。Nexus7の映像がPCに届くまで数秒のタイムラグあり。&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h5 id=&quot;pcandroid-sdk&quot;&gt;1.PCにAndroid SDKをインストール&lt;/h5&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;下記ページの[download here] - [Download the SDK]ボタンをクリック。&lt;/p&gt;
+
+    &lt;p&gt;&lt;a href=&quot;http://code.google.com/p/androidscreencast/&quot;&gt;ダウンロード&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;規約に同意したら「I have read and agree…」にチェック。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;32ビットか64ビットかは、下記の手順で調べる。&lt;/p&gt;
+
+    &lt;p&gt;[スタート]メニュー - [コンピュータ]右クリック - [プロパティ]&lt;/p&gt;
+
+    &lt;p&gt;[システムの種類]に記載。&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h5 id=&quot;usbnexus7pc&quot;&gt;2.USBケーブルでNexus7とPCを接続&lt;/h5&gt;
+
+&lt;h5 id=&quot;android-screen-cast&quot;&gt;3.Android Screen Cast&lt;/h5&gt;
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;3-1.下記リンクからAndroid Screen CastをPCにダウンロードし、任意のフォルダに保存する。&lt;/p&gt;
+
+    &lt;p&gt;&lt;a href=&quot;http://androidscreencast.googlecode.com/svn/trunk/AndroidScreencast/dist/androidscreencast.jnlp&quot;&gt;ダウンロード&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;3-2.コマンドプロンプトで上記3-1のフォルダに移動し、下記コマンドを実行。&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt;  &amp;gt; javaws androidscreencast.jnlp
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;3-3.JREをバージョンアップするよう警告が出たので、最新をインストールした結果、下記のバージョンになった。&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt;  &amp;gt; java -version
+    java version &quot;1.7.0_25&quot;
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;3-4.再び3-2のコマンドを実行すると下記エラーが発生。&lt;/p&gt;
+
+    &lt;p&gt;Timeout getting device list&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;3-5.adb usb 実行 [(参考ページ)] (http://code.google.com/p/androidscreencast/issues/detail?id=49)&lt;/p&gt;
+
+    &lt;p&gt;PCでコマンドプロンプトを起動し、”platform-tools”フォルダに移動。(パスは読み替えて下さい)&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt;  &amp;gt; cd C:\soft\Android\adt-bundle-windows-x86-20130729\sdk\platform-tools
+  &amp;gt; adb usb
+   	 error: device not found
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h5 id=&quot;usb&quot;&gt;4.USBドライバ&lt;/h5&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;4-1.USBドライバ&lt;/p&gt;
+
+    &lt;p&gt;上記3-5でエラーになったので、USBドライバをインストールする。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;4-2.インストール&lt;/p&gt;
+
+    &lt;p&gt;PC側で、上記1でダウンロードした”SDK Manager.exe”をダブルクリックして起動する。&lt;/p&gt;
+
+    &lt;p&gt;“Google USB Driver”にチェックして、[Install 1 package…]をクリック。&lt;/p&gt;
+
+    &lt;p&gt;&lt;img src=&quot;/assets/posts/img/nexus7_projected_to_pc/10.jpg&quot; alt=&quot;画像10&quot; title=&quot;画像10&quot; /&gt;&lt;/p&gt;
+
+    &lt;p&gt;※もし”Failed to fetch URL”というエラーが出た場合は、代替策として下記5を参照。&lt;/p&gt;
+
+    &lt;p&gt;規約に同意したら[Install]をクリック。&lt;/p&gt;
+
+    &lt;p&gt;&lt;img src=&quot;/assets/posts/img/nexus7_projected_to_pc/11.jpg&quot; alt=&quot;画像11&quot; title=&quot;画像11&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;4-3.USBドライバ更新&lt;/p&gt;
+
+    &lt;p&gt;さらにPC側で、下記ノードを右クリックしてプロパティから[ドライバの更新]をクリック。&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt;  [スタート]-[コントロール パネル]-[デバイスマネージャ]-[Android Phone]
+&lt;/code&gt;&lt;/pre&gt;
+
+    &lt;p&gt;下記パスを選択してドライバを指定する。(パスは読み替えて下さい)&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt;  C:\soft\Android\adt-bundle-windows-x86-20130729\sdk\extras
+&lt;/code&gt;&lt;/pre&gt;
+
+    &lt;p&gt;インストールが完了したらPCを再起動。 →下記5を飛ばして6以降を参照。&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h5 id=&quot;pdanet&quot;&gt;5.PdaNet&lt;/h5&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.dominantwire.com/2012/11/how-to-solve-adb-device-not-found-error.html&quot;&gt;参考ページ&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://pdanet.co/&quot;&gt;PdaNet&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;【注意】PdaNetがインストールするUSBドライバを利用します。&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;PdaNetはモバイル端末経由でPCをネット接続するソフトなので、モバイル端末のネット接続が従量課金の場合は、注意して下さい。&lt;/code&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;5-1.上記3-6でダウンロードしたインストーラ(PdaNetA4126.exe)を起動。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;5-2.インストール途中で下記メッセージが出た。&lt;/p&gt;
+
+    &lt;p&gt;&lt;img src=&quot;/assets/posts/img/nexus7_projected_to_pc/1.jpg&quot; alt=&quot;画像1&quot; title=&quot;画像1&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;5-3.Nexus7 開発者メニュー&lt;/p&gt;
+
+    &lt;p&gt;Nexus7で[設定]-[タブレット情報]-[ビルド番号]を7回タップし、[設定]-[開発者向けオプション]を表示する。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;5-4.Nexus7 USBデバッグ&lt;/p&gt;
+
+    &lt;p&gt;Nexus7で[開発者向けオプション]-[USBデバッグ] をONにする。&lt;/p&gt;
+
+    &lt;p&gt;直後に、PC側でインストーラが再開した。&lt;/p&gt;
+
+    &lt;p&gt;&lt;img src=&quot;/assets/posts/img/nexus7_projected_to_pc/2.jpg&quot; alt=&quot;画像2&quot; title=&quot;画像2&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;5-5.Nexus7で下記メッセージが出たので、”許可する”を選択する。&lt;/p&gt;
+
+    &lt;p&gt;“このパソコンのRSAキーのフィンガープリント…”&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;5-6.PC側で下記メッセージが出たので、”インストール”をクリック。&lt;/p&gt;
+
+    &lt;p&gt;&lt;img src=&quot;/assets/posts/img/nexus7_projected_to_pc/3.jpg&quot; alt=&quot;画像3&quot; title=&quot;画像3&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;5-6.Nexus7で下記メッセージが出たので、そのままOKを選択。&lt;/p&gt;
+
+    &lt;p&gt;“Googleが定期的にインストールされたアプリをチェックする”&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;5-7.インストール完了&lt;/p&gt;
+
+    &lt;p&gt;下記画面が表示されればインストールは完了。&lt;/p&gt;
+
+    &lt;p&gt;&lt;img src=&quot;/assets/posts/img/nexus7_projected_to_pc/4.jpg&quot; alt=&quot;画像4&quot; title=&quot;画像4&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h5 id=&quot;android-screen-cast-1&quot;&gt;6.Android Screen Cast起動&lt;/h5&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;6-1.Android Phoneの認識&lt;/p&gt;
+
+    &lt;p&gt;PC側のデバイスにAndroid Phoneが追加されていればOK。&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt;  [スタート]-[コントロール パネル]-[デバイスマネージャ]-[Android Phone]
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;6-2.上記3-5のコマンドを再実行すると下記が表示される。&lt;/p&gt;
+
+    &lt;p&gt;daemon not running. starting it now on port 5037&lt;/p&gt;
+
+    &lt;p&gt;daemon started successfully&lt;/p&gt;
+
+    &lt;p&gt;restarting in USB mode&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;6-3. 上記3-2の操作を再実行し、Nexus7の画面がPC側に表示されれば成功。&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+    &lt;p&gt;&lt;a href=&quot;/nexus7/nexus7_projected_to_pc/&quot;&gt;Nexus7のスクリーンをプロジェクタに映したい (Android Screen Cast)&lt;/a&gt; was originally published by sankame at &lt;a href=&quot;&quot;&gt;テキストブログ&lt;/a&gt; on August 31, 2013.&lt;/p&gt;
+  </content>
+</entry>
+
+
+<entry>
+  <title type="html"><![CDATA[MySQLコマンド メモ]]></title>
+ <link rel="alternate" type="text/html" href="/mysql/mysql_command/" />
+  <id>/mysql/mysql_command</id>
+  <published>2013-08-25T20:00:00-04:00</published>
+  <updated>2013-08-25T20:00:00-04:00</updated>
+  <author>
+    <name>sankame</name>
+    <uri></uri>
+    <email>m2ad0504@outlook.jp</email>
+  </author>
+  <content type="html">
+    
+&lt;p&gt;&lt;span&gt;&lt;a href=&quot;https://twitter.com/handycola&quot; class=&quot;twitter-follow-button&quot; data-show-count=&quot;false&quot; data-lang=&quot;ja&quot; data-size=&quot;large&quot; data-show-screen-name=&quot;false&quot; data-dnt=&quot;true&quot;&gt;@handycolaさんをフォロー&lt;/a&gt;
+&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?&#39;http&#39;:&#39;https&#39;;if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+&#39;://platform.twitter.com/widgets.js&#39;;fjs.parentNode.insertBefore(js,fjs);}}(document, &#39;script&#39;, &#39;twitter-wjs&#39;);&lt;/script&gt;&lt;/span&gt;&lt;span style=&quot;float:right;&quot;&gt;投稿日：2013年08月25日&lt;/span&gt;&lt;/p&gt;
+&lt;div&gt;
+&lt;script async=&quot;&quot; src=&quot;//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js&quot;&gt;&lt;/script&gt;
+&lt;!-- 468_60_banner_header --&gt;
+&lt;ins class=&quot;adsbygoogle&quot; style=&quot;display:inline-block;width:468px;height:60px&quot; data-ad-client=&quot;ca-pub-7938855665302783&quot; data-ad-slot=&quot;6346277556&quot;&gt;&lt;/ins&gt;
+&lt;script&gt;
+(adsbygoogle = window.adsbygoogle || []).push({});
+&lt;/script&gt;
+&lt;/div&gt;
+
+&lt;h4 id=&quot;mysql-&quot;&gt;MySQLコマンド メモ&lt;/h4&gt;
+
+&lt;h5 id=&quot;webdb1&quot;&gt;WebサーバとDBサーバが1台のマシンにある場合によく行う操作。&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code&gt;# そのマシンのMySQLサーバにrootで接続
+# (パスワードを聞かれるので入力してEnter)
+# mysql -h 127.0.0.1 -u root -p
+
+mysql&amp;gt; -- UTF8でDBを作成し、接続ユーザを作成 (先頭がtestの文字は読み替えて下さい)
+mysql&amp;gt; create database testdb default character set utf8;
+mysql&amp;gt; grant all on testdb.* to &#39;testuser&#39;@&#39;localhost&#39; identified by &#39;testpassword&#39;;
+mysql&amp;gt; flush privileges;
+
+mysql&amp;gt; -- 別マシンからDBへ接続する必要がある場合は、以下のように別ユーザを作成
+mysql&amp;gt; -- (192.168.0.1の部分を別マシンのIPに読み替える)
+mysql&amp;gt; grant all on testdb.* to testuser@192.168.0.1 identified by &#39;testpassword&#39;;
+
+mysql&amp;gt; -- 作成したDBに切り替え、テーブルを作成
+mysql&amp;gt; use testdb;
+
+mysql&amp;gt; DROP TABLE IF EXISTS `users`;
+
+mysql&amp;gt; CREATE TABLE `users` (
+mysql&amp;gt;   `id`         bigint unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY,
+mysql&amp;gt;   `username`   varchar(32) NOT NULL
+mysql&amp;gt; ) ENGINE=InnoDB;
+&lt;/code&gt;&lt;/pre&gt;
+
+
+    &lt;p&gt;&lt;a href=&quot;/mysql/mysql_command/&quot;&gt;MySQLコマンド メモ&lt;/a&gt; was originally published by sankame at &lt;a href=&quot;&quot;&gt;テキストブログ&lt;/a&gt; on August 25, 2013.&lt;/p&gt;
+  </content>
+</entry>
+
+</feed>

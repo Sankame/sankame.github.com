@@ -1,0 +1,325 @@
+<!doctype html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if (IE 7)&!(IEMobile)]><html class="no-js lt-ie9 lt-ie8" lang="en"><![endif]-->
+<!--[if (IE 8)&!(IEMobile)]><html class="no-js lt-ie9" lang="en"><![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<title>Rubyを始める &#8211; テキストブログ</title>
+<meta name="description" content="あああああああ">
+<meta name="keywords" content="Ruby">
+
+<!-- Twitter Cards -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="/images/">
+<meta name="twitter:title" content="Rubyを始める">
+<meta name="twitter:description" content="あああああああ">
+<meta name="twitter:creator" content="@handycola">
+
+<!-- Open Graph -->
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Rubyを始める">
+<meta property="og:description" content="あああああああ">
+<meta property="og:url" content="/ruby/ruby_hello_world/">
+<meta property="og:site_name" content="テキストブログ">
+
+
+
+
+
+<link rel="canonical" href="/ruby/ruby_hello_world/">
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="テキストブログ Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<!-- Webfonts -->
+<link href="//fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic" rel="stylesheet" type="text/css">
+
+<meta http-equiv="cleartype" content="on">
+
+<!-- Load Modernizr -->
+<script src="/assets/js/vendor/modernizr-2.6.2.custom.min.js"></script>
+
+<!-- Icons -->
+<!-- 16x16 -->
+<link rel="shortcut icon" href="/favicon.ico">
+<!-- 32x32 -->
+<link rel="shortcut icon" href="/favicon.png">
+<!-- 57x57 (precomposed) for iPhone 3GS, pre-2011 iPod Touch and older Android devices -->
+<link rel="apple-touch-icon-precomposed" href="/images/apple-touch-icon-precomposed.png">
+<!-- 72x72 (precomposed) for 1st generation iPad, iPad 2 and iPad mini -->
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/images/apple-touch-icon-72x72-precomposed.png">
+<!-- 114x114 (precomposed) for iPhone 4, 4S, 5 and post-2011 iPod Touch -->
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/images/apple-touch-icon-114x114-precomposed.png">
+<!-- 144x144 (precomposed) for iPad 3rd and 4th generation -->
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/images/apple-touch-icon-144x144-precomposed.png">
+
+
+
+</head>
+
+<body id="page" >
+
+<!--[if lt IE 9]><div class="upgrade"><strong><a href="http://whatbrowser.org/">Your browser is quite old!</strong> Why not upgrade to a different browser to better enjoy this site?</a></div><![endif]-->
+<nav id="dl-menu" class="dl-menuwrapper" role="navigation">
+	<button class="dl-trigger">Open Menu</button>
+	<ul class="dl-menu">
+		<li><a href="/">Home</a></li>
+		<li>
+			<a href="#">About</a>
+			<ul class="dl-submenu">
+				<li>
+					<img src="/images/avatar.jpg" alt="sankame photo" class="author-photo">
+					<h4>sankame</h4>
+					<p>老舗インターネット・メディア企業で働くプログラマー</p>
+				</li>
+				<!-- <li><a href="/about/"><span class="btn btn-inverse">Learn More</span></a></li> -->
+				<li>
+					<a href="mailto:m2ad0504@outlook.jp"><i class="fa fa-fw fa-envelope"></i> Email</a>
+				</li>
+				<li>
+					<a href="http://twitter.com/handycola"><i class="fa fa-fw fa-twitter"></i> Twitter</a>
+				</li>
+				
+				
+				
+				<li>
+					<a href="http://github.com/https://github.com/Sankame"><i class="fa fa-fw fa-github"></i> GitHub</a>
+				</li>
+				
+				<li>
+					<a href="http://stackoverflow.com/users/2849068/sankame"><i class="fa fa-fw fa-stack-overflow"></i> Stackoverflow</a>
+				</li>
+
+				
+				
+				
+			</ul><!-- /.dl-submenu -->
+		</li>
+		<li>
+			<a href="#">Posts</a>
+			<ul class="dl-submenu">
+				<li><a href="/posts/">All Posts</a></li>
+				<li><a href="/tags/">All Tags</a></li>
+			</ul>
+		</li>
+		
+	    
+	        
+	    
+	    <!-- <li><a href="/theme-setup/" >Theme Setup</a></li> -->
+	  
+	    
+	        
+	        
+	    <!-- <li><a href="http://mademistakes.com" target="_blank">External Link</a></li> -->
+	  
+	</ul><!-- /.dl-menu -->
+</nav><!-- /.dl-menuwrapper -->
+
+
+
+
+<div id="main" role="main">
+  <article class="hentry">
+    <header class="header-title">
+      <div class="header-title-wrap">
+        <h1 class="entry-title">Rubyを始める</h1>
+        
+        <p class="entry-reading-time">
+          <i class="fa fa-clock-o"></i>
+          
+          Reading time ~1 minute
+        </p><!-- /.entry-reading-time -->
+        
+      </div><!-- /.header-title-wrap -->
+    </header>
+    <div class="entry-content">
+      
+<p><span><a href="https://twitter.com/handycola" class="twitter-follow-button" data-show-count="false" data-lang="ja" data-size="large" data-show-screen-name="false" data-dnt="true">@handycolaさんをフォロー</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></span><span style="float:right;">投稿日：2013年09月15日</span></p>
+<div>
+<script async="" src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 468_60_banner_header -->
+<ins class="adsbygoogle" style="display:inline-block;width:468px;height:60px" data-ad-client="ca-pub-7938855665302783" data-ad-slot="6346277556"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+
+<h3 id="ruby">Rubyを始める</h3>
+
+<h4 id="section">0.環境</h4>
+
+<ul>
+  <li>[CentOS] 5.6 (32bit版カーネル)</li>
+  <li>[Apache] 2.2.3</li>
+</ul>
+
+<h4 id="ruby-1">1.Rubyインストール</h4>
+
+<ul>
+  <li>
+    <p>1-1.Rubyがすでにインストールされているか調べる。</p>
+
+    <p>(インストールされている場合は下記のように表示される)</p>
+
+    <pre><code>  # rpm -q ruby
+  ruby-1.8.6.111-1
+</code></pre>
+  </li>
+  <li>
+    <p>1-2.インストールされていない場合、下記コマンドでインストール。</p>
+
+    <pre><code>  # yum install ruby ruby-devel rdoc irb
+</code></pre>
+  </li>
+</ul>
+
+<h4 id="apache">2.Apache設定</h4>
+
+<ul>
+  <li>
+    <p>2-1.mod_cgiがロードされていることを確認。</p>
+
+    <pre><code>  # cat /etc/httpd/conf/httpd.conf|grep mod_cgi
+  LoadModule cgi_module modules/mod_cgi.so
+</code></pre>
+  </li>
+</ul>
+
+<h4 id="htacess">3.htacess設定</h4>
+
+<ul>
+  <li>
+    <p>3-1.Apacheドキュメントルートの.htaccessに下記を追記。</p>
+
+    <p>(ドキュメントルートのパスは読み替えて下さい)</p>
+
+    <pre><code>  # cat /var/www/html/.htaccess 
+  AddHandler cgi-script .cgi .rb
+  Options +ExecCGI
+</code></pre>
+  </li>
+</ul>
+
+<h4 id="section-1">4.動作確認</h4>
+
+<ul>
+  <li>
+    <p>4-1.ファイル作成</p>
+
+    <pre><code>  # touch /var/www/html/hello.rb
+</code></pre>
+  </li>
+  <li>
+    <p>4-2.テストコード記述</p>
+
+    <p>作成したファイルに下記コードを記述。</p>
+
+    <p>(1行目のrubyのパスは、which ruby で調べて読み替えて下さい)</p>
+
+    <pre><code>  #!/usr/bin/ruby
+  print "Content-type:text/html\n\n"
+
+  print &lt;&lt;EOS
+  &lt;HTML&gt;
+  &lt;HEAD&gt;
+  &lt;/HEAD&gt;
+  &lt;BODY&gt;
+  Hello World!
+  &lt;/BODY&gt;
+  &lt;/HTML&gt;
+  EOS
+</code></pre>
+  </li>
+</ul>
+
+<h4 id="section-2">5.参考にしたページ</h4>
+
+<ul>
+  <li>
+    <p><a href="http://blog.layer8.sh/ja/2011/12/21/yum%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%A6ruby%E3%82%92%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%99%E3%82%8B%E3%81%A8%E3%81%8D%E3%81%AE%E3%83%A1/">インストール方法</a></p>
+  </li>
+  <li>
+    <p><a href="http://w.livedoor.jp/notepad/d/Ruby%A4%F2apache%A4%C7%C6%B0%A4%AB%A4%B9">Ruby動作確認</a></p>
+  </li>
+</ul>
+
+      <div>
+<div style="padding:6px;">
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 468_60_banner_bottom1 -->
+<ins class="adsbygoogle"
+     style="display:inline-block;width:468px;height:60px"
+     data-ad-client="ca-pub-7938855665302783"
+     data-ad-slot="1426962757"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+
+<div style="padding:6px;">
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 468_60_banner_bottom2 -->
+<ins class="adsbygoogle"
+     style="display:inline-block;width:468px;height:60px"
+     data-ad-client="ca-pub-7938855665302783"
+     data-ad-slot="5857162358"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+</div>
+      <footer class="entry-meta">
+        
+        <div class="social-share">
+  <ul class="socialcount socialcount-small inline-list">
+    <li class="facebook"><a href="https://www.facebook.com/sharer/sharer.php?u=/ruby/ruby_hello_world/" title="Share on Facebook"><span class="count"><i class="fa fa-facebook-square"></i> Like</span></a></li>
+    <li class="twitter"><a href="https://twitter.com/intent/tweet?text=/ruby/ruby_hello_world/" title="Share on Twitter"><span class="count"><i class="fa fa-twitter-square"></i> Tweet</span></a></li>
+    <li class="googleplus"><a href="https://plus.google.com/share?url=/ruby/ruby_hello_world/" title="Share on Google Plus"><span class="count"><i class="fa fa-google-plus-square"></i> +1</span></a></li>
+  </ul>
+</div><!-- /.social-share -->
+      </footer>
+    </div><!-- /.entry-content -->
+
+  </article>
+</div><!-- /#main -->
+
+<div class="footer-wrapper">
+  <footer role="contentinfo">
+    <span>&copy; 2015 sankame. Powered by <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> using the <a href="http://mademistakes.com/hpstr/" rel="notfollow">HPSTR Theme</a>.</span>
+  </footer>
+</div><!-- /.footer-wrapper -->
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="/assets/js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+<script src="/assets/js/scripts.min.js"></script>
+
+
+
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-37675354-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+
+
+</body>
+</html>

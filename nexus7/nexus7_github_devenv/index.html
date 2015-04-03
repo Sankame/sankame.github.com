@@ -1,0 +1,334 @@
+<!doctype html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if (IE 7)&!(IEMobile)]><html class="no-js lt-ie9 lt-ie8" lang="en"><![endif]-->
+<!--[if (IE 8)&!(IEMobile)]><html class="no-js lt-ie9" lang="en"><![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<title>Nexus7とGitHubでプログラミング環境を作る &#8211; テキストブログ</title>
+<meta name="description" content="あああああああ">
+<meta name="keywords" content="Nexus7, Git, GitHub">
+
+<!-- Twitter Cards -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="/images/">
+<meta name="twitter:title" content="Nexus7とGitHubでプログラミング環境を作る">
+<meta name="twitter:description" content="あああああああ">
+<meta name="twitter:creator" content="@handycola">
+
+<!-- Open Graph -->
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Nexus7とGitHubでプログラミング環境を作る">
+<meta property="og:description" content="あああああああ">
+<meta property="og:url" content="/nexus7/nexus7_github_devenv/">
+<meta property="og:site_name" content="テキストブログ">
+
+
+
+
+
+<link rel="canonical" href="/nexus7/nexus7_github_devenv/">
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="テキストブログ Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<!-- Webfonts -->
+<link href="//fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic" rel="stylesheet" type="text/css">
+
+<meta http-equiv="cleartype" content="on">
+
+<!-- Load Modernizr -->
+<script src="/assets/js/vendor/modernizr-2.6.2.custom.min.js"></script>
+
+<!-- Icons -->
+<!-- 16x16 -->
+<link rel="shortcut icon" href="/favicon.ico">
+<!-- 32x32 -->
+<link rel="shortcut icon" href="/favicon.png">
+<!-- 57x57 (precomposed) for iPhone 3GS, pre-2011 iPod Touch and older Android devices -->
+<link rel="apple-touch-icon-precomposed" href="/images/apple-touch-icon-precomposed.png">
+<!-- 72x72 (precomposed) for 1st generation iPad, iPad 2 and iPad mini -->
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/images/apple-touch-icon-72x72-precomposed.png">
+<!-- 114x114 (precomposed) for iPhone 4, 4S, 5 and post-2011 iPod Touch -->
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/images/apple-touch-icon-114x114-precomposed.png">
+<!-- 144x144 (precomposed) for iPad 3rd and 4th generation -->
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/images/apple-touch-icon-144x144-precomposed.png">
+
+
+
+</head>
+
+<body id="page" >
+
+<!--[if lt IE 9]><div class="upgrade"><strong><a href="http://whatbrowser.org/">Your browser is quite old!</strong> Why not upgrade to a different browser to better enjoy this site?</a></div><![endif]-->
+<nav id="dl-menu" class="dl-menuwrapper" role="navigation">
+	<button class="dl-trigger">Open Menu</button>
+	<ul class="dl-menu">
+		<li><a href="/">Home</a></li>
+		<li>
+			<a href="#">About</a>
+			<ul class="dl-submenu">
+				<li>
+					<img src="/images/avatar.jpg" alt="sankame photo" class="author-photo">
+					<h4>sankame</h4>
+					<p>老舗インターネット・メディア企業で働くプログラマー</p>
+				</li>
+				<!-- <li><a href="/about/"><span class="btn btn-inverse">Learn More</span></a></li> -->
+				<li>
+					<a href="mailto:m2ad0504@outlook.jp"><i class="fa fa-fw fa-envelope"></i> Email</a>
+				</li>
+				<li>
+					<a href="http://twitter.com/handycola"><i class="fa fa-fw fa-twitter"></i> Twitter</a>
+				</li>
+				
+				
+				
+				<li>
+					<a href="http://github.com/https://github.com/Sankame"><i class="fa fa-fw fa-github"></i> GitHub</a>
+				</li>
+				
+				<li>
+					<a href="http://stackoverflow.com/users/2849068/sankame"><i class="fa fa-fw fa-stack-overflow"></i> Stackoverflow</a>
+				</li>
+
+				
+				
+				
+			</ul><!-- /.dl-submenu -->
+		</li>
+		<li>
+			<a href="#">Posts</a>
+			<ul class="dl-submenu">
+				<li><a href="/posts/">All Posts</a></li>
+				<li><a href="/tags/">All Tags</a></li>
+			</ul>
+		</li>
+		
+	    
+	        
+	    
+	    <!-- <li><a href="/theme-setup/" >Theme Setup</a></li> -->
+	  
+	    
+	        
+	        
+	    <!-- <li><a href="http://mademistakes.com" target="_blank">External Link</a></li> -->
+	  
+	</ul><!-- /.dl-menu -->
+</nav><!-- /.dl-menuwrapper -->
+
+
+
+
+<div id="main" role="main">
+  <article class="hentry">
+    <header class="header-title">
+      <div class="header-title-wrap">
+        <h1 class="entry-title">Nexus7とGitHubでプログラミング環境を作る</h1>
+        
+        <p class="entry-reading-time">
+          <i class="fa fa-clock-o"></i>
+          
+          Reading time ~1 minute
+        </p><!-- /.entry-reading-time -->
+        
+      </div><!-- /.header-title-wrap -->
+    </header>
+    <div class="entry-content">
+      
+<p><span><a href="https://twitter.com/handycola" class="twitter-follow-button" data-show-count="false" data-lang="ja" data-size="large" data-show-screen-name="false" data-dnt="true">@handycolaさんをフォロー</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></span><span style="float:right;">投稿日：2013年08月10日</span></p>
+<div>
+<script async="" src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 468_60_banner_header -->
+<ins class="adsbygoogle" style="display:inline-block;width:468px;height:60px" data-ad-client="ca-pub-7938855665302783" data-ad-slot="6346277556"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+
+<h5 id="section">0.環境</h5>
+
+<pre><code>[端末] Nexus7
+[OS]   Android 4.2.2
+[BlueToothキーボード] ELECOM TK-FBP013
+</code></pre>
+
+<h5 id="nexus7bit-web-server-httpsplaygooglecomstoreappsdetailsidcomandiserverweb">1.Nexus7にBit Web Serverをインストール <a href="https://play.google.com/store/apps/details?id=com.andi.serverweb">(ダウンロード)</a></h5>
+
+<pre><code>Android上でPHPとMySQLを動かせるアプリ。(有料 約230円)
+root化しないで使用可能。
+</code></pre>
+
+<h5 id="nexus7terminal-ide-httpsplaygooglecomstoreappsdetailsidcomspartacusrexspartacuside">2.Nexus7にTerminal IDEをインストール <a href="https://play.google.com/store/apps/details?id=com.spartacusrex.spartacuside">(ダウンロード)</a></h5>
+
+<pre><code>Android用の開発環境。java、c、c++等のコンパイラを含む。
+root化しないで使用可能。
+</code></pre>
+
+<h5 id="hello-world">3.Hello World</h5>
+
+<pre><code>Nexus7にBlueToothキーボードを接続。
+
+Nexus7でTerminal IDEを起動。
+
+いくつかのボタンが表示されるので、[Install System]をクリック。
+
+Overwrite ALLにチェックを入れ、[Install System]をクリックし、システムアップデート。
+
+[Terminal IDE]をクリック。
+
+コンソールが起動するので、ファイルを作成し、以下の内容を書き込む。
+
+$ cd $HOME/sdcard/wwww
+$
+$ vim hello.php
+</code></pre>
+
+<script src="https://gist.github.com/29b89884b38df722f9c6.js?file=test_hello.php"> </script>
+
+<pre><code>Nexus7でBit Web Serverを起動。
+
+[Localhost]をクリック。
+
+ブラウザが起動し、表示されたファイル一覧から上記で作成したhello.phpをクリック。
+
+ブラウザにhelloと表示されれば成功。
+</code></pre>
+
+<h5 id="github">4.GitHubにファイルをアップ(準備)</h5>
+
+<p>せっかくなのでNexus7からGitHubにファイルをアップしてみる。</p>
+
+<pre><code>$ 公開鍵と秘密鍵を作成。
+$ Nexus7で以下のコマンドを打つ。
+$ dropbearkey -t rsa -f $HOME/.ssh/id_rsa
+$
+$ 作成した鍵を表示。
+$ dropbearkey -y -f ~/.ssh/id_rsa
+$ 
+$ ssh-rsaの1行(公開鍵)をコピーする。
+
+GitHubダッシュボード画面の右上「Account Settings」をクリック。
+(GitHubアカウントは作成済みとします)
+左メニューの「SSH Keys」クリック。
+「Add SSH key」をクリックし、Titleに任意の値、Keyに上記でコピーした内容(公開鍵)を入力する。
+
+GitHubダッシュボード画面の「Repositories」-「New」をクリックし、新規リポジトリを作成する。
+
+$ Nexus7に戻り、以下のファイルを作成し、追記内容を書き込む。
+$ vim /data/data/com.spartacusrex.spartacuside/files/bin/ssh-with-default-key
+
+--------------(追記内容)-----------
+#!/data/data/com.spartacusrex.spartacuside/files/system/bin/bash
+exec ssh -i ~/.ssh/id_rsa "$@"
+--------------(追記内容)-----------
+
+$ chmod 755 /data/data/com.spartacusrex.spartacuside/files/bin/ssh-with-default-key
+
+$ さらに以下のファイルに追記内容を書き込む。
+$ vim $HOME/.bashrc
+
+--------------(追記内容)-----------
+export GIT_SSH=$HOME/bin/ssh-with-default-key
+--------------(追記内容)-----------
+</code></pre>
+
+<h5 id="github-1">5.GitHubにファイルをアップ</h5>
+<pre><code>$ Nexus7に戻って以下のコマンドを打つ。
+$ cd $HOME/sdcard/wwww
+$ git init
+$ touch new.txt
+$ git add .
+$ git commit -m 'add new.txt'
+$ 【】内は自分の設定に読み替える。
+$ git remote add origin git@github.com:【アカウント名】/【リポジトリ名】.git
+$ git push origin master
+$
+$ これでGitHubにnew.txtがアップロードできたはず。
+</code></pre>
+
+<h5 id="section-1">参考ページ</h5>
+<p><a href="https://play.google.com/store/apps/details?id=com.andi.serverweb">Terminal IDEの設定</a></p>
+
+<p><a href="http://blog.katsuma.tv/2009/02/first_github.html">Githubへのpush</a></p>
+
+<p><a href="https://jp.linux.com/linux-community/blog/236-mirainoitsuka/403358">Githubへのpush2</a></p>
+
+      <div>
+<div style="padding:6px;">
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 468_60_banner_bottom1 -->
+<ins class="adsbygoogle"
+     style="display:inline-block;width:468px;height:60px"
+     data-ad-client="ca-pub-7938855665302783"
+     data-ad-slot="1426962757"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+
+<div style="padding:6px;">
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 468_60_banner_bottom2 -->
+<ins class="adsbygoogle"
+     style="display:inline-block;width:468px;height:60px"
+     data-ad-client="ca-pub-7938855665302783"
+     data-ad-slot="5857162358"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+</div>
+      <footer class="entry-meta">
+        
+        <div class="social-share">
+  <ul class="socialcount socialcount-small inline-list">
+    <li class="facebook"><a href="https://www.facebook.com/sharer/sharer.php?u=/nexus7/nexus7_github_devenv/" title="Share on Facebook"><span class="count"><i class="fa fa-facebook-square"></i> Like</span></a></li>
+    <li class="twitter"><a href="https://twitter.com/intent/tweet?text=/nexus7/nexus7_github_devenv/" title="Share on Twitter"><span class="count"><i class="fa fa-twitter-square"></i> Tweet</span></a></li>
+    <li class="googleplus"><a href="https://plus.google.com/share?url=/nexus7/nexus7_github_devenv/" title="Share on Google Plus"><span class="count"><i class="fa fa-google-plus-square"></i> +1</span></a></li>
+  </ul>
+</div><!-- /.social-share -->
+      </footer>
+    </div><!-- /.entry-content -->
+
+  </article>
+</div><!-- /#main -->
+
+<div class="footer-wrapper">
+  <footer role="contentinfo">
+    <span>&copy; 2015 sankame. Powered by <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> using the <a href="http://mademistakes.com/hpstr/" rel="notfollow">HPSTR Theme</a>.</span>
+  </footer>
+</div><!-- /.footer-wrapper -->
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="/assets/js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+<script src="/assets/js/scripts.min.js"></script>
+
+
+
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-37675354-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+
+
+</body>
+</html>

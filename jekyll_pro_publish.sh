@@ -1,1 +1,1 @@
-JEKYLL_ENV=production jekyll serve
+JEKYLL_ENV=production jekyll serve --host 0.0.0.0

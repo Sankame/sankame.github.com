@@ -1,33 +1,697 @@
-
-
 <!doctype html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    
-    <meta name="author" content="sankame">
-    <title>テキストブログ</title>
-    <link rel="stylesheet" href="/theme/midnight/stylesheets/styles.css">
-    <link rel="stylesheet" href="/theme/midnight/stylesheets/pygment_trac.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script src="/theme/midnight/javascripts/respond.js"></script>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if (IE 7)&!(IEMobile)]><html class="no-js lt-ie9 lt-ie8" lang="en"><![endif]-->
+<!--[if (IE 8)&!(IEMobile)]><html class="no-js lt-ie9" lang="en"><![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<title>最近の投稿 &#8211; テキストブログ</title>
+<meta name="description" content="IT系の調べ物を思い出すためのブログです。">
 
-<script>
-	$(function(){
-		$('#menu').click(function(e){
-			$('#header nav').slideToggle( 450, 'linear' );
-		});
-	});
-</script>
-    <!--[if lt IE 9]>
-      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <!--[if lt IE 8]>
-    <link rel="stylesheet" href="/theme/midnight/stylesheets/ie.css">
-    <![endif]-->
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+<!-- Twitter Cards -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="/images/abstract-1.jpg">
+
+<meta name="twitter:title" content="最近の投稿">
+<meta name="twitter:description" content="IT系の調べ物を思い出すためのブログです。">
+<meta name="twitter:creator" content="@handycola">
+
+<!-- Open Graph -->
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="最近の投稿">
+<meta property="og:description" content="IT系の調べ物を思い出すためのブログです。">
+<meta property="og:url" content="/index.html">
+<meta property="og:site_name" content="テキストブログ">
+
+
+
+
+
+<link rel="canonical" href="/">
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="テキストブログ Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<!-- Webfonts -->
+<link href="//fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic" rel="stylesheet" type="text/css">
+
+<meta http-equiv="cleartype" content="on">
+
+<!-- Load Modernizr -->
+<script src="/assets/js/vendor/modernizr-2.6.2.custom.min.js"></script>
+
+<!-- Icons -->
+<!-- 16x16 -->
+<link rel="shortcut icon" href="/favicon.ico">
+<!-- 32x32 -->
+<link rel="shortcut icon" href="/favicon.png">
+<!-- 57x57 (precomposed) for iPhone 3GS, pre-2011 iPod Touch and older Android devices -->
+<link rel="apple-touch-icon-precomposed" href="/images/apple-touch-icon-precomposed.png">
+<!-- 72x72 (precomposed) for 1st generation iPad, iPad 2 and iPad mini -->
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/images/apple-touch-icon-72x72-precomposed.png">
+<!-- 114x114 (precomposed) for iPhone 4, 4S, 5 and post-2011 iPod Touch -->
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/images/apple-touch-icon-114x114-precomposed.png">
+<!-- 144x144 (precomposed) for iPad 3rd and 4th generation -->
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/images/apple-touch-icon-144x144-precomposed.png">
+
+
+
+</head>
+
+<body id="post-index" class="feature">
+
+<!--[if lt IE 9]><div class="upgrade"><strong><a href="http://whatbrowser.org/">Your browser is quite old!</strong> Why not upgrade to a different browser to better enjoy this site?</a></div><![endif]-->
+<nav id="dl-menu" class="dl-menuwrapper" role="navigation">
+	<button class="dl-trigger">Open Menu</button>
+	<ul class="dl-menu">
+		<li><a href="/">Home</a></li>
+		<li>
+			<a href="#">About</a>
+			<ul class="dl-submenu">
+				<li>
+					<img src="/images/avatar.jpg" alt="sankame photo" class="author-photo">
+					<h4>sankame</h4>
+					<p>老舗インターネット・メディア企業で働くプログラマー</p>
+				</li>
+				<!-- <li><a href="/about/"><span class="btn btn-inverse">Learn More</span></a></li> -->
+				<li>
+					<a href="mailto:m2ad0504@outlook.jp"><i class="fa fa-fw fa-envelope"></i> Email</a>
+				</li>
+				<li>
+					<a href="http://twitter.com/handycola"><i class="fa fa-fw fa-twitter"></i> Twitter</a>
+				</li>
+				
+				
+				
+				<li>
+					<a href="http://github.com/https://github.com/Sankame"><i class="fa fa-fw fa-github"></i> GitHub</a>
+				</li>
+				
+				<li>
+					<a href="http://stackoverflow.com/users/2849068/sankame"><i class="fa fa-fw fa-stack-overflow"></i> Stackoverflow</a>
+				</li>
+
+				
+				
+				
+			</ul><!-- /.dl-submenu -->
+		</li>
+		<li>
+			<a href="#">Posts</a>
+			<ul class="dl-submenu">
+				<li><a href="/posts/">All Posts</a></li>
+				<li><a href="/tags/">All Tags</a></li>
+			</ul>
+		</li>
+		
+	    
+	        
+	    
+	    <!-- <li><a href="/theme-setup/" >Theme Setup</a></li> -->
+	  
+	    
+	        
+	        
+	    <!-- <li><a href="http://mademistakes.com" target="_blank">External Link</a></li> -->
+	  
+	</ul><!-- /.dl-menu -->
+</nav><!-- /.dl-menuwrapper -->
+
+
+<div class="entry-header">
+  <div class="image-credit">Image source: <a href="http://www.dargadgetz.com/ios-7-abstract-wallpaper-pack-for-iphone-5-and-ipod-touch-retina/">dargadgetz</a></div><!-- /.image-credit -->
+  
+    <div class="entry-image">
+      <img src="/images/abstract-1.jpg" alt="最近の投稿">
+    </div><!-- /.entry-image -->
+  
+  <div class="header-title">
+    <div class="header-title-wrap">
+      <h1>テキストブログ</h1>
+      <h2>最近の投稿</h2>
+    </div><!-- /.header-title-wrap -->
+  </div><!-- /.header-title -->
+</div><!-- /.entry-header -->
+
+<div id="main" role="main">
+  
+<article class="hentry">
+  <header>
     
+    <div class="entry-meta">
+      <span class="entry-date date published updated"><time datetime="2014-08-19T20:00:00-04:00"><a href="/apache/http_basic_authentication/">August 19, 2014</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About sankame">sankame</a></span></span>
+      
+      <span class="entry-reading-time">
+        <i class="fa fa-clock-o"></i>
+        
+        Reading time ~1 minute
+      </span><!-- /.entry-reading-time -->
+      
+    </div><!-- /.entry-meta -->
+    
+      <h1 class="entry-title"><a href="/apache/http_basic_authentication/" rel="bookmark" title="ベーシック認証設定 (VirtualHostの場合)" itemprop="url">ベーシック認証設定 (VirtualHostの場合)</a></h1>
+    
+  </header>
+  <div class="entry-content">
+    
+<p><span><a href="https://twitter.com/handycola" class="twitter-follow-button" data-show-count="false" data-lang="ja" data-size="large" data-show-screen-name="false" data-dnt="true">@handycolaさんをフォロー</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></span><span style="float:right;">投稿日：2014年08月19日</span></p>
+<div>
+<script async="" src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 468_60_banner_header -->
+<ins class="adsbygoogle" style="display:inline-block;width:468px;height:60px" data-ad-client="ca-pub-7938855665302783" data-ad-slot="6346277556"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+
+<h5 id="section">0.環境</h5>
+
+<pre><code>[CentOS]   5.6 (32bit版カーネル)
+[Apache]   2.2.3
+</code></pre>
+
+<h5 id="section-1">1.パスワードファイル作成</h5>
+
+<ul>
+  <li>
+    <p>適当な場所にパスワードファイルを作成。(“user1”は作成したいユーザー名で読み替え)</p>
+
+    <pre><code>  # htpasswd -c /etc/httpd/conf/.htpasswd user1
+  New password: 
+  Re-type new password: 
+  Adding password for user user1
+</code></pre>
+  </li>
+</ul>
+
+<h5 id="section-2">2.パスワードファイル設定</h5>
+
+<ul>
+  <li>
+    <p>VirtualHostを設定している場合、Directoryディレクティブ内に下記を追加。</p>
+
+    <p>AuthUserFileには上記1で作ったパスワードファイルを指定。</p>
+
+    <p>AuthNameはブラウザの認証ダイアログに表示されるメッセージとなります。</p>
+
+    <p>(マルチバイト文字は化ける可能性あり)</p>
+
+    <p><code>※下記はApache設定ファイル(/etc/httpd/conf/httpd.conf) の抜粋</code></p>
+
+    <pre><code>  NameVirtualHost *:80
+
+  &lt;Directory /web/test&gt;
+      Options FollowSymLinks
+      AllowOverride FileInfo Options=All,MultiViews
+	    
+      # --- ベーシック認証追加 ---
+      AuthType Basic
+      AuthUserFile "/etc/httpd/conf/.htpasswd"
+      AuthName "Here is a message."
+      Require valid-user
+      # --- ベーシック認証追加 ---
+	    
+  &lt;/Directory&gt;
+
+  &lt;VirtualHost *:80&gt;
+      ServerAdmin test@sample.co.jp
+      DocumentRoot "/web/test"
+      ServerName test.net
+      ErrorLog logs/test.net-error_log
+      CustomLog logs/test.net-access_log common
+  &lt;/VirtualHost&gt;
+</code></pre>
+  </li>
+</ul>
+
+<h5 id="section-3">3.再起動</h5>
+
+<ul>
+  <li>
+    <p>最後にApacheを再起動します。</p>
+
+    <pre><code>  # service httpd restart
+</code></pre>
+  </li>
+</ul>
+
+  </div><!-- /.entry-content -->
+</article><!-- /.hentry -->
+
+<article class="hentry">
+  <header>
+    
+    <div class="entry-meta">
+      <span class="entry-date date published updated"><time datetime="2014-07-25T20:00:00-04:00"><a href="/androidwear/android_wear_chage_face/">July 25, 2014</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About sankame">sankame</a></span></span>
+      
+      <span class="entry-reading-time">
+        <i class="fa fa-clock-o"></i>
+        
+        Reading time ~1 minute
+      </span><!-- /.entry-reading-time -->
+      
+    </div><!-- /.entry-meta -->
+    
+      <h1 class="entry-title"><a href="/androidwear/android_wear_chage_face/" rel="bookmark" title="【Android Wear】ホーム画面の時計を変更" itemprop="url">【Android Wear】ホーム画面の時計を変更</a></h1>
+    
+  </header>
+  <div class="entry-content">
+    
+<p><span><a href="https://twitter.com/handycola" class="twitter-follow-button" data-show-count="false" data-lang="ja" data-size="large" data-show-screen-name="false" data-dnt="true">@handycolaさんをフォロー</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></span><span style="float:right;">投稿日：2014年07月25日</span></p>
+<div>
+<script async="" src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 468_60_banner_header -->
+<ins class="adsbygoogle" style="display:inline-block;width:468px;height:60px" data-ad-client="ca-pub-7938855665302783" data-ad-slot="6346277556"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+
+<h5 id="section">0.環境</h5>
+
+<pre><code>[スマートフォン(OS)]  GALAXY S4 (Android 4.4.2)
+[スマートウォッチ(OS)] Gear Live (4.4W)
+※以下、スマートフォンは「スマホ」、スマートウォッチは「ウォッチ」と記載。
+</code></pre>
+
+<h5 id="section-1">1.ホーム画面の時計(ウォッチフェイス)を変更</h5>
+
+<ul>
+  <li>
+    <p>Samsung Gear Live のホーム画面の時計デザインを変える方法は下記の通りです。</p>
+
+    <p>(スマホとウォッチはBluetoothで同期されている前提)</p>
+
+    <ul>
+      <li>
+        <p>①【スマホ】Playストアから好みのデザインの時計アプリをインストールします。(<a href="http://weekly.ascii.jp/elem/000/000/239/239437/" target="_blank">参考リンク</a>)</p>
+
+        <p>(例) Playストアで “WearFaces” で検索。</p>
+      </li>
+      <li>
+        <p>②【スマホ】Android Wearアプリを起動し、右上のネジマークをタップ。</p>
+
+        <p><a href="/assets/posts/img/android_wear_chage_face/phone-1.png" target="_blank"><img width="20%" height="20%" title="スマホ-設定" alt="スマホ-設定" src="/assets/posts/img/android_wear_chage_face/phone-1.png" /></a></p>
+      </li>
+      <li>
+        <p>③【スマホ】一番下までスクロールし、「アプリの再同期」をタップ。</p>
+
+        <p><a href="/assets/posts/img/android_wear_chage_face/phone-2.png" target="_blank"><img width="20%" height="20%" title="スマホ-アプリ同期" alt="スマホ-アプリ同期" src="/assets/posts/img/android_wear_chage_face/phone-2.png" /></a></p>
+      </li>
+      <li>
+        <p>④【ウォッチ】ホーム画面をタップし、メニュー画面を一番下までスクロールした後「設定」をタップ。</p>
+
+        <p><code>(2014/07/30, 追記) 後日気づきました。ホーム画面で時計を長押し(ロングタップ)すると一気に時計変更画面に行けます。(下記⑦)</code></p>
+
+        <p><a href="/assets/posts/img/android_wear_chage_face/watch-1.jpeg" target="_blank"><img width="20%" height="20%" title="ウォッチ-設定" alt="ウォッチ-設定" src="/assets/posts/img/android_wear_chage_face/watch-1.jpeg" /></a></p>
+      </li>
+      <li>
+        <p>⑤【ウォッチ】設定画面で上にフリック。</p>
+
+        <p><a href="/assets/posts/img/android_wear_chage_face/watch-2.jpeg" target="_blank"><img width="20%" height="20%" title="ウォッチ-設定2" alt="ウォッチ-設定2" src="/assets/posts/img/android_wear_chage_face/watch-2.jpeg" /></a></p>
+      </li>
+      <li>
+        <p>⑥【ウォッチ】一番下までスクロールした後、「ウォッチフェイスの変更」をタップ。</p>
+
+        <p><a href="/assets/posts/img/android_wear_chage_face/watch-3.jpeg" target="_blank"><img width="20%" height="20%" title="ウォッチ-ウォッチフェイス変更" alt="ウォッチ-ウォッチフェイス変更" src="/assets/posts/img/android_wear_chage_face/watch-3.jpeg" /></a></p>
+      </li>
+      <li>
+        <p>⑦【ウォッチ】上記でPlayストアからインストールした時計アプリを見つけ、タップするとホーム画面に設定されます。</p>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+  </div><!-- /.entry-content -->
+</article><!-- /.hentry -->
+
+<article class="hentry">
+  <header>
+    
+    <div class="entry-meta">
+      <span class="entry-date date published updated"><time datetime="2014-07-20T20:00:00-04:00"><a href="/laravel/laravel_passing_data_from_basecontroller/">July 20, 2014</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About sankame">sankame</a></span></span>
+      
+      <span class="entry-reading-time">
+        <i class="fa fa-clock-o"></i>
+        
+        Reading time ~1 minute
+      </span><!-- /.entry-reading-time -->
+      
+    </div><!-- /.entry-meta -->
+    
+      <h1 class="entry-title"><a href="/laravel/laravel_passing_data_from_basecontroller/" rel="bookmark" title="【Laravel】全てのビューに値を渡す" itemprop="url">【Laravel】全てのビューに値を渡す</a></h1>
+    
+  </header>
+  <div class="entry-content">
+    
+<p><span><a href="https://twitter.com/handycola" class="twitter-follow-button" data-show-count="false" data-lang="ja" data-size="large" data-show-screen-name="false" data-dnt="true">@handycolaさんをフォロー</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></span><span style="float:right;">投稿日：2014年07月20日</span></p>
+<div>
+<script async="" src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 468_60_banner_header -->
+<ins class="adsbygoogle" style="display:inline-block;width:468px;height:60px" data-ad-client="ca-pub-7938855665302783" data-ad-slot="6346277556"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+
+<h5 id="section">0.環境</h5>
+
+<pre><code>[CentOS]   5.6 (32bit版カーネル)
+[Apache]   2.2.3
+[PHP]      5.4.1
+[Laravel]  4.1.23
+</code></pre>
+
+<h5 id="section-1">1.課題</h5>
+
+<ul>
+  <li>全ビュー(Bladeテンプレート)で使う値をBaseControllerから渡したい。</li>
+</ul>
+
+<h5 id="section-2">2.対策</h5>
+
+<ul>
+  <li>
+    <p>Laravelの作法としてあっているか不明ですが、一旦これで値は渡せました。</p>
+
+    <p>下記例では、設定ファイルの基底URL(app.php内のurl変数)をビューに渡しています。</p>
+
+    <ul>
+      <li>
+        <p>①　app/config/local/app.php</p>
+
+        <p>(本番環境の場合、app/config/app.php に定義して下さい)</p>
+
+        <script src="https://gist.github.com/2a3ec0e21cea5584245b.js?file=app.php"> </script>
+      </li>
+      <li>
+        <p>②　app/controllers/BaseController.php</p>
+
+        <p>getBaseUrl() メソッドを定義し、基底URLを返します。</p>
+
+        <p>(staticでないとビューで実行できない)</p>
+
+        <script src="https://gist.github.com/fa1b2701da0e48c1a939.js?file=BaseController.php"> </script>
+      </li>
+      <li>
+        <p>各コントローラは②を継承します。(コード抜粋)</p>
+
+        <pre><code>  class EachController extends BaseController
+  {
+</code></pre>
+      </li>
+      <li>
+        <p>③　app/views/layout.blade.php (コード抜粋)</p>
+
+        <p>全てのビューで共通に使っているビューで、BaseControllerから値を取得します。</p>
+
+        <script src="https://gist.github.com/97b5ca9f99076723dbae.js?file=layout.blade.php"> </script>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>参考</p>
+
+    <ul>
+      <li><a href="http://forumsarchive.laravel.io/viewtopic.php?id=8123" target="_blank">Passing data from base controller to default blade.</a></li>
+    </ul>
+  </li>
+</ul>
+
+
+  </div><!-- /.entry-content -->
+</article><!-- /.hentry -->
+
+<article class="hentry">
+  <header>
+    
+    <div class="entry-meta">
+      <span class="entry-date date published updated"><time datetime="2014-07-14T20:00:00-04:00"><a href="/laravel/laravel_trailing_slash_redirect/">July 14, 2014</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About sankame">sankame</a></span></span>
+      
+      <span class="entry-reading-time">
+        <i class="fa fa-clock-o"></i>
+        
+        Reading time ~1 minute
+      </span><!-- /.entry-reading-time -->
+      
+    </div><!-- /.entry-meta -->
+    
+      <h1 class="entry-title"><a href="/laravel/laravel_trailing_slash_redirect/" rel="bookmark" title="【Laravel】AjaxでPOSTできない" itemprop="url">【Laravel】AjaxでPOSTできない</a></h1>
+    
+  </header>
+  <div class="entry-content">
+    
+<p><span><a href="https://twitter.com/handycola" class="twitter-follow-button" data-show-count="false" data-lang="ja" data-size="large" data-show-screen-name="false" data-dnt="true">@handycolaさんをフォロー</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></span><span style="float:right;">投稿日：2014年07月14日</span></p>
+<div>
+<script async="" src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 468_60_banner_header -->
+<ins class="adsbygoogle" style="display:inline-block;width:468px;height:60px" data-ad-client="ca-pub-7938855665302783" data-ad-slot="6346277556"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+
+<h5 id="section">0.環境</h5>
+
+<pre><code>[CentOS]   5.6 (32bit版カーネル)
+[Apache]   2.2.3
+[PHP]      5.4.1
+[Laravel]  4.1.23
+</code></pre>
+
+<h5 id="section-1">1.問題</h5>
+
+<ul>
+  <li>
+    <p>PHPのLaravelフレームワークを使っていたら、AjaxでPOSTした値がサーバ側で取得できずにはまりました。</p>
+
+    <p>①から②へ test という名前で hoge という値を送信します。</p>
+
+    <ul>
+      <li>
+        <p>① Javascript側</p>
+
+        <script src="https://gist.github.com/a9da32445d224fb1df63.js?file=ajax-test.js"> </script>
+      </li>
+      <li>
+        <p>② PHP側</p>
+
+        <script src="https://gist.github.com/649420870dc9835cb08c.js?file=routes.php"> </script>
+      </li>
+      <li>
+        <p>ログ出力結果を見ると、下記のようにPOST値が取得できていません。</p>
+
+        <pre><code>  [2014-07-16 12:09:36] local.DEBUG:  [] []
+</code></pre>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h5 id="section-2">2.原因</h5>
+
+<ul>
+  <li>
+    <p>Firefox の “Live HTTP headers” アドオンでURLの遷移を見たところ、下記のようにリダイレクトしていることがわかりました。</p>
+
+    <pre><code>  http://local.vm/test/
+      ↓↓↓
+  http://local.vm/test
+</code></pre>
+  </li>
+  <li>
+    <p>grepしたところ、.htaccessでリダイレクトしてました。</p>
+
+    <ul>
+      <li>
+        <p>ソース</p>
+
+        <p>app-root/public/.htaccess</p>
+      </li>
+      <li>
+        <p>記述</p>
+
+        <pre><code>  # Redirect Trailing Slashes...
+  RewriteRule ^(.*)/$ /$1 [L,R=301]
+</code></pre>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h5 id="section-3">3.対策</h5>
+
+<ul>
+  <li>
+    <p>Laravelはtrailing slash非推奨なのか？ とにかく下記のように修正。</p>
+
+    <ul>
+      <li>
+        <p>箇所</p>
+
+        <p>ajax-test.js (6行目)</p>
+      </li>
+      <li>
+        <p>内容</p>
+
+        <p>URLの末尾のスラッシュを削除し、/test に修正。</p>
+      </li>
+      <li>
+        <p>ログにもPOST値が出力されました。</p>
+
+        <pre><code>  [2014-07-16 13:03:39] local.DEBUG: hoge [] []
+</code></pre>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>参考</p>
+
+    <ul>
+      <li>
+        <p><a href="http://www.suzukikenichi.com/blog/do-we-need-a-trailing-slash-at-the-end-of-url/" target="_blank">URLの終りに「/」(スラッシュ)は必要?、不要?</a></p>
+      </li>
+      <li>
+        <p><a href="http://stackoverflow.com/questions/22063520/laravel-slash-after-url-redirects-to-root-folder" target="_blank">Laravel slash after url redirects to root folder</a></p>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+
+  </div><!-- /.entry-content -->
+</article><!-- /.hentry -->
+
+<article class="hentry">
+  <header>
+    
+    <div class="entry-meta">
+      <span class="entry-date date published updated"><time datetime="2014-07-02T20:00:00-04:00"><a href="/wget/wget_option_O/">July 02, 2014</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About sankame">sankame</a></span></span>
+      
+      <span class="entry-reading-time">
+        <i class="fa fa-clock-o"></i>
+        
+        Reading time ~1 minute
+      </span><!-- /.entry-reading-time -->
+      
+    </div><!-- /.entry-meta -->
+    
+      <h1 class="entry-title"><a href="/wget/wget_option_O/" rel="bookmark" title="wget ファイル名を指定してダウンロード" itemprop="url">wget ファイル名を指定してダウンロード</a></h1>
+    
+  </header>
+  <div class="entry-content">
+    
+<p><span><a href="https://twitter.com/handycola" class="twitter-follow-button" data-show-count="false" data-lang="ja" data-size="large" data-show-screen-name="false" data-dnt="true">@handycolaさんをフォロー</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></span><span style="float:right;">投稿日：2014年07月02日</span></p>
+<div>
+<script async="" src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 468_60_banner_header -->
+<ins class="adsbygoogle" style="display:inline-block;width:468px;height:60px" data-ad-client="ca-pub-7938855665302783" data-ad-slot="6346277556"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+
+<h5 id="o-">-O オプションを使って、ダウンロードファイル名を指定します。</h5>
+
+<ul>
+  <li>
+    <p>下記例では MyWget という名前に変更。</p>
+
+    <pre><code>  # wget -O MyWget http://ftp.gnu.org/gnu/wget/wget-1.15.tar.gz
+  # ls
+  # -rw-r--r--  1 root  root  3417936  1月 19 19:17 MyWget
+</code></pre>
+  </li>
+</ul>
+
+  </div><!-- /.entry-content -->
+</article><!-- /.hentry -->
+
+
+<div class="pagination">
+  
+    Previous
+  
+  <ul class="inline-list">
+    <li>
+      
+        <span class="current-page">1</span>
+      
+    </li>
+    
+      <li>
+        
+          <a href="/page2">2</a>
+        
+      </li>
+    
+      <li>
+        
+          <a href="/page3">3</a>
+        
+      </li>
+    
+      <li>
+        
+          <a href="/page4">4</a>
+        
+      </li>
+    
+      <li>
+        
+          <a href="/page5">5</a>
+        
+      </li>
+    
+      <li>
+        
+          <a href="/page6">6</a>
+        
+      </li>
+    
+      <li>
+        
+          <a href="/page7">7</a>
+        
+      </li>
+    
+  </ul>
+  
+    <a href="/page2" class="btn">Next</a>
+  
+</div><!-- /.pagination -->
+
+<div>
+<div align="center"><font color="#20B2AA" >【免責事項】</font></div><br>
+本ブログのご利用につき、何らかのトラブルや損失・損害等につきましては一切責任を問わないものとします。
+</div>
+</div><!-- /#main -->
+
+<div class="footer-wrapper">
+  <footer role="contentinfo">
+    <span>&copy; 2015 sankame. Powered by <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> using the <a href="http://mademistakes.com/hpstr/" rel="notfollow">HPSTR Theme</a>.</span>
+  </footer>
+</div><!-- /.footer-wrapper -->
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="/assets/js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+<script src="/assets/js/scripts.min.js"></script>
+
+
+
+
 <script type="text/javascript">
 
   var _gaq = _gaq || [];
@@ -42,174 +706,7 @@
 
 </script>
 
+          
 
-  </head>
-  <body>
-
-  <div id="header">
-    <a href="#" id="menu">メニュー</a>
-    <nav>
-        <li><a href="/">トップ</a></li>
-        
-        
-        
-
-
-  
-    
-      
-      	
-      	<li><a href="/archive.html">投稿</a></li>
-      	
-      
-    
-  
-    
-      
-      	
-      	<li><a href="/categories.html">カテゴリー</a></li>
-      	
-      
-    
-  
-    
-      
-    
-  
-    
-      
-      	
-      	<li><a href="/tags.html">タグ</a></li>
-      	
-      
-    
-  
-    
-      
-    
-  
-    
-      
-    
-  
-    
-      
-    
-  
-    
-      
-    
-  
-
-
-
-    </nav>
-  </div><!-- end header -->
-
-    <div class="wrapper">
-
-      <section>
-
-      <div class="content">
-        
-
-<div class="page-header">
-  <h1>テキストブログ </h1>
-</div>
-
-<div class="row">
-
-  <div class="span12" >
-  <!--[if IE 6 ]>
-    <div class="span12-for-ie6">
-  <![endif]-->
-    
-<p>ネット企業のプログラマー sankameです。</p>
-
-<p>主にIT系の調べ物を思い出すためのブログです。</p>
-
-<h3 id=""><font color='#20B2AA'>最近の投稿</font></h3>
-<ul class='posts'>
-  
-    <li><span>2014年08月20日</span> &raquo; <a href='/Apache/2014/08/20/http_basic_authentication'>ベーシック認証設定 (VirtualHostの場合)</a></li>
-  
-    <li><span>2014年07月26日</span> &raquo; <a href='/AndroidWear/2014/07/26/android_wear_chage_face'>【Android Wear】ホーム画面の時計を変更</a></li>
-  
-    <li><span>2014年07月21日</span> &raquo; <a href='/Laravel/2014/07/21/laravel_passing_data_from_basecontroller'>【Laravel】全てのビューに値を渡す</a></li>
-  
-    <li><span>2014年07月15日</span> &raquo; <a href='/Laravel/2014/07/15/laravel_trailing_slash_redirect'>【Laravel】AjaxでPOSTできない</a></li>
-  
-    <li><span>2014年07月03日</span> &raquo; <a href='/wget/2014/07/03/wget_option_O'>wget ファイル名を指定してダウンロード</a></li>
-  
-</ul>
-<h4 id="_2"><font color='#20B2AA'>免責事項</font></h4>
-
-<pre><code>本ブログのご利用につき、何らかのトラブルや損失・損害等につきましては一切責任を問わないものとします。</code></pre>
-
-<h4 id="_3"><font color='#20B2AA'>運営</font></h4>
-
-<ul>
-<li>
-<p>運営者：sankame</p>
-</li>
-
-<li>
-<p>連絡先：<a href='mailto:m2ad0504@outlook.jp'>メール</a></p>
-</li>
-
-<li>
-<p>住所　：千葉</p>
-</li>
-</ul>
-
-  <!--[if IE 6 ]>
-    </div>
-  <![endif]-->
-  </div>
-</div>
-
-
-        <div>
-<div style="padding:6px;">
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- 468_60_banner_bottom1 -->
-<ins class="adsbygoogle"
-     style="display:inline-block;width:468px;height:60px"
-     data-ad-client="ca-pub-7938855665302783"
-     data-ad-slot="1426962757"></ins>
-<script>
-(adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-</div>
-
-<div style="padding:6px;">
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- 468_60_banner_bottom2 -->
-<ins class="adsbygoogle"
-     style="display:inline-block;width:468px;height:60px"
-     data-ad-client="ca-pub-7938855665302783"
-     data-ad-slot="5857162358"></ins>
-<script>
-(adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-</div>
-</div>
-		<div></div>
-		<b>sankameのつぶやき</b><br>
-		<a href="https://twitter.com/handycola" class="twitter-follow-button" data-show-count="false" data-lang="ja" data-size="large" data-show-screen-name="false" data-dnt="true">@handycolaさんをフォロー</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-      </div>
-
-      <footer>
-        <p>&copy; sankame 2012 
-          with help from <a href="http://jekyllthemes.org/themes/midnight/" target="_blank" title="Midnight">Midnight</a>
-        </p>
-      </footer>
-
-      </section>
-    </div>
-    <!--[if !IE]><script>fixScale(document);</script><!--<![endif]-->
-  
-  </body>
+</body>
 </html>
-
