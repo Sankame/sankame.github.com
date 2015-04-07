@@ -39,6 +39,7 @@
 
 <!-- For all browsers -->
 <link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="/assets/css/ext.css">
 <!-- Webfonts -->
 <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic" rel="stylesheet" type="text/css">
 
@@ -85,7 +86,7 @@
 				<li>
 					<img src="/images/avatar.jpg" alt="sankame photo" class="author-photo">
 					<h4>sankame</h4>
-					<p>老舗インターネット・メディア企業で働くプログラマー。千葉県在住。</p>
+					<p>老舗ネット企業で働くプログラマー。<br>千葉県在住。</p>
 				</li>
 				<!-- <li><a href="/about/"><span class="btn btn-inverse">Learn More</span></a></li> -->
 				<li>
@@ -153,81 +154,75 @@
 (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
 </div>
-      
-<p><span><a href="https://twitter.com/handycola" class="twitter-follow-button" data-show-count="false" data-lang="ja" data-size="large" data-show-screen-name="false" data-dnt="true">@handycolaさんをフォロー</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></span><span style="float:right;">投稿日：2012年12月22日</span></p>
+      <p><span style="float:right;">投稿日：2012年12月22日</span></p>
 
-<h4 id="pcvmwareplayerruby-rubygems-jekyll">ローカルPCのVmwarePlayerにRuby, RubyGems, Jekyllをインストール。</h4>
-<p>#### Jekyllで作ったブログをGitHubに設置する。</p>
+<h4>ローカルPCのVmwarePlayerにRuby, RubyGems, Jekyllをインストール。</h4>
 
-<h4 id="ruby">1.Rubyインストール</h4>
-<pre><code># インストール済みか？
+<h4>Jekyllで作ったブログをGitHubに設置する。</h4>
+
+<h4>1.Rubyインストール</h4>
+<div class="highlight"><pre><code class="language-text" data-lang="text"># インストール済みか？
 # rpm -q ruby
 # インストールされていない場合、インストールを行う。
 # yum install ruby ruby-devel rdoc irb
-</code></pre>
-
-<h4 id="rubygems">2.RubyGemsインストール</h4>
-<pre><code># wget http://rubyforge.org/frs/download.php/60718/rubygems-1.3.5.tgz
+</code></pre></div>
+<h4>2.RubyGemsインストール</h4>
+<div class="highlight"><pre><code class="language-text" data-lang="text"># wget http://rubyforge.org/frs/download.php/60718/rubygems-1.3.5.tgz
 # tar xzf rubygems-1.3.5.tgz
 # cd rubygems-1.3.5
 # ruby setup.rb
 # インストールされたgemsのバージョン確認。
 # gem -v
-</code></pre>
-
-<h4 id="jekyll">3.Jekyllインストール</h4>
-<pre><code># gem install jekyll
-</code></pre>
-
+</code></pre></div>
+<h4>3.Jekyllインストール</h4>
+<div class="highlight"><pre><code class="language-text" data-lang="text"># gem install jekyll
+</code></pre></div>
 <p>下記メッセージ(抜粋)でインストール失敗…</p>
 
 <p>buffer overflow detected</p>
 
-<h5 id="vmware-player192mb---256mb-">3-1. vmware playerの割り当てメモリ変更。192MB -&gt; 256MB (問題の解決とは無関係と思われる)</h5>
+<h5>3-1. vmware playerの割り当てメモリ変更。192MB -&gt; 256MB (問題の解決とは無関係と思われる)</h5>
 
-<h5 id="ruby-1">3-2. Ruby再インストール</h5>
-<pre><code># cd /etc/yum.repos.d/
+<h5>3-2. Ruby再インストール</h5>
+<div class="highlight"><pre><code class="language-text" data-lang="text"># cd /etc/yum.repos.d/
 # wget http://rubyworks.rubyforge.org/RubyWorks.repo
 # yum install ruby
 
 # ruby -v
 ruby 1.8.6 (2007-09-24 patchlevel 111) [i386-linux]
-</code></pre>
-
-<h5 id="jekyll-1">3-3. Jekyll再インストール</h5>
-<pre><code># gem install jekyll
+</code></pre></div>
+<h5>3-3. Jekyll再インストール</h5>
+<div class="highlight"><pre><code class="language-text" data-lang="text"># gem install jekyll
 ERROR: Error installing jekyll:
 liquid requires RubyGems version &gt;= 1.3.7
 # またもやエラー。
-</code></pre>
-
-<h5 id="rubygems-1">3-4. RubyGems再インストール</h5>
-<pre><code># 上記3-3でRubyGemsのバージョンが違うというエラーが出たのでRuby Forgeで当該バージョンのURLをコピー。
+</code></pre></div>
+<h5>3-4. RubyGems再インストール</h5>
+<div class="highlight"><pre><code class="language-text" data-lang="text"># 上記3-3でRubyGemsのバージョンが違うというエラーが出たのでRuby Forgeで当該バージョンのURLをコピー。
 # http://rubyforge.org/frs/?group_id=126
 
 # wget http://rubyforge.org/frs/download.php/60718/rubygems-1.3.7.tgz
 # cd rubygems-1.3.7
 # ruby setup.rb
-</code></pre>
-
-<h5 id="jekyll-2">3-5. Jekyll再インストール</h5>
-<pre><code># gem install jekyll
+</code></pre></div>
+<h5>3-5. Jekyll再インストール</h5>
+<div class="highlight"><pre><code class="language-text" data-lang="text"># gem install jekyll
 # 今回はインストール成功。
 # jekyll -v
 Jekyll 0.11.2
-</code></pre>
+</code></pre></div>
+<h5>3-6. <a href="http://help.papertrailapp.com/discussions/questions/114-buffer-overflow-detected">参考ページ</a></h5>
 
-<h5 id="httphelppapertrailappcomdiscussionsquestions114-buffer-overflow-detected">3-6. <a href="http://help.papertrailapp.com/discussions/questions/114-buffer-overflow-detected">参考ページ</a></h5>
+<h4>4.Jekyll Bootstrap取得</h4>
 
-<h4 id="jekyll-bootstrap">4.Jekyll Bootstrap取得</h4>
-<p>##### 1から作ると大変なのでテンプレートを利用。
-##### ※/var/www/html/はapacheのドキュメントルート
-    # cd /var/www/html/jekyll
-    # git clone http://github.com/plusjade/jekyll-bootstrap.git JEKYLL_HOME</p>
+<h5>1から作ると大変なのでテンプレートを利用。</h5>
 
-<h4 id="jekyll-3">5.Jekyll起動</h4>
-<pre><code># jekyll --server --auto
+<h5>※/var/www/html/はapacheのドキュメントルート</h5>
+<div class="highlight"><pre><code class="language-text" data-lang="text"># cd /var/www/html/jekyll
+# git clone http://github.com/plusjade/jekyll-bootstrap.git JEKYLL_HOME
+</code></pre></div>
+<h4>5.Jekyll起動</h4>
+<div class="highlight"><pre><code class="language-text" data-lang="text"># jekyll --server --auto
 
 WARNING: Could not read configuration. Using defaults (and options).
 No such file or directory - /root/_config.yml
@@ -247,22 +242,23 @@ Auto-regenerating enabled: /var/www/html/jekyll/JEKYLL_HOME -&gt; /var/www/html/
 
 # 後は下記ディレクトリに記事ファイルを追加していく。
 # /var/www/html/jekyll/JEKYLL_HOME/_posts/YYYY-MM-DD-*.md
-</code></pre>
+</code></pre></div>
+<h4>6.GitHubへアップ</h4>
 
-<h4 id="github">6.GitHubへアップ</h4>
-<p>##### 任意のディレクトリをGitの作業ツリーにして、そこからHTMLをGitHubへPushする。
-##### <code>【注意】/var/www/html/jekyll/JEKYLL_HOME/_site/ を作業ツリーにするとJekyllを起動する度に.gitが削除されるので適さない。</code>
-    # Jekyllが生成したHTMLをGit作業ツリー(任意のディレクトリ)へコピーする。
-    # cp -pr /var/www/html/jekyll/JEKYLL_HOME/_site/* /var/www/html/sankame.github.com/
-    # cd /var/www/html/sankame.github.com
-    # git init
-    # git add .
-    # git commit -m “initial commit.”
-    # git remote add origin git@github.com:Sankame/sankame.github.com.git
-    # git fetch
-    # git merge -s ours origin/master
-    # git push</p>
+<h5>任意のディレクトリをGitの作業ツリーにして、そこからHTMLをGitHubへPushする。</h5>
 
+<h5><code>【注意】/var/www/html/jekyll/JEKYLL_HOME/_site/ を作業ツリーにするとJekyllを起動する度に.gitが削除されるので適さない。</code></h5>
+<div class="highlight"><pre><code class="language-text" data-lang="text"># Jekyllが生成したHTMLをGit作業ツリー(任意のディレクトリ)へコピーする。
+# cp -pr /var/www/html/jekyll/JEKYLL_HOME/_site/* /var/www/html/sankame.github.com/
+# cd /var/www/html/sankame.github.com
+# git init
+# git add .
+# git commit -m &quot;initial commit.&quot;
+# git remote add origin git@github.com:Sankame/sankame.github.com.git
+# git fetch
+# git merge -s ours origin/master
+# git push
+</code></pre></div>
       <div>
 <div style="padding:6px;">
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
@@ -288,6 +284,8 @@ Auto-regenerating enabled: /var/www/html/jekyll/JEKYLL_HOME -&gt; /var/www/html/
 </script>
 </div>
 </div>
+      <span><a href="https://twitter.com/handycola" class="twitter-follow-button" data-show-count="false" data-lang="ja" data-size="large" data-show-screen-name="false" data-dnt="true">@handycolaさんをフォロー</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></span>
       <footer class="entry-meta">
         
         <div class="social-share">

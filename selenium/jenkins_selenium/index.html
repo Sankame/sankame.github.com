@@ -39,6 +39,7 @@
 
 <!-- For all browsers -->
 <link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="/assets/css/ext.css">
 <!-- Webfonts -->
 <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic" rel="stylesheet" type="text/css">
 
@@ -85,7 +86,7 @@
 				<li>
 					<img src="/images/avatar.jpg" alt="sankame photo" class="author-photo">
 					<h4>sankame</h4>
-					<p>老舗インターネット・メディア企業で働くプログラマー。千葉県在住。</p>
+					<p>老舗ネット企業で働くプログラマー。<br>千葉県在住。</p>
 				</li>
 				<!-- <li><a href="/about/"><span class="btn btn-inverse">Learn More</span></a></li> -->
 				<li>
@@ -153,13 +154,10 @@
 (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
 </div>
-      
-<p><span><a href="https://twitter.com/handycola" class="twitter-follow-button" data-show-count="false" data-lang="ja" data-size="large" data-show-screen-name="false" data-dnt="true">@handycolaさんをフォロー</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></span><span style="float:right;">投稿日：2014年06月03日</span></p>
+      <p><span style="float:right;">投稿日：2014年06月03日</span></p>
 
-<h5 id="section">0.環境</h5>
-
-<pre><code>・親ノード端末
+<h5>0.環境</h5>
+<div class="highlight"><pre><code class="language-text" data-lang="text">・親ノード端末
   [CentOS]   5.6 (32bit版カーネル)
   [ruby]     2.1.1p76
   [rvm]      1.25.25
@@ -170,87 +168,69 @@
   [Windows]  Vista Home Premium (32bit)
   [java]     1.7.0_51
   [IE]       8
-</code></pre>
-
-<h5 id="section-1">1.準備</h5>
+</code></pre></div>
+<h5>1.準備</h5>
 
 <ul>
-  <li>
-    <p>Jenkinsインストール</p>
+<li><p>Jenkinsインストール</p>
 
-    <p>下記のリンクを参考にJenkinsをインストールしました。</p>
+<p>下記のリンクを参考にJenkinsをインストールしました。</p>
 
-    <p><a href="http://d.hatena.ne.jp/katsuren/20121030/1351569655">俺の成長日記</a></p>
+<p><a href="http://d.hatena.ne.jp/katsuren/20121030/1351569655">俺の成長日記</a></p>
 
-    <p><a href="http://oscasierra.net/2013/05/jenkins-to-redhat/">OSCALOG</a></p>
+<p><a href="http://oscasierra.net/2013/05/jenkins-to-redhat/">OSCALOG</a></p>
 
-    <p><a href="http://kohkimakimoto.hatenablog.com/entry/2013/11/22/192646">JenkinsをCentOSにインストールしたときのメモ</a></p>
-  </li>
-  <li>
-    <p>前回の続き</p>
+<p><a href="http://kohkimakimoto.hatenablog.com/entry/2013/11/22/192646">JenkinsをCentOSにインストールしたときのメモ</a></p></li>
+<li><p>前回の続き</p>
 
-    <p>親ノードと子ノードでSelenium Serverを起動します。(下記リンク参照)</p>
+<p>親ノードと子ノードでSelenium Serverを起動します。(下記リンク参照)</p>
 
-    <p><a href="/Selenium/2014/05/24/selenium_webdriver/">Selenium WebDriverを動かしてみる</a></p>
+<p><a href="/Selenium/2014/05/24/selenium_webdriver/">Selenium WebDriverを動かしてみる</a></p>
 
-    <p>前回と異なる点は、Jenkinsがポート4444を使っていたので、Selenium Serverは4445を使って起動します。</p>
+<p>前回と異なる点は、Jenkinsがポート4444を使っていたので、Selenium Serverは4445を使って起動します。</p>
 
-    <p>・親ノード</p>
+<p>・親ノード</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text"># java -jar selenium-server-standalone-2.41.0.jar -role hub -port 4445
+</code></pre></div>
+<p>・子ノード</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">&gt; java -jar selenium-server-standalone-2.41.0.jar -role webdriver -hub http://192.168.130.130:4445/grid/register -Dwebdriver.ie.driver=./IEDriverServer.exe
+</code></pre></div></li>
+<li><p>Jenkins プラグイン追加</p>
 
-    <pre><code>  # java -jar selenium-server-standalone-2.41.0.jar -role hub -port 4445
-</code></pre>
+<p>rvmでrubyを使っているので、予めJenkinsにrvmプラグインを追加。</p>
 
-    <p>・子ノード</p>
+<p>Jenkinsのダッシュボードから[Jenkinsの管理]-[プラグインの管理]-[利用可能]</p>
 
-    <pre><code>  &gt; java -jar selenium-server-standalone-2.41.0.jar -role webdriver -hub http://192.168.130.130:4445/grid/register -Dwebdriver.ie.driver=./IEDriverServer.exe
-</code></pre>
-  </li>
-  <li>
-    <p>Jenkins プラグイン追加</p>
+<p>右上のフィルターでrvmと打つとRVMプラグインが表示されるのでチェックをつけ、[再起動せずにインストール]クリック。</p>
 
-    <p>rvmでrubyを使っているので、予めJenkinsにrvmプラグインを追加。</p>
+<p>(インストールは何回か失敗することがあります)</p></li>
+<li><p>Jenkins ジョブ追加</p>
 
-    <p>Jenkinsのダッシュボードから[Jenkinsの管理]-[プラグインの管理]-[利用可能]</p>
+<p>Jenkinsのダッシュボードから[新規ジョブ作成]、ジョブ名を入力し、[フリースタイル・プロジェクトのビルド]を選択して[OK]クリック。</p>
 
-    <p>右上のフィルターでrvmと打つとRVMプラグインが表示されるのでチェックをつけ、[再起動せずにインストール]クリック。</p>
+<p>ビルド環境のRVMで使用したいrubyのバージョンを指定。(自分の場合 2.1.1) (下図参照)</p>
 
-    <p>(インストールは何回か失敗することがあります)</p>
-  </li>
-  <li>
-    <p>Jenkins ジョブ追加</p>
+<p>シェルスクリプトで下記のように指定。(パス等は読み替えて下さい) (下図参照)</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">/usr/local/rvm/rubies/ruby-2.1.1/bin/ruby /app/seleniumtest/seleniumtest_4445.rb
+</code></pre></div>
+<p>「保存」ボタンクリック。</p>
 
-    <p>Jenkinsのダッシュボードから[新規ジョブ作成]、ジョブ名を入力し、[フリースタイル・プロジェクトのビルド]を選択して[OK]クリック。</p>
+<p><a href="/assets/posts/img/jenkins_selenium/jenkins_project.png" target="_blank"><img width="50%" height="50%" title="Jenkinsプロジェクト設定" alt="Jenkinsプロジェクト設定" src="/assets/posts/img/jenkins_selenium/jenkins_project.png"></a></p></li>
+<li><p>rubyスクリプト</p>
 
-    <p>ビルド環境のRVMで使用したいrubyのバージョンを指定。(自分の場合 2.1.1) (下図参照)</p>
+<p>上記でJenkinsに設定した &quot;seleniumtest_4445.rb&quot; は以下の内容です。(ポート番号4445でアクセス)</p>
 
-    <p>シェルスクリプトで下記のように指定。(パス等は読み替えて下さい) (下図参照)</p>
-
-    <pre><code>  /usr/local/rvm/rubies/ruby-2.1.1/bin/ruby /app/seleniumtest/seleniumtest_4445.rb
-</code></pre>
-
-    <p>「保存」ボタンクリック。</p>
-
-    <p><a href="/assets/posts/img/jenkins_selenium/jenkins_project.png" target="_blank"><img width="50%" height="50%" title="Jenkinsプロジェクト設定" alt="Jenkinsプロジェクト設定" src="/assets/posts/img/jenkins_selenium/jenkins_project.png" /></a></p>
-  </li>
-  <li>
-    <p>rubyスクリプト</p>
-
-    <p>上記でJenkinsに設定した “seleniumtest_4445.rb” は以下の内容です。(ポート番号4445でアクセス)</p>
-
-    <script src="https://gist.github.com/dc5fb2d680b67acefbf3.js?file=seleniumtest_4445.rb"> </script>
-  </li>
+<script src="https://gist.github.com/dc5fb2d680b67acefbf3.js?file=seleniumtest_4445.rb"> </script></li>
 </ul>
 
-<h5 id="section-2">2.起動</h5>
+<h5>2.起動</h5>
 
 <ul>
-  <li>
-    <p>ビルド実行</p>
+<li><p>ビルド実行</p>
 
-    <p>上記で作成したジョブで「ビルド実行」をクリック。</p>
+<p>上記で作成したジョブで「ビルド実行」をクリック。</p>
 
-    <p>子ノードでIEが起動すれば成功です。</p>
-  </li>
+<p>子ノードでIEが起動すれば成功です。</p></li>
 </ul>
 
       <div>
@@ -278,6 +258,8 @@
 </script>
 </div>
 </div>
+      <span><a href="https://twitter.com/handycola" class="twitter-follow-button" data-show-count="false" data-lang="ja" data-size="large" data-show-screen-name="false" data-dnt="true">@handycolaさんをフォロー</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></span>
       <footer class="entry-meta">
         
         <div class="social-share">

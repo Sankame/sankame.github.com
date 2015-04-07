@@ -39,6 +39,7 @@
 
 <!-- For all browsers -->
 <link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="/assets/css/ext.css">
 <!-- Webfonts -->
 <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic" rel="stylesheet" type="text/css">
 
@@ -85,7 +86,7 @@
 				<li>
 					<img src="/images/avatar.jpg" alt="sankame photo" class="author-photo">
 					<h4>sankame</h4>
-					<p>老舗インターネット・メディア企業で働くプログラマー。千葉県在住。</p>
+					<p>老舗ネット企業で働くプログラマー。<br>千葉県在住。</p>
 				</li>
 				<!-- <li><a href="/about/"><span class="btn btn-inverse">Learn More</span></a></li> -->
 				<li>
@@ -153,117 +154,79 @@
 (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
 </div>
-      
-<p><span><a href="https://twitter.com/handycola" class="twitter-follow-button" data-show-count="false" data-lang="ja" data-size="large" data-show-screen-name="false" data-dnt="true">@handycolaさんをフォロー</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></span><span style="float:right;">投稿日：2014年07月14日</span></p>
+      <p><span style="float:right;">投稿日：2014年07月14日</span></p>
 
-<h5 id="section">0.環境</h5>
-
-<pre><code>[CentOS]   5.6 (32bit版カーネル)
+<h5>0.環境</h5>
+<div class="highlight"><pre><code class="language-text" data-lang="text">[CentOS]   5.6 (32bit版カーネル)
 [Apache]   2.2.3
 [PHP]      5.4.1
 [Laravel]  4.1.23
-</code></pre>
-
-<h5 id="section-1">1.問題</h5>
-
-<ul>
-  <li>
-    <p>PHPのLaravelフレームワークを使っていたら、AjaxでPOSTした値がサーバ側で取得できずにはまりました。</p>
-
-    <p>①から②へ test という名前で hoge という値を送信します。</p>
-
-    <ul>
-      <li>
-        <p>① Javascript側</p>
-
-        <script src="https://gist.github.com/a9da32445d224fb1df63.js?file=ajax-test.js"> </script>
-      </li>
-      <li>
-        <p>② PHP側</p>
-
-        <script src="https://gist.github.com/649420870dc9835cb08c.js?file=routes.php"> </script>
-      </li>
-      <li>
-        <p>ログ出力結果を見ると、下記のようにPOST値が取得できていません。</p>
-
-        <pre><code>  [2014-07-16 12:09:36] local.DEBUG:  [] []
-</code></pre>
-      </li>
-    </ul>
-  </li>
-</ul>
-
-<h5 id="section-2">2.原因</h5>
+</code></pre></div>
+<h5>1.問題</h5>
 
 <ul>
-  <li>
-    <p>Firefox の “Live HTTP headers” アドオンでURLの遷移を見たところ、下記のようにリダイレクトしていることがわかりました。</p>
+<li><p>PHPのLaravelフレームワークを使っていたら、AjaxでPOSTした値がサーバ側で取得できずにはまりました。</p>
 
-    <pre><code>  http://local.vm/test/
-      ↓↓↓
-  http://local.vm/test
-</code></pre>
-  </li>
-  <li>
-    <p>grepしたところ、.htaccessでリダイレクトしてました。</p>
-
-    <ul>
-      <li>
-        <p>ソース</p>
-
-        <p>app-root/public/.htaccess</p>
-      </li>
-      <li>
-        <p>記述</p>
-
-        <pre><code>  # Redirect Trailing Slashes...
-  RewriteRule ^(.*)/$ /$1 [L,R=301]
-</code></pre>
-      </li>
-    </ul>
-  </li>
-</ul>
-
-<h5 id="section-3">3.対策</h5>
+<p>①から②へ test という名前で hoge という値を送信します。</p>
 
 <ul>
-  <li>
-    <p>Laravelはtrailing slash非推奨なのか？ とにかく下記のように修正。</p>
+<li><p>① Javascript側</p>
 
-    <ul>
-      <li>
-        <p>箇所</p>
+<script src="https://gist.github.com/a9da32445d224fb1df63.js?file=ajax-test.js"> </script></li>
+<li><p>② PHP側</p>
 
-        <p>ajax-test.js (6行目)</p>
-      </li>
-      <li>
-        <p>内容</p>
+<script src="https://gist.github.com/649420870dc9835cb08c.js?file=routes.php"> </script></li>
+<li><p>ログ出力結果を見ると、下記のようにPOST値が取得できていません。</p>
 
-        <p>URLの末尾のスラッシュを削除し、/test に修正。</p>
-      </li>
-      <li>
-        <p>ログにもPOST値が出力されました。</p>
-
-        <pre><code>  [2014-07-16 13:03:39] local.DEBUG: hoge [] []
-</code></pre>
-      </li>
-    </ul>
-  </li>
-  <li>
-    <p>参考</p>
-
-    <ul>
-      <li>
-        <p><a href="http://www.suzukikenichi.com/blog/do-we-need-a-trailing-slash-at-the-end-of-url/" target="_blank">URLの終りに「/」(スラッシュ)は必要?、不要?</a></p>
-      </li>
-      <li>
-        <p><a href="http://stackoverflow.com/questions/22063520/laravel-slash-after-url-redirects-to-root-folder" target="_blank">Laravel slash after url redirects to root folder</a></p>
-      </li>
-    </ul>
-  </li>
+<p><code>[2014-07-16 12:09:36] local.DEBUG:  [] []</code></p></li>
+</ul></li>
 </ul>
 
+<h5>2.原因</h5>
+
+<ul>
+<li><p>Firefox の &quot;Live HTTP headers&quot; アドオンでURLの遷移を見たところ、下記のようにリダイレクトしていることがわかりました。</p>
+
+<p>http://local.vm/test/</p>
+
+<p>↓↓↓</p>
+
+<p>http://local.vm/test</p></li>
+<li><p>grepしたところ、.htaccessでリダイレクトしてました。</p>
+
+<ul>
+<li><p>ソース</p>
+
+<p>app-root/public/.htaccess</p></li>
+<li><p>記述</p></li>
+</ul></li>
+</ul>
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="x">        # Redirect Trailing Slashes...</span>
+<span class="x">        RewriteRule ^(.*)/$ /$1 [L,R=301]</span>
+</code></pre></div>
+<h5>3.対策</h5>
+
+<ul>
+<li><p>Laravelはtrailing slash非推奨なのか？ とにかく下記のように修正。</p>
+
+<ul>
+<li><p>箇所</p>
+
+<p>ajax-test.js (6行目)</p></li>
+<li><p>内容</p>
+
+<p>URLの末尾のスラッシュを削除し、/test に修正。</p></li>
+<li><p>ログにもPOST値が出力されました。</p>
+
+<p><code>[2014-07-16 13:03:39] local.DEBUG: hoge [] []</code></p></li>
+</ul></li>
+<li><p>参考</p>
+
+<ul>
+<li><a href="http://www.suzukikenichi.com/blog/do-we-need-a-trailing-slash-at-the-end-of-url/" target="_blank">URLの終りに「/」(スラッシュ)は必要?、不要?</a></li>
+<li><a href="http://stackoverflow.com/questions/22063520/laravel-slash-after-url-redirects-to-root-folder" target="_blank">Laravel slash after url redirects to root folder</a></li>
+</ul></li>
+</ul>
 
       <div>
 <div style="padding:6px;">
@@ -290,6 +253,8 @@
 </script>
 </div>
 </div>
+      <span><a href="https://twitter.com/handycola" class="twitter-follow-button" data-show-count="false" data-lang="ja" data-size="large" data-show-screen-name="false" data-dnt="true">@handycolaさんをフォロー</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></span>
       <footer class="entry-meta">
         
         <div class="social-share">

@@ -39,6 +39,7 @@
 
 <!-- For all browsers -->
 <link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="/assets/css/ext.css">
 <!-- Webfonts -->
 <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic" rel="stylesheet" type="text/css">
 
@@ -85,7 +86,7 @@
 				<li>
 					<img src="/images/avatar.jpg" alt="sankame photo" class="author-photo">
 					<h4>sankame</h4>
-					<p>老舗インターネット・メディア企業で働くプログラマー。千葉県在住。</p>
+					<p>老舗ネット企業で働くプログラマー。<br>千葉県在住。</p>
 				</li>
 				<!-- <li><a href="/about/"><span class="btn btn-inverse">Learn More</span></a></li> -->
 				<li>
@@ -153,97 +154,80 @@
 (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
 </div>
-      
-<p><span><a href="https://twitter.com/handycola" class="twitter-follow-button" data-show-count="false" data-lang="ja" data-size="large" data-show-screen-name="false" data-dnt="true">@handycolaさんをフォロー</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></span><span style="float:right;">投稿日：2014年06月20日</span></p>
+      <p><span style="float:right;">投稿日：2014年06月20日</span></p>
 
-<h5 id="section">0.環境</h5>
-
-<pre><code>  [CentOS]   5.6 (32bit版カーネル)
+<h5>0.環境</h5>
+<div class="highlight"><pre><code class="language-text" data-lang="text">  [CentOS]   5.6 (32bit版カーネル)
   [Git]      1.9.4
-</code></pre>
-
-<h5 id="section-1">1.ダウンロード</h5>
-
-<ul>
-  <li>
-    <p>Githubのソース取得</p>
-
-    <p><a href="/assets/posts/img/github_to_bitbucket/1.github.png" target="_blank"><img width="50%" height="50%" title="githubリポジトリ" alt="githubリポジトリ" src="/assets/posts/img/github_to_bitbucket/1.github.png" /></a></p>
-
-    <p>任意のディレクトリへ移動。</p>
-
-    <p>GitHubのリポジトリから対象ソースを取得。(上図の画面右下がURL)</p>
-
-    <pre><code>  # git clone git@github.com:Sankame/repo-of-github.git
-</code></pre>
-
-    <p>取得したソースの第1階層へ移動。</p>
-
-    <pre><code>  # cd repo-of-github/
-</code></pre>
-  </li>
-  <li>
-    <p>Bitbucketへソースアップ</p>
-
-    <p>予めBitbucket上で任意のリポジトリを作っておきます。</p>
-
-    <p><a href="/assets/posts/img/github_to_bitbucket/2.bitbucket_make_repo.png" target="_blank"><img width="50%" height="50%" title="bitbucketリポジトリ作成" alt="bitbucketリポジトリ作成" src="/assets/posts/img/github_to_bitbucket/2.bitbucket_make_repo.png" /></a></p>
-
-    <p>空のリポジトリができました。</p>
-
-    <p><a href="/assets/posts/img/github_to_bitbucket/3.bitbucket_new_repo.png" target="_blank"><img width="50%" height="50%" title="bitbucket新規リポジトリ" alt="bitbucket新規リポジトリ" src="/assets/posts/img/github_to_bitbucket/3.bitbucket_new_repo.png" /></a></p>
-
-    <p>上記で GitHub から取得したソースは origin がGitHubになっているので、 Bitbucket へ変更。</p>
-
-    <pre><code>  # git remote -v
-  origin  git@github.com:Sankame/repo-of-github.git (fetch)
-  origin  git@github.com:Sankame/repo-of-github.git (push)
-
-  # git remote rm origin
-  # git remote add origin git@bitbucket.org:Sankame/repo-of-bitbucket.git
-  # git push -u origin --all # pushes up the repo and its refs for the first time
-  # git push -u origin --tags # pushes up any tags
-</code></pre>
-
-    <p>GithubのソースがBitbucketへ取り込まれました。</p>
-
-    <p><a href="/assets/posts/img/github_to_bitbucket/4.bitbucket_imported_repo.png" target="_blank"><img width="50%" height="50%" title="bitbucket取り込んだソース" alt="bitbucket取り込んだソース" src="/assets/posts/img/github_to_bitbucket/4.bitbucket_imported_repo.png" /></a></p>
-
-    <p><code>※上記 "git remote add origin" でプロトコルにhttpsを指定していて、"git push" で下記エラーが出た場合は「2.git pushが動かない場合」参照。</code></p>
-
-    <pre><code>  fatal: Unable to find remote helper for 'https'
-</code></pre>
-  </li>
-</ul>
-
-<h5 id="git-push">2.git pushが動かない場合</h5>
+</code></pre></div>
+<h5>1.ダウンロード</h5>
 
 <ul>
-  <li>
-    <p>Gitをhttpsへ対応させる</p>
+<li><p>Githubのソース取得</p>
 
-    <p>下記URLを見るとcurl-develがないのが原因と書いてあったが、自分の環境には既に入っていたので、</p>
+<p><a href="/assets/posts/img/github_to_bitbucket/1.github.png" target="_blank"><img width="50%" height="50%" title="githubリポジトリ" alt="githubリポジトリ" src="/assets/posts/img/github_to_bitbucket/1.github.png"></a></p>
 
-    <p>gitを再コンパイル＆インストールしたところうまくいきました。</p>
+<p>任意のディレクトリへ移動。</p>
 
-    <p><a href="http://clavier.hatenablog.com/entry/2013/05/18/204050" target="_blank">CentOSに最新のgitをインストールする</a></p>
+<p>GitHubのリポジトリから対象ソースを取得。(上図の画面右下がURL)</p>
 
-    <p>※gitのソースが手元にある場合は再取得しなくてもOKです。</p>
+<p><code># git clone git@github.com:Sankame/repo-of-github.git</code></p>
 
-    <p>※rootで操作しているのでインストール時にprefix指定</p>
+<p>取得したソースの第1階層へ移動。</p>
 
-    <pre><code>  # wget https://www.kernel.org/pub/software/scm/git/git-1.9.4.tar.gz
-  # tar xzf git-1.9.4.tar.gz
-  # cd git-1.9.4
-  # ./configure
-  # make clean
-  # make
-  # make prefix=/usr install
-</code></pre>
-  </li>
+<p><code># cd repo-of-github/</code></p></li>
+<li><p>Bitbucketへソースアップ</p>
+
+<p>予めBitbucket上で任意のリポジトリを作っておきます。</p>
+
+<p><a href="/assets/posts/img/github_to_bitbucket/2.bitbucket_make_repo.png" target="_blank"><img width="50%" height="50%" title="bitbucketリポジトリ作成" alt="bitbucketリポジトリ作成" src="/assets/posts/img/github_to_bitbucket/2.bitbucket_make_repo.png"></a></p>
+
+<p>空のリポジトリができました。</p>
+
+<p><a href="/assets/posts/img/github_to_bitbucket/3.bitbucket_new_repo.png" target="_blank"><img width="50%" height="50%" title="bitbucket新規リポジトリ" alt="bitbucket新規リポジトリ" src="/assets/posts/img/github_to_bitbucket/3.bitbucket_new_repo.png"></a></p>
+
+<p>上記で GitHub から取得したソースは origin がGitHubになっているので、 Bitbucket へ変更。</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text"># git remote -v
+ origin  git@github.com:Sankame/repo-of-github.git (fetch) 
+ origin  git@github.com:Sankame/repo-of-github.git (push)
+
+ # git remote rm origin
+ # git remote add origin git@bitbucket.org:Sankame/repo-of-bitbucket.git
+ # git push -u origin --all # pushes up the repo and its refs for the first time
+ # git push -u origin --tags # pushes up any tags
+</code></pre></div>
+<p>GithubのソースがBitbucketへ取り込まれました。</p>
+
+<p><a href="/assets/posts/img/github_to_bitbucket/4.bitbucket_imported_repo.png" target="_blank"><img width="50%" height="50%" title="bitbucket取り込んだソース" alt="bitbucket取り込んだソース" src="/assets/posts/img/github_to_bitbucket/4.bitbucket_imported_repo.png"></a></p>
+
+<p><code>※上記 &quot;git remote add origin&quot; でプロトコルにhttpsを指定していて、&quot;git push&quot; で下記エラーが出た場合は下記の「2.git pushが動かない場合」参照。</code></p>
+
+<p><code>fatal: Unable to find remote helper for &#39;https&#39;</code></p></li>
 </ul>
 
+<h5>2.git pushが動かない場合</h5>
+
+<ul>
+<li><p>Gitをhttpsへ対応させる</p>
+
+<p>下記URLを見るとcurl-develがないのが原因と書いてあったが、自分の環境には既に入っていたので、</p>
+
+<p>gitを再コンパイル＆インストールしたところうまくいきました。</p>
+
+<p><a href="http://clavier.hatenablog.com/entry/2013/05/18/204050" target="_blank">CentOSに最新のgitをインストールする</a></p>
+
+<p>※gitのソースが手元にある場合は再取得しなくてもOKです。</p>
+
+<p>※rootで操作しているのでインストール時にprefix指定</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text"># wget https://www.kernel.org/pub/software/scm/git/git-1.9.4.tar.gz
+ # tar xzf git-1.9.4.tar.gz
+ # cd git-1.9.4
+ # ./configure
+ # make clean
+ # make
+ # make prefix=/usr install
+</code></pre></div></li>
+</ul>
 
       <div>
 <div style="padding:6px;">
@@ -270,6 +254,8 @@
 </script>
 </div>
 </div>
+      <span><a href="https://twitter.com/handycola" class="twitter-follow-button" data-show-count="false" data-lang="ja" data-size="large" data-show-screen-name="false" data-dnt="true">@handycolaさんをフォロー</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></span>
       <footer class="entry-meta">
         
         <div class="social-share">

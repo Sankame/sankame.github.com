@@ -39,6 +39,7 @@
 
 <!-- For all browsers -->
 <link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="/assets/css/ext.css">
 <!-- Webfonts -->
 <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic" rel="stylesheet" type="text/css">
 
@@ -85,7 +86,7 @@
 				<li>
 					<img src="/images/avatar.jpg" alt="sankame photo" class="author-photo">
 					<h4>sankame</h4>
-					<p>老舗インターネット・メディア企業で働くプログラマー。千葉県在住。</p>
+					<p>老舗ネット企業で働くプログラマー。<br>千葉県在住。</p>
 				</li>
 				<!-- <li><a href="/about/"><span class="btn btn-inverse">Learn More</span></a></li> -->
 				<li>
@@ -153,19 +154,15 @@
 (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
 </div>
-      
-<p><span><a href="https://twitter.com/handycola" class="twitter-follow-button" data-show-count="false" data-lang="ja" data-size="large" data-show-screen-name="false" data-dnt="true">@handycolaさんをフォロー</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></span><span style="float:right;">投稿日：2013年01月27日</span></p>
+      <p><span style="float:right;">投稿日：2013年01月27日</span></p>
 
-<h4 id="mecab">形態素解析エンジンMeCabをインストールしてみる。</h4>
+<h4>形態素解析エンジンMeCabをインストールしてみる。</h4>
 
-<h5 id="section">環境</h5>
-<pre><code>[CentOS] 5.6 (32bit版カーネル)
-</code></pre>
-
-<h5 id="section-1">1.インストール</h5>
-
-<pre><code># mecabのソースを取得
+<h5>環境</h5>
+<div class="highlight"><pre><code class="language-text" data-lang="text">[CentOS] 5.6 (32bit版カーネル)
+</code></pre></div>
+<h5>1.インストール</h5>
+<div class="highlight"><pre><code class="language-text" data-lang="text"># mecabのソースを取得
 # wget http://mecab.googlecode.com/files/mecab-0.98.tar.gz
 # tar xzf mecab-0.98.tar.gz 
 # cd mecab-0.98
@@ -174,15 +171,15 @@
 # mecab.hを開いて点線で囲んだ部分を修正する。数字に付けられている()を削除する。
 # vim mecab.h 
 --------------------------------------
-	#define MECAB_NOR_NODE  0
-	#define MECAB_UNK_NODE  1
-	#define MECAB_BOS_NODE  2
-	#define MECAB_EOS_NODE  3
-	#define MECAB_EON_NODE  4
+    #define MECAB_NOR_NODE  0
+    #define MECAB_UNK_NODE  1
+    #define MECAB_BOS_NODE  2
+    #define MECAB_EOS_NODE  3
+    #define MECAB_EON_NODE  4
 
-	#define MECAB_USR_DIC   1
-	#define MECAB_SYS_DIC   0
-	#define MECAB_UNK_DIC   2
+    #define MECAB_USR_DIC   1
+    #define MECAB_SYS_DIC   0
+    #define MECAB_UNK_DIC   2
 --------------------------------------
 
 # cd ..
@@ -201,31 +198,29 @@
 # char.def を開いて点線で囲んだ部分を修正する。オリジナルの部分をコメントアウトし、7行追加。
 # vim char.def 
 --------------------------------------
-	# ASCII
-	 #0x0021..0x002F SYMBOL
-	 #0x0030..0x0039 NUMERIC
-	 #0x003A..0x0040 SYMBOL
-	 #0x0041..0x005A ALPHA
-	 #0x005B..0x0060 SYMBOL
-	 #0x0061..0x007A ALPHA
-	 #0x007B..0x007E SYMBOL
-	 0x0021..0x002F ALPHA
-	 0x0030..0x0039 ALPHA
-	 0x003A..0x0040 ALPHA
-	 0x0041..0x005A ALPHA
-	 0x005B..0x0060 ALPHA
-	 0x0061..0x007A ALPHA
-	 0x007B..0x007E ALPHA
+    # ASCII
+     #0x0021..0x002F SYMBOL
+     #0x0030..0x0039 NUMERIC
+     #0x003A..0x0040 SYMBOL
+     #0x0041..0x005A ALPHA
+     #0x005B..0x0060 SYMBOL
+     #0x0061..0x007A ALPHA
+     #0x007B..0x007E SYMBOL
+     0x0021..0x002F ALPHA
+     0x0030..0x0039 ALPHA
+     0x003A..0x0040 ALPHA
+     0x0041..0x005A ALPHA
+     0x005B..0x0060 ALPHA
+     0x0061..0x007A ALPHA
+     0x007B..0x007E ALPHA
 --------------------------------------
 
 ./configure --with-charset=utf-8
 make
 make install
-</code></pre>
-
-<h5 id="section-2">2.テスト</h5>
-
-<pre><code># 以下のようにmecabと打ってEnterキーを押すと待機状態になるので、次に解析したい文字列を入力する。
+</code></pre></div>
+<h5>2.テスト</h5>
+<div class="highlight"><pre><code class="language-text" data-lang="text"># 以下のようにmecabと打ってEnterキーを押すと待機状態になるので、次に解析したい文字列を入力する。
 # mecab
 # すもももももももものうち
 
@@ -238,12 +233,10 @@ make install
 の      助詞,連体化,*,*,*,*,の,ノ,ノ
 うち    名詞,非自立,副詞可能,*,*,*,うち,ウチ,ウチ
 EOS
-</code></pre>
-
+</code></pre></div>
 <p><a href="/MeCab/2013/04/29/php_mecab/">PHPから利用する方法はこちら</a></p>
 
 <p><a href="http://brandofme.vi-king.net/?p=197">参照したページ</a></p>
-
 
       <div>
 <div style="padding:6px;">
@@ -270,6 +263,8 @@ EOS
 </script>
 </div>
 </div>
+      <span><a href="https://twitter.com/handycola" class="twitter-follow-button" data-show-count="false" data-lang="ja" data-size="large" data-show-screen-name="false" data-dnt="true">@handycolaさんをフォロー</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></span>
       <footer class="entry-meta">
         
         <div class="social-share">

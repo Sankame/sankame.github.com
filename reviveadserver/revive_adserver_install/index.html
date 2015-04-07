@@ -39,6 +39,7 @@
 
 <!-- For all browsers -->
 <link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="/assets/css/ext.css">
 <!-- Webfonts -->
 <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic" rel="stylesheet" type="text/css">
 
@@ -85,7 +86,7 @@
 				<li>
 					<img src="/images/avatar.jpg" alt="sankame photo" class="author-photo">
 					<h4>sankame</h4>
-					<p>老舗インターネット・メディア企業で働くプログラマー。千葉県在住。</p>
+					<p>老舗ネット企業で働くプログラマー。<br>千葉県在住。</p>
 				</li>
 				<!-- <li><a href="/about/"><span class="btn btn-inverse">Learn More</span></a></li> -->
 				<li>
@@ -153,98 +154,78 @@
 (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
 </div>
-      
-<p><span><a href="https://twitter.com/handycola" class="twitter-follow-button" data-show-count="false" data-lang="ja" data-size="large" data-show-screen-name="false" data-dnt="true">@handycolaさんをフォロー</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></span><span style="float:right;">投稿日：2014年05月03日</span></p>
+      <p><span style="float:right;">投稿日：2014年05月03日</span></p>
 
-<h5 id="section">0.環境</h5>
-
-<pre><code>[CentOS]           5.6 (32bit版カーネル)
+<h5>0.環境</h5>
+<div class="highlight"><pre><code class="language-text" data-lang="text">[CentOS]           5.6 (32bit版カーネル)
 [Apache]           2.2.3
 [PHP]              5.4.17
 [Revive AdServer]  3.0.4
-</code></pre>
-
-<h5 id="httptec-blogmenuejpp278">1.インストール <a href="http://tec-blog.menue.jp/?p=278">参考ページ</a></h5>
+</code></pre></div>
+<h5>1.インストール <a href="http://tec-blog.menue.jp/?p=278">参考ページ</a></h5>
 
 <ul>
-  <li>
-    <p>1-0.ダウンロード</p>
+<li><p>1-0.ダウンロード</p>
 
-    <p>適当なディレクトリにソースをダウンロードし、Apache公開ディレクトリへ移動。</p>
+<p>適当なディレクトリにソースをダウンロードし、Apache公開ディレクトリへ移動。</p>
 
-    <p>(公開ディレクトリは自分の環境に読み替えて下さい)</p>
+<p>(公開ディレクトリは自分の環境に読み替えて下さい)</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text"># wget http://download.revive-adserver.com/revive-adserver-3.0.4.tar.gz
+# tar xzf revive-adserver-3.0.4.tar.gz
+# mv revive-adserver-3.0.4 revive-adserver
+# mv revive-adserver /app/.
+</code></pre></div></li>
+<li><p>1-1.インストール開始</p>
 
-    <pre><code>  # wget http://download.revive-adserver.com/revive-adserver-3.0.4.tar.gz
-  # tar xzf revive-adserver-3.0.4.tar.gz
-  # mv revive-adserver-3.0.4 revive-adserver
-  # mv revive-adserver /app/.
-</code></pre>
-  </li>
-  <li>
-    <p>1-1.インストール開始</p>
+<p>ブラウザから、上記インストール先URLへアクセス。</p>
 
-    <p>ブラウザから、上記インストール先URLへアクセス。</p>
+<p>(例) http://localhost/revive-adserver</p>
 
-    <p>(例) http://localhost/revive-adserver</p>
+<p>ウィザードに従ってインストールを進めます。</p>
 
-    <p>ウィザードに従ってインストールを進めます。</p>
+<p><a href="/assets/posts/img/revive_adserver_install/step1.png" target="_blank"><img width="50%" height="50%" title="step1" alt="step1" src="/assets/posts/img/revive_adserver_install/step1.png"></a></p>
 
-    <p><a href="/assets/posts/img/revive_adserver_install/step1.png" target="_blank"><img width="50%" height="50%" title="step1" alt="step1" src="/assets/posts/img/revive_adserver_install/step1.png" /></a></p>
+<p>&quot;I Agree &gt;&gt;&quot;ボタンを押すと、&quot;File Permissions - 7 errors&quot; というエラーが表示されました。</p>
 
-    <p>“I Agree »“ボタンを押すと、”File Permissions - 7 errors” というエラーが表示されました。</p>
+<p>画面に表示されたコマンドをそのままコンソールで実行。</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text"># chmod -R a+w /app/revive-adserver/var
+# chmod -R a+w /app/revive-adserver/var/cache
+# chmod -R a+w /app/revive-adserver/var/plugins
+# chmod -R a+w /app/revive-adserver/var/templates_compiled
+# chmod -R a+w /app/revive-adserver/plugins
+# chmod -R a+w /app/revive-adserver/www/admin/plugins
+# chmod -R a+w /app/revive-adserver/www/images
+</code></pre></div>
+<p>再びインストール画面へ戻って&quot;Retry&quot;を押すと、次のステップへ進めます。</p></li>
+<li><p>1-2.DB設定</p>
 
-    <p>画面に表示されたコマンドをそのままコンソールで実行。</p>
+<p>DB情報の入力画面が表示されますが、その前に下記コマンド(※1)でMySQL上にDBを作成。</p>
 
-    <pre><code>  # chmod -R a+w /app/revive-adserver/var
-  # chmod -R a+w /app/revive-adserver/var/cache
-  # chmod -R a+w /app/revive-adserver/var/plugins
-  # chmod -R a+w /app/revive-adserver/var/templates_compiled
-  # chmod -R a+w /app/revive-adserver/plugins
-  # chmod -R a+w /app/revive-adserver/www/admin/plugins
-  # chmod -R a+w /app/revive-adserver/www/images
-</code></pre>
+<p><a href="/assets/posts/img/revive_adserver_install/step2.png" target="_blank"><img width="50%" height="50%" title="step2" alt="step2" src="/assets/posts/img/revive_adserver_install/step2.png"></a></p>
 
-    <p>再びインストール画面へ戻って”Retry”を押すと、次のステップへ進めます。</p>
-  </li>
-  <li>
-    <p>1-2.DB設定</p>
+<p>(※1) コマンド (DB名、ユーザ名、パスワードは任意に設定して下さい)</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text"># mysql -h 127.0.0.1 -u root -p
+mysql&gt; create database reviveadserver;
+mysql&gt; grant all privileges on reviveadserver.* to admin@localhost identified by &#39;password&#39;;
+</code></pre></div>
+<p>再びインストール画面へ戻り、上記のDB情報を入力後、&quot;Continue &gt;&gt;&quot; を押します。</p></li>
+<li><p>1-3.管理ユーザ登録</p>
 
-    <p>DB情報の入力画面が表示されますが、その前に下記コマンド(※1)でMySQL上にDBを作成。</p>
+<p>Revive AdServerの管理ユーザを登録します。</p>
 
-    <p><a href="/assets/posts/img/revive_adserver_install/step2.png" target="_blank"><img width="50%" height="50%" title="step2" alt="step2" src="/assets/posts/img/revive_adserver_install/step2.png" /></a></p>
+<p><a href="/assets/posts/img/revive_adserver_install/step3.png" target="_blank"><img width="50%" height="50%" title="step3" alt="step3" src="/assets/posts/img/revive_adserver_install/step3.png"></a></p>
 
-    <p>(※1) コマンド (DB名、ユーザ名、パスワードは任意に設定して下さい)</p>
+<p>言語とタイムゾーンを変更。</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">Language:  Japanese
+Timezone:  (GMT+0900) Asia/Tokyo
+</code></pre></div></li>
+<li><p>1-4.登録完了</p>
 
-    <pre><code>  # mysql -h 127.0.0.1 -u root -p
-  mysql&gt; create database reviveadserver;
-  mysql&gt; grant all privileges on reviveadserver.* to admin@localhost identified by 'password';
-</code></pre>
+<p>登録完了しました。</p>
 
-    <p>再びインストール画面へ戻り、上記のDB情報を入力後、”Continue »” を押します。</p>
-  </li>
-  <li>
-    <p>1-3.管理ユーザ登録</p>
+<p>「インストール中にエラーが発生しました」と表示されましたが、指定されたログを見てもエラーの記述はありませんでした。</p>
 
-    <p>Revive AdServerの管理ユーザを登録します。</p>
-
-    <p><a href="/assets/posts/img/revive_adserver_install/step3.png" target="_blank"><img width="50%" height="50%" title="step3" alt="step3" src="/assets/posts/img/revive_adserver_install/step3.png" /></a></p>
-
-    <p>言語とタイムゾーンを変更。</p>
-
-    <pre><code>  Language:  Japanese
-  Timezone:  (GMT+0900) Asia/Tokyo
-</code></pre>
-  </li>
-  <li>
-    <p>1-4.登録完了</p>
-
-    <p>登録完了しました。</p>
-
-    <p>「インストール中にエラーが発生しました」と表示されましたが、指定されたログを見てもエラーの記述はありませんでした。</p>
-
-    <p><a href="/assets/posts/img/revive_adserver_install/step4.png" target="_blank"><img width="50%" height="50%" title="step4" alt="step4" src="/assets/posts/img/revive_adserver_install/step4.png" /></a></p>
-  </li>
+<p><a href="/assets/posts/img/revive_adserver_install/step4.png" target="_blank"><img width="50%" height="50%" title="step4" alt="step4" src="/assets/posts/img/revive_adserver_install/step4.png"></a></p></li>
 </ul>
 
       <div>
@@ -272,6 +253,8 @@
 </script>
 </div>
 </div>
+      <span><a href="https://twitter.com/handycola" class="twitter-follow-button" data-show-count="false" data-lang="ja" data-size="large" data-show-screen-name="false" data-dnt="true">@handycolaさんをフォロー</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></span>
       <footer class="entry-meta">
         
         <div class="social-share">

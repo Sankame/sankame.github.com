@@ -39,6 +39,7 @@
 
 <!-- For all browsers -->
 <link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="/assets/css/ext.css">
 <!-- Webfonts -->
 <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic" rel="stylesheet" type="text/css">
 
@@ -85,7 +86,7 @@
 				<li>
 					<img src="/images/avatar.jpg" alt="sankame photo" class="author-photo">
 					<h4>sankame</h4>
-					<p>老舗インターネット・メディア企業で働くプログラマー。千葉県在住。</p>
+					<p>老舗ネット企業で働くプログラマー。<br>千葉県在住。</p>
 				</li>
 				<!-- <li><a href="/about/"><span class="btn btn-inverse">Learn More</span></a></li> -->
 				<li>
@@ -153,132 +154,94 @@
 (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
 </div>
-      
-<p><span><a href="https://twitter.com/handycola" class="twitter-follow-button" data-show-count="false" data-lang="ja" data-size="large" data-show-screen-name="false" data-dnt="true">@handycolaさんをフォロー</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></span><span style="float:right;">投稿日：2013年08月31日</span></p>
+      <p><span style="float:right;">投稿日：2013年08月31日</span></p>
 
-<h5 id="section">0.環境</h5>
-
-<pre><code>[タブレット端末/OS]  Nexus7 / Android 4.2.2
+<h5>0.環境</h5>
+<div class="highlight"><pre><code class="language-text" data-lang="text">[タブレット端末/OS]  Nexus7 / Android 4.2.2
 [PC端末/OS]        Gateway SX2800 / Windows Vista Home Premium
-</code></pre>
-
-<h5 id="section-1">0.検討</h5>
+</code></pre></div>
+<h5>0.検討</h5>
 
 <p>プレゼン用途でNexus7のスクリーン映像をプロジェクタに映したいと考え、いくつか検討した結果、下記3で行うことにしました。</p>
 
 <ul>
-  <li>
-    <p><a href="http://www.amazon.co.jp/dp/B005RUM754/ref=as_li_ss_til?tag=uni6605-22&amp;camp=1027&amp;creative=7407&amp;linkCode=as4&amp;creativeASIN=B005RUM754&amp;adid=004HQM7Z4FR3M83JKTW2&amp;&amp;ref-refURL=http%3A%2F%2Flove-guava.com%2Fit-is-difficult-in-it-being-unexpected-to-output-the-screen-of-nexus7-to-a-display%2F">1.変換器を使う</a> →Nexus7はMHL非対応…</p>
-  </li>
-  <li>
-    <p><a href="https://play.google.com/store/apps/details?id=com.awindinc.sphone2tv">2.ソフトで解決</a> →PCに映像を送信する方法。有料かつNexus7のRoot化が必要。</p>
-  </li>
-  <li>
-    <p><a href="http://www.moongift.jp/2009/09/androidscreencast">3.ソフトで解決</a> →PCに映像を送信する方法。無料かつRoot化の必要もなし。Nexus7の映像がPCに届くまで数秒のタイムラグあり。</p>
-  </li>
+<li><p><a href="http://www.amazon.co.jp/dp/B005RUM754/ref=as_li_ss_til?tag=uni6605-22&amp;camp=1027&amp;creative=7407&amp;linkCode=as4&amp;creativeASIN=B005RUM754&amp;adid=004HQM7Z4FR3M83JKTW2&amp;&amp;ref-refURL=http%3A%2F%2Flove-guava.com%2Fit-is-difficult-in-it-being-unexpected-to-output-the-screen-of-nexus7-to-a-display%2F">1.変換器を使う</a> →Nexus7はMHL非対応…</p></li>
+<li><p><a href="https://play.google.com/store/apps/details?id=com.awindinc.sphone2tv">2.ソフトで解決</a> →PCに映像を送信する方法。有料かつNexus7のRoot化が必要。</p></li>
+<li><p><a href="http://www.moongift.jp/2009/09/androidscreencast">3.ソフトで解決</a> →PCに映像を送信する方法。無料かつRoot化の必要もなし。Nexus7の映像がPCに届くまで数秒のタイムラグあり。</p></li>
 </ul>
 
-<h5 id="pcandroid-sdk">1.PCにAndroid SDKをインストール</h5>
+<h5>1.PCにAndroid SDKをインストール</h5>
 
 <ul>
-  <li>
-    <p>下記ページの[download here] - [Download the SDK]ボタンをクリック。</p>
+<li><p>下記ページの[download here] - [Download the SDK]ボタンをクリック。</p>
 
-    <p><a href="http://code.google.com/p/androidscreencast/">ダウンロード</a></p>
-  </li>
-  <li>
-    <p>規約に同意したら「I have read and agree…」にチェック。</p>
-  </li>
-  <li>
-    <p>32ビットか64ビットかは、下記の手順で調べる。</p>
+<p><a href="http://code.google.com/p/androidscreencast/">ダウンロード</a></p></li>
+<li><p>規約に同意したら「I have read and agree…」にチェック。</p></li>
+<li><p>32ビットか64ビットかは、下記の手順で調べる。</p>
 
-    <p>[スタート]メニュー - [コンピュータ]右クリック - [プロパティ]</p>
+<p>[スタート]メニュー - [コンピュータ]右クリック - [プロパティ]</p>
 
-    <p>[システムの種類]に記載。</p>
-  </li>
+<p>[システムの種類]に記載。</p></li>
 </ul>
 
-<h5 id="usbnexus7pc">2.USBケーブルでNexus7とPCを接続</h5>
+<h5>2.USBケーブルでNexus7とPCを接続</h5>
 
-<h5 id="android-screen-cast">3.Android Screen Cast</h5>
-<ul>
-  <li>
-    <p>3-1.下記リンクからAndroid Screen CastをPCにダウンロードし、任意のフォルダに保存する。</p>
-
-    <p><a href="http://androidscreencast.googlecode.com/svn/trunk/AndroidScreencast/dist/androidscreencast.jnlp">ダウンロード</a></p>
-  </li>
-  <li>
-    <p>3-2.コマンドプロンプトで上記3-1のフォルダに移動し、下記コマンドを実行。</p>
-
-    <pre><code>  &gt; javaws androidscreencast.jnlp
-</code></pre>
-  </li>
-  <li>
-    <p>3-3.JREをバージョンアップするよう警告が出たので、最新をインストールした結果、下記のバージョンになった。</p>
-
-    <pre><code>  &gt; java -version
-    java version "1.7.0_25"
-</code></pre>
-  </li>
-  <li>
-    <p>3-4.再び3-2のコマンドを実行すると下記エラーが発生。</p>
-
-    <p>Timeout getting device list</p>
-  </li>
-  <li>
-    <p>3-5.adb usb 実行 [(参考ページ)] (http://code.google.com/p/androidscreencast/issues/detail?id=49)</p>
-
-    <p>PCでコマンドプロンプトを起動し、”platform-tools”フォルダに移動。(パスは読み替えて下さい)</p>
-
-    <pre><code>  &gt; cd C:\soft\Android\adt-bundle-windows-x86-20130729\sdk\platform-tools
-  &gt; adb usb
-   	 error: device not found
-</code></pre>
-  </li>
-</ul>
-
-<h5 id="usb">4.USBドライバ</h5>
+<h5>3.Android Screen Cast</h5>
 
 <ul>
-  <li>
-    <p>4-1.USBドライバ</p>
+<li><p>3-1.下記リンクからAndroid Screen CastをPCにダウンロードし、任意のフォルダに保存する。</p>
 
-    <p>上記3-5でエラーになったので、USBドライバをインストールする。</p>
-  </li>
-  <li>
-    <p>4-2.インストール</p>
+<p><a href="http://androidscreencast.googlecode.com/svn/trunk/AndroidScreencast/dist/androidscreencast.jnlp">ダウンロード</a></p></li>
+<li><p>3-2.コマンドプロンプトで上記3-1のフォルダに移動し、下記コマンドを実行。</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">&gt; javaws androidscreencast.jnlp
+</code></pre></div></li>
+<li><p>3-3.JREをバージョンアップするよう警告が出たので、最新をインストールした結果、下記のバージョンになった。</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">&gt; java -version
+  java version &quot;1.7.0_25&quot;
+</code></pre></div></li>
+<li><p>3-4.再び3-2のコマンドを実行すると下記エラーが発生。</p>
 
-    <p>PC側で、上記1でダウンロードした”SDK Manager.exe”をダブルクリックして起動する。</p>
+<p>Timeout getting device list</p></li>
+<li><p>3-5.adb usb 実行 <a href="http://code.google.com/p/androidscreencast/issues/detail?id=49">(参考ページ)</a></p>
 
-    <p>“Google USB Driver”にチェックして、[Install 1 package…]をクリック。</p>
-
-    <p><img src="/assets/posts/img/nexus7_projected_to_pc/10.jpg" alt="画像10" title="画像10" /></p>
-
-    <p>※もし”Failed to fetch URL”というエラーが出た場合は、代替策として下記5を参照。</p>
-
-    <p>規約に同意したら[Install]をクリック。</p>
-
-    <p><img src="/assets/posts/img/nexus7_projected_to_pc/11.jpg" alt="画像11" title="画像11" /></p>
-  </li>
-  <li>
-    <p>4-3.USBドライバ更新</p>
-
-    <p>さらにPC側で、下記ノードを右クリックしてプロパティから[ドライバの更新]をクリック。</p>
-
-    <pre><code>  [スタート]-[コントロール パネル]-[デバイスマネージャ]-[Android Phone]
-</code></pre>
-
-    <p>下記パスを選択してドライバを指定する。(パスは読み替えて下さい)</p>
-
-    <pre><code>  C:\soft\Android\adt-bundle-windows-x86-20130729\sdk\extras
-</code></pre>
-
-    <p>インストールが完了したらPCを再起動。 →下記5を飛ばして6以降を参照。</p>
-  </li>
+<p>PCでコマンドプロンプトを起動し、&quot;platform-tools&quot;フォルダに移動。(パスは読み替えて下さい)</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">&gt; cd C:\soft\Android\adt-bundle-windows-x86-20130729\sdk\platform-tools
+&gt; adb usb
+ error: device not found
+</code></pre></div></li>
 </ul>
 
-<h5 id="pdanet">5.PdaNet</h5>
+<h5>4.USBドライバ</h5>
+
+<ul>
+<li><p>4-1.USBドライバ</p>
+
+<p>上記3-5でエラーになったので、USBドライバをインストールする。</p></li>
+<li><p>4-2.インストール</p>
+
+<p>PC側で、上記1でダウンロードした&quot;SDK Manager.exe&quot;をダブルクリックして起動する。</p>
+
+<p>&quot;Google USB Driver&quot;にチェックして、[Install 1 package...]をクリック。</p>
+
+<p><img src="/assets/posts/img/nexus7_projected_to_pc/10.jpg" alt="画像10" title="画像10"></p>
+
+<p>※もし&quot;Failed to fetch URL&quot;というエラーが出た場合は、代替策として下記5を参照。</p>
+
+<p>規約に同意したら[Install]をクリック。</p>
+
+<p><img src="/assets/posts/img/nexus7_projected_to_pc/11.jpg" alt="画像11" title="画像11"></p></li>
+<li><p>4-3.USBドライバ更新</p>
+
+<p>さらにPC側で、下記ノードを右クリックしてプロパティから[ドライバの更新]をクリック。</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">[スタート]-[コントロール パネル]-[デバイスマネージャ]-[Android Phone]
+</code></pre></div>
+<p>下記パスを選択してドライバを指定する。(パスは読み替えて下さい)</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">C:\soft\Android\adt-bundle-windows-x86-20130729\sdk\extras
+</code></pre></div>
+<p>インストールが完了したらPCを再起動。 →下記5を飛ばして6以降を参照。</p></li>
+</ul>
+
+<h5>5.PdaNet</h5>
 
 <p><a href="http://www.dominantwire.com/2012/11/how-to-solve-adb-device-not-found-error.html">参考ページ</a></p>
 
@@ -289,75 +252,52 @@
 <p><code>PdaNetはモバイル端末経由でPCをネット接続するソフトなので、モバイル端末のネット接続が従量課金の場合は、注意して下さい。</code></p>
 
 <ul>
-  <li>
-    <p>5-1.上記3-6でダウンロードしたインストーラ(PdaNetA4126.exe)を起動。</p>
-  </li>
-  <li>
-    <p>5-2.インストール途中で下記メッセージが出た。</p>
+<li><p>5-1.上記3-6でダウンロードしたインストーラ(PdaNetA4126.exe)を起動。</p></li>
+<li><p>5-2.インストール途中で下記メッセージが出た。</p>
 
-    <p><img src="/assets/posts/img/nexus7_projected_to_pc/1.jpg" alt="画像1" title="画像1" /></p>
-  </li>
-  <li>
-    <p>5-3.Nexus7 開発者メニュー</p>
+<p><img src="/assets/posts/img/nexus7_projected_to_pc/1.jpg" alt="画像1" title="画像1"></p></li>
+<li><p>5-3.Nexus7 開発者メニュー</p>
 
-    <p>Nexus7で[設定]-[タブレット情報]-[ビルド番号]を7回タップし、[設定]-[開発者向けオプション]を表示する。</p>
-  </li>
-  <li>
-    <p>5-4.Nexus7 USBデバッグ</p>
+<p>Nexus7で[設定]-[タブレット情報]-[ビルド番号]を7回タップし、[設定]-[開発者向けオプション]を表示する。</p></li>
+<li><p>5-4.Nexus7 USBデバッグ</p>
 
-    <p>Nexus7で[開発者向けオプション]-[USBデバッグ] をONにする。</p>
+<p>Nexus7で[開発者向けオプション]-[USBデバッグ] をONにする。</p>
 
-    <p>直後に、PC側でインストーラが再開した。</p>
+<p>直後に、PC側でインストーラが再開した。</p>
 
-    <p><img src="/assets/posts/img/nexus7_projected_to_pc/2.jpg" alt="画像2" title="画像2" /></p>
-  </li>
-  <li>
-    <p>5-5.Nexus7で下記メッセージが出たので、”許可する”を選択する。</p>
+<p><img src="/assets/posts/img/nexus7_projected_to_pc/2.jpg" alt="画像2" title="画像2"></p></li>
+<li><p>5-5.Nexus7で下記メッセージが出たので、&quot;許可する&quot;を選択する。</p>
 
-    <p>“このパソコンのRSAキーのフィンガープリント…”</p>
-  </li>
-  <li>
-    <p>5-6.PC側で下記メッセージが出たので、”インストール”をクリック。</p>
+<p>&quot;このパソコンのRSAキーのフィンガープリント…&quot;</p></li>
+<li><p>5-6.PC側で下記メッセージが出たので、&quot;インストール&quot;をクリック。</p>
 
-    <p><img src="/assets/posts/img/nexus7_projected_to_pc/3.jpg" alt="画像3" title="画像3" /></p>
-  </li>
-  <li>
-    <p>5-6.Nexus7で下記メッセージが出たので、そのままOKを選択。</p>
+<p><img src="/assets/posts/img/nexus7_projected_to_pc/3.jpg" alt="画像3" title="画像3"></p></li>
+<li><p>5-6.Nexus7で下記メッセージが出たので、そのままOKを選択。</p>
 
-    <p>“Googleが定期的にインストールされたアプリをチェックする”</p>
-  </li>
-  <li>
-    <p>5-7.インストール完了</p>
+<p>&quot;Googleが定期的にインストールされたアプリをチェックする&quot;</p></li>
+<li><p>5-7.インストール完了</p>
 
-    <p>下記画面が表示されればインストールは完了。</p>
+<p>下記画面が表示されればインストールは完了。</p>
 
-    <p><img src="/assets/posts/img/nexus7_projected_to_pc/4.jpg" alt="画像4" title="画像4" /></p>
-  </li>
+<p><img src="/assets/posts/img/nexus7_projected_to_pc/4.jpg" alt="画像4" title="画像4"></p></li>
 </ul>
 
-<h5 id="android-screen-cast-1">6.Android Screen Cast起動</h5>
+<h5>6.Android Screen Cast起動</h5>
 
 <ul>
-  <li>
-    <p>6-1.Android Phoneの認識</p>
+<li><p>6-1.Android Phoneの認識</p>
 
-    <p>PC側のデバイスにAndroid Phoneが追加されていればOK。</p>
+<p>PC側のデバイスにAndroid Phoneが追加されていればOK。</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">[スタート]-[コントロール パネル]-[デバイスマネージャ]-[Android Phone]
+</code></pre></div></li>
+<li><p>6-2.上記3-5のコマンドを再実行すると下記が表示される。</p>
 
-    <pre><code>  [スタート]-[コントロール パネル]-[デバイスマネージャ]-[Android Phone]
-</code></pre>
-  </li>
-  <li>
-    <p>6-2.上記3-5のコマンドを再実行すると下記が表示される。</p>
+<p>daemon not running. starting it now on port 5037</p>
 
-    <p>daemon not running. starting it now on port 5037</p>
+<p>daemon started successfully</p>
 
-    <p>daemon started successfully</p>
-
-    <p>restarting in USB mode</p>
-  </li>
-  <li>
-    <p>6-3. 上記3-2の操作を再実行し、Nexus7の画面がPC側に表示されれば成功。</p>
-  </li>
+<p>restarting in USB mode</p></li>
+<li><p>6-3. 上記3-2の操作を再実行し、Nexus7の画面がPC側に表示されれば成功。</p></li>
 </ul>
 
       <div>
@@ -385,6 +325,8 @@
 </script>
 </div>
 </div>
+      <span><a href="https://twitter.com/handycola" class="twitter-follow-button" data-show-count="false" data-lang="ja" data-size="large" data-show-screen-name="false" data-dnt="true">@handycolaさんをフォロー</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></span>
       <footer class="entry-meta">
         
         <div class="social-share">

@@ -39,6 +39,7 @@
 
 <!-- For all browsers -->
 <link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="/assets/css/ext.css">
 <!-- Webfonts -->
 <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic" rel="stylesheet" type="text/css">
 
@@ -85,7 +86,7 @@
 				<li>
 					<img src="/images/avatar.jpg" alt="sankame photo" class="author-photo">
 					<h4>sankame</h4>
-					<p>老舗インターネット・メディア企業で働くプログラマー。千葉県在住。</p>
+					<p>老舗ネット企業で働くプログラマー。<br>千葉県在住。</p>
 				</li>
 				<!-- <li><a href="/about/"><span class="btn btn-inverse">Learn More</span></a></li> -->
 				<li>
@@ -153,21 +154,17 @@
 (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
 </div>
-      
-<p><span>&nbsp;</span><span style="color:#d14; float:right;">更新日：2015年03月18日</span></p>
-<p><span><a href="https://twitter.com/handycola" class="twitter-follow-button" data-show-count="false" data-lang="ja" data-size="large" data-show-screen-name="false" data-dnt="true">@handycolaさんをフォロー</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></span><span style="float:right;">投稿日：2012年12月30日</span></p>
+      <p><span>&nbsp;</span><span style="color:#d14; float:right;">更新日：2015年03月18日</span></p>
 
-<h4 id="centos-">CentOSコマンド メモ</h4>
+<p><span style="float:right;">投稿日：2012年12月30日</span></p>
 
-<h5 id="section">・ファイル検索</h5>
+<h4>CentOSコマンド メモ</h4>
 
-<pre><code> find / -name filename
-</code></pre>
-
-<h5 id="locate-20130101">・locateインストール (更新日：2013/01/01)</h5>
-
-<pre><code># which locate
+<h5>・ファイル検索</h5>
+<div class="highlight"><pre><code class="language-text" data-lang="text"> find / -name filename
+</code></pre></div>
+<h5>・locateインストール (更新日：2013/01/01)</h5>
+<div class="highlight"><pre><code class="language-text" data-lang="text"># which locate
 /usr/bin/which: no locate in ・・・以下省略
 
 # パッケージ名がlocateではないので注意。
@@ -178,96 +175,68 @@
 
 # 下記コマンドでDBを更新するとlocateが使えるようになる。
 # updatedb
-</code></pre>
-
-<h5 id="date-20130127">・dateで日時設定 (更新日：2013/01/27)</h5>
-
-<pre><code># 引数を次の順番に設定。→ date [月][日][時間][分][年]
+</code></pre></div>
+<h5>・dateで日時設定 (更新日：2013/01/27)</h5>
+<div class="highlight"><pre><code class="language-text" data-lang="text"># 引数を次の順番に設定。→ date [月][日][時間][分][年]
 
 # date 012723232013
 2013年  1月 27日 日曜日 23:23:00 JST
-</code></pre>
-
-<h5 id="centos-20130707">・CentOSバージョン (更新日：2013/07/07)</h5>
-
-<pre><code># cat /etc/redhat-release
-</code></pre>
-
-<h5 id="cpu-20130707">・CPUアーキテクチャ確認 (更新日：2013/07/07)</h5>
-
-<pre><code># grep flags /proc/cpuinfo | grep lm | wc -l
+</code></pre></div>
+<h5>・CentOSバージョン (更新日：2013/07/07)</h5>
+<div class="highlight"><pre><code class="language-text" data-lang="text"># cat /etc/redhat-release
+</code></pre></div>
+<h5>・CPUアーキテクチャ確認 (更新日：2013/07/07)</h5>
+<div class="highlight"><pre><code class="language-text" data-lang="text"># grep flags /proc/cpuinfo | grep lm | wc -l
 # 上記が0ならCPU 32bit、1ならCPU 64bit
 # lm(long mode)フラグがあれば64bit
-</code></pre>
-
-<h5 id="section-1">・カーネルバージョン確認 (更新日：2013/07/07)</h5>
-
-<pre><code># uname -a|grep x86_64|wc -l
+</code></pre></div>
+<h5>・カーネルバージョン確認 (更新日：2013/07/07)</h5>
+<div class="highlight"><pre><code class="language-text" data-lang="text"># uname -a|grep x86_64|wc -l
 # 上記が0なら32bitカーネル、1ならCPU 64bitカーネル
 # (x86_64 の場合、64bit)
 # (i386/i486/i586/i686 の場合、32bit)
-</code></pre>
-
+</code></pre></div>
 <p><a href="http://www.cyberciti.biz/faq/linux-how-to-find-if-processor-is-64-bit-or-not/">参考ページ</a></p>
 
-<h5 id="php-20130707">・PHPバージョン (更新日：2013/07/07)</h5>
-
-<pre><code># php -v
-</code></pre>
-
-<h5 id="apache-20130916">・Apacheバージョン (更新日：2013/09/16)</h5>
-
-<pre><code># httpd -v
-</code></pre>
-
-<h5 id="svn-20130926">・SVNバージョン (更新日：2013/09/26)</h5>
-
-<pre><code># svn --version --quiet
-</code></pre>
-
-<h5 id="history-20130924">・historyコマンドに日時(タイムスタンプ)追加 (更新日：2013/09/24)</h5>
+<h5>・PHPバージョン (更新日：2013/07/07)</h5>
+<div class="highlight"><pre><code class="language-text" data-lang="text"># php -v
+</code></pre></div>
+<h5>・Apacheバージョン (更新日：2013/09/16)</h5>
+<div class="highlight"><pre><code class="language-text" data-lang="text"># httpd -v
+</code></pre></div>
+<h5>・SVNバージョン (更新日：2013/09/26)</h5>
+<div class="highlight"><pre><code class="language-text" data-lang="text"># svn --version --quiet
+</code></pre></div>
+<h5>・historyコマンドに日時(タイムスタンプ)追加 (更新日：2013/09/24)</h5>
 
 <ul>
-  <li>
-    <p>1.bashプロファイルを編集。</p>
-
-    <pre><code>  $ vim ~/.bash_profile
-</code></pre>
-  </li>
-  <li>
-    <p>2.以下を記述。</p>
-
-    <pre><code>  HISTTIMEFORMAT='%Y-%m-%d %T '
-</code></pre>
-  </li>
-  <li>
-    <p>3.すぐに反映させたい場合は以下のコマンドを実行。</p>
-
-    <pre><code>  $ source ~/.bash_profile
-</code></pre>
-  </li>
+<li><p>1.bashプロファイルを編集。</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">$ vim ~/.bash_profile
+</code></pre></div></li>
+<li><p>2.以下を記述。</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">HISTTIMEFORMAT=&#39;%Y-%m-%d %T &#39;
+</code></pre></div></li>
+<li><p>3.すぐに反映させたい場合は以下のコマンドを実行。</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">$ source ~/.bash_profile
+</code></pre></div></li>
 </ul>
 
-<h5 id="port-20140507">・port使用状況チェック (更新日：2014/05/07)</h5>
-
-<pre><code>$ netstat -anp
+<h5>・port使用状況チェック (更新日：2014/05/07)</h5>
+<div class="highlight"><pre><code class="language-text" data-lang="text">$ netstat -anp
 $ netstat -anp | grep 【ポート番号】
 
 -a：接続待ち状態にあるソケットも、接続待ち状態にないソケットも表示する。
 -n：ホスト・ポート・ユーザーなどの名前を解決せずに、数字のアドレスで表示する。
 -p：各ソケットが属しているプログラムの PID と名前が表示される。
-</code></pre>
-
-<h5 id="crontab-20150318">・crontabバックアップ (更新日：2015/03/18)</h5>
-
-<pre><code>$ crontab -l &gt; crontab.bak
+</code></pre></div>
+<h5>・crontabバックアップ (更新日：2015/03/18)</h5>
+<div class="highlight"><pre><code class="language-text" data-lang="text">$ crontab -l &gt; crontab.bak
 $ crontab -e
 
 クーロンの設定を変更後、バックアップとの差分を見る。
 
 $ crontab -l | diff crontab.bak -
-</code></pre>
-
+</code></pre></div>
       <div>
 <div style="padding:6px;">
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
@@ -293,6 +262,8 @@ $ crontab -l | diff crontab.bak -
 </script>
 </div>
 </div>
+      <span><a href="https://twitter.com/handycola" class="twitter-follow-button" data-show-count="false" data-lang="ja" data-size="large" data-show-screen-name="false" data-dnt="true">@handycolaさんをフォロー</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></span>
       <footer class="entry-meta">
         
         <div class="social-share">

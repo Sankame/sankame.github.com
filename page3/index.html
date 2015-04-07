@@ -40,6 +40,7 @@
 
 <!-- For all browsers -->
 <link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="/assets/css/ext.css">
 <!-- Webfonts -->
 <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic" rel="stylesheet" type="text/css">
 
@@ -86,7 +87,7 @@
 				<li>
 					<img src="/images/avatar.jpg" alt="sankame photo" class="author-photo">
 					<h4>sankame</h4>
-					<p>老舗インターネット・メディア企業で働くプログラマー。千葉県在住。</p>
+					<p>老舗ネット企業で働くプログラマー。<br>千葉県在住。</p>
 				</li>
 				<!-- <li><a href="/about/"><span class="btn btn-inverse">Learn More</span></a></li> -->
 				<li>
@@ -161,182 +162,145 @@
     
   </header>
   <div class="entry-content">
-    
-<p><span><a href="https://twitter.com/handycola" class="twitter-follow-button" data-show-count="false" data-lang="ja" data-size="large" data-show-screen-name="false" data-dnt="true">@handycolaさんをフォロー</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></span><span style="float:right;">投稿日：2014年05月17日</span></p>
+    <p><span style="float:right;">投稿日：2014年05月17日</span></p>
 
-<h5 id="section">0.環境</h5>
-
-<pre><code>[CentOS]     5.6 (32bit版カーネル)
+<h5>0.環境</h5>
+<div class="highlight"><pre><code class="language-text" data-lang="text">[CentOS]     5.6 (32bit版カーネル)
 [ruby]       2.1.1p76
 [rvm]        1.25.25
 [jekyll]     0.11.2 =&gt; 1.0.2
-</code></pre>
-
-<h5 id="httpmelbornegithubio20130520now-the-time-to-start-jekyll">1.インストール <a href="http://melborne.github.io/2013/05/20/now-the-time-to-start-jekyll/">参考ページ</a></h5>
+</code></pre></div>
+<h5>1.インストール <a href="http://melborne.github.io/2013/05/20/now-the-time-to-start-jekyll/">参考ページ</a></h5>
 
 <ul>
-  <li>
-    <p>インストール</p>
+<li><p>インストール</p>
 
-    <p>本ブログはjekyll 0.11.2で作成してきましたが、別件でrubyのバージョンを上げたことでjekyllが動か</p>
+<p>本ブログはjekyll 0.11.2で作成してきましたが、別件でrubyのバージョンを上げたことでjekyllが動か</p>
 
-    <p>なくなってしまったため、思い切って1.0.2への移行を行いました。<a href="http://sankame.github.io/Jekyll/2012/12/23/jekyll_and_github/">初期インストールの内容</a></p>
+<p>なくなってしまったため、思い切って1.0.2への移行を行いました。<a href="http://sankame.github.io/Jekyll/2012/12/23/jekyll_and_github/">初期インストールの内容</a></p>
 
-    <p>いくつかハマった点を共有します。</p>
+<p>いくつかハマった点を共有します。</p>
 
-    <p>まず、複数バージョンのrubyを使いたかったので下記ページに沿ってrvmをインストール。</p>
+<p>まず、複数バージョンのrubyを使いたかったので下記ページに沿ってrvmをインストール。</p>
 
-    <p><a href="http://d.hatena.ne.jp/mrgoofy33/20110518/1305649544">rvmインストール</a></p>
+<p><a href="http://d.hatena.ne.jp/mrgoofy33/20110518/1305649544">rvmインストール</a></p>
 
-    <p>rootで実行したためか /usr/local/rvm にインストールされたので、上記記事内のパスは読み替えました。</p>
+<p>rootで実行したためか /usr/local/rvm にインストールされたので、上記記事内のパスは読み替えました。</p>
 
-    <p>ruby 2.1.1をインストール。</p>
+<p>ruby 2.1.1をインストール。</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text"># rvm install 2.1.1
+# rvm use  2.1.1
+</code></pre></div>
+<p>適当な場所にGemfileを作成し、jekyllを追記してインストール開始。</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text"># bundle init
+# echo &quot;gem &#39;jekyll&#39;, &#39;1.0.2&#39;&quot; &gt;&gt; Gemfile
+# bundle install
+</code></pre></div>
+<p>インストールされたことを確認します。</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text"># gem list|grep jekyll
+jekyll (1.0.2)
+jekyll-coffeescript (1.0.0)
+jekyll-sass-converter (1.0.0)
+</code></pre></div></li>
+<li><p>起動</p>
 
-    <pre><code>  # rvm install 2.1.1
-  # rvm use  2.1.1
-</code></pre>
+<p>任意の場所へ移動し、bootstrapをダウンロードします。<a href="http://jekyllbootstrap.com/usage/jekyll-quick-start.html">bootstrapクイックスタート</a></p>
 
-    <p>適当な場所にGemfileを作成し、jekyllを追記してインストール開始。</p>
-
-    <pre><code>  # bundle init
-  # echo "gem 'jekyll', '1.0.2'" &gt;&gt; Gemfile
-  # bundle install
-</code></pre>
-
-    <p>インストールされたことを確認します。</p>
-
-    <pre><code>  # gem list|grep jekyll
-  jekyll (1.0.2)
-  jekyll-coffeescript (1.0.0)
-  jekyll-sass-converter (1.0.0)
-</code></pre>
-  </li>
-  <li>
-    <p>起動</p>
-
-    <p>任意の場所へ移動し、bootstrapをダウンロードします。<a href="http://jekyllbootstrap.com/usage/jekyll-quick-start.html">bootstrapクイックスタート</a></p>
-
-    <p>(前バージョンとは別の場所にしました)</p>
-
-    <pre><code>  # cd /var/www/html/jekyll2/
-  # git clone https://github.com/plusjade/jekyll-bootstrap.git
-  # cd jekyll-bootstrap
-  # jekyll serve --watch
-</code></pre>
-  </li>
+<p>(前バージョンとは別の場所にしました)</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text"># cd /var/www/html/jekyll2/
+# git clone https://github.com/plusjade/jekyll-bootstrap.git
+# cd jekyll-bootstrap
+# jekyll serve --watch
+</code></pre></div></li>
 </ul>
 
-<h5 id="section-1">2.引越し</h5>
+<h5>2.引越し</h5>
 
 <ul>
-  <li>
-    <p>ファイルコピー</p>
+<li><p>ファイルコピー</p>
 
-    <p>前バージョンの設定ファイルや記事を新バージョンへコピーします。</p>
+<p>前バージョンの設定ファイルや記事を新バージョンへコピーします。</p>
 
-    <p>(自分の環境に合わせて必要なものをコピーして下さい)</p>
+<p>(自分の環境に合わせて必要なものをコピーして下さい)</p>
 
-    <p>(1) diffを確認しながら部分ごとコピー</p>
+<p>(1) diffを確認しながら部分ごとコピー</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">index.md
+_config.yml
+categories.html
+tags.html
+pages.html
+archive.html
+404.html
+</code></pre></div>
+<p>(2) ディレクトリ単位で上書きコピー</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">_includes/JB
+_includes/themes/twitter
+_layouts
+_posts
+assets
+</code></pre></div></li>
+<li><p>動かない①</p>
 
-    <pre><code>  index.md
-  _config.yml
-  categories.html
-  tags.html
-  pages.html
-  archive.html
-  404.html
-</code></pre>
+<p>_posts 内でサンプルコードとして下記の記述があると、jekyllが停止してしまいました。</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">　&lt;?php
+</code></pre></div>
+<p>原因が分からなかったので、gistにコード部分をアップしjekyllで読み込ませることにしました。</p>
 
-    <p>(2) ディレクトリ単位で上書きコピー</p>
+<p>gistは下記のように記述する必要があります。(【】 内は読み替え)</p>
 
-    <pre><code>  _includes/JB
-  _includes/themes/twitter
-  _layouts
-  _posts
-  assets
-</code></pre>
-  </li>
-  <li>
-    <p>動かない①</p>
+<p>{% gist     【gistのID】  【ファイル名】 %}</p>
 
-    <p>_posts 内でサンプルコードとして下記の記述があると、jekyllが停止してしまいました。</p>
+<p>ところが、gistのIDにアルファベットが含まれるのに、jekyll側は数字のみしか対応していなか</p>
 
-    <pre><code>  　&lt;?php
-</code></pre>
+<p>ったためローカルjekyllの下記箇所を修正しました。(jekyll 1.x系の最新(1.4)では直ってました)</p>
 
-    <p>原因が分からなかったので、gistにコード部分をアップしjekyllで読み込ませることにしました。</p>
+<p>・ソース</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">/usr/local/rvm/gems/ruby-2.1.1/gems/jekyll-1.0.2/lib/jekyll/tags/gist.rb
+</code></pre></div>
+<p>・修正内容 (IDにアルファベットを許可)</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text"># diff  gist.rb.org  gist.rb
+10c10
+&lt; if tag_contents = @markup.strip.match(/\A(\d+) ?(\S*)\Z/)
+　---
+&gt; if tag_contents = @markup.strip.match(/\A([0-9a-fA-F]+) ?(\S*)\Z/)
+</code></pre></div></li>
+<li><p>動かない②</p>
 
-    <p>gistは下記のように記述する必要があります。(【】 内は読み替え)</p>
+<p>新旧の記事ページの比較をしていたところ、URLが違うことに気付きました。</p>
 
-    <p>{% gist     【gistのID】  【ファイル名】 %}</p>
+<p>前バージョンだと _posts 内の記事のヘッダ部分で定義するカテゴリに大文字を使っている場合、</p>
 
-    <p>ところが、gistのIDにアルファベットが含まれるのに、jekyll側は数字のみしか対応していなか</p>
+<p>_site に生成されるディレクトリもそのまま大文字になります。</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">category : Jekyll
+</code></pre></div>
+<p>ところが、新バージョンだと全部小文字に変換され、下記の差が出てしまいます。</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">(前バージョン)
+http://localhost:4000/Jekyll/2014/05/18/jekyll_version_up/
 
-    <p>ったためローカルjekyllの下記箇所を修正しました。(jekyll 1.x系の最新(1.4)では直ってました)</p>
+(新バージョン)
+http://localhost:4000/jekyll/2014/05/18/jekyll_version_up/
+</code></pre></div>
+<p>一度インターネットに公開したURLが変わるのは困ります…</p>
 
-    <p>・ソース</p>
+<p>仕方がないので、ローカルのjekyllソースを下記のように修正しました。</p>
 
-    <pre><code>  /usr/local/rvm/gems/ruby-2.1.1/gems/jekyll-1.0.2/lib/jekyll/tags/gist.rb
-</code></pre>
+<p>・ソース</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">/usr/local/rvm/gems/ruby-2.1.1/gems/jekyll-1.0.2/lib/jekyll/post.rb
+</code></pre></div>
+<p>・修正内容 (小文字変換を削除)</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text"># diff post.rb.org post.rb
+79c79
+&lt; self.categories = self.data.pluralized_array(&#39;category&#39;, &#39;categories&#39;).map {|c| c.to_s.downcase}
+　---
+&gt; self.categories = self.data.pluralized_array(&#39;category&#39;, &#39;categories&#39;).map {|c| c.to_s}
+</code></pre></div></li>
+<li><p>参考ページ</p>
 
-    <p>・修正内容 (IDにアルファベットを許可)</p>
+<p><a href="http://melborne.github.io/2013/05/20/now-the-time-to-start-jekyll/">Jekyll Version 1.0</a></p>
 
-    <pre><code>  # diff  gist.rb.org  gist.rb
-  10c10
-  &lt; if tag_contents = @markup.strip.match(/\A(\d+) ?(\S*)\Z/)
-  　---
-  &gt; if tag_contents = @markup.strip.match(/\A([0-9a-fA-F]+) ?(\S*)\Z/)
-</code></pre>
-  </li>
-  <li>
-    <p>動かない②</p>
+<p><a href="http://melborne.github.io/2012/05/13/first-step-of-jekyll/">Jekyllを理解する</a></p>
 
-    <p>新旧の記事ページの比較をしていたところ、URLが違うことに気付きました。</p>
-
-    <p>前バージョンだと _posts 内の記事のヘッダ部分で定義するカテゴリに大文字を使っている場合、</p>
-
-    <p>_site に生成されるディレクトリもそのまま大文字になります。</p>
-
-    <pre><code>  category : Jekyll
-</code></pre>
-
-    <p>ところが、新バージョンだと全部小文字に変換され、下記の差が出てしまいます。</p>
-
-    <pre><code>  (前バージョン)
-  http://localhost:4000/Jekyll/2014/05/18/jekyll_version_up/
-
-  (新バージョン)
-  http://localhost:4000/jekyll/2014/05/18/jekyll_version_up/
-</code></pre>
-
-    <p>一度インターネットに公開したURLが変わるのは困ります…</p>
-
-    <p>仕方がないので、ローカルのjekyllソースを下記のように修正しました。</p>
-
-    <p>・ソース</p>
-
-    <pre><code>  /usr/local/rvm/gems/ruby-2.1.1/gems/jekyll-1.0.2/lib/jekyll/post.rb
-</code></pre>
-
-    <p>・修正内容 (小文字変換を削除)</p>
-
-    <pre><code>  # diff post.rb.org post.rb
-  79c79
-  &lt; self.categories = self.data.pluralized_array('category', 'categories').map {|c| c.to_s.downcase}
-  　---
-  &gt; self.categories = self.data.pluralized_array('category', 'categories').map {|c| c.to_s}
-</code></pre>
-  </li>
-  <li>
-    <p>参考ページ</p>
-
-    <p><a href="http://melborne.github.io/2013/05/20/now-the-time-to-start-jekyll/">Jekyll Version 1.0</a></p>
-
-    <p><a href="http://melborne.github.io/2012/05/13/first-step-of-jekyll/">Jekyllを理解する</a></p>
-
-    <p><a href="http://krakenbeal.blogspot.jp/2012/05/ruby-jekyll-jekyll-bootstrap.html">jekyllとjekyll-bootstrapで静的サイトを作る</a></p>
-  </li>
+<p><a href="http://krakenbeal.blogspot.jp/2012/05/ruby-jekyll-jekyll-bootstrap.html">jekyllとjekyll-bootstrapで静的サイトを作る</a></p></li>
 </ul>
 
   </div><!-- /.entry-content -->
@@ -360,98 +324,78 @@
     
   </header>
   <div class="entry-content">
-    
-<p><span><a href="https://twitter.com/handycola" class="twitter-follow-button" data-show-count="false" data-lang="ja" data-size="large" data-show-screen-name="false" data-dnt="true">@handycolaさんをフォロー</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></span><span style="float:right;">投稿日：2014年05月03日</span></p>
+    <p><span style="float:right;">投稿日：2014年05月03日</span></p>
 
-<h5 id="section">0.環境</h5>
-
-<pre><code>[CentOS]           5.6 (32bit版カーネル)
+<h5>0.環境</h5>
+<div class="highlight"><pre><code class="language-text" data-lang="text">[CentOS]           5.6 (32bit版カーネル)
 [Apache]           2.2.3
 [PHP]              5.4.17
 [Revive AdServer]  3.0.4
-</code></pre>
-
-<h5 id="httptec-blogmenuejpp278">1.インストール <a href="http://tec-blog.menue.jp/?p=278">参考ページ</a></h5>
+</code></pre></div>
+<h5>1.インストール <a href="http://tec-blog.menue.jp/?p=278">参考ページ</a></h5>
 
 <ul>
-  <li>
-    <p>1-0.ダウンロード</p>
+<li><p>1-0.ダウンロード</p>
 
-    <p>適当なディレクトリにソースをダウンロードし、Apache公開ディレクトリへ移動。</p>
+<p>適当なディレクトリにソースをダウンロードし、Apache公開ディレクトリへ移動。</p>
 
-    <p>(公開ディレクトリは自分の環境に読み替えて下さい)</p>
+<p>(公開ディレクトリは自分の環境に読み替えて下さい)</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text"># wget http://download.revive-adserver.com/revive-adserver-3.0.4.tar.gz
+# tar xzf revive-adserver-3.0.4.tar.gz
+# mv revive-adserver-3.0.4 revive-adserver
+# mv revive-adserver /app/.
+</code></pre></div></li>
+<li><p>1-1.インストール開始</p>
 
-    <pre><code>  # wget http://download.revive-adserver.com/revive-adserver-3.0.4.tar.gz
-  # tar xzf revive-adserver-3.0.4.tar.gz
-  # mv revive-adserver-3.0.4 revive-adserver
-  # mv revive-adserver /app/.
-</code></pre>
-  </li>
-  <li>
-    <p>1-1.インストール開始</p>
+<p>ブラウザから、上記インストール先URLへアクセス。</p>
 
-    <p>ブラウザから、上記インストール先URLへアクセス。</p>
+<p>(例) http://localhost/revive-adserver</p>
 
-    <p>(例) http://localhost/revive-adserver</p>
+<p>ウィザードに従ってインストールを進めます。</p>
 
-    <p>ウィザードに従ってインストールを進めます。</p>
+<p><a href="/assets/posts/img/revive_adserver_install/step1.png" target="_blank"><img width="50%" height="50%" title="step1" alt="step1" src="/assets/posts/img/revive_adserver_install/step1.png"></a></p>
 
-    <p><a href="/assets/posts/img/revive_adserver_install/step1.png" target="_blank"><img width="50%" height="50%" title="step1" alt="step1" src="/assets/posts/img/revive_adserver_install/step1.png" /></a></p>
+<p>&quot;I Agree &gt;&gt;&quot;ボタンを押すと、&quot;File Permissions - 7 errors&quot; というエラーが表示されました。</p>
 
-    <p>“I Agree »“ボタンを押すと、”File Permissions - 7 errors” というエラーが表示されました。</p>
+<p>画面に表示されたコマンドをそのままコンソールで実行。</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text"># chmod -R a+w /app/revive-adserver/var
+# chmod -R a+w /app/revive-adserver/var/cache
+# chmod -R a+w /app/revive-adserver/var/plugins
+# chmod -R a+w /app/revive-adserver/var/templates_compiled
+# chmod -R a+w /app/revive-adserver/plugins
+# chmod -R a+w /app/revive-adserver/www/admin/plugins
+# chmod -R a+w /app/revive-adserver/www/images
+</code></pre></div>
+<p>再びインストール画面へ戻って&quot;Retry&quot;を押すと、次のステップへ進めます。</p></li>
+<li><p>1-2.DB設定</p>
 
-    <p>画面に表示されたコマンドをそのままコンソールで実行。</p>
+<p>DB情報の入力画面が表示されますが、その前に下記コマンド(※1)でMySQL上にDBを作成。</p>
 
-    <pre><code>  # chmod -R a+w /app/revive-adserver/var
-  # chmod -R a+w /app/revive-adserver/var/cache
-  # chmod -R a+w /app/revive-adserver/var/plugins
-  # chmod -R a+w /app/revive-adserver/var/templates_compiled
-  # chmod -R a+w /app/revive-adserver/plugins
-  # chmod -R a+w /app/revive-adserver/www/admin/plugins
-  # chmod -R a+w /app/revive-adserver/www/images
-</code></pre>
+<p><a href="/assets/posts/img/revive_adserver_install/step2.png" target="_blank"><img width="50%" height="50%" title="step2" alt="step2" src="/assets/posts/img/revive_adserver_install/step2.png"></a></p>
 
-    <p>再びインストール画面へ戻って”Retry”を押すと、次のステップへ進めます。</p>
-  </li>
-  <li>
-    <p>1-2.DB設定</p>
+<p>(※1) コマンド (DB名、ユーザ名、パスワードは任意に設定して下さい)</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text"># mysql -h 127.0.0.1 -u root -p
+mysql&gt; create database reviveadserver;
+mysql&gt; grant all privileges on reviveadserver.* to admin@localhost identified by &#39;password&#39;;
+</code></pre></div>
+<p>再びインストール画面へ戻り、上記のDB情報を入力後、&quot;Continue &gt;&gt;&quot; を押します。</p></li>
+<li><p>1-3.管理ユーザ登録</p>
 
-    <p>DB情報の入力画面が表示されますが、その前に下記コマンド(※1)でMySQL上にDBを作成。</p>
+<p>Revive AdServerの管理ユーザを登録します。</p>
 
-    <p><a href="/assets/posts/img/revive_adserver_install/step2.png" target="_blank"><img width="50%" height="50%" title="step2" alt="step2" src="/assets/posts/img/revive_adserver_install/step2.png" /></a></p>
+<p><a href="/assets/posts/img/revive_adserver_install/step3.png" target="_blank"><img width="50%" height="50%" title="step3" alt="step3" src="/assets/posts/img/revive_adserver_install/step3.png"></a></p>
 
-    <p>(※1) コマンド (DB名、ユーザ名、パスワードは任意に設定して下さい)</p>
+<p>言語とタイムゾーンを変更。</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">Language:  Japanese
+Timezone:  (GMT+0900) Asia/Tokyo
+</code></pre></div></li>
+<li><p>1-4.登録完了</p>
 
-    <pre><code>  # mysql -h 127.0.0.1 -u root -p
-  mysql&gt; create database reviveadserver;
-  mysql&gt; grant all privileges on reviveadserver.* to admin@localhost identified by 'password';
-</code></pre>
+<p>登録完了しました。</p>
 
-    <p>再びインストール画面へ戻り、上記のDB情報を入力後、”Continue »” を押します。</p>
-  </li>
-  <li>
-    <p>1-3.管理ユーザ登録</p>
+<p>「インストール中にエラーが発生しました」と表示されましたが、指定されたログを見てもエラーの記述はありませんでした。</p>
 
-    <p>Revive AdServerの管理ユーザを登録します。</p>
-
-    <p><a href="/assets/posts/img/revive_adserver_install/step3.png" target="_blank"><img width="50%" height="50%" title="step3" alt="step3" src="/assets/posts/img/revive_adserver_install/step3.png" /></a></p>
-
-    <p>言語とタイムゾーンを変更。</p>
-
-    <pre><code>  Language:  Japanese
-  Timezone:  (GMT+0900) Asia/Tokyo
-</code></pre>
-  </li>
-  <li>
-    <p>1-4.登録完了</p>
-
-    <p>登録完了しました。</p>
-
-    <p>「インストール中にエラーが発生しました」と表示されましたが、指定されたログを見てもエラーの記述はありませんでした。</p>
-
-    <p><a href="/assets/posts/img/revive_adserver_install/step4.png" target="_blank"><img width="50%" height="50%" title="step4" alt="step4" src="/assets/posts/img/revive_adserver_install/step4.png" /></a></p>
-  </li>
+<p><a href="/assets/posts/img/revive_adserver_install/step4.png" target="_blank"><img width="50%" height="50%" title="step4" alt="step4" src="/assets/posts/img/revive_adserver_install/step4.png"></a></p></li>
 </ul>
 
   </div><!-- /.entry-content -->
@@ -475,112 +419,85 @@
     
   </header>
   <div class="entry-content">
-    
-<p><span>&nbsp;</span><span style="color:#d14; float:right;">更新日：2015年02月08日</span></p>
-<p><span><a href="https://twitter.com/handycola" class="twitter-follow-button" data-show-count="false" data-lang="ja" data-size="large" data-show-screen-name="false" data-dnt="true">@handycolaさんをフォロー</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></span><span style="float:right;">投稿日：2014年02月03日</span></p>
+    <p><span>&nbsp;</span><span style="color:#d14; float:right;">更新日：2015年02月08日</span></p>
 
-<h5 id="section">0.環境</h5>
+<p><span style="float:right;">投稿日：2014年02月03日</span></p>
 
-<pre><code>[CentOS]   5.6 (32bit版カーネル)
+<h5>0.環境</h5>
+<div class="highlight"><pre><code class="language-text" data-lang="text">[CentOS]   5.6 (32bit版カーネル)
 [Apache]   2.2.3
 [PHP]      5.4.1
 [device]   Fitbit One
-</code></pre>
-
-<h5 id="oauth-extension--fitbit-api">1.OAuth Extensionインストール → fitbit API実行</h5>
+</code></pre></div>
+<h5>1.OAuth Extensionインストール → fitbit API実行</h5>
 
 <ul>
-  <li>
-    <p>1-1.fitbit(活動量計)の<a href="https://wiki.fitbit.com/display/API/API+PHP+Client">API使用手順</a>にそって作業を進めます。</p>
+<li><p>1-1.fitbit(活動量計)の<a href="https://wiki.fitbit.com/display/API/API+PHP+Client">API使用手順</a>にそって作業を進めます。</p>
 
-    <p>下記コマンドを実行。</p>
+<p>下記コマンドを実行。</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text"># pecl install oauth-0.99.9
+</code></pre></div>
+<p>エラー発生。</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">　：
+（割愛）
+　：
+/var/tmp/oauth/oauth.c:2058: warning: assignment from incompatible pointer type
+/var/tmp/oauth/oauth.c: In function &#39;zm_shutdown_oauth&#39;:
+/var/tmp/oauth/oauth.c:2092: warning: implicit declaration of function &#39;curl_global_cleanup&#39;
+make: *** [oauth.lo] エラー 1
+ERROR: `make&#39; failed
+</code></pre></div>
+<p><a href="https://bugs.php.net/bug.php?id=59153">こんな情報</a>を見つけ、下記コマンドを実行。</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text"># yum install curl-devel
+</code></pre></div>
+<p>エラーは変わらず、さらに<a href="http://blog.gmane.org/gmane.comp.php.install/month=20101201">こんな情報</a>を見つけ、下記コマンドを実行。</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text"># yum install pcre pcre-devel
+</code></pre></div>
+<p>またまたエラー発生。OAuthを使うための<a href="http://www.php.net/manual/ja/oauth.requirements.php">条件</a>を発見。</p>
 
-    <pre><code>  # pecl install oauth-0.99.9
-</code></pre>
+<p><a href="http://blog.flatlabs.net/20100611_062745/">良さそうなページ</a>を見つけ、下記コマンドを実行。</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text"># pecl install oauth-beta
+</code></pre></div>
+<p>お！成功した。</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">Build process completed successfully
+Installing &#39;/usr/lib/php/modules/oauth.so&#39;
+install ok: channel://pecl.php.net/oauth-1.2.3
+configuration option &quot;php_ini&quot; is not set to php.ini location
+You should add &quot;extension=oauth.so&quot; to php.ini
+</code></pre></div>
+<p>後は指示通りExtensionを追加。</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text"># vi /etc/php.d/oauth.ini
+extension=oauth.so
+</code></pre></div></li>
+<li><p>1-2.サンプルプログラム実行。</p>
 
-    <p>エラー発生。</p>
+<p>準備ができたので、<a href="http://dev.fitbit.com/">開発者用ページ</a>から<a href="https://wiki.fitbit.com/download/attachments/884784/completeAuthorization.php?version=2&amp;modificationDate=1297797897000&amp;api=v2">サンプルプログラム</a>をダウンロード。</p>
 
-    <pre><code>  　：
-  （割愛）
-  　：
-  /var/tmp/oauth/oauth.c:2058: warning: assignment from incompatible pointer type
-  /var/tmp/oauth/oauth.c: In function 'zm_shutdown_oauth':
-  /var/tmp/oauth/oauth.c:2092: warning: implicit declaration of function 'curl_global_cleanup'
-  make: *** [oauth.lo] エラー 1
-  ERROR: `make' failed
-</code></pre>
+<p>サンプルプログラムを自分の設定に合わせて修正。(下記1-3参照)</p>
 
-    <p><a href="https://bugs.php.net/bug.php?id=59153">こんな情報</a>を見つけ、下記コマンドを実行。</p>
+<p>Apacheのドキュメントルートに配置して、ブラウザからアクセスするとエラーが発生。</p>
 
-    <pre><code>  # yum install curl-devel
-</code></pre>
+<p>(localhostは自分の環境に読み替えて下さい)</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">http://localhost/completeAuthorization.php
+</code></pre></div>
+<p>body<em>recv の値を見てみると、&quot;fieldName&quot;:&quot;oauth</em>timestamp&quot; があやしい。</p>
 
-    <p>エラーは変わらず、さらに<a href="http://blog.gmane.org/gmane.comp.php.install/month=20101201">こんな情報</a>を見つけ、下記コマンドを実行。</p>
+<p>(自分のVM(CentOS)では、時刻同期していないため時間が狂っている)</p>
 
-    <pre><code>  # yum install pcre pcre-devel
-</code></pre>
+<p>date コマンドで正しい時刻に合わせ、再度ブラウザからアクセスすると下記メッセージが画面に表示された。</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">healthcheck（individual）がFitbit.com上のあなたのプロフィールおよびデータへのアクセスを要求しています：
+</code></pre></div>
+<p>「許可する」をクリックするとサンプルページが表示され、自分の健康データが表示されました。</p>
 
-    <p>またまたエラー発生。OAuthを使うための<a href="http://www.php.net/manual/ja/oauth.requirements.php">条件</a>を発見。</p>
+<p>(予め fitbitの「<a href="https://dev.fitbit.com/apps/new">開発者ページ</a>」で、callbackのページを上記URLにしておく)</p>
 
-    <p><a href="http://blog.flatlabs.net/20100611_062745/">良さそうなページ</a>を見つけ、下記コマンドを実行。</p>
+<p>※OAuthは<a href="http://yuroyoro.hatenablog.com/entry/20100506/1273137673">こちらのページ</a>で復習。</p></li>
+<li><p>1-3.サンプルプログラム修正(【変更】の部分を自分の設定に書き換えます)</p>
 
-    <pre><code>  # pecl install oauth-beta
-</code></pre>
-
-    <p>お！成功した。</p>
-
-    <pre><code>  Build process completed successfully
-  Installing '/usr/lib/php/modules/oauth.so'
-  install ok: channel://pecl.php.net/oauth-1.2.3
-  configuration option "php_ini" is not set to php.ini location
-  You should add "extension=oauth.so" to php.ini
-</code></pre>
-
-    <p>後は指示通りExtensionを追加。</p>
-
-    <pre><code>  # vi /etc/php.d/oauth.ini
-  extension=oauth.so
-</code></pre>
-  </li>
-  <li>
-    <p>1-2.サンプルプログラム実行。</p>
-
-    <p>準備ができたので、<a href="http://dev.fitbit.com/">開発者用ページ</a>から<a href="https://wiki.fitbit.com/download/attachments/884784/completeAuthorization.php?version=2&amp;modificationDate=1297797897000&amp;api=v2">サンプルプログラム</a>をダウンロード。</p>
-
-    <p>サンプルプログラムを自分の設定に合わせて修正。(下記1-3参照)</p>
-
-    <p>Apacheのドキュメントルートに配置して、ブラウザからアクセスするとエラーが発生。</p>
-
-    <p>(localhostは自分の環境に読み替えて下さい)</p>
-
-    <pre><code>  http://localhost/completeAuthorization.php
-</code></pre>
-
-    <p>body_recv の値を見てみると、”fieldName”:”oauth_timestamp” があやしい。</p>
-
-    <p>(自分のVM(CentOS)では、時刻同期していないため時間が狂っている)</p>
-
-    <p>date コマンドで正しい時刻に合わせ、再度ブラウザからアクセスすると下記メッセージが画面に表示された。</p>
-
-    <pre><code>  healthcheck（individual）がFitbit.com上のあなたのプロフィールおよびデータへのアクセスを要求しています：
-</code></pre>
-
-    <p>「許可する」をクリックするとサンプルページが表示され、自分の健康データが表示されました。</p>
-
-    <p>(予め fitbitの「<a href="https://dev.fitbit.com/apps/new">開発者ページ</a>」で、callbackのページを上記URLにしておく)</p>
-
-    <p>※OAuthは<a href="http://yuroyoro.hatenablog.com/entry/20100506/1273137673">こちらのページ</a>で復習。</p>
-  </li>
-  <li>
-    <p>1-3.サンプルプログラム修正(【変更】の部分を自分の設定に書き換えます)</p>
-
-    <p><code>(2015/02/08, 更新) APIアクセスをhttpsに変更。</code></p>
-  </li>
+<p><code>(2015/02/08, 更新) APIアクセスをhttpsに変更。</code></p></li>
 </ul>
 
 <script src="https://gist.github.com/Sankame/8787002.js"></script>
-
 
   </div><!-- /.entry-content -->
 </article><!-- /.hentry -->
@@ -603,23 +520,18 @@
     
   </header>
   <div class="entry-content">
-    
-<p><span><a href="https://twitter.com/handycola" class="twitter-follow-button" data-show-count="false" data-lang="ja" data-size="large" data-show-screen-name="false" data-dnt="true">@handycolaさんをフォロー</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></span><span style="float:right;">投稿日：2014年02月01日</span></p>
+    <p><span style="float:right;">投稿日：2014年02月01日</span></p>
 
-<h4 id="php-">PHPメモ (自分用)</h4>
+<h4>PHPメモ (自分用)</h4>
 
-<h5 id="extension">(1) extensionが追加されたかコマンドラインで確認</h5>
+<h5>(1) extensionが追加されたかコマンドラインで確認</h5>
 
 <ul>
-  <li>
-    <p>下記は例。OAuthの部分は任意のextension名に置き換える。</p>
-
-    <pre><code>  # php -r "echo phpinfo();"|grep OAuth
-  OAuth
-  OAuth support =&gt; enabled
-</code></pre>
-  </li>
+<li><p>下記は例。OAuthの部分は任意のextension名に置き換える。</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text"># php -r &quot;echo phpinfo();&quot;|grep OAuth
+OAuth
+OAuth support =&gt; enabled
+</code></pre></div></li>
 </ul>
 
   </div><!-- /.entry-content -->
@@ -643,52 +555,32 @@
     
   </header>
   <div class="entry-content">
-    
-<p><span><a href="https://twitter.com/handycola" class="twitter-follow-button" data-show-count="false" data-lang="ja" data-size="large" data-show-screen-name="false" data-dnt="true">@handycolaさんをフォロー</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></span><span style="float:right;">投稿日：2013年10月03日</span></p>
+    <p><span style="float:right;">投稿日：2013年10月03日</span></p>
 
-<h5 id="section">0.環境</h5>
-
-<pre><code>[スマホ端末/OS] GALAXY S SC-02B / Android2.2
+<h5>0.環境</h5>
+<div class="highlight"><pre><code class="language-text" data-lang="text">[スマホ端末/OS] GALAXY S SC-02B / Android2.2
 [PC端末/OS]    Gateway SX2800 / Windows Vista Home Premium
-</code></pre>
-
-<h5 id="section-1">1.スマホでマインドマップ作成</h5>
+</code></pre></div>
+<h5>1.スマホでマインドマップ作成</h5>
 
 <ul>
-  <li>
-    <p>1-1.スマホにMindMapMemoをインストールする。</p>
-  </li>
-  <li>
-    <p>1-2.マインドマップのファイルを作成後、「オプション」-「メール送信(SD保存)」-「FreeMind(.mm)」を選択。</p>
-  </li>
-  <li>
-    <p>1-3.共有するためのアプリ一覧が表示されるので、PCへファイルを送信できるアプリを選択。</p>
-  </li>
+<li><p>1-1.スマホにMindMapMemoをインストールする。</p></li>
+<li><p>1-2.マインドマップのファイルを作成後、「オプション」-「メール送信(SD保存)」-「FreeMind(.mm)」を選択。</p></li>
+<li><p>1-3.共有するためのアプリ一覧が表示されるので、PCへファイルを送信できるアプリを選択。</p></li>
 </ul>
 
-<h5 id="pcfreemind">2.PCにFreeMindをインストール</h5>
+<h5>2.PCにFreeMindをインストール</h5>
 
 <ul>
-  <li>
-    <p>2-1.下記リンク先のページで[0.8.1]をクリック。</p>
+<li><p>2-1.下記リンク先のページで[0.8.1]をクリック。</p>
 
-    <p>(0.9.0では上記スマホで作成したファイルをうまく開けませんでした)</p>
+<p>(0.9.0では上記スマホで作成したファイルをうまく開けませんでした)</p>
 
-    <p><a href="http://sourceforge.net/projects/freemind/files/freemind/">FreeMindソース</a></p>
-  </li>
-  <li>
-    <p>2-2.[freemind-bin-0_8_1.zip]をクリック。</p>
-  </li>
-  <li>
-    <p>2-3.PCにダウンロード後、解凍してFreemind.exeをダブルクリック。</p>
-  </li>
-  <li>
-    <p>2-4.メニューの「ファイル」-「開く」で、スマホから送信した拡張子がmmのファイルを選択。</p>
-  </li>
-  <li>
-    <p>2-5.スマホではカラフルに作ったのにFreeMindで開くと白黒になっている。まあ内容が分かるからいいか…</p>
-  </li>
+<p><a href="http://sourceforge.net/projects/freemind/files/freemind/">FreeMindソース</a></p></li>
+<li><p>2-2.[freemind-bin-0<em>8</em>1.zip]をクリック。</p></li>
+<li><p>2-3.PCにダウンロード後、解凍してFreemind.exeをダブルクリック。</p></li>
+<li><p>2-4.メニューの「ファイル」-「開く」で、スマホから送信した拡張子がmmのファイルを選択。</p></li>
+<li><p>2-5.スマホではカラフルに作ったのにFreeMindで開くと白黒になっている。まあ内容が分かるからいいか…</p></li>
 </ul>
 
   </div><!-- /.entry-content -->

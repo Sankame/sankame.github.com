@@ -39,6 +39,7 @@
 
 <!-- For all browsers -->
 <link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="/assets/css/ext.css">
 <!-- Webfonts -->
 <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic" rel="stylesheet" type="text/css">
 
@@ -85,7 +86,7 @@
 				<li>
 					<img src="/images/avatar.jpg" alt="sankame photo" class="author-photo">
 					<h4>sankame</h4>
-					<p>老舗インターネット・メディア企業で働くプログラマー。千葉県在住。</p>
+					<p>老舗ネット企業で働くプログラマー。<br>千葉県在住。</p>
 				</li>
 				<!-- <li><a href="/about/"><span class="btn btn-inverse">Learn More</span></a></li> -->
 				<li>
@@ -153,182 +154,145 @@
 (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
 </div>
-      
-<p><span><a href="https://twitter.com/handycola" class="twitter-follow-button" data-show-count="false" data-lang="ja" data-size="large" data-show-screen-name="false" data-dnt="true">@handycolaさんをフォロー</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></span><span style="float:right;">投稿日：2014年05月17日</span></p>
+      <p><span style="float:right;">投稿日：2014年05月17日</span></p>
 
-<h5 id="section">0.環境</h5>
-
-<pre><code>[CentOS]     5.6 (32bit版カーネル)
+<h5>0.環境</h5>
+<div class="highlight"><pre><code class="language-text" data-lang="text">[CentOS]     5.6 (32bit版カーネル)
 [ruby]       2.1.1p76
 [rvm]        1.25.25
 [jekyll]     0.11.2 =&gt; 1.0.2
-</code></pre>
-
-<h5 id="httpmelbornegithubio20130520now-the-time-to-start-jekyll">1.インストール <a href="http://melborne.github.io/2013/05/20/now-the-time-to-start-jekyll/">参考ページ</a></h5>
+</code></pre></div>
+<h5>1.インストール <a href="http://melborne.github.io/2013/05/20/now-the-time-to-start-jekyll/">参考ページ</a></h5>
 
 <ul>
-  <li>
-    <p>インストール</p>
+<li><p>インストール</p>
 
-    <p>本ブログはjekyll 0.11.2で作成してきましたが、別件でrubyのバージョンを上げたことでjekyllが動か</p>
+<p>本ブログはjekyll 0.11.2で作成してきましたが、別件でrubyのバージョンを上げたことでjekyllが動か</p>
 
-    <p>なくなってしまったため、思い切って1.0.2への移行を行いました。<a href="http://sankame.github.io/Jekyll/2012/12/23/jekyll_and_github/">初期インストールの内容</a></p>
+<p>なくなってしまったため、思い切って1.0.2への移行を行いました。<a href="http://sankame.github.io/Jekyll/2012/12/23/jekyll_and_github/">初期インストールの内容</a></p>
 
-    <p>いくつかハマった点を共有します。</p>
+<p>いくつかハマった点を共有します。</p>
 
-    <p>まず、複数バージョンのrubyを使いたかったので下記ページに沿ってrvmをインストール。</p>
+<p>まず、複数バージョンのrubyを使いたかったので下記ページに沿ってrvmをインストール。</p>
 
-    <p><a href="http://d.hatena.ne.jp/mrgoofy33/20110518/1305649544">rvmインストール</a></p>
+<p><a href="http://d.hatena.ne.jp/mrgoofy33/20110518/1305649544">rvmインストール</a></p>
 
-    <p>rootで実行したためか /usr/local/rvm にインストールされたので、上記記事内のパスは読み替えました。</p>
+<p>rootで実行したためか /usr/local/rvm にインストールされたので、上記記事内のパスは読み替えました。</p>
 
-    <p>ruby 2.1.1をインストール。</p>
+<p>ruby 2.1.1をインストール。</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text"># rvm install 2.1.1
+# rvm use  2.1.1
+</code></pre></div>
+<p>適当な場所にGemfileを作成し、jekyllを追記してインストール開始。</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text"># bundle init
+# echo &quot;gem &#39;jekyll&#39;, &#39;1.0.2&#39;&quot; &gt;&gt; Gemfile
+# bundle install
+</code></pre></div>
+<p>インストールされたことを確認します。</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text"># gem list|grep jekyll
+jekyll (1.0.2)
+jekyll-coffeescript (1.0.0)
+jekyll-sass-converter (1.0.0)
+</code></pre></div></li>
+<li><p>起動</p>
 
-    <pre><code>  # rvm install 2.1.1
-  # rvm use  2.1.1
-</code></pre>
+<p>任意の場所へ移動し、bootstrapをダウンロードします。<a href="http://jekyllbootstrap.com/usage/jekyll-quick-start.html">bootstrapクイックスタート</a></p>
 
-    <p>適当な場所にGemfileを作成し、jekyllを追記してインストール開始。</p>
-
-    <pre><code>  # bundle init
-  # echo "gem 'jekyll', '1.0.2'" &gt;&gt; Gemfile
-  # bundle install
-</code></pre>
-
-    <p>インストールされたことを確認します。</p>
-
-    <pre><code>  # gem list|grep jekyll
-  jekyll (1.0.2)
-  jekyll-coffeescript (1.0.0)
-  jekyll-sass-converter (1.0.0)
-</code></pre>
-  </li>
-  <li>
-    <p>起動</p>
-
-    <p>任意の場所へ移動し、bootstrapをダウンロードします。<a href="http://jekyllbootstrap.com/usage/jekyll-quick-start.html">bootstrapクイックスタート</a></p>
-
-    <p>(前バージョンとは別の場所にしました)</p>
-
-    <pre><code>  # cd /var/www/html/jekyll2/
-  # git clone https://github.com/plusjade/jekyll-bootstrap.git
-  # cd jekyll-bootstrap
-  # jekyll serve --watch
-</code></pre>
-  </li>
+<p>(前バージョンとは別の場所にしました)</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text"># cd /var/www/html/jekyll2/
+# git clone https://github.com/plusjade/jekyll-bootstrap.git
+# cd jekyll-bootstrap
+# jekyll serve --watch
+</code></pre></div></li>
 </ul>
 
-<h5 id="section-1">2.引越し</h5>
+<h5>2.引越し</h5>
 
 <ul>
-  <li>
-    <p>ファイルコピー</p>
+<li><p>ファイルコピー</p>
 
-    <p>前バージョンの設定ファイルや記事を新バージョンへコピーします。</p>
+<p>前バージョンの設定ファイルや記事を新バージョンへコピーします。</p>
 
-    <p>(自分の環境に合わせて必要なものをコピーして下さい)</p>
+<p>(自分の環境に合わせて必要なものをコピーして下さい)</p>
 
-    <p>(1) diffを確認しながら部分ごとコピー</p>
+<p>(1) diffを確認しながら部分ごとコピー</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">index.md
+_config.yml
+categories.html
+tags.html
+pages.html
+archive.html
+404.html
+</code></pre></div>
+<p>(2) ディレクトリ単位で上書きコピー</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">_includes/JB
+_includes/themes/twitter
+_layouts
+_posts
+assets
+</code></pre></div></li>
+<li><p>動かない①</p>
 
-    <pre><code>  index.md
-  _config.yml
-  categories.html
-  tags.html
-  pages.html
-  archive.html
-  404.html
-</code></pre>
+<p>_posts 内でサンプルコードとして下記の記述があると、jekyllが停止してしまいました。</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">　&lt;?php
+</code></pre></div>
+<p>原因が分からなかったので、gistにコード部分をアップしjekyllで読み込ませることにしました。</p>
 
-    <p>(2) ディレクトリ単位で上書きコピー</p>
+<p>gistは下記のように記述する必要があります。(【】 内は読み替え)</p>
 
-    <pre><code>  _includes/JB
-  _includes/themes/twitter
-  _layouts
-  _posts
-  assets
-</code></pre>
-  </li>
-  <li>
-    <p>動かない①</p>
+<p>{% gist     【gistのID】  【ファイル名】 %}</p>
 
-    <p>_posts 内でサンプルコードとして下記の記述があると、jekyllが停止してしまいました。</p>
+<p>ところが、gistのIDにアルファベットが含まれるのに、jekyll側は数字のみしか対応していなか</p>
 
-    <pre><code>  　&lt;?php
-</code></pre>
+<p>ったためローカルjekyllの下記箇所を修正しました。(jekyll 1.x系の最新(1.4)では直ってました)</p>
 
-    <p>原因が分からなかったので、gistにコード部分をアップしjekyllで読み込ませることにしました。</p>
+<p>・ソース</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">/usr/local/rvm/gems/ruby-2.1.1/gems/jekyll-1.0.2/lib/jekyll/tags/gist.rb
+</code></pre></div>
+<p>・修正内容 (IDにアルファベットを許可)</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text"># diff  gist.rb.org  gist.rb
+10c10
+&lt; if tag_contents = @markup.strip.match(/\A(\d+) ?(\S*)\Z/)
+　---
+&gt; if tag_contents = @markup.strip.match(/\A([0-9a-fA-F]+) ?(\S*)\Z/)
+</code></pre></div></li>
+<li><p>動かない②</p>
 
-    <p>gistは下記のように記述する必要があります。(【】 内は読み替え)</p>
+<p>新旧の記事ページの比較をしていたところ、URLが違うことに気付きました。</p>
 
-    <p>{% gist     【gistのID】  【ファイル名】 %}</p>
+<p>前バージョンだと _posts 内の記事のヘッダ部分で定義するカテゴリに大文字を使っている場合、</p>
 
-    <p>ところが、gistのIDにアルファベットが含まれるのに、jekyll側は数字のみしか対応していなか</p>
+<p>_site に生成されるディレクトリもそのまま大文字になります。</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">category : Jekyll
+</code></pre></div>
+<p>ところが、新バージョンだと全部小文字に変換され、下記の差が出てしまいます。</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">(前バージョン)
+http://localhost:4000/Jekyll/2014/05/18/jekyll_version_up/
 
-    <p>ったためローカルjekyllの下記箇所を修正しました。(jekyll 1.x系の最新(1.4)では直ってました)</p>
+(新バージョン)
+http://localhost:4000/jekyll/2014/05/18/jekyll_version_up/
+</code></pre></div>
+<p>一度インターネットに公開したURLが変わるのは困ります…</p>
 
-    <p>・ソース</p>
+<p>仕方がないので、ローカルのjekyllソースを下記のように修正しました。</p>
 
-    <pre><code>  /usr/local/rvm/gems/ruby-2.1.1/gems/jekyll-1.0.2/lib/jekyll/tags/gist.rb
-</code></pre>
+<p>・ソース</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">/usr/local/rvm/gems/ruby-2.1.1/gems/jekyll-1.0.2/lib/jekyll/post.rb
+</code></pre></div>
+<p>・修正内容 (小文字変換を削除)</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text"># diff post.rb.org post.rb
+79c79
+&lt; self.categories = self.data.pluralized_array(&#39;category&#39;, &#39;categories&#39;).map {|c| c.to_s.downcase}
+　---
+&gt; self.categories = self.data.pluralized_array(&#39;category&#39;, &#39;categories&#39;).map {|c| c.to_s}
+</code></pre></div></li>
+<li><p>参考ページ</p>
 
-    <p>・修正内容 (IDにアルファベットを許可)</p>
+<p><a href="http://melborne.github.io/2013/05/20/now-the-time-to-start-jekyll/">Jekyll Version 1.0</a></p>
 
-    <pre><code>  # diff  gist.rb.org  gist.rb
-  10c10
-  &lt; if tag_contents = @markup.strip.match(/\A(\d+) ?(\S*)\Z/)
-  　---
-  &gt; if tag_contents = @markup.strip.match(/\A([0-9a-fA-F]+) ?(\S*)\Z/)
-</code></pre>
-  </li>
-  <li>
-    <p>動かない②</p>
+<p><a href="http://melborne.github.io/2012/05/13/first-step-of-jekyll/">Jekyllを理解する</a></p>
 
-    <p>新旧の記事ページの比較をしていたところ、URLが違うことに気付きました。</p>
-
-    <p>前バージョンだと _posts 内の記事のヘッダ部分で定義するカテゴリに大文字を使っている場合、</p>
-
-    <p>_site に生成されるディレクトリもそのまま大文字になります。</p>
-
-    <pre><code>  category : Jekyll
-</code></pre>
-
-    <p>ところが、新バージョンだと全部小文字に変換され、下記の差が出てしまいます。</p>
-
-    <pre><code>  (前バージョン)
-  http://localhost:4000/Jekyll/2014/05/18/jekyll_version_up/
-
-  (新バージョン)
-  http://localhost:4000/jekyll/2014/05/18/jekyll_version_up/
-</code></pre>
-
-    <p>一度インターネットに公開したURLが変わるのは困ります…</p>
-
-    <p>仕方がないので、ローカルのjekyllソースを下記のように修正しました。</p>
-
-    <p>・ソース</p>
-
-    <pre><code>  /usr/local/rvm/gems/ruby-2.1.1/gems/jekyll-1.0.2/lib/jekyll/post.rb
-</code></pre>
-
-    <p>・修正内容 (小文字変換を削除)</p>
-
-    <pre><code>  # diff post.rb.org post.rb
-  79c79
-  &lt; self.categories = self.data.pluralized_array('category', 'categories').map {|c| c.to_s.downcase}
-  　---
-  &gt; self.categories = self.data.pluralized_array('category', 'categories').map {|c| c.to_s}
-</code></pre>
-  </li>
-  <li>
-    <p>参考ページ</p>
-
-    <p><a href="http://melborne.github.io/2013/05/20/now-the-time-to-start-jekyll/">Jekyll Version 1.0</a></p>
-
-    <p><a href="http://melborne.github.io/2012/05/13/first-step-of-jekyll/">Jekyllを理解する</a></p>
-
-    <p><a href="http://krakenbeal.blogspot.jp/2012/05/ruby-jekyll-jekyll-bootstrap.html">jekyllとjekyll-bootstrapで静的サイトを作る</a></p>
-  </li>
+<p><a href="http://krakenbeal.blogspot.jp/2012/05/ruby-jekyll-jekyll-bootstrap.html">jekyllとjekyll-bootstrapで静的サイトを作る</a></p></li>
 </ul>
 
       <div>
@@ -356,6 +320,8 @@
 </script>
 </div>
 </div>
+      <span><a href="https://twitter.com/handycola" class="twitter-follow-button" data-show-count="false" data-lang="ja" data-size="large" data-show-screen-name="false" data-dnt="true">@handycolaさんをフォロー</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></span>
       <footer class="entry-meta">
         
         <div class="social-share">

@@ -39,6 +39,7 @@
 
 <!-- For all browsers -->
 <link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="/assets/css/ext.css">
 <!-- Webfonts -->
 <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic" rel="stylesheet" type="text/css">
 
@@ -85,7 +86,7 @@
 				<li>
 					<img src="/images/avatar.jpg" alt="sankame photo" class="author-photo">
 					<h4>sankame</h4>
-					<p>老舗インターネット・メディア企業で働くプログラマー。千葉県在住。</p>
+					<p>老舗ネット企業で働くプログラマー。<br>千葉県在住。</p>
 				</li>
 				<!-- <li><a href="/about/"><span class="btn btn-inverse">Learn More</span></a></li> -->
 				<li>
@@ -153,81 +154,68 @@
 (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
 </div>
-      
-<p><span><a href="https://twitter.com/handycola" class="twitter-follow-button" data-show-count="false" data-lang="ja" data-size="large" data-show-screen-name="false" data-dnt="true">@handycolaさんをフォロー</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></span><span style="float:right;">投稿日：2014年08月19日</span></p>
+      <p><span style="float:right;">投稿日：2014年08月19日</span></p>
 
-<h5 id="section">0.環境</h5>
-
-<pre><code>[CentOS]   5.6 (32bit版カーネル)
+<h5>0.環境</h5>
+<div class="highlight"><pre><code class="language-text" data-lang="text">[CentOS]   5.6 (32bit版カーネル)
 [Apache]   2.2.3
-</code></pre>
-
-<h5 id="section-1">1.パスワードファイル作成</h5>
-
-<ul>
-  <li>
-    <p>適当な場所にパスワードファイルを作成。(“user1”は作成したいユーザー名で読み替え)</p>
-
-    <pre><code>  # htpasswd -c /etc/httpd/conf/.htpasswd user1
-  New password: 
-  Re-type new password: 
-  Adding password for user user1
-</code></pre>
-  </li>
-</ul>
-
-<h5 id="section-2">2.パスワードファイル設定</h5>
+</code></pre></div>
+<h5>1.パスワードファイル作成</h5>
 
 <ul>
-  <li>
-    <p>VirtualHostを設定している場合、Directoryディレクティブ内に下記を追加。</p>
-
-    <p>AuthUserFileには上記1で作ったパスワードファイルを指定。</p>
-
-    <p>AuthNameはブラウザの認証ダイアログに表示されるメッセージとなります。</p>
-
-    <p>(マルチバイト文字は化ける可能性あり)</p>
-
-    <p><code>※下記はApache設定ファイル(/etc/httpd/conf/httpd.conf) の抜粋</code></p>
-
-    <pre><code>  NameVirtualHost *:80
-
-  &lt;Directory /web/test&gt;
-      Options FollowSymLinks
-      AllowOverride FileInfo Options=All,MultiViews
-	    
-      # --- ベーシック認証追加 ---
-      AuthType Basic
-      AuthUserFile "/etc/httpd/conf/.htpasswd"
-      AuthName "Here is a message."
-      Require valid-user
-      # --- ベーシック認証追加 ---
-	    
-  &lt;/Directory&gt;
-
-  &lt;VirtualHost *:80&gt;
-      ServerAdmin test@sample.co.jp
-      DocumentRoot "/web/test"
-      ServerName test.net
-      ErrorLog logs/test.net-error_log
-      CustomLog logs/test.net-access_log common
-  &lt;/VirtualHost&gt;
-</code></pre>
-  </li>
+<li>適当な場所にパスワードファイルを作成。(&quot;user1&quot;は作成したいユーザー名で読み替え)</li>
 </ul>
+<div class="highlight"><pre><code class="language-text" data-lang="text">    # htpasswd -c /etc/httpd/conf/.htpasswd user1
 
-<h5 id="section-3">3.再起動</h5>
+    New password: 
+
+    Re-type new password: 
+
+    Adding password for user user1
+</code></pre></div>
+<h5>2.パスワードファイル設定</h5>
 
 <ul>
-  <li>
-    <p>最後にApacheを再起動します。</p>
+<li><p>VirtualHostを設定している場合、Directoryディレクティブ内に下記を追加。</p>
 
-    <pre><code>  # service httpd restart
-</code></pre>
-  </li>
+<p>AuthUserFileには上記1で作ったパスワードファイルを指定。</p>
+
+<p>AuthNameはブラウザの認証ダイアログに表示されるメッセージとなります。</p>
+
+<p>(マルチバイト文字は化ける可能性あり)</p>
+
+<p><code>※下記はApache設定ファイル(/etc/httpd/conf/httpd.conf) の抜粋</code></p></li>
 </ul>
+<div class="highlight"><pre><code class="language-apache" data-lang="apache"><span class="nb">NameVirtualHost</span> *:80
 
+<span class="nt">&lt;Directory</span> <span class="s">/web/test</span><span class="nt">&gt;</span>
+    <span class="nb">Options</span> FollowSymLinks
+    <span class="nb">AllowOverride</span> FileInfo Options=All,MultiViews
+
+    <span class="c"># --- ベーシック認証追加 ---</span>
+    <span class="nb">AuthType</span> Basic
+    <span class="nb">AuthUserFile</span> <span class="s2">&quot;/etc/httpd/conf/.htpasswd&quot;</span>
+    <span class="nb">AuthName</span> <span class="s2">&quot;Here is a message.&quot;</span>
+    <span class="nb">Require</span> valid-user
+    <span class="c"># --- ベーシック認証追加 ---</span>
+
+<span class="nt">&lt;/Directory&gt;</span>
+
+<span class="nt">&lt;VirtualHost</span> <span class="s">*:80</span><span class="nt">&gt;</span>
+    <span class="nb">ServerAdmin</span> test@sample.co.jp
+    <span class="nb">DocumentRoot</span> <span class="s2">&quot;/web/test&quot;</span>
+    <span class="nb">ServerName</span> test.net
+    <span class="nb">ErrorLog</span> logs/test.net-error_log
+    <span class="nb">CustomLog</span> logs/test.net-access_log common
+<span class="nt">&lt;/VirtualHost&gt;</span>
+</code></pre></div>
+<h5>3.再起動</h5>
+
+<ul>
+<li>最後にApacheを再起動します。</li>
+</ul>
+<div class="highlight"><pre><code class="language-text" data-lang="text">    # service httpd restart
+</code></pre></div>
       <div>
 <div style="padding:6px;">
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
@@ -253,6 +241,8 @@
 </script>
 </div>
 </div>
+      <span><a href="https://twitter.com/handycola" class="twitter-follow-button" data-show-count="false" data-lang="ja" data-size="large" data-show-screen-name="false" data-dnt="true">@handycolaさんをフォロー</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></span>
       <footer class="entry-meta">
         
         <div class="social-share">

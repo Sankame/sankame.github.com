@@ -40,6 +40,7 @@
 
 <!-- For all browsers -->
 <link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="/assets/css/ext.css">
 <!-- Webfonts -->
 <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic" rel="stylesheet" type="text/css">
 
@@ -86,7 +87,7 @@
 				<li>
 					<img src="/images/avatar.jpg" alt="sankame photo" class="author-photo">
 					<h4>sankame</h4>
-					<p>老舗インターネット・メディア企業で働くプログラマー。千葉県在住。</p>
+					<p>老舗ネット企業で働くプログラマー。<br>千葉県在住。</p>
 				</li>
 				<!-- <li><a href="/about/"><span class="btn btn-inverse">Learn More</span></a></li> -->
 				<li>
@@ -161,81 +162,68 @@
     
   </header>
   <div class="entry-content">
-    
-<p><span><a href="https://twitter.com/handycola" class="twitter-follow-button" data-show-count="false" data-lang="ja" data-size="large" data-show-screen-name="false" data-dnt="true">@handycolaさんをフォロー</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></span><span style="float:right;">投稿日：2014年08月19日</span></p>
+    <p><span style="float:right;">投稿日：2014年08月19日</span></p>
 
-<h5 id="section">0.環境</h5>
-
-<pre><code>[CentOS]   5.6 (32bit版カーネル)
+<h5>0.環境</h5>
+<div class="highlight"><pre><code class="language-text" data-lang="text">[CentOS]   5.6 (32bit版カーネル)
 [Apache]   2.2.3
-</code></pre>
-
-<h5 id="section-1">1.パスワードファイル作成</h5>
-
-<ul>
-  <li>
-    <p>適当な場所にパスワードファイルを作成。(“user1”は作成したいユーザー名で読み替え)</p>
-
-    <pre><code>  # htpasswd -c /etc/httpd/conf/.htpasswd user1
-  New password: 
-  Re-type new password: 
-  Adding password for user user1
-</code></pre>
-  </li>
-</ul>
-
-<h5 id="section-2">2.パスワードファイル設定</h5>
+</code></pre></div>
+<h5>1.パスワードファイル作成</h5>
 
 <ul>
-  <li>
-    <p>VirtualHostを設定している場合、Directoryディレクティブ内に下記を追加。</p>
-
-    <p>AuthUserFileには上記1で作ったパスワードファイルを指定。</p>
-
-    <p>AuthNameはブラウザの認証ダイアログに表示されるメッセージとなります。</p>
-
-    <p>(マルチバイト文字は化ける可能性あり)</p>
-
-    <p><code>※下記はApache設定ファイル(/etc/httpd/conf/httpd.conf) の抜粋</code></p>
-
-    <pre><code>  NameVirtualHost *:80
-
-  &lt;Directory /web/test&gt;
-      Options FollowSymLinks
-      AllowOverride FileInfo Options=All,MultiViews
-	    
-      # --- ベーシック認証追加 ---
-      AuthType Basic
-      AuthUserFile "/etc/httpd/conf/.htpasswd"
-      AuthName "Here is a message."
-      Require valid-user
-      # --- ベーシック認証追加 ---
-	    
-  &lt;/Directory&gt;
-
-  &lt;VirtualHost *:80&gt;
-      ServerAdmin test@sample.co.jp
-      DocumentRoot "/web/test"
-      ServerName test.net
-      ErrorLog logs/test.net-error_log
-      CustomLog logs/test.net-access_log common
-  &lt;/VirtualHost&gt;
-</code></pre>
-  </li>
+<li>適当な場所にパスワードファイルを作成。(&quot;user1&quot;は作成したいユーザー名で読み替え)</li>
 </ul>
+<div class="highlight"><pre><code class="language-text" data-lang="text">    # htpasswd -c /etc/httpd/conf/.htpasswd user1
 
-<h5 id="section-3">3.再起動</h5>
+    New password: 
+
+    Re-type new password: 
+
+    Adding password for user user1
+</code></pre></div>
+<h5>2.パスワードファイル設定</h5>
 
 <ul>
-  <li>
-    <p>最後にApacheを再起動します。</p>
+<li><p>VirtualHostを設定している場合、Directoryディレクティブ内に下記を追加。</p>
 
-    <pre><code>  # service httpd restart
-</code></pre>
-  </li>
+<p>AuthUserFileには上記1で作ったパスワードファイルを指定。</p>
+
+<p>AuthNameはブラウザの認証ダイアログに表示されるメッセージとなります。</p>
+
+<p>(マルチバイト文字は化ける可能性あり)</p>
+
+<p><code>※下記はApache設定ファイル(/etc/httpd/conf/httpd.conf) の抜粋</code></p></li>
 </ul>
+<div class="highlight"><pre><code class="language-apache" data-lang="apache"><span class="nb">NameVirtualHost</span> *:80
 
+<span class="nt">&lt;Directory</span> <span class="s">/web/test</span><span class="nt">&gt;</span>
+    <span class="nb">Options</span> FollowSymLinks
+    <span class="nb">AllowOverride</span> FileInfo Options=All,MultiViews
+
+    <span class="c"># --- ベーシック認証追加 ---</span>
+    <span class="nb">AuthType</span> Basic
+    <span class="nb">AuthUserFile</span> <span class="s2">&quot;/etc/httpd/conf/.htpasswd&quot;</span>
+    <span class="nb">AuthName</span> <span class="s2">&quot;Here is a message.&quot;</span>
+    <span class="nb">Require</span> valid-user
+    <span class="c"># --- ベーシック認証追加 ---</span>
+
+<span class="nt">&lt;/Directory&gt;</span>
+
+<span class="nt">&lt;VirtualHost</span> <span class="s">*:80</span><span class="nt">&gt;</span>
+    <span class="nb">ServerAdmin</span> test@sample.co.jp
+    <span class="nb">DocumentRoot</span> <span class="s2">&quot;/web/test&quot;</span>
+    <span class="nb">ServerName</span> test.net
+    <span class="nb">ErrorLog</span> logs/test.net-error_log
+    <span class="nb">CustomLog</span> logs/test.net-access_log common
+<span class="nt">&lt;/VirtualHost&gt;</span>
+</code></pre></div>
+<h5>3.再起動</h5>
+
+<ul>
+<li>最後にApacheを再起動します。</li>
+</ul>
+<div class="highlight"><pre><code class="language-text" data-lang="text">    # service httpd restart
+</code></pre></div>
   </div><!-- /.entry-content -->
 </article><!-- /.hentry -->
 
@@ -257,63 +245,43 @@
     
   </header>
   <div class="entry-content">
-    
-<p><span><a href="https://twitter.com/handycola" class="twitter-follow-button" data-show-count="false" data-lang="ja" data-size="large" data-show-screen-name="false" data-dnt="true">@handycolaさんをフォロー</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></span><span style="float:right;">投稿日：2014年07月25日</span></p>
+    <p><span style="float:right;">投稿日：2014年07月25日</span></p>
 
-<h5 id="section">0.環境</h5>
-
-<pre><code>[スマートフォン(OS)]  GALAXY S4 (Android 4.4.2)
+<h5>0.環境</h5>
+<div class="highlight"><pre><code class="language-text" data-lang="text">[スマートフォン(OS)]  GALAXY S4 (Android 4.4.2)
 [スマートウォッチ(OS)] Gear Live (4.4W)
 ※以下、スマートフォンは「スマホ」、スマートウォッチは「ウォッチ」と記載。
-</code></pre>
-
-<h5 id="section-1">1.ホーム画面の時計(ウォッチフェイス)を変更</h5>
+</code></pre></div>
+<h5>1.ホーム画面の時計(ウォッチフェイス)を変更</h5>
 
 <ul>
-  <li>
-    <p>Samsung Gear Live のホーム画面の時計デザインを変える方法は下記の通りです。</p>
+<li><p>Samsung Gear Live のホーム画面の時計デザインを変える方法は下記の通りです。</p>
 
-    <p>(スマホとウォッチはBluetoothで同期されている前提)</p>
+<p>(スマホとウォッチはBluetoothで同期されている前提)</p>
 
-    <ul>
-      <li>
-        <p>①【スマホ】Playストアから好みのデザインの時計アプリをインストールします。(<a href="http://weekly.ascii.jp/elem/000/000/239/239437/" target="_blank">参考リンク</a>)</p>
+<ul>
+<li><p>①【スマホ】Playストアから好みのデザインの時計アプリをインストールします。(<a href="http://weekly.ascii.jp/elem/000/000/239/239437/" target="_blank">参考リンク</a>)</p>
 
-        <p>(例) Playストアで “WearFaces” で検索。</p>
-      </li>
-      <li>
-        <p>②【スマホ】Android Wearアプリを起動し、右上のネジマークをタップ。</p>
+<p>(例) Playストアで &quot;WearFaces&quot; で検索。</p></li>
+<li><p>②【スマホ】Android Wearアプリを起動し、右上のネジマークをタップ。</p>
 
-        <p><a href="/assets/posts/img/android_wear_chage_face/phone-1.png" target="_blank"><img width="20%" height="20%" title="スマホ-設定" alt="スマホ-設定" src="/assets/posts/img/android_wear_chage_face/phone-1.png" /></a></p>
-      </li>
-      <li>
-        <p>③【スマホ】一番下までスクロールし、「アプリの再同期」をタップ。</p>
+<p><a href="/assets/posts/img/android_wear_chage_face/phone-1.png" target="_blank"><img width="20%" height="20%" title="スマホ-設定" alt="スマホ-設定" src="/assets/posts/img/android_wear_chage_face/phone-1.png"></a></p></li>
+<li><p>③【スマホ】一番下までスクロールし、「アプリの再同期」をタップ。</p>
 
-        <p><a href="/assets/posts/img/android_wear_chage_face/phone-2.png" target="_blank"><img width="20%" height="20%" title="スマホ-アプリ同期" alt="スマホ-アプリ同期" src="/assets/posts/img/android_wear_chage_face/phone-2.png" /></a></p>
-      </li>
-      <li>
-        <p>④【ウォッチ】ホーム画面をタップし、メニュー画面を一番下までスクロールした後「設定」をタップ。</p>
+<p><a href="/assets/posts/img/android_wear_chage_face/phone-2.png" target="_blank"><img width="20%" height="20%" title="スマホ-アプリ同期" alt="スマホ-アプリ同期" src="/assets/posts/img/android_wear_chage_face/phone-2.png"></a></p></li>
+<li><p>④【ウォッチ】ホーム画面をタップし、メニュー画面を一番下までスクロールした後「設定」をタップ。</p>
 
-        <p><code>(2014/07/30, 追記) 後日気づきました。ホーム画面で時計を長押し(ロングタップ)すると一気に時計変更画面に行けます。(下記⑦)</code></p>
+<p><code>(2014/07/30, 追記) 後日気づきました。ホーム画面で時計を長押し(ロングタップ)すると一気に時計変更画面に行けます。(下記⑦)</code></p>
 
-        <p><a href="/assets/posts/img/android_wear_chage_face/watch-1.jpeg" target="_blank"><img width="20%" height="20%" title="ウォッチ-設定" alt="ウォッチ-設定" src="/assets/posts/img/android_wear_chage_face/watch-1.jpeg" /></a></p>
-      </li>
-      <li>
-        <p>⑤【ウォッチ】設定画面で上にフリック。</p>
+<p><a href="/assets/posts/img/android_wear_chage_face/watch-1.jpeg" target="_blank"><img width="20%" height="20%" title="ウォッチ-設定" alt="ウォッチ-設定" src="/assets/posts/img/android_wear_chage_face/watch-1.jpeg"></a></p></li>
+<li><p>⑤【ウォッチ】設定画面で上にフリック。</p>
 
-        <p><a href="/assets/posts/img/android_wear_chage_face/watch-2.jpeg" target="_blank"><img width="20%" height="20%" title="ウォッチ-設定2" alt="ウォッチ-設定2" src="/assets/posts/img/android_wear_chage_face/watch-2.jpeg" /></a></p>
-      </li>
-      <li>
-        <p>⑥【ウォッチ】一番下までスクロールした後、「ウォッチフェイスの変更」をタップ。</p>
+<p><a href="/assets/posts/img/android_wear_chage_face/watch-2.jpeg" target="_blank"><img width="20%" height="20%" title="ウォッチ-設定2" alt="ウォッチ-設定2" src="/assets/posts/img/android_wear_chage_face/watch-2.jpeg"></a></p></li>
+<li><p>⑥【ウォッチ】一番下までスクロールした後、「ウォッチフェイスの変更」をタップ。</p>
 
-        <p><a href="/assets/posts/img/android_wear_chage_face/watch-3.jpeg" target="_blank"><img width="20%" height="20%" title="ウォッチ-ウォッチフェイス変更" alt="ウォッチ-ウォッチフェイス変更" src="/assets/posts/img/android_wear_chage_face/watch-3.jpeg" /></a></p>
-      </li>
-      <li>
-        <p>⑦【ウォッチ】上記でPlayストアからインストールした時計アプリを見つけ、タップするとホーム画面に設定されます。</p>
-      </li>
-    </ul>
-  </li>
+<p><a href="/assets/posts/img/android_wear_chage_face/watch-3.jpeg" target="_blank"><img width="20%" height="20%" title="ウォッチ-ウォッチフェイス変更" alt="ウォッチ-ウォッチフェイス変更" src="/assets/posts/img/android_wear_chage_face/watch-3.jpeg"></a></p></li>
+<li><p>⑦【ウォッチ】上記でPlayストアからインストールした時計アプリを見つけ、タップするとホーム画面に設定されます。</p></li>
+</ul></li>
 </ul>
 
   </div><!-- /.entry-content -->
@@ -337,74 +305,55 @@
     
   </header>
   <div class="entry-content">
-    
-<p><span><a href="https://twitter.com/handycola" class="twitter-follow-button" data-show-count="false" data-lang="ja" data-size="large" data-show-screen-name="false" data-dnt="true">@handycolaさんをフォロー</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></span><span style="float:right;">投稿日：2014年07月20日</span></p>
+    <p><span style="float:right;">投稿日：2014年07月20日</span></p>
 
-<h5 id="section">0.環境</h5>
-
-<pre><code>[CentOS]   5.6 (32bit版カーネル)
+<h5>0.環境</h5>
+<div class="highlight"><pre><code class="language-text" data-lang="text">[CentOS]   5.6 (32bit版カーネル)
 [Apache]   2.2.3
 [PHP]      5.4.1
 [Laravel]  4.1.23
-</code></pre>
-
-<h5 id="section-1">1.課題</h5>
-
-<ul>
-  <li>全ビュー(Bladeテンプレート)で使う値をBaseControllerから渡したい。</li>
-</ul>
-
-<h5 id="section-2">2.対策</h5>
+</code></pre></div>
+<h5>1.課題</h5>
 
 <ul>
-  <li>
-    <p>Laravelの作法としてあっているか不明ですが、一旦これで値は渡せました。</p>
-
-    <p>下記例では、設定ファイルの基底URL(app.php内のurl変数)をビューに渡しています。</p>
-
-    <ul>
-      <li>
-        <p>①　app/config/local/app.php</p>
-
-        <p>(本番環境の場合、app/config/app.php に定義して下さい)</p>
-
-        <script src="https://gist.github.com/2a3ec0e21cea5584245b.js?file=app.php"> </script>
-      </li>
-      <li>
-        <p>②　app/controllers/BaseController.php</p>
-
-        <p>getBaseUrl() メソッドを定義し、基底URLを返します。</p>
-
-        <p>(staticでないとビューで実行できない)</p>
-
-        <script src="https://gist.github.com/fa1b2701da0e48c1a939.js?file=BaseController.php"> </script>
-      </li>
-      <li>
-        <p>各コントローラは②を継承します。(コード抜粋)</p>
-
-        <pre><code>  class EachController extends BaseController
-  {
-</code></pre>
-      </li>
-      <li>
-        <p>③　app/views/layout.blade.php (コード抜粋)</p>
-
-        <p>全てのビューで共通に使っているビューで、BaseControllerから値を取得します。</p>
-
-        <script src="https://gist.github.com/97b5ca9f99076723dbae.js?file=layout.blade.php"> </script>
-      </li>
-    </ul>
-  </li>
-  <li>
-    <p>参考</p>
-
-    <ul>
-      <li><a href="http://forumsarchive.laravel.io/viewtopic.php?id=8123" target="_blank">Passing data from base controller to default blade.</a></li>
-    </ul>
-  </li>
+<li>全ビュー(Bladeテンプレート)で使う値をBaseControllerから渡したい。</li>
 </ul>
 
+<h5>2.対策</h5>
+
+<ul>
+<li><p>Laravelの作法としてあっているか不明ですが、一旦これで値は渡せました。</p>
+
+<p>下記例では、設定ファイルの基底URL(app.php内のurl変数)をビューに渡しています。</p>
+
+<ul>
+<li><p>①　app/config/local/app.php</p>
+
+<p>(本番環境の場合、app/config/app.php に定義して下さい)</p>
+
+<script src="https://gist.github.com/2a3ec0e21cea5584245b.js?file=app.php"> </script></li>
+<li><p>②　app/controllers/BaseController.php</p>
+
+<p>getBaseUrl() メソッドを定義し、基底URLを返します。</p>
+
+<p>(staticでないとビューで実行できない)</p>
+
+<script src="https://gist.github.com/fa1b2701da0e48c1a939.js?file=BaseController.php"> </script></li>
+<li><p>各コントローラは②を継承します。(コード抜粋)</p>
+
+<p>class EachController extends BaseController {</p></li>
+<li><p>③　app/views/layout.blade.php (コード抜粋)</p>
+
+<p>全てのビューで共通に使っているビューで、BaseControllerから値を取得します。</p>
+
+<script src="https://gist.github.com/97b5ca9f99076723dbae.js?file=layout.blade.php"> </script></li>
+</ul></li>
+<li><p>参考</p>
+
+<ul>
+<li><a href="http://forumsarchive.laravel.io/viewtopic.php?id=8123" target="_blank">Passing data from base controller to default blade.</a></li>
+</ul></li>
+</ul>
 
   </div><!-- /.entry-content -->
 </article><!-- /.hentry -->
@@ -427,117 +376,79 @@
     
   </header>
   <div class="entry-content">
-    
-<p><span><a href="https://twitter.com/handycola" class="twitter-follow-button" data-show-count="false" data-lang="ja" data-size="large" data-show-screen-name="false" data-dnt="true">@handycolaさんをフォロー</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></span><span style="float:right;">投稿日：2014年07月14日</span></p>
+    <p><span style="float:right;">投稿日：2014年07月14日</span></p>
 
-<h5 id="section">0.環境</h5>
-
-<pre><code>[CentOS]   5.6 (32bit版カーネル)
+<h5>0.環境</h5>
+<div class="highlight"><pre><code class="language-text" data-lang="text">[CentOS]   5.6 (32bit版カーネル)
 [Apache]   2.2.3
 [PHP]      5.4.1
 [Laravel]  4.1.23
-</code></pre>
-
-<h5 id="section-1">1.問題</h5>
-
-<ul>
-  <li>
-    <p>PHPのLaravelフレームワークを使っていたら、AjaxでPOSTした値がサーバ側で取得できずにはまりました。</p>
-
-    <p>①から②へ test という名前で hoge という値を送信します。</p>
-
-    <ul>
-      <li>
-        <p>① Javascript側</p>
-
-        <script src="https://gist.github.com/a9da32445d224fb1df63.js?file=ajax-test.js"> </script>
-      </li>
-      <li>
-        <p>② PHP側</p>
-
-        <script src="https://gist.github.com/649420870dc9835cb08c.js?file=routes.php"> </script>
-      </li>
-      <li>
-        <p>ログ出力結果を見ると、下記のようにPOST値が取得できていません。</p>
-
-        <pre><code>  [2014-07-16 12:09:36] local.DEBUG:  [] []
-</code></pre>
-      </li>
-    </ul>
-  </li>
-</ul>
-
-<h5 id="section-2">2.原因</h5>
+</code></pre></div>
+<h5>1.問題</h5>
 
 <ul>
-  <li>
-    <p>Firefox の “Live HTTP headers” アドオンでURLの遷移を見たところ、下記のようにリダイレクトしていることがわかりました。</p>
+<li><p>PHPのLaravelフレームワークを使っていたら、AjaxでPOSTした値がサーバ側で取得できずにはまりました。</p>
 
-    <pre><code>  http://local.vm/test/
-      ↓↓↓
-  http://local.vm/test
-</code></pre>
-  </li>
-  <li>
-    <p>grepしたところ、.htaccessでリダイレクトしてました。</p>
-
-    <ul>
-      <li>
-        <p>ソース</p>
-
-        <p>app-root/public/.htaccess</p>
-      </li>
-      <li>
-        <p>記述</p>
-
-        <pre><code>  # Redirect Trailing Slashes...
-  RewriteRule ^(.*)/$ /$1 [L,R=301]
-</code></pre>
-      </li>
-    </ul>
-  </li>
-</ul>
-
-<h5 id="section-3">3.対策</h5>
+<p>①から②へ test という名前で hoge という値を送信します。</p>
 
 <ul>
-  <li>
-    <p>Laravelはtrailing slash非推奨なのか？ とにかく下記のように修正。</p>
+<li><p>① Javascript側</p>
 
-    <ul>
-      <li>
-        <p>箇所</p>
+<script src="https://gist.github.com/a9da32445d224fb1df63.js?file=ajax-test.js"> </script></li>
+<li><p>② PHP側</p>
 
-        <p>ajax-test.js (6行目)</p>
-      </li>
-      <li>
-        <p>内容</p>
+<script src="https://gist.github.com/649420870dc9835cb08c.js?file=routes.php"> </script></li>
+<li><p>ログ出力結果を見ると、下記のようにPOST値が取得できていません。</p>
 
-        <p>URLの末尾のスラッシュを削除し、/test に修正。</p>
-      </li>
-      <li>
-        <p>ログにもPOST値が出力されました。</p>
-
-        <pre><code>  [2014-07-16 13:03:39] local.DEBUG: hoge [] []
-</code></pre>
-      </li>
-    </ul>
-  </li>
-  <li>
-    <p>参考</p>
-
-    <ul>
-      <li>
-        <p><a href="http://www.suzukikenichi.com/blog/do-we-need-a-trailing-slash-at-the-end-of-url/" target="_blank">URLの終りに「/」(スラッシュ)は必要?、不要?</a></p>
-      </li>
-      <li>
-        <p><a href="http://stackoverflow.com/questions/22063520/laravel-slash-after-url-redirects-to-root-folder" target="_blank">Laravel slash after url redirects to root folder</a></p>
-      </li>
-    </ul>
-  </li>
+<p><code>[2014-07-16 12:09:36] local.DEBUG:  [] []</code></p></li>
+</ul></li>
 </ul>
 
+<h5>2.原因</h5>
+
+<ul>
+<li><p>Firefox の &quot;Live HTTP headers&quot; アドオンでURLの遷移を見たところ、下記のようにリダイレクトしていることがわかりました。</p>
+
+<p>http://local.vm/test/</p>
+
+<p>↓↓↓</p>
+
+<p>http://local.vm/test</p></li>
+<li><p>grepしたところ、.htaccessでリダイレクトしてました。</p>
+
+<ul>
+<li><p>ソース</p>
+
+<p>app-root/public/.htaccess</p></li>
+<li><p>記述</p></li>
+</ul></li>
+</ul>
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="x">        # Redirect Trailing Slashes...</span>
+<span class="x">        RewriteRule ^(.*)/$ /$1 [L,R=301]</span>
+</code></pre></div>
+<h5>3.対策</h5>
+
+<ul>
+<li><p>Laravelはtrailing slash非推奨なのか？ とにかく下記のように修正。</p>
+
+<ul>
+<li><p>箇所</p>
+
+<p>ajax-test.js (6行目)</p></li>
+<li><p>内容</p>
+
+<p>URLの末尾のスラッシュを削除し、/test に修正。</p></li>
+<li><p>ログにもPOST値が出力されました。</p>
+
+<p><code>[2014-07-16 13:03:39] local.DEBUG: hoge [] []</code></p></li>
+</ul></li>
+<li><p>参考</p>
+
+<ul>
+<li><a href="http://www.suzukikenichi.com/blog/do-we-need-a-trailing-slash-at-the-end-of-url/" target="_blank">URLの終りに「/」(スラッシュ)は必要?、不要?</a></li>
+<li><a href="http://stackoverflow.com/questions/22063520/laravel-slash-after-url-redirects-to-root-folder" target="_blank">Laravel slash after url redirects to root folder</a></li>
+</ul></li>
+</ul>
 
   </div><!-- /.entry-content -->
 </article><!-- /.hentry -->
@@ -560,23 +471,17 @@
     
   </header>
   <div class="entry-content">
-    
-<p><span><a href="https://twitter.com/handycola" class="twitter-follow-button" data-show-count="false" data-lang="ja" data-size="large" data-show-screen-name="false" data-dnt="true">@handycolaさんをフォロー</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></span><span style="float:right;">投稿日：2014年07月02日</span></p>
+    <p><span style="float:right;">投稿日：2014年07月02日</span></p>
 
-<h5 id="o-">-O オプションを使って、ダウンロードファイル名を指定します。</h5>
+<h5>-O オプションを使って、ダウンロードファイル名を指定します。</h5>
 
 <ul>
-  <li>
-    <p>下記例では MyWget という名前に変更。</p>
-
-    <pre><code>  # wget -O MyWget http://ftp.gnu.org/gnu/wget/wget-1.15.tar.gz
-  # ls
-  # -rw-r--r--  1 root  root  3417936  1月 19 19:17 MyWget
-</code></pre>
-  </li>
+<li>下記例では MyWget という名前に変更。</li>
 </ul>
-
+<div class="highlight"><pre><code class="language-text" data-lang="text">    # wget -O MyWget http://ftp.gnu.org/gnu/wget/wget-1.15.tar.gz
+    # ls
+    # -rw-r--r--  1 root  root  3417936  1月 19 19:17 MyWget
+</code></pre></div>
   </div><!-- /.entry-content -->
 </article><!-- /.hentry -->
 

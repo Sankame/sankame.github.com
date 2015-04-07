@@ -39,6 +39,7 @@
 
 <!-- For all browsers -->
 <link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="/assets/css/ext.css">
 <!-- Webfonts -->
 <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic" rel="stylesheet" type="text/css">
 
@@ -85,7 +86,7 @@
 				<li>
 					<img src="/images/avatar.jpg" alt="sankame photo" class="author-photo">
 					<h4>sankame</h4>
-					<p>老舗インターネット・メディア企業で働くプログラマー。千葉県在住。</p>
+					<p>老舗ネット企業で働くプログラマー。<br>千葉県在住。</p>
 				</li>
 				<!-- <li><a href="/about/"><span class="btn btn-inverse">Learn More</span></a></li> -->
 				<li>
@@ -153,93 +154,65 @@
 (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
 </div>
-      
-<p><span><a href="https://twitter.com/handycola" class="twitter-follow-button" data-show-count="false" data-lang="ja" data-size="large" data-show-screen-name="false" data-dnt="true">@handycolaさんをフォロー</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></span><span style="float:right;">投稿日：2013年01月18日</span></p>
+      <p><span style="float:right;">投稿日：2013年01月18日</span></p>
 
-<h4 id="svnsubversion">SVN(Subversion)でリポジトリ作成する際の最低限の手順をまとめました。</h4>
+<h4>SVN(Subversion)でリポジトリ作成する際の最低限の手順をまとめました。</h4>
 
-<h4 id="svn">※SVNはインストール済みとします。</h4>
+<h4>※SVNはインストール済みとします。</h4>
 
-<h5 id="section">0.環境</h5>
-
-<pre><code>[CentOS]     5.6 (32bit版カーネル)
+<h5>0.環境</h5>
+<div class="highlight"><pre><code class="language-text" data-lang="text">[CentOS]     5.6 (32bit版カーネル)
 [Apache]     2.2.3
 [Subversion] 1.6.11
-</code></pre>
-
-<h5 id="section-1">1.作成手順</h5>
+</code></pre></div>
+<h5>1.作成手順</h5>
 
 <ul>
-  <li>
-    <p>1-1.リポジトリ作成</p>
+<li><p>1-1.リポジトリ作成</p>
 
-    <p>※最初だけ下記モジュールをインストール。</p>
+<p>※最初だけ下記モジュールをインストール。</p>
 
-    <p>ブラウザ経由でリポジトリを見るため、予めmod_dav_svnをインストール。</p>
+<p>ブラウザ経由でリポジトリを見るため、予めmod<em>dav</em>svnをインストール。</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text"># yum install mod_dav_svn
+</code></pre></div>
+<p>データが壊れにくいfsfsを指定し、リポジトリ作成。</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text"># svnadmin create /var/svn/repos/test --fs-type fsfs
+</code></pre></div>
+<p>SVNの作法通り、下記3つを用意。</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">svn mkdir file:///var/svn/repos/test/trunk -m &quot;create&quot;
+svn mkdir file:///var/svn/repos/test/tags -m &quot;create&quot;
+svn mkdir file:///var/svn/repos/test/branches -m &quot;create&quot;
+</code></pre></div></li>
+<li><p>1-2.既存リポジトリのソースを引き継ぐ場合</p>
 
-    <pre><code>  # yum install mod_dav_svn
-</code></pre>
+<p>(例)test_orgリポジトリを出力。</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text"># svn export file:///var/svn/repos/test_org/ /tmp/test_org
+</code></pre></div>
+<p>上記で出力したソースを取り込む。</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text"># svn import /tmp/test_org/trunk file:///var/svn/repos/test/trunk -m &quot;first import&quot;
+</code></pre></div></li>
+<li><p>1-3.アクセス設定</p>
 
-    <p>データが壊れにくいfsfsを指定し、リポジトリ作成。</p>
-
-    <pre><code>  # svnadmin create /var/svn/repos/test --fs-type fsfs
-</code></pre>
-
-    <p>SVNの作法通り、下記3つを用意。</p>
-
-    <pre><code>  svn mkdir file:///var/svn/repos/test/trunk -m "create"
-  svn mkdir file:///var/svn/repos/test/tags -m "create"
-  svn mkdir file:///var/svn/repos/test/branches -m "create"
-</code></pre>
-  </li>
-  <li>
-    <p>1-2.既存リポジトリのソースを引き継ぐ場合</p>
-
-    <p>(例)test_orgリポジトリを出力。</p>
-
-    <pre><code>  # svn export file:///var/svn/repos/test_org/ /tmp/test_org
-</code></pre>
-
-    <p>上記で出力したソースを取り込む。</p>
-
-    <pre><code>  # svn import /tmp/test_org/trunk file:///var/svn/repos/test/trunk -m "first import"
-</code></pre>
-  </li>
-  <li>
-    <p>1-3.アクセス設定</p>
-
-    <p>ブラウザからアクセスするため、設定ファイルを変更。</p>
-
-    <pre><code>  # vim /etc/httpd/conf.d/subversion.conf
-</code></pre>
-
-    <p>下記を追記。</p>
-
-    <pre><code>  &lt;Location /svn/test&gt;
-      DAV svn
-      SVNPath /var/svn/repos/test
-  &lt;/Location&gt;
-</code></pre>
-
-    <p>apache再起動</p>
-
-    <pre><code>  # /etc/init.d/httpd restart
-</code></pre>
-
-    <p>下記URLでブラウザからリポジトリにアクセス。(localhostは環境に応じて読み替え)</p>
-
-    <pre><code>  # http://localhost/svn/test/
-</code></pre>
-
-    <p>コミットしたらエラーが出たので、作成したリポジトリのパーミッションをゆるめに変更。</p>
-
-    <pre><code>  # cd /var/svn/repos
-  # chmod -R 777 test
-</code></pre>
-  </li>
+<p>ブラウザからアクセスするため、設定ファイルを変更。</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text"># vim /etc/httpd/conf.d/subversion.conf
+</code></pre></div>
+<p>下記を追記。</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">&lt;Location /svn/test&gt;
+    DAV svn
+    SVNPath /var/svn/repos/test
+&lt;/Location&gt;
+</code></pre></div>
+<p>apache再起動</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text"># /etc/init.d/httpd restart
+</code></pre></div>
+<p>下記URLでブラウザからリポジトリにアクセス。(localhostは環境に応じて読み替え)</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text"># http://localhost/svn/test/
+</code></pre></div>
+<p>コミットしたらエラーが出たので、作成したリポジトリのパーミッションをゆるめに変更。</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text"># cd /var/svn/repos
+# chmod -R 777 test
+</code></pre></div></li>
 </ul>
-
 
       <div>
 <div style="padding:6px;">
@@ -266,6 +239,8 @@
 </script>
 </div>
 </div>
+      <span><a href="https://twitter.com/handycola" class="twitter-follow-button" data-show-count="false" data-lang="ja" data-size="large" data-show-screen-name="false" data-dnt="true">@handycolaさんをフォロー</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></span>
       <footer class="entry-meta">
         
         <div class="social-share">

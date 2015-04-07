@@ -39,6 +39,7 @@
 
 <!-- For all browsers -->
 <link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="/assets/css/ext.css">
 <!-- Webfonts -->
 <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic" rel="stylesheet" type="text/css">
 
@@ -85,7 +86,7 @@
 				<li>
 					<img src="/images/avatar.jpg" alt="sankame photo" class="author-photo">
 					<h4>sankame</h4>
-					<p>老舗インターネット・メディア企業で働くプログラマー。千葉県在住。</p>
+					<p>老舗ネット企業で働くプログラマー。<br>千葉県在住。</p>
 				</li>
 				<!-- <li><a href="/about/"><span class="btn btn-inverse">Learn More</span></a></li> -->
 				<li>
@@ -153,79 +154,64 @@
 (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
 </div>
-      
-<p><span><a href="https://twitter.com/handycola" class="twitter-follow-button" data-show-count="false" data-lang="ja" data-size="large" data-show-screen-name="false" data-dnt="true">@handycolaさんをフォロー</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></span><span style="float:right;">投稿日：2013年09月08日</span></p>
+      <p><span style="float:right;">投稿日：2013年09月08日</span></p>
 
-<h4 id="git--">Gitコマンド メモ (自分用)</h4>
+<h4>Gitコマンド メモ (自分用)</h4>
 
-<h5 id="gitignore-httpwwwomakaseorgmiscgitignorehtml">(1) .gitignoreファイル <a href="http://www.omakase.org/misc/gitignore.html">参考ページ</a></h5>
-
-<pre><code># gitの管理外にしたいファイルを定義。下記のようにディレクトリ指定も可能。
+<h5>(1) .gitignoreファイル <a href="http://www.omakase.org/misc/gitignore.html">参考ページ</a></h5>
+<div class="highlight"><pre><code class="language-text" data-lang="text"># gitの管理外にしたいファイルを定義。下記のようにディレクトリ指定も可能。
 # view .gitignore
 app/logs/
-</code></pre>
-
-<h5 id="git">(2) インデックスから降ろす(git管理外にする)</h5>
-
-<pre><code># インデックスから降ろすだけ。
+</code></pre></div>
+<h5>(2) インデックスから降ろす(git管理外にする)</h5>
+<div class="highlight"><pre><code class="language-text" data-lang="text"># インデックスから降ろすだけ。
 # git rm --cached -f hoge.txt
 
 # インデックスから降ろして、ファイルを物理削除。
 # git rm -f hoge.txt
-</code></pre>
-
-<h5 id="section">(3) ブランチ操作(2013/10/07)</h5>
-
-<pre><code># 今いるブランチは？
+</code></pre></div>
+<h5>(3) ブランチ操作(2013/10/07)</h5>
+<div class="highlight"><pre><code class="language-text" data-lang="text"># 今いるブランチは？
 # git branch
 * master
 
 # ブランチtest1を作って、test1へ切り替える。
 # git branch test1
 # git checkout test1
-Switched to branch 'test1'
+Switched to branch &#39;test1&#39;
 
 # masterブランチへ戻る。
 # git checkout master
-Switched to branch 'master'
+Switched to branch &#39;master&#39;
 
 # 使わなくなったブランチtest1を削除。
 # git branch -d test1
 Deleted branch test1 (was 0854f22).
 # git branch
 * master
-</code></pre>
-
-<h5 id="github20131007">(4) GitHubからソースを取得(2013/10/07)</h5>
+</code></pre></div>
+<h5>(4) GitHubからソースを取得(2013/10/07)</h5>
 
 <ul>
-  <li>
-    <p>4-1.GitHubで対象のリポジトリに移動後、画面右下のボタン(下記)をクリックしてURLをクリップボードにコピー。</p>
+<li><p>4-1.GitHubで対象のリポジトリに移動後、画面右下のボタン(下記)をクリックしてURLをクリップボードにコピー。</p>
 
-    <p><img src="/assets/posts/img/git_command/github-clone.jpg" alt="github-clone" title="github-clone" /></p>
-  </li>
-  <li>
-    <p>4-2.git clone の後に上記4-1でコピーしたURLを貼り付ける。</p>
+<p><img src="/assets/posts/img/git_command/github-clone.jpg" alt="github-clone" title="github-clone"></p></li>
+<li><p>4-2.git clone の後に上記4-1でコピーしたURLを貼り付ける。</p>
 
-    <p>予めGitHubに登録した公開鍵のパスフレーズを入力。</p>
-
-    <pre><code>  # git clone git@github.com:Sankame/test.git
-  Cloning into 'test'...
-  Enter passphrase for key '/root/.ssh/id_rsa': 
-</code></pre>
-  </li>
+<p>予めGitHubに登録した公開鍵のパスフレーズを入力。</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text"># git clone git@github.com:Sankame/test.git
+Cloning into &#39;test&#39;...
+Enter passphrase for key &#39;/root/.ssh/id_rsa&#39;: 
+</code></pre></div></li>
 </ul>
 
-<h5 id="section-1">(5) ローカル変更の取り消し(2014/02/24)</h5>
-
-<pre><code># ファイル指定でローカル変更を取り消し。
+<h5>(5) ローカル変更の取り消し(2014/02/24)</h5>
+<div class="highlight"><pre><code class="language-text" data-lang="text"># ファイル指定でローカル変更を取り消し。
 # git checkout filename
 # 
 # 全てのローカル変更を取り消し。
 # git checkout .
-</code></pre>
-
+</code></pre></div>
       <div>
 <div style="padding:6px;">
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
@@ -251,6 +237,8 @@ Deleted branch test1 (was 0854f22).
 </script>
 </div>
 </div>
+      <span><a href="https://twitter.com/handycola" class="twitter-follow-button" data-show-count="false" data-lang="ja" data-size="large" data-show-screen-name="false" data-dnt="true">@handycolaさんをフォロー</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></span>
       <footer class="entry-meta">
         
         <div class="social-share">

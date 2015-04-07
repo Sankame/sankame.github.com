@@ -39,6 +39,7 @@
 
 <!-- For all browsers -->
 <link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="/assets/css/ext.css">
 <!-- Webfonts -->
 <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic" rel="stylesheet" type="text/css">
 
@@ -85,7 +86,7 @@
 				<li>
 					<img src="/images/avatar.jpg" alt="sankame photo" class="author-photo">
 					<h4>sankame</h4>
-					<p>老舗インターネット・メディア企業で働くプログラマー。千葉県在住。</p>
+					<p>老舗ネット企業で働くプログラマー。<br>千葉県在住。</p>
 				</li>
 				<!-- <li><a href="/about/"><span class="btn btn-inverse">Learn More</span></a></li> -->
 				<li>
@@ -153,23 +154,22 @@
 (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
 </div>
-      
-<p><span><a href="https://twitter.com/handycola" class="twitter-follow-button" data-show-count="false" data-lang="ja" data-size="large" data-show-screen-name="false" data-dnt="true">@handycolaさんをフォロー</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></span><span style="float:right;">投稿日：2012年12月16日</span></p>
+      <p><span style="float:right;">投稿日：2012年12月16日</span></p>
 
-<h4 id="jekyll">Jekyllの設定に関するメモ。</h4>
-<p>#### JekyllBootstrapの配置先は下記ディレクトリ。(<a href="/Jekyll/2012/12/23/jekyll_and_github/">関連記事</a>)
-##### /var/www/html/jekyll/JEKYLL_HOME/</p>
+<h4>Jekyllの設定に関するメモ。</h4>
 
-<h6 id="section">・画面ヘッダ部分のナビゲーションを変更したい。</h6>
-<pre><code>(例)
+<h4>JekyllBootstrapの配置先は下記ディレクトリ。(<a href="/Jekyll/2012/12/23/jekyll_and_github/">関連記事</a>)</h4>
+
+<h5>/var/www/html/jekyll/JEKYLL_HOME/</h5>
+
+<h6>・画面ヘッダ部分のナビゲーションを変更したい。</h6>
+<div class="highlight"><pre><code class="language-text" data-lang="text">(例)
 画面ヘッダ部分にArchiveを表示したくない場合
-下記ファイルのヘッダ部分の"group: navigation"を#でコメントアウトする。
+下記ファイルのヘッダ部分の&quot;group: navigation&quot;を#でコメントアウトする。
 /var/www/html/jekyll/JEKYLL_HOME/archive.html
-</code></pre>
-
-<h6 id="section-1">・記事タイトルに日本語を使いたい。</h6>
-<pre><code>記事のファイル名に日本語は使えないので、YAMLのFront Matterでtitleを指定する。
+</code></pre></div>
+<h6>・記事タイトルに日本語を使いたい。</h6>
+<div class="highlight"><pre><code class="language-text" data-lang="text">記事のファイル名に日本語は使えないので、YAMLのFront Matterでtitleを指定する。
 (例)
 ---
 layout: page
@@ -178,37 +178,33 @@ tags: [Ruby, RubyGems, Jekyll, GitHub]
 date: 2012-12-23 00:00:00
 title: Jekyllとgithubでブログ作成
 ---
-</code></pre>
-
-<h6 id="section-2">・ループ回数を制限したい。</h6>
-<pre><code>limitを使う。
+</code></pre></div>
+<h6>・ループ回数を制限したい。</h6>
+<div class="highlight"><pre><code class="language-text" data-lang="text">limitを使う。
 
 (例)最近の5件だけ記事を表示。
 
-&lt;ul class="posts"&gt;
+&lt;ul class=&quot;posts&quot;&gt;
   {% for post in site.posts limit:5 %}
-    &lt;li&gt;&lt;span&gt;{{ post.date | date_to_string }}&lt;/span&gt; &amp;raquo; &lt;a href="{{ BASE_PATH }}{{ post.url }}"&gt;{{ post.title }}&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;{{ post.date | date_to_string }}&lt;/span&gt; &amp;raquo; &lt;a href=&quot;{{ BASE_PATH }}{{ post.url }}&quot;&gt;{{ post.title }}&lt;/a&gt;&lt;/li&gt;
   {% endfor %}
 &lt;/ul&gt;
-</code></pre>
-
-<h6 id="liquidhttpstackoverflowcomquestions3426182how-to-escape-liquid-template-tags">・liquidの文法をエスケープしたい。<a href="http://stackoverflow.com/questions/3426182/how-to-escape-liquid-template-tags">参考ページ</a></h6>
-<pre><code>Markdownの中でif文やliquidの文法をそのまま出力したい場合、下記のタグを使用する。
+</code></pre></div>
+<h6>・liquidの文法をエスケープしたい。<a href="http://stackoverflow.com/questions/3426182/how-to-escape-liquid-template-tags">参考ページ</a></h6>
+<div class="highlight"><pre><code class="language-text" data-lang="text">Markdownの中でif文やliquidの文法をそのまま出力したい場合、下記のタグを使用する。
 
 {% raw %}
 エスケープしたい表現
 {% endraw %}
-</code></pre>
-
-<h6 id="httpstackoverflowcomquestions7395520jekyll-date-format">・日付のフォーマット(書式)を変更したい。<a href="http://stackoverflow.com/questions/7395520/jekyll-date-format">参考ページ</a></h6>
-<pre><code>日本語を使う場合、ファイルをUTF8で保存する。
+</code></pre></div>
+<h6>・日付のフォーマット(書式)を変更したい。<a href="http://stackoverflow.com/questions/7395520/jekyll-date-format">参考ページ</a></h6>
+<div class="highlight"><pre><code class="language-text" data-lang="text">日本語を使う場合、ファイルをUTF8で保存する。
 
 (例)
 
-{ post.date | date: "%Y年%m月%d日" }
-</code></pre>
-
-<h6 id="section-3">・文法に関する参考ページ</h6>
+{ post.date | date: &quot;%Y年%m月%d日&quot; }
+</code></pre></div>
+<h6>・文法に関する参考ページ</h6>
 
 <p>・<a href="https://github.com/mojombo/jekyll/wiki/template-data">Jekyll変数</a></p>
 
@@ -243,6 +239,8 @@ title: Jekyllとgithubでブログ作成
 </script>
 </div>
 </div>
+      <span><a href="https://twitter.com/handycola" class="twitter-follow-button" data-show-count="false" data-lang="ja" data-size="large" data-show-screen-name="false" data-dnt="true">@handycolaさんをフォロー</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></span>
       <footer class="entry-meta">
         
         <div class="social-share">

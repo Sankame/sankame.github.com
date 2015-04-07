@@ -39,6 +39,7 @@
 
 <!-- For all browsers -->
 <link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="/assets/css/ext.css">
 <!-- Webfonts -->
 <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic" rel="stylesheet" type="text/css">
 
@@ -85,7 +86,7 @@
 				<li>
 					<img src="/images/avatar.jpg" alt="sankame photo" class="author-photo">
 					<h4>sankame</h4>
-					<p>老舗インターネット・メディア企業で働くプログラマー。千葉県在住。</p>
+					<p>老舗ネット企業で働くプログラマー。<br>千葉県在住。</p>
 				</li>
 				<!-- <li><a href="/about/"><span class="btn btn-inverse">Learn More</span></a></li> -->
 				<li>
@@ -153,29 +154,27 @@
 (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
 </div>
-      
-<p><span><a href="https://twitter.com/handycola" class="twitter-follow-button" data-show-count="false" data-lang="ja" data-size="large" data-show-screen-name="false" data-dnt="true">@handycolaさんをフォロー</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></span><span style="float:right;">投稿日：2013年05月11日</span></p>
+      <p><span style="float:right;">投稿日：2013年05月11日</span></p>
 
-<h5 id="section">10文字以上の場合、9文字目を…にして残りを切り捨てる。</h5>
-<p>##### (半角、全角ともに1文字として扱う)</p>
+<h5>10文字以上の場合、9文字目を…にして残りを切り捨てる。</h5>
 
-<pre><code>{if mb_strlen($keyword) &gt; 9}
-	{assign var=cutKeyword value=$keyword|mb_substr:0:8|cat:'…'}
+<h5>(半角、全角ともに1文字として扱う)</h5>
+<div class="highlight"><pre><code class="language-text" data-lang="text">{if mb_strlen($keyword) &gt; 9}
+    {assign var=cutKeyword value=$keyword|mb_substr:0:8|cat:&#39;…&#39;}
 {else}
-	{assign var=cutKeyword value=$keyword}
+    {assign var=cutKeyword value=$keyword}
 {/if}
-&lt;a class="keyword-link" href="#" title="{$keyword}"&gt;{$cutKeyword}&lt;/a&gt;
-</code></pre>
+&lt;a class=&quot;keyword-link&quot; href=&quot;#&quot; title=&quot;{$keyword}&quot;&gt;{$cutKeyword}&lt;/a&gt;
+</code></pre></div>
+<h5>上記コードで各文字列を変換した場合。</h5>
 
-<h5 id="section-1">上記コードで各文字列を変換した場合。</h5>
-<p>##### (“→” は変換前後を表す)
-	１２３４５６７８　　　→　１２３４５６７８
-	１２３４５６７８９　　→　１２３４５６７８９
-	１２３４５６７８９Ａ　→　１２３４５６７８…
-	123456789          →　123456789
-	123456789A         →　12345678…</p>
-
+<h5>(&quot;→&quot; は変換前後を表す)</h5>
+<div class="highlight"><pre><code class="language-text" data-lang="text">１２３４５６７８　　　→　１２３４５６７８
+１２３４５６７８９　　→　１２３４５６７８９
+１２３４５６７８９Ａ　→　１２３４５６７８…
+123456789          →　123456789
+123456789A         →　12345678…
+</code></pre></div>
       <div>
 <div style="padding:6px;">
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
@@ -201,6 +200,8 @@
 </script>
 </div>
 </div>
+      <span><a href="https://twitter.com/handycola" class="twitter-follow-button" data-show-count="false" data-lang="ja" data-size="large" data-show-screen-name="false" data-dnt="true">@handycolaさんをフォロー</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></span>
       <footer class="entry-meta">
         
         <div class="social-share">
