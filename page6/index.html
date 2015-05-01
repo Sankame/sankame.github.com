@@ -148,6 +148,86 @@
   <header>
     
     <div class="entry-meta">
+      <span class="entry-date date published updated"><time datetime="2013-04-28T20:00:00-04:00"><a href="/mecab/php_mecab/">April 28, 2013</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About sankame">sankame</a></span></span>
+      
+      <span class="entry-reading-time">
+        <i class="fa fa-clock-o"></i>
+        
+        Reading time ~1 minute
+      </span><!-- /.entry-reading-time -->
+      
+    </div><!-- /.entry-meta -->
+    
+      <h1 class="entry-title"><a href="/mecab/php_mecab/" rel="bookmark" title="PHPでMeCabを利用" itemprop="url">PHPでMeCabを利用</a></h1>
+    
+  </header>
+  <div class="entry-content">
+    <p><span style="float:right;">投稿日：2013年04月28日</span></p>
+
+<h4>PHPからMeCabを使ってみる。</h4>
+
+<h5>環境</h5>
+<div class="highlight"><pre><code class="language-text" data-lang="text">[CentOS] 5.6 (32bit版カーネル)
+[PHP]    5.3.3
+</code></pre></div>
+<h5>0.MeCabインストール</h5>
+
+<p><a href="/MeCab/2013/01/28/mecab_install/">MeCabインストール方法</a></p>
+<div class="highlight"><pre><code class="language-text" data-lang="text"># まずは上記の手順でMeCabをインストール。
+</code></pre></div>
+<h5>1.php_mecabインストール</h5>
+<div class="highlight"><pre><code class="language-text" data-lang="text"># wget -O php_mecab-0.5.zip https://nodeload.github.com/rsky/php-mecab/zip/master --no-check-certificate
+# 
+# unzip php_mecab-0.5.zip
+# 
+# mv -f php-mecab-master php_mecab-0.5
+# 
+# cd php_mecab-0.5/mecab
+# 
+# phpize
+# 
+# ./configure
+# 
+# make
+# 
+# make test
+# 
+# make install
+</code></pre></div>
+<h5>2.テスト</h5>
+<div class="highlight"><pre><code class="language-text" data-lang="text"># インストールが成功したら、phpからテスト
+# (Apache経由で動かす場合はhttpdを再起動して下さい)
+# 
+# echo &quot;extension=mecab.so&quot; &gt; /etc/php.d/mecab.ini
+# vim mecabtest.php
+
+&lt;script src=&quot;https://gist.github.com/d0ff28564c451c4372cf.js?file=test_php_mecab.php&quot;&gt; &lt;/script&gt;
+</code></pre></div>
+<h6>3.作成したphpファイルを実行</h6>
+<div class="highlight"><pre><code class="language-text" data-lang="text"># php mecabtest.php 
+
+--------------(実行結果)--------------
+すもも  名詞,一般,*,*,*,*,すもも,スモモ,スモモ
+も      助詞,係助詞,*,*,*,*,も,モ,モ
+もも    名詞,一般,*,*,*,*,もも,モモ,モモ
+も      助詞,係助詞,*,*,*,*,も,モ,モ
+もも    名詞,一般,*,*,*,*,もも,モモ,モモ
+の      助詞,連体化,*,*,*,*,の,ノ,ノ
+うち    名詞,非自立,副詞可能,*,*,*,うち,ウチ,ウチ
+EOS
+--------------(実行結果)--------------
+</code></pre></div>
+<p><a href="http://kohkimakimoto.hatenablog.com/entry/2012/05/02/112020">参照したページ1</a></p>
+
+<p><a href="http://kouhei.hatenablog.com/entry/2012/12/13/022040">参照したページ2</a></p>
+
+  </div><!-- /.entry-content -->
+</article><!-- /.hentry -->
+
+<article class="hentry">
+  <header>
+    
+    <div class="entry-meta">
       <span class="entry-date date published updated"><time datetime="2013-01-27T19:00:00-05:00"><a href="/mecab/mecab_install/">January 27, 2013</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About sankame">sankame</a></span></span>
       
       <span class="entry-reading-time">
@@ -477,110 +557,6 @@ Banner display : (Google AdSenseの広告ユニットコードと同じサイズ
   </div><!-- /.entry-content -->
 </article><!-- /.hentry -->
 
-<article class="hentry">
-  <header>
-    
-    <div class="entry-meta">
-      <span class="entry-date date published updated"><time datetime="2012-12-30T19:00:00-05:00"><a href="/centos/centos_command/">December 30, 2012</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About sankame">sankame</a></span></span>
-      
-      <span class="entry-reading-time">
-        <i class="fa fa-clock-o"></i>
-        
-        Reading time ~1 minute
-      </span><!-- /.entry-reading-time -->
-      
-    </div><!-- /.entry-meta -->
-    
-      <h1 class="entry-title"><a href="/centos/centos_command/" rel="bookmark" title="CentOSコマンド メモ" itemprop="url">CentOSコマンド メモ</a></h1>
-    
-  </header>
-  <div class="entry-content">
-    <p><span>&nbsp;</span><span style="color:#d14; float:right;">更新日：2015年03月18日</span></p>
-
-<p><span style="float:right;">投稿日：2012年12月30日</span></p>
-
-<h4>CentOSコマンド メモ</h4>
-
-<h5>・ファイル検索</h5>
-<div class="highlight"><pre><code class="language-text" data-lang="text"> find / -name filename
-</code></pre></div>
-<h5>・locateインストール (更新日：2013/01/01)</h5>
-<div class="highlight"><pre><code class="language-text" data-lang="text"># which locate
-/usr/bin/which: no locate in ・・・以下省略
-
-# パッケージ名がlocateではないので注意。
-# yum install mlocate
-
-# which locate
-/usr/bin/locate
-
-# 下記コマンドでDBを更新するとlocateが使えるようになる。
-# updatedb
-</code></pre></div>
-<h5>・dateで日時設定 (更新日：2013/01/27)</h5>
-<div class="highlight"><pre><code class="language-text" data-lang="text"># 引数を次の順番に設定。→ date [月][日][時間][分][年]
-
-# date 012723232013
-2013年  1月 27日 日曜日 23:23:00 JST
-</code></pre></div>
-<h5>・CentOSバージョン (更新日：2013/07/07)</h5>
-<div class="highlight"><pre><code class="language-text" data-lang="text"># cat /etc/redhat-release
-</code></pre></div>
-<h5>・CPUアーキテクチャ確認 (更新日：2013/07/07)</h5>
-<div class="highlight"><pre><code class="language-text" data-lang="text"># grep flags /proc/cpuinfo | grep lm | wc -l
-# 上記が0ならCPU 32bit、1ならCPU 64bit
-# lm(long mode)フラグがあれば64bit
-</code></pre></div>
-<h5>・カーネルバージョン確認 (更新日：2013/07/07)</h5>
-<div class="highlight"><pre><code class="language-text" data-lang="text"># uname -a|grep x86_64|wc -l
-# 上記が0なら32bitカーネル、1ならCPU 64bitカーネル
-# (x86_64 の場合、64bit)
-# (i386/i486/i586/i686 の場合、32bit)
-</code></pre></div>
-<p><a href="http://www.cyberciti.biz/faq/linux-how-to-find-if-processor-is-64-bit-or-not/">参考ページ</a></p>
-
-<h5>・PHPバージョン (更新日：2013/07/07)</h5>
-<div class="highlight"><pre><code class="language-text" data-lang="text"># php -v
-</code></pre></div>
-<h5>・Apacheバージョン (更新日：2013/09/16)</h5>
-<div class="highlight"><pre><code class="language-text" data-lang="text"># httpd -v
-</code></pre></div>
-<h5>・SVNバージョン (更新日：2013/09/26)</h5>
-<div class="highlight"><pre><code class="language-text" data-lang="text"># svn --version --quiet
-</code></pre></div>
-<h5>・historyコマンドに日時(タイムスタンプ)追加 (更新日：2013/09/24)</h5>
-
-<ul>
-<li><p>1.bashプロファイルを編集。</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">$ vim ~/.bash_profile
-</code></pre></div></li>
-<li><p>2.以下を記述。</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">HISTTIMEFORMAT=&#39;%Y-%m-%d %T &#39;
-</code></pre></div></li>
-<li><p>3.すぐに反映させたい場合は以下のコマンドを実行。</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">$ source ~/.bash_profile
-</code></pre></div></li>
-</ul>
-
-<h5>・port使用状況チェック (更新日：2014/05/07)</h5>
-<div class="highlight"><pre><code class="language-text" data-lang="text">$ netstat -anp
-$ netstat -anp | grep 【ポート番号】
-
--a：接続待ち状態にあるソケットも、接続待ち状態にないソケットも表示する。
--n：ホスト・ポート・ユーザーなどの名前を解決せずに、数字のアドレスで表示する。
--p：各ソケットが属しているプログラムの PID と名前が表示される。
-</code></pre></div>
-<h5>・crontabバックアップ (更新日：2015/03/18)</h5>
-<div class="highlight"><pre><code class="language-text" data-lang="text">$ crontab -l &gt; crontab.bak
-$ crontab -e
-
-クーロンの設定を変更後、バックアップとの差分を見る。
-
-$ crontab -l | diff crontab.bak -
-</code></pre></div>
-  </div><!-- /.entry-content -->
-</article><!-- /.hentry -->
-
 
 <div class="pagination">
   
@@ -628,6 +604,12 @@ $ crontab -l | diff crontab.bak -
       <li>
         
           <a href="/page7">7</a>
+        
+      </li>
+    
+      <li>
+        
+          <a href="/page8">8</a>
         
       </li>
     

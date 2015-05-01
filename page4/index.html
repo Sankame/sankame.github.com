@@ -148,6 +148,55 @@
   <header>
     
     <div class="entry-meta">
+      <span class="entry-date date published updated"><time datetime="2013-10-03T20:00:00-04:00"><a href="/mindmapmemo/mind_map_tools/">October 03, 2013</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About sankame">sankame</a></span></span>
+      
+      <span class="entry-reading-time">
+        <i class="fa fa-clock-o"></i>
+        
+        Reading time ~1 minute
+      </span><!-- /.entry-reading-time -->
+      
+    </div><!-- /.entry-meta -->
+    
+      <h1 class="entry-title"><a href="/mindmapmemo/mind_map_tools/" rel="bookmark" title="スマホ(Android)とPCでMindMapを使う" itemprop="url">スマホ(Android)とPCでMindMapを使う</a></h1>
+    
+  </header>
+  <div class="entry-content">
+    <p><span style="float:right;">投稿日：2013年10月03日</span></p>
+
+<h5>0.環境</h5>
+<div class="highlight"><pre><code class="language-text" data-lang="text">[スマホ端末/OS] GALAXY S SC-02B / Android2.2
+[PC端末/OS]    Gateway SX2800 / Windows Vista Home Premium
+</code></pre></div>
+<h5>1.スマホでマインドマップ作成</h5>
+
+<ul>
+<li><p>1-1.スマホにMindMapMemoをインストールする。</p></li>
+<li><p>1-2.マインドマップのファイルを作成後、「オプション」-「メール送信(SD保存)」-「FreeMind(.mm)」を選択。</p></li>
+<li><p>1-3.共有するためのアプリ一覧が表示されるので、PCへファイルを送信できるアプリを選択。</p></li>
+</ul>
+
+<h5>2.PCにFreeMindをインストール</h5>
+
+<ul>
+<li><p>2-1.下記リンク先のページで[0.8.1]をクリック。</p>
+
+<p>(0.9.0では上記スマホで作成したファイルをうまく開けませんでした)</p>
+
+<p><a href="http://sourceforge.net/projects/freemind/files/freemind/">FreeMindソース</a></p></li>
+<li><p>2-2.[freemind-bin-0<em>8</em>1.zip]をクリック。</p></li>
+<li><p>2-3.PCにダウンロード後、解凍してFreemind.exeをダブルクリック。</p></li>
+<li><p>2-4.メニューの「ファイル」-「開く」で、スマホから送信した拡張子がmmのファイルを選択。</p></li>
+<li><p>2-5.スマホではカラフルに作ったのにFreeMindで開くと白黒になっている。まあ内容が分かるからいいか…</p></li>
+</ul>
+
+  </div><!-- /.entry-content -->
+</article><!-- /.hentry -->
+
+<article class="hentry">
+  <header>
+    
+    <div class="entry-meta">
       <span class="entry-date date published updated"><time datetime="2013-09-22T20:00:00-04:00"><a href="/phpdebugbar/php_debug_bar_install/">September 22, 2013</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About sankame">sankame</a></span></span>
       
       <span class="entry-reading-time">
@@ -596,55 +645,6 @@ Enter passphrase for key &#39;/root/.ssh/id_rsa&#39;:
   </div><!-- /.entry-content -->
 </article><!-- /.hentry -->
 
-<article class="hentry">
-  <header>
-    
-    <div class="entry-meta">
-      <span class="entry-date date published updated"><time datetime="2013-08-25T20:00:00-04:00"><a href="/mysql/mysql_command/">August 25, 2013</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About sankame">sankame</a></span></span>
-      
-      <span class="entry-reading-time">
-        <i class="fa fa-clock-o"></i>
-        
-        Reading time ~1 minute
-      </span><!-- /.entry-reading-time -->
-      
-    </div><!-- /.entry-meta -->
-    
-      <h1 class="entry-title"><a href="/mysql/mysql_command/" rel="bookmark" title="MySQLコマンド メモ" itemprop="url">MySQLコマンド メモ</a></h1>
-    
-  </header>
-  <div class="entry-content">
-    <p><span style="float:right;">投稿日：2013年08月25日</span></p>
-
-<h4>MySQLコマンド メモ</h4>
-
-<h5>WebサーバとDBサーバが1台のマシンにある場合によく行う操作。</h5>
-<div class="highlight"><pre><code class="language-text" data-lang="text"># そのマシンのMySQLサーバにrootで接続
-# (パスワードを聞かれるので入力してEnter)
-# mysql -h 127.0.0.1 -u root -p
-
-mysql&gt; -- UTF8でDBを作成し、接続ユーザを作成 (先頭がtestの文字は読み替えて下さい)
-mysql&gt; create database testdb default character set utf8;
-mysql&gt; grant all on testdb.* to &#39;testuser&#39;@&#39;localhost&#39; identified by &#39;testpassword&#39;;
-mysql&gt; flush privileges;
-
-mysql&gt; -- 別マシンからDBへ接続する必要がある場合は、以下のように別ユーザを作成
-mysql&gt; -- (192.168.0.1の部分を別マシンのIPに読み替える)
-mysql&gt; grant all on testdb.* to testuser@192.168.0.1 identified by &#39;testpassword&#39;;
-
-mysql&gt; -- 作成したDBに切り替え、テーブルを作成
-mysql&gt; use testdb;
-
-mysql&gt; DROP TABLE IF EXISTS `users`;
-
-mysql&gt; CREATE TABLE `users` (
-mysql&gt;   `id`         bigint unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY,
-mysql&gt;   `username`   varchar(32) NOT NULL
-mysql&gt; ) ENGINE=InnoDB;
-</code></pre></div>
-  </div><!-- /.entry-content -->
-</article><!-- /.hentry -->
-
 
 <div class="pagination">
   
@@ -692,6 +692,12 @@ mysql&gt; ) ENGINE=InnoDB;
       <li>
         
           <a href="/page7">7</a>
+        
+      </li>
+    
+      <li>
+        
+          <a href="/page8">8</a>
         
       </li>
     

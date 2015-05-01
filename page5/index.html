@@ -148,6 +148,55 @@
   <header>
     
     <div class="entry-meta">
+      <span class="entry-date date published updated"><time datetime="2013-08-25T20:00:00-04:00"><a href="/mysql/mysql_command/">August 25, 2013</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About sankame">sankame</a></span></span>
+      
+      <span class="entry-reading-time">
+        <i class="fa fa-clock-o"></i>
+        
+        Reading time ~1 minute
+      </span><!-- /.entry-reading-time -->
+      
+    </div><!-- /.entry-meta -->
+    
+      <h1 class="entry-title"><a href="/mysql/mysql_command/" rel="bookmark" title="MySQLコマンド メモ" itemprop="url">MySQLコマンド メモ</a></h1>
+    
+  </header>
+  <div class="entry-content">
+    <p><span style="float:right;">投稿日：2013年08月25日</span></p>
+
+<h4>MySQLコマンド メモ</h4>
+
+<h5>WebサーバとDBサーバが1台のマシンにある場合によく行う操作。</h5>
+<div class="highlight"><pre><code class="language-text" data-lang="text"># そのマシンのMySQLサーバにrootで接続
+# (パスワードを聞かれるので入力してEnter)
+# mysql -h 127.0.0.1 -u root -p
+
+mysql&gt; -- UTF8でDBを作成し、接続ユーザを作成 (先頭がtestの文字は読み替えて下さい)
+mysql&gt; create database testdb default character set utf8;
+mysql&gt; grant all on testdb.* to &#39;testuser&#39;@&#39;localhost&#39; identified by &#39;testpassword&#39;;
+mysql&gt; flush privileges;
+
+mysql&gt; -- 別マシンからDBへ接続する必要がある場合は、以下のように別ユーザを作成
+mysql&gt; -- (192.168.0.1の部分を別マシンのIPに読み替える)
+mysql&gt; grant all on testdb.* to testuser@192.168.0.1 identified by &#39;testpassword&#39;;
+
+mysql&gt; -- 作成したDBに切り替え、テーブルを作成
+mysql&gt; use testdb;
+
+mysql&gt; DROP TABLE IF EXISTS `users`;
+
+mysql&gt; CREATE TABLE `users` (
+mysql&gt;   `id`         bigint unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY,
+mysql&gt;   `username`   varchar(32) NOT NULL
+mysql&gt; ) ENGINE=InnoDB;
+</code></pre></div>
+  </div><!-- /.entry-content -->
+</article><!-- /.hentry -->
+
+<article class="hentry">
+  <header>
+    
+    <div class="entry-meta">
       <span class="entry-date date published updated"><time datetime="2013-08-10T20:00:00-04:00"><a href="/nexus7/nexus7_github_devenv/">August 10, 2013</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About sankame">sankame</a></span></span>
       
       <span class="entry-reading-time">
@@ -453,86 +502,6 @@ Dell Touchpad が増えているのでダブルクリック。
   </div><!-- /.entry-content -->
 </article><!-- /.hentry -->
 
-<article class="hentry">
-  <header>
-    
-    <div class="entry-meta">
-      <span class="entry-date date published updated"><time datetime="2013-04-28T20:00:00-04:00"><a href="/mecab/php_mecab/">April 28, 2013</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About sankame">sankame</a></span></span>
-      
-      <span class="entry-reading-time">
-        <i class="fa fa-clock-o"></i>
-        
-        Reading time ~1 minute
-      </span><!-- /.entry-reading-time -->
-      
-    </div><!-- /.entry-meta -->
-    
-      <h1 class="entry-title"><a href="/mecab/php_mecab/" rel="bookmark" title="PHPでMeCabを利用" itemprop="url">PHPでMeCabを利用</a></h1>
-    
-  </header>
-  <div class="entry-content">
-    <p><span style="float:right;">投稿日：2013年04月28日</span></p>
-
-<h4>PHPからMeCabを使ってみる。</h4>
-
-<h5>環境</h5>
-<div class="highlight"><pre><code class="language-text" data-lang="text">[CentOS] 5.6 (32bit版カーネル)
-[PHP]    5.3.3
-</code></pre></div>
-<h5>0.MeCabインストール</h5>
-
-<p><a href="/MeCab/2013/01/28/mecab_install/">MeCabインストール方法</a></p>
-<div class="highlight"><pre><code class="language-text" data-lang="text"># まずは上記の手順でMeCabをインストール。
-</code></pre></div>
-<h5>1.php_mecabインストール</h5>
-<div class="highlight"><pre><code class="language-text" data-lang="text"># wget -O php_mecab-0.5.zip https://nodeload.github.com/rsky/php-mecab/zip/master --no-check-certificate
-# 
-# unzip php_mecab-0.5.zip
-# 
-# mv -f php-mecab-master php_mecab-0.5
-# 
-# cd php_mecab-0.5/mecab
-# 
-# phpize
-# 
-# ./configure
-# 
-# make
-# 
-# make test
-# 
-# make install
-</code></pre></div>
-<h5>2.テスト</h5>
-<div class="highlight"><pre><code class="language-text" data-lang="text"># インストールが成功したら、phpからテスト
-# (Apache経由で動かす場合はhttpdを再起動して下さい)
-# 
-# echo &quot;extension=mecab.so&quot; &gt; /etc/php.d/mecab.ini
-# vim mecabtest.php
-
-&lt;script src=&quot;https://gist.github.com/d0ff28564c451c4372cf.js?file=test_php_mecab.php&quot;&gt; &lt;/script&gt;
-</code></pre></div>
-<h6>3.作成したphpファイルを実行</h6>
-<div class="highlight"><pre><code class="language-text" data-lang="text"># php mecabtest.php 
-
---------------(実行結果)--------------
-すもも  名詞,一般,*,*,*,*,すもも,スモモ,スモモ
-も      助詞,係助詞,*,*,*,*,も,モ,モ
-もも    名詞,一般,*,*,*,*,もも,モモ,モモ
-も      助詞,係助詞,*,*,*,*,も,モ,モ
-もも    名詞,一般,*,*,*,*,もも,モモ,モモ
-の      助詞,連体化,*,*,*,*,の,ノ,ノ
-うち    名詞,非自立,副詞可能,*,*,*,うち,ウチ,ウチ
-EOS
---------------(実行結果)--------------
-</code></pre></div>
-<p><a href="http://kohkimakimoto.hatenablog.com/entry/2012/05/02/112020">参照したページ1</a></p>
-
-<p><a href="http://kouhei.hatenablog.com/entry/2012/12/13/022040">参照したページ2</a></p>
-
-  </div><!-- /.entry-content -->
-</article><!-- /.hentry -->
-
 
 <div class="pagination">
   
@@ -580,6 +549,12 @@ EOS
       <li>
         
           <a href="/page7">7</a>
+        
+      </li>
+    
+      <li>
+        
+          <a href="/page8">8</a>
         
       </li>
     
