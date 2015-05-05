@@ -148,6 +148,101 @@
   <header>
     
     <div class="entry-meta">
+      <span class="entry-date date published updated"><time datetime="2014-07-14T20:00:00-04:00"><a href="/laravel/laravel_trailing_slash_redirect/">July 14, 2014</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About sankame">sankame</a></span></span>
+      
+      <span class="entry-reading-time">
+        <i class="fa fa-clock-o"></i>
+        
+        Reading time ~1 minute
+      </span><!-- /.entry-reading-time -->
+      
+    </div><!-- /.entry-meta -->
+    
+      <h1 class="entry-title"><a href="/laravel/laravel_trailing_slash_redirect/" rel="bookmark" title="【Laravel】AjaxでPOSTできない" itemprop="url">【Laravel】AjaxでPOSTできない</a></h1>
+    
+  </header>
+  <div class="entry-content">
+    <p><span style="float:right;">投稿日：2014年07月14日</span></p>
+
+<h5>0.環境</h5>
+<div class="highlight"><pre><code class="language-text" data-lang="text">[CentOS]   5.6 (32bit版カーネル)
+[Apache]   2.2.3
+[PHP]      5.4.1
+[Laravel]  4.1.23
+</code></pre></div>
+<h5>1.問題</h5>
+
+<ul>
+<li><p>PHPのLaravelフレームワークを使っていたら、AjaxでPOSTした値がサーバ側で取得できずにはまりました。</p>
+
+<p>①から②へ test という名前で hoge という値を送信します。</p>
+
+<ul>
+<li><p>① Javascript側</p>
+
+<script src="https://gist.github.com/a9da32445d224fb1df63.js?file=ajax-test.js"> </script></li>
+<li><p>② PHP側</p>
+
+<script src="https://gist.github.com/649420870dc9835cb08c.js?file=routes.php"> </script></li>
+<li><p>ログ出力結果を見ると、下記のようにPOST値が取得できていません。</p>
+
+<p><code>[2014-07-16 12:09:36] local.DEBUG:  [] []</code></p></li>
+</ul></li>
+</ul>
+
+<h5>2.原因</h5>
+
+<ul>
+<li><p>Firefox の &quot;Live HTTP headers&quot; アドオンでURLの遷移を見たところ、下記のようにリダイレクトしていることがわかりました。</p>
+
+<p>http://local.vm/test/</p>
+
+<p>↓↓↓</p>
+
+<p>http://local.vm/test</p></li>
+<li><p>grepしたところ、.htaccessでリダイレクトしてました。</p>
+
+<ul>
+<li><p>ソース</p>
+
+<p>app-root/public/.htaccess</p></li>
+<li><p>記述</p></li>
+</ul></li>
+</ul>
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="x">        # Redirect Trailing Slashes...</span>
+<span class="x">        RewriteRule ^(.*)/$ /$1 [L,R=301]</span>
+</code></pre></div>
+<h5>3.対策</h5>
+
+<ul>
+<li><p>Laravelはtrailing slash非推奨なのか？ とにかく下記のように修正。</p>
+
+<ul>
+<li><p>箇所</p>
+
+<p>ajax-test.js (6行目)</p></li>
+<li><p>内容</p>
+
+<p>URLの末尾のスラッシュを削除し、/test に修正。</p></li>
+<li><p>ログにもPOST値が出力されました。</p>
+
+<p><code>[2014-07-16 13:03:39] local.DEBUG: hoge [] []</code></p></li>
+</ul></li>
+<li><p>参考</p>
+
+<ul>
+<li><a href="http://www.suzukikenichi.com/blog/do-we-need-a-trailing-slash-at-the-end-of-url/" target="_blank">URLの終りに「/」(スラッシュ)は必要?、不要?</a></li>
+<li><a href="http://stackoverflow.com/questions/22063520/laravel-slash-after-url-redirects-to-root-folder" target="_blank">Laravel slash after url redirects to root folder</a></li>
+</ul></li>
+</ul>
+
+  </div><!-- /.entry-content -->
+</article><!-- /.hentry -->
+
+<article class="hentry">
+  <header>
+    
+    <div class="entry-meta">
       <span class="entry-date date published updated"><time datetime="2014-07-02T20:00:00-04:00"><a href="/wget/wget_option_O/">July 02, 2014</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About sankame">sankame</a></span></span>
       
       <span class="entry-reading-time">
@@ -503,106 +598,6 @@ Percentage of the requests served within a certain time (ms)
 # /usr/local/src/httpd-2.2.27/support/ab -V
 #This is ApacheBench, Version 2.3 &lt;$Revision: 655654 $&gt;
 </code></pre></div></li>
-</ul>
-
-  </div><!-- /.entry-content -->
-</article><!-- /.hentry -->
-
-<article class="hentry">
-  <header>
-    
-    <div class="entry-meta">
-      <span class="entry-date date published updated"><time datetime="2014-06-03T20:00:00-04:00"><a href="/selenium/jenkins_selenium/">June 03, 2014</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About sankame">sankame</a></span></span>
-      
-      <span class="entry-reading-time">
-        <i class="fa fa-clock-o"></i>
-        
-        Reading time ~1 minute
-      </span><!-- /.entry-reading-time -->
-      
-    </div><!-- /.entry-meta -->
-    
-      <h1 class="entry-title"><a href="/selenium/jenkins_selenium/" rel="bookmark" title="Jenkins から Seleniumを動かしてみる" itemprop="url">Jenkins から Seleniumを動かしてみる</a></h1>
-    
-  </header>
-  <div class="entry-content">
-    <p><span style="float:right;">投稿日：2014年06月03日</span></p>
-
-<h5>0.環境</h5>
-<div class="highlight"><pre><code class="language-text" data-lang="text">・親ノード端末
-  [CentOS]   5.6 (32bit版カーネル)
-  [ruby]     2.1.1p76
-  [rvm]      1.25.25
-  [java]     1.7.0_51
-  [Jenkins]  1.562
-
-・子ノード端末
-  [Windows]  Vista Home Premium (32bit)
-  [java]     1.7.0_51
-  [IE]       8
-</code></pre></div>
-<h5>1.準備</h5>
-
-<ul>
-<li><p>Jenkinsインストール</p>
-
-<p>下記のリンクを参考にJenkinsをインストールしました。</p>
-
-<p><a href="http://d.hatena.ne.jp/katsuren/20121030/1351569655">俺の成長日記</a></p>
-
-<p><a href="http://oscasierra.net/2013/05/jenkins-to-redhat/">OSCALOG</a></p>
-
-<p><a href="http://kohkimakimoto.hatenablog.com/entry/2013/11/22/192646">JenkinsをCentOSにインストールしたときのメモ</a></p></li>
-<li><p>前回の続き</p>
-
-<p>親ノードと子ノードでSelenium Serverを起動します。(下記リンク参照)</p>
-
-<p><a href="/Selenium/2014/05/24/selenium_webdriver/">Selenium WebDriverを動かしてみる</a></p>
-
-<p>前回と異なる点は、Jenkinsがポート4444を使っていたので、Selenium Serverは4445を使って起動します。</p>
-
-<p>・親ノード</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text"># java -jar selenium-server-standalone-2.41.0.jar -role hub -port 4445
-</code></pre></div>
-<p>・子ノード</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">&gt; java -jar selenium-server-standalone-2.41.0.jar -role webdriver -hub http://192.168.130.130:4445/grid/register -Dwebdriver.ie.driver=./IEDriverServer.exe
-</code></pre></div></li>
-<li><p>Jenkins プラグイン追加</p>
-
-<p>rvmでrubyを使っているので、予めJenkinsにrvmプラグインを追加。</p>
-
-<p>Jenkinsのダッシュボードから[Jenkinsの管理]-[プラグインの管理]-[利用可能]</p>
-
-<p>右上のフィルターでrvmと打つとRVMプラグインが表示されるのでチェックをつけ、[再起動せずにインストール]クリック。</p>
-
-<p>(インストールは何回か失敗することがあります)</p></li>
-<li><p>Jenkins ジョブ追加</p>
-
-<p>Jenkinsのダッシュボードから[新規ジョブ作成]、ジョブ名を入力し、[フリースタイル・プロジェクトのビルド]を選択して[OK]クリック。</p>
-
-<p>ビルド環境のRVMで使用したいrubyのバージョンを指定。(自分の場合 2.1.1) (下図参照)</p>
-
-<p>シェルスクリプトで下記のように指定。(パス等は読み替えて下さい) (下図参照)</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">/usr/local/rvm/rubies/ruby-2.1.1/bin/ruby /app/seleniumtest/seleniumtest_4445.rb
-</code></pre></div>
-<p>「保存」ボタンクリック。</p>
-
-<p><a href="/assets/posts/img/jenkins_selenium/jenkins_project.png" target="_blank"><img width="50%" height="50%" title="Jenkinsプロジェクト設定" alt="Jenkinsプロジェクト設定" src="/assets/posts/img/jenkins_selenium/jenkins_project.png"></a></p></li>
-<li><p>rubyスクリプト</p>
-
-<p>上記でJenkinsに設定した &quot;seleniumtest_4445.rb&quot; は以下の内容です。(ポート番号4445でアクセス)</p>
-
-<script src="https://gist.github.com/dc5fb2d680b67acefbf3.js?file=seleniumtest_4445.rb"> </script></li>
-</ul>
-
-<h5>2.起動</h5>
-
-<ul>
-<li><p>ビルド実行</p>
-
-<p>上記で作成したジョブで「ビルド実行」をクリック。</p>
-
-<p>子ノードでIEが起動すれば成功です。</p></li>
 </ul>
 
   </div><!-- /.entry-content -->

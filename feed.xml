@@ -4,13 +4,161 @@
 <generator uri="https://github.com/mojombo/jekyll">Jekyll</generator>
 <link rel="self" type="application/atom+xml" href="/feed.xml" />
 <link rel="alternate" type="text/html" href="" />
-<updated>2015-05-01T12:16:05-04:00</updated>
+<updated>2015-05-05T14:50:53-04:00</updated>
 <id>/</id>
 <author>
   <name>sankame</name>
   <uri>/</uri>
   <email>m2ad0504@outlook.jp</email>
 </author>
+
+
+<entry>
+  <title type="html"><![CDATA[Vagrant + VirtualBox で開発環境構築]]></title>
+ <link rel="alternate" type="text/html" href="/vagrant/vagrant_setup/" />
+  <id>/vagrant/vagrant_setup</id>
+  <published>2015-05-05T20:00:00-04:00</published>
+  <updated>2015-05-05T20:00:00-04:00</updated>
+  <author>
+    <name>sankame</name>
+    <uri></uri>
+    <email>m2ad0504@outlook.jp</email>
+  </author>
+  <content type="html">
+    &lt;p&gt;&lt;span style=&quot;float:right;&quot;&gt;投稿日：2015年05月05日&lt;/span&gt;&lt;/p&gt;
+
+&lt;h2&gt;0.環境&lt;/h2&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;[PC]  DELL LATITUDE E5500
+[OS]  Windows7 (32bit 版)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;1.概要&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;復習を兼ねて、新PCにVagrantで開発環境を作りました。&lt;/p&gt;
+
+&lt;p&gt;VagrantとVirtualBoxの関係は、下記ページの真ん中辺りにある図が分かりやすいです。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.digitalforreallife.com/2012/11/boosting-teamwork-with-vagrant/&quot; target=&quot;_blank&quot;&gt;Boosting teamwork with Vagrant&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;VirtualBox上に仮想マシン(以下VM)起動し、そこにCentOSをインストールして開発環境とします。&lt;/p&gt;
+
+&lt;p&gt;VirtualBoxを操作するためにVagrantというツールを使うイメージです。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2&gt;2.BIOS設定変更&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;VMを起動する前準備として、BIOSの設定を変更します。&lt;/p&gt;
+
+&lt;p&gt;PC起動時に、OSが起動する前に特定のキーを押してBIOS設定画面を開きます。&lt;/p&gt;
+
+&lt;p&gt;(PCによって異なるので、下記は自分のPCに読み替えて下さい)&lt;/p&gt;
+
+&lt;p&gt;PC起動時に[F2] または [F10]キーを押下。&lt;/p&gt;
+
+&lt;p&gt;[Virtualization Support] - [Virtualization]を選択し、[Enable]にチェックをつけて[Apply]→[Exit]を選択。&lt;/p&gt;
+
+&lt;p&gt;そのままOSが起動するのを待ちます。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2&gt;3.VirtualBoxインストール&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;下記ページで&amp;quot;VirtualBox 4.3.26 for Windows hosts&amp;quot; をクリックしVirtualBoxをダウンロード。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.virtualbox.org/wiki/Downloads&quot; target=&quot;_blank&quot;&gt;VirtualBoxダウンロード&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;ダウンロードもインストールも私の環境では数分かかりました。&lt;/p&gt;
+
+&lt;p&gt;途中何度かOracle社のコンポーネントをインストールしますか？と聞かれたので全てYesを選択。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2&gt;4.Vagrantインストール&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;下記ページでWindows用を選択して Vagrantをダウンロード。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.vagrantup.com/downloads.html&quot; target=&quot;_blank&quot;&gt;Vagrantダウンロード&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;インストールが終わったら再起動を求められます。&lt;/p&gt;
+
+&lt;p&gt;boxファイル(用意されたVMイメージ)を取得し、VirtualBoxに追加。&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-control&quot; data-lang=&quot;control&quot;&gt;&lt;span class=&quot;k&quot;&gt;C&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;\Users\【ユーザー名】&amp;gt; vagrant box add CentOS65 https://github.com/2creatives/vagrant-centos/releases/download/v6.5.3/centos65-x86_64-20140116.box&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2&gt;5.Vagrantを使ってVirtualBoxのVMを起動&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;適当なフォルダにVagrantファイルを作成し、VM起動時の設定を定義します。&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-control&quot; data-lang=&quot;control&quot;&gt;&lt;span class=&quot;k&quot;&gt;C&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;\apps\Vagrant\Vagrantfiles&amp;gt;mkdir centos&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;C&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;\apps\Vagrant\Vagrantfiles&amp;gt;cd centos&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;C&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;\apps\Vagrant\Vagrantfiles\centos&amp;gt;vagrant init CentOS65&lt;/span&gt;
+&lt;span class=&quot;err&quot;&gt;A `Vagrantfile` has been placed in this directory. You are now&lt;/span&gt;
+&lt;span class=&quot;err&quot;&gt;ready to `vagrant up` your first virtual environment! Please read&lt;/span&gt;
+&lt;span class=&quot;err&quot;&gt;the comments in the Vagrantfile as well as documentation on&lt;/span&gt;
+&lt;span class=&quot;err&quot;&gt;`vagrantup.com` for more information on using Vagrant.&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;C&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;\apps\Vagrant\Vagrantfiles\centos&amp;gt;dir&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;自動生成された Vagrantfile を編集。&lt;/p&gt;
+
+&lt;p&gt;必要な箇所のコメントアウトを解除します。（編集前後のdiffを記載）&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-diff&quot; data-lang=&quot;diff&quot;&gt;# diff Vagrantfile.org Vagrantfile                       
+29c29
+&amp;lt;   # config.vm.network &amp;quot;private_network&amp;quot;, ip: &amp;quot;192.168.33.10&amp;quot;
+&lt;span class=&quot;gd&quot;&gt;---&lt;/span&gt;
+&amp;gt;   config.vm.network &amp;quot;private_network&amp;quot;, ip: &amp;quot;192.168.33.10&amp;quot;
+46c47
+&amp;lt;   # config.vm.provider &amp;quot;virtualbox&amp;quot; do |vb|
+&lt;span class=&quot;gd&quot;&gt;---&lt;/span&gt;
+&amp;gt;   config.vm.provider &amp;quot;virtualbox&amp;quot; do |vb|
+48c49
+&amp;lt;   #   vb.gui = true
+&lt;span class=&quot;gd&quot;&gt;---&lt;/span&gt;
+&amp;gt;       vb.gui = true
+51,52c52,53
+&amp;lt;   #   vb.memory = &amp;quot;1024&amp;quot;
+&amp;lt;   # end
+&lt;span class=&quot;gd&quot;&gt;---&lt;/span&gt;
+&amp;gt;       vb.memory = &amp;quot;1024&amp;quot;
+&amp;gt;   end
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&amp;quot;vb.gui = true&amp;quot; のコメントアウトを解除しないと、VM起動時に下記エラーが出続けるので注意。&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-control&quot; data-lang=&quot;control&quot;&gt;&lt;span class=&quot;k&quot;&gt;default&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;: &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Warning: Connection timeout. Retrying...&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;編集が終わったら VagrantコマンドでVMを起動。&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-control&quot; data-lang=&quot;control&quot;&gt;&lt;span class=&quot;k&quot;&gt;C&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;\apps\Vagrant\Vagrantfiles\centos&amp;gt; vagrant up&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2&gt;6.ターミナルソフトでVMに接続&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;使い慣れたターミナルソフトでVMに接続します。&lt;/p&gt;
+
+&lt;p&gt;まずは用意された user=vagrant, password=vagrant で接続。&lt;/p&gt;
+
+&lt;p&gt;(下記はpoderosaでの接続例)&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/posts/img/vagrant_setup/poderosa.png&quot; target=&quot;_blank&quot;&gt;&lt;img width=&quot;20%&quot; height=&quot;20%&quot; title=&quot;接続情報&quot; alt=&quot;接続情報&quot; src=&quot;/assets/posts/img/vagrant_setup/poderosa.png&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;以降は root で接続したいので、rootのパスワードを再設定します。&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;sudo passwd root
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2&gt;※参考にしたページ&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://qiita.com/hiroyasu55/items/11a4c996b0c62450940f&quot; target=&quot;_blank&quot;&gt;インストール手順&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://sakashushu.blog.so-net.ne.jp/2014-06-16&quot; target=&quot;_blank&quot;&gt;エラーの際に役立ったページ&lt;/a&gt;&lt;/p&gt;
+
+    &lt;p&gt;&lt;a href=&quot;/vagrant/vagrant_setup/&quot;&gt;Vagrant + VirtualBox で開発環境構築&lt;/a&gt; was originally published by sankame at &lt;a href=&quot;&quot;&gt;テキストブログ&lt;/a&gt; on May 05, 2015.&lt;/p&gt;
+  </content>
+</entry>
 
 
 <entry>
@@ -1595,169 +1743,6 @@ Enter passphrase for key &amp;#39;/root/.ssh/id_rsa&amp;#39;:
 # git checkout .
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
     &lt;p&gt;&lt;a href=&quot;/git/git_command/&quot;&gt;Gitコマンド メモ&lt;/a&gt; was originally published by sankame at &lt;a href=&quot;&quot;&gt;テキストブログ&lt;/a&gt; on September 08, 2013.&lt;/p&gt;
-  </content>
-</entry>
-
-
-<entry>
-  <title type="html"><![CDATA[Nexus7のスクリーンをプロジェクタに映したい (Android Screen Cast)]]></title>
- <link rel="alternate" type="text/html" href="/nexus7/nexus7_projected_to_pc/" />
-  <id>/nexus7/nexus7_projected_to_pc</id>
-  <published>2013-08-31T20:00:00-04:00</published>
-  <updated>2013-08-31T20:00:00-04:00</updated>
-  <author>
-    <name>sankame</name>
-    <uri></uri>
-    <email>m2ad0504@outlook.jp</email>
-  </author>
-  <content type="html">
-    &lt;p&gt;&lt;span style=&quot;float:right;&quot;&gt;投稿日：2013年08月31日&lt;/span&gt;&lt;/p&gt;
-
-&lt;h5&gt;0.環境&lt;/h5&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;[タブレット端末/OS]  Nexus7 / Android 4.2.2
-[PC端末/OS]        Gateway SX2800 / Windows Vista Home Premium
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;h5&gt;0.検討&lt;/h5&gt;
-
-&lt;p&gt;プレゼン用途でNexus7のスクリーン映像をプロジェクタに映したいと考え、いくつか検討した結果、下記3で行うことにしました。&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;&lt;a href=&quot;http://www.amazon.co.jp/dp/B005RUM754/ref=as_li_ss_til?tag=uni6605-22&amp;amp;camp=1027&amp;amp;creative=7407&amp;amp;linkCode=as4&amp;amp;creativeASIN=B005RUM754&amp;amp;adid=004HQM7Z4FR3M83JKTW2&amp;amp;&amp;amp;ref-refURL=http%3A%2F%2Flove-guava.com%2Fit-is-difficult-in-it-being-unexpected-to-output-the-screen-of-nexus7-to-a-display%2F&quot;&gt;1.変換器を使う&lt;/a&gt; →Nexus7はMHL非対応…&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;a href=&quot;https://play.google.com/store/apps/details?id=com.awindinc.sphone2tv&quot;&gt;2.ソフトで解決&lt;/a&gt; →PCに映像を送信する方法。有料かつNexus7のRoot化が必要。&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;a href=&quot;http://www.moongift.jp/2009/09/androidscreencast&quot;&gt;3.ソフトで解決&lt;/a&gt; →PCに映像を送信する方法。無料かつRoot化の必要もなし。Nexus7の映像がPCに届くまで数秒のタイムラグあり。&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h5&gt;1.PCにAndroid SDKをインストール&lt;/h5&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;下記ページの[download here] - [Download the SDK]ボタンをクリック。&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://code.google.com/p/androidscreencast/&quot;&gt;ダウンロード&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;規約に同意したら「I have read and agree…」にチェック。&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;32ビットか64ビットかは、下記の手順で調べる。&lt;/p&gt;
-
-&lt;p&gt;[スタート]メニュー - [コンピュータ]右クリック - [プロパティ]&lt;/p&gt;
-
-&lt;p&gt;[システムの種類]に記載。&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h5&gt;2.USBケーブルでNexus7とPCを接続&lt;/h5&gt;
-
-&lt;h5&gt;3.Android Screen Cast&lt;/h5&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;3-1.下記リンクからAndroid Screen CastをPCにダウンロードし、任意のフォルダに保存する。&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://androidscreencast.googlecode.com/svn/trunk/AndroidScreencast/dist/androidscreencast.jnlp&quot;&gt;ダウンロード&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;3-2.コマンドプロンプトで上記3-1のフォルダに移動し、下記コマンドを実行。&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;&amp;gt; javaws androidscreencast.jnlp
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;3-3.JREをバージョンアップするよう警告が出たので、最新をインストールした結果、下記のバージョンになった。&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;&amp;gt; java -version
-  java version &amp;quot;1.7.0_25&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;3-4.再び3-2のコマンドを実行すると下記エラーが発生。&lt;/p&gt;
-
-&lt;p&gt;Timeout getting device list&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;3-5.adb usb 実行 &lt;a href=&quot;http://code.google.com/p/androidscreencast/issues/detail?id=49&quot;&gt;(参考ページ)&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;PCでコマンドプロンプトを起動し、&amp;quot;platform-tools&amp;quot;フォルダに移動。(パスは読み替えて下さい)&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;&amp;gt; cd C:\soft\Android\adt-bundle-windows-x86-20130729\sdk\platform-tools
-&amp;gt; adb usb
- error: device not found
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h5&gt;4.USBドライバ&lt;/h5&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;4-1.USBドライバ&lt;/p&gt;
-
-&lt;p&gt;上記3-5でエラーになったので、USBドライバをインストールする。&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;4-2.インストール&lt;/p&gt;
-
-&lt;p&gt;PC側で、上記1でダウンロードした&amp;quot;SDK Manager.exe&amp;quot;をダブルクリックして起動する。&lt;/p&gt;
-
-&lt;p&gt;&amp;quot;Google USB Driver&amp;quot;にチェックして、[Install 1 package...]をクリック。&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/posts/img/nexus7_projected_to_pc/10.jpg&quot; alt=&quot;画像10&quot; title=&quot;画像10&quot;&gt;&lt;/p&gt;
-
-&lt;p&gt;※もし&amp;quot;Failed to fetch URL&amp;quot;というエラーが出た場合は、代替策として下記5を参照。&lt;/p&gt;
-
-&lt;p&gt;規約に同意したら[Install]をクリック。&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/posts/img/nexus7_projected_to_pc/11.jpg&quot; alt=&quot;画像11&quot; title=&quot;画像11&quot;&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;4-3.USBドライバ更新&lt;/p&gt;
-
-&lt;p&gt;さらにPC側で、下記ノードを右クリックしてプロパティから[ドライバの更新]をクリック。&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;[スタート]-[コントロール パネル]-[デバイスマネージャ]-[Android Phone]
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;下記パスを選択してドライバを指定する。(パスは読み替えて下さい)&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;C:\soft\Android\adt-bundle-windows-x86-20130729\sdk\extras
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;インストールが完了したらPCを再起動。 →下記5を飛ばして6以降を参照。&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h5&gt;5.PdaNet&lt;/h5&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://www.dominantwire.com/2012/11/how-to-solve-adb-device-not-found-error.html&quot;&gt;参考ページ&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://pdanet.co/&quot;&gt;PdaNet&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;【注意】PdaNetがインストールするUSBドライバを利用します。&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;PdaNetはモバイル端末経由でPCをネット接続するソフトなので、モバイル端末のネット接続が従量課金の場合は、注意して下さい。&lt;/code&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;5-1.上記3-6でダウンロードしたインストーラ(PdaNetA4126.exe)を起動。&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;5-2.インストール途中で下記メッセージが出た。&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/posts/img/nexus7_projected_to_pc/1.jpg&quot; alt=&quot;画像1&quot; title=&quot;画像1&quot;&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;5-3.Nexus7 開発者メニュー&lt;/p&gt;
-
-&lt;p&gt;Nexus7で[設定]-[タブレット情報]-[ビルド番号]を7回タップし、[設定]-[開発者向けオプション]を表示する。&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;5-4.Nexus7 USBデバッグ&lt;/p&gt;
-
-&lt;p&gt;Nexus7で[開発者向けオプション]-[USBデバッグ] をONにする。&lt;/p&gt;
-
-&lt;p&gt;直後に、PC側でインストーラが再開した。&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/posts/img/nexus7_projected_to_pc/2.jpg&quot; alt=&quot;画像2&quot; title=&quot;画像2&quot;&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;5-5.Nexus7で下記メッセージが出たので、&amp;quot;許可する&amp;quot;を選択する。&lt;/p&gt;
-
-&lt;p&gt;&amp;quot;このパソコンのRSAキーのフィンガープリント…&amp;quot;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;5-6.PC側で下記メッセージが出たので、&amp;quot;インストール&amp;quot;をクリック。&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/posts/img/nexus7_projected_to_pc/3.jpg&quot; alt=&quot;画像3&quot; title=&quot;画像3&quot;&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;5-6.Nexus7で下記メッセージが出たので、そのままOKを選択。&lt;/p&gt;
-
-&lt;p&gt;&amp;quot;Googleが定期的にインストールされたアプリをチェックする&amp;quot;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;5-7.インストール完了&lt;/p&gt;
-
-&lt;p&gt;下記画面が表示されればインストールは完了。&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/posts/img/nexus7_projected_to_pc/4.jpg&quot; alt=&quot;画像4&quot; title=&quot;画像4&quot;&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h5&gt;6.Android Screen Cast起動&lt;/h5&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;6-1.Android Phoneの認識&lt;/p&gt;
-
-&lt;p&gt;PC側のデバイスにAndroid Phoneが追加されていればOK。&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;[スタート]-[コントロール パネル]-[デバイスマネージャ]-[Android Phone]
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;6-2.上記3-5のコマンドを再実行すると下記が表示される。&lt;/p&gt;
-
-&lt;p&gt;daemon not running. starting it now on port 5037&lt;/p&gt;
-
-&lt;p&gt;daemon started successfully&lt;/p&gt;
-
-&lt;p&gt;restarting in USB mode&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;6-3. 上記3-2の操作を再実行し、Nexus7の画面がPC側に表示されれば成功。&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-    &lt;p&gt;&lt;a href=&quot;/nexus7/nexus7_projected_to_pc/&quot;&gt;Nexus7のスクリーンをプロジェクタに映したい (Android Screen Cast)&lt;/a&gt; was originally published by sankame at &lt;a href=&quot;&quot;&gt;テキストブログ&lt;/a&gt; on August 31, 2013.&lt;/p&gt;
   </content>
 </entry>
 

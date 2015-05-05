@@ -148,6 +148,158 @@
   <header>
     
     <div class="entry-meta">
+      <span class="entry-date date published updated"><time datetime="2015-05-05T20:00:00-04:00"><a href="/vagrant/vagrant_setup/">May 05, 2015</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About sankame">sankame</a></span></span>
+      
+      <span class="entry-reading-time">
+        <i class="fa fa-clock-o"></i>
+        
+        Reading time ~1 minute
+      </span><!-- /.entry-reading-time -->
+      
+    </div><!-- /.entry-meta -->
+    
+      <h1 class="entry-title"><a href="/vagrant/vagrant_setup/" rel="bookmark" title="Vagrant + VirtualBox で開発環境構築" itemprop="url">Vagrant + VirtualBox で開発環境構築</a></h1>
+    
+  </header>
+  <div class="entry-content">
+    <p><span style="float:right;">投稿日：2015年05月05日</span></p>
+
+<h2>0.環境</h2>
+<div class="highlight"><pre><code class="language-text" data-lang="text">[PC]  DELL LATITUDE E5500
+[OS]  Windows7 (32bit 版)
+</code></pre></div>
+<h2>1.概要</h2>
+
+<ul>
+<li><p>復習を兼ねて、新PCにVagrantで開発環境を作りました。</p>
+
+<p>VagrantとVirtualBoxの関係は、下記ページの真ん中辺りにある図が分かりやすいです。</p>
+
+<p><a href="http://www.digitalforreallife.com/2012/11/boosting-teamwork-with-vagrant/" target="_blank">Boosting teamwork with Vagrant</a></p>
+
+<p>VirtualBox上に仮想マシン(以下VM)起動し、そこにCentOSをインストールして開発環境とします。</p>
+
+<p>VirtualBoxを操作するためにVagrantというツールを使うイメージです。</p></li>
+</ul>
+
+<h2>2.BIOS設定変更</h2>
+
+<ul>
+<li><p>VMを起動する前準備として、BIOSの設定を変更します。</p>
+
+<p>PC起動時に、OSが起動する前に特定のキーを押してBIOS設定画面を開きます。</p>
+
+<p>(PCによって異なるので、下記は自分のPCに読み替えて下さい)</p>
+
+<p>PC起動時に[F2] または [F10]キーを押下。</p>
+
+<p>[Virtualization Support] - [Virtualization]を選択し、[Enable]にチェックをつけて[Apply]→[Exit]を選択。</p>
+
+<p>そのままOSが起動するのを待ちます。</p></li>
+</ul>
+
+<h2>3.VirtualBoxインストール</h2>
+
+<ul>
+<li><p>下記ページで&quot;VirtualBox 4.3.26 for Windows hosts&quot; をクリックしVirtualBoxをダウンロード。</p>
+
+<p><a href="https://www.virtualbox.org/wiki/Downloads" target="_blank">VirtualBoxダウンロード</a></p>
+
+<p>ダウンロードもインストールも私の環境では数分かかりました。</p>
+
+<p>途中何度かOracle社のコンポーネントをインストールしますか？と聞かれたので全てYesを選択。</p></li>
+</ul>
+
+<h2>4.Vagrantインストール</h2>
+
+<ul>
+<li><p>下記ページでWindows用を選択して Vagrantをダウンロード。</p>
+
+<p><a href="https://www.vagrantup.com/downloads.html" target="_blank">Vagrantダウンロード</a></p>
+
+<p>インストールが終わったら再起動を求められます。</p>
+
+<p>boxファイル(用意されたVMイメージ)を取得し、VirtualBoxに追加。</p>
+<div class="highlight"><pre><code class="language-control" data-lang="control"><span class="k">C</span><span class="w">:</span><span class="s">\Users\【ユーザー名】&gt; vagrant box add CentOS65 https://github.com/2creatives/vagrant-centos/releases/download/v6.5.3/centos65-x86_64-20140116.box</span>
+</code></pre></div></li>
+</ul>
+
+<h2>5.Vagrantを使ってVirtualBoxのVMを起動</h2>
+
+<ul>
+<li><p>適当なフォルダにVagrantファイルを作成し、VM起動時の設定を定義します。</p>
+<div class="highlight"><pre><code class="language-control" data-lang="control"><span class="k">C</span><span class="w">:</span><span class="s">\apps\Vagrant\Vagrantfiles&gt;mkdir centos</span>
+
+<span class="k">C</span><span class="w">:</span><span class="s">\apps\Vagrant\Vagrantfiles&gt;cd centos</span>
+
+<span class="k">C</span><span class="w">:</span><span class="s">\apps\Vagrant\Vagrantfiles\centos&gt;vagrant init CentOS65</span>
+<span class="err">A `Vagrantfile` has been placed in this directory. You are now</span>
+<span class="err">ready to `vagrant up` your first virtual environment! Please read</span>
+<span class="err">the comments in the Vagrantfile as well as documentation on</span>
+<span class="err">`vagrantup.com` for more information on using Vagrant.</span>
+
+<span class="k">C</span><span class="w">:</span><span class="s">\apps\Vagrant\Vagrantfiles\centos&gt;dir</span>
+</code></pre></div></li>
+<li><p>自動生成された Vagrantfile を編集。</p>
+
+<p>必要な箇所のコメントアウトを解除します。（編集前後のdiffを記載）</p>
+<div class="highlight"><pre><code class="language-diff" data-lang="diff"># diff Vagrantfile.org Vagrantfile                       
+29c29
+&lt;   # config.vm.network &quot;private_network&quot;, ip: &quot;192.168.33.10&quot;
+<span class="gd">---</span>
+&gt;   config.vm.network &quot;private_network&quot;, ip: &quot;192.168.33.10&quot;
+46c47
+&lt;   # config.vm.provider &quot;virtualbox&quot; do |vb|
+<span class="gd">---</span>
+&gt;   config.vm.provider &quot;virtualbox&quot; do |vb|
+48c49
+&lt;   #   vb.gui = true
+<span class="gd">---</span>
+&gt;       vb.gui = true
+51,52c52,53
+&lt;   #   vb.memory = &quot;1024&quot;
+&lt;   # end
+<span class="gd">---</span>
+&gt;       vb.memory = &quot;1024&quot;
+&gt;   end
+</code></pre></div></li>
+<li><p>&quot;vb.gui = true&quot; のコメントアウトを解除しないと、VM起動時に下記エラーが出続けるので注意。</p>
+<div class="highlight"><pre><code class="language-control" data-lang="control"><span class="k">default</span><span class="w">: </span><span class="s">Warning: Connection timeout. Retrying...</span>
+</code></pre></div></li>
+<li><p>編集が終わったら VagrantコマンドでVMを起動。</p>
+<div class="highlight"><pre><code class="language-control" data-lang="control"><span class="k">C</span><span class="w">:</span><span class="s">\apps\Vagrant\Vagrantfiles\centos&gt; vagrant up</span>
+</code></pre></div></li>
+</ul>
+
+<h2>6.ターミナルソフトでVMに接続</h2>
+
+<ul>
+<li><p>使い慣れたターミナルソフトでVMに接続します。</p>
+
+<p>まずは用意された user=vagrant, password=vagrant で接続。</p>
+
+<p>(下記はpoderosaでの接続例)</p>
+
+<p><a href="/assets/posts/img/vagrant_setup/poderosa.png" target="_blank"><img width="20%" height="20%" title="接続情報" alt="接続情報" src="/assets/posts/img/vagrant_setup/poderosa.png"></a></p>
+
+<p>以降は root で接続したいので、rootのパスワードを再設定します。</p>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>sudo passwd root
+</code></pre></div></li>
+</ul>
+
+<h2>※参考にしたページ</h2>
+
+<p><a href="http://qiita.com/hiroyasu55/items/11a4c996b0c62450940f" target="_blank">インストール手順</a></p>
+
+<p><a href="http://sakashushu.blog.so-net.ne.jp/2014-06-16" target="_blank">エラーの際に役立ったページ</a></p>
+
+  </div><!-- /.entry-content -->
+</article><!-- /.hentry -->
+
+<article class="hentry">
+  <header>
+    
+    <div class="entry-meta">
       <span class="entry-date date published updated"><time datetime="2015-05-01T20:00:00-04:00"><a href="/jqgrid/jqgrid_formatter/">May 01, 2015</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About sankame">sankame</a></span></span>
       
       <span class="entry-reading-time">
@@ -412,101 +564,6 @@
 
 <ul>
 <li><a href="http://forumsarchive.laravel.io/viewtopic.php?id=8123" target="_blank">Passing data from base controller to default blade.</a></li>
-</ul></li>
-</ul>
-
-  </div><!-- /.entry-content -->
-</article><!-- /.hentry -->
-
-<article class="hentry">
-  <header>
-    
-    <div class="entry-meta">
-      <span class="entry-date date published updated"><time datetime="2014-07-14T20:00:00-04:00"><a href="/laravel/laravel_trailing_slash_redirect/">July 14, 2014</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About sankame">sankame</a></span></span>
-      
-      <span class="entry-reading-time">
-        <i class="fa fa-clock-o"></i>
-        
-        Reading time ~1 minute
-      </span><!-- /.entry-reading-time -->
-      
-    </div><!-- /.entry-meta -->
-    
-      <h1 class="entry-title"><a href="/laravel/laravel_trailing_slash_redirect/" rel="bookmark" title="【Laravel】AjaxでPOSTできない" itemprop="url">【Laravel】AjaxでPOSTできない</a></h1>
-    
-  </header>
-  <div class="entry-content">
-    <p><span style="float:right;">投稿日：2014年07月14日</span></p>
-
-<h5>0.環境</h5>
-<div class="highlight"><pre><code class="language-text" data-lang="text">[CentOS]   5.6 (32bit版カーネル)
-[Apache]   2.2.3
-[PHP]      5.4.1
-[Laravel]  4.1.23
-</code></pre></div>
-<h5>1.問題</h5>
-
-<ul>
-<li><p>PHPのLaravelフレームワークを使っていたら、AjaxでPOSTした値がサーバ側で取得できずにはまりました。</p>
-
-<p>①から②へ test という名前で hoge という値を送信します。</p>
-
-<ul>
-<li><p>① Javascript側</p>
-
-<script src="https://gist.github.com/a9da32445d224fb1df63.js?file=ajax-test.js"> </script></li>
-<li><p>② PHP側</p>
-
-<script src="https://gist.github.com/649420870dc9835cb08c.js?file=routes.php"> </script></li>
-<li><p>ログ出力結果を見ると、下記のようにPOST値が取得できていません。</p>
-
-<p><code>[2014-07-16 12:09:36] local.DEBUG:  [] []</code></p></li>
-</ul></li>
-</ul>
-
-<h5>2.原因</h5>
-
-<ul>
-<li><p>Firefox の &quot;Live HTTP headers&quot; アドオンでURLの遷移を見たところ、下記のようにリダイレクトしていることがわかりました。</p>
-
-<p>http://local.vm/test/</p>
-
-<p>↓↓↓</p>
-
-<p>http://local.vm/test</p></li>
-<li><p>grepしたところ、.htaccessでリダイレクトしてました。</p>
-
-<ul>
-<li><p>ソース</p>
-
-<p>app-root/public/.htaccess</p></li>
-<li><p>記述</p></li>
-</ul></li>
-</ul>
-<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="x">        # Redirect Trailing Slashes...</span>
-<span class="x">        RewriteRule ^(.*)/$ /$1 [L,R=301]</span>
-</code></pre></div>
-<h5>3.対策</h5>
-
-<ul>
-<li><p>Laravelはtrailing slash非推奨なのか？ とにかく下記のように修正。</p>
-
-<ul>
-<li><p>箇所</p>
-
-<p>ajax-test.js (6行目)</p></li>
-<li><p>内容</p>
-
-<p>URLの末尾のスラッシュを削除し、/test に修正。</p></li>
-<li><p>ログにもPOST値が出力されました。</p>
-
-<p><code>[2014-07-16 13:03:39] local.DEBUG: hoge [] []</code></p></li>
-</ul></li>
-<li><p>参考</p>
-
-<ul>
-<li><a href="http://www.suzukikenichi.com/blog/do-we-need-a-trailing-slash-at-the-end-of-url/" target="_blank">URLの終りに「/」(スラッシュ)は必要?、不要?</a></li>
-<li><a href="http://stackoverflow.com/questions/22063520/laravel-slash-after-url-redirects-to-root-folder" target="_blank">Laravel slash after url redirects to root folder</a></li>
 </ul></li>
 </ul>
 
