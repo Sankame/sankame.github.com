@@ -4,7 +4,7 @@
 <generator uri="https://github.com/mojombo/jekyll">Jekyll</generator>
 <link rel="self" type="application/atom+xml" href="/feed.xml" />
 <link rel="alternate" type="text/html" href="" />
-<updated>2015-05-05T14:50:53-04:00</updated>
+<updated>2015-05-06T10:14:44-04:00</updated>
 <id>/</id>
 <author>
   <name>sankame</name>
@@ -14,7 +14,7 @@
 
 
 <entry>
-  <title type="html"><![CDATA[Vagrant + VirtualBox で開発環境構築]]></title>
+  <title type="html"><![CDATA[Vagrant + VirtualBox でCentOS開発環境構築]]></title>
  <link rel="alternate" type="text/html" href="/vagrant/vagrant_setup/" />
   <id>/vagrant/vagrant_setup</id>
   <published>2015-05-05T20:00:00-04:00</published>
@@ -150,13 +150,25 @@
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
+&lt;h2&gt;7.その他：ファイル共有&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;ホストOS(Windows)とゲストOS(CentOS)でファイル共有したい場合、上記5の Vagrantfile で下記の行を有効にします。&lt;/p&gt;
+
+&lt;p&gt;Vagrantfileの変更を反映するにはVMの再起動が必要。&lt;/p&gt;
+
+&lt;p&gt;(例) 左がWindows、右がCentOSのパス。(Windowsのパスは\を2つ重ねる必要あり)&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-control&quot; data-lang=&quot;control&quot;&gt;&lt;span class=&quot;err&quot;&gt;config.vm.synced_folder &amp;quot;c:\\vm\\share&amp;quot;, &amp;quot;/share&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
 &lt;h2&gt;※参考にしたページ&lt;/h2&gt;
 
 &lt;p&gt;&lt;a href=&quot;http://qiita.com/hiroyasu55/items/11a4c996b0c62450940f&quot; target=&quot;_blank&quot;&gt;インストール手順&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&quot;http://sakashushu.blog.so-net.ne.jp/2014-06-16&quot; target=&quot;_blank&quot;&gt;エラーの際に役立ったページ&lt;/a&gt;&lt;/p&gt;
 
-    &lt;p&gt;&lt;a href=&quot;/vagrant/vagrant_setup/&quot;&gt;Vagrant + VirtualBox で開発環境構築&lt;/a&gt; was originally published by sankame at &lt;a href=&quot;&quot;&gt;テキストブログ&lt;/a&gt; on May 05, 2015.&lt;/p&gt;
+    &lt;p&gt;&lt;a href=&quot;/vagrant/vagrant_setup/&quot;&gt;Vagrant + VirtualBox でCentOS開発環境構築&lt;/a&gt; was originally published by sankame at &lt;a href=&quot;&quot;&gt;テキストブログ&lt;/a&gt; on May 05, 2015.&lt;/p&gt;
   </content>
 </entry>
 

@@ -5,7 +5,7 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
 <head>
 <meta charset="utf-8">
-<title>Vagrant + VirtualBox で開発環境構築 &#8211; テキストブログ</title>
+<title>Vagrant + VirtualBox でCentOS開発環境構築 &#8211; テキストブログ</title>
 <meta name="description" content="あああああああ">
 <meta name="keywords" content="Vagrant, VirtualBox">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -13,14 +13,14 @@
 <!-- Twitter Cards -->
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="/images/">
-<meta name="twitter:title" content="Vagrant + VirtualBox で開発環境構築">
+<meta name="twitter:title" content="Vagrant + VirtualBox でCentOS開発環境構築">
 <meta name="twitter:description" content="あああああああ">
 <meta name="twitter:creator" content="@handycola">
 
 <!-- Open Graph -->
 <meta property="og:locale" content="en_US">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Vagrant + VirtualBox で開発環境構築">
+<meta property="og:title" content="Vagrant + VirtualBox でCentOS開発環境構築">
 <meta property="og:description" content="あああああああ">
 <meta property="og:url" content="/vagrant/vagrant_setup/">
 <meta property="og:site_name" content="テキストブログ">
@@ -132,7 +132,7 @@
   <article class="hentry">
     <header class="header-title">
       <div class="header-title-wrap">
-        <h1 class="entry-title">Vagrant + VirtualBox で開発環境構築</h1>
+        <h1 class="entry-title">Vagrant + VirtualBox でCentOS開発環境構築</h1>
         
         <p class="entry-reading-time">
           <i class="fa fa-clock-o"></i>
@@ -277,6 +277,18 @@
 
 <p>以降は root で接続したいので、rootのパスワードを再設定します。</p>
 <div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>sudo passwd root
+</code></pre></div></li>
+</ul>
+
+<h2>7.その他：ファイル共有</h2>
+
+<ul>
+<li><p>ホストOS(Windows)とゲストOS(CentOS)でファイル共有したい場合、上記5の Vagrantfile で下記の行を有効にします。</p>
+
+<p>Vagrantfileの変更を反映するにはVMの再起動が必要。</p>
+
+<p>(例) 左がWindows、右がCentOSのパス。(Windowsのパスは\を2つ重ねる必要あり)</p>
+<div class="highlight"><pre><code class="language-control" data-lang="control"><span class="err">config.vm.synced_folder &quot;c:\\vm\\share&quot;, &quot;/share&quot;</span>
 </code></pre></div></li>
 </ul>
 

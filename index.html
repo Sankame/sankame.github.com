@@ -158,7 +158,7 @@
       
     </div><!-- /.entry-meta -->
     
-      <h1 class="entry-title"><a href="/vagrant/vagrant_setup/" rel="bookmark" title="Vagrant + VirtualBox で開発環境構築" itemprop="url">Vagrant + VirtualBox で開発環境構築</a></h1>
+      <h1 class="entry-title"><a href="/vagrant/vagrant_setup/" rel="bookmark" title="Vagrant + VirtualBox でCentOS開発環境構築" itemprop="url">Vagrant + VirtualBox でCentOS開発環境構築</a></h1>
     
   </header>
   <div class="entry-content">
@@ -284,6 +284,18 @@
 
 <p>以降は root で接続したいので、rootのパスワードを再設定します。</p>
 <div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>sudo passwd root
+</code></pre></div></li>
+</ul>
+
+<h2>7.その他：ファイル共有</h2>
+
+<ul>
+<li><p>ホストOS(Windows)とゲストOS(CentOS)でファイル共有したい場合、上記5の Vagrantfile で下記の行を有効にします。</p>
+
+<p>Vagrantfileの変更を反映するにはVMの再起動が必要。</p>
+
+<p>(例) 左がWindows、右がCentOSのパス。(Windowsのパスは\を2つ重ねる必要あり)</p>
+<div class="highlight"><pre><code class="language-control" data-lang="control"><span class="err">config.vm.synced_folder &quot;c:\\vm\\share&quot;, &quot;/share&quot;</span>
 </code></pre></div></li>
 </ul>
 
