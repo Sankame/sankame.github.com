@@ -4,13 +4,60 @@
 <generator uri="https://github.com/mojombo/jekyll">Jekyll</generator>
 <link rel="self" type="application/atom+xml" href="/feed.xml" />
 <link rel="alternate" type="text/html" href="" />
-<updated>2015-05-09T13:06:11-04:00</updated>
+<updated>2015-05-09T15:06:53-04:00</updated>
 <id>/</id>
 <author>
   <name>sankame</name>
   <uri>/</uri>
   <email>m2ad0504@outlook.jp</email>
 </author>
+
+
+<entry>
+  <title type="html"><![CDATA[【AndroidStudio】"Failed to complete Gradle execution"エラー]]></title>
+ <link rel="alternate" type="text/html" href="/androidstudio/android_studio_heap_size_error/" />
+  <id>/androidstudio/android_studio_heap_size_error</id>
+  <published>2015-05-10T20:00:00-04:00</published>
+  <updated>2015-05-10T20:00:00-04:00</updated>
+  <author>
+    <name>sankame</name>
+    <uri></uri>
+    <email>m2ad0504@outlook.jp</email>
+  </author>
+  <content type="html">
+    &lt;p&gt;&lt;span style=&quot;float:right;&quot;&gt;投稿日：2015年05月10日&lt;/span&gt;&lt;/p&gt;
+
+&lt;h3&gt;0.環境&lt;/h3&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;[OS]             Windows7 (32bit 版)
+[AndroidStudio]  1.1.0
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;1.エラー内容&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;「Run &amp;#39;app&amp;#39;」ボタンをクリックし、ビルド＆実行しようとすると下記エラーダイアログが表示される。&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;Failed to complete Gradle execution
+Cause:
+A fatal exception has occurred. Program will exit
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3&gt;2.回避方法&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;メニューから [File] -&amp;gt; [Settings] -&amp;gt; [Gradle] とたどって、[Gradle VM options] に &amp;quot;-XX:MaxHeapSize=256m -Xmx256m&amp;quot; を入力。(下記画像のオレンジ枠線)&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/posts/img/android_studio_heap_size_error/vm_options.png&quot; target=&quot;_blank&quot;&gt;&lt;img width=&quot;20%&quot; height=&quot;20%&quot; title=&quot;VMオプション設定&quot; alt=&quot;VMオプション設定&quot; src=&quot;/assets/posts/img/android_studio_heap_size_error/vm_options.png&quot;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3&gt;※参考にしたページ&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://code.google.com/p/android/issues/detail?id=67946&quot; target=&quot;_blank&quot;&gt;Failed to complete Gradle Execution&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+    &lt;p&gt;&lt;a href=&quot;/androidstudio/android_studio_heap_size_error/&quot;&gt;【AndroidStudio】&quot;Failed to complete Gradle execution&quot;エラー&lt;/a&gt; was originally published by sankame at &lt;a href=&quot;&quot;&gt;テキストブログ&lt;/a&gt; on May 10, 2015.&lt;/p&gt;
+  </content>
+</entry>
 
 
 <entry>
@@ -1641,102 +1688,6 @@ public function indexAction()
 &lt;/ul&gt;
 
     &lt;p&gt;&lt;a href=&quot;/phpdebugbar/php_debug_bar_install/&quot;&gt;PHP Debug Bar インストール&lt;/a&gt; was originally published by sankame at &lt;a href=&quot;&quot;&gt;テキストブログ&lt;/a&gt; on September 22, 2013.&lt;/p&gt;
-  </content>
-</entry>
-
-
-<entry>
-  <title type="html"><![CDATA[Rubyを始める]]></title>
- <link rel="alternate" type="text/html" href="/ruby/ruby_hello_world/" />
-  <id>/ruby/ruby_hello_world</id>
-  <published>2013-09-15T20:00:00-04:00</published>
-  <updated>2013-09-15T20:00:00-04:00</updated>
-  <author>
-    <name>sankame</name>
-    <uri></uri>
-    <email>m2ad0504@outlook.jp</email>
-  </author>
-  <content type="html">
-    &lt;p&gt;&lt;span style=&quot;float:right;&quot;&gt;投稿日：2013年09月15日&lt;/span&gt;&lt;/p&gt;
-
-&lt;h3&gt;Rubyを始める&lt;/h3&gt;
-
-&lt;h4&gt;0.環境&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;[CentOS] 5.6 (32bit版カーネル)&lt;/li&gt;
-&lt;li&gt;[Apache] 2.2.3&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4&gt;1.Rubyインストール&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;1-1.Rubyがすでにインストールされているか調べる。&lt;/p&gt;
-
-&lt;p&gt;(インストールされている場合は下記のように表示される)&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;# rpm -q ruby
-ruby-1.8.6.111-1
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;1-2.インストールされていない場合、下記コマンドでインストール。&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;# yum install ruby ruby-devel rdoc irb
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4&gt;2.Apache設定&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;2-1.mod_cgiがロードされていることを確認。&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;# cat /etc/httpd/conf/httpd.conf|grep mod_cgi
-LoadModule cgi_module modules/mod_cgi.so
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4&gt;3.htacess設定&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;3-1.Apacheドキュメントルートの.htaccessに下記を追記。&lt;/p&gt;
-
-&lt;p&gt;(ドキュメントルートのパスは読み替えて下さい)&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;# cat /var/www/html/.htaccess 
-AddHandler cgi-script .cgi .rb
-Options +ExecCGI
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4&gt;4.動作確認&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;4-1.ファイル作成&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;# touch /var/www/html/hello.rb
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;4-2.テストコード記述&lt;/p&gt;
-
-&lt;p&gt;作成したファイルに下記コードを記述。&lt;/p&gt;
-
-&lt;p&gt;(1行目のrubyのパスは、which ruby で調べて読み替えて下さい)&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;#!/usr/bin/ruby
-print &amp;quot;Content-type:text/html\n\n&amp;quot;
-
-print &amp;lt;&amp;lt;EOS
-&amp;lt;HTML&amp;gt;
-&amp;lt;HEAD&amp;gt;
-&amp;lt;/HEAD&amp;gt;
-&amp;lt;BODY&amp;gt;
-Hello World!
-&amp;lt;/BODY&amp;gt;
-&amp;lt;/HTML&amp;gt;
-EOS
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4&gt;5.参考にしたページ&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;&lt;a href=&quot;http://blog.layer8.sh/ja/2011/12/21/yum%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%A6ruby%E3%82%92%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%99%E3%82%8B%E3%81%A8%E3%81%8D%E3%81%AE%E3%83%A1/&quot;&gt;インストール方法&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;a href=&quot;http://w.livedoor.jp/notepad/d/Ruby%A4%F2apache%A4%C7%C6%B0%A4%AB%A4%B9&quot;&gt;Ruby動作確認&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-    &lt;p&gt;&lt;a href=&quot;/ruby/ruby_hello_world/&quot;&gt;Rubyを始める&lt;/a&gt; was originally published by sankame at &lt;a href=&quot;&quot;&gt;テキストブログ&lt;/a&gt; on September 15, 2013.&lt;/p&gt;
   </content>
 </entry>
 

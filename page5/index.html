@@ -148,6 +148,106 @@
   <header>
     
     <div class="entry-meta">
+      <span class="entry-date date published updated"><time datetime="2013-09-15T20:00:00-04:00"><a href="/ruby/ruby_hello_world/">September 15, 2013</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About sankame">sankame</a></span></span>
+      
+      <span class="entry-reading-time">
+        <i class="fa fa-clock-o"></i>
+        
+        Reading time ~1 minute
+      </span><!-- /.entry-reading-time -->
+      
+    </div><!-- /.entry-meta -->
+    
+      <h1 class="entry-title"><a href="/ruby/ruby_hello_world/" rel="bookmark" title="Rubyを始める" itemprop="url">Rubyを始める</a></h1>
+    
+  </header>
+  <div class="entry-content">
+    <p><span style="float:right;">投稿日：2013年09月15日</span></p>
+
+<h3>Rubyを始める</h3>
+
+<h4>0.環境</h4>
+
+<ul>
+<li>[CentOS] 5.6 (32bit版カーネル)</li>
+<li>[Apache] 2.2.3</li>
+</ul>
+
+<h4>1.Rubyインストール</h4>
+
+<ul>
+<li><p>1-1.Rubyがすでにインストールされているか調べる。</p>
+
+<p>(インストールされている場合は下記のように表示される)</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text"># rpm -q ruby
+ruby-1.8.6.111-1
+</code></pre></div></li>
+<li><p>1-2.インストールされていない場合、下記コマンドでインストール。</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text"># yum install ruby ruby-devel rdoc irb
+</code></pre></div></li>
+</ul>
+
+<h4>2.Apache設定</h4>
+
+<ul>
+<li><p>2-1.mod_cgiがロードされていることを確認。</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text"># cat /etc/httpd/conf/httpd.conf|grep mod_cgi
+LoadModule cgi_module modules/mod_cgi.so
+</code></pre></div></li>
+</ul>
+
+<h4>3.htacess設定</h4>
+
+<ul>
+<li><p>3-1.Apacheドキュメントルートの.htaccessに下記を追記。</p>
+
+<p>(ドキュメントルートのパスは読み替えて下さい)</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text"># cat /var/www/html/.htaccess 
+AddHandler cgi-script .cgi .rb
+Options +ExecCGI
+</code></pre></div></li>
+</ul>
+
+<h4>4.動作確認</h4>
+
+<ul>
+<li><p>4-1.ファイル作成</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text"># touch /var/www/html/hello.rb
+</code></pre></div></li>
+<li><p>4-2.テストコード記述</p>
+
+<p>作成したファイルに下記コードを記述。</p>
+
+<p>(1行目のrubyのパスは、which ruby で調べて読み替えて下さい)</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">#!/usr/bin/ruby
+print &quot;Content-type:text/html\n\n&quot;
+
+print &lt;&lt;EOS
+&lt;HTML&gt;
+&lt;HEAD&gt;
+&lt;/HEAD&gt;
+&lt;BODY&gt;
+Hello World!
+&lt;/BODY&gt;
+&lt;/HTML&gt;
+EOS
+</code></pre></div></li>
+</ul>
+
+<h4>5.参考にしたページ</h4>
+
+<ul>
+<li><p><a href="http://blog.layer8.sh/ja/2011/12/21/yum%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%A6ruby%E3%82%92%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%99%E3%82%8B%E3%81%A8%E3%81%8D%E3%81%AE%E3%83%A1/">インストール方法</a></p></li>
+<li><p><a href="http://w.livedoor.jp/notepad/d/Ruby%A4%F2apache%A4%C7%C6%B0%A4%AB%A4%B9">Ruby動作確認</a></p></li>
+</ul>
+
+  </div><!-- /.entry-content -->
+</article><!-- /.hentry -->
+
+<article class="hentry">
+  <header>
+    
+    <div class="entry-meta">
       <span class="entry-date date published updated"><time datetime="2013-09-08T20:00:00-04:00"><a href="/git/git_command/">September 08, 2013</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About sankame">sankame</a></span></span>
       
       <span class="entry-reading-time">
@@ -554,95 +654,6 @@ $ これでGitHubにnew.txtがアップロードできたはず。
 <p><a href="http://blog.katsuma.tv/2009/02/first_github.html">Githubへのpush</a></p>
 
 <p><a href="https://jp.linux.com/linux-community/blog/236-mirainoitsuka/403358">Githubへのpush2</a></p>
-
-  </div><!-- /.entry-content -->
-</article><!-- /.hentry -->
-
-<article class="hentry">
-  <header>
-    
-    <div class="entry-meta">
-      <span class="entry-date date published updated"><time datetime="2013-07-09T20:00:00-04:00"><a href="/dell/redis_install/">July 09, 2013</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About sankame">sankame</a></span></span>
-      
-      <span class="entry-reading-time">
-        <i class="fa fa-clock-o"></i>
-        
-        Reading time ~1 minute
-      </span><!-- /.entry-reading-time -->
-      
-    </div><!-- /.entry-meta -->
-    
-      <h1 class="entry-title"><a href="/dell/redis_install/" rel="bookmark" title="Redisインストール" itemprop="url">Redisインストール</a></h1>
-    
-  </header>
-  <div class="entry-content">
-    <p><span style="float:right;">投稿日：2013年07月09日</span></p>
-
-<h5>環境</h5>
-<div class="highlight"><pre><code class="language-text" data-lang="text">[CentOS] 5.6 (32bit版カーネル)
-</code></pre></div>
-<h5>インストール</h5>
-<div class="highlight"><pre><code class="language-text" data-lang="text"># ソース取得。
-# wget http://redis.googlecode.com/files/redis-2.6.7.tar.gz
-#
-# tar xzf redis-2.6.7.tar.gz
-#
-# cd redis-2.6.7
-#
-# 続いてmakeを実行すると下記エラーが発生。
-# make
-
-cd src &amp;&amp; make all
-make[1]: ディレクトリ `/root/redis-2.6.7/src&#39; に入ります
-LINK redis-server
-zmalloc.o: In function `zmalloc_used_memory&#39;:
-/root/redis-2.6.7/src/zmalloc.c:223: undefined reference to `__sync_add_and_fetch_4&#39;
-collect2: ld はステータス 1 で終了しました
-make[1]: *** [redis-server] エラー 1
-make[1]: ディレクトリ `/root/redis-2.6.7/src&#39; から出ます
-make: *** [all] エラー 2
-
-# アーキテクチャを調べて、コンパイルオプションを指定。
-# uname -m
-
-i686
-
-# 
-# export CFLAGS=-march=i686
-#
-# make distclean
-# make
-# 下記メッセージが出てmakeは通ったらしい。
-
-Hint: To run &#39;make test&#39; is a good idea ;)
-
-# 続いてmake testを実行すると下記エラーが発生。
-# make test
-
-ERROR:
-*** [err]: SLOWLOG - RESET subcommand works in tests/unit/slowlog.tcl
-Expected &#39;0&#39; to equal or match &#39;1&#39;
-*** [err]: SLOWLOG - logged entry sanity check in tests/unit/slowlog.tcl
-Expected &#39;105&#39; to be equal to &#39;106&#39;
-Cleanup: may take some time... OK
-make[1]: *** [test] エラー 1
-make[1]: ディレクトリ `/root/redis-2.6.7/src&#39; から出ます
-make: *** [test] エラー 2
-
-# 構わずインストール。
-# make install
-# 
-# 起動。
-# redis-server
-#
-# 動作確認。
-# redis-cli PING
-
-PONG
-
-# redisサーバは起動しているようだ…
-</code></pre></div>
-<p><a href="http://www.eschrade.com/page/undefined-reference-to-__sync_add_and_fetch_4/">エラー時に参照したページ</a></p>
 
   </div><!-- /.entry-content -->
 </article><!-- /.hentry -->
