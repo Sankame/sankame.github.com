@@ -148,6 +148,117 @@
   <header>
     
     <div class="entry-meta">
+      <span class="entry-date date published updated"><time datetime="2012-12-23T19:00:00-05:00"><a href="/openx/openx_install/">December 23, 2012</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About sankame">sankame</a></span></span>
+      
+      <span class="entry-reading-time">
+        <i class="fa fa-clock-o"></i>
+        
+        Reading time ~1 minute
+      </span><!-- /.entry-reading-time -->
+      
+    </div><!-- /.entry-meta -->
+    
+      <h1 class="entry-title"><a href="/openx/openx_install/" rel="bookmark" title="OpenXインストール" itemprop="url">OpenXインストール</a></h1>
+    
+  </header>
+  <div class="entry-content">
+    <p><span style="float:right;">投稿日：2012年12月23日</span></p>
+
+<h4>ローカルPCのVmwarePlayerにOpenXをインストール。</h4>
+
+<h4><a href="http://www.openx.com/docs/qsg-install">マニュアル</a>に従ってインストールした。</h4>
+
+<h4>1.ソース取得</h4>
+
+<p>マニュアルの下記リンクからソースをダウンロード。(アンケートあるためwgetでは落とせない)</p>
+
+<p>Download the latest installation archive from: <a href="http://www.openx.com/publisher/open-source-ad-server">here</a></p>
+
+<p>ソースをWebサーバへアップし、解凍して公開ディレクトリへ配置する。</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text"># mv openx-2.8.10 openx
+# mv openx /var/www/html/
+</code></pre></div>
+<p>/var/www/html/openx/varと/var/www/html/openx/www/images　に777を与える。</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text"># cd /var/www/html/openx/
+# chmod -R 777 var
+# chmod -R 777 ./www/images/
+</code></pre></div>
+<p>ブラウザでhttp://localhost/openx/ へアクセスし、Webのインストーラを起動する。</p>
+
+<p>下記のディレクトリにも書き込み権限が必要というエラーが出た。</p>
+
+<p>/var/www/html/openx/plugins</p>
+
+<p>/var/www/html/openx/www/admin/plugins</p>
+
+<p>画面にコマンドが書いてあったのでそのまま実行。</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text"># chmod -R a+w /var/www/html/openx/plugins
+# chmod -R a+w /var/www/html/openx/www/admin/plugins
+</code></pre></div>
+<h4>2.Registration</h4>
+
+<p>Webインストーラを続行、下記項目に入力。</p>
+
+<p>name, password, e-mail</p>
+
+<h4>3.Database</h4>
+
+<p>DBがなかったら作成されると画面に書いてあったが、エラーになったので</p>
+
+<p>下記コマンドであらかじめDBとユーザを作成。(testxxxxの部分は適当に変更)</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text"># create database testdb;
+# grant all on testdb.* to &#39;testuser&#39;@&#39;localhost&#39; identified by &#39;testpassword&#39;;
+</code></pre></div>
+<h4>4. Configuration</h4>
+
+<p>Webインストーラを続行、下記項目に入力。</p>
+
+<p>Admin User, Admin User Password</p>
+
+<h4>5. Finish</h4>
+
+<p>エラーが出たからログを見てね、と書いてあったが無視してそのままcontinue</p>
+
+<p>※その後、ログを見たがエラーは出力されていなかった。</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text"># view /var/www/html/openx/var/install.log
+</code></pre></div>
+<h4>6. その他</h4>
+
+<p>そのまま広告設定の管理画面ぽいところへ遷移。</p>
+
+<p>ページ上部に下記のエラーメッセージが…</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">Warning: date_default_timezone_get(): It is not safe to rely
+ on the system&#39;s timezone settings.
+ You are *required* to use the date.timezone setting or the
+ date_default_timezone_set() function.
+ In case you used any of those methods and you are still getting
+ this warning, you most likely misspelled the timezone identifier.
+ We selected &#39;Asia/Tokyo&#39; for &#39;JST/9.0/no DST&#39; instead in
+ /var/www/html/openx/variables.php on line 82 
+</code></pre></div>
+<p>下記ソースに追記する。</p>
+
+<p>■ソース</p>
+
+<p>/var/www/html/openx/variables.php</p>
+
+<p>■追記</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">//追記ここから
+if( ! ini_get(&#39;date.timezone&#39;) ){
+    date_default_timezone_set(&#39;Asia/Tokyo&#39;);
+}
+//追記ここまで
+    $GLOBALS[&#39;serverTimezone&#39;] = date_default_timezone_get();
+</code></pre></div>
+<p><a href="http://www.jamescrowley.co.uk/2010/09/12/running-openx-under-iis-with-php-5-3-date-default-timezone-get-errors/">参考ページ</a></p>
+
+  </div><!-- /.entry-content -->
+</article><!-- /.hentry -->
+
+<article class="hentry">
+  <header>
+    
+    <div class="entry-meta">
       <span class="entry-date date published updated"><time datetime="2012-12-22T19:00:00-05:00"><a href="/jekyll/jekyll_and_github/">December 22, 2012</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About sankame">sankame</a></span></span>
       
       <span class="entry-reading-time">

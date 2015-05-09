@@ -148,6 +148,107 @@
   <header>
     
     <div class="entry-meta">
+      <span class="entry-date date published updated"><time datetime="2014-02-03T19:00:00-05:00"><a href="/fitbit/php_fitbit_api/">February 03, 2014</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About sankame">sankame</a></span></span>
+      
+      <span class="entry-reading-time">
+        <i class="fa fa-clock-o"></i>
+        
+        Reading time ~1 minute
+      </span><!-- /.entry-reading-time -->
+      
+    </div><!-- /.entry-meta -->
+    
+      <h1 class="entry-title"><a href="/fitbit/php_fitbit_api/" rel="bookmark" title="PHPからfitbit API を使ってみる" itemprop="url">PHPからfitbit API を使ってみる</a></h1>
+    
+  </header>
+  <div class="entry-content">
+    <p><span>&nbsp;</span><span style="color:#d14; float:right;">更新日：2015年02月08日</span></p>
+
+<p><span style="float:right;">投稿日：2014年02月03日</span></p>
+
+<h5>0.環境</h5>
+<div class="highlight"><pre><code class="language-text" data-lang="text">[CentOS]   5.6 (32bit版カーネル)
+[Apache]   2.2.3
+[PHP]      5.4.1
+[device]   Fitbit One
+</code></pre></div>
+<h5>1.OAuth Extensionインストール → fitbit API実行</h5>
+
+<ul>
+<li><p>1-1.fitbit(活動量計)の<a href="https://wiki.fitbit.com/display/API/API+PHP+Client">API使用手順</a>にそって作業を進めます。</p>
+
+<p>下記コマンドを実行。</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text"># pecl install oauth-0.99.9
+</code></pre></div>
+<p>エラー発生。</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">　：
+（割愛）
+　：
+/var/tmp/oauth/oauth.c:2058: warning: assignment from incompatible pointer type
+/var/tmp/oauth/oauth.c: In function &#39;zm_shutdown_oauth&#39;:
+/var/tmp/oauth/oauth.c:2092: warning: implicit declaration of function &#39;curl_global_cleanup&#39;
+make: *** [oauth.lo] エラー 1
+ERROR: `make&#39; failed
+</code></pre></div>
+<p><a href="https://bugs.php.net/bug.php?id=59153">こんな情報</a>を見つけ、下記コマンドを実行。</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text"># yum install curl-devel
+</code></pre></div>
+<p>エラーは変わらず、さらに<a href="http://blog.gmane.org/gmane.comp.php.install/month=20101201">こんな情報</a>を見つけ、下記コマンドを実行。</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text"># yum install pcre pcre-devel
+</code></pre></div>
+<p>またまたエラー発生。OAuthを使うための<a href="http://www.php.net/manual/ja/oauth.requirements.php">条件</a>を発見。</p>
+
+<p><a href="http://blog.flatlabs.net/20100611_062745/">良さそうなページ</a>を見つけ、下記コマンドを実行。</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text"># pecl install oauth-beta
+</code></pre></div>
+<p>お！成功した。</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">Build process completed successfully
+Installing &#39;/usr/lib/php/modules/oauth.so&#39;
+install ok: channel://pecl.php.net/oauth-1.2.3
+configuration option &quot;php_ini&quot; is not set to php.ini location
+You should add &quot;extension=oauth.so&quot; to php.ini
+</code></pre></div>
+<p>後は指示通りExtensionを追加。</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text"># vi /etc/php.d/oauth.ini
+extension=oauth.so
+</code></pre></div></li>
+<li><p>1-2.サンプルプログラム実行。</p>
+
+<p>準備ができたので、<a href="http://dev.fitbit.com/">開発者用ページ</a>から<a href="https://wiki.fitbit.com/download/attachments/884784/completeAuthorization.php?version=2&amp;modificationDate=1297797897000&amp;api=v2">サンプルプログラム</a>をダウンロード。</p>
+
+<p>サンプルプログラムを自分の設定に合わせて修正。(下記1-3参照)</p>
+
+<p>Apacheのドキュメントルートに配置して、ブラウザからアクセスするとエラーが発生。</p>
+
+<p>(localhostは自分の環境に読み替えて下さい)</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">http://localhost/completeAuthorization.php
+</code></pre></div>
+<p>body<em>recv の値を見てみると、&quot;fieldName&quot;:&quot;oauth</em>timestamp&quot; があやしい。</p>
+
+<p>(自分のVM(CentOS)では、時刻同期していないため時間が狂っている)</p>
+
+<p>date コマンドで正しい時刻に合わせ、再度ブラウザからアクセスすると下記メッセージが画面に表示された。</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">healthcheck（individual）がFitbit.com上のあなたのプロフィールおよびデータへのアクセスを要求しています：
+</code></pre></div>
+<p>「許可する」をクリックするとサンプルページが表示され、自分の健康データが表示されました。</p>
+
+<p>(予め fitbitの「<a href="https://dev.fitbit.com/apps/new">開発者ページ</a>」で、callbackのページを上記URLにしておく)</p>
+
+<p>※OAuthは<a href="http://yuroyoro.hatenablog.com/entry/20100506/1273137673">こちらのページ</a>で復習。</p></li>
+<li><p>1-3.サンプルプログラム修正(【変更】の部分を自分の設定に書き換えます)</p>
+
+<p><code>(2015/02/08, 更新) APIアクセスをhttpsに変更。</code></p></li>
+</ul>
+
+<script src="https://gist.github.com/Sankame/8787002.js"></script>
+
+  </div><!-- /.entry-content -->
+</article><!-- /.hentry -->
+
+<article class="hentry">
+  <header>
+    
+    <div class="entry-meta">
       <span class="entry-date date published updated"><time datetime="2014-02-01T19:00:00-05:00"><a href="/php/php_sample/">February 01, 2014</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About sankame">sankame</a></span></span>
       
       <span class="entry-reading-time">
@@ -431,85 +532,6 @@ EOS
 <li><p><a href="http://w.livedoor.jp/notepad/d/Ruby%A4%F2apache%A4%C7%C6%B0%A4%AB%A4%B9">Ruby動作確認</a></p></li>
 </ul>
 
-  </div><!-- /.entry-content -->
-</article><!-- /.hentry -->
-
-<article class="hentry">
-  <header>
-    
-    <div class="entry-meta">
-      <span class="entry-date date published updated"><time datetime="2013-09-08T20:00:00-04:00"><a href="/git/git_command/">September 08, 2013</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About sankame">sankame</a></span></span>
-      
-      <span class="entry-reading-time">
-        <i class="fa fa-clock-o"></i>
-        
-        Reading time ~1 minute
-      </span><!-- /.entry-reading-time -->
-      
-    </div><!-- /.entry-meta -->
-    
-      <h1 class="entry-title"><a href="/git/git_command/" rel="bookmark" title="Gitコマンド メモ" itemprop="url">Gitコマンド メモ</a></h1>
-    
-  </header>
-  <div class="entry-content">
-    <p><span style="float:right;">投稿日：2013年09月08日</span></p>
-
-<h4>Gitコマンド メモ (自分用)</h4>
-
-<h5>(1) .gitignoreファイル <a href="http://www.omakase.org/misc/gitignore.html">参考ページ</a></h5>
-<div class="highlight"><pre><code class="language-text" data-lang="text"># gitの管理外にしたいファイルを定義。下記のようにディレクトリ指定も可能。
-# view .gitignore
-app/logs/
-</code></pre></div>
-<h5>(2) インデックスから降ろす(git管理外にする)</h5>
-<div class="highlight"><pre><code class="language-text" data-lang="text"># インデックスから降ろすだけ。
-# git rm --cached -f hoge.txt
-
-# インデックスから降ろして、ファイルを物理削除。
-# git rm -f hoge.txt
-</code></pre></div>
-<h5>(3) ブランチ操作(2013/10/07)</h5>
-<div class="highlight"><pre><code class="language-text" data-lang="text"># 今いるブランチは？
-# git branch
-* master
-
-# ブランチtest1を作って、test1へ切り替える。
-# git branch test1
-# git checkout test1
-Switched to branch &#39;test1&#39;
-
-# masterブランチへ戻る。
-# git checkout master
-Switched to branch &#39;master&#39;
-
-# 使わなくなったブランチtest1を削除。
-# git branch -d test1
-Deleted branch test1 (was 0854f22).
-# git branch
-* master
-</code></pre></div>
-<h5>(4) GitHubからソースを取得(2013/10/07)</h5>
-
-<ul>
-<li><p>4-1.GitHubで対象のリポジトリに移動後、画面右下のボタン(下記)をクリックしてURLをクリップボードにコピー。</p>
-
-<p><img src="/assets/posts/img/git_command/github-clone.jpg" alt="github-clone" title="github-clone"></p></li>
-<li><p>4-2.git clone の後に上記4-1でコピーしたURLを貼り付ける。</p>
-
-<p>予めGitHubに登録した公開鍵のパスフレーズを入力。</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text"># git clone git@github.com:Sankame/test.git
-Cloning into &#39;test&#39;...
-Enter passphrase for key &#39;/root/.ssh/id_rsa&#39;: 
-</code></pre></div></li>
-</ul>
-
-<h5>(5) ローカル変更の取り消し(2014/02/24)</h5>
-<div class="highlight"><pre><code class="language-text" data-lang="text"># ファイル指定でローカル変更を取り消し。
-# git checkout filename
-# 
-# 全てのローカル変更を取り消し。
-# git checkout .
-</code></pre></div>
   </div><!-- /.entry-content -->
 </article><!-- /.hentry -->
 
