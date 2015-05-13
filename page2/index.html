@@ -295,13 +295,13 @@
   <div class="entry-content">
     <p><span style="float:right;">投稿日：2014年07月14日</span></p>
 
-<h5>0.環境</h5>
+<h3>0.環境</h3>
 <div class="highlight"><pre><code class="language-text" data-lang="text">[CentOS]   5.6 (32bit版カーネル)
 [Apache]   2.2.3
 [PHP]      5.4.1
 [Laravel]  4.1.23
 </code></pre></div>
-<h5>1.問題</h5>
+<h3>1.問題</h3>
 
 <ul>
 <li><p>PHPのLaravelフレームワークを使っていたら、AjaxでPOSTした値がサーバ側で取得できずにはまりました。</p>
@@ -316,48 +316,49 @@
 
 <script src="https://gist.github.com/649420870dc9835cb08c.js?file=routes.php"> </script></li>
 <li><p>ログ出力結果を見ると、下記のようにPOST値が取得できていません。</p>
-
-<p><code>[2014-07-16 12:09:36] local.DEBUG:  [] []</code></p></li>
+<div class="highlight"><pre><code class="language-text" data-lang="text">[2014-07-16 12:09:36] local.DEBUG:  [] []
+</code></pre></div></li>
 </ul></li>
 </ul>
 
-<h5>2.原因</h5>
+<h3>2.原因</h3>
 
 <ul>
-<li><p>Firefox の &quot;Live HTTP headers&quot; アドオンでURLの遷移を見たところ、下記のようにリダイレクトしていることがわかりました。</p>
+<li><p>Firefox の &quot;Live HTTP headers&quot; アドオンでURLの遷移を見たところ、下記のようにリダイレクトしていることがわかりました。(違いは末尾のスラッシュ)</p>
 
 <p>http://local.vm/test/</p>
 
 <p>↓↓↓</p>
 
 <p>http://local.vm/test</p></li>
-<li><p>grepしたところ、.htaccessでリダイレクトしてました。</p>
+<li><p>ソースを grep したところ、.htaccessでリダイレクトしていました。</p>
 
 <ul>
 <li><p>ソース</p>
 
 <p>app-root/public/.htaccess</p></li>
-<li><p>記述</p></li>
+<li><p>記述</p>
+<div class="highlight"><pre><code class="language-apache" data-lang="apache"><span class="c"># Redirect Trailing Slashes...</span>
+<span class="nb">RewriteRule</span> ^(.*)/$ /$1 [L,R=301]
+</code></pre></div></li>
 </ul></li>
 </ul>
-<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="x">        # Redirect Trailing Slashes...</span>
-<span class="x">        RewriteRule ^(.*)/$ /$1 [L,R=301]</span>
-</code></pre></div>
-<h5>3.対策</h5>
+
+<h3>3.対策</h3>
 
 <ul>
-<li><p>Laravelはtrailing slash非推奨なのか？ とにかく下記のように修正。</p>
+<li><p>Laravel は trailing slash 非推奨なのか？ とにかく下記のように修正。</p>
 
 <ul>
 <li><p>箇所</p>
 
-<p>ajax-test.js (6行目)</p></li>
+<p>上記ソース ajax-test.js (6行目)</p></li>
 <li><p>内容</p>
 
 <p>URLの末尾のスラッシュを削除し、/test に修正。</p></li>
-<li><p>ログにもPOST値が出力されました。</p>
-
-<p><code>[2014-07-16 13:03:39] local.DEBUG: hoge [] []</code></p></li>
+<li><p>ログにもPOST値(hoge)が出力されました。</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">[2014-07-16 13:03:39] local.DEBUG: hoge [] []
+</code></pre></div></li>
 </ul></li>
 <li><p>参考</p>
 
