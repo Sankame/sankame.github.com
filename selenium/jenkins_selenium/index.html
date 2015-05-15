@@ -157,7 +157,7 @@
 </div>
       <p><span style="float:right;">投稿日：2014年06月03日</span></p>
 
-<h5>0.環境</h5>
+<h3>0.環境</h3>
 <div class="highlight"><pre><code class="language-text" data-lang="text">・親ノード端末
   [CentOS]   5.6 (32bit版カーネル)
   [ruby]     2.1.1p76
@@ -170,7 +170,7 @@
   [java]     1.7.0_51
   [IE]       8
 </code></pre></div>
-<h5>1.準備</h5>
+<h3>1.準備</h3>
 
 <ul>
 <li><p>Jenkinsインストール</p>
@@ -191,10 +191,10 @@
 <p>前回と異なる点は、Jenkinsがポート4444を使っていたので、Selenium Serverは4445を使って起動します。</p>
 
 <p>・親ノード</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text"># java -jar selenium-server-standalone-2.41.0.jar -role hub -port 4445
+<div class="highlight"><pre><code class="language-java" data-lang="java">    <span class="err">#</span> <span class="n">java</span> <span class="o">-</span><span class="n">jar</span> <span class="n">selenium</span><span class="o">-</span><span class="n">server</span><span class="o">-</span><span class="n">standalone</span><span class="o">-</span><span class="mf">2.41</span><span class="o">.</span><span class="mi">0</span><span class="o">.</span><span class="na">jar</span> <span class="o">-</span><span class="n">role</span> <span class="n">hub</span> <span class="o">-</span><span class="n">port</span> <span class="mi">4445</span>
 </code></pre></div>
 <p>・子ノード</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">&gt; java -jar selenium-server-standalone-2.41.0.jar -role webdriver -hub http://192.168.130.130:4445/grid/register -Dwebdriver.ie.driver=./IEDriverServer.exe
+<div class="highlight"><pre><code class="language-java" data-lang="java">    <span class="o">&gt;</span> <span class="n">java</span> <span class="o">-</span><span class="n">jar</span> <span class="n">selenium</span><span class="o">-</span><span class="n">server</span><span class="o">-</span><span class="n">standalone</span><span class="o">-</span><span class="mf">2.41</span><span class="o">.</span><span class="mi">0</span><span class="o">.</span><span class="na">jar</span> <span class="o">-</span><span class="n">role</span> <span class="n">webdriver</span> <span class="o">-</span><span class="n">hub</span> <span class="nl">http:</span><span class="c1">//192.168.130.130:4445/grid/register -Dwebdriver.ie.driver=./IEDriverServer.exe</span>
 </code></pre></div></li>
 <li><p>Jenkins プラグイン追加</p>
 
@@ -224,7 +224,7 @@
 <script src="https://gist.github.com/dc5fb2d680b67acefbf3.js?file=seleniumtest_4445.rb"> </script></li>
 </ul>
 
-<h5>2.起動</h5>
+<h3>2.起動</h3>
 
 <ul>
 <li><p>ビルド実行</p>

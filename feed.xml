@@ -4,7 +4,7 @@
 <generator uri="https://github.com/mojombo/jekyll">Jekyll</generator>
 <link rel="self" type="application/atom+xml" href="/feed.xml" />
 <link rel="alternate" type="text/html" href="" />
-<updated>2015-05-13T11:28:05-04:00</updated>
+<updated>2015-05-15T15:10:18-04:00</updated>
 <id>/</id>
 <author>
   <name>sankame</name>
@@ -989,7 +989,7 @@ Percentage of the requests served within a certain time (ms)
   <content type="html">
     &lt;p&gt;&lt;span style=&quot;float:right;&quot;&gt;投稿日：2014年06月03日&lt;/span&gt;&lt;/p&gt;
 
-&lt;h5&gt;0.環境&lt;/h5&gt;
+&lt;h3&gt;0.環境&lt;/h3&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;・親ノード端末
   [CentOS]   5.6 (32bit版カーネル)
   [ruby]     2.1.1p76
@@ -1002,7 +1002,7 @@ Percentage of the requests served within a certain time (ms)
   [java]     1.7.0_51
   [IE]       8
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;h5&gt;1.準備&lt;/h5&gt;
+&lt;h3&gt;1.準備&lt;/h3&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;p&gt;Jenkinsインストール&lt;/p&gt;
@@ -1023,10 +1023,10 @@ Percentage of the requests served within a certain time (ms)
 &lt;p&gt;前回と異なる点は、Jenkinsがポート4444を使っていたので、Selenium Serverは4445を使って起動します。&lt;/p&gt;
 
 &lt;p&gt;・親ノード&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;# java -jar selenium-server-standalone-2.41.0.jar -role hub -port 4445
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;    &lt;span class=&quot;err&quot;&gt;#&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;java&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;jar&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;selenium&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;server&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;standalone&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;2.41&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;jar&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;role&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;hub&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;port&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;4445&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;・子ノード&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;&amp;gt; java -jar selenium-server-standalone-2.41.0.jar -role webdriver -hub http://192.168.130.130:4445/grid/register -Dwebdriver.ie.driver=./IEDriverServer.exe
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;    &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;java&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;jar&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;selenium&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;server&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;standalone&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;2.41&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;jar&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;role&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;webdriver&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;hub&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;http:&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;//192.168.130.130:4445/grid/register -Dwebdriver.ie.driver=./IEDriverServer.exe&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;Jenkins プラグイン追加&lt;/p&gt;
 
@@ -1056,7 +1056,7 @@ Percentage of the requests served within a certain time (ms)
 &lt;script src=&quot;https://gist.github.com/dc5fb2d680b67acefbf3.js?file=seleniumtest_4445.rb&quot;&gt; &lt;/script&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h5&gt;2.起動&lt;/h5&gt;
+&lt;h3&gt;2.起動&lt;/h3&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;p&gt;ビルド実行&lt;/p&gt;
