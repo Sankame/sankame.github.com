@@ -148,6 +148,52 @@
   <header>
     
     <div class="entry-meta">
+      <span class="entry-date date published updated"><time datetime="2015-05-26T20:00:00-04:00"><a href="/laravel/laravel_migration_integer_args/">May 26, 2015</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About sankame">sankame</a></span></span>
+      
+      <span class="entry-reading-time">
+        <i class="fa fa-clock-o"></i>
+        
+        Reading time ~1 minute
+      </span><!-- /.entry-reading-time -->
+      
+    </div><!-- /.entry-meta -->
+    
+      <h1 class="entry-title"><a href="/laravel/laravel_migration_integer_args/" rel="bookmark" title="【Laravel】integerメソッドの引数" itemprop="url">【Laravel】integerメソッドの引数</a></h1>
+    
+  </header>
+  <div class="entry-content">
+    <p><span style="float:right;">投稿日：2015年05月26日</span></p>
+
+<h3>0.環境</h3>
+<div class="highlight"><pre><code class="language-text" data-lang="text">[PHP]     5.4.17
+[Laravel] 4.1.30
+</code></pre></div>
+<h3>1.内容</h3>
+
+<ul>
+<li><p>Fluentテーブルビルダーのintegerメソッドの引数について、意外と探すのに手間取ったのでメモ。</p>
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="x">/**</span>
+<span class="x"> * @param $column        テーブルのカラム名</span>
+<span class="x"> * @param $autoIncrement 自動採番するかどうか</span>
+<span class="x"> * @param $unsigned      0以上の正の整数とするか</span>
+<span class="x"> */</span>
+<span class="x">public function integer($column, $autoIncrement = false, $unsigned = false)</span>
+</code></pre></div></li>
+</ul>
+
+<h3>※参考にしたページ</h3>
+
+<ul>
+<li><a href="http://stackoverflow.com/questions/28895454/laravel-migration-incorrect-table-definition" target="_blank">Laravel Migration incorrect table definition</a></li>
+</ul>
+
+  </div><!-- /.entry-content -->
+</article><!-- /.hentry -->
+
+<article class="hentry">
+  <header>
+    
+    <div class="entry-meta">
       <span class="entry-date date published updated"><time datetime="2015-05-10T20:00:00-04:00"><a href="/androidstudio/android_studio_heap_size_error/">May 10, 2015</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About sankame">sankame</a></span></span>
       
       <span class="entry-reading-time">
@@ -477,89 +523,6 @@ A fatal exception has occurred. Program will exit
 
 <p><a href="http://www.trirand.com/jqgridwiki/doku.php?id=wiki:custom_formatter" target="_blank">参考にしたページ</a></p>
 
-  </div><!-- /.entry-content -->
-</article><!-- /.hentry -->
-
-<article class="hentry">
-  <header>
-    
-    <div class="entry-meta">
-      <span class="entry-date date published updated"><time datetime="2014-08-19T20:00:00-04:00"><a href="/apache/http_basic_authentication/">August 19, 2014</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About sankame">sankame</a></span></span>
-      
-      <span class="entry-reading-time">
-        <i class="fa fa-clock-o"></i>
-        
-        Reading time ~1 minute
-      </span><!-- /.entry-reading-time -->
-      
-    </div><!-- /.entry-meta -->
-    
-      <h1 class="entry-title"><a href="/apache/http_basic_authentication/" rel="bookmark" title="ベーシック認証設定 (VirtualHostの場合)" itemprop="url">ベーシック認証設定 (VirtualHostの場合)</a></h1>
-    
-  </header>
-  <div class="entry-content">
-    <p><span style="float:right;">投稿日：2014年08月19日</span></p>
-
-<h5>0.環境</h5>
-<div class="highlight"><pre><code class="language-text" data-lang="text">[CentOS]   5.6 (32bit版カーネル)
-[Apache]   2.2.3
-</code></pre></div>
-<h5>1.パスワードファイル作成</h5>
-
-<ul>
-<li>適当な場所にパスワードファイルを作成。(&quot;user1&quot;は作成したいユーザー名で読み替え)</li>
-</ul>
-<div class="highlight"><pre><code class="language-text" data-lang="text">    # htpasswd -c /etc/httpd/conf/.htpasswd user1
-
-    New password: 
-
-    Re-type new password: 
-
-    Adding password for user user1
-</code></pre></div>
-<h5>2.パスワードファイル設定</h5>
-
-<ul>
-<li><p>VirtualHostを設定している場合、Directoryディレクティブ内に下記を追加。</p>
-
-<p>AuthUserFileには上記1で作ったパスワードファイルを指定。</p>
-
-<p>AuthNameはブラウザの認証ダイアログに表示されるメッセージとなります。</p>
-
-<p>(マルチバイト文字は化ける可能性あり)</p>
-
-<p><code>※下記はApache設定ファイル(/etc/httpd/conf/httpd.conf) の抜粋</code></p></li>
-</ul>
-<div class="highlight"><pre><code class="language-apache" data-lang="apache"><span class="nb">NameVirtualHost</span> *:80
-
-<span class="nt">&lt;Directory</span> <span class="s">/web/test</span><span class="nt">&gt;</span>
-    <span class="nb">Options</span> FollowSymLinks
-    <span class="nb">AllowOverride</span> FileInfo Options=All,MultiViews
-
-    <span class="c"># --- ベーシック認証追加 ---</span>
-    <span class="nb">AuthType</span> Basic
-    <span class="nb">AuthUserFile</span> <span class="s2">&quot;/etc/httpd/conf/.htpasswd&quot;</span>
-    <span class="nb">AuthName</span> <span class="s2">&quot;Here is a message.&quot;</span>
-    <span class="nb">Require</span> valid-user
-    <span class="c"># --- ベーシック認証追加 ---</span>
-
-<span class="nt">&lt;/Directory&gt;</span>
-
-<span class="nt">&lt;VirtualHost</span> <span class="s">*:80</span><span class="nt">&gt;</span>
-    <span class="nb">ServerAdmin</span> test@sample.co.jp
-    <span class="nb">DocumentRoot</span> <span class="s2">&quot;/web/test&quot;</span>
-    <span class="nb">ServerName</span> test.net
-    <span class="nb">ErrorLog</span> logs/test.net-error_log
-    <span class="nb">CustomLog</span> logs/test.net-access_log common
-<span class="nt">&lt;/VirtualHost&gt;</span>
-</code></pre></div>
-<h5>3.再起動</h5>
-
-<ul>
-<li>最後にApacheを再起動します。</li>
-</ul>
-<div class="highlight"><pre><code class="language-text" data-lang="text">    # service httpd restart
-</code></pre></div>
   </div><!-- /.entry-content -->
 </article><!-- /.hentry -->
 

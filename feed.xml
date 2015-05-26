@@ -4,13 +4,55 @@
 <generator uri="https://github.com/mojombo/jekyll">Jekyll</generator>
 <link rel="self" type="application/atom+xml" href="/feed.xml" />
 <link rel="alternate" type="text/html" href="" />
-<updated>2015-05-15T15:10:18-04:00</updated>
+<updated>2015-05-26T12:03:12-04:00</updated>
 <id>/</id>
 <author>
   <name>sankame</name>
   <uri>/</uri>
   <email>m2ad0504@outlook.jp</email>
 </author>
+
+
+<entry>
+  <title type="html"><![CDATA[【Laravel】integerメソッドの引数]]></title>
+ <link rel="alternate" type="text/html" href="/laravel/laravel_migration_integer_args/" />
+  <id>/laravel/laravel_migration_integer_args</id>
+  <published>2015-05-26T20:00:00-04:00</published>
+  <updated>2015-05-26T20:00:00-04:00</updated>
+  <author>
+    <name>sankame</name>
+    <uri></uri>
+    <email>m2ad0504@outlook.jp</email>
+  </author>
+  <content type="html">
+    &lt;p&gt;&lt;span style=&quot;float:right;&quot;&gt;投稿日：2015年05月26日&lt;/span&gt;&lt;/p&gt;
+
+&lt;h3&gt;0.環境&lt;/h3&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;[PHP]     5.4.17
+[Laravel] 4.1.30
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;1.内容&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Fluentテーブルビルダーのintegerメソッドの引数について、意外と探すのに手間取ったのでメモ。&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-php&quot; data-lang=&quot;php&quot;&gt;&lt;span class=&quot;x&quot;&gt;/**&lt;/span&gt;
+&lt;span class=&quot;x&quot;&gt; * @param $column        テーブルのカラム名&lt;/span&gt;
+&lt;span class=&quot;x&quot;&gt; * @param $autoIncrement 自動採番するかどうか&lt;/span&gt;
+&lt;span class=&quot;x&quot;&gt; * @param $unsigned      0以上の正の整数とするか&lt;/span&gt;
+&lt;span class=&quot;x&quot;&gt; */&lt;/span&gt;
+&lt;span class=&quot;x&quot;&gt;public function integer($column, $autoIncrement = false, $unsigned = false)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3&gt;※参考にしたページ&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://stackoverflow.com/questions/28895454/laravel-migration-incorrect-table-definition&quot; target=&quot;_blank&quot;&gt;Laravel Migration incorrect table definition&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+    &lt;p&gt;&lt;a href=&quot;/laravel/laravel_migration_integer_args/&quot;&gt;【Laravel】integerメソッドの引数&lt;/a&gt; was originally published by sankame at &lt;a href=&quot;&quot;&gt;テキストブログ&lt;/a&gt; on May 26, 2015.&lt;/p&gt;
+  </content>
+</entry>
 
 
 <entry>
@@ -1587,108 +1629,6 @@ OAuth support =&amp;gt; enabled
 &lt;/ul&gt;
 
     &lt;p&gt;&lt;a href=&quot;/mindmapmemo/mind_map_tools/&quot;&gt;スマホ(Android)とPCでMindMapを使う&lt;/a&gt; was originally published by sankame at &lt;a href=&quot;&quot;&gt;テキストブログ&lt;/a&gt; on October 03, 2013.&lt;/p&gt;
-  </content>
-</entry>
-
-
-<entry>
-  <title type="html"><![CDATA[PHP Debug Bar インストール]]></title>
- <link rel="alternate" type="text/html" href="/phpdebugbar/php_debug_bar_install/" />
-  <id>/phpdebugbar/php_debug_bar_install</id>
-  <published>2013-09-22T20:00:00-04:00</published>
-  <updated>2013-09-22T20:00:00-04:00</updated>
-  <author>
-    <name>sankame</name>
-    <uri></uri>
-    <email>m2ad0504@outlook.jp</email>
-  </author>
-  <content type="html">
-    &lt;p&gt;&lt;span style=&quot;float:right;&quot;&gt;投稿日：2013年09月22日&lt;/span&gt;&lt;/p&gt;
-
-&lt;h5&gt;0.環境&lt;/h5&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;PHPフレームワークPhalconでPHP Debug Barを使うときの例です。
-
-[CentOS]  5.6 (32bit版カーネル)
-[Apache]  2.2.3
-[PHP]     5.4.1
-[phalcon] 1.2.1
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;h5&gt;1.PHP Debug Barをインストール&lt;/h5&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;1-1.Webサーバのドキュメントルートにcomposer.jsonを配置し次の内容を記述。(下図1-3参照)&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;{
-    &amp;quot;require&amp;quot;: {
-        &amp;quot;maximebf/debugbar&amp;quot;: &amp;quot;&amp;gt;=1.0.0&amp;quot;
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;1-2.Webサーバのドキュメントルートで次のコマンドを実行。&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;# composer install
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;※composerが未インストールの場合、&lt;a href=&quot;http://9ensan.com/blog/programming/php/php-composer-dependency-management/&quot;&gt;こちら&lt;/a&gt;を参考にインストールして下さい。&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;1-3.ディレクトリ構成&lt;/p&gt;
-
-&lt;p&gt;app_rootはWebサイトのルートディレクトリで、publicが公開ディレクトリです。&lt;/p&gt;
-
-&lt;p&gt;薄オレンジはcomposerで設置されたもの。&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/posts/img/php_debug_bar_install/directory_image.jpg&quot; alt=&quot;ディレクトリ構成&quot; title=&quot;ディレクトリ構成&quot;&gt;&lt;/p&gt;
-
-&lt;h5&gt;2.コードを記述 (ポイント以外は割愛)&lt;/h5&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;2-0.index.php(フレームワークのエントリポイント)に次の内容を追記。&lt;/p&gt;
-
-&lt;script src=&quot;https://gist.github.com/d953437cd1ac4a5df725.js?file=require_autoload.php&quot;&gt; &lt;/script&gt;
-
-&lt;p&gt;&lt;code&gt;composer関係のファイルをバージョン管理(svn, git等)から除外した場合、この記述だけ残してリリースしないよう注意。&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;2-1.ControllerBase(全コントローラの親クラス)に次の内容を追記。&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;use DebugBar\StandardDebugBar;
-
-class ControllerBase extends Phalcon\Mvc\Controller
-{
-    protected $debugbar;
-
-    // Actionメソッドの後処理
-    public function afterExecuteRoute($dispatcher)
-    {
-        $debugbarRenderer   = $this-&amp;gt;debugbar-&amp;gt;getJavascriptRenderer();
-
-        $this-&amp;gt;view-&amp;gt;setVar(&amp;#39;debugbarHeader&amp;#39;, $debugbarRenderer-&amp;gt;renderHead());
-        $this-&amp;gt;view-&amp;gt;setVar(&amp;#39;debugbarBody&amp;#39;, $debugbarRenderer-&amp;gt;render());
-
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;2-2.ContactControllerに次の内容を追記。&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;// お問い合わせ画面
-public function indexAction()
-{
-    $this-&amp;gt;debugbar[&amp;quot;messages&amp;quot;]-&amp;gt;addMessage(&amp;quot;DebugBarのテスト&amp;quot;);
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;2-3.index.volt(全viewが使う共通ファイル)に次の内容を追記。&lt;/p&gt;
-
-&lt;script src=&quot;https://gist.github.com/eb6d098e2ef1f473ff7d.js?file=php_debugbar.volt&quot;&gt; &lt;/script&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;2-4.画面イメージ&lt;/p&gt;
-
-&lt;p&gt;上記2-2で書いたメッセージが表示されています。&lt;/p&gt;
-
-&lt;p&gt;実行時のその他の情報も表示されます。&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/posts/img/php_debug_bar_install/screen_image.jpg&quot; alt=&quot;画面イメージ&quot; title=&quot;画面イメージ&quot;&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h5&gt;3.参考ページ&lt;/h5&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;&lt;a href=&quot;http://www.moongift.jp/2013/08/20130829-3/&quot;&gt;紹介ページ&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;a href=&quot;http://phpdebugbar.com/docs/&quot;&gt;PHP Debug Bar&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-    &lt;p&gt;&lt;a href=&quot;/phpdebugbar/php_debug_bar_install/&quot;&gt;PHP Debug Bar インストール&lt;/a&gt; was originally published by sankame at &lt;a href=&quot;&quot;&gt;テキストブログ&lt;/a&gt; on September 22, 2013.&lt;/p&gt;
   </content>
 </entry>
 
