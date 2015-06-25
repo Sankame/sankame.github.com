@@ -4,13 +4,124 @@
 <generator uri="https://github.com/mojombo/jekyll">Jekyll</generator>
 <link rel="self" type="application/atom+xml" href="/feed.xml" />
 <link rel="alternate" type="text/html" href="" />
-<updated>2015-05-26T12:03:12-04:00</updated>
+<updated>2015-06-25T12:30:19-04:00</updated>
 <id>/</id>
 <author>
   <name>sankame</name>
   <uri>/</uri>
   <email>m2ad0504@outlook.jp</email>
 </author>
+
+
+<entry>
+  <title type="html"><![CDATA[【Angular2】クイックスタート]]></title>
+ <link rel="alternate" type="text/html" href="/angular2/angular2_quick_start/" />
+  <id>/angular2/angular2_quick_start</id>
+  <published>2015-06-22T20:00:00-04:00</published>
+  <updated>2015-06-22T20:00:00-04:00</updated>
+  <author>
+    <name>sankame</name>
+    <uri></uri>
+    <email>m2ad0504@outlook.jp</email>
+  </author>
+  <content type="html">
+    &lt;p&gt;&lt;span style=&quot;float:right;&quot;&gt;投稿日：2015年06月22日&lt;/span&gt;&lt;/p&gt;
+
+&lt;h3&gt;0.環境&lt;/h3&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;[CentOS]  6.5
+[node.js] 0.12.4
+[npm]     2.10.1
+[tsd]     0.6.0
+[tsc]     1.5.0-beta
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;1.インストール&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Googleの&lt;a href=&quot;https://angular.io/docs/js/latest/quickstart.html&quot; target=&quot;_blank&quot;&gt;QuickStartページ&lt;/a&gt;に沿って進めます。(以降、JavaScriptはJSと記述)&lt;/p&gt;
+
+&lt;p&gt;Angular2はJSでも動かせますが、JSのスーパーセットTypeScriptに対応しているので、Googleのページ同様、そちらを共有します。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;最終的に下記の構成になります。&lt;/p&gt;
+
+&lt;p&gt;tscを使ってhello.tsをhello.jsへ変換します。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/posts/img/angular2_quick_start/system.jpg&quot; target=&quot;_blank&quot;&gt;&lt;img width=&quot;100%&quot; height=&quot;100%&quot; title=&quot;システム構成&quot; alt=&quot;システム構成&quot; src=&quot;/assets/posts/img/angular2_quick_start/system.jpg&quot;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;まずnode.jsとnpmの依存管理を楽にするため、nvmをインストールします。&lt;/p&gt;
+
+&lt;p&gt;※CentOS 5系だとnode.jsを動かすのに苦労するので、&lt;a href=&quot;http://sankame.github.io/vagrant/vagrant_setup/&quot; target=&quot;_blank&quot;&gt;こちらの記事&lt;/a&gt;を参考にCentOS6.x 環境構築を推奨します。&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;# git clone git://github.com/creationix/nvm.git ~/.nvm
+# source ~/.nvm/nvm.sh
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;node.jsをバージョン指定でインストール。&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;# nvm install 0.12.4
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;nvmでnode.jsのデフォルトバージョンを設定。&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;# nvm alias default v0.12.4
+# vim ~/.bash_profile
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;.bash_profile の末尾に下記を追記。&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[[&lt;/span&gt; -s ~/.nvm/nvm.sh &lt;span class=&quot;o&quot;&gt;]]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;then&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;source&lt;/span&gt; ~/.nvm/nvm.sh
+&lt;span class=&quot;k&quot;&gt;fi&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;tsd (TypeScript用 型定義ファイル管理ツール) をインストール。&lt;/p&gt;
+
+&lt;p&gt;※npmは一定のバージョン以上でないとインストールが止まってしまうので注意。&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;# npm install tsd@0.6.0 -g
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;下記の警告が出たが数分後にインストールが成功。&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;npm WARN engine joi-assert@0.0.3: wanted: &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;node&amp;quot;&lt;/span&gt;:&lt;span class=&quot;s2&quot;&gt;&amp;quot;&amp;gt;= 0.10.0 &amp;lt;= 0.11.0&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;current: &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;node&amp;quot;&lt;/span&gt;:&lt;span class=&quot;s2&quot;&gt;&amp;quot;0.12.4&amp;quot;&lt;/span&gt;,&lt;span class=&quot;s2&quot;&gt;&amp;quot;npm&amp;quot;&lt;/span&gt;:&lt;span class=&quot;s2&quot;&gt;&amp;quot;2.10.1&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;})&lt;/span&gt;
+npm WARN peerDependencies The peer dependency minichain@~0.0.1 included from minitable will no
+npm WARN peerDependencies longer be automatically installed to fulfill the peerDependency
+npm WARN peerDependencies in npm 3+. Your application will need to depend on it explicitly.
+/root/.nvm/versions/node/v0.12.4/bin/tsd -&amp;gt; /root/.nvm/versions/node/v0.12.4/lib/node_modules/tsd/build/cli.js
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;続けてAngular2用の型定義をインストール。&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;# tsd query angular2 --action install
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;tsc (TypeScript→JavaScript変換ツール) をインストール。&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;# npm install -g typescript@^1.5.0-beta
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3&gt;2.サンプル実行&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;適当なディレクトリで下記サンプルファイルを作成。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;① hello.html&lt;/p&gt;
+
+&lt;script src=&quot;https://gist.github.com/313fb54ffa44bf31ed2a.js?file=hello.html&quot;&gt; &lt;/script&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;② hello.ts&lt;/p&gt;
+
+&lt;script src=&quot;https://gist.github.com/e4ed0d2d8b9c9df5f074.js?file=hello.ts&quot;&gt; &lt;/script&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;そのディレクトリでtscを常時コンパイルモードで実行。&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;# tsc --watch -m commonjs -t es5 --emitDecoratorMetadata *.ts
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;簡易HTTPサーバーをインストールして起動。&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;# npm install http-server -g
+#
+# http-server
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;ブラウザ確認&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;下記URLで&amp;quot;Hello World !&amp;quot;が表示されれば成功です。(ホスト名(IP)は読み替え)&lt;/li&gt;
+&lt;li&gt;http://192.168.33.10:8080/hello.html&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3&gt;※参考ページ&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&quot;https://angular.io/docs/js/latest/quickstart.html&quot; target=&quot;_blank&quot;&gt;公式ページ (5 MIN QUICKSTART)&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&quot;http://liginc.co.jp/web/programming/node-js/85318&quot; target=&quot;_blank&quot;&gt;nvm インストール&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+    &lt;p&gt;&lt;a href=&quot;/angular2/angular2_quick_start/&quot;&gt;【Angular2】クイックスタート&lt;/a&gt; was originally published by sankame at &lt;a href=&quot;&quot;&gt;テキストブログ&lt;/a&gt; on June 22, 2015.&lt;/p&gt;
+  </content>
+</entry>
 
 
 <entry>
@@ -1584,51 +1695,6 @@ OAuth support =&amp;gt; enabled
 &lt;/ul&gt;
 
     &lt;p&gt;&lt;a href=&quot;/php/php_sample/&quot;&gt;PHPメモ&lt;/a&gt; was originally published by sankame at &lt;a href=&quot;&quot;&gt;テキストブログ&lt;/a&gt; on February 01, 2014.&lt;/p&gt;
-  </content>
-</entry>
-
-
-<entry>
-  <title type="html"><![CDATA[スマホ(Android)とPCでMindMapを使う]]></title>
- <link rel="alternate" type="text/html" href="/mindmapmemo/mind_map_tools/" />
-  <id>/mindmapmemo/mind_map_tools</id>
-  <published>2013-10-03T20:00:00-04:00</published>
-  <updated>2013-10-03T20:00:00-04:00</updated>
-  <author>
-    <name>sankame</name>
-    <uri></uri>
-    <email>m2ad0504@outlook.jp</email>
-  </author>
-  <content type="html">
-    &lt;p&gt;&lt;span style=&quot;float:right;&quot;&gt;投稿日：2013年10月03日&lt;/span&gt;&lt;/p&gt;
-
-&lt;h5&gt;0.環境&lt;/h5&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;[スマホ端末/OS] GALAXY S SC-02B / Android2.2
-[PC端末/OS]    Gateway SX2800 / Windows Vista Home Premium
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;h5&gt;1.スマホでマインドマップ作成&lt;/h5&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;1-1.スマホにMindMapMemoをインストールする。&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;1-2.マインドマップのファイルを作成後、「オプション」-「メール送信(SD保存)」-「FreeMind(.mm)」を選択。&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;1-3.共有するためのアプリ一覧が表示されるので、PCへファイルを送信できるアプリを選択。&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h5&gt;2.PCにFreeMindをインストール&lt;/h5&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;2-1.下記リンク先のページで[0.8.1]をクリック。&lt;/p&gt;
-
-&lt;p&gt;(0.9.0では上記スマホで作成したファイルをうまく開けませんでした)&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://sourceforge.net/projects/freemind/files/freemind/&quot;&gt;FreeMindソース&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;2-2.[freemind-bin-0&lt;em&gt;8&lt;/em&gt;1.zip]をクリック。&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;2-3.PCにダウンロード後、解凍してFreemind.exeをダブルクリック。&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;2-4.メニューの「ファイル」-「開く」で、スマホから送信した拡張子がmmのファイルを選択。&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;2-5.スマホではカラフルに作ったのにFreeMindで開くと白黒になっている。まあ内容が分かるからいいか…&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-    &lt;p&gt;&lt;a href=&quot;/mindmapmemo/mind_map_tools/&quot;&gt;スマホ(Android)とPCでMindMapを使う&lt;/a&gt; was originally published by sankame at &lt;a href=&quot;&quot;&gt;テキストブログ&lt;/a&gt; on October 03, 2013.&lt;/p&gt;
   </content>
 </entry>
 

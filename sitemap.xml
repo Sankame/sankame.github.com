@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>/angular2/angular2_quick_start/</loc>
+    <lastmod>2015-06-22T20:00:00-04:00</lastmod>
+  </url>
+  <url>
     <loc>/laravel/laravel_migration_integer_args/</loc>
     <lastmod>2015-05-26T20:00:00-04:00</lastmod>
   </url>
@@ -162,30 +166,30 @@
   </url>
   <url>
     <loc>/404.html</loc>
-    <lastmod>2015-05-26T12:03:12-04:00</lastmod>
+    <lastmod>2015-06-25T12:30:19-04:00</lastmod>
   </url>
   <url>
     <loc>/BAK_index.html</loc>
-    <lastmod>2015-05-26T12:03:12-04:00</lastmod>
+    <lastmod>2015-06-25T12:30:19-04:00</lastmod>
   </url>
   <url>
     <loc>/posts/</loc>
-    <lastmod>2015-05-26T12:03:12-04:00</lastmod>
+    <lastmod>2015-06-25T12:30:19-04:00</lastmod>
   </url>
   <url>
     <loc>/tags/</loc>
-    <lastmod>2015-05-26T12:03:12-04:00</lastmod>
+    <lastmod>2015-06-25T12:30:19-04:00</lastmod>
   </url>
   <url>
     <loc>/</loc>
-    <lastmod>2015-05-26T12:03:12-04:00</lastmod>
+    <lastmod>2015-06-25T12:30:19-04:00</lastmod>
   </url>
   <url>
     <loc>/about/</loc>
-    <lastmod>2015-05-26T12:03:12-04:00</lastmod>
+    <lastmod>2015-06-25T12:30:19-04:00</lastmod>
   </url>
   <url>
     <loc>/theme-setup/</loc>
-    <lastmod>2015-05-26T12:03:12-04:00</lastmod>
+    <lastmod>2015-06-25T12:30:19-04:00</lastmod>
   </url>
 </urlset>
