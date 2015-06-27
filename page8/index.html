@@ -339,15 +339,25 @@ https://github.com/settings/emails
     
   </header>
   <div class="entry-content">
-    <p><span style="float:right;">投稿日：2012年12月23日</span></p>
+    <p><span>&nbsp;</span><span style="color:#d14; float:right;">更新日：2015年06月27日</span></p>
+
+<p><span style="float:right;">投稿日：2012年12月23日</span></p>
+
+<p>
+<span style="color:#d14;">
+OSS版のOpenXは製品名がRevive AdServerに変わりました。<br>
+インストールは<a href="http://sankame.github.io/reviveadserver/revive_adserver_install/" target="_blank">こちら</a>をご確認下さい。(2015/06/27)
+</span>
+</p>
 
 <h4>ローカルPCのVmwarePlayerにOpenXをインストール。</h4>
 
-<h4><a href="http://www.openx.com/docs/qsg-install">マニュアル</a>に従ってインストールした。</h4>
+<h4><a href="http://www.openx.com/docs/qsg-install" target="_blank">[マニュアル]</a>に従ってインストールしました。</h4>
 
-<h4>1.ソース取得</h4>
+<h3>1.ソース取得</h3>
 
-<p>マニュアルの下記リンクからソースをダウンロード。(アンケートあるためwgetでは落とせない)</p>
+<ul>
+<li><p>マニュアルの下記リンクからソースをダウンロード。(アンケートがあるためwgetでは落とせない)</p>
 
 <p>Download the latest installation archive from: <a href="http://www.openx.com/publisher/open-source-ad-server">here</a></p>
 
@@ -371,37 +381,50 @@ https://github.com/settings/emails
 <p>画面にコマンドが書いてあったのでそのまま実行。</p>
 <div class="highlight"><pre><code class="language-text" data-lang="text"># chmod -R a+w /var/www/html/openx/plugins
 # chmod -R a+w /var/www/html/openx/www/admin/plugins
-</code></pre></div>
-<h4>2.Registration</h4>
+</code></pre></div></li>
+</ul>
 
-<p>Webインストーラを続行、下記項目に入力。</p>
+<h3>2.Registration</h3>
 
-<p>name, password, e-mail</p>
+<ul>
+<li><p>Webインストーラを続行、下記項目に入力。</p>
 
-<h4>3.Database</h4>
+<p><code>name, password, e-mail</code></p></li>
+</ul>
 
-<p>DBがなかったら作成されると画面に書いてあったが、エラーになったので</p>
+<h3>3.Database</h3>
+
+<ul>
+<li><p>DBがなかったら作成されると画面に書いてあったが、エラーになったので</p>
 
 <p>下記コマンドであらかじめDBとユーザを作成。(testxxxxの部分は適当に変更)</p>
 <div class="highlight"><pre><code class="language-text" data-lang="text"># create database testdb;
 # grant all on testdb.* to &#39;testuser&#39;@&#39;localhost&#39; identified by &#39;testpassword&#39;;
-</code></pre></div>
-<h4>4. Configuration</h4>
+</code></pre></div></li>
+</ul>
 
-<p>Webインストーラを続行、下記項目に入力。</p>
+<h3>4. Configuration</h3>
 
-<p>Admin User, Admin User Password</p>
+<ul>
+<li><p>Webインストーラを続行、下記項目に入力。</p>
 
-<h4>5. Finish</h4>
+<p><code>Admin User, Admin User Password</code></p></li>
+</ul>
 
-<p>エラーが出たからログを見てね、と書いてあったが無視してそのままcontinue</p>
+<h3>5. Finish</h3>
+
+<ul>
+<li><p>エラーが出たからログを見てね、と書いてあったが無視してそのままcontinue</p>
 
 <p>※その後、ログを見たがエラーは出力されていなかった。</p>
 <div class="highlight"><pre><code class="language-text" data-lang="text"># view /var/www/html/openx/var/install.log
-</code></pre></div>
-<h4>6. その他</h4>
+</code></pre></div></li>
+</ul>
 
-<p>そのまま広告設定の管理画面ぽいところへ遷移。</p>
+<h3>6. その他</h3>
+
+<ul>
+<li><p>そのまま広告設定の管理画面ぽいところへ遷移。</p>
 
 <p>ページ上部に下記のエラーメッセージが…</p>
 <div class="highlight"><pre><code class="language-text" data-lang="text">Warning: date_default_timezone_get(): It is not safe to rely
@@ -412,22 +435,28 @@ https://github.com/settings/emails
  this warning, you most likely misspelled the timezone identifier.
  We selected &#39;Asia/Tokyo&#39; for &#39;JST/9.0/no DST&#39; instead in
  /var/www/html/openx/variables.php on line 82 
-</code></pre></div>
-<p>下記ソースに追記する。</p>
+</code></pre></div></li>
+<li><p>下記ソースに追記する。</p>
 
 <p>■ソース</p>
 
-<p>/var/www/html/openx/variables.php</p>
+<p><code>/var/www/html/openx/variables.php</code></p>
 
-<p>■追記</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">//追記ここから
-if( ! ini_get(&#39;date.timezone&#39;) ){
-    date_default_timezone_set(&#39;Asia/Tokyo&#39;);
-}
-//追記ここまで
-    $GLOBALS[&#39;serverTimezone&#39;] = date_default_timezone_get();
-</code></pre></div>
-<p><a href="http://www.jamescrowley.co.uk/2010/09/12/running-openx-under-iis-with-php-5-3-date-default-timezone-get-errors/">参考ページ</a></p>
+<p>■追記内容</p>
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="x">//追記ここから</span>
+<span class="x">if( ! ini_get(&#39;date.timezone&#39;) ){</span>
+<span class="x">    date_default_timezone_set(&#39;Asia/Tokyo&#39;);</span>
+<span class="x">}</span>
+<span class="x">//追記ここまで</span>
+<span class="x">    $GLOBALS[&#39;serverTimezone&#39;] = date_default_timezone_get();</span>
+</code></pre></div></li>
+</ul>
+
+<h3>参考</h3>
+
+<ul>
+<li><a href="http://www.jamescrowley.co.uk/2010/09/12/running-openx-under-iis-with-php-5-3-date-default-timezone-get-errors/">参考ページ</a></li>
+</ul>
 
   </div><!-- /.entry-content -->
 </article><!-- /.hentry -->
