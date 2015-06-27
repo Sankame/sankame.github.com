@@ -4,7 +4,7 @@
 <generator uri="https://github.com/mojombo/jekyll">Jekyll</generator>
 <link rel="self" type="application/atom+xml" href="/feed.xml" />
 <link rel="alternate" type="text/html" href="" />
-<updated>2015-06-25T12:30:19-04:00</updated>
+<updated>2015-06-27T09:34:30-04:00</updated>
 <id>/</id>
 <author>
   <name>sankame</name>
@@ -39,7 +39,7 @@
 &lt;ul&gt;
 &lt;li&gt;&lt;p&gt;Googleの&lt;a href=&quot;https://angular.io/docs/js/latest/quickstart.html&quot; target=&quot;_blank&quot;&gt;QuickStartページ&lt;/a&gt;に沿って進めます。(以降、JavaScriptはJSと記述)&lt;/p&gt;
 
-&lt;p&gt;Angular2はJSでも動かせますが、JSのスーパーセットTypeScriptに対応しているので、Googleのページ同様、そちらを共有します。&lt;/p&gt;&lt;/li&gt;
+&lt;p&gt;Angular2はJSでも動かせますが、JSのスーパーセットTypeScriptに対応しているので、Googleのページ同様、後者について記述します。&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;最終的に下記の構成になります。&lt;/p&gt;
 
 &lt;p&gt;tscを使ってhello.tsをhello.jsへ変換します。&lt;/p&gt;
@@ -56,7 +56,7 @@
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;nvmでnode.jsのデフォルトバージョンを設定。&lt;/p&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;# nvm alias default v0.12.4
-# vim ~/.bash_profile
+# vi ~/.bash_profile
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;.bash_profile の末尾に下記を追記。&lt;/p&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[[&lt;/span&gt; -s ~/.nvm/nvm.sh &lt;span class=&quot;o&quot;&gt;]]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
@@ -65,10 +65,10 @@
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;tsd (TypeScript用 型定義ファイル管理ツール) をインストール。&lt;/p&gt;
 
-&lt;p&gt;※npmは一定のバージョン以上でないとインストールが止まってしまうので注意。&lt;/p&gt;
+&lt;p&gt;※npmのバージョンが低いとtsdのインストールが止まってしまうので注意。&lt;/p&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;# npm install tsd@0.6.0 -g
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;下記の警告が出たが数分後にインストールが成功。&lt;/p&gt;
+&lt;p&gt;下記の警告が出たが5分ほどしてインストールが成功。&lt;/p&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;npm WARN engine joi-assert@0.0.3: wanted: &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;node&amp;quot;&lt;/span&gt;:&lt;span class=&quot;s2&quot;&gt;&amp;quot;&amp;gt;= 0.10.0 &amp;lt;= 0.11.0&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;current: &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;node&amp;quot;&lt;/span&gt;:&lt;span class=&quot;s2&quot;&gt;&amp;quot;0.12.4&amp;quot;&lt;/span&gt;,&lt;span class=&quot;s2&quot;&gt;&amp;quot;npm&amp;quot;&lt;/span&gt;:&lt;span class=&quot;s2&quot;&gt;&amp;quot;2.10.1&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;})&lt;/span&gt;
 npm WARN peerDependencies The peer dependency minichain@~0.0.1 included from minitable will no
 npm WARN peerDependencies longer be automatically installed to fulfill the peerDependency
@@ -77,8 +77,14 @@ npm WARN peerDependencies in npm 3+. Your application will need to depend on it 
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;続けてAngular2用の型定義をインストール。&lt;/p&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;# tsd query angular2 --action install
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;※rootユーザー以外だと下記エラーが出る可能性があります。&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;&amp;gt;&amp;gt; install error!
+EACCES, mkdir &amp;#39;/etc/rc.d/init.d/typings&amp;#39;
+Error: EACCES, mkdir &amp;#39;/etc/rc.d/init.d/typings&amp;#39;
+at Error (native)
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;tsc (TypeScript→JavaScript変換ツール) をインストール。&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;tsc (TypeScript→JS変換ツール) をインストール。&lt;/p&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;# npm install -g typescript@^1.5.0-beta
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -86,8 +92,10 @@ npm WARN peerDependencies in npm 3+. Your application will need to depend on it 
 &lt;h3&gt;2.サンプル実行&lt;/h3&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;p&gt;適当なディレクトリで下記サンプルファイルを作成。&lt;/p&gt;
-
+&lt;li&gt;&lt;p&gt;任意のディレクトリで下記サンプルファイルを作成。&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;# cd /app/angular2_quickstart/ # 任意のディレクトリ
+# touch hello.html hello.ts
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;p&gt;① hello.html&lt;/p&gt;
 
@@ -96,18 +104,22 @@ npm WARN peerDependencies in npm 3+. Your application will need to depend on it 
 
 &lt;script src=&quot;https://gist.github.com/e4ed0d2d8b9c9df5f074.js?file=hello.ts&quot;&gt; &lt;/script&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;そのディレクトリでtscを常時コンパイルモードで実行。&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;# tsc --watch -m commonjs -t es5 --emitDecoratorMetadata *.ts
+&lt;li&gt;&lt;p&gt;上記ディレクトリにて、tscを監視モードで実行。&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;# cd /app/angular2_quickstart/
+# 
+# tsc --watch -m commonjs -t es5 --emitDecoratorMetadata *.ts
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;簡易HTTPサーバーをインストールして起動。&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;簡易HTTPサーバーをインストール後、上記ディレクトリで起動します。&lt;/p&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;# npm install http-server -g
+#
+# cd /app/angular2_quickstart/
 #
 # http-server
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;ブラウザ確認&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;下記URLで&amp;quot;Hello World !&amp;quot;が表示されれば成功です。(ホスト名(IP)は読み替え)&lt;/li&gt;
+&lt;li&gt;下記URLで&amp;quot;Hello World !&amp;quot;が表示されれば成功です。(ホスト名(IP)は自分の環境に読み替え)&lt;/li&gt;
 &lt;li&gt;http://192.168.33.10:8080/hello.html&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;

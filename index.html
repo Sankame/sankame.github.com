@@ -176,7 +176,7 @@
 <ul>
 <li><p>Googleの<a href="https://angular.io/docs/js/latest/quickstart.html" target="_blank">QuickStartページ</a>に沿って進めます。(以降、JavaScriptはJSと記述)</p>
 
-<p>Angular2はJSでも動かせますが、JSのスーパーセットTypeScriptに対応しているので、Googleのページ同様、そちらを共有します。</p></li>
+<p>Angular2はJSでも動かせますが、JSのスーパーセットTypeScriptに対応しているので、Googleのページ同様、後者について記述します。</p></li>
 <li><p>最終的に下記の構成になります。</p>
 
 <p>tscを使ってhello.tsをhello.jsへ変換します。</p>
@@ -193,7 +193,7 @@
 </code></pre></div></li>
 <li><p>nvmでnode.jsのデフォルトバージョンを設定。</p>
 <div class="highlight"><pre><code class="language-text" data-lang="text"># nvm alias default v0.12.4
-# vim ~/.bash_profile
+# vi ~/.bash_profile
 </code></pre></div></li>
 <li><p>.bash_profile の末尾に下記を追記。</p>
 <div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="k">if</span> <span class="o">[[</span> -s ~/.nvm/nvm.sh <span class="o">]]</span><span class="p">;</span>
@@ -202,10 +202,10 @@
 </code></pre></div></li>
 <li><p>tsd (TypeScript用 型定義ファイル管理ツール) をインストール。</p>
 
-<p>※npmは一定のバージョン以上でないとインストールが止まってしまうので注意。</p>
+<p>※npmのバージョンが低いとtsdのインストールが止まってしまうので注意。</p>
 <div class="highlight"><pre><code class="language-text" data-lang="text"># npm install tsd@0.6.0 -g
 </code></pre></div>
-<p>下記の警告が出たが数分後にインストールが成功。</p>
+<p>下記の警告が出たが5分ほどしてインストールが成功。</p>
 <div class="highlight"><pre><code class="language-sh" data-lang="sh">npm WARN engine joi-assert@0.0.3: wanted: <span class="o">{</span><span class="s2">&quot;node&quot;</span>:<span class="s2">&quot;&gt;= 0.10.0 &lt;= 0.11.0&quot;</span><span class="o">}</span> <span class="o">(</span>current: <span class="o">{</span><span class="s2">&quot;node&quot;</span>:<span class="s2">&quot;0.12.4&quot;</span>,<span class="s2">&quot;npm&quot;</span>:<span class="s2">&quot;2.10.1&quot;</span><span class="o">})</span>
 npm WARN peerDependencies The peer dependency minichain@~0.0.1 included from minitable will no
 npm WARN peerDependencies longer be automatically installed to fulfill the peerDependency
@@ -214,8 +214,14 @@ npm WARN peerDependencies in npm 3+. Your application will need to depend on it 
 </code></pre></div>
 <p>続けてAngular2用の型定義をインストール。</p>
 <div class="highlight"><pre><code class="language-text" data-lang="text"># tsd query angular2 --action install
+</code></pre></div>
+<p>※rootユーザー以外だと下記エラーが出る可能性があります。</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">&gt;&gt; install error!
+EACCES, mkdir &#39;/etc/rc.d/init.d/typings&#39;
+Error: EACCES, mkdir &#39;/etc/rc.d/init.d/typings&#39;
+at Error (native)
 </code></pre></div></li>
-<li><p>tsc (TypeScript→JavaScript変換ツール) をインストール。</p>
+<li><p>tsc (TypeScript→JS変換ツール) をインストール。</p>
 <div class="highlight"><pre><code class="language-text" data-lang="text"># npm install -g typescript@^1.5.0-beta
 </code></pre></div></li>
 </ul>
@@ -223,8 +229,10 @@ npm WARN peerDependencies in npm 3+. Your application will need to depend on it 
 <h3>2.サンプル実行</h3>
 
 <ul>
-<li><p>適当なディレクトリで下記サンプルファイルを作成。</p>
-
+<li><p>任意のディレクトリで下記サンプルファイルを作成。</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text"># cd /app/angular2_quickstart/ # 任意のディレクトリ
+# touch hello.html hello.ts
+</code></pre></div>
 <ul>
 <li><p>① hello.html</p>
 
@@ -233,18 +241,22 @@ npm WARN peerDependencies in npm 3+. Your application will need to depend on it 
 
 <script src="https://gist.github.com/e4ed0d2d8b9c9df5f074.js?file=hello.ts"> </script></li>
 </ul></li>
-<li><p>そのディレクトリでtscを常時コンパイルモードで実行。</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text"># tsc --watch -m commonjs -t es5 --emitDecoratorMetadata *.ts
+<li><p>上記ディレクトリにて、tscを監視モードで実行。</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text"># cd /app/angular2_quickstart/
+# 
+# tsc --watch -m commonjs -t es5 --emitDecoratorMetadata *.ts
 </code></pre></div></li>
-<li><p>簡易HTTPサーバーをインストールして起動。</p>
+<li><p>簡易HTTPサーバーをインストール後、上記ディレクトリで起動します。</p>
 <div class="highlight"><pre><code class="language-text" data-lang="text"># npm install http-server -g
+#
+# cd /app/angular2_quickstart/
 #
 # http-server
 </code></pre></div></li>
 <li><p>ブラウザ確認</p>
 
 <ul>
-<li>下記URLで&quot;Hello World !&quot;が表示されれば成功です。(ホスト名(IP)は読み替え)</li>
+<li>下記URLで&quot;Hello World !&quot;が表示されれば成功です。(ホスト名(IP)は自分の環境に読み替え)</li>
 <li>http://192.168.33.10:8080/hello.html</li>
 </ul></li>
 </ul>
