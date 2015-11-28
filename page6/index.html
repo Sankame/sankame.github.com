@@ -148,6 +148,85 @@
   <header>
     
     <div class="entry-meta">
+      <span class="entry-date date published updated"><time datetime="2013-09-08T20:00:00-04:00"><a href="/git/git_command/">September 08, 2013</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About sankame">sankame</a></span></span>
+      
+      <span class="entry-reading-time">
+        <i class="fa fa-clock-o"></i>
+        
+        Reading time ~1 minute
+      </span><!-- /.entry-reading-time -->
+      
+    </div><!-- /.entry-meta -->
+    
+      <h1 class="entry-title"><a href="/git/git_command/" rel="bookmark" title="Gitコマンド メモ" itemprop="url">Gitコマンド メモ</a></h1>
+    
+  </header>
+  <div class="entry-content">
+    <p><span style="float:right;">投稿日：2013年09月08日</span></p>
+
+<h4>Gitコマンド メモ (自分用)</h4>
+
+<h5>(1) .gitignoreファイル <a href="http://www.omakase.org/misc/gitignore.html">参考ページ</a></h5>
+<div class="highlight"><pre><code class="language-text" data-lang="text"># gitの管理外にしたいファイルを定義。下記のようにディレクトリ指定も可能。
+# view .gitignore
+app/logs/
+</code></pre></div>
+<h5>(2) インデックスから降ろす(git管理外にする)</h5>
+<div class="highlight"><pre><code class="language-text" data-lang="text"># インデックスから降ろすだけ。
+# git rm --cached -f hoge.txt
+
+# インデックスから降ろして、ファイルを物理削除。
+# git rm -f hoge.txt
+</code></pre></div>
+<h5>(3) ブランチ操作(2013/10/07)</h5>
+<div class="highlight"><pre><code class="language-text" data-lang="text"># 今いるブランチは？
+# git branch
+* master
+
+# ブランチtest1を作って、test1へ切り替える。
+# git branch test1
+# git checkout test1
+Switched to branch &#39;test1&#39;
+
+# masterブランチへ戻る。
+# git checkout master
+Switched to branch &#39;master&#39;
+
+# 使わなくなったブランチtest1を削除。
+# git branch -d test1
+Deleted branch test1 (was 0854f22).
+# git branch
+* master
+</code></pre></div>
+<h5>(4) GitHubからソースを取得(2013/10/07)</h5>
+
+<ul>
+<li><p>4-1.GitHubで対象のリポジトリに移動後、画面右下のボタン(下記)をクリックしてURLをクリップボードにコピー。</p>
+
+<p><img src="/assets/posts/img/git_command/github-clone.jpg" alt="github-clone" title="github-clone"></p></li>
+<li><p>4-2.git clone の後に上記4-1でコピーしたURLを貼り付ける。</p>
+
+<p>予めGitHubに登録した公開鍵のパスフレーズを入力。</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text"># git clone git@github.com:Sankame/test.git
+Cloning into &#39;test&#39;...
+Enter passphrase for key &#39;/root/.ssh/id_rsa&#39;: 
+</code></pre></div></li>
+</ul>
+
+<h5>(5) ローカル変更の取り消し(2014/02/24)</h5>
+<div class="highlight"><pre><code class="language-text" data-lang="text"># ファイル指定でローカル変更を取り消し。
+# git checkout filename
+# 
+# 全てのローカル変更を取り消し。
+# git checkout .
+</code></pre></div>
+  </div><!-- /.entry-content -->
+</article><!-- /.hentry -->
+
+<article class="hentry">
+  <header>
+    
+    <div class="entry-meta">
       <span class="entry-date date published updated"><time datetime="2013-08-31T20:00:00-04:00"><a href="/nexus7/nexus7_projected_to_pc/">August 31, 2013</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About sankame">sankame</a></span></span>
       
       <span class="entry-reading-time">
@@ -566,65 +645,6 @@ PONG
 # redisサーバは起動しているようだ…
 </code></pre></div>
 <p><a href="http://www.eschrade.com/page/undefined-reference-to-__sync_add_and_fetch_4/">エラー時に参照したページ</a></p>
-
-  </div><!-- /.entry-content -->
-</article><!-- /.hentry -->
-
-<article class="hentry">
-  <header>
-    
-    <div class="entry-meta">
-      <span class="entry-date date published updated"><time datetime="2013-07-04T20:00:00-04:00"><a href="/dell/dell_e5520_touchpad/">July 04, 2013</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About sankame">sankame</a></span></span>
-      
-      <span class="entry-reading-time">
-        <i class="fa fa-clock-o"></i>
-        
-        Reading time ~1 minute
-      </span><!-- /.entry-reading-time -->
-      
-    </div><!-- /.entry-meta -->
-    
-      <h1 class="entry-title"><a href="/dell/dell_e5520_touchpad/" rel="bookmark" title="DELL E5520 のタッチパッドをOFFにする" itemprop="url">DELL E5520 のタッチパッドをOFFにする</a></h1>
-    
-  </header>
-  <div class="entry-content">
-    <p><span style="float:right;">投稿日：2013年07月04日</span></p>
-
-<h5>環境</h5>
-<div class="highlight"><pre><code class="language-text" data-lang="text">[PC] DELL E5520
-[OS] Windows 7 Professional (SP1)
-</code></pre></div>
-<h5>1. ドライバダウンロード</h5>
-
-<p><a href="http://www.dell.com/support/drivers/jp/ja/jpdhs1/Product/latitude-e5520">ダウンロードページ</a></p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">上記ダウンロードページを開く。
-&quot;マウス、キーボード、入力デバイス&quot; を開く。
-&quot;Dell Multi-Touch Touchpad Driver&quot; の右横にある「ファイルのダウンロード」をクリック。
-</code></pre></div>
-<h5>2. ドライバファイルの選択</h5>
-<div class="highlight"><pre><code class="language-text" data-lang="text">Hard-Drive-ALPS_MULTI-TOUCH-TOUCHPAD_A06_GGY5W_SETUP_ZPE.exe
-を選択して「続行」をクリック。
-</code></pre></div>
-<h5>3. ダウンロードセレクタ</h5>
-<div class="highlight"><pre><code class="language-text" data-lang="text">&quot;単一ファイルのダウンロード&quot;
-を選択して「続行」をクリック。
-</code></pre></div>
-<h5>4. インストール</h5>
-<div class="highlight"><pre><code class="language-text" data-lang="text">ダウンロード後、EXEファイルを実行。
-インストールしたら再起動。
-</code></pre></div>
-<h5>5. アプリ起動</h5>
-<div class="highlight"><pre><code class="language-text" data-lang="text">Windows[スタートメニュー] - [コントロールパネル]を開く。
-Dell Touchpad が増えているのでダブルクリック。
-</code></pre></div>
-<h5>6. タッチパッドOff</h5>
-<div class="highlight"><pre><code class="language-text" data-lang="text">DELLポインティングデバイス　というダイアログが起動。
-左メニューで任意のものを選択して、タッチパッドのOn/Offで O をクリックして、保存ボタンクリック。
-こうするとタッチパッドがOffになる。
-
-※見つからない場合は右上の「表示方法」を「小さいアイコン」または「大きいアイコン」に変更する。
-</code></pre></div>
-<p><a href="http://detail.chiebukuro.yahoo.co.jp/qa/question_detail/q13104530838">参考ページ</a></p>
 
   </div><!-- /.entry-content -->
 </article><!-- /.hentry -->
