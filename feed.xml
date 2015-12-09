@@ -4,13 +4,201 @@
 <generator uri="https://github.com/mojombo/jekyll">Jekyll</generator>
 <link rel="self" type="application/atom+xml" href="/feed.xml" />
 <link rel="alternate" type="text/html" href="" />
-<updated>2015-11-28T11:11:59-05:00</updated>
+<updated>2015-12-09T10:40:25-05:00</updated>
 <id>/</id>
 <author>
   <name>sankame</name>
   <uri>/</uri>
   <email>m2ad0504@outlook.jp</email>
 </author>
+
+
+<entry>
+  <title type="html"><![CDATA[Let's Encryptの無料SSLを利用]]></title>
+ <link rel="alternate" type="text/html" href="/ssl-tls/letsencrypt_setup/" />
+  <id>/ssl-tls/letsencrypt_setup</id>
+  <published>2015-12-06T19:00:00-05:00</published>
+  <updated>2015-12-06T19:00:00-05:00</updated>
+  <author>
+    <name>sankame</name>
+    <uri></uri>
+    <email>m2ad0504@outlook.jp</email>
+  </author>
+  <content type="html">
+    &lt;p&gt;&lt;span style=&quot;float:right;&quot;&gt;投稿日：2015年12月06日&lt;/span&gt;&lt;/p&gt;
+
+&lt;h3&gt;0.環境&lt;/h3&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;[CentOS] 6.4 (64bit版カーネル)
+[Apache] 2.2.15
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;1.セットアップ&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;個人で借りているレンタルサーバーで、有料のSSL証明書を使っていたのですが、
+有効期間切れを機にフリーのものに乗り換えてみました。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;最近 Public Beta に入った Let&amp;#39;s Encrypt というサービスを利用します。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/posts/img/letsencrypt_setup/letsencrypt_top.png&quot; target=&quot;_blank&quot;&gt;&lt;img width=&quot;80%&quot; height=&quot;80%&quot; title=&quot;Let&#39;s Encryptトップ&quot; alt=&quot;Let&#39;s Encryptトップ&quot; src=&quot;/assets/posts/img/letsencrypt_setup/letsencrypt_top.png&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;下記ページに沿って進めます。(その他の参考ページは末尾に記載)&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://letsencrypt.org/howitworks/&quot; target=&quot;_blank&quot;&gt;&lt;font color=&quot;green&quot;&gt;Let&amp;#39;s Encrypt 操作方法&lt;/font&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;任意のディレクトリに Let&amp;#39;s Encrypt クライアントをダウンロード。&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;# cd /usr/local/src
+# git clone https://github.com/letsencrypt/letsencrypt
+# cd letsencrypt
+# ./letsencrypt-auto --help
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;おお！ helpだから使い方が表示されるかと思いきや、依存関係のあるソフトがダウンロードされた・・・&lt;/p&gt;
+
+&lt;p&gt;しかも下記メッセージによると、どうやらPythonのバージョンが古くて失敗してるっぽい。&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;  ：
+(省略)
+  ：
+Complete!
+WARNING: Python 2.6 support is very experimental at present...
+if you would like to work on improving it, please ensure you have backups
+and then run this script again with the --debug flag!
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;ググってみると同じ問題で悩んでる人がいました。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/letsencrypt/letsencrypt/issues/1046&quot; target=&quot;_blank&quot;&gt;&lt;font color=&quot;green&quot;&gt;letsencrypt-autoは Python 2.6では動かない&lt;/font&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;さらにググって下記ページに従ってPython2.7インストール。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://community.letsencrypt.org/t/redhat-centos-6-x-users-need-python-2-7/2190&quot; target=&quot;_blank&quot;&gt;&lt;font color=&quot;green&quot;&gt;CentOS 6系は Python 2.7をインストールする必要あり&lt;/font&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;実行コマンドは下記の通り。&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;# yum install python27 python27-python-devel python27-python-setuptools python27-python-tools python27-python-virtualenv
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;python バージョンを調べる。&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;# python --version
+Python 2.6.6
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;font color=&quot;red&quot;&gt;(注) 2.6のままですが気にせず続行します。&lt;/font&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;font color=&quot;red&quot;&gt;(yum管理外でPythonをソースからビルドしてインストールすると letsencrypt-auto が動かなくなりました)&lt;/font&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;コマンドを再実行すると、もうPythonが古い旨のメッセージは出なくなりました。&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;# ./letsencrypt-auto --help
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;続けてドメイン認証を試みます。&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;# ./letsencrypt-auto --apache -d 【ドメイン名】
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;エラーメッセージが・・・&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;Updating letsencrypt and virtual environment dependencies.......
+Running with virtualenv: /root/.local/share/letsencrypt/bin/letsencrypt --apache -d 【ドメイン名】
+Version: 1.1-20080819
+Version: 1.1-20080819
+The apache plugin is not working; there may be problems with your existing configuration.
+The error was: NoInstallationError()
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;ユーザーガイドによるとApache2.2系だとapacheプラグイン(--apache)は使えないようです。&lt;/p&gt;
+
+&lt;p&gt;となると、standaloneかwebrootのいずれかを実行しないといけません。&lt;/p&gt;
+
+&lt;p&gt;If you want to use a webserver that doesn&amp;#39;t have full plugin support yet, you can still use &amp;quot;standalone&amp;quot; or &amp;quot;webroot&amp;quot; plugins to obtain a certificate: (&lt;a href=&quot;https://letsencrypt.readthedocs.org/en/latest/using.html#standalone&quot; target=&quot;_blank&quot;&gt;ユーザーガイド抜粋&lt;/a&gt;)&lt;/p&gt;
+
+&lt;p&gt;僕の場合、1つのサーバーに複数のvirtual hostを立てているのでwebrootプラグインを使います。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;念のため、既に書いてあるvirtual hostの設定はコメントアウト。&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;#&amp;lt;VirtualHost *:443&amp;gt;
+#    ：
+# 【省略
+#    ：
+#&amp;lt;/VirtualHost&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;下記コマンド実行。&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;# ./letsencrypt-auto certonly --webroot -w 【ドキュメントルート】 -d 【ドメイン名】
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;エラーメッセージ。&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;Updating letsencrypt and virtual environment dependencies.......
+Running with virtualenv: /root/.local/share/letsencrypt/bin/letsencrypt certonly --webroot -w 【ドキュメントルート】 -d 【ドメイン名】
+Version: 1.1-20080819
+Version: 1.1-20080819
+Failed authorization procedure. 【ドメイン名】 (http-01): urn:acme:error:unauthorized :: The client lacks sufficient authorization :: Invalid response from http://【ドメイン名】/.well-known/acme-challenge/【省略】 [【サーバーIP】]: 401
+
+IMPORTANT NOTES:
+ - The following &amp;#39;urn:acme:error:unauthorized&amp;#39; errors were reported by
+   the server:
+
+   Domains: 【ドメイン名】
+   Error: The client lacks sufficient authorization
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;ドキュメントルートにファイルを配置して、インターネットからアクセスを試みているけど失敗してるっぽい・・・&lt;/p&gt;
+
+&lt;p&gt;試しにブラウザから上記URLにアクセス。&lt;/p&gt;
+
+&lt;p&gt;port80(http)にアクセスがあったらport443(https)にリダイレクトする設定にしていたためエラーになっていました。&lt;/p&gt;
+
+&lt;p&gt;リダイレクトを無効にし、ブラウザから上記URLにアクセスできることを確認した上で、再度サーバー上で下記を実行。&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;# ./letsencrypt-auto certonly --webroot -w 【ドキュメントルート】 -d 【ドメイン名】
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;下記メッセージが表示され認証が成功！&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;Updating letsencrypt and virtual environment dependencies.......
+Running with virtualenv: /root/.local/share/letsencrypt/bin/letsencrypt certonly --webroot -w 【ドキュメントルート】 -d 【ドメイン名】
+Version: 1.1-20080819
+Version: 1.1-20080819
+
+IMPORTANT NOTES:
+ - Congratulations! Your certificate and chain have been saved at
+   /etc/letsencrypt/live/【ドメイン名】/fullchain.pem. Your cert will
+   expire on 2016-03-04. To obtain a new version of the certificate in
+   the future, simply run Let&amp;#39;s Encrypt again.
+ - If like Let&amp;#39;s Encrypt, please consider supporting our work by:
+
+   Donating to ISRG / Let&amp;#39;s Encrypt:   https://letsencrypt.org/donate
+   Donating to EFF:                    https://eff.org/donate-le
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;この後どうすれば・・・？&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;ユーザーガイドによると、apahceプラグインなら全自動で設定してくれるようですが、今回は使ってないので手動で証明書ファイル設定する必要あり。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;上記メッセージのパスを覗いてみると、必要なファイル一式がありました。&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;# ll /etc/letsencrypt/live/【ドメイン名】
+#
+lrwxrwxrwx 1 root root 38 12月  6 03:43 2015 cert.pem -&amp;gt; ../../archive/【ドメイン名】/cert1.pem
+lrwxrwxrwx 1 root root 39 12月  6 03:43 2015 chain.pem -&amp;gt; ../../archive/【ドメイン名】/chain1.pem
+lrwxrwxrwx 1 root root 43 12月  6 03:43 2015 fullchain.pem -&amp;gt; ../../archive/【ドメイン名】/fullchain1.pem
+lrwxrwxrwx 1 root root 41 12月  6 03:43 2015 privkey.pem -&amp;gt; ../../archive/【ドメイン名】/privkey1.pem
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;fullchainを除く3ファイルをport443のvirtual hostに設定してapache再起動。&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;&amp;lt;VirtualHost *:443&amp;gt;
+    ServerAdmin  【メールアドレス】
+    DocumentRoot &amp;quot;【ドキュメントルート】&amp;quot;
+    ServerName   【ドメイン名】
+    SSLEngine on
+    SSLCertificateFile      /etc/letsencrypt/live/【ドメイン名】/cert.pem
+    SSLCertificateKeyFile   /etc/letsencrypt/live/【ドメイン名】/privkey.pem
+    SSLCertificateChainFile /etc/letsencrypt/live/【ドメイン名】/chain.pem
+
+    ErrorLog  logs/【ドメイン名】-error_log
+    CustomLog logs/【ドメイン名】-access_log common
+&amp;lt;/VirtualHost&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;再起動。&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;# service httpd restart
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;httpからhttpsへのリダイレクト設定も元に戻します。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;FirefoxでサイトにアクセスするとSSLマークが表示されました！(ドメイン名はマスクしています)&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/posts/img/letsencrypt_setup/browser.png&quot; target=&quot;_blank&quot;&gt;&lt;img width=&quot;50%&quot; height=&quot;50%&quot; title=&quot;ブラウザSSL表示&quot; alt=&quot;ブラウザSSL表示&quot; src=&quot;/assets/posts/img/letsencrypt_setup/browser.png&quot;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Let&amp;#39;s Enctyptは有効期間が比較的短いので、SSL証明書の次回更新日をスケジュール帳に書き込んでおしまい。(自動化できないかしら)&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3&gt;参考ページ&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;ユーザーガイド&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://letsencrypt.readthedocs.org/en/latest/using.html#installation&quot; target=&quot;_blank&quot;&gt;ユーザーガイド&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Let&amp;#39;s Encrypt クライアントツール&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/letsencrypt/letsencrypt&quot; target=&quot;_blank&quot;&gt;https://github.com/letsencrypt/letsencrypt&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;クローズド・ベータ時代に試した人のブログ&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://dev.classmethod.jp/server-side/lets-encrypt-beta/&quot; target=&quot;_blank&quot;&gt;http://dev.classmethod.jp/server-side/lets-encrypt-beta/&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+    &lt;p&gt;&lt;a href=&quot;/ssl-tls/letsencrypt_setup/&quot;&gt;Let&#39;s Encryptの無料SSLを利用&lt;/a&gt; was originally published by sankame at &lt;a href=&quot;&quot;&gt;テキストブログ&lt;/a&gt; on December 06, 2015.&lt;/p&gt;
+  </content>
+</entry>
 
 
 <entry>
@@ -1602,103 +1790,6 @@ http://localhost:4000/jekyll/2014/05/18/jekyll_version_up/
 &lt;/ul&gt;
 
     &lt;p&gt;&lt;a href=&quot;/jekyll/jekyll_version_up/&quot;&gt;Jekyllを1.0.2へバージョンアップ&lt;/a&gt; was originally published by sankame at &lt;a href=&quot;&quot;&gt;テキストブログ&lt;/a&gt; on May 17, 2014.&lt;/p&gt;
-  </content>
-</entry>
-
-
-<entry>
-  <title type="html"><![CDATA[Revive Ad Server インストール (旧OpenX)]]></title>
- <link rel="alternate" type="text/html" href="/reviveadserver/revive_adserver_install/" />
-  <id>/reviveadserver/revive_adserver_install</id>
-  <published>2014-05-03T20:00:00-04:00</published>
-  <updated>2014-05-03T20:00:00-04:00</updated>
-  <author>
-    <name>sankame</name>
-    <uri></uri>
-    <email>m2ad0504@outlook.jp</email>
-  </author>
-  <content type="html">
-    &lt;p&gt;&lt;span style=&quot;float:right;&quot;&gt;投稿日：2014年05月03日&lt;/span&gt;&lt;/p&gt;
-
-&lt;h3&gt;0.環境&lt;/h3&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;[CentOS]           5.6 (32bit版カーネル)
-[Apache]           2.2.3
-[PHP]              5.4.17
-[Revive AdServer]  3.0.4
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;h3&gt;1.インストール&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;1-0.ダウンロード&lt;/p&gt;
-
-&lt;p&gt;適当なディレクトリにソースをダウンロードし、Apache公開ディレクトリへ移動。&lt;/p&gt;
-
-&lt;p&gt;(公開ディレクトリは自分の環境に読み替えて下さい)&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;c&quot;&gt;# wget http://download.revive-adserver.com/revive-adserver-3.0.4.tar.gz&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# tar xzf revive-adserver-3.0.4.tar.gz&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# mv revive-adserver-3.0.4 revive-adserver&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# mv revive-adserver /app/.&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;1-1.インストール開始&lt;/p&gt;
-
-&lt;p&gt;ブラウザから、上記インストール先URLへアクセス。&lt;/p&gt;
-
-&lt;p&gt;(例) http://localhost/revive-adserver&lt;/p&gt;
-
-&lt;p&gt;ウィザードに従ってインストールを進めます。&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;/assets/posts/img/revive_adserver_install/step1.png&quot; target=&quot;_blank&quot;&gt;&lt;img width=&quot;100%&quot; height=&quot;100%&quot; title=&quot;step1&quot; alt=&quot;step1&quot; src=&quot;/assets/posts/img/revive_adserver_install/step1.png&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&amp;quot;I Agree &amp;gt;&amp;gt;&amp;quot;ボタンを押すと、&amp;quot;File Permissions - 7 errors&amp;quot; というエラーが表示されました。&lt;/p&gt;
-
-&lt;p&gt;画面に表示されたコマンドをそのままコンソールで実行。&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;c&quot;&gt;# chmod -R a+w /app/revive-adserver/var&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# chmod -R a+w /app/revive-adserver/var/cache&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# chmod -R a+w /app/revive-adserver/var/plugins&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# chmod -R a+w /app/revive-adserver/var/templates_compiled&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# chmod -R a+w /app/revive-adserver/plugins&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# chmod -R a+w /app/revive-adserver/www/admin/plugins&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# chmod -R a+w /app/revive-adserver/www/images&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;再びインストール画面へ戻って&amp;quot;Retry&amp;quot;を押すと、次のステップへ進めます。&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;1-2.DB設定&lt;/p&gt;
-
-&lt;p&gt;DB情報の入力画面が表示されますが、その前に下記コマンド(※1)でMySQL上にDBを作成。&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;/assets/posts/img/revive_adserver_install/step2.png&quot; target=&quot;_blank&quot;&gt;&lt;img width=&quot;100%&quot; height=&quot;100%&quot; title=&quot;step2&quot; alt=&quot;step2&quot; src=&quot;/assets/posts/img/revive_adserver_install/step2.png&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;(※1) コマンド (DB名、ユーザ名、パスワードは任意に設定して下さい)&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;c&quot;&gt;# mysql -h 127.0.0.1 -u root -p&lt;/span&gt;
-mysql&amp;gt; create database reviveadserver&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-mysql&amp;gt; grant all privileges on reviveadserver.* to admin@localhost identified by &lt;span class=&quot;s1&quot;&gt;&amp;#39;password&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;再びインストール画面へ戻り、上記のDB情報を入力後、&amp;quot;Continue &amp;gt;&amp;gt;&amp;quot; を押します。&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;1-3.管理ユーザ登録&lt;/p&gt;
-
-&lt;p&gt;Revive AdServerの管理ユーザを登録します。&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;/assets/posts/img/revive_adserver_install/step3.png&quot; target=&quot;_blank&quot;&gt;&lt;img width=&quot;100%&quot; height=&quot;100%&quot; title=&quot;step3&quot; alt=&quot;step3&quot; src=&quot;/assets/posts/img/revive_adserver_install/step3.png&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;言語とタイムゾーンを変更。&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;Language:  Japanese
-Timezone:  (GMT+0900) Asia/Tokyo
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;1-4.登録完了&lt;/p&gt;
-
-&lt;p&gt;登録完了しました。&lt;/p&gt;
-
-&lt;p&gt;「インストール中にエラーが発生しました」と表示されましたが、指定されたログを見てもエラーの記述はありませんでした。&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;/assets/posts/img/revive_adserver_install/step4.png&quot; target=&quot;_blank&quot;&gt;&lt;img width=&quot;100%&quot; height=&quot;100%&quot; title=&quot;step4&quot; alt=&quot;step4&quot; src=&quot;/assets/posts/img/revive_adserver_install/step4.png&quot;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3&gt;参考&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;http://tec-blog.menue.jp/?p=278&quot; target=&quot;_blank&quot;&gt;Revive Adserver(旧OpenX)で広告配信&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-    &lt;p&gt;&lt;a href=&quot;/reviveadserver/revive_adserver_install/&quot;&gt;Revive Ad Server インストール (旧OpenX)&lt;/a&gt; was originally published by sankame at &lt;a href=&quot;&quot;&gt;テキストブログ&lt;/a&gt; on May 03, 2014.&lt;/p&gt;
   </content>
 </entry>
 

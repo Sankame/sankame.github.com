@@ -148,6 +148,95 @@
   <header>
     
     <div class="entry-meta">
+      <span class="entry-date date published updated"><time datetime="2013-07-09T20:00:00-04:00"><a href="/dell/redis_install/">July 09, 2013</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About sankame">sankame</a></span></span>
+      
+      <span class="entry-reading-time">
+        <i class="fa fa-clock-o"></i>
+        
+        Reading time ~1 minute
+      </span><!-- /.entry-reading-time -->
+      
+    </div><!-- /.entry-meta -->
+    
+      <h1 class="entry-title"><a href="/dell/redis_install/" rel="bookmark" title="Redisインストール" itemprop="url">Redisインストール</a></h1>
+    
+  </header>
+  <div class="entry-content">
+    <p><span style="float:right;">投稿日：2013年07月09日</span></p>
+
+<h5>環境</h5>
+<div class="highlight"><pre><code class="language-text" data-lang="text">[CentOS] 5.6 (32bit版カーネル)
+</code></pre></div>
+<h5>インストール</h5>
+<div class="highlight"><pre><code class="language-text" data-lang="text"># ソース取得。
+# wget http://redis.googlecode.com/files/redis-2.6.7.tar.gz
+#
+# tar xzf redis-2.6.7.tar.gz
+#
+# cd redis-2.6.7
+#
+# 続いてmakeを実行すると下記エラーが発生。
+# make
+
+cd src &amp;&amp; make all
+make[1]: ディレクトリ `/root/redis-2.6.7/src&#39; に入ります
+LINK redis-server
+zmalloc.o: In function `zmalloc_used_memory&#39;:
+/root/redis-2.6.7/src/zmalloc.c:223: undefined reference to `__sync_add_and_fetch_4&#39;
+collect2: ld はステータス 1 で終了しました
+make[1]: *** [redis-server] エラー 1
+make[1]: ディレクトリ `/root/redis-2.6.7/src&#39; から出ます
+make: *** [all] エラー 2
+
+# アーキテクチャを調べて、コンパイルオプションを指定。
+# uname -m
+
+i686
+
+# 
+# export CFLAGS=-march=i686
+#
+# make distclean
+# make
+# 下記メッセージが出てmakeは通ったらしい。
+
+Hint: To run &#39;make test&#39; is a good idea ;)
+
+# 続いてmake testを実行すると下記エラーが発生。
+# make test
+
+ERROR:
+*** [err]: SLOWLOG - RESET subcommand works in tests/unit/slowlog.tcl
+Expected &#39;0&#39; to equal or match &#39;1&#39;
+*** [err]: SLOWLOG - logged entry sanity check in tests/unit/slowlog.tcl
+Expected &#39;105&#39; to be equal to &#39;106&#39;
+Cleanup: may take some time... OK
+make[1]: *** [test] エラー 1
+make[1]: ディレクトリ `/root/redis-2.6.7/src&#39; から出ます
+make: *** [test] エラー 2
+
+# 構わずインストール。
+# make install
+# 
+# 起動。
+# redis-server
+#
+# 動作確認。
+# redis-cli PING
+
+PONG
+
+# redisサーバは起動しているようだ…
+</code></pre></div>
+<p><a href="http://www.eschrade.com/page/undefined-reference-to-__sync_add_and_fetch_4/">エラー時に参照したページ</a></p>
+
+  </div><!-- /.entry-content -->
+</article><!-- /.hentry -->
+
+<article class="hentry">
+  <header>
+    
+    <div class="entry-meta">
       <span class="entry-date date published updated"><time datetime="2013-07-04T20:00:00-04:00"><a href="/dell/dell_e5520_touchpad/">July 04, 2013</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About sankame">sankame</a></span></span>
       
       <span class="entry-reading-time">
@@ -427,42 +516,6 @@ EOS
 
 <p><a href="http://brandofme.vi-king.net/?p=197">参照したページ</a></p>
 
-  </div><!-- /.entry-content -->
-</article><!-- /.hentry -->
-
-<article class="hentry">
-  <header>
-    
-    <div class="entry-meta">
-      <span class="entry-date date published updated"><time datetime="2013-01-19T19:00:00-05:00"><a href="/openx/openx_structure1/">January 19, 2013</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About sankame">sankame</a></span></span>
-      
-      <span class="entry-reading-time">
-        <i class="fa fa-clock-o"></i>
-        
-        Reading time ~1 minute
-      </span><!-- /.entry-reading-time -->
-      
-    </div><!-- /.entry-meta -->
-    
-      <h1 class="entry-title"><a href="/openx/openx_structure1/" rel="bookmark" title="OpenX仕組み1 配信処理" itemprop="url">OpenX仕組み1 配信処理</a></h1>
-    
-  </header>
-  <div class="entry-content">
-    <p><span style="float:right;">投稿日：2013年01月19日</span></p>
-
-<h4>OpenX仕組みに関する自分用メモ　配信処理</h4>
-
-<h4>1.テーブル定義</h4>
-
-<p><a href="http://www.zulutime.org/openxschema/index.html">テーブル定義？</a></p>
-
-<h4>2.インプレッションカウント</h4>
-<div class="highlight"><pre><code class="language-text" data-lang="text">PHP : plugins/deliveryLog/oxLogImpression/logImpression.delivery.php
-        →lib/OA/Dal/Delivery/mysql.php:function OX_bucket_updateTable
-DB  : ox_data_bkt_m
-処理: INSERT(1レコード)
-概要: 
-</code></pre></div>
   </div><!-- /.entry-content -->
 </article><!-- /.hentry -->
 
