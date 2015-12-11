@@ -4,7 +4,7 @@
 <generator uri="https://github.com/mojombo/jekyll">Jekyll</generator>
 <link rel="self" type="application/atom+xml" href="/feed.xml" />
 <link rel="alternate" type="text/html" href="" />
-<updated>2015-12-09T10:40:25-05:00</updated>
+<updated>2015-12-11T14:31:04-05:00</updated>
 <id>/</id>
 <author>
   <name>sankame</name>
@@ -14,7 +14,7 @@
 
 
 <entry>
-  <title type="html"><![CDATA[Let's Encryptの無料SSLを利用]]></title>
+  <title type="html"><![CDATA[Let's Encryptの無料SSL証明書を利用]]></title>
  <link rel="alternate" type="text/html" href="/ssl-tls/letsencrypt_setup/" />
   <id>/ssl-tls/letsencrypt_setup</id>
   <published>2015-12-06T19:00:00-05:00</published>
@@ -50,7 +50,7 @@
 # cd letsencrypt
 # ./letsencrypt-auto --help
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;おお！ helpだから使い方が表示されるかと思いきや、依存関係のあるソフトがダウンロードされた・・・&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;おお！ helpだから使い方が表示されるかと思いきや、依存関係のあるパッケージがダウンロードされた・・・&lt;/p&gt;
 
 &lt;p&gt;しかも下記メッセージによると、どうやらPythonのバージョンが古くて失敗してるっぽい。&lt;/p&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;  ：
@@ -94,12 +94,14 @@ The error was: NoInstallationError()
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;ユーザーガイドによるとApache2.2系だとapacheプラグイン(--apache)は使えないようです。&lt;/p&gt;
 
-&lt;p&gt;となると、standaloneかwebrootのいずれかを実行しないといけません。&lt;/p&gt;
+&lt;p&gt;となると、下記の通りstandaloneかwebrootのいずれかを実行しないといけません。&lt;/p&gt;
 
 &lt;p&gt;If you want to use a webserver that doesn&amp;#39;t have full plugin support yet, you can still use &amp;quot;standalone&amp;quot; or &amp;quot;webroot&amp;quot; plugins to obtain a certificate: (&lt;a href=&quot;https://letsencrypt.readthedocs.org/en/latest/using.html#standalone&quot; target=&quot;_blank&quot;&gt;ユーザーガイド抜粋&lt;/a&gt;)&lt;/p&gt;
 
-&lt;p&gt;僕の場合、1つのサーバーに複数のvirtual hostを立てているのでwebrootプラグインを使います。&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;念のため、既に書いてあるvirtual hostの設定はコメントアウト。&lt;/p&gt;
+&lt;p&gt;僕の場合、1つのサーバーに複数のvirtual hostを立てているのでwebrootプラグインを使います。&lt;/p&gt;
+
+&lt;p&gt;さらにwebrootプラグインだとApache無停止でいけるそうです。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;念のため、既に書いてあるvirtual hostの設定はコメントアウトしてApache再起動。&lt;/p&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;#&amp;lt;VirtualHost *:443&amp;gt;
 #    ：
 # 【省略
@@ -109,6 +111,11 @@ The error was: NoInstallationError()
 &lt;li&gt;&lt;p&gt;下記コマンド実行。&lt;/p&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;# ./letsencrypt-auto certonly --webroot -w 【ドキュメントルート】 -d 【ドメイン名】
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;連絡用e-mailを入力し、利用規約を確認します。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/posts/img/letsencrypt_setup/enter_email.png&quot; target=&quot;_blank&quot;&gt;&lt;img width=&quot;80%&quot; height=&quot;80%&quot; title=&quot;email入力&quot; alt=&quot;email入力&quot; src=&quot;/assets/posts/img/letsencrypt_setup/enter_email.png&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/posts/img/letsencrypt_setup/read_terms_of_service.png&quot; target=&quot;_blank&quot;&gt;&lt;img width=&quot;80%&quot; height=&quot;80%&quot; title=&quot;利用規約&quot; alt=&quot;利用規約&quot; src=&quot;/assets/posts/img/letsencrypt_setup/read_terms_of_service.png&quot;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;エラーメッセージ。&lt;/p&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;Updating letsencrypt and virtual environment dependencies.......
 Running with virtualenv: /root/.local/share/letsencrypt/bin/letsencrypt certonly --webroot -w 【ドキュメントルート】 -d 【ドメイン名】
@@ -127,7 +134,7 @@ IMPORTANT NOTES:
 
 &lt;p&gt;試しにブラウザから上記URLにアクセス。&lt;/p&gt;
 
-&lt;p&gt;port80(http)にアクセスがあったらport443(https)にリダイレクトする設定にしていたためエラーになっていました。&lt;/p&gt;
+&lt;p&gt;port80(http)にアクセスがあったらport443(https)へリダイレクトする設定にしていたためエラーになっていました。&lt;/p&gt;
 
 &lt;p&gt;リダイレクトを無効にし、ブラウザから上記URLにアクセスできることを確認した上で、再度サーバー上で下記を実行。&lt;/p&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;# ./letsencrypt-auto certonly --webroot -w 【ドキュメントルート】 -d 【ドメイン名】
@@ -185,18 +192,11 @@ lrwxrwxrwx 1 root root 41 12月  6 03:43 2015 privkey.pem -&amp;gt; ../../archiv
 &lt;h3&gt;参考ページ&lt;/h3&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;p&gt;ユーザーガイド&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://letsencrypt.readthedocs.org/en/latest/using.html#installation&quot; target=&quot;_blank&quot;&gt;ユーザーガイド&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Let&amp;#39;s Encrypt クライアントツール&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://github.com/letsencrypt/letsencrypt&quot; target=&quot;_blank&quot;&gt;https://github.com/letsencrypt/letsencrypt&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;クローズド・ベータ時代に試した人のブログ&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://dev.classmethod.jp/server-side/lets-encrypt-beta/&quot; target=&quot;_blank&quot;&gt;http://dev.classmethod.jp/server-side/lets-encrypt-beta/&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&quot;https://letsencrypt.readthedocs.org/en/latest/using.html#installation&quot; target=&quot;_blank&quot;&gt;ユーザーガイド&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/letsencrypt/letsencrypt&quot; target=&quot;_blank&quot;&gt;Let&amp;#39;s Encrypt クライアントツール&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-    &lt;p&gt;&lt;a href=&quot;/ssl-tls/letsencrypt_setup/&quot;&gt;Let&#39;s Encryptの無料SSLを利用&lt;/a&gt; was originally published by sankame at &lt;a href=&quot;&quot;&gt;テキストブログ&lt;/a&gt; on December 06, 2015.&lt;/p&gt;
+    &lt;p&gt;&lt;a href=&quot;/ssl-tls/letsencrypt_setup/&quot;&gt;Let&#39;s Encryptの無料SSL証明書を利用&lt;/a&gt; was originally published by sankame at &lt;a href=&quot;&quot;&gt;テキストブログ&lt;/a&gt; on December 06, 2015.&lt;/p&gt;
   </content>
 </entry>
 

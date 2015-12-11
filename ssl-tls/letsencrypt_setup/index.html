@@ -5,7 +5,7 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
 <head>
 <meta charset="utf-8">
-<title>Let's Encryptの無料SSLを利用 &#8211; テキストブログ</title>
+<title>Let's Encryptの無料SSL証明書を利用 &#8211; テキストブログ</title>
 <meta name="description" content="あああああああ">
 <meta name="keywords" content="SSL-TLS, Let'sEncrypt">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -13,14 +13,14 @@
 <!-- Twitter Cards -->
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="/images/">
-<meta name="twitter:title" content="Let's Encryptの無料SSLを利用">
+<meta name="twitter:title" content="Let's Encryptの無料SSL証明書を利用">
 <meta name="twitter:description" content="あああああああ">
 <meta name="twitter:creator" content="@handycola">
 
 <!-- Open Graph -->
 <meta property="og:locale" content="en_US">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Let's Encryptの無料SSLを利用">
+<meta property="og:title" content="Let's Encryptの無料SSL証明書を利用">
 <meta property="og:description" content="あああああああ">
 <meta property="og:url" content="/ssl-tls/letsencrypt_setup/">
 <meta property="og:site_name" content="テキストブログ">
@@ -132,7 +132,7 @@
   <article class="hentry">
     <header class="header-title">
       <div class="header-title-wrap">
-        <h1 class="entry-title">Let's Encryptの無料SSLを利用</h1>
+        <h1 class="entry-title">Let's Encryptの無料SSL証明書を利用</h1>
         
         <p class="entry-reading-time">
           <i class="fa fa-clock-o"></i>
@@ -180,7 +180,7 @@
 # cd letsencrypt
 # ./letsencrypt-auto --help
 </code></pre></div></li>
-<li><p>おお！ helpだから使い方が表示されるかと思いきや、依存関係のあるソフトがダウンロードされた・・・</p>
+<li><p>おお！ helpだから使い方が表示されるかと思いきや、依存関係のあるパッケージがダウンロードされた・・・</p>
 
 <p>しかも下記メッセージによると、どうやらPythonのバージョンが古くて失敗してるっぽい。</p>
 <div class="highlight"><pre><code class="language-text" data-lang="text">  ：
@@ -224,12 +224,14 @@ The error was: NoInstallationError()
 </code></pre></div>
 <p>ユーザーガイドによるとApache2.2系だとapacheプラグイン(--apache)は使えないようです。</p>
 
-<p>となると、standaloneかwebrootのいずれかを実行しないといけません。</p>
+<p>となると、下記の通りstandaloneかwebrootのいずれかを実行しないといけません。</p>
 
 <p>If you want to use a webserver that doesn&#39;t have full plugin support yet, you can still use &quot;standalone&quot; or &quot;webroot&quot; plugins to obtain a certificate: (<a href="https://letsencrypt.readthedocs.org/en/latest/using.html#standalone" target="_blank">ユーザーガイド抜粋</a>)</p>
 
-<p>僕の場合、1つのサーバーに複数のvirtual hostを立てているのでwebrootプラグインを使います。</p></li>
-<li><p>念のため、既に書いてあるvirtual hostの設定はコメントアウト。</p>
+<p>僕の場合、1つのサーバーに複数のvirtual hostを立てているのでwebrootプラグインを使います。</p>
+
+<p>さらにwebrootプラグインだとApache無停止でいけるそうです。</p></li>
+<li><p>念のため、既に書いてあるvirtual hostの設定はコメントアウトしてApache再起動。</p>
 <div class="highlight"><pre><code class="language-text" data-lang="text">#&lt;VirtualHost *:443&gt;
 #    ：
 # 【省略
@@ -239,6 +241,11 @@ The error was: NoInstallationError()
 <li><p>下記コマンド実行。</p>
 <div class="highlight"><pre><code class="language-text" data-lang="text"># ./letsencrypt-auto certonly --webroot -w 【ドキュメントルート】 -d 【ドメイン名】
 </code></pre></div></li>
+<li><p>連絡用e-mailを入力し、利用規約を確認します。</p>
+
+<p><a href="/assets/posts/img/letsencrypt_setup/enter_email.png" target="_blank"><img width="80%" height="80%" title="email入力" alt="email入力" src="/assets/posts/img/letsencrypt_setup/enter_email.png"></a></p>
+
+<p><a href="/assets/posts/img/letsencrypt_setup/read_terms_of_service.png" target="_blank"><img width="80%" height="80%" title="利用規約" alt="利用規約" src="/assets/posts/img/letsencrypt_setup/read_terms_of_service.png"></a></p></li>
 <li><p>エラーメッセージ。</p>
 <div class="highlight"><pre><code class="language-text" data-lang="text">Updating letsencrypt and virtual environment dependencies.......
 Running with virtualenv: /root/.local/share/letsencrypt/bin/letsencrypt certonly --webroot -w 【ドキュメントルート】 -d 【ドメイン名】
@@ -257,7 +264,7 @@ IMPORTANT NOTES:
 
 <p>試しにブラウザから上記URLにアクセス。</p>
 
-<p>port80(http)にアクセスがあったらport443(https)にリダイレクトする設定にしていたためエラーになっていました。</p>
+<p>port80(http)にアクセスがあったらport443(https)へリダイレクトする設定にしていたためエラーになっていました。</p>
 
 <p>リダイレクトを無効にし、ブラウザから上記URLにアクセスできることを確認した上で、再度サーバー上で下記を実行。</p>
 <div class="highlight"><pre><code class="language-text" data-lang="text"># ./letsencrypt-auto certonly --webroot -w 【ドキュメントルート】 -d 【ドメイン名】
@@ -315,15 +322,8 @@ lrwxrwxrwx 1 root root 41 12月  6 03:43 2015 privkey.pem -&gt; ../../archive/�
 <h3>参考ページ</h3>
 
 <ul>
-<li><p>ユーザーガイド</p>
-
-<p><a href="https://letsencrypt.readthedocs.org/en/latest/using.html#installation" target="_blank">ユーザーガイド</a></p></li>
-<li><p>Let&#39;s Encrypt クライアントツール</p>
-
-<p><a href="https://github.com/letsencrypt/letsencrypt" target="_blank">https://github.com/letsencrypt/letsencrypt</a></p></li>
-<li><p>クローズド・ベータ時代に試した人のブログ</p>
-
-<p><a href="http://dev.classmethod.jp/server-side/lets-encrypt-beta/" target="_blank">http://dev.classmethod.jp/server-side/lets-encrypt-beta/</a></p></li>
+<li><p><a href="https://letsencrypt.readthedocs.org/en/latest/using.html#installation" target="_blank">ユーザーガイド</a></p></li>
+<li><p><a href="https://github.com/letsencrypt/letsencrypt" target="_blank">Let&#39;s Encrypt クライアントツール</a></p></li>
 </ul>
 
       <div>
