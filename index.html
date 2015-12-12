@@ -221,7 +221,7 @@ Python 2.6.6
 <li><p>続けてドメイン認証を試みます。</p>
 <div class="highlight"><pre><code class="language-text" data-lang="text"># ./letsencrypt-auto --apache -d 【ドメイン名】
 </code></pre></div></li>
-<li><p>エラーメッセージが・・・</p>
+<li><p>エラーメッセージが・・・(【】内は読み替え)</p>
 <div class="highlight"><pre><code class="language-text" data-lang="text">Updating letsencrypt and virtual environment dependencies.......
 Running with virtualenv: /root/.local/share/letsencrypt/bin/letsencrypt --apache -d 【ドメイン名】
 Version: 1.1-20080819
@@ -293,7 +293,7 @@ IMPORTANT NOTES:
    Donating to EFF:                    https://eff.org/donate-le
 </code></pre></div></li>
 <li><p>この後どうすれば・・・？</p></li>
-<li><p>ユーザーガイドによると、apahceプラグインなら全自動で設定してくれるようですが、今回は使ってないので手動で証明書ファイル設定する必要あり。</p></li>
+<li><p>ユーザーガイドによると、apahceプラグインなら全自動で設定してくれるようですが、今回は使ってないので手動で証明書ファイルを設定する必要あり。</p></li>
 <li><p>上記メッセージのパスを覗いてみると、必要なファイル一式がありました。</p>
 <div class="highlight"><pre><code class="language-text" data-lang="text"># ll /etc/letsencrypt/live/【ドメイン名】
 #
@@ -315,15 +315,14 @@ lrwxrwxrwx 1 root root 41 12月  6 03:43 2015 privkey.pem -&gt; ../../archive/�
     ErrorLog  logs/【ドメイン名】-error_log
     CustomLog logs/【ドメイン名】-access_log common
 &lt;/VirtualHost&gt;
-</code></pre></div></li>
-<li><p>再起動。</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text"># service httpd restart
+</code></pre></div><div class="highlight"><pre><code class="language-text" data-lang="text"># service httpd restart
 </code></pre></div></li>
 <li><p>httpからhttpsへのリダイレクト設定も元に戻します。</p></li>
-<li><p>FirefoxでサイトにアクセスするとSSLマークが表示されました！(ドメイン名はマスクしています)</p>
+<li><p>ブラウザでサイトにアクセスするとSSLマークが表示されました！(ドメイン名はマスク済み)</p>
 
 <p><a href="/assets/posts/img/letsencrypt_setup/browser.png" target="_blank"><img width="50%" height="50%" title="ブラウザSSL表示" alt="ブラウザSSL表示" src="/assets/posts/img/letsencrypt_setup/browser.png"></a></p></li>
 <li><p>Let&#39;s Enctyptは有効期間が比較的短いので、SSL証明書の次回更新日をスケジュール帳に書き込んでおしまい。(自動化できないかしら)</p></li>
+<li><p>組織の実在証明はありませんが、個人で暗号化メインならこれで十分ですね。何より無料がうれしいです。</p></li>
 </ul>
 
 <h3>参考ページ</h3>

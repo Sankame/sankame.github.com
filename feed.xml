@@ -4,7 +4,7 @@
 <generator uri="https://github.com/mojombo/jekyll">Jekyll</generator>
 <link rel="self" type="application/atom+xml" href="/feed.xml" />
 <link rel="alternate" type="text/html" href="" />
-<updated>2015-12-11T14:36:18-05:00</updated>
+<updated>2015-12-12T11:23:18-05:00</updated>
 <id>/</id>
 <author>
   <name>sankame</name>
@@ -84,7 +84,7 @@ Python 2.6.6
 &lt;li&gt;&lt;p&gt;続けてドメイン認証を試みます。&lt;/p&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;# ./letsencrypt-auto --apache -d 【ドメイン名】
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;エラーメッセージが・・・&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;エラーメッセージが・・・(【】内は読み替え)&lt;/p&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;Updating letsencrypt and virtual environment dependencies.......
 Running with virtualenv: /root/.local/share/letsencrypt/bin/letsencrypt --apache -d 【ドメイン名】
 Version: 1.1-20080819
@@ -156,7 +156,7 @@ IMPORTANT NOTES:
    Donating to EFF:                    https://eff.org/donate-le
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;この後どうすれば・・・？&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;ユーザーガイドによると、apahceプラグインなら全自動で設定してくれるようですが、今回は使ってないので手動で証明書ファイル設定する必要あり。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;ユーザーガイドによると、apahceプラグインなら全自動で設定してくれるようですが、今回は使ってないので手動で証明書ファイルを設定する必要あり。&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;上記メッセージのパスを覗いてみると、必要なファイル一式がありました。&lt;/p&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;# ll /etc/letsencrypt/live/【ドメイン名】
 #
@@ -178,15 +178,14 @@ lrwxrwxrwx 1 root root 41 12月  6 03:43 2015 privkey.pem -&amp;gt; ../../archiv
     ErrorLog  logs/【ドメイン名】-error_log
     CustomLog logs/【ドメイン名】-access_log common
 &amp;lt;/VirtualHost&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;再起動。&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;# service httpd restart
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;# service httpd restart
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;httpからhttpsへのリダイレクト設定も元に戻します。&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;FirefoxでサイトにアクセスするとSSLマークが表示されました！(ドメイン名はマスクしています)&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;ブラウザでサイトにアクセスするとSSLマークが表示されました！(ドメイン名はマスク済み)&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&quot;/assets/posts/img/letsencrypt_setup/browser.png&quot; target=&quot;_blank&quot;&gt;&lt;img width=&quot;50%&quot; height=&quot;50%&quot; title=&quot;ブラウザSSL表示&quot; alt=&quot;ブラウザSSL表示&quot; src=&quot;/assets/posts/img/letsencrypt_setup/browser.png&quot;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;Let&amp;#39;s Enctyptは有効期間が比較的短いので、SSL証明書の次回更新日をスケジュール帳に書き込んでおしまい。(自動化できないかしら)&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;組織の実在証明はありませんが、個人で暗号化メインならこれで十分ですね。何より無料がうれしいです。&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h3&gt;参考ページ&lt;/h3&gt;
