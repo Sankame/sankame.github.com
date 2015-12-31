@@ -148,6 +148,111 @@
   <header>
     
     <div class="entry-meta">
+      <span class="entry-date date published updated"><time datetime="2013-01-27T19:00:00-05:00"><a href="/mecab/mecab_install/">January 27, 2013</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About sankame">sankame</a></span></span>
+      
+      <span class="entry-reading-time">
+        <i class="fa fa-clock-o"></i>
+        
+        Reading time ~1 minute
+      </span><!-- /.entry-reading-time -->
+      
+    </div><!-- /.entry-meta -->
+    
+      <h1 class="entry-title"><a href="/mecab/mecab_install/" rel="bookmark" title="MeCabインストール" itemprop="url">MeCabインストール</a></h1>
+    
+  </header>
+  <div class="entry-content">
+    <p><span style="float:right;">投稿日：2013年01月27日</span></p>
+
+<h4>形態素解析エンジンMeCabをインストールしてみる。</h4>
+
+<h5>環境</h5>
+<div class="highlight"><pre><code class="language-text" data-lang="text">[CentOS] 5.6 (32bit版カーネル)
+</code></pre></div>
+<h5>1.インストール</h5>
+<div class="highlight"><pre><code class="language-text" data-lang="text"># mecabのソースを取得
+# wget http://mecab.googlecode.com/files/mecab-0.98.tar.gz
+# tar xzf mecab-0.98.tar.gz 
+# cd mecab-0.98
+# cd src
+
+# mecab.hを開いて点線で囲んだ部分を修正する。数字に付けられている()を削除する。
+# vim mecab.h 
+--------------------------------------
+    #define MECAB_NOR_NODE  0
+    #define MECAB_UNK_NODE  1
+    #define MECAB_BOS_NODE  2
+    #define MECAB_EOS_NODE  3
+    #define MECAB_EON_NODE  4
+
+    #define MECAB_USR_DIC   1
+    #define MECAB_SYS_DIC   0
+    #define MECAB_UNK_DIC   2
+--------------------------------------
+
+# cd ..
+
+# ./configure --with-charset=utf-8
+# make
+# make install
+
+# cd ..
+
+# 辞書のソースを取得
+# wget http://downloads.sourceforge.net/project/mecab/mecab-ipadic/2.7.0-20070801/mecab-ipadic-2.7.0-20070801.tar.gz
+# tar zxvf mecab-ipadic-2.7.0-20070801.tar.gz
+# cd mecab-ipadic-2.7.0-20070801
+
+# char.def を開いて点線で囲んだ部分を修正する。オリジナルの部分をコメントアウトし、7行追加。
+# vim char.def 
+--------------------------------------
+    # ASCII
+     #0x0021..0x002F SYMBOL
+     #0x0030..0x0039 NUMERIC
+     #0x003A..0x0040 SYMBOL
+     #0x0041..0x005A ALPHA
+     #0x005B..0x0060 SYMBOL
+     #0x0061..0x007A ALPHA
+     #0x007B..0x007E SYMBOL
+     0x0021..0x002F ALPHA
+     0x0030..0x0039 ALPHA
+     0x003A..0x0040 ALPHA
+     0x0041..0x005A ALPHA
+     0x005B..0x0060 ALPHA
+     0x0061..0x007A ALPHA
+     0x007B..0x007E ALPHA
+--------------------------------------
+
+./configure --with-charset=utf-8
+make
+make install
+</code></pre></div>
+<h5>2.テスト</h5>
+<div class="highlight"><pre><code class="language-text" data-lang="text"># 以下のようにmecabと打ってEnterキーを押すと待機状態になるので、次に解析したい文字列を入力する。
+# mecab
+# すもももももももものうち
+
+すもももももももものうち
+すもも  名詞,一般,*,*,*,*,すもも,スモモ,スモモ
+も      助詞,係助詞,*,*,*,*,も,モ,モ
+もも    名詞,一般,*,*,*,*,もも,モモ,モモ
+も      助詞,係助詞,*,*,*,*,も,モ,モ
+もも    名詞,一般,*,*,*,*,もも,モモ,モモ
+の      助詞,連体化,*,*,*,*,の,ノ,ノ
+うち    名詞,非自立,副詞可能,*,*,*,うち,ウチ,ウチ
+EOS
+</code></pre></div>
+<p><a href="/MeCab/2013/04/29/php_mecab/">PHPから利用する方法はこちら</a></p>
+
+<p><a href="http://brandofme.vi-king.net/?p=197">参照したページ</a></p>
+
+  </div><!-- /.entry-content -->
+</article><!-- /.hentry -->
+
+<article class="hentry">
+  <header>
+    
+    <div class="entry-meta">
       <span class="entry-date date published updated"><time datetime="2013-01-19T19:00:00-05:00"><a href="/openx/openx_structure1/">January 19, 2013</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About sankame">sankame</a></span></span>
       
       <span class="entry-reading-time">
@@ -473,33 +578,6 @@ $ crontab -e
 
 $ crontab -l | diff crontab.bak -
 </code></pre></div>
-  </div><!-- /.entry-content -->
-</article><!-- /.hentry -->
-
-<article class="hentry">
-  <header>
-    
-    <div class="entry-meta">
-      <span class="entry-date date published updated"><time datetime="2012-12-27T19:00:00-05:00"><a href="/php/php_sample_viaisset/">December 27, 2012</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About sankame">sankame</a></span></span>
-      
-      <span class="entry-reading-time">
-        <i class="fa fa-clock-o"></i>
-        
-        Reading time ~1 minute
-      </span><!-- /.entry-reading-time -->
-      
-    </div><!-- /.entry-meta -->
-    
-      <h1 class="entry-title"><a href="/php/php_sample_viaisset/" rel="bookmark" title="PHPサンプル isset関数化" itemprop="url">PHPサンプル isset関数化</a></h1>
-    
-  </header>
-  <div class="entry-content">
-    <p><span style="float:right;">投稿日：2012年12月27日</span></p>
-
-<h4>&quot;Undefined index&quot; Noticeを防ぐためのissetが冗長なので関数化。</h4>
-
-<script src="https://gist.github.com/4389910.js"></script>
-
   </div><!-- /.entry-content -->
 </article><!-- /.hentry -->
 

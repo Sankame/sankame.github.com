@@ -4,13 +4,54 @@
 <generator uri="https://github.com/mojombo/jekyll">Jekyll</generator>
 <link rel="self" type="application/atom+xml" href="/feed.xml" />
 <link rel="alternate" type="text/html" href="" />
-<updated>2015-12-12T11:23:18-05:00</updated>
+<updated>2015-12-31T09:35:36-05:00</updated>
 <id>/</id>
 <author>
   <name>sankame</name>
   <uri>/</uri>
   <email>m2ad0504@outlook.jp</email>
 </author>
+
+
+<entry>
+  <title type="html"><![CDATA[プログラミング問題A]]></title>
+ <link rel="alternate" type="text/html" href="/programming-practice/programming_practice_A/" />
+  <id>/programming-practice/programming_practice_A</id>
+  <published>2015-12-30T19:00:00-05:00</published>
+  <updated>2015-12-30T19:00:00-05:00</updated>
+  <author>
+    <name>sankame</name>
+    <uri></uri>
+    <email>m2ad0504@outlook.jp</email>
+  </author>
+  <content type="html">
+    &lt;p&gt;&lt;span style=&quot;float:right;&quot;&gt;投稿日：2015年12月30日&lt;/span&gt;&lt;/p&gt;
+
+&lt;h3&gt;環境&lt;/h3&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;[CentOS]   5.6 (32bit版カーネル) 
+[PHP]      5.4.17
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;問題A-1&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;任意の10進数の値をn進数に変換できる関数を作成して下さい。(nは1～16の正の整数)&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;サンプルはPHP。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3&gt;サンプルA-1&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;実行方法&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;php changeDecimalToBaseN.php
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;ソース&lt;/p&gt;
+
+&lt;script src=&quot;https://gist.github.com/Sankame/87f7b5050a802e5e5710.js&quot;&gt;&lt;/script&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+    &lt;p&gt;&lt;a href=&quot;/programming-practice/programming_practice_A/&quot;&gt;プログラミング問題A&lt;/a&gt; was originally published by sankame at &lt;a href=&quot;&quot;&gt;テキストブログ&lt;/a&gt; on December 30, 2015.&lt;/p&gt;
+  </content>
+</entry>
 
 
 <entry>
@@ -1631,164 +1672,6 @@ Percentage of the requests served within a certain time (ms)
 &lt;/ul&gt;
 
     &lt;p&gt;&lt;a href=&quot;/selenium/selenium_webdriver/&quot;&gt;Selenium WebDriverを動かしてみる&lt;/a&gt; was originally published by sankame at &lt;a href=&quot;&quot;&gt;テキストブログ&lt;/a&gt; on May 23, 2014.&lt;/p&gt;
-  </content>
-</entry>
-
-
-<entry>
-  <title type="html"><![CDATA[Jekyllを1.0.2へバージョンアップ]]></title>
- <link rel="alternate" type="text/html" href="/jekyll/jekyll_version_up/" />
-  <id>/jekyll/jekyll_version_up</id>
-  <published>2014-05-17T20:00:00-04:00</published>
-  <updated>2014-05-17T20:00:00-04:00</updated>
-  <author>
-    <name>sankame</name>
-    <uri></uri>
-    <email>m2ad0504@outlook.jp</email>
-  </author>
-  <content type="html">
-    &lt;p&gt;&lt;span style=&quot;float:right;&quot;&gt;投稿日：2014年05月17日&lt;/span&gt;&lt;/p&gt;
-
-&lt;h5&gt;0.環境&lt;/h5&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;[CentOS]     5.6 (32bit版カーネル)
-[ruby]       2.1.1p76
-[rvm]        1.25.25
-[jekyll]     0.11.2 =&amp;gt; 1.0.2
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;h5&gt;1.インストール &lt;a href=&quot;http://melborne.github.io/2013/05/20/now-the-time-to-start-jekyll/&quot;&gt;参考ページ&lt;/a&gt;&lt;/h5&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;インストール&lt;/p&gt;
-
-&lt;p&gt;本ブログはjekyll 0.11.2で作成してきましたが、別件でrubyのバージョンを上げたことでjekyllが動か&lt;/p&gt;
-
-&lt;p&gt;なくなってしまったため、思い切って1.0.2への移行を行いました。&lt;a href=&quot;http://sankame.github.io/Jekyll/2012/12/23/jekyll_and_github/&quot;&gt;初期インストールの内容&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;いくつかハマった点を共有します。&lt;/p&gt;
-
-&lt;p&gt;まず、複数バージョンのrubyを使いたかったので下記ページに沿ってrvmをインストール。&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://d.hatena.ne.jp/mrgoofy33/20110518/1305649544&quot;&gt;rvmインストール&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;rootで実行したためか /usr/local/rvm にインストールされたので、上記記事内のパスは読み替えました。&lt;/p&gt;
-
-&lt;p&gt;ruby 2.1.1をインストール。&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;# rvm install 2.1.1
-# rvm use  2.1.1
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;適当な場所にGemfileを作成し、jekyllを追記してインストール開始。&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;# bundle init
-# echo &amp;quot;gem &amp;#39;jekyll&amp;#39;, &amp;#39;1.0.2&amp;#39;&amp;quot; &amp;gt;&amp;gt; Gemfile
-# bundle install
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;インストールされたことを確認します。&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;# gem list|grep jekyll
-jekyll (1.0.2)
-jekyll-coffeescript (1.0.0)
-jekyll-sass-converter (1.0.0)
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;起動&lt;/p&gt;
-
-&lt;p&gt;任意の場所へ移動し、bootstrapをダウンロードします。&lt;a href=&quot;http://jekyllbootstrap.com/usage/jekyll-quick-start.html&quot;&gt;bootstrapクイックスタート&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;(前バージョンとは別の場所にしました)&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;# cd /var/www/html/jekyll2/
-# git clone https://github.com/plusjade/jekyll-bootstrap.git
-# cd jekyll-bootstrap
-# jekyll serve --watch
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h5&gt;2.引越し&lt;/h5&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;ファイルコピー&lt;/p&gt;
-
-&lt;p&gt;前バージョンの設定ファイルや記事を新バージョンへコピーします。&lt;/p&gt;
-
-&lt;p&gt;(自分の環境に合わせて必要なものをコピーして下さい)&lt;/p&gt;
-
-&lt;p&gt;(1) diffを確認しながら部分ごとコピー&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;index.md
-_config.yml
-categories.html
-tags.html
-pages.html
-archive.html
-404.html
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;(2) ディレクトリ単位で上書きコピー&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;_includes/JB
-_includes/themes/twitter
-_layouts
-_posts
-assets
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;動かない①&lt;/p&gt;
-
-&lt;p&gt;_posts 内でサンプルコードとして下記の記述があると、jekyllが停止してしまいました。&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;　&amp;lt;?php
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;原因が分からなかったので、gistにコード部分をアップしjekyllで読み込ませることにしました。&lt;/p&gt;
-
-&lt;p&gt;gistは下記のように記述する必要があります。(【】 内は読み替え)&lt;/p&gt;
-
-&lt;p&gt;{% gist     【gistのID】  【ファイル名】 %}&lt;/p&gt;
-
-&lt;p&gt;ところが、gistのIDにアルファベットが含まれるのに、jekyll側は数字のみしか対応していなか&lt;/p&gt;
-
-&lt;p&gt;ったためローカルjekyllの下記箇所を修正しました。(jekyll 1.x系の最新(1.4)では直ってました)&lt;/p&gt;
-
-&lt;p&gt;・ソース&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;/usr/local/rvm/gems/ruby-2.1.1/gems/jekyll-1.0.2/lib/jekyll/tags/gist.rb
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;・修正内容 (IDにアルファベットを許可)&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;# diff  gist.rb.org  gist.rb
-10c10
-&amp;lt; if tag_contents = @markup.strip.match(/\A(\d+) ?(\S*)\Z/)
-　---
-&amp;gt; if tag_contents = @markup.strip.match(/\A([0-9a-fA-F]+) ?(\S*)\Z/)
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;動かない②&lt;/p&gt;
-
-&lt;p&gt;新旧の記事ページの比較をしていたところ、URLが違うことに気付きました。&lt;/p&gt;
-
-&lt;p&gt;前バージョンだと _posts 内の記事のヘッダ部分で定義するカテゴリに大文字を使っている場合、&lt;/p&gt;
-
-&lt;p&gt;_site に生成されるディレクトリもそのまま大文字になります。&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;category : Jekyll
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;ところが、新バージョンだと全部小文字に変換され、下記の差が出てしまいます。&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;(前バージョン)
-http://localhost:4000/Jekyll/2014/05/18/jekyll_version_up/
-
-(新バージョン)
-http://localhost:4000/jekyll/2014/05/18/jekyll_version_up/
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;一度インターネットに公開したURLが変わるのは困ります…&lt;/p&gt;
-
-&lt;p&gt;仕方がないので、ローカルのjekyllソースを下記のように修正しました。&lt;/p&gt;
-
-&lt;p&gt;・ソース&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;/usr/local/rvm/gems/ruby-2.1.1/gems/jekyll-1.0.2/lib/jekyll/post.rb
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;・修正内容 (小文字変換を削除)&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;# diff post.rb.org post.rb
-79c79
-&amp;lt; self.categories = self.data.pluralized_array(&amp;#39;category&amp;#39;, &amp;#39;categories&amp;#39;).map {|c| c.to_s.downcase}
-　---
-&amp;gt; self.categories = self.data.pluralized_array(&amp;#39;category&amp;#39;, &amp;#39;categories&amp;#39;).map {|c| c.to_s}
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;参考ページ&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://melborne.github.io/2013/05/20/now-the-time-to-start-jekyll/&quot;&gt;Jekyll Version 1.0&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://melborne.github.io/2012/05/13/first-step-of-jekyll/&quot;&gt;Jekyllを理解する&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://krakenbeal.blogspot.jp/2012/05/ruby-jekyll-jekyll-bootstrap.html&quot;&gt;jekyllとjekyll-bootstrapで静的サイトを作る&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-    &lt;p&gt;&lt;a href=&quot;/jekyll/jekyll_version_up/&quot;&gt;Jekyllを1.0.2へバージョンアップ&lt;/a&gt; was originally published by sankame at &lt;a href=&quot;&quot;&gt;テキストブログ&lt;/a&gt; on May 17, 2014.&lt;/p&gt;
   </content>
 </entry>
 
