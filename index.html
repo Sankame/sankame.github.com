@@ -283,7 +283,7 @@ The error was: NoInstallationError()
 <p>僕の場合、1つのサーバーに複数のvirtual hostを立てているのでwebrootプラグインを使います。</p>
 
 <p>さらにwebrootプラグインだとApache無停止でいけるそうです。</p></li>
-<li><p>念のため、既に書いてあるvirtual hostの設定はコメントアウトしてApache再起動。</p>
+<li><p>念のため、既に書いてあったSSL用のvirtual hostはコメントアウトしてApache再起動。</p>
 <div class="highlight"><pre><code class="language-text" data-lang="text">#&lt;VirtualHost *:443&gt;
 #    ：
 # 【省略
@@ -316,7 +316,7 @@ IMPORTANT NOTES:
 
 <p>試しにブラウザから上記URLにアクセス。</p>
 
-<p>port80(http)にアクセスがあったらport443(https)へリダイレクトする設定にしていたためエラーになっていました。</p>
+<p>元々、port80(http)からport443(https)へリダイレクトする設定にしていたためエラーになっていました。</p>
 
 <p>リダイレクトを無効にし、ブラウザから上記URLにアクセスできることを確認した上で、再度サーバー上で下記を実行。</p>
 <div class="highlight"><pre><code class="language-text" data-lang="text"># ./letsencrypt-auto certonly --webroot -w 【ドキュメントルート】 -d 【ドメイン名】
@@ -703,7 +703,7 @@ at Error (native)
 
 <div class="footer-wrapper">
   <footer role="contentinfo">
-    <span>&copy; 2015 sankame. Powered by <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> using the <a href="http://mademistakes.com/hpstr/" rel="notfollow">HPSTR Theme</a>.</span>
+    <span>&copy; 2016 sankame. Powered by <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> using the <a href="http://mademistakes.com/hpstr/" rel="notfollow">HPSTR Theme</a>.</span>
   </footer>
 </div><!-- /.footer-wrapper -->
 
