@@ -4,13 +4,69 @@
 <generator uri="https://github.com/mojombo/jekyll">Jekyll</generator>
 <link rel="self" type="application/atom+xml" href="/feed.xml" />
 <link rel="alternate" type="text/html" href="" />
-<updated>2016-01-01T12:25:18-05:00</updated>
+<updated>2016-02-07T11:17:26-05:00</updated>
 <id>/</id>
 <author>
   <name>sankame</name>
   <uri>/</uri>
   <email>m2ad0504@outlook.jp</email>
 </author>
+
+
+<entry>
+  <title type="html"><![CDATA[setVibrateメソッドの使い方]]></title>
+ <link rel="alternate" type="text/html" href="/android/notification_compat_builder_setvibrate/" />
+  <id>/android/notification_compat_builder_setvibrate</id>
+  <published>2016-02-07T19:00:00-05:00</published>
+  <updated>2016-02-07T19:00:00-05:00</updated>
+  <author>
+    <name>sankame</name>
+    <uri></uri>
+    <email>m2ad0504@outlook.jp</email>
+  </author>
+  <content type="html">
+    &lt;p&gt;&lt;span style=&quot;float:right;&quot;&gt;投稿日：2016年02月07日&lt;/span&gt;&lt;/p&gt;
+
+&lt;h3&gt;環境&lt;/h3&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;[Android SDK]  API 21: Android 5.0(Lollipop)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;実装&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;スマートウォッチ(Android Wear)に通知を送るため、NotificationCompat.Builder の&lt;/p&gt;
+
+&lt;p&gt;setVibrateメソッドを使った際の自分用メモ。&lt;/p&gt;
+
+&lt;p&gt;バイブレーション・パターンの設定は下記仕様ですが、&lt;/p&gt;
+
+&lt;p&gt;long型配列の&lt;font color=&quot;green&quot;&gt;&lt;b&gt;1つ目の要素を除いて、偶数は振動、奇数は休止&lt;/b&gt;&lt;/font&gt;&lt;/p&gt;
+
+&lt;p&gt;と覚えておけば良さそうです。&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;n&quot;&gt;NotificationCompat&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;Builder&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;builder&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;NotificationCompat&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;Builder&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;getApplicationContext&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// 単位はミリ秒&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// &lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// 要素1 : 振動開始までの時間&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// 要素2 : 振動&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// 要素3 : 休止&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// 要素4 : (これ以降は要素2-3の繰り返し)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;builder&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setVibrate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;long&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]{&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;500&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;250&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;500&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;250&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1000&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;});&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;下記の例だと、ツー・ツ・ツ　みたいな感じになります。&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;c1&quot;&gt;// 1秒振動、0.1秒休止、0.1秒振動、0.05秒休止、0.1秒振動&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;builder&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setVibrate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;long&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]{&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1000&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;50&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;});&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3&gt;関連リンク&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html&quot; target=&quot;_blank&quot;&gt;API : NotificationCompat.Builder&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+    &lt;p&gt;&lt;a href=&quot;/android/notification_compat_builder_setvibrate/&quot;&gt;setVibrateメソッドの使い方&lt;/a&gt; was originally published by sankame at &lt;a href=&quot;&quot;&gt;テキストブログ&lt;/a&gt; on February 07, 2016.&lt;/p&gt;
+  </content>
+</entry>
 
 
 <entry>
@@ -1574,104 +1630,6 @@ Percentage of the requests served within a certain time (ms)
 &lt;/ul&gt;
 
     &lt;p&gt;&lt;a href=&quot;/selenium/jenkins_selenium/&quot;&gt;Jenkins から Seleniumを動かしてみる&lt;/a&gt; was originally published by sankame at &lt;a href=&quot;&quot;&gt;テキストブログ&lt;/a&gt; on June 03, 2014.&lt;/p&gt;
-  </content>
-</entry>
-
-
-<entry>
-  <title type="html"><![CDATA[Selenium WebDriverを動かしてみる]]></title>
- <link rel="alternate" type="text/html" href="/selenium/selenium_webdriver/" />
-  <id>/selenium/selenium_webdriver</id>
-  <published>2014-05-23T20:00:00-04:00</published>
-  <updated>2014-05-23T20:00:00-04:00</updated>
-  <author>
-    <name>sankame</name>
-    <uri></uri>
-    <email>m2ad0504@outlook.jp</email>
-  </author>
-  <content type="html">
-    &lt;p&gt;&lt;span style=&quot;float:right;&quot;&gt;投稿日：2014年05月23日&lt;/span&gt;&lt;/p&gt;
-
-&lt;h5&gt;0.環境&lt;/h5&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;・親ノード端末
-  [CentOS]   5.6 (32bit版カーネル)
-  [ruby]     2.1.1p76
-  [rvm]      1.25.25
-  [java]     1.7.0_51
-
-・子ノード端末
-  [Windows]  Vista Home Premium (32bit)
-  [java]     1.7.0_51
-  [IE]       8
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;h5&gt;1.準備&lt;/h5&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;動機&lt;/p&gt;
-
-&lt;p&gt;ブラウザテストの自動化に興味があり、面白そうな記事があったので自分でも試してみました。&lt;/p&gt;
-
-&lt;p&gt;(Jenkinsとの連携は今回やっていません)&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://blog.takuros.net/entry/20130305/1362437720&quot;&gt;JenkinsとSelenium WebDriverでUI層のテストも自動化＆永続化する&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;親ノード&lt;/p&gt;
-
-&lt;p&gt;親ノード端末の適当なディレクトリに Selenium Server をダウンロード後、起動します。&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;# cd /usr/local/bin/
-# wget http://selenium-release.storage.googleapis.com/2.41/selenium-server-standalone-2.41.0.jar
-# java -jar selenium-server-standalone-2.41.0.jar -role hub
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;子ノード&lt;/p&gt;
-
-&lt;p&gt;子ノード端末の適当なフォルダに Selenium Server とIEドライバーをダウンロード後、起動します。&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://docs.seleniumhq.org/download/&quot;&gt;ダウンロードサイト&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;まず、&amp;quot;Selenium Server (formerly the Selenium RC Server)&amp;quot; をダウンロード。&lt;/p&gt;
-
-&lt;p&gt;次に、&amp;quot;The Internet Explorer Driver Server&amp;quot; をダウンロード。&lt;/p&gt;
-
-&lt;p&gt;(アーキテクチャによって32bitまたは64bitを選択)&lt;/p&gt;
-
-&lt;p&gt;コマンドプロンプトを開いて、ダウンロードしたフォルダに移動し Selenium Server を起動。&lt;/p&gt;
-
-&lt;p&gt;(192.168.130.130 は自分の環境の親ノードIPに読み替え)&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;&amp;gt; cd C:\apps\selenium
-&amp;gt; java -jar selenium-server-standalone-2.41.0.jar -role webdriver -hub http://192.168.130.130:4444/grid/register -Dwebdriver.ie.driver=./IEDriverServer.exe
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;IEドライバーを起動するには、IEの[ツール]-[インターネットオプション]-[セキュリティ]で全ての&lt;/p&gt;
-
-&lt;p&gt;ゾーンの「保護モード」を同じにしておく必要があります。&lt;a href=&quot;https://selenium.googlecode.com/issues/attachment?aid=17950019000&amp;amp;name=1.png&amp;amp;token=ABZ6GAdCiZEHCiZBk5mmjW1I9awHy0ZHtQ%3A1400944855099&amp;amp;inline=1&quot;&gt;画面キャプチャ&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://qiita.com/Kackey/items/c5dded9a6762c1a8cccf&quot;&gt;参考記事&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h5&gt;2.起動&lt;/h5&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;IE起動&lt;/p&gt;
-
-&lt;p&gt;親ノード端末に置いたプログラムから、子ノード端末のIEを起動します。&lt;/p&gt;
-
-&lt;p&gt;親ノード端末の適当なディレクトリに下記スクリプトを配置。&lt;/p&gt;
-
-&lt;p&gt;(192.168.130.130 は自分の環境の親ノードIPに読み替え)&lt;/p&gt;
-
-&lt;script src=&quot;https://gist.github.com/105475ff842cd9bf6ad6.js?file=seleniumtest.rb&quot;&gt; &lt;/script&gt;
-
-&lt;p&gt;スクリプト内で selenium-webdriver を使っているので、予めインストールしておきます。&lt;/p&gt;
-
-&lt;p&gt;(適当なディレクトリへ移動し、依存関係を気にしたくないのでbundleを使ってインストール)&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;# bundle init
-# echo &amp;quot;gem &amp;#39;selenium-webdriver&amp;#39;&amp;quot; &amp;gt;&amp;gt; Gemfile
-# bundle install
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;プログラムを実行し、子ノード端末でIEが起動すれば成功です。&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;# ruby /app/seleniumtest/seleniumtest.rb
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-    &lt;p&gt;&lt;a href=&quot;/selenium/selenium_webdriver/&quot;&gt;Selenium WebDriverを動かしてみる&lt;/a&gt; was originally published by sankame at &lt;a href=&quot;&quot;&gt;テキストブログ&lt;/a&gt; on May 23, 2014.&lt;/p&gt;
   </content>
 </entry>
 

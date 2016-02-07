@@ -148,6 +148,108 @@
   <header>
     
     <div class="entry-meta">
+      <span class="entry-date date published updated"><time datetime="2014-05-23T20:00:00-04:00"><a href="/selenium/selenium_webdriver/">May 23, 2014</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About sankame">sankame</a></span></span>
+      
+      <span class="entry-reading-time">
+        <i class="fa fa-clock-o"></i>
+        
+        Reading time ~1 minute
+      </span><!-- /.entry-reading-time -->
+      
+    </div><!-- /.entry-meta -->
+    
+      <h1 class="entry-title"><a href="/selenium/selenium_webdriver/" rel="bookmark" title="Selenium WebDriverを動かしてみる" itemprop="url">Selenium WebDriverを動かしてみる</a></h1>
+    
+  </header>
+  <div class="entry-content">
+    <p><span style="float:right;">投稿日：2014年05月23日</span></p>
+
+<h5>0.環境</h5>
+<div class="highlight"><pre><code class="language-text" data-lang="text">・親ノード端末
+  [CentOS]   5.6 (32bit版カーネル)
+  [ruby]     2.1.1p76
+  [rvm]      1.25.25
+  [java]     1.7.0_51
+
+・子ノード端末
+  [Windows]  Vista Home Premium (32bit)
+  [java]     1.7.0_51
+  [IE]       8
+</code></pre></div>
+<h5>1.準備</h5>
+
+<ul>
+<li><p>動機</p>
+
+<p>ブラウザテストの自動化に興味があり、面白そうな記事があったので自分でも試してみました。</p>
+
+<p>(Jenkinsとの連携は今回やっていません)</p>
+
+<p><a href="http://blog.takuros.net/entry/20130305/1362437720">JenkinsとSelenium WebDriverでUI層のテストも自動化＆永続化する</a></p></li>
+<li><p>親ノード</p>
+
+<p>親ノード端末の適当なディレクトリに Selenium Server をダウンロード後、起動します。</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text"># cd /usr/local/bin/
+# wget http://selenium-release.storage.googleapis.com/2.41/selenium-server-standalone-2.41.0.jar
+# java -jar selenium-server-standalone-2.41.0.jar -role hub
+</code></pre></div></li>
+<li><p>子ノード</p>
+
+<p>子ノード端末の適当なフォルダに Selenium Server とIEドライバーをダウンロード後、起動します。</p>
+
+<p><a href="http://docs.seleniumhq.org/download/">ダウンロードサイト</a></p>
+
+<p>まず、&quot;Selenium Server (formerly the Selenium RC Server)&quot; をダウンロード。</p>
+
+<p>次に、&quot;The Internet Explorer Driver Server&quot; をダウンロード。</p>
+
+<p>(アーキテクチャによって32bitまたは64bitを選択)</p>
+
+<p>コマンドプロンプトを開いて、ダウンロードしたフォルダに移動し Selenium Server を起動。</p>
+
+<p>(192.168.130.130 は自分の環境の親ノードIPに読み替え)</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">&gt; cd C:\apps\selenium
+&gt; java -jar selenium-server-standalone-2.41.0.jar -role webdriver -hub http://192.168.130.130:4444/grid/register -Dwebdriver.ie.driver=./IEDriverServer.exe
+</code></pre></div>
+<p>IEドライバーを起動するには、IEの[ツール]-[インターネットオプション]-[セキュリティ]で全ての</p>
+
+<p>ゾーンの「保護モード」を同じにしておく必要があります。<a href="https://selenium.googlecode.com/issues/attachment?aid=17950019000&amp;name=1.png&amp;token=ABZ6GAdCiZEHCiZBk5mmjW1I9awHy0ZHtQ%3A1400944855099&amp;inline=1">画面キャプチャ</a></p>
+
+<p><a href="http://qiita.com/Kackey/items/c5dded9a6762c1a8cccf">参考記事</a></p></li>
+</ul>
+
+<h5>2.起動</h5>
+
+<ul>
+<li><p>IE起動</p>
+
+<p>親ノード端末に置いたプログラムから、子ノード端末のIEを起動します。</p>
+
+<p>親ノード端末の適当なディレクトリに下記スクリプトを配置。</p>
+
+<p>(192.168.130.130 は自分の環境の親ノードIPに読み替え)</p>
+
+<script src="https://gist.github.com/105475ff842cd9bf6ad6.js?file=seleniumtest.rb"> </script>
+
+<p>スクリプト内で selenium-webdriver を使っているので、予めインストールしておきます。</p>
+
+<p>(適当なディレクトリへ移動し、依存関係を気にしたくないのでbundleを使ってインストール)</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text"># bundle init
+# echo &quot;gem &#39;selenium-webdriver&#39;&quot; &gt;&gt; Gemfile
+# bundle install
+</code></pre></div>
+<p>プログラムを実行し、子ノード端末でIEが起動すれば成功です。</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text"># ruby /app/seleniumtest/seleniumtest.rb
+</code></pre></div></li>
+</ul>
+
+  </div><!-- /.entry-content -->
+</article><!-- /.hentry -->
+
+<article class="hentry">
+  <header>
+    
+    <div class="entry-meta">
       <span class="entry-date date published updated"><time datetime="2014-05-17T20:00:00-04:00"><a href="/jekyll/jekyll_version_up/">May 17, 2014</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About sankame">sankame</a></span></span>
       
       <span class="entry-reading-time">
@@ -543,55 +645,6 @@ OAuth support =&gt; enabled
   </div><!-- /.entry-content -->
 </article><!-- /.hentry -->
 
-<article class="hentry">
-  <header>
-    
-    <div class="entry-meta">
-      <span class="entry-date date published updated"><time datetime="2013-10-03T20:00:00-04:00"><a href="/mindmapmemo/mind_map_tools/">October 03, 2013</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About sankame">sankame</a></span></span>
-      
-      <span class="entry-reading-time">
-        <i class="fa fa-clock-o"></i>
-        
-        Reading time ~1 minute
-      </span><!-- /.entry-reading-time -->
-      
-    </div><!-- /.entry-meta -->
-    
-      <h1 class="entry-title"><a href="/mindmapmemo/mind_map_tools/" rel="bookmark" title="スマホ(Android)とPCでMindMapを使う" itemprop="url">スマホ(Android)とPCでMindMapを使う</a></h1>
-    
-  </header>
-  <div class="entry-content">
-    <p><span style="float:right;">投稿日：2013年10月03日</span></p>
-
-<h5>0.環境</h5>
-<div class="highlight"><pre><code class="language-text" data-lang="text">[スマホ端末/OS] GALAXY S SC-02B / Android2.2
-[PC端末/OS]    Gateway SX2800 / Windows Vista Home Premium
-</code></pre></div>
-<h5>1.スマホでマインドマップ作成</h5>
-
-<ul>
-<li><p>1-1.スマホにMindMapMemoをインストールする。</p></li>
-<li><p>1-2.マインドマップのファイルを作成後、「オプション」-「メール送信(SD保存)」-「FreeMind(.mm)」を選択。</p></li>
-<li><p>1-3.共有するためのアプリ一覧が表示されるので、PCへファイルを送信できるアプリを選択。</p></li>
-</ul>
-
-<h5>2.PCにFreeMindをインストール</h5>
-
-<ul>
-<li><p>2-1.下記リンク先のページで[0.8.1]をクリック。</p>
-
-<p>(0.9.0では上記スマホで作成したファイルをうまく開けませんでした)</p>
-
-<p><a href="http://sourceforge.net/projects/freemind/files/freemind/">FreeMindソース</a></p></li>
-<li><p>2-2.[freemind-bin-0<em>8</em>1.zip]をクリック。</p></li>
-<li><p>2-3.PCにダウンロード後、解凍してFreemind.exeをダブルクリック。</p></li>
-<li><p>2-4.メニューの「ファイル」-「開く」で、スマホから送信した拡張子がmmのファイルを選択。</p></li>
-<li><p>2-5.スマホではカラフルに作ったのにFreeMindで開くと白黒になっている。まあ内容が分かるからいいか…</p></li>
-</ul>
-
-  </div><!-- /.entry-content -->
-</article><!-- /.hentry -->
-
 
 <div class="pagination">
   
@@ -651,6 +704,12 @@ OAuth support =&gt; enabled
       <li>
         
           <a href="/page9">9</a>
+        
+      </li>
+    
+      <li>
+        
+          <a href="/page10">10</a>
         
       </li>
     
