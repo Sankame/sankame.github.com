@@ -1,0 +1,303 @@
+<!doctype html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if (IE 7)&!(IEMobile)]><html class="no-js lt-ie9 lt-ie8" lang="en"><![endif]-->
+<!--[if (IE 8)&!(IEMobile)]><html class="no-js lt-ie9" lang="en"><![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<title>Rundeckでssh接続エラー &#8211; テキストブログ</title>
+<meta name="description" content="あああああああ">
+<meta name="keywords" content="Rundeck, ssh">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+<!-- Twitter Cards -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="/images/">
+<meta name="twitter:title" content="Rundeckでssh接続エラー">
+<meta name="twitter:description" content="あああああああ">
+<meta name="twitter:creator" content="@handycola">
+
+<!-- Open Graph -->
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Rundeckでssh接続エラー">
+<meta property="og:description" content="あああああああ">
+<meta property="og:url" content="/rundeck/rundeck_ssh_error/">
+<meta property="og:site_name" content="テキストブログ">
+
+
+
+
+
+<link rel="canonical" href="/rundeck/rundeck_ssh_error/">
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="テキストブログ Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="/assets/css/ext.css">
+<!-- Webfonts -->
+<link href="//fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic" rel="stylesheet" type="text/css">
+
+<meta http-equiv="cleartype" content="on">
+
+<!-- Load Modernizr -->
+<script src="/assets/js/vendor/modernizr-2.6.2.custom.min.js"></script>
+
+<!-- Icons -->
+<!-- 16x16 -->
+<link rel="shortcut icon" href="/favicon.ico">
+<!-- 32x32 -->
+<link rel="shortcut icon" href="/favicon.png">
+<!-- 57x57 (precomposed) for iPhone 3GS, pre-2011 iPod Touch and older Android devices -->
+<link rel="apple-touch-icon-precomposed" href="/images/apple-touch-icon-precomposed.png">
+<!-- 72x72 (precomposed) for 1st generation iPad, iPad 2 and iPad mini -->
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/images/apple-touch-icon-72x72-precomposed.png">
+<!-- 114x114 (precomposed) for iPhone 4, 4S, 5 and post-2011 iPod Touch -->
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/images/apple-touch-icon-114x114-precomposed.png">
+<!-- 144x144 (precomposed) for iPad 3rd and 4th generation -->
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/images/apple-touch-icon-144x144-precomposed.png">
+
+
+
+</head>
+
+<body id="page" >
+
+<!--[if lt IE 9]><div class="upgrade"><strong><a href="http://whatbrowser.org/">Your browser is quite old!</strong> Why not upgrade to a different browser to better enjoy this site?</a></div><![endif]-->
+<nav id="dl-menu" class="dl-menuwrapper" role="navigation">
+	<button class="dl-trigger">Open Menu</button>
+	<ul class="dl-menu">
+		<li><a href="/">Home</a></li>
+		<li>
+			<a href="#">投稿</a>
+			<ul class="dl-submenu">
+				<li><a href="/posts/">全ての投稿</a></li>
+				<li><a href="/tags/">タグ</a></li>
+			</ul>
+		</li>
+		<li>
+			<a href="#">運営者</a>
+			<ul class="dl-submenu">
+				<li>
+					<img src="/images/avatar.jpg" alt="sankame photo" class="author-photo">
+					<h4>sankame</h4>
+					<p>老舗ネット企業で働くプログラマー。<br>千葉県在住。</p>
+				</li>
+				<!-- <li><a href="/about/"><span class="btn btn-inverse">Learn More</span></a></li> -->
+				<li>
+					<a href="mailto:m2ad0504@outlook.jp"><i class="fa fa-fw fa-envelope"></i> Email</a>
+				</li>
+				<li>
+					<a href="http://twitter.com/handycola" target="_blank"><i class="fa fa-fw fa-twitter"></i> Twitter</a>
+				</li>
+				
+				
+				
+				<li>
+					<a href="http://github.com/Sankame" target="_blank"><i class="fa fa-fw fa-github"></i> GitHub</a>
+				</li>
+				
+				<li>
+					<a href="http://stackoverflow.com/users/2849068/sankame" target="_blank"><i class="fa fa-fw fa-stack-overflow"></i> Stackoverflow</a>
+				</li>
+
+				
+				
+				
+			</ul><!-- /.dl-submenu -->
+		</li>
+		
+	    
+	        
+	    
+	    <!-- <li><a href="/theme-setup/" >Theme Setup</a></li> -->
+	  
+	    
+	        
+	        
+	    <!-- <li><a href="http://mademistakes.com" target="_blank">External Link</a></li> -->
+	  
+	</ul><!-- /.dl-menu -->
+</nav><!-- /.dl-menuwrapper -->
+
+
+
+
+<div id="main" role="main">
+  <article class="hentry">
+    <header class="header-title">
+      <div class="header-title-wrap">
+        <h1 class="entry-title">Rundeckでssh接続エラー</h1>
+        
+        <p class="entry-reading-time">
+          <i class="fa fa-clock-o"></i>
+          
+          Reading time ~1 minute
+        </p><!-- /.entry-reading-time -->
+        
+      </div><!-- /.header-title-wrap -->
+    </header>
+    <div class="entry-content">
+      <div>
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- responsive_header -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-7938855665302783"
+     data-ad-slot="5752348355"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+      <p><span style="float:right;">投稿日：2016年02月14日</span></p>
+
+<h3>環境</h3>
+<div class="highlight"><pre><code class="language-text" data-lang="text">[CentOS] 5.6
+</code></pre></div>
+<h3>セットアップ (文中の【】はマスク)</h3>
+
+<ul>
+<li><p>下記記事の「リモートサーバでの実行」にそってRundeckのリモート接続を試してみました。</p>
+
+<p><a href="http://dev.classmethod.jp/server-side/server/try-rundeck-job/" target="_blank">ジョブスケジューラ「Rundeck」を試してみる</a></p>
+
+<p>下記のエラーが出るが原因が分からず…</p>
+
+<p><a href="/assets/posts/img/rundeck_ssh_error/rundeck_ssh_error.png" target="_blank"><img width="100%" height="100%" title="RundeckSSHエラー" alt="RundeckSSHエラー" src="/assets/posts/img/rundeck_ssh_error/rundeck_ssh_error.png"></a></p>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh">22:34:10 remote 1. hogeと表示。 Authentication failure connecting to node: <span class="s2">&quot;remote&quot;</span>. Make sure your resource definitions and credentials are up to date.
+22:34:10 Failed: AuthenticationFailure: Authentication failure connecting to node: <span class="s2">&quot;remote&quot;</span>. Make sure your resource definitions and credentials are up to date.
+22:34:10 localhost Execution failed: 21: <span class="o">[</span>Workflow result: , step failures: <span class="o">{</span><span class="nv">1</span><span class="o">=</span>Dispatch failed on <span class="m">1</span> nodes: <span class="o">[</span>remote: AuthenticationFailure: Authentication failure connecting to node: <span class="s2">&quot;remote&quot;</span>. Make sure your resource definitions and credentials are up to date.<span class="o">]}</span>, Node failures: <span class="o">{</span><span class="nv">remote</span><span class="o">=[</span>AuthenticationFailure: Authentication failure connecting to node: <span class="s2">&quot;remote&quot;</span>. Make sure your resource definitions and credentials are up to date.<span class="o">]}</span>, status: failed<span class="o">]</span>
+</code></pre></div></li>
+<li><p>Log levelを&quot;Debug&quot;にして調査。</p>
+
+<p>Rundeckの対象のプロジェクトで[Prepare and Run...]-[Log level] を&quot;Debug&quot;に変更し、エラーの詳細を表示します。</p></li>
+<li><p>エラー詳細を見ると、まず公開鍵認証を試みて失敗して、さらにその後パスワード認証でも失敗しているようです。</p>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh">22:37:48 Authentications that can <span class="k">continue</span>: publickey,password,keyboard-interactive
+22:37:48 Next authentication method: publickey
+22:37:48 Authentications that can <span class="k">continue</span>: password,keyboard-interactive
+22:37:48 Next authentication method: password
+22:37:48 Disconnecting from 【IPアドレス】 port 22
+22:37:48 Authentication failure connecting to node: <span class="s2">&quot;remote&quot;</span>. Make sure your resource definitions and credentials are up to date.
+22:37:48 Failed: AuthenticationFailure: Authentication failure connecting to node: <span class="s2">&quot;remote&quot;</span>. Make sure your resource definitions and credentials are up to date.
+</code></pre></div>
+<p>おかしいなあ、そもそも公開鍵認証で接続できる想定なんだけど…</p></li>
+<li><p>Rundeck以前にそもそもsshで失敗しているようなので、ssh単体で実行してみます。</p>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="c"># ssh -i $(awk &#39;/framework.ssh.keypath = / {print $3}&#39; /etc/rundeck/framework.properties) rundeck@【IPアドレス】</span>
+</code></pre></div></li>
+<li><p>さらにコマンドを簡素化して実行してみると、パスワードを設定していない公開鍵使っているのになぜかパスワードを聞かれます。</p>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="o">[</span>22:16:34<span class="o">][</span>rundeck@【サーバー名】 ~/.ssh<span class="o">]</span><span class="nv">$ </span>ssh -i /var/lib/rundeck/.ssh/id_rsa rundeck@【IPアドレス】
+rundeck@【IPアドレス】<span class="s1">&#39;s password: </span>
+<span class="s1">Permission denied, please try again.</span>
+<span class="s1">rundeck@【IPアドレス】&#39;</span>s password: 
+Permission denied, please try again.
+rundeck@【IPアドレス】<span class="err">&#39;</span>s password: 
+Permission denied <span class="o">(</span>publickey,gssapi-keyex,gssapi-with-mic,password<span class="o">)</span>.
+</code></pre></div></li>
+<li><p>色々試した結果、接続先サーバーの公開鍵ファイルのパーミッションが原因でした。</p>
+
+<ul>
+<li><p>接続元</p>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh">ssh -i /var/lib/rundeck/.ssh/id_rsa rundeck@【IPアドレス】
+</code></pre></div></li>
+<li><p>接続先</p>
+
+<p>パーミッションが緩い分には問題ないだろうと思っていたら、<font color="red">厳密に600じゃないとダメ</font>なんですね。。。</p>
+
+<p><code>chmod 600 authorized_keys</code> で下記のように修正したらssh接続もRundeckからのリモート接続も成功しました。</p>
+
+<p>(変更前)</p>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh">-rw-rw-r--. <span class="m">1</span> rundeck rundeck <span class="m">403</span> 2月 <span class="m">4</span> 15:58 <span class="m">2016</span> authorized_keys
+</code></pre></div>
+<p>(変更後)</p>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh">-rw-------. <span class="m">1</span> rundeck rundeck <span class="m">403</span> 2月 <span class="m">4</span> 15:58 <span class="m">2016</span> authorized_keys
+</code></pre></div></li>
+</ul></li>
+</ul>
+
+<h3>参考になった記事</h3>
+
+<ul>
+<li><p><a href="http://qiita.com/gotohiro55/items/36a22516de2b381b3c6e" target="_blank">SSHの鍵認証設定</a></p></li>
+<li><p><a href="https://rundeck.lighthouseapp.com/projects/59277/tickets/345-add-resource" target="_blank">Rundeck Development</a></p></li>
+</ul>
+
+      <div>
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- responsive_bottom1 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-7938855665302783"
+     data-ad-slot="4136014354"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<br>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- responsive_bottom2 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-7938855665302783"
+     data-ad-slot="7089480753"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+      <br>
+      <span><a href="https://twitter.com/handycola" class="twitter-follow-button" data-show-count="false" data-lang="ja" data-size="large" data-show-screen-name="false" data-dnt="true">@handycolaさんをフォロー</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></span>
+      <footer class="entry-meta">
+        
+        <div class="social-share">
+  <ul class="socialcount socialcount-small inline-list">
+    <li class="facebook"><a href="https://www.facebook.com/sharer/sharer.php?u=/rundeck/rundeck_ssh_error/" title="Share on Facebook"><span class="count"><i class="fa fa-facebook-square"></i> Like</span></a></li>
+    <li class="twitter"><a href="https://twitter.com/intent/tweet?text=/rundeck/rundeck_ssh_error/" title="Share on Twitter"><span class="count"><i class="fa fa-twitter-square"></i> Tweet</span></a></li>
+    <li class="googleplus"><a href="https://plus.google.com/share?url=/rundeck/rundeck_ssh_error/" title="Share on Google Plus"><span class="count"><i class="fa fa-google-plus-square"></i> +1</span></a></li>
+  </ul>
+</div><!-- /.social-share -->
+      </footer>
+    </div><!-- /.entry-content -->
+
+  </article>
+</div><!-- /#main -->
+
+<div class="footer-wrapper">
+  <footer role="contentinfo">
+    <span>&copy; 2016 sankame. Powered by <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> using the <a href="http://mademistakes.com/hpstr/" rel="notfollow">HPSTR Theme</a>.</span>
+  </footer>
+</div><!-- /.footer-wrapper -->
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="/assets/js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+<script src="/assets/js/scripts.min.js"></script>
+
+
+
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-37675354-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+
+
+</body>
+</html>
