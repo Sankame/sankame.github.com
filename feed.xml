@@ -4,13 +4,84 @@
 <generator uri="https://github.com/mojombo/jekyll">Jekyll</generator>
 <link rel="self" type="application/atom+xml" href="/feed.xml" />
 <link rel="alternate" type="text/html" href="" />
-<updated>2016-03-20T04:04:51-04:00</updated>
+<updated>2016-04-21T11:08:12-04:00</updated>
 <id>/</id>
 <author>
   <name>sankame</name>
   <uri>/</uri>
   <email>m2ad0504@outlook.jp</email>
 </author>
+
+
+<entry>
+  <title type="html"><![CDATA[pod setup で SSLエラー]]></title>
+ <link rel="alternate" type="text/html" href="/cocoapods/cocoapods_ssl_error/" />
+  <id>/cocoapods/cocoapods_ssl_error</id>
+  <published>2016-04-20T20:00:00-04:00</published>
+  <updated>2016-04-20T20:00:00-04:00</updated>
+  <author>
+    <name>sankame</name>
+    <uri></uri>
+    <email>m2ad0504@outlook.jp</email>
+  </author>
+  <content type="html">
+    &lt;p&gt;&lt;span style=&quot;float:right;&quot;&gt;投稿日：2016年04月20日&lt;/span&gt;&lt;/p&gt;
+
+&lt;h3&gt;0.環境&lt;/h3&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;[OS] Mac OS X 10.11.4
+[cocoapods] 1.0.0.beta.6
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;1.エラー内容&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;pod setupを実行すると下記エラーが発生。&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;pod setup --verbose
+
+Setting up CocoaPods master repo
+
+Cloning spec repo &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;master&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; from &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;https://github.com/CocoaPods/Specs.git&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;branch &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;master&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;/usr/bin/git clone https://github.com/CocoaPods/Specs.git master
+  Cloning into &lt;span class=&quot;s1&quot;&gt;&amp;#39;master&amp;#39;&lt;/span&gt;...
+  fatal: unable to access &lt;span class=&quot;s1&quot;&gt;&amp;#39;https://github.com/CocoaPods/Specs.git/&amp;#39;&lt;/span&gt;: SSLRead&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; error -9806
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;!&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; /usr/bin/git clone https://github.com/CocoaPods/Specs.git master
+
+Cloning into &lt;span class=&quot;s1&quot;&gt;&amp;#39;master&amp;#39;&lt;/span&gt;...
+fatal: unable to access &lt;span class=&quot;s1&quot;&gt;&amp;#39;https://github.com/CocoaPods/Specs.git/&amp;#39;&lt;/span&gt;: SSLRead&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; error -9806
+
+        ：
+     【省略】
+        ：
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3&gt;2.解決方法&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Safariで下記URLにアクセス。(他のブラウザではダメ) &lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com&quot; target=&quot;_blank&quot;&gt;https://github.com&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;再度、下記を実行するとwifi経由で1時間以上経ってからようやく成功…&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;pod setup --verbose
+
+Setting up CocoaPods master repo
+
+        ：
+     【省略】
+        ：
+
+Setup completed
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3&gt;参考ページ&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://stackoverflow.com/questions/20939105/pod-install-returns-fatal-error-ssl-certificate-issue&quot; target=&quot;_blank&quot;&gt;pod install returns fatal error: SSL certificate issue?&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+    &lt;p&gt;&lt;a href=&quot;/cocoapods/cocoapods_ssl_error/&quot;&gt;pod setup で SSLエラー&lt;/a&gt; was originally published by sankame at &lt;a href=&quot;&quot;&gt;IT調べものブログ&lt;/a&gt; on April 20, 2016.&lt;/p&gt;
+  </content>
+</entry>
 
 
 <entry>
@@ -1458,98 +1529,6 @@ A fatal exception has occurred. Program will exit
 &lt;/ul&gt;
 
     &lt;p&gt;&lt;a href=&quot;/ntp/ntp_for_dev/&quot;&gt;開発環境用 NTP 設定&lt;/a&gt; was originally published by sankame at &lt;a href=&quot;&quot;&gt;IT調べものブログ&lt;/a&gt; on June 24, 2014.&lt;/p&gt;
-  </content>
-</entry>
-
-
-<entry>
-  <title type="html"><![CDATA[GithubからBitbucketへソース移行]]></title>
- <link rel="alternate" type="text/html" href="/github/github_to_bitbucket/" />
-  <id>/github/github_to_bitbucket</id>
-  <published>2014-06-20T20:00:00-04:00</published>
-  <updated>2014-06-20T20:00:00-04:00</updated>
-  <author>
-    <name>sankame</name>
-    <uri></uri>
-    <email>m2ad0504@outlook.jp</email>
-  </author>
-  <content type="html">
-    &lt;p&gt;&lt;span style=&quot;float:right;&quot;&gt;投稿日：2014年06月20日&lt;/span&gt;&lt;/p&gt;
-
-&lt;h5&gt;0.環境&lt;/h5&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;  [CentOS]   5.6 (32bit版カーネル)
-  [Git]      1.9.4
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;h5&gt;1.ダウンロード&lt;/h5&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;Githubのソース取得&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;/assets/posts/img/github_to_bitbucket/1.github.png&quot; target=&quot;_blank&quot;&gt;&lt;img width=&quot;50%&quot; height=&quot;50%&quot; title=&quot;githubリポジトリ&quot; alt=&quot;githubリポジトリ&quot; src=&quot;/assets/posts/img/github_to_bitbucket/1.github.png&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;任意のディレクトリへ移動。&lt;/p&gt;
-
-&lt;p&gt;GitHubのリポジトリから対象ソースを取得。(上図の画面右下がURL)&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;# git clone git@github.com:Sankame/repo-of-github.git&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;取得したソースの第1階層へ移動。&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;# cd repo-of-github/&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Bitbucketへソースアップ&lt;/p&gt;
-
-&lt;p&gt;予めBitbucket上で任意のリポジトリを作っておきます。&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;/assets/posts/img/github_to_bitbucket/2.bitbucket_make_repo.png&quot; target=&quot;_blank&quot;&gt;&lt;img width=&quot;50%&quot; height=&quot;50%&quot; title=&quot;bitbucketリポジトリ作成&quot; alt=&quot;bitbucketリポジトリ作成&quot; src=&quot;/assets/posts/img/github_to_bitbucket/2.bitbucket_make_repo.png&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;空のリポジトリができました。&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;/assets/posts/img/github_to_bitbucket/3.bitbucket_new_repo.png&quot; target=&quot;_blank&quot;&gt;&lt;img width=&quot;50%&quot; height=&quot;50%&quot; title=&quot;bitbucket新規リポジトリ&quot; alt=&quot;bitbucket新規リポジトリ&quot; src=&quot;/assets/posts/img/github_to_bitbucket/3.bitbucket_new_repo.png&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;上記で GitHub から取得したソースは origin がGitHubになっているので、 Bitbucket へ変更。&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;# git remote -v
- origin  git@github.com:Sankame/repo-of-github.git (fetch) 
- origin  git@github.com:Sankame/repo-of-github.git (push)
-
- # git remote rm origin
- # git remote add origin git@bitbucket.org:Sankame/repo-of-bitbucket.git
- # git push -u origin --all # pushes up the repo and its refs for the first time
- # git push -u origin --tags # pushes up any tags
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;GithubのソースがBitbucketへ取り込まれました。&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;/assets/posts/img/github_to_bitbucket/4.bitbucket_imported_repo.png&quot; target=&quot;_blank&quot;&gt;&lt;img width=&quot;50%&quot; height=&quot;50%&quot; title=&quot;bitbucket取り込んだソース&quot; alt=&quot;bitbucket取り込んだソース&quot; src=&quot;/assets/posts/img/github_to_bitbucket/4.bitbucket_imported_repo.png&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;※上記 &amp;quot;git remote add origin&amp;quot; でプロトコルにhttpsを指定していて、&amp;quot;git push&amp;quot; で下記エラーが出た場合は下記の「2.git pushが動かない場合」参照。&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;fatal: Unable to find remote helper for &amp;#39;https&amp;#39;&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h5&gt;2.git pushが動かない場合&lt;/h5&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;Gitをhttpsへ対応させる&lt;/p&gt;
-
-&lt;p&gt;下記URLを見るとcurl-develがないのが原因と書いてあったが、自分の環境には既に入っていたので、&lt;/p&gt;
-
-&lt;p&gt;gitを再コンパイル＆インストールしたところうまくいきました。&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://clavier.hatenablog.com/entry/2013/05/18/204050&quot; target=&quot;_blank&quot;&gt;CentOSに最新のgitをインストールする&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;※gitのソースが手元にある場合は再取得しなくてもOKです。&lt;/p&gt;
-
-&lt;p&gt;※rootで操作しているのでインストール時にprefix指定&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;# wget https://www.kernel.org/pub/software/scm/git/git-1.9.4.tar.gz
- # tar xzf git-1.9.4.tar.gz
- # cd git-1.9.4
- # ./configure
- # make clean
- # make
- # make prefix=/usr install
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-    &lt;p&gt;&lt;a href=&quot;/github/github_to_bitbucket/&quot;&gt;GithubからBitbucketへソース移行&lt;/a&gt; was originally published by sankame at &lt;a href=&quot;&quot;&gt;IT調べものブログ&lt;/a&gt; on June 20, 2014.&lt;/p&gt;
   </content>
 </entry>
 
