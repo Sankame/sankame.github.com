@@ -4,13 +4,116 @@
 <generator uri="https://github.com/mojombo/jekyll">Jekyll</generator>
 <link rel="self" type="application/atom+xml" href="/feed.xml" />
 <link rel="alternate" type="text/html" href="" />
-<updated>2016-04-29T02:06:51-04:00</updated>
+<updated>2016-05-03T13:00:22-04:00</updated>
 <id>/</id>
 <author>
   <name>sankame</name>
   <uri>/</uri>
   <email>m2ad0504@outlook.jp</email>
 </author>
+
+
+<entry>
+  <title type="html"><![CDATA[AppleWatchサンプルプログラム]]></title>
+ <link rel="alternate" type="text/html" href="/applewatch/apple_watch_sample/" />
+  <id>/applewatch/apple_watch_sample</id>
+  <published>2016-05-01T20:00:00-04:00</published>
+  <updated>2016-05-01T20:00:00-04:00</updated>
+  <author>
+    <name>sankame</name>
+    <uri></uri>
+    <email>m2ad0504@outlook.jp</email>
+  </author>
+  <content type="html">
+    &lt;p&gt;&lt;span style=&quot;float:right;&quot;&gt;投稿日：2016年05月01日&lt;/span&gt;&lt;/p&gt;
+
+&lt;h3&gt;0.環境&lt;/h3&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;[OS] Mac OS X 10.11.4
+[IDE] Xcode 7.2.1
+[watchOS] 2.1
+[Swift] 2.1.1
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;1.完成イメージ&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;メイン画面からサブ画面へ行って戻るサンプルを作成します。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/posts/img/apple_watch_sample/result.png&quot; target=&quot;_blank&quot;&gt;&lt;img width=&quot;50%&quot; height=&quot;50%&quot; title=&quot;完成イメージ&quot; alt=&quot;完成イメージ&quot; src=&quot;/assets/posts/img/apple_watch_sample/result.png&quot;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3&gt;2.プロジェクト作成&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Xcodeのスプラッシュ画面で&amp;quot;Create a new Xcode project&amp;quot;を選択。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/posts/img/apple_watch_sample/splash.png&quot; target=&quot;_blank&quot;&gt;&lt;img width=&quot;50%&quot; height=&quot;50%&quot; title=&quot;スプラッシュ画面&quot; alt=&quot;スプラッシュ画面&quot; src=&quot;/assets/posts/img/apple_watch_sample/splash.png&quot;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;watchOS Applicationを選択。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/posts/img/apple_watch_sample/project_template.png&quot; target=&quot;_blank&quot;&gt;&lt;img width=&quot;50%&quot; height=&quot;50%&quot; title=&quot;テンプレート選択&quot; alt=&quot;テンプレート選択&quot; src=&quot;/assets/posts/img/apple_watch_sample/project_template.png&quot;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;適当なプロジェクト名を入力して下さい。&lt;/p&gt;
+
+&lt;p&gt;サンプルなので&amp;quot;Notification&amp;quot;と&amp;quot;Glance&amp;quot;のチェックは外します。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/posts/img/apple_watch_sample/project_options.png&quot; target=&quot;_blank&quot;&gt;&lt;img width=&quot;50%&quot; height=&quot;50%&quot; title=&quot;オプション選択&quot; alt=&quot;オプション選択&quot; src=&quot;/assets/posts/img/apple_watch_sample/project_options.png&quot;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;プロジェクトを作成するフォルダを選択して下さい。&lt;/p&gt;
+
+&lt;p&gt;下記のように /app/ を指定するとプロジェクトのパスは /app/hello-watch/ になります。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/posts/img/apple_watch_sample/folder.png&quot; target=&quot;_blank&quot;&gt;&lt;img width=&quot;50%&quot; height=&quot;50%&quot; title=&quot;フォルダ選択&quot; alt=&quot;フォルダ選択&quot; src=&quot;/assets/posts/img/apple_watch_sample/folder.png&quot;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3&gt;3.実装&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;左のプロジェクトナビゲーターで&amp;quot;Interface.storyboard&amp;quot;を選択。(A-1)&lt;/p&gt;
+
+&lt;p&gt;デフォルトで用意されている Interface Controller を選択して、Identifier に適当な値(例ではIC1)を入力。 (A-2、A-3、A-4)&lt;/p&gt;
+
+&lt;p&gt;ドラッグ＆ドロップで Label と Button を Interface Controller 上に配置します。 (A-5)&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/posts/img/apple_watch_sample/ready_controller.png&quot; target=&quot;_blank&quot;&gt;&lt;img width=&quot;100%&quot; height=&quot;100%&quot; title=&quot;コントローラ準備&quot; alt=&quot;コントローラ準備&quot; src=&quot;/assets/posts/img/apple_watch_sample/ready_controller.png&quot;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;ドラッグ＆ドロップで Interface Controller をもう一つ追加。(B-1)&lt;/p&gt;
+
+&lt;p&gt;追加した方を選択し、Identifier に適当な値(例ではIC2)を入力。 (B-2、B-3)&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/posts/img/apple_watch_sample/ready_controller2.png&quot; target=&quot;_blank&quot;&gt;&lt;img width=&quot;80%&quot; height=&quot;80%&quot; title=&quot;コントローラ準備&quot; alt=&quot;コントローラ準備&quot; src=&quot;/assets/posts/img/apple_watch_sample/ready_controller2.png&quot;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;上記のIC2に Label を配置し、IC2と入力しておきます。&lt;/p&gt;
+
+&lt;p&gt;区別するため、IC1に配置した Label にはIC1と入力します。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/posts/img/apple_watch_sample/ready_controller3.png&quot; target=&quot;_blank&quot;&gt;&lt;img width=&quot;50%&quot; height=&quot;50%&quot; title=&quot;コントローラ準備&quot; alt=&quot;コントローラ準備&quot; src=&quot;/assets/posts/img/apple_watch_sample/ready_controller3.png&quot;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;アシスタントエディターを表示します。(C-1)&lt;/p&gt;
+
+&lt;p&gt;Button を右クリックし、[Sent Actions]-[selector] からドラッグ＆ドロップでエディターまで線を伸ばします。(C-2)&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/posts/img/apple_watch_sample/coding1.png&quot; target=&quot;_blank&quot;&gt;&lt;img width=&quot;100%&quot; height=&quot;100%&quot; title=&quot;実装1&quot; alt=&quot;実装1&quot; src=&quot;/assets/posts/img/apple_watch_sample/coding1.png&quot;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;適当なメソッド名を入力します。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/posts/img/apple_watch_sample/coding2.png&quot; target=&quot;_blank&quot;&gt;&lt;img width=&quot;80%&quot; height=&quot;80%&quot; title=&quot;実装2&quot; alt=&quot;実装2&quot; src=&quot;/assets/posts/img/apple_watch_sample/coding2.png&quot;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Button タップ時に呼ばれるメソッドが追加されました。(D-1、D-2)&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/posts/img/apple_watch_sample/coding3.png&quot; target=&quot;_blank&quot;&gt;&lt;img width=&quot;80%&quot; height=&quot;80%&quot; title=&quot;実装3&quot; alt=&quot;実装3&quot; src=&quot;/assets/posts/img/apple_watch_sample/coding3.png&quot;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;上記で追加したメソッドにIC2へ遷移するコードを記述します。&lt;/p&gt;
+
+&lt;p&gt;(IC1へ戻るリンクは自動で作成されます)&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-swift&quot; data-lang=&quot;swift&quot;&gt;&lt;span class=&quot;p&quot;&gt;@&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;IBAction&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;onPushButton&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;pushControllerWithName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;IC2&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;some messages&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;シュミレーターで Apple Watch を選択し、[Command]-[R]キーを押すと数十秒後にプログラムが実行されます。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/posts/img/apple_watch_sample/run.png&quot; target=&quot;_blank&quot;&gt;&lt;img width=&quot;100%&quot; height=&quot;100%&quot; title=&quot;実行&quot; alt=&quot;実行&quot; src=&quot;/assets/posts/img/apple_watch_sample/run.png&quot;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3&gt;参考ページ&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://blog.haranicle.net/watchkit_push/&quot; target=&quot;_blank&quot;&gt;WatchKitでpush画面遷移&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+    &lt;p&gt;&lt;a href=&quot;/applewatch/apple_watch_sample/&quot;&gt;AppleWatchサンプルプログラム&lt;/a&gt; was originally published by sankame at &lt;a href=&quot;&quot;&gt;IT調べものブログ&lt;/a&gt; on May 01, 2016.&lt;/p&gt;
+  </content>
+</entry>
 
 
 <entry>
@@ -1466,69 +1569,6 @@ A fatal exception has occurred. Program will exit
     # -rw-r--r--  1 root  root  3417936  1月 19 19:17 MyWget
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
     &lt;p&gt;&lt;a href=&quot;/wget/wget_option_O/&quot;&gt;wget ファイル名を指定してダウンロード&lt;/a&gt; was originally published by sankame at &lt;a href=&quot;&quot;&gt;IT調べものブログ&lt;/a&gt; on July 02, 2014.&lt;/p&gt;
-  </content>
-</entry>
-
-
-<entry>
-  <title type="html"><![CDATA[開発環境用 NTP 設定]]></title>
- <link rel="alternate" type="text/html" href="/ntp/ntp_for_dev/" />
-  <id>/ntp/ntp_for_dev</id>
-  <published>2014-06-24T20:00:00-04:00</published>
-  <updated>2014-06-24T20:00:00-04:00</updated>
-  <author>
-    <name>sankame</name>
-    <uri></uri>
-    <email>m2ad0504@outlook.jp</email>
-  </author>
-  <content type="html">
-    &lt;p&gt;&lt;span style=&quot;float:right;&quot;&gt;投稿日：2014年06月24日&lt;/span&gt;&lt;/p&gt;
-
-&lt;h5&gt;0.環境&lt;/h5&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;  [VMware Player] 3.0.0
-  [CentOS]        5.6 (32bit版カーネル) (Windows上でゲストOSとして使用)
-  [NTP]           4.2.6
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;h5&gt;1.セットアップ&lt;/h5&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;ソース取得&lt;/p&gt;
-
-&lt;p&gt;任意のディレクトリにNTPのソース(ntpd)をダウンロード。&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;    # cd /usr/local/src/
-    # wget http://www.eecis.udel.edu/~ntp/ntp_spool/ntp4/ntp-4.2/ntp-4.2.6p5.tar.gz
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;ul&gt;
-&lt;li&gt;インストール&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;    # tar xzf ntp-4.2.6p5.tar.gz
-    # cd ntp-4.2.6p5
-    # ./configure
-    # make
-    # make install
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;設定&lt;/p&gt;
-
-&lt;p&gt;下記URL①の設定を行ったところうまく時刻同期されませんでした。&lt;/p&gt;
-
-&lt;p&gt;(VMwareをサスペンドすると時刻が離れ過ぎるため？)&lt;/p&gt;
-
-&lt;p&gt;結局、自分用の開発環境で、ログイン時に1回同期させれば十分なので下記のようにしました。&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;    # echo &amp;#39;ntpdate -u ntp.nict.jp&amp;#39; &amp;gt;&amp;gt; ~/.bash_profile
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;h5&gt;2.参考URL&lt;/h5&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;&lt;a href=&quot;http://www.ipa.go.jp/security/awareness/administrator/secure-web/chap4/4_ntpd.html&quot; target=&quot;_blank&quot;&gt;①ntpdのインストールと設定&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;a href=&quot;http://www.turbolinux.co.jp/products/server/11s/user_guide/x6278.html&quot; target=&quot;_blank&quot;&gt;②ntpd の起動と動作確認&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;a href=&quot;http://tech.n-linux.com/index.php?%A5%C6%A5%AF%A5%CB%A5%AB%A5%EB%A5%CE%A1%BC%A5%C8%2FNTP%2FNTP%20%A5%B7%A5%EA%A1%BC%A5%BA%20%A5%D1%A1%BC%A5%C8%203%20ntpdate%20%A5%B3%A5%DE%A5%F3%A5%C9%A4%CB%A4%C4%A4%A4%A4%C6&quot; target=&quot;_blank&quot;&gt;③ntpdate コマンドについて&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;a href=&quot;http://wiki.nothing.sh/page/NTP/%BF%E4%BE%A9%B8%F8%B3%AB%A5%B5%A1%BC%A5%D0&quot; target=&quot;_blank&quot;&gt;④推奨公開サーバ&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-    &lt;p&gt;&lt;a href=&quot;/ntp/ntp_for_dev/&quot;&gt;開発環境用 NTP 設定&lt;/a&gt; was originally published by sankame at &lt;a href=&quot;&quot;&gt;IT調べものブログ&lt;/a&gt; on June 24, 2014.&lt;/p&gt;
   </content>
 </entry>
 

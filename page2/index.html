@@ -157,6 +157,51 @@ enable_page_level_ads: true
   <header>
     
     <div class="entry-meta">
+      <span class="entry-date date published updated"><time datetime="2015-12-30T19:00:00-05:00"><a href="/programming-practice/programming_practice_A/">December 30, 2015</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About sankame">sankame</a></span></span>
+      
+      <span class="entry-reading-time">
+        <i class="fa fa-clock-o"></i>
+        
+        Reading time ~1 minute
+      </span><!-- /.entry-reading-time -->
+      
+    </div><!-- /.entry-meta -->
+    
+      <h1 class="entry-title"><a href="/programming-practice/programming_practice_A/" rel="bookmark" title="プログラミング問題A" itemprop="url">プログラミング問題A</a></h1>
+    
+  </header>
+  <div class="entry-content">
+    <p><span style="float:right;">投稿日：2015年12月30日</span></p>
+
+<h3>環境</h3>
+<div class="highlight"><pre><code class="language-text" data-lang="text">[CentOS]   5.6 (32bit版カーネル) 
+[PHP]      5.4.17
+</code></pre></div>
+<h3>問題A-1</h3>
+
+<ul>
+<li><p>10進数の任意の値をn進数に変換する関数を作成して下さい。(nは1～16の正の整数)</p></li>
+<li><p>サンプルはPHP。</p></li>
+</ul>
+
+<h3>サンプルA-1</h3>
+
+<ul>
+<li><p>実行方法</p>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>php changeDecimalToBaseN.php
+</code></pre></div></li>
+<li><p>ソース</p>
+
+<script src="https://gist.github.com/Sankame/87f7b5050a802e5e5710.js"></script></li>
+</ul>
+
+  </div><!-- /.entry-content -->
+</article><!-- /.hentry -->
+
+<article class="hentry">
+  <header>
+    
+    <div class="entry-meta">
       <span class="entry-date date published updated"><time datetime="2015-12-06T19:00:00-05:00"><a href="/ssl-tls/letsencrypt_setup/">December 06, 2015</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About sankame">sankame</a></span></span>
       
       <span class="entry-reading-time">
@@ -593,52 +638,6 @@ at Error (native)
 <ul>
 <li><p><a href="https://angular.io/docs/js/latest/quickstart.html" target="_blank">公式ページ (5 MIN QUICKSTART)</a></p></li>
 <li><p><a href="http://liginc.co.jp/web/programming/node-js/85318" target="_blank">nvm インストール</a></p></li>
-</ul>
-
-  </div><!-- /.entry-content -->
-</article><!-- /.hentry -->
-
-<article class="hentry">
-  <header>
-    
-    <div class="entry-meta">
-      <span class="entry-date date published updated"><time datetime="2015-05-26T20:00:00-04:00"><a href="/laravel/laravel_migration_integer_args/">May 26, 2015</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About sankame">sankame</a></span></span>
-      
-      <span class="entry-reading-time">
-        <i class="fa fa-clock-o"></i>
-        
-        Reading time ~1 minute
-      </span><!-- /.entry-reading-time -->
-      
-    </div><!-- /.entry-meta -->
-    
-      <h1 class="entry-title"><a href="/laravel/laravel_migration_integer_args/" rel="bookmark" title="【Laravel】integerメソッドの引数" itemprop="url">【Laravel】integerメソッドの引数</a></h1>
-    
-  </header>
-  <div class="entry-content">
-    <p><span style="float:right;">投稿日：2015年05月26日</span></p>
-
-<h3>0.環境</h3>
-<div class="highlight"><pre><code class="language-text" data-lang="text">[PHP]     5.4.17
-[Laravel] 4.1.30
-</code></pre></div>
-<h3>1.内容</h3>
-
-<ul>
-<li><p>Fluentテーブルビルダーのintegerメソッドの引数について、意外と探すのに手間取ったのでメモ。</p>
-<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="x">/**</span>
-<span class="x"> * @param $column        テーブルのカラム名</span>
-<span class="x"> * @param $autoIncrement 自動採番するかどうか</span>
-<span class="x"> * @param $unsigned      0以上の正の整数とするか</span>
-<span class="x"> */</span>
-<span class="x">public function integer($column, $autoIncrement = false, $unsigned = false)</span>
-</code></pre></div></li>
-</ul>
-
-<h3>※参考にしたページ</h3>
-
-<ul>
-<li><a href="http://stackoverflow.com/questions/28895454/laravel-migration-incorrect-table-definition" target="_blank">Laravel Migration incorrect table definition</a></li>
 </ul>
 
   </div><!-- /.entry-content -->
