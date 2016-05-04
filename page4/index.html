@@ -157,6 +157,66 @@ enable_page_level_ads: true
   <header>
     
     <div class="entry-meta">
+      <span class="entry-date date published updated"><time datetime="2015-05-01T20:00:00-04:00"><a href="/jqgrid/jqgrid_formatter/">May 01, 2015</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About sankame">sankame</a></span></span>
+      
+      <span class="entry-reading-time">
+        <i class="fa fa-clock-o"></i>
+        
+        Reading time ~1 minute
+      </span><!-- /.entry-reading-time -->
+      
+    </div><!-- /.entry-meta -->
+    
+      <h1 class="entry-title"><a href="/jqgrid/jqgrid_formatter/" rel="bookmark" title="jqGridで表示する値と元の値を分ける" itemprop="url">jqGridで表示する値と元の値を分ける</a></h1>
+    
+  </header>
+  <div class="entry-content">
+    <p><span style="float:right;">投稿日：2015年05月01日</span></p>
+
+<h5>0.環境</h5>
+<div class="highlight"><pre><code class="language-text" data-lang="text">[jquery]     1.7.1
+[jquery-ui]  1.10.3
+[jqGrid]     4.5.2
+</code></pre></div>
+<h5>1.コード</h5>
+
+<ul>
+<li><p>画面表示は formatter で定義し、処理では元の値を使いたいので unformat で定義します。</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">jQuery</span><span class="p">(</span><span class="s2">&quot;#grid_id&quot;</span><span class="p">).</span><span class="nx">jqGrid</span><span class="p">({</span>
+    <span class="c1">// 省略</span>
+    <span class="nx">colModel</span><span class="o">:</span> <span class="p">[</span>
+        <span class="c1">// 省略</span>
+        <span class="p">{</span><span class="nx">name</span><span class="o">:</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="nx">index</span><span class="o">:</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="nx">formatter</span><span class="o">:</span> <span class="nx">formatterName</span><span class="p">,</span> <span class="nx">unformat</span><span class="o">:</span> <span class="nx">unformatName</span><span class="p">},</span>
+        <span class="c1">// 省略</span>
+    <span class="p">]</span>
+    <span class="c1">// 省略</span>
+<span class="p">});</span>
+
+<span class="cm">/** リンクに変更 */</span>
+<span class="kd">function</span> <span class="nx">formatterName</span><span class="p">(</span><span class="nx">cellvalue</span><span class="p">,</span> <span class="nx">options</span><span class="p">,</span> <span class="nx">rowdata</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">val</span> <span class="o">=</span> <span class="s2">&quot;&lt;a href=\&quot;javascript:void(0);\&quot; onclick=\&quot;showItem(&#39;&quot;</span> <span class="o">+</span> <span class="nx">rowdata</span><span class="p">.</span><span class="nx">item_id</span> <span class="o">+</span> <span class="s2">&quot;&#39;);\&quot;&gt;&quot;</span> <span class="o">+</span> <span class="nx">cellvalue</span> <span class="o">+</span> <span class="s2">&quot;&lt;/a&gt;&quot;</span><span class="p">;</span>
+    <span class="k">return</span> <span class="nx">val</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="cm">/** 加工しない元の値 */</span>
+<span class="kd">function</span> <span class="nx">unformatName</span><span class="p">(</span><span class="nx">cellvalue</span><span class="p">,</span> <span class="nx">options</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="nx">cellvalue</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></li>
+</ul>
+
+<h5>2.参考</h5>
+
+<p><a href="http://www.trirand.com/jqgridwiki/doku.php?id=wiki:custom_formatter" target="_blank">参考にしたページ</a></p>
+
+  </div><!-- /.entry-content -->
+</article><!-- /.hentry -->
+
+<article class="hentry">
+  <header>
+    
+    <div class="entry-meta">
       <span class="entry-date date published updated"><time datetime="2014-08-19T20:00:00-04:00"><a href="/apache/http_basic_authentication/">August 19, 2014</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About sankame">sankame</a></span></span>
       
       <span class="entry-reading-time">
@@ -463,38 +523,6 @@ enable_page_level_ads: true
   </div><!-- /.entry-content -->
 </article><!-- /.hentry -->
 
-<article class="hentry">
-  <header>
-    
-    <div class="entry-meta">
-      <span class="entry-date date published updated"><time datetime="2014-07-02T20:00:00-04:00"><a href="/wget/wget_option_O/">July 02, 2014</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About sankame">sankame</a></span></span>
-      
-      <span class="entry-reading-time">
-        <i class="fa fa-clock-o"></i>
-        
-        Reading time ~1 minute
-      </span><!-- /.entry-reading-time -->
-      
-    </div><!-- /.entry-meta -->
-    
-      <h1 class="entry-title"><a href="/wget/wget_option_O/" rel="bookmark" title="wget ファイル名を指定してダウンロード" itemprop="url">wget ファイル名を指定してダウンロード</a></h1>
-    
-  </header>
-  <div class="entry-content">
-    <p><span style="float:right;">投稿日：2014年07月02日</span></p>
-
-<h5>-O オプションを使って、ダウンロードファイル名を指定します。</h5>
-
-<ul>
-<li>下記例では MyWget という名前に変更。</li>
-</ul>
-<div class="highlight"><pre><code class="language-text" data-lang="text">    # wget -O MyWget http://ftp.gnu.org/gnu/wget/wget-1.15.tar.gz
-    # ls
-    # -rw-r--r--  1 root  root  3417936  1月 19 19:17 MyWget
-</code></pre></div>
-  </div><!-- /.entry-content -->
-</article><!-- /.hentry -->
-
 
 <div class="pagination">
   
@@ -560,6 +588,12 @@ enable_page_level_ads: true
       <li>
         
           <a href="/page10">10</a>
+        
+      </li>
+    
+      <li>
+        
+          <a href="/page11">11</a>
         
       </li>
     
