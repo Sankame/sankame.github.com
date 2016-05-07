@@ -4,13 +4,93 @@
 <generator uri="https://github.com/mojombo/jekyll">Jekyll</generator>
 <link rel="self" type="application/atom+xml" href="/feed.xml" />
 <link rel="alternate" type="text/html" href="" />
-<updated>2016-05-04T15:57:40-04:00</updated>
+<updated>2016-05-07T13:02:24-04:00</updated>
 <id>/</id>
 <author>
   <name>sankame</name>
   <uri>/</uri>
   <email>m2ad0504@outlook.jp</email>
 </author>
+
+
+<entry>
+  <title type="html"><![CDATA[AppleWatch 開発アプリの追加制限]]></title>
+ <link rel="alternate" type="text/html" href="/applewatch/unable_to_add_app_id/" />
+  <id>/applewatch/unable_to_add_app_id</id>
+  <published>2016-05-07T20:00:00-04:00</published>
+  <updated>2016-05-07T20:00:00-04:00</updated>
+  <author>
+    <name>sankame</name>
+    <uri></uri>
+    <email>m2ad0504@outlook.jp</email>
+  </author>
+  <content type="html">
+    &lt;p&gt;&lt;span style=&quot;float:right;&quot;&gt;投稿日：2016年05月07日&lt;/span&gt;&lt;/p&gt;
+
+&lt;h3&gt;0.環境&lt;/h3&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;[OS] Mac OS X 10.11.4
+[IDE] Xcode 7.3
+[iOS] 9.3
+[watchOS] 2.1
+
+※MacとiPhoneはUSBケーブルで接続。
+※iPhoneとAppleWatchはペアリング済み。
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;1.問題&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;AppleWatch用のサンプルプログラムを実機で動かしていたら、下記エラーが出るようになりました。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/posts/img/unable_to_add_app_id/error_message.jpg&quot; target=&quot;_blank&quot;&gt;&lt;img width=&quot;50%&quot; height=&quot;50%&quot; title=&quot;Unable to add App ID&quot; alt=&quot;Unable to add App ID&quot; src=&quot;/assets/posts/img/unable_to_add_app_id/error_message.jpg&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Unable to add App ID because the &amp;#39;10&amp;#39; App ID limit in &amp;#39;7&amp;#39; days has been exceeded.&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;「7日間で10個のアプリID制限を超えたため、アプリIDを追加できません」か。。。&lt;/p&gt;
+
+&lt;p&gt;Webで調べたところ回避策は2つありましたが、シンプルそうな①をやってみました。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;① Xcodeに新しいApple IDを追加して、それを使ってインストール&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;② 既に実機にインストール済みのアプリの Bundle ID を使い回す&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3&gt;2.手順 (文中の【】はマスク)&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Xcodeに新しい Apple ID を追加&lt;/p&gt;
+
+&lt;p&gt;アプリの[General]-[Team]をクリックし &amp;quot;Add an Account&amp;quot; を選択します。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/posts/img/unable_to_add_app_id/add_account.jpg&quot; target=&quot;_blank&quot;&gt;&lt;img width=&quot;70%&quot; height=&quot;70%&quot; title=&quot;AppleID追加&quot; alt=&quot;AppleID追加&quot; src=&quot;/assets/posts/img/unable_to_add_app_id/add_account.jpg&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Xcodeに追加するApple IDを要求されますが、未作成なので&amp;quot;Create Apple ID&amp;quot;をクリック。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/posts/img/unable_to_add_app_id/required_to_sign_in.jpg&quot; target=&quot;_blank&quot;&gt;&lt;img width=&quot;50%&quot; height=&quot;50%&quot; title=&quot;サインイン&quot; alt=&quot;サインイン&quot; src=&quot;/assets/posts/img/unable_to_add_app_id/required_to_sign_in.jpg&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;必要項目を入力していくと、最後に「入力したメールアドレス宛てにメールを送ったから確認してね」と表示されます。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/posts/img/unable_to_add_app_id/verification_for_the_email.jpg&quot; target=&quot;_blank&quot;&gt;&lt;img width=&quot;50%&quot; height=&quot;50%&quot; title=&quot;email確認&quot; alt=&quot;email確認&quot; src=&quot;/assets/posts/img/unable_to_add_app_id/verification_for_the_email.jpg&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;上記メールアドレス宛てに確認メールが届いているので、メール文中の&amp;quot;今すぐ確認&amp;quot;をクリックして登録を完了させます。&lt;/p&gt;
+
+&lt;p&gt;再度、手順の最初に戻って、&amp;quot;Add an Account&amp;quot;を選択し、登録したての新しいApple IDを入力します。&lt;/p&gt;
+
+&lt;p&gt;新しいApple IDを選択すると下記のメッセージが出るので&amp;quot;Fix Issue&amp;quot;→&amp;quot;Choose&amp;quot;をクリックして解消します。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/posts/img/unable_to_add_app_id/fix_the_issue.jpg&quot; target=&quot;_blank&quot;&gt;&lt;img width=&quot;50%&quot; height=&quot;50%&quot; title=&quot;Fix Issue&quot; alt=&quot;Fix Issue&quot; src=&quot;/assets/posts/img/unable_to_add_app_id/fix_the_issue.jpg&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;そのままアプリをビルド＆起動すると署名関係の警告が何度か出ますが、&amp;quot;Fix issue&amp;quot; をクリックしていくと実機でアプリが実行できました。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3&gt;参考ページ&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;①&lt;a href=&quot;http://stackoverflow.com/questions/36922738/how-to-get-around-apple-app-id-insanity&quot; target=&quot;_blank&quot;&gt;How to get around Apple app ID insanity&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+    &lt;p&gt;&lt;a href=&quot;/applewatch/unable_to_add_app_id/&quot;&gt;AppleWatch 開発アプリの追加制限&lt;/a&gt; was originally published by sankame at &lt;a href=&quot;&quot;&gt;IT調べものブログ&lt;/a&gt; on May 07, 2016.&lt;/p&gt;
+  </content>
+</entry>
 
 
 <entry>
@@ -1550,98 +1630,6 @@ A fatal exception has occurred. Program will exit
 &lt;/ul&gt;
 
     &lt;p&gt;&lt;a href=&quot;/laravel/laravel_passing_data_from_basecontroller/&quot;&gt;【Laravel】全てのビューに値を渡す&lt;/a&gt; was originally published by sankame at &lt;a href=&quot;&quot;&gt;IT調べものブログ&lt;/a&gt; on July 20, 2014.&lt;/p&gt;
-  </content>
-</entry>
-
-
-<entry>
-  <title type="html"><![CDATA[【Laravel】AjaxでPOSTできない]]></title>
- <link rel="alternate" type="text/html" href="/laravel/laravel_trailing_slash_redirect/" />
-  <id>/laravel/laravel_trailing_slash_redirect</id>
-  <published>2014-07-14T20:00:00-04:00</published>
-  <updated>2014-07-14T20:00:00-04:00</updated>
-  <author>
-    <name>sankame</name>
-    <uri></uri>
-    <email>m2ad0504@outlook.jp</email>
-  </author>
-  <content type="html">
-    &lt;p&gt;&lt;span style=&quot;float:right;&quot;&gt;投稿日：2014年07月14日&lt;/span&gt;&lt;/p&gt;
-
-&lt;h3&gt;0.環境&lt;/h3&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;[CentOS]   5.6 (32bit版カーネル)
-[Apache]   2.2.3
-[PHP]      5.4.1
-[Laravel]  4.1.23
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;h3&gt;1.問題&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;PHPのLaravelフレームワークを使っていたら、AjaxでPOSTした値がサーバ側で取得できずにはまりました。&lt;/p&gt;
-
-&lt;p&gt;①から②へ test という名前で hoge という値を送信します。&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;① Javascript側&lt;/p&gt;
-
-&lt;script src=&quot;https://gist.github.com/a9da32445d224fb1df63.js?file=ajax-test.js&quot;&gt; &lt;/script&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;② PHP側&lt;/p&gt;
-
-&lt;script src=&quot;https://gist.github.com/649420870dc9835cb08c.js?file=routes.php&quot;&gt; &lt;/script&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;ログ出力結果を見ると、下記のようにPOST値が取得できていません。&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;[2014-07-16 12:09:36] local.DEBUG:  [] []
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3&gt;2.原因&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;Firefox の &amp;quot;Live HTTP headers&amp;quot; アドオンでURLの遷移を見たところ、下記のようにリダイレクトしていることがわかりました。(違いは末尾のスラッシュ)&lt;/p&gt;
-
-&lt;p&gt;http://local.vm/test/&lt;/p&gt;
-
-&lt;p&gt;↓↓↓&lt;/p&gt;
-
-&lt;p&gt;http://local.vm/test&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;ソースを grep したところ、.htaccessでリダイレクトしていました。&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;ソース&lt;/p&gt;
-
-&lt;p&gt;app-root/public/.htaccess&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;記述&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-apache&quot; data-lang=&quot;apache&quot;&gt;&lt;span class=&quot;c&quot;&gt;# Redirect Trailing Slashes...&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;RewriteRule&lt;/span&gt; ^(.*)/$ /$1 [L,R=301]
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3&gt;3.対策&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;Laravel は trailing slash 非推奨なのか？ とにかく下記のように修正。&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;箇所&lt;/p&gt;
-
-&lt;p&gt;上記ソース ajax-test.js (6行目)&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;内容&lt;/p&gt;
-
-&lt;p&gt;URLの末尾のスラッシュを削除し、/test に修正。&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;ログにもPOST値(hoge)が出力されました。&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;[2014-07-16 13:03:39] local.DEBUG: hoge [] []
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;参考&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;http://www.suzukikenichi.com/blog/do-we-need-a-trailing-slash-at-the-end-of-url/&quot; target=&quot;_blank&quot;&gt;URLの終りに「/」(スラッシュ)は必要?、不要?&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://stackoverflow.com/questions/22063520/laravel-slash-after-url-redirects-to-root-folder&quot; target=&quot;_blank&quot;&gt;Laravel slash after url redirects to root folder&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-    &lt;p&gt;&lt;a href=&quot;/laravel/laravel_trailing_slash_redirect/&quot;&gt;【Laravel】AjaxでPOSTできない&lt;/a&gt; was originally published by sankame at &lt;a href=&quot;&quot;&gt;IT調べものブログ&lt;/a&gt; on July 14, 2014.&lt;/p&gt;
   </content>
 </entry>
 

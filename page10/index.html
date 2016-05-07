@@ -157,6 +157,117 @@ enable_page_level_ads: true
   <header>
     
     <div class="entry-meta">
+      <span class="entry-date date published updated"><time datetime="2013-01-14T19:00:00-05:00"><a href="/openx/openx_delivery_test/">January 14, 2013</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About sankame">sankame</a></span></span>
+      
+      <span class="entry-reading-time">
+        <i class="fa fa-clock-o"></i>
+        
+        Reading time ~1 minute
+      </span><!-- /.entry-reading-time -->
+      
+    </div><!-- /.entry-meta -->
+    
+      <h1 class="entry-title"><a href="/openx/openx_delivery_test/" rel="bookmark" title="OpenX配信テスト" itemprop="url">OpenX配信テスト</a></h1>
+    
+  </header>
+  <div class="entry-content">
+    <p><span style="float:right;">投稿日：2013年01月14日</span></p>
+
+<h4>OpenX(ver2.8.10)で広告配信テストをしてみる。</h4>
+
+<h4>1.管理画面ログイン</h4>
+
+<p>管理画面にログイン後、画面右上でログインユーザが「Working as Default manager」であることを確認。</p>
+
+<p>「インベントリ」タブをクリックし、左メニューの上から順に登録していく。</p>
+
+<h4>2.広告主</h4>
+
+<p>「インベントリ」-「広告主」-「広告主の追加」とリンクを辿り、下記項目に入力して「変更の保存」クリック。</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">名称、担当者名、メールアドレス
+</code></pre></div>
+<p>上記で登録した広告主をクリックすると広告主の詳細画面が表示されるので、</p>
+
+<p>「ユーザアクセス」タブ -「アクション▼」-「ユーザを追加する」からユーザを追加。</p>
+
+<p>※ログアウト後、入力した「ユーザー名」と「パスワード」で広告主ユーザーとしてログインできる。</p>
+
+<h4>3.キャンペーン</h4>
+
+<p>「インベントリ」-「広告主」で登録済みの広告主の「キャンペーンの追加」をクリック。</p>
+
+<p>キャンペーン追加画面で下記項目を入力して「変更の保存」をクリック。</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">名称            :  (任意)
+キャンペーン名 ： 担当者名  (※各選択肢の意味は未確認)
+「日付」以下の項目はとりあえずデフォルトのまま。
+
+(2013/01/20,追記) 「他のキャンペーンに対する優先度」が未設定だとアラートメッセージが出るので下記のように設定。
+優先度レベル=10、Limit=インプレッション、終了=15000/日
+</code></pre></div>
+<h4>4.バナー</h4>
+
+<p>「インベントリ」-「キャンペーン」で登録済みキャンペーンの「バナーの追加」をクリック。</p>
+
+<p>バナーの追加画面で下記項目を入力して「Save changes」をクリック。(今回はGoogle AdSenseを配信してみる)</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">バナーの種別 : html OpenX Generic HTML Banner
+名称 : (任意)
+HTMLバナー - banner code : (ここにGoogle AdSenseの広告ユニットコードを張り付ける)
+Alter HTML to enable click tracking for: Rich Media - Google AdSense
+Banner display : (Google AdSenseの広告ユニットコードと同じサイズを指定)
+</code></pre></div>
+<p>「インベントリ」-「バナー」で、登録済みバナーをクリックし、バナー詳細画面を表示。</p>
+
+<p>「配信オプション」で下記のような値を設定しておくと、広告が毎回表示されるのでテストの際は便利。</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">バナービュー上限数 : 20000 総配信数
+バナービュー上限数 : 20000／セッション
+カウンタリセット条件 : 15 分間
+</code></pre></div>
+<p><a href="http://www.openx.com/docs/tutorials/using-google-adsense-with-openx">マニュアル</a></p>
+
+<h4>5. Webサイト</h4>
+
+<p>「インベントリ」-「Webサイト」-「Webサイトの追加」から、広告を配信したいWebサイトを登録する。</p>
+
+<h4>6. ゾーン</h4>
+
+<p>「インベントリ」-「Webサイト」で登録済みのWebサイトの「ゾーンの追加」をクリック。</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">名称：(任意)
+ゾーンタイプ：バナー・ボタン・レクタングル広告
+サイズ：(バナーのBanner displayで指定した値と合わせる)
+</code></pre></div>
+<h4>7. リンク済バナー</h4>
+
+<p>「インベントリ」-「ゾーン」で、登録済みゾーンの「リンク済みバナー」をクリック。</p>
+
+<p>プルダウンで、広告主→キャンペーン　の順に選択。(※日本語は文字化けする…)</p>
+
+<p>○で囲まれた小さな右矢印ボタンをクリックすると、選択したキャンペーンが表示される。</p>
+
+<p>「バナーの表示」をクリックするとプレビューが表示される。</p>
+
+<h4>8. 広告コード</h4>
+
+<p>「インベントリ」-「ゾーン」で登録済みゾーンの「広告表示コードの生成」をクリック。</p>
+
+<p>表示されたコードをコピーして、表示させたいWebサイトに貼り付ける。</p>
+
+<h4>9. 疑問</h4>
+
+<p>上記8の広告コードは、上記5のWebサイト以外のドメインでも表示することができる。</p>
+
+<p>Webサイトとバナーを紐付けたのはなぜ？レポートのため？</p>
+
+<h4>10. 参考ページ</h4>
+
+<p><a href="http://ohwhsmm7.blog28.fc2.com/blog-entry-206.html">参考ページ</a></p>
+
+  </div><!-- /.entry-content -->
+</article><!-- /.hentry -->
+
+<article class="hentry">
+  <header>
+    
+    <div class="entry-meta">
       <span class="entry-date date published updated"><time datetime="2012-12-30T19:00:00-05:00"><a href="/centos/centos_command/">December 30, 2012</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About sankame">sankame</a></span></span>
       
       <span class="entry-reading-time">
@@ -467,132 +578,6 @@ OSS版のOpenXは製品名がRevive AdServerに変わりました。<br>
 <li><a href="http://www.jamescrowley.co.uk/2010/09/12/running-openx-under-iis-with-php-5-3-date-default-timezone-get-errors/">参考ページ</a></li>
 </ul>
 
-  </div><!-- /.entry-content -->
-</article><!-- /.hentry -->
-
-<article class="hentry">
-  <header>
-    
-    <div class="entry-meta">
-      <span class="entry-date date published updated"><time datetime="2012-12-22T19:00:00-05:00"><a href="/jekyll/jekyll_and_github/">December 22, 2012</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About sankame">sankame</a></span></span>
-      
-      <span class="entry-reading-time">
-        <i class="fa fa-clock-o"></i>
-        
-        Reading time ~1 minute
-      </span><!-- /.entry-reading-time -->
-      
-    </div><!-- /.entry-meta -->
-    
-      <h1 class="entry-title"><a href="/jekyll/jekyll_and_github/" rel="bookmark" title="Jekyllとgithubでブログ作成" itemprop="url">Jekyllとgithubでブログ作成</a></h1>
-    
-  </header>
-  <div class="entry-content">
-    <p><span style="float:right;">投稿日：2012年12月22日</span></p>
-
-<h4>ローカルPCのVmwarePlayerにRuby, RubyGems, Jekyllをインストール。</h4>
-
-<h4>Jekyllで作ったブログをGitHubに設置する。</h4>
-
-<h4>1.Rubyインストール</h4>
-<div class="highlight"><pre><code class="language-text" data-lang="text"># インストール済みか？
-# rpm -q ruby
-# インストールされていない場合、インストールを行う。
-# yum install ruby ruby-devel rdoc irb
-</code></pre></div>
-<h4>2.RubyGemsインストール</h4>
-<div class="highlight"><pre><code class="language-text" data-lang="text"># wget http://rubyforge.org/frs/download.php/60718/rubygems-1.3.5.tgz
-# tar xzf rubygems-1.3.5.tgz
-# cd rubygems-1.3.5
-# ruby setup.rb
-# インストールされたgemsのバージョン確認。
-# gem -v
-</code></pre></div>
-<h4>3.Jekyllインストール</h4>
-<div class="highlight"><pre><code class="language-text" data-lang="text"># gem install jekyll
-</code></pre></div>
-<p>下記メッセージ(抜粋)でインストール失敗…</p>
-
-<p>buffer overflow detected</p>
-
-<h5>3-1. vmware playerの割り当てメモリ変更。192MB -&gt; 256MB (問題の解決とは無関係と思われる)</h5>
-
-<h5>3-2. Ruby再インストール</h5>
-<div class="highlight"><pre><code class="language-text" data-lang="text"># cd /etc/yum.repos.d/
-# wget http://rubyworks.rubyforge.org/RubyWorks.repo
-# yum install ruby
-
-# ruby -v
-ruby 1.8.6 (2007-09-24 patchlevel 111) [i386-linux]
-</code></pre></div>
-<h5>3-3. Jekyll再インストール</h5>
-<div class="highlight"><pre><code class="language-text" data-lang="text"># gem install jekyll
-ERROR: Error installing jekyll:
-liquid requires RubyGems version &gt;= 1.3.7
-# またもやエラー。
-</code></pre></div>
-<h5>3-4. RubyGems再インストール</h5>
-<div class="highlight"><pre><code class="language-text" data-lang="text"># 上記3-3でRubyGemsのバージョンが違うというエラーが出たのでRuby Forgeで当該バージョンのURLをコピー。
-# http://rubyforge.org/frs/?group_id=126
-
-# wget http://rubyforge.org/frs/download.php/60718/rubygems-1.3.7.tgz
-# cd rubygems-1.3.7
-# ruby setup.rb
-</code></pre></div>
-<h5>3-5. Jekyll再インストール</h5>
-<div class="highlight"><pre><code class="language-text" data-lang="text"># gem install jekyll
-# 今回はインストール成功。
-# jekyll -v
-Jekyll 0.11.2
-</code></pre></div>
-<h5>3-6. <a href="http://help.papertrailapp.com/discussions/questions/114-buffer-overflow-detected">参考ページ</a></h5>
-
-<h4>4.Jekyll Bootstrap取得</h4>
-
-<h5>1から作ると大変なのでテンプレートを利用。</h5>
-
-<h5>※/var/www/html/はapacheのドキュメントルート</h5>
-<div class="highlight"><pre><code class="language-text" data-lang="text"># cd /var/www/html/jekyll
-# git clone http://github.com/plusjade/jekyll-bootstrap.git JEKYLL_HOME
-</code></pre></div>
-<h4>5.Jekyll起動</h4>
-<div class="highlight"><pre><code class="language-text" data-lang="text"># jekyll --server --auto
-
-WARNING: Could not read configuration. Using defaults (and options).
-No such file or directory - /root/_config.yml
-Auto-regenerating enabled: /root -&gt; /root/_site
-
-# 起動失敗…
-# エラーメッセージを見ると、_config.ymlが見つからないと言っている。
-
-# Jekyll Bootstrapを配置したディレクトリへ移動して起動すると成功。
-# cd /var/www/html/jekyll/JEKYLL_HOME
-# jekyll --server --auto
-Configuration from /var/www/html/jekyll/JEKYLL_HOME/_config.yml
-Auto-regenerating enabled: /var/www/html/jekyll/JEKYLL_HOME -&gt; /var/www/html/jekyll/JEKYLL_HOME/_site
-
-# ブラウザで下記URLへアクセスすると初期画面が表示される。(localhostの部分は環境によって読み替える)
-# http://localhost:4000/
-
-# 後は下記ディレクトリに記事ファイルを追加していく。
-# /var/www/html/jekyll/JEKYLL_HOME/_posts/YYYY-MM-DD-*.md
-</code></pre></div>
-<h4>6.GitHubへアップ</h4>
-
-<h5>任意のディレクトリをGitの作業ツリーにして、そこからHTMLをGitHubへPushする。</h5>
-
-<h5><code>【注意】/var/www/html/jekyll/JEKYLL_HOME/_site/ を作業ツリーにするとJekyllを起動する度に.gitが削除されるので適さない。</code></h5>
-<div class="highlight"><pre><code class="language-text" data-lang="text"># Jekyllが生成したHTMLをGit作業ツリー(任意のディレクトリ)へコピーする。
-# cp -pr /var/www/html/jekyll/JEKYLL_HOME/_site/* /var/www/html/sankame.github.com/
-# cd /var/www/html/sankame.github.com
-# git init
-# git add .
-# git commit -m &quot;initial commit.&quot;
-# git remote add origin git@github.com:Sankame/sankame.github.com.git
-# git fetch
-# git merge -s ours origin/master
-# git push
-</code></pre></div>
   </div><!-- /.entry-content -->
 </article><!-- /.hentry -->
 
