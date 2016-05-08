@@ -4,7 +4,7 @@
 <generator uri="https://github.com/mojombo/jekyll">Jekyll</generator>
 <link rel="self" type="application/atom+xml" href="/feed.xml" />
 <link rel="alternate" type="text/html" href="" />
-<updated>2016-05-08T11:04:30-04:00</updated>
+<updated>2016-05-08T11:24:41-04:00</updated>
 <id>/</id>
 <author>
   <name>sankame</name>
@@ -97,7 +97,9 @@
     <email>m2ad0504@outlook.jp</email>
   </author>
   <content type="html">
-    &lt;p&gt;&lt;span style=&quot;float:right;&quot;&gt;投稿日：2016年05月07日&lt;/span&gt;&lt;/p&gt;
+    &lt;p&gt;&lt;span&gt;&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;color:#d14; float:right;&quot;&gt;更新日：2016年05月09日&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style=&quot;float:right;&quot;&gt;投稿日：2016年05月07日&lt;/span&gt;&lt;/p&gt;
 
 &lt;h3&gt;0.環境&lt;/h3&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;[OS] Mac OS X 10.11.4
@@ -148,6 +150,8 @@
 &lt;p&gt;再度、手順の最初に戻って、&amp;quot;Add an Account&amp;quot;を選択し、登録したての新しいApple IDを入力します。&lt;/p&gt;
 
 &lt;p&gt;新しいApple IDを選択すると下記のメッセージが出るので&amp;quot;Fix Issue&amp;quot;→&amp;quot;Choose&amp;quot;をクリックして解消します。&lt;/p&gt;
+
+&lt;p&gt;&lt;font color=&quot;red&quot;&gt;【注意】ダイアログ内のプルダウンで新しいApple IDが選択されているか再度確認して下さい&lt;/font&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&quot;/assets/posts/img/unable_to_add_app_id/fix_the_issue.jpg&quot; target=&quot;_blank&quot;&gt;&lt;img width=&quot;50%&quot; height=&quot;50%&quot; title=&quot;Fix Issue&quot; alt=&quot;Fix Issue&quot; src=&quot;/assets/posts/img/unable_to_add_app_id/fix_the_issue.jpg&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 
