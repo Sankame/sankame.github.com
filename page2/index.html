@@ -157,6 +157,81 @@ enable_page_level_ads: true
   <header>
     
     <div class="entry-meta">
+      <span class="entry-date date published updated"><time datetime="2016-04-20T20:00:00-04:00"><a href="/cocoapods/pod_setup_ssl_error/">April 20, 2016</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About sankame">sankame</a></span></span>
+      
+      <span class="entry-reading-time">
+        <i class="fa fa-clock-o"></i>
+        
+        Reading time ~1 minute
+      </span><!-- /.entry-reading-time -->
+      
+    </div><!-- /.entry-meta -->
+    
+      <h1 class="entry-title"><a href="/cocoapods/pod_setup_ssl_error/" rel="bookmark" title="pod setup で SSLエラー" itemprop="url">pod setup で SSLエラー</a></h1>
+    
+  </header>
+  <div class="entry-content">
+    <p><span style="float:right;">投稿日：2016年04月20日</span></p>
+
+<h3>0.環境</h3>
+<div class="highlight"><pre><code class="language-text" data-lang="text">[OS] Mac OS X 10.11.4
+[cocoapods] 1.0.0.beta.6
+</code></pre></div>
+<h3>1.エラー内容</h3>
+
+<ul>
+<li><p>pod setupを実行すると下記エラーが発生。</p>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>pod setup --verbose
+
+Setting up CocoaPods master repo
+
+Cloning spec repo <span class="sb">`</span>master<span class="sb">`</span> from <span class="sb">`</span>https://github.com/CocoaPods/Specs.git<span class="sb">`</span> <span class="o">(</span>branch <span class="sb">`</span>master<span class="sb">`</span><span class="o">)</span>
+  <span class="nv">$ </span>/usr/bin/git clone https://github.com/CocoaPods/Specs.git master
+  Cloning into <span class="s1">&#39;master&#39;</span>...
+  fatal: unable to access <span class="s1">&#39;https://github.com/CocoaPods/Specs.git/&#39;</span>: SSLRead<span class="o">()</span> <span class="k">return</span> error -9806
+<span class="o">[</span>!<span class="o">]</span> /usr/bin/git clone https://github.com/CocoaPods/Specs.git master
+
+Cloning into <span class="s1">&#39;master&#39;</span>...
+fatal: unable to access <span class="s1">&#39;https://github.com/CocoaPods/Specs.git/&#39;</span>: SSLRead<span class="o">()</span> <span class="k">return</span> error -9806
+
+        ：
+     【省略】
+        ：
+</code></pre></div></li>
+</ul>
+
+<h3>2.解決方法</h3>
+
+<ul>
+<li><p>Safariで下記URLにアクセス。(他のブラウザではダメ) </p>
+
+<p><a href="https://github.com" target="_blank">https://github.com</a></p></li>
+<li><p>再度、下記を実行するとwifi経由で1時間以上経ってからようやく成功…</p>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>pod setup --verbose
+
+Setting up CocoaPods master repo
+
+        ：
+     【省略】
+        ：
+
+Setup completed
+</code></pre></div></li>
+</ul>
+
+<h3>参考ページ</h3>
+
+<ul>
+<li><a href="http://stackoverflow.com/questions/20939105/pod-install-returns-fatal-error-ssl-certificate-issue" target="_blank">pod install returns fatal error: SSL certificate issue?</a></li>
+</ul>
+
+  </div><!-- /.entry-content -->
+</article><!-- /.hentry -->
+
+<article class="hentry">
+  <header>
+    
+    <div class="entry-meta">
       <span class="entry-date date published updated"><time datetime="2016-02-20T19:00:00-05:00"><a href="/ssl-tls/letsencrypt_renewal/">February 20, 2016</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About sankame">sankame</a></span></span>
       
       <span class="entry-reading-time">
@@ -171,7 +246,9 @@ enable_page_level_ads: true
     
   </header>
   <div class="entry-content">
-    <p><span style="float:right;">投稿日：2016年02月20日</span></p>
+    <p><span>&nbsp;</span><span style="color:#d14; float:right;">更新日：2016年05月14日</span></p>
+
+<p><span style="float:right;">投稿日：2016年02月20日</span></p>
 
 <h3>0.環境</h3>
 <div class="highlight"><pre><code class="language-text" data-lang="text">[CentOS] 6.4 (64bit版カーネル)
@@ -222,7 +299,13 @@ new certificate deployed without reload, fullchain is 【ディレクトリパ�
 
 Congratulations, all renewals succeeded. The following certs have been renewed:
   【ディレクトリパス】/fullchain.pem <span class="o">(</span>success<span class="o">)</span>
-</code></pre></div></li>
+</code></pre></div>
+<p><font color="red">(2016/05/14, 追記) 証明書の更新は正常終了しましたが、下記の警告が出ました。</font></p>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh">WARNING:certbot.cli:You are running with an old copy of letsencrypt-auto that does not receive updates, and is less reliable than more recent versions. We recommend upgrading to the latest certbot-auto script, or using native OS packages.
+</code></pre></div>
+<p>letsencrypt-autoコマンドは古くなったようなので、次回から下記を使おうと思います。</p>
+
+<p><a href="/ssl-tls/letsencrypt_certbot_command/" target="_blank">certbot-autoコマンドの準備はこちら</a></p></li>
 <li><p>ブラウザをリロードしたり、再起動しても証明書の有効期限は変わらず。</p></li>
 <li><p>公式マニュアルにはありませんが、Webサーバーの再起動が必要なようです。(参考ページ②)</p>
 <div class="highlight"><pre><code class="language-text" data-lang="text"># service httpd restart
@@ -437,202 +520,6 @@ Permission denied <span class="o">(</span>publickey,gssapi-keyex,gssapi-with-mic
 <li><p>ソース</p>
 
 <script src="https://gist.github.com/Sankame/87f7b5050a802e5e5710.js"></script></li>
-</ul>
-
-  </div><!-- /.entry-content -->
-</article><!-- /.hentry -->
-
-<article class="hentry">
-  <header>
-    
-    <div class="entry-meta">
-      <span class="entry-date date published updated"><time datetime="2015-12-06T19:00:00-05:00"><a href="/ssl-tls/letsencrypt_setup/">December 06, 2015</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About sankame">sankame</a></span></span>
-      
-      <span class="entry-reading-time">
-        <i class="fa fa-clock-o"></i>
-        
-        Reading time ~2 minutes
-      </span><!-- /.entry-reading-time -->
-      
-    </div><!-- /.entry-meta -->
-    
-      <h1 class="entry-title"><a href="/ssl-tls/letsencrypt_setup/" rel="bookmark" title="お薦め無料SSL証明書 - Let's Encrypt" itemprop="url">お薦め無料SSL証明書 - Let's Encrypt</a></h1>
-    
-  </header>
-  <div class="entry-content">
-    <p><span>&nbsp;</span><span style="color:#d14; float:right;">更新日：2016年02月20日</span></p>
-
-<p><span style="float:right;">投稿日：2015年12月06日</span></p>
-
-<h3>0.環境</h3>
-<div class="highlight"><pre><code class="language-text" data-lang="text">[CentOS] 6.4 (64bit版カーネル)
-[Apache] 2.2.15
-</code></pre></div>
-<h3>1.セットアップ</h3>
-
-<ul>
-<li><p>個人で借りているレンタルサーバーで、有料のSSL証明書を使っていたのですが、
-有効期間切れを機にフリーのものに乗り換えてみました。</p></li>
-<li><p>最近 Public Beta に入った Let&#39;s Encrypt というサービスを利用します。</p>
-
-<p><a href="/assets/posts/img/letsencrypt_setup/letsencrypt_top.png" target="_blank"><img width="80%" height="80%" title="Let's Encryptトップ" alt="Let's Encryptトップ" src="/assets/posts/img/letsencrypt_setup/letsencrypt_top.png"></a></p>
-
-<p>下記ページに沿って進めます。(その他の参考ページは末尾に記載)</p>
-
-<p><a href="https://letsencrypt.org/howitworks/" target="_blank"><font color="green">Let&#39;s Encrypt 操作方法</font></a></p>
-
-<p>任意のディレクトリに Let&#39;s Encrypt クライアントをダウンロード。</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text"># cd /usr/local/src
-# git clone https://github.com/letsencrypt/letsencrypt
-# cd letsencrypt
-# ./letsencrypt-auto --help
-</code></pre></div></li>
-<li><p>おお！ helpだから使い方が表示されるかと思いきや、依存関係のあるパッケージがダウンロードされた・・・</p>
-
-<p>しかも下記メッセージによると、どうやらPythonのバージョンが古くて失敗してるっぽい。</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">  ：
-(省略)
-  ：
-Complete!
-WARNING: Python 2.6 support is very experimental at present...
-if you would like to work on improving it, please ensure you have backups
-and then run this script again with the --debug flag!
-</code></pre></div></li>
-<li><p>ググってみると同じ問題で悩んでる人がいました。</p>
-
-<p><a href="https://github.com/letsencrypt/letsencrypt/issues/1046" target="_blank"><font color="green">letsencrypt-autoは Python 2.6では動かない</font></a></p></li>
-<li><p>さらにググって下記ページに従ってPython2.7インストール。</p>
-
-<p><a href="https://community.letsencrypt.org/t/redhat-centos-6-x-users-need-python-2-7/2190" target="_blank"><font color="green">CentOS 6系は Python 2.7をインストールする必要あり</font></a></p>
-
-<p>実行コマンドは下記の通り。</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text"># yum install python27 python27-python-devel python27-python-setuptools python27-python-tools python27-python-virtualenv
-</code></pre></div></li>
-<li><p>python バージョンを調べる。</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text"># python --version
-Python 2.6.6
-</code></pre></div>
-<p><font color="red">(注) 2.6のままですが気にせず続行します。</font></p>
-
-<p><font color="red">(yum管理外でPythonをソースからビルドしてインストールすると letsencrypt-auto が動かなくなりました)</font></p></li>
-<li><p>コマンドを再実行すると、もうPythonが古い旨のメッセージは出なくなりました。</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text"># ./letsencrypt-auto --help
-</code></pre></div></li>
-<li><p>続けてドメイン認証を試みます。</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text"># ./letsencrypt-auto --apache -d 【ドメイン名】
-</code></pre></div></li>
-<li><p>エラーメッセージが・・・(【】内は読み替え)</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">Updating letsencrypt and virtual environment dependencies.......
-Running with virtualenv: /root/.local/share/letsencrypt/bin/letsencrypt --apache -d 【ドメイン名】
-Version: 1.1-20080819
-Version: 1.1-20080819
-The apache plugin is not working; there may be problems with your existing configuration.
-The error was: NoInstallationError()
-</code></pre></div>
-<p>ユーザーガイドによるとApache2.2系だとapacheプラグイン(--apache)は使えないようです。</p>
-
-<p>となると、下記の通りstandaloneかwebrootのいずれかを実行しないといけません。</p>
-
-<p>If you want to use a webserver that doesn&#39;t have full plugin support yet, you can still use &quot;standalone&quot; or &quot;webroot&quot; plugins to obtain a certificate: (<a href="https://letsencrypt.readthedocs.org/en/latest/using.html#standalone" target="_blank">ユーザーガイド抜粋</a>)</p>
-
-<p>僕の場合、1つのサーバーに複数のvirtual hostを立てているのでwebrootプラグインを使います。</p>
-
-<p>さらにwebrootプラグインだとApache無停止でいけるそうです。</p></li>
-<li><p>念のため、既に書いてあったSSL用のvirtual hostはコメントアウトしてApache再起動。</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">#&lt;VirtualHost *:443&gt;
-#    ：
-# 【省略
-#    ：
-#&lt;/VirtualHost&gt;
-</code></pre></div></li>
-<li><p>下記コマンド実行。</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text"># ./letsencrypt-auto certonly --webroot -w 【ドキュメントルート】 -d 【ドメイン名】
-</code></pre></div></li>
-<li><p>連絡用e-mailを入力し、利用規約を確認します。</p>
-
-<p><a href="/assets/posts/img/letsencrypt_setup/enter_email.png" target="_blank"><img width="80%" height="80%" title="email入力" alt="email入力" src="/assets/posts/img/letsencrypt_setup/enter_email.png"></a></p>
-
-<p><a href="/assets/posts/img/letsencrypt_setup/read_terms_of_service.png" target="_blank"><img width="80%" height="80%" title="利用規約" alt="利用規約" src="/assets/posts/img/letsencrypt_setup/read_terms_of_service.png"></a></p></li>
-<li><p>エラーメッセージ。</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">Updating letsencrypt and virtual environment dependencies.......
-Running with virtualenv: /root/.local/share/letsencrypt/bin/letsencrypt certonly --webroot -w 【ドキュメントルート】 -d 【ドメイン名】
-Version: 1.1-20080819
-Version: 1.1-20080819
-Failed authorization procedure. 【ドメイン名】 (http-01): urn:acme:error:unauthorized :: The client lacks sufficient authorization :: Invalid response from http://【ドメイン名】/.well-known/acme-challenge/【省略】 [【サーバーIP】]: 401
-
-IMPORTANT NOTES:
- - The following &#39;urn:acme:error:unauthorized&#39; errors were reported by
-   the server:
-
-   Domains: 【ドメイン名】
-   Error: The client lacks sufficient authorization
-</code></pre></div></li>
-<li><p>ドキュメントルートにファイルを配置して、インターネットからアクセスを試みているけど失敗してるっぽい・・・</p>
-
-<p>試しにブラウザから上記URLにアクセス。</p>
-
-<p>元々、port80(http)からport443(https)へリダイレクトする設定にしていたためエラーになっていました。</p>
-
-<p>リダイレクトを無効にし、ブラウザから上記URLにアクセスできることを確認した上で、再度サーバー上で下記を実行。</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text"># ./letsencrypt-auto certonly --webroot -w 【ドキュメントルート】 -d 【ドメイン名】
-</code></pre></div></li>
-<li><p>下記メッセージが表示され認証が成功！</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">Updating letsencrypt and virtual environment dependencies.......
-Running with virtualenv: /root/.local/share/letsencrypt/bin/letsencrypt certonly --webroot -w 【ドキュメントルート】 -d 【ドメイン名】
-Version: 1.1-20080819
-Version: 1.1-20080819
-
-IMPORTANT NOTES:
- - Congratulations! Your certificate and chain have been saved at
-   /etc/letsencrypt/live/【ドメイン名】/fullchain.pem. Your cert will
-   expire on 2016-03-04. To obtain a new version of the certificate in
-   the future, simply run Let&#39;s Encrypt again.
- - If like Let&#39;s Encrypt, please consider supporting our work by:
-
-   Donating to ISRG / Let&#39;s Encrypt:   https://letsencrypt.org/donate
-   Donating to EFF:                    https://eff.org/donate-le
-</code></pre></div></li>
-<li><p>この後どうすれば・・・？</p></li>
-<li><p>ユーザーガイドによると、apahceプラグインなら全自動で設定してくれるようですが、今回は使ってないので手動で証明書ファイルを設定する必要あり。</p></li>
-<li><p>上記メッセージのパスを覗いてみると、必要なファイル一式がありました。</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text"># ll /etc/letsencrypt/live/【ドメイン名】
-#
-lrwxrwxrwx 1 root root 38 12月  6 03:43 2015 cert.pem -&gt; ../../archive/【ドメイン名】/cert1.pem
-lrwxrwxrwx 1 root root 39 12月  6 03:43 2015 chain.pem -&gt; ../../archive/【ドメイン名】/chain1.pem
-lrwxrwxrwx 1 root root 43 12月  6 03:43 2015 fullchain.pem -&gt; ../../archive/【ドメイン名】/fullchain1.pem
-lrwxrwxrwx 1 root root 41 12月  6 03:43 2015 privkey.pem -&gt; ../../archive/【ドメイン名】/privkey1.pem
-</code></pre></div></li>
-<li><p>fullchainを除く3ファイルをport443のvirtual hostに設定してapache再起動。</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">&lt;VirtualHost *:443&gt;
-    ServerAdmin  【メールアドレス】
-    DocumentRoot &quot;【ドキュメントルート】&quot;
-    ServerName   【ドメイン名】
-    SSLEngine on
-    SSLCertificateFile      /etc/letsencrypt/live/【ドメイン名】/cert.pem
-    SSLCertificateKeyFile   /etc/letsencrypt/live/【ドメイン名】/privkey.pem
-    SSLCertificateChainFile /etc/letsencrypt/live/【ドメイン名】/chain.pem
-
-    ErrorLog  logs/【ドメイン名】-error_log
-    CustomLog logs/【ドメイン名】-access_log common
-&lt;/VirtualHost&gt;
-</code></pre></div><div class="highlight"><pre><code class="language-text" data-lang="text"># service httpd restart
-</code></pre></div></li>
-<li><p>httpからhttpsへのリダイレクト設定も元に戻します。</p></li>
-<li><p>ブラウザでサイトにアクセスするとSSLマークが表示されました！(ドメイン名はマスク済み)</p>
-
-<p><a href="/assets/posts/img/letsencrypt_setup/browser.png" target="_blank"><img width="50%" height="50%" title="ブラウザSSL表示" alt="ブラウザSSL表示" src="/assets/posts/img/letsencrypt_setup/browser.png"></a></p></li>
-<li><p>Let&#39;s Enctyptは有効期間が比較的短いので、SSL証明書の次回更新日をスケジュール帳に書き込んでおしまい。(自動化できないかしら)</p></li>
-<li><p>組織の実在証明はありませんが、個人で暗号化メインならこれで十分ですね。何より無料がうれしいです。</p></li>
-<li><p><font color="red">(2016/02/20追記) 証明書の更新方法はこちら</font></p>
-
-<p><a href="/ssl-tls/letsencrypt_renewal/" target="_blank">Let&#39;s Encrypt - 証明書更新</a></p></li>
-</ul>
-
-<h3>参考ページ</h3>
-
-<ul>
-<li><p><a href="https://letsencrypt.readthedocs.org/en/latest/using.html#installation" target="_blank">ユーザーガイド</a></p></li>
-<li><p><a href="https://github.com/letsencrypt/letsencrypt" target="_blank">Let&#39;s Encrypt クライアントツール</a></p></li>
 </ul>
 
   </div><!-- /.entry-content -->

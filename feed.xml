@@ -4,13 +4,71 @@
 <generator uri="https://github.com/mojombo/jekyll">Jekyll</generator>
 <link rel="self" type="application/atom+xml" href="/feed.xml" />
 <link rel="alternate" type="text/html" href="" />
-<updated>2016-05-10T12:02:24-04:00</updated>
+<updated>2016-05-14T13:45:44-04:00</updated>
 <id>/</id>
 <author>
   <name>sankame</name>
   <uri>/</uri>
   <email>m2ad0504@outlook.jp</email>
 </author>
+
+
+<entry>
+  <title type="html"><![CDATA[Let's Encrypt - certbotコマンド]]></title>
+ <link rel="alternate" type="text/html" href="/ssl-tls/letsencrypt_certbot_command/" />
+  <id>/ssl-tls/letsencrypt_certbot_command</id>
+  <published>2016-05-14T20:00:00-04:00</published>
+  <updated>2016-05-14T20:00:00-04:00</updated>
+  <author>
+    <name>sankame</name>
+    <uri></uri>
+    <email>m2ad0504@outlook.jp</email>
+  </author>
+  <content type="html">
+    &lt;p&gt;&lt;span style=&quot;float:right;&quot;&gt;投稿日：2016年05月14日&lt;/span&gt;&lt;/p&gt;
+
+&lt;h3&gt;0. 環境&lt;/h3&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;[CentOS] 6.4 (64bit版カーネル)
+[Apache] 2.2.15
+[Firefox] 46.0.1
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;1. Let&amp;#39;s Encryptのコマンド変更&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;/ssl-tls/letsencrypt_renewal/&quot; target=&quot;_blank&quot;&gt;証明書を更新した際、&lt;/a&gt; 「letsencrypt-autoコマンドはもう古いよ」という警告が出たので、更新したいと思います。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3&gt;2. 更新作業(【】はマスク情報)&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Let&amp;#39;s Encryptがβ版の時はgit cloneして /usr/local/src/letsencrypt ディレクトリを作成しましたが、今回はそれとは別ディレクトリを作成します。&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;c&quot;&gt;# cd /usr/local/src&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# git clone https://github.com/certbot/certbot&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# cd certbot&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;疑似実行したところ成功したようなので、証明書の期限が迫ってきたら dry-run なしで実行してみたいと思います。&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;c&quot;&gt;# ./certbot-auto renew --dry-run&lt;/span&gt;
+
+  ：
+&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;省略&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+  ：
+Congratulations, all renewals succeeded. The following certs have been renewed:
+/etc/letsencrypt/live/【ドメイン名】/fullchain.pem &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;success&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+** DRY RUN: simulating &lt;span class=&quot;s1&quot;&gt;&amp;#39;certbot renew&amp;#39;&lt;/span&gt; close to cert expiry
+**          &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;The &lt;span class=&quot;nb&quot;&gt;test &lt;/span&gt;certificates above have not been saved.&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3&gt;参考ページ&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;① &lt;a href=&quot;https://letsencrypt.org/getting-started/&quot; target=&quot;_blank&quot;&gt;Getting Started&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;② &lt;a href=&quot;https://www.eff.org/deeplinks/2016/05/announcing-certbot-new-tls-robot&quot; target=&quot;_blank&quot;&gt;Announcing Certbot: EFF&amp;#39;s Client for Let&amp;#39;s Encrypt&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+    &lt;p&gt;&lt;a href=&quot;/ssl-tls/letsencrypt_certbot_command/&quot;&gt;Let&#39;s Encrypt - certbotコマンド&lt;/a&gt; was originally published by sankame at &lt;a href=&quot;&quot;&gt;IT調べものブログ&lt;/a&gt; on May 14, 2016.&lt;/p&gt;
+  </content>
+</entry>
 
 
 <entry>
@@ -456,7 +514,9 @@ Setup completed
     <email>m2ad0504@outlook.jp</email>
   </author>
   <content type="html">
-    &lt;p&gt;&lt;span style=&quot;float:right;&quot;&gt;投稿日：2016年02月20日&lt;/span&gt;&lt;/p&gt;
+    &lt;p&gt;&lt;span&gt;&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;color:#d14; float:right;&quot;&gt;更新日：2016年05月14日&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style=&quot;float:right;&quot;&gt;投稿日：2016年02月20日&lt;/span&gt;&lt;/p&gt;
 
 &lt;h3&gt;0.環境&lt;/h3&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;[CentOS] 6.4 (64bit版カーネル)
@@ -507,7 +567,13 @@ new certificate deployed without reload, fullchain is 【ディレクトリパ�
 
 Congratulations, all renewals succeeded. The following certs have been renewed:
   【ディレクトリパス】/fullchain.pem &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;success&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;font color=&quot;red&quot;&gt;(2016/05/14, 追記) 証明書の更新は正常終了しましたが、下記の警告が出ました。&lt;/font&gt;&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;WARNING:certbot.cli:You are running with an old copy of letsencrypt-auto that does not receive updates, and is less reliable than more recent versions. We recommend upgrading to the latest certbot-auto script, or using native OS packages.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;letsencrypt-autoコマンドは古くなったようなので、次回から下記を使おうと思います。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/ssl-tls/letsencrypt_certbot_command/&quot; target=&quot;_blank&quot;&gt;certbot-autoコマンドの準備はこちら&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;ブラウザをリロードしたり、再起動しても証明書の有効期限は変わらず。&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;公式マニュアルにはありませんが、Webサーバーの再起動が必要なようです。(参考ページ②)&lt;/p&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;# service httpd restart
@@ -1583,62 +1649,6 @@ A fatal exception has occurred. Program will exit
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;    # service httpd restart
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
     &lt;p&gt;&lt;a href=&quot;/apache/http_basic_authentication/&quot;&gt;ベーシック認証設定 (VirtualHostの場合)&lt;/a&gt; was originally published by sankame at &lt;a href=&quot;&quot;&gt;IT調べものブログ&lt;/a&gt; on August 19, 2014.&lt;/p&gt;
-  </content>
-</entry>
-
-
-<entry>
-  <title type="html"><![CDATA[【Android Wear】ホーム画面の時計を変更]]></title>
- <link rel="alternate" type="text/html" href="/androidwear/android_wear_chage_face/" />
-  <id>/androidwear/android_wear_chage_face</id>
-  <published>2014-07-25T20:00:00-04:00</published>
-  <updated>2014-07-25T20:00:00-04:00</updated>
-  <author>
-    <name>sankame</name>
-    <uri></uri>
-    <email>m2ad0504@outlook.jp</email>
-  </author>
-  <content type="html">
-    &lt;p&gt;&lt;span style=&quot;float:right;&quot;&gt;投稿日：2014年07月25日&lt;/span&gt;&lt;/p&gt;
-
-&lt;h5&gt;0.環境&lt;/h5&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;[スマートフォン(OS)]  GALAXY S4 (Android 4.4.2)
-[スマートウォッチ(OS)] Gear Live (4.4W)
-※以下、スマートフォンは「スマホ」、スマートウォッチは「ウォッチ」と記載。
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;h5&gt;1.ホーム画面の時計(ウォッチフェイス)を変更&lt;/h5&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;Samsung Gear Live のホーム画面の時計デザインを変える方法は下記の通りです。&lt;/p&gt;
-
-&lt;p&gt;(スマホとウォッチはBluetoothで同期されている前提)&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;①【スマホ】Playストアから好みのデザインの時計アプリをインストールします。(&lt;a href=&quot;http://weekly.ascii.jp/elem/000/000/239/239437/&quot; target=&quot;_blank&quot;&gt;参考リンク&lt;/a&gt;)&lt;/p&gt;
-
-&lt;p&gt;(例) Playストアで &amp;quot;WearFaces&amp;quot; で検索。&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;②【スマホ】Android Wearアプリを起動し、右上のネジマークをタップ。&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;/assets/posts/img/android_wear_chage_face/phone-1.png&quot; target=&quot;_blank&quot;&gt;&lt;img width=&quot;20%&quot; height=&quot;20%&quot; title=&quot;スマホ-設定&quot; alt=&quot;スマホ-設定&quot; src=&quot;/assets/posts/img/android_wear_chage_face/phone-1.png&quot;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;③【スマホ】一番下までスクロールし、「アプリの再同期」をタップ。&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;/assets/posts/img/android_wear_chage_face/phone-2.png&quot; target=&quot;_blank&quot;&gt;&lt;img width=&quot;20%&quot; height=&quot;20%&quot; title=&quot;スマホ-アプリ同期&quot; alt=&quot;スマホ-アプリ同期&quot; src=&quot;/assets/posts/img/android_wear_chage_face/phone-2.png&quot;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;④【ウォッチ】ホーム画面をタップし、メニュー画面を一番下までスクロールした後「設定」をタップ。&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;(2014/07/30, 追記) 後日気づきました。ホーム画面で時計を長押し(ロングタップ)すると一気に時計変更画面に行けます。(下記⑦)&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;/assets/posts/img/android_wear_chage_face/watch-1.jpeg&quot; target=&quot;_blank&quot;&gt;&lt;img width=&quot;20%&quot; height=&quot;20%&quot; title=&quot;ウォッチ-設定&quot; alt=&quot;ウォッチ-設定&quot; src=&quot;/assets/posts/img/android_wear_chage_face/watch-1.jpeg&quot;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;⑤【ウォッチ】設定画面で上にフリック。&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;/assets/posts/img/android_wear_chage_face/watch-2.jpeg&quot; target=&quot;_blank&quot;&gt;&lt;img width=&quot;20%&quot; height=&quot;20%&quot; title=&quot;ウォッチ-設定2&quot; alt=&quot;ウォッチ-設定2&quot; src=&quot;/assets/posts/img/android_wear_chage_face/watch-2.jpeg&quot;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;⑥【ウォッチ】一番下までスクロールした後、「ウォッチフェイスの変更」をタップ。&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;/assets/posts/img/android_wear_chage_face/watch-3.jpeg&quot; target=&quot;_blank&quot;&gt;&lt;img width=&quot;20%&quot; height=&quot;20%&quot; title=&quot;ウォッチ-ウォッチフェイス変更&quot; alt=&quot;ウォッチ-ウォッチフェイス変更&quot; src=&quot;/assets/posts/img/android_wear_chage_face/watch-3.jpeg&quot;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;⑦【ウォッチ】上記でPlayストアからインストールした時計アプリを見つけ、タップするとホーム画面に設定されます。&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-    &lt;p&gt;&lt;a href=&quot;/androidwear/android_wear_chage_face/&quot;&gt;【Android Wear】ホーム画面の時計を変更&lt;/a&gt; was originally published by sankame at &lt;a href=&quot;&quot;&gt;IT調べものブログ&lt;/a&gt; on July 25, 2014.&lt;/p&gt;
   </content>
 </entry>
 

@@ -157,6 +157,68 @@ enable_page_level_ads: true
   <header>
     
     <div class="entry-meta">
+      <span class="entry-date date published updated"><time datetime="2016-05-14T20:00:00-04:00"><a href="/ssl-tls/letsencrypt_certbot_command/">May 14, 2016</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About sankame">sankame</a></span></span>
+      
+      <span class="entry-reading-time">
+        <i class="fa fa-clock-o"></i>
+        
+        Reading time ~1 minute
+      </span><!-- /.entry-reading-time -->
+      
+    </div><!-- /.entry-meta -->
+    
+      <h1 class="entry-title"><a href="/ssl-tls/letsencrypt_certbot_command/" rel="bookmark" title="Let's Encrypt - certbotコマンド" itemprop="url">Let's Encrypt - certbotコマンド</a></h1>
+    
+  </header>
+  <div class="entry-content">
+    <p><span style="float:right;">投稿日：2016年05月14日</span></p>
+
+<h3>0. 環境</h3>
+<div class="highlight"><pre><code class="language-text" data-lang="text">[CentOS] 6.4 (64bit版カーネル)
+[Apache] 2.2.15
+[Firefox] 46.0.1
+</code></pre></div>
+<h3>1. Let&#39;s Encryptのコマンド変更</h3>
+
+<ul>
+<li><a href="/ssl-tls/letsencrypt_renewal/" target="_blank">証明書を更新した際、</a> 「letsencrypt-autoコマンドはもう古いよ」という警告が出たので、更新したいと思います。</li>
+</ul>
+
+<h3>2. 更新作業(【】はマスク情報)</h3>
+
+<ul>
+<li><p>Let&#39;s Encryptがβ版の時はgit cloneして /usr/local/src/letsencrypt ディレクトリを作成しましたが、今回はそれとは別ディレクトリを作成します。</p>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="c"># cd /usr/local/src</span>
+<span class="c"># git clone https://github.com/certbot/certbot</span>
+<span class="c"># cd certbot</span>
+</code></pre></div>
+<p>疑似実行したところ成功したようなので、証明書の期限が迫ってきたら dry-run なしで実行してみたいと思います。</p>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="c"># ./certbot-auto renew --dry-run</span>
+
+  ：
+<span class="o">(</span>省略<span class="o">)</span>
+  ：
+Congratulations, all renewals succeeded. The following certs have been renewed:
+/etc/letsencrypt/live/【ドメイン名】/fullchain.pem <span class="o">(</span>success<span class="o">)</span>
+** DRY RUN: simulating <span class="s1">&#39;certbot renew&#39;</span> close to cert expiry
+**          <span class="o">(</span>The <span class="nb">test </span>certificates above have not been saved.<span class="o">)</span>
+</code></pre></div></li>
+</ul>
+
+<h3>参考ページ</h3>
+
+<ul>
+<li><p>① <a href="https://letsencrypt.org/getting-started/" target="_blank">Getting Started</a></p></li>
+<li><p>② <a href="https://www.eff.org/deeplinks/2016/05/announcing-certbot-new-tls-robot" target="_blank">Announcing Certbot: EFF&#39;s Client for Let&#39;s Encrypt</a></p></li>
+</ul>
+
+  </div><!-- /.entry-content -->
+</article><!-- /.hentry -->
+
+<article class="hentry">
+  <header>
+    
+    <div class="entry-meta">
       <span class="entry-date date published updated"><time datetime="2016-05-08T20:00:00-04:00"><a href="/applewatch/watchos_devices_not_available/">May 08, 2016</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About sankame">sankame</a></span></span>
       
       <span class="entry-reading-time">
@@ -524,81 +586,6 @@ The operation couldn’t be completed. (FBSOpenApplicationErrorDomain error 3.)
 
 <ul>
 <li><a href="http://blog.haranicle.net/watchkit_push/" target="_blank">WatchKitでpush画面遷移</a></li>
-</ul>
-
-  </div><!-- /.entry-content -->
-</article><!-- /.hentry -->
-
-<article class="hentry">
-  <header>
-    
-    <div class="entry-meta">
-      <span class="entry-date date published updated"><time datetime="2016-04-20T20:00:00-04:00"><a href="/cocoapods/pod_setup_ssl_error/">April 20, 2016</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About sankame">sankame</a></span></span>
-      
-      <span class="entry-reading-time">
-        <i class="fa fa-clock-o"></i>
-        
-        Reading time ~1 minute
-      </span><!-- /.entry-reading-time -->
-      
-    </div><!-- /.entry-meta -->
-    
-      <h1 class="entry-title"><a href="/cocoapods/pod_setup_ssl_error/" rel="bookmark" title="pod setup で SSLエラー" itemprop="url">pod setup で SSLエラー</a></h1>
-    
-  </header>
-  <div class="entry-content">
-    <p><span style="float:right;">投稿日：2016年04月20日</span></p>
-
-<h3>0.環境</h3>
-<div class="highlight"><pre><code class="language-text" data-lang="text">[OS] Mac OS X 10.11.4
-[cocoapods] 1.0.0.beta.6
-</code></pre></div>
-<h3>1.エラー内容</h3>
-
-<ul>
-<li><p>pod setupを実行すると下記エラーが発生。</p>
-<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>pod setup --verbose
-
-Setting up CocoaPods master repo
-
-Cloning spec repo <span class="sb">`</span>master<span class="sb">`</span> from <span class="sb">`</span>https://github.com/CocoaPods/Specs.git<span class="sb">`</span> <span class="o">(</span>branch <span class="sb">`</span>master<span class="sb">`</span><span class="o">)</span>
-  <span class="nv">$ </span>/usr/bin/git clone https://github.com/CocoaPods/Specs.git master
-  Cloning into <span class="s1">&#39;master&#39;</span>...
-  fatal: unable to access <span class="s1">&#39;https://github.com/CocoaPods/Specs.git/&#39;</span>: SSLRead<span class="o">()</span> <span class="k">return</span> error -9806
-<span class="o">[</span>!<span class="o">]</span> /usr/bin/git clone https://github.com/CocoaPods/Specs.git master
-
-Cloning into <span class="s1">&#39;master&#39;</span>...
-fatal: unable to access <span class="s1">&#39;https://github.com/CocoaPods/Specs.git/&#39;</span>: SSLRead<span class="o">()</span> <span class="k">return</span> error -9806
-
-        ：
-     【省略】
-        ：
-</code></pre></div></li>
-</ul>
-
-<h3>2.解決方法</h3>
-
-<ul>
-<li><p>Safariで下記URLにアクセス。(他のブラウザではダメ) </p>
-
-<p><a href="https://github.com" target="_blank">https://github.com</a></p></li>
-<li><p>再度、下記を実行するとwifi経由で1時間以上経ってからようやく成功…</p>
-<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>pod setup --verbose
-
-Setting up CocoaPods master repo
-
-        ：
-     【省略】
-        ：
-
-Setup completed
-</code></pre></div></li>
-</ul>
-
-<h3>参考ページ</h3>
-
-<ul>
-<li><a href="http://stackoverflow.com/questions/20939105/pod-install-returns-fatal-error-ssl-certificate-issue" target="_blank">pod install returns fatal error: SSL certificate issue?</a></li>
 </ul>
 
   </div><!-- /.entry-content -->
