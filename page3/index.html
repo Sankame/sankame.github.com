@@ -157,6 +157,111 @@ enable_page_level_ads: true
   <header>
     
     <div class="entry-meta">
+      <span class="entry-date date published updated"><time datetime="2016-02-07T19:00:00-05:00"><a href="/android/notification_compat_builder_setvibrate/">February 07, 2016</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About sankame">sankame</a></span></span>
+      
+      <span class="entry-reading-time">
+        <i class="fa fa-clock-o"></i>
+        
+        Reading time ~1 minute
+      </span><!-- /.entry-reading-time -->
+      
+    </div><!-- /.entry-meta -->
+    
+      <h1 class="entry-title"><a href="/android/notification_compat_builder_setvibrate/" rel="bookmark" title="setVibrateメソッドの使い方" itemprop="url">setVibrateメソッドの使い方</a></h1>
+    
+  </header>
+  <div class="entry-content">
+    <p><span style="float:right;">投稿日：2016年02月07日</span></p>
+
+<h3>環境</h3>
+<div class="highlight"><pre><code class="language-text" data-lang="text">[Android SDK]  API 21: Android 5.0(Lollipop)
+</code></pre></div>
+<h3>実装</h3>
+
+<ul>
+<li><p>スマートウォッチ(Android Wear)に通知を送るため、NotificationCompat.Builder の</p>
+
+<p>setVibrateメソッドを使った際の自分用メモ。</p>
+
+<p>バイブレーション・パターンの設定は下記仕様ですが、</p>
+
+<p>long型配列の<font color="green"><b>1つ目の要素を除いて、偶数は振動、奇数は休止</b></font></p>
+
+<p>と覚えておけば良さそうです。</p>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">NotificationCompat</span><span class="o">.</span><span class="na">Builder</span> <span class="n">builder</span> <span class="o">=</span> <span class="k">new</span> <span class="n">NotificationCompat</span><span class="o">.</span><span class="na">Builder</span><span class="o">(</span> <span class="n">getApplicationContext</span><span class="o">()</span> <span class="o">);</span>
+
+<span class="c1">// 単位はミリ秒</span>
+<span class="c1">// </span>
+<span class="c1">// 要素1 : 振動開始までの時間</span>
+<span class="c1">// 要素2 : 振動</span>
+<span class="c1">// 要素3 : 休止</span>
+<span class="c1">// 要素4 : (これ以降は要素2-3の繰り返し)</span>
+<span class="n">builder</span><span class="o">.</span><span class="na">setVibrate</span><span class="o">(</span><span class="k">new</span> <span class="kt">long</span><span class="o">[]{</span><span class="mi">0</span><span class="o">,</span> <span class="mi">500</span><span class="o">,</span> <span class="mi">250</span><span class="o">,</span> <span class="mi">500</span><span class="o">,</span> <span class="mi">250</span><span class="o">,</span> <span class="mi">1000</span><span class="o">});</span>
+</code></pre></div>
+<p>下記の例だと、ツー・ツ・ツ　みたいな感じになります。</p>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="c1">// 1秒振動、0.1秒休止、0.1秒振動、0.05秒休止、0.1秒振動</span>
+<span class="n">builder</span><span class="o">.</span><span class="na">setVibrate</span><span class="o">(</span><span class="k">new</span> <span class="kt">long</span><span class="o">[]{</span><span class="mi">0</span><span class="o">,</span> <span class="mi">1000</span><span class="o">,</span> <span class="mi">100</span><span class="o">,</span> <span class="mi">100</span><span class="o">,</span> <span class="mi">50</span><span class="o">,</span> <span class="mi">100</span><span class="o">});</span>
+</code></pre></div></li>
+</ul>
+
+<h3>関連リンク</h3>
+
+<ul>
+<li><a href="http://developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html" target="_blank">API : NotificationCompat.Builder</a></li>
+</ul>
+
+  </div><!-- /.entry-content -->
+</article><!-- /.hentry -->
+
+<article class="hentry">
+  <header>
+    
+    <div class="entry-meta">
+      <span class="entry-date date published updated"><time datetime="2015-12-30T19:00:00-05:00"><a href="/programming-practice/programming_practice_A/">December 30, 2015</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About sankame">sankame</a></span></span>
+      
+      <span class="entry-reading-time">
+        <i class="fa fa-clock-o"></i>
+        
+        Reading time ~1 minute
+      </span><!-- /.entry-reading-time -->
+      
+    </div><!-- /.entry-meta -->
+    
+      <h1 class="entry-title"><a href="/programming-practice/programming_practice_A/" rel="bookmark" title="プログラミング問題A" itemprop="url">プログラミング問題A</a></h1>
+    
+  </header>
+  <div class="entry-content">
+    <p><span style="float:right;">投稿日：2015年12月30日</span></p>
+
+<h3>環境</h3>
+<div class="highlight"><pre><code class="language-text" data-lang="text">[CentOS]   5.6 (32bit版カーネル) 
+[PHP]      5.4.17
+</code></pre></div>
+<h3>問題A-1</h3>
+
+<ul>
+<li><p>10進数の任意の値をn進数に変換する関数を作成して下さい。(nは1～16の正の整数)</p></li>
+<li><p>サンプルはPHP。</p></li>
+</ul>
+
+<h3>サンプルA-1</h3>
+
+<ul>
+<li><p>実行方法</p>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>php changeDecimalToBaseN.php
+</code></pre></div></li>
+<li><p>ソース</p>
+
+<script src="https://gist.github.com/Sankame/87f7b5050a802e5e5710.js"></script></li>
+</ul>
+
+  </div><!-- /.entry-content -->
+</article><!-- /.hentry -->
+
+<article class="hentry">
+  <header>
+    
+    <div class="entry-meta">
       <span class="entry-date date published updated"><time datetime="2015-12-06T19:00:00-05:00"><a href="/ssl-tls/letsencrypt_setup/">December 06, 2015</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About sankame">sankame</a></span></span>
       
       <span class="entry-reading-time">
@@ -471,179 +576,6 @@ lrwxrwxrwx 1 root root 41 12月  6 03:43 2015 privkey.pem -&gt; ../../archive/�
   </div><!-- /.entry-content -->
 </article><!-- /.hentry -->
 
-<article class="hentry">
-  <header>
-    
-    <div class="entry-meta">
-      <span class="entry-date date published updated"><time datetime="2015-06-22T20:00:00-04:00"><a href="/angular2/angular2_quick_start/">June 22, 2015</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About sankame">sankame</a></span></span>
-      
-      <span class="entry-reading-time">
-        <i class="fa fa-clock-o"></i>
-        
-        Reading time ~1 minute
-      </span><!-- /.entry-reading-time -->
-      
-    </div><!-- /.entry-meta -->
-    
-      <h1 class="entry-title"><a href="/angular2/angular2_quick_start/" rel="bookmark" title="【Angular2】クイックスタート" itemprop="url">【Angular2】クイックスタート</a></h1>
-    
-  </header>
-  <div class="entry-content">
-    <p><span style="float:right;">投稿日：2015年06月22日</span></p>
-
-<h3>0.環境</h3>
-<div class="highlight"><pre><code class="language-text" data-lang="text">[CentOS]  6.5
-[node.js] 0.12.4
-[npm]     2.10.1
-[tsd]     0.6.0
-[tsc]     1.5.0-beta
-</code></pre></div>
-<h3>1.インストール</h3>
-
-<ul>
-<li><p>Googleの<a href="https://angular.io/docs/js/latest/quickstart.html" target="_blank">QuickStartページ</a>に沿って進めます。(以降、JavaScriptはJSと記述)</p>
-
-<p>Angular2はJSでも動かせますが、JSのスーパーセットTypeScriptに対応しているので、Googleのページ同様、後者について記述します。</p></li>
-<li><p>最終的に下記の構成になります。</p>
-
-<p>tscを使ってhello.tsをhello.jsへ変換します。</p>
-
-<p><a href="/assets/posts/img/angular2_quick_start/system.jpg" target="_blank"><img width="100%" height="100%" title="システム構成" alt="システム構成" src="/assets/posts/img/angular2_quick_start/system.jpg"></a></p></li>
-<li><p>まずnode.jsとnpmの依存管理を楽にするため、nvmをインストールします。</p>
-
-<p>※CentOS 5系だとnode.jsを動かすのに苦労するので、<a href="http://sankame.github.io/vagrant/vagrant_setup/" target="_blank">こちらの記事</a>を参考にCentOS6.x 環境構築を推奨します。</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text"># git clone git://github.com/creationix/nvm.git ~/.nvm
-# source ~/.nvm/nvm.sh
-</code></pre></div></li>
-<li><p>node.jsをバージョン指定でインストール。</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text"># nvm install 0.12.4
-</code></pre></div></li>
-<li><p>nvmでnode.jsのデフォルトバージョンを設定。</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text"># nvm alias default v0.12.4
-# vi ~/.bash_profile
-</code></pre></div></li>
-<li><p>.bash_profile の末尾に下記を追記。</p>
-<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="k">if</span> <span class="o">[[</span> -s ~/.nvm/nvm.sh <span class="o">]]</span><span class="p">;</span>
-    <span class="k">then</span> <span class="nb">source</span> ~/.nvm/nvm.sh
-<span class="k">fi</span>
-</code></pre></div></li>
-<li><p>tsd (TypeScript用 型定義ファイル管理ツール) をインストール。</p>
-
-<p>※npmのバージョンが低いとtsdのインストールが止まってしまうので注意。</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text"># npm install tsd@0.6.0 -g
-</code></pre></div>
-<p>下記の警告が出たが5分ほどしてインストールが成功。</p>
-<div class="highlight"><pre><code class="language-sh" data-lang="sh">npm WARN engine joi-assert@0.0.3: wanted: <span class="o">{</span><span class="s2">&quot;node&quot;</span>:<span class="s2">&quot;&gt;= 0.10.0 &lt;= 0.11.0&quot;</span><span class="o">}</span> <span class="o">(</span>current: <span class="o">{</span><span class="s2">&quot;node&quot;</span>:<span class="s2">&quot;0.12.4&quot;</span>,<span class="s2">&quot;npm&quot;</span>:<span class="s2">&quot;2.10.1&quot;</span><span class="o">})</span>
-npm WARN peerDependencies The peer dependency minichain@~0.0.1 included from minitable will no
-npm WARN peerDependencies longer be automatically installed to fulfill the peerDependency
-npm WARN peerDependencies in npm 3+. Your application will need to depend on it explicitly.
-/root/.nvm/versions/node/v0.12.4/bin/tsd -&gt; /root/.nvm/versions/node/v0.12.4/lib/node_modules/tsd/build/cli.js
-</code></pre></div>
-<p>続けてAngular2用の型定義をインストール。</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text"># tsd query angular2 --action install
-</code></pre></div>
-<p>※rootユーザー以外だと下記エラーが出る可能性があります。</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">&gt;&gt; install error!
-EACCES, mkdir &#39;/etc/rc.d/init.d/typings&#39;
-Error: EACCES, mkdir &#39;/etc/rc.d/init.d/typings&#39;
-at Error (native)
-</code></pre></div></li>
-<li><p>tsc (TypeScript→JS変換ツール) をインストール。</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text"># npm install -g typescript@^1.5.0-beta
-</code></pre></div></li>
-</ul>
-
-<h3>2.サンプル実行</h3>
-
-<ul>
-<li><p>任意のディレクトリで下記サンプルファイルを作成。</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text"># cd /app/angular2_quickstart/ # 任意のディレクトリ
-# touch hello.html hello.ts
-</code></pre></div>
-<ul>
-<li><p>① hello.html</p>
-
-<script src="https://gist.github.com/313fb54ffa44bf31ed2a.js?file=hello.html"> </script></li>
-<li><p>② hello.ts</p>
-
-<script src="https://gist.github.com/e4ed0d2d8b9c9df5f074.js?file=hello.ts"> </script></li>
-</ul></li>
-<li><p>上記ディレクトリにて、tscを監視モードで実行。</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text"># cd /app/angular2_quickstart/
-# 
-# tsc --watch -m commonjs -t es5 --emitDecoratorMetadata *.ts
-</code></pre></div></li>
-<li><p>簡易HTTPサーバーをインストール後、上記ディレクトリで起動します。</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text"># npm install http-server -g
-#
-# cd /app/angular2_quickstart/
-#
-# http-server
-</code></pre></div></li>
-<li><p>ブラウザ確認</p>
-
-<ul>
-<li>下記URLで&quot;Hello World !&quot;が表示されれば成功です。(ホスト名(IP)は自分の環境に読み替え)</li>
-<li>http://192.168.33.10:8080/hello.html</li>
-</ul></li>
-</ul>
-
-<h3>※参考ページ</h3>
-
-<ul>
-<li><p><a href="https://angular.io/docs/js/latest/quickstart.html" target="_blank">公式ページ (5 MIN QUICKSTART)</a></p></li>
-<li><p><a href="http://liginc.co.jp/web/programming/node-js/85318" target="_blank">nvm インストール</a></p></li>
-</ul>
-
-  </div><!-- /.entry-content -->
-</article><!-- /.hentry -->
-
-<article class="hentry">
-  <header>
-    
-    <div class="entry-meta">
-      <span class="entry-date date published updated"><time datetime="2015-05-26T20:00:00-04:00"><a href="/laravel/laravel_migration_integer_args/">May 26, 2015</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About sankame">sankame</a></span></span>
-      
-      <span class="entry-reading-time">
-        <i class="fa fa-clock-o"></i>
-        
-        Reading time ~1 minute
-      </span><!-- /.entry-reading-time -->
-      
-    </div><!-- /.entry-meta -->
-    
-      <h1 class="entry-title"><a href="/laravel/laravel_migration_integer_args/" rel="bookmark" title="【Laravel】integerメソッドの引数" itemprop="url">【Laravel】integerメソッドの引数</a></h1>
-    
-  </header>
-  <div class="entry-content">
-    <p><span style="float:right;">投稿日：2015年05月26日</span></p>
-
-<h3>0.環境</h3>
-<div class="highlight"><pre><code class="language-text" data-lang="text">[PHP]     5.4.17
-[Laravel] 4.1.30
-</code></pre></div>
-<h3>1.内容</h3>
-
-<ul>
-<li><p>Fluentテーブルビルダーのintegerメソッドの引数について、意外と探すのに手間取ったのでメモ。</p>
-<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="x">/**</span>
-<span class="x"> * @param $column        テーブルのカラム名</span>
-<span class="x"> * @param $autoIncrement 自動採番するかどうか</span>
-<span class="x"> * @param $unsigned      0以上の正の整数とするか</span>
-<span class="x"> */</span>
-<span class="x">public function integer($column, $autoIncrement = false, $unsigned = false)</span>
-</code></pre></div></li>
-</ul>
-
-<h3>※参考にしたページ</h3>
-
-<ul>
-<li><a href="http://stackoverflow.com/questions/28895454/laravel-migration-incorrect-table-definition" target="_blank">Laravel Migration incorrect table definition</a></li>
-</ul>
-
-  </div><!-- /.entry-content -->
-</article><!-- /.hentry -->
-
 
 <div class="pagination">
   
@@ -715,6 +647,12 @@ at Error (native)
       <li>
         
           <a href="/page11">11</a>
+        
+      </li>
+    
+      <li>
+        
+          <a href="/page12">12</a>
         
       </li>
     

@@ -157,6 +157,149 @@ enable_page_level_ads: true
   <header>
     
     <div class="entry-meta">
+      <span class="entry-date date published updated"><time datetime="2015-05-01T20:00:00-04:00"><a href="/jqgrid/jqgrid_formatter/">May 01, 2015</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About sankame">sankame</a></span></span>
+      
+      <span class="entry-reading-time">
+        <i class="fa fa-clock-o"></i>
+        
+        Reading time ~1 minute
+      </span><!-- /.entry-reading-time -->
+      
+    </div><!-- /.entry-meta -->
+    
+      <h1 class="entry-title"><a href="/jqgrid/jqgrid_formatter/" rel="bookmark" title="jqGridで表示する値と元の値を分ける" itemprop="url">jqGridで表示する値と元の値を分ける</a></h1>
+    
+  </header>
+  <div class="entry-content">
+    <p><span style="float:right;">投稿日：2015年05月01日</span></p>
+
+<h5>0.環境</h5>
+<div class="highlight"><pre><code class="language-text" data-lang="text">[jquery]     1.7.1
+[jquery-ui]  1.10.3
+[jqGrid]     4.5.2
+</code></pre></div>
+<h5>1.コード</h5>
+
+<ul>
+<li><p>画面表示は formatter で定義し、処理では元の値を使いたいので unformat で定義します。</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">jQuery</span><span class="p">(</span><span class="s2">&quot;#grid_id&quot;</span><span class="p">).</span><span class="nx">jqGrid</span><span class="p">({</span>
+    <span class="c1">// 省略</span>
+    <span class="nx">colModel</span><span class="o">:</span> <span class="p">[</span>
+        <span class="c1">// 省略</span>
+        <span class="p">{</span><span class="nx">name</span><span class="o">:</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="nx">index</span><span class="o">:</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="nx">formatter</span><span class="o">:</span> <span class="nx">formatterName</span><span class="p">,</span> <span class="nx">unformat</span><span class="o">:</span> <span class="nx">unformatName</span><span class="p">},</span>
+        <span class="c1">// 省略</span>
+    <span class="p">]</span>
+    <span class="c1">// 省略</span>
+<span class="p">});</span>
+
+<span class="cm">/** リンクに変更 */</span>
+<span class="kd">function</span> <span class="nx">formatterName</span><span class="p">(</span><span class="nx">cellvalue</span><span class="p">,</span> <span class="nx">options</span><span class="p">,</span> <span class="nx">rowdata</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">val</span> <span class="o">=</span> <span class="s2">&quot;&lt;a href=\&quot;javascript:void(0);\&quot; onclick=\&quot;showItem(&#39;&quot;</span> <span class="o">+</span> <span class="nx">rowdata</span><span class="p">.</span><span class="nx">item_id</span> <span class="o">+</span> <span class="s2">&quot;&#39;);\&quot;&gt;&quot;</span> <span class="o">+</span> <span class="nx">cellvalue</span> <span class="o">+</span> <span class="s2">&quot;&lt;/a&gt;&quot;</span><span class="p">;</span>
+    <span class="k">return</span> <span class="nx">val</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="cm">/** 加工しない元の値 */</span>
+<span class="kd">function</span> <span class="nx">unformatName</span><span class="p">(</span><span class="nx">cellvalue</span><span class="p">,</span> <span class="nx">options</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="nx">cellvalue</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></li>
+</ul>
+
+<h5>2.参考</h5>
+
+<p><a href="http://www.trirand.com/jqgridwiki/doku.php?id=wiki:custom_formatter" target="_blank">参考にしたページ</a></p>
+
+  </div><!-- /.entry-content -->
+</article><!-- /.hentry -->
+
+<article class="hentry">
+  <header>
+    
+    <div class="entry-meta">
+      <span class="entry-date date published updated"><time datetime="2014-08-19T20:00:00-04:00"><a href="/apache/http_basic_authentication/">August 19, 2014</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About sankame">sankame</a></span></span>
+      
+      <span class="entry-reading-time">
+        <i class="fa fa-clock-o"></i>
+        
+        Reading time ~1 minute
+      </span><!-- /.entry-reading-time -->
+      
+    </div><!-- /.entry-meta -->
+    
+      <h1 class="entry-title"><a href="/apache/http_basic_authentication/" rel="bookmark" title="ベーシック認証設定 (VirtualHostの場合)" itemprop="url">ベーシック認証設定 (VirtualHostの場合)</a></h1>
+    
+  </header>
+  <div class="entry-content">
+    <p><span style="float:right;">投稿日：2014年08月19日</span></p>
+
+<h5>0.環境</h5>
+<div class="highlight"><pre><code class="language-text" data-lang="text">[CentOS]   5.6 (32bit版カーネル)
+[Apache]   2.2.3
+</code></pre></div>
+<h5>1.パスワードファイル作成</h5>
+
+<ul>
+<li>適当な場所にパスワードファイルを作成。(&quot;user1&quot;は作成したいユーザー名で読み替え)</li>
+</ul>
+<div class="highlight"><pre><code class="language-text" data-lang="text">    # htpasswd -c /etc/httpd/conf/.htpasswd user1
+
+    New password: 
+
+    Re-type new password: 
+
+    Adding password for user user1
+</code></pre></div>
+<h5>2.パスワードファイル設定</h5>
+
+<ul>
+<li><p>VirtualHostを設定している場合、Directoryディレクティブ内に下記を追加。</p>
+
+<p>AuthUserFileには上記1で作ったパスワードファイルを指定。</p>
+
+<p>AuthNameはブラウザの認証ダイアログに表示されるメッセージとなります。</p>
+
+<p>(マルチバイト文字は化ける可能性あり)</p>
+
+<p><code>※下記はApache設定ファイル(/etc/httpd/conf/httpd.conf) の抜粋</code></p></li>
+</ul>
+<div class="highlight"><pre><code class="language-apache" data-lang="apache"><span class="nb">NameVirtualHost</span> *:80
+
+<span class="nt">&lt;Directory</span> <span class="s">/web/test</span><span class="nt">&gt;</span>
+    <span class="nb">Options</span> FollowSymLinks
+    <span class="nb">AllowOverride</span> FileInfo Options=All,MultiViews
+
+    <span class="c"># --- ベーシック認証追加 ---</span>
+    <span class="nb">AuthType</span> Basic
+    <span class="nb">AuthUserFile</span> <span class="s2">&quot;/etc/httpd/conf/.htpasswd&quot;</span>
+    <span class="nb">AuthName</span> <span class="s2">&quot;Here is a message.&quot;</span>
+    <span class="nb">Require</span> valid-user
+    <span class="c"># --- ベーシック認証追加 ---</span>
+
+<span class="nt">&lt;/Directory&gt;</span>
+
+<span class="nt">&lt;VirtualHost</span> <span class="s">*:80</span><span class="nt">&gt;</span>
+    <span class="nb">ServerAdmin</span> test@sample.co.jp
+    <span class="nb">DocumentRoot</span> <span class="s2">&quot;/web/test&quot;</span>
+    <span class="nb">ServerName</span> test.net
+    <span class="nb">ErrorLog</span> logs/test.net-error_log
+    <span class="nb">CustomLog</span> logs/test.net-access_log common
+<span class="nt">&lt;/VirtualHost&gt;</span>
+</code></pre></div>
+<h5>3.再起動</h5>
+
+<ul>
+<li>最後にApacheを再起動します。</li>
+</ul>
+<div class="highlight"><pre><code class="language-text" data-lang="text">    # service httpd restart
+</code></pre></div>
+  </div><!-- /.entry-content -->
+</article><!-- /.hentry -->
+
+<article class="hentry">
+  <header>
+    
+    <div class="entry-meta">
       <span class="entry-date date published updated"><time datetime="2014-07-25T20:00:00-04:00"><a href="/androidwear/android_wear_chage_face/">July 25, 2014</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About sankame">sankame</a></span></span>
       
       <span class="entry-reading-time">
@@ -380,105 +523,6 @@ enable_page_level_ads: true
   </div><!-- /.entry-content -->
 </article><!-- /.hentry -->
 
-<article class="hentry">
-  <header>
-    
-    <div class="entry-meta">
-      <span class="entry-date date published updated"><time datetime="2014-07-02T20:00:00-04:00"><a href="/wget/wget_option_O/">July 02, 2014</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About sankame">sankame</a></span></span>
-      
-      <span class="entry-reading-time">
-        <i class="fa fa-clock-o"></i>
-        
-        Reading time ~1 minute
-      </span><!-- /.entry-reading-time -->
-      
-    </div><!-- /.entry-meta -->
-    
-      <h1 class="entry-title"><a href="/wget/wget_option_O/" rel="bookmark" title="wget ファイル名を指定してダウンロード" itemprop="url">wget ファイル名を指定してダウンロード</a></h1>
-    
-  </header>
-  <div class="entry-content">
-    <p><span style="float:right;">投稿日：2014年07月02日</span></p>
-
-<h5>-O オプションを使って、ダウンロードファイル名を指定します。</h5>
-
-<ul>
-<li>下記例では MyWget という名前に変更。</li>
-</ul>
-<div class="highlight"><pre><code class="language-text" data-lang="text">    # wget -O MyWget http://ftp.gnu.org/gnu/wget/wget-1.15.tar.gz
-    # ls
-    # -rw-r--r--  1 root  root  3417936  1月 19 19:17 MyWget
-</code></pre></div>
-  </div><!-- /.entry-content -->
-</article><!-- /.hentry -->
-
-<article class="hentry">
-  <header>
-    
-    <div class="entry-meta">
-      <span class="entry-date date published updated"><time datetime="2014-06-24T20:00:00-04:00"><a href="/ntp/ntp_for_dev/">June 24, 2014</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About sankame">sankame</a></span></span>
-      
-      <span class="entry-reading-time">
-        <i class="fa fa-clock-o"></i>
-        
-        Reading time ~1 minute
-      </span><!-- /.entry-reading-time -->
-      
-    </div><!-- /.entry-meta -->
-    
-      <h1 class="entry-title"><a href="/ntp/ntp_for_dev/" rel="bookmark" title="開発環境用 NTP 設定" itemprop="url">開発環境用 NTP 設定</a></h1>
-    
-  </header>
-  <div class="entry-content">
-    <p><span style="float:right;">投稿日：2014年06月24日</span></p>
-
-<h5>0.環境</h5>
-<div class="highlight"><pre><code class="language-text" data-lang="text">  [VMware Player] 3.0.0
-  [CentOS]        5.6 (32bit版カーネル) (Windows上でゲストOSとして使用)
-  [NTP]           4.2.6
-</code></pre></div>
-<h5>1.セットアップ</h5>
-
-<ul>
-<li><p>ソース取得</p>
-
-<p>任意のディレクトリにNTPのソース(ntpd)をダウンロード。</p></li>
-</ul>
-<div class="highlight"><pre><code class="language-text" data-lang="text">    # cd /usr/local/src/
-    # wget http://www.eecis.udel.edu/~ntp/ntp_spool/ntp4/ntp-4.2/ntp-4.2.6p5.tar.gz
-</code></pre></div>
-<ul>
-<li>インストール</li>
-</ul>
-<div class="highlight"><pre><code class="language-text" data-lang="text">    # tar xzf ntp-4.2.6p5.tar.gz
-    # cd ntp-4.2.6p5
-    # ./configure
-    # make
-    # make install
-</code></pre></div>
-<ul>
-<li><p>設定</p>
-
-<p>下記URL①の設定を行ったところうまく時刻同期されませんでした。</p>
-
-<p>(VMwareをサスペンドすると時刻が離れ過ぎるため？)</p>
-
-<p>結局、自分用の開発環境で、ログイン時に1回同期させれば十分なので下記のようにしました。</p></li>
-</ul>
-<div class="highlight"><pre><code class="language-text" data-lang="text">    # echo &#39;ntpdate -u ntp.nict.jp&#39; &gt;&gt; ~/.bash_profile
-</code></pre></div>
-<h5>2.参考URL</h5>
-
-<ul>
-<li><p><a href="http://www.ipa.go.jp/security/awareness/administrator/secure-web/chap4/4_ntpd.html" target="_blank">①ntpdのインストールと設定</a></p></li>
-<li><p><a href="http://www.turbolinux.co.jp/products/server/11s/user_guide/x6278.html" target="_blank">②ntpd の起動と動作確認</a></p></li>
-<li><p><a href="http://tech.n-linux.com/index.php?%A5%C6%A5%AF%A5%CB%A5%AB%A5%EB%A5%CE%A1%BC%A5%C8%2FNTP%2FNTP%20%A5%B7%A5%EA%A1%BC%A5%BA%20%A5%D1%A1%BC%A5%C8%203%20ntpdate%20%A5%B3%A5%DE%A5%F3%A5%C9%A4%CB%A4%C4%A4%A4%A4%C6" target="_blank">③ntpdate コマンドについて</a></p></li>
-<li><p><a href="http://wiki.nothing.sh/page/NTP/%BF%E4%BE%A9%B8%F8%B3%AB%A5%B5%A1%BC%A5%D0" target="_blank">④推奨公開サーバ</a></p></li>
-</ul>
-
-  </div><!-- /.entry-content -->
-</article><!-- /.hentry -->
-
 
 <div class="pagination">
   
@@ -550,6 +594,12 @@ enable_page_level_ads: true
       <li>
         
           <a href="/page11">11</a>
+        
+      </li>
+    
+      <li>
+        
+          <a href="/page12">12</a>
         
       </li>
     

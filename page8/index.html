@@ -157,6 +157,161 @@ enable_page_level_ads: true
   <header>
     
     <div class="entry-meta">
+      <span class="entry-date date published updated"><time datetime="2013-10-03T20:00:00-04:00"><a href="/mindmapmemo/mind_map_tools/">October 03, 2013</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About sankame">sankame</a></span></span>
+      
+      <span class="entry-reading-time">
+        <i class="fa fa-clock-o"></i>
+        
+        Reading time ~1 minute
+      </span><!-- /.entry-reading-time -->
+      
+    </div><!-- /.entry-meta -->
+    
+      <h1 class="entry-title"><a href="/mindmapmemo/mind_map_tools/" rel="bookmark" title="スマホ(Android)とPCでMindMapを使う" itemprop="url">スマホ(Android)とPCでMindMapを使う</a></h1>
+    
+  </header>
+  <div class="entry-content">
+    <p><span style="float:right;">投稿日：2013年10月03日</span></p>
+
+<h5>0.環境</h5>
+<div class="highlight"><pre><code class="language-text" data-lang="text">[スマホ端末/OS] GALAXY S SC-02B / Android2.2
+[PC端末/OS]    Gateway SX2800 / Windows Vista Home Premium
+</code></pre></div>
+<h5>1.スマホでマインドマップ作成</h5>
+
+<ul>
+<li><p>1-1.スマホにMindMapMemoをインストールする。</p></li>
+<li><p>1-2.マインドマップのファイルを作成後、「オプション」-「メール送信(SD保存)」-「FreeMind(.mm)」を選択。</p></li>
+<li><p>1-3.共有するためのアプリ一覧が表示されるので、PCへファイルを送信できるアプリを選択。</p></li>
+</ul>
+
+<h5>2.PCにFreeMindをインストール</h5>
+
+<ul>
+<li><p>2-1.下記リンク先のページで[0.8.1]をクリック。</p>
+
+<p>(0.9.0では上記スマホで作成したファイルをうまく開けませんでした)</p>
+
+<p><a href="http://sourceforge.net/projects/freemind/files/freemind/">FreeMindソース</a></p></li>
+<li><p>2-2.[freemind-bin-0<em>8</em>1.zip]をクリック。</p></li>
+<li><p>2-3.PCにダウンロード後、解凍してFreemind.exeをダブルクリック。</p></li>
+<li><p>2-4.メニューの「ファイル」-「開く」で、スマホから送信した拡張子がmmのファイルを選択。</p></li>
+<li><p>2-5.スマホではカラフルに作ったのにFreeMindで開くと白黒になっている。まあ内容が分かるからいいか…</p></li>
+</ul>
+
+  </div><!-- /.entry-content -->
+</article><!-- /.hentry -->
+
+<article class="hentry">
+  <header>
+    
+    <div class="entry-meta">
+      <span class="entry-date date published updated"><time datetime="2013-09-22T20:00:00-04:00"><a href="/phpdebugbar/php_debug_bar_install/">September 22, 2013</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About sankame">sankame</a></span></span>
+      
+      <span class="entry-reading-time">
+        <i class="fa fa-clock-o"></i>
+        
+        Reading time ~1 minute
+      </span><!-- /.entry-reading-time -->
+      
+    </div><!-- /.entry-meta -->
+    
+      <h1 class="entry-title"><a href="/phpdebugbar/php_debug_bar_install/" rel="bookmark" title="PHP Debug Bar インストール" itemprop="url">PHP Debug Bar インストール</a></h1>
+    
+  </header>
+  <div class="entry-content">
+    <p><span style="float:right;">投稿日：2013年09月22日</span></p>
+
+<h5>0.環境</h5>
+<div class="highlight"><pre><code class="language-text" data-lang="text">PHPフレームワークPhalconでPHP Debug Barを使うときの例です。
+
+[CentOS]  5.6 (32bit版カーネル)
+[Apache]  2.2.3
+[PHP]     5.4.1
+[phalcon] 1.2.1
+</code></pre></div>
+<h5>1.PHP Debug Barをインストール</h5>
+
+<ul>
+<li><p>1-1.Webサーバのドキュメントルートにcomposer.jsonを配置し次の内容を記述。(下図1-3参照)</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">{
+    &quot;require&quot;: {
+        &quot;maximebf/debugbar&quot;: &quot;&gt;=1.0.0&quot;
+    }
+}
+</code></pre></div></li>
+<li><p>1-2.Webサーバのドキュメントルートで次のコマンドを実行。</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text"># composer install
+</code></pre></div>
+<p>※composerが未インストールの場合、<a href="http://9ensan.com/blog/programming/php/php-composer-dependency-management/">こちら</a>を参考にインストールして下さい。</p></li>
+<li><p>1-3.ディレクトリ構成</p>
+
+<p>app_rootはWebサイトのルートディレクトリで、publicが公開ディレクトリです。</p>
+
+<p>薄オレンジはcomposerで設置されたもの。</p></li>
+</ul>
+
+<p><img src="/assets/posts/img/php_debug_bar_install/directory_image.jpg" alt="ディレクトリ構成" title="ディレクトリ構成"></p>
+
+<h5>2.コードを記述 (ポイント以外は割愛)</h5>
+
+<ul>
+<li><p>2-0.index.php(フレームワークのエントリポイント)に次の内容を追記。</p>
+
+<script src="https://gist.github.com/d953437cd1ac4a5df725.js?file=require_autoload.php"> </script>
+
+<p><code>composer関係のファイルをバージョン管理(svn, git等)から除外した場合、この記述だけ残してリリースしないよう注意。</code></p></li>
+<li><p>2-1.ControllerBase(全コントローラの親クラス)に次の内容を追記。</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">use DebugBar\StandardDebugBar;
+
+class ControllerBase extends Phalcon\Mvc\Controller
+{
+    protected $debugbar;
+
+    // Actionメソッドの後処理
+    public function afterExecuteRoute($dispatcher)
+    {
+        $debugbarRenderer   = $this-&gt;debugbar-&gt;getJavascriptRenderer();
+
+        $this-&gt;view-&gt;setVar(&#39;debugbarHeader&#39;, $debugbarRenderer-&gt;renderHead());
+        $this-&gt;view-&gt;setVar(&#39;debugbarBody&#39;, $debugbarRenderer-&gt;render());
+
+    }
+}
+</code></pre></div></li>
+<li><p>2-2.ContactControllerに次の内容を追記。</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">// お問い合わせ画面
+public function indexAction()
+{
+    $this-&gt;debugbar[&quot;messages&quot;]-&gt;addMessage(&quot;DebugBarのテスト&quot;);
+}
+</code></pre></div></li>
+<li><p>2-3.index.volt(全viewが使う共通ファイル)に次の内容を追記。</p>
+
+<script src="https://gist.github.com/eb6d098e2ef1f473ff7d.js?file=php_debugbar.volt"> </script></li>
+<li><p>2-4.画面イメージ</p>
+
+<p>上記2-2で書いたメッセージが表示されています。</p>
+
+<p>実行時のその他の情報も表示されます。</p>
+
+<p><img src="/assets/posts/img/php_debug_bar_install/screen_image.jpg" alt="画面イメージ" title="画面イメージ"></p></li>
+</ul>
+
+<h5>3.参考ページ</h5>
+
+<ul>
+<li><p><a href="http://www.moongift.jp/2013/08/20130829-3/">紹介ページ</a></p></li>
+<li><p><a href="http://phpdebugbar.com/docs/">PHP Debug Bar</a></p></li>
+</ul>
+
+  </div><!-- /.entry-content -->
+</article><!-- /.hentry -->
+
+<article class="hentry">
+  <header>
+    
+    <div class="entry-meta">
       <span class="entry-date date published updated"><time datetime="2013-09-15T20:00:00-04:00"><a href="/ruby/ruby_hello_world/">September 15, 2013</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About sankame">sankame</a></span></span>
       
       <span class="entry-reading-time">
@@ -501,174 +656,6 @@ error: device not found
   </div><!-- /.entry-content -->
 </article><!-- /.hentry -->
 
-<article class="hentry">
-  <header>
-    
-    <div class="entry-meta">
-      <span class="entry-date date published updated"><time datetime="2013-08-25T20:00:00-04:00"><a href="/mysql/mysql_command/">August 25, 2013</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About sankame">sankame</a></span></span>
-      
-      <span class="entry-reading-time">
-        <i class="fa fa-clock-o"></i>
-        
-        Reading time ~1 minute
-      </span><!-- /.entry-reading-time -->
-      
-    </div><!-- /.entry-meta -->
-    
-      <h1 class="entry-title"><a href="/mysql/mysql_command/" rel="bookmark" title="MySQLコマンド メモ" itemprop="url">MySQLコマンド メモ</a></h1>
-    
-  </header>
-  <div class="entry-content">
-    <p><span style="float:right;">投稿日：2013年08月25日</span></p>
-
-<h4>MySQLコマンド メモ</h4>
-
-<h5>WebサーバとDBサーバが1台のマシンにある場合によく行う操作。</h5>
-<div class="highlight"><pre><code class="language-text" data-lang="text"># そのマシンのMySQLサーバにrootで接続
-# (パスワードを聞かれるので入力してEnter)
-# mysql -h 127.0.0.1 -u root -p
-
-mysql&gt; -- UTF8でDBを作成し、接続ユーザを作成 (先頭がtestの文字は読み替えて下さい)
-mysql&gt; create database testdb default character set utf8;
-mysql&gt; grant all on testdb.* to &#39;testuser&#39;@&#39;localhost&#39; identified by &#39;testpassword&#39;;
-mysql&gt; flush privileges;
-
-mysql&gt; -- 別マシンからDBへ接続する必要がある場合は、以下のように別ユーザを作成
-mysql&gt; -- (192.168.0.1の部分を別マシンのIPに読み替える)
-mysql&gt; grant all on testdb.* to testuser@192.168.0.1 identified by &#39;testpassword&#39;;
-
-mysql&gt; -- 作成したDBに切り替え、テーブルを作成
-mysql&gt; use testdb;
-
-mysql&gt; DROP TABLE IF EXISTS `users`;
-
-mysql&gt; CREATE TABLE `users` (
-mysql&gt;   `id`         bigint unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY,
-mysql&gt;   `username`   varchar(32) NOT NULL
-mysql&gt; ) ENGINE=InnoDB;
-</code></pre></div>
-  </div><!-- /.entry-content -->
-</article><!-- /.hentry -->
-
-<article class="hentry">
-  <header>
-    
-    <div class="entry-meta">
-      <span class="entry-date date published updated"><time datetime="2013-08-10T20:00:00-04:00"><a href="/nexus7/nexus7_github_devenv/">August 10, 2013</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About sankame">sankame</a></span></span>
-      
-      <span class="entry-reading-time">
-        <i class="fa fa-clock-o"></i>
-        
-        Reading time ~1 minute
-      </span><!-- /.entry-reading-time -->
-      
-    </div><!-- /.entry-meta -->
-    
-      <h1 class="entry-title"><a href="/nexus7/nexus7_github_devenv/" rel="bookmark" title="Nexus7とGitHubでプログラミング環境を作る" itemprop="url">Nexus7とGitHubでプログラミング環境を作る</a></h1>
-    
-  </header>
-  <div class="entry-content">
-    <p><span style="float:right;">投稿日：2013年08月10日</span></p>
-
-<h5>0.環境</h5>
-<div class="highlight"><pre><code class="language-text" data-lang="text">[端末] Nexus7
-[OS]   Android 4.2.2
-[BlueToothキーボード] ELECOM TK-FBP013
-</code></pre></div>
-<h5>1.Nexus7にBit Web Serverをインストール <a href="https://play.google.com/store/apps/details?id=com.andi.serverweb">(ダウンロード)</a></h5>
-<div class="highlight"><pre><code class="language-text" data-lang="text">Android上でPHPとMySQLを動かせるアプリ。(有料 約230円)
-root化しないで使用可能。
-</code></pre></div>
-<h5>2.Nexus7にTerminal IDEをインストール <a href="https://play.google.com/store/apps/details?id=com.spartacusrex.spartacuside">(ダウンロード)</a></h5>
-<div class="highlight"><pre><code class="language-text" data-lang="text">Android用の開発環境。java、c、c++等のコンパイラを含む。
-root化しないで使用可能。
-</code></pre></div>
-<h5>3.Hello World</h5>
-<div class="highlight"><pre><code class="language-text" data-lang="text">Nexus7にBlueToothキーボードを接続。
-
-Nexus7でTerminal IDEを起動。
-
-いくつかのボタンが表示されるので、[Install System]をクリック。
-
-Overwrite ALLにチェックを入れ、[Install System]をクリックし、システムアップデート。
-
-[Terminal IDE]をクリック。
-
-コンソールが起動するので、ファイルを作成し、以下の内容を書き込む。
-
-$ cd $HOME/sdcard/wwww
-$
-$ vim hello.php
-</code></pre></div>
-<script src="https://gist.github.com/29b89884b38df722f9c6.js?file=test_hello.php"> </script>
-<div class="highlight"><pre><code class="language-text" data-lang="text">Nexus7でBit Web Serverを起動。
-
-[Localhost]をクリック。
-
-ブラウザが起動し、表示されたファイル一覧から上記で作成したhello.phpをクリック。
-
-ブラウザにhelloと表示されれば成功。
-</code></pre></div>
-<h5>4.GitHubにファイルをアップ(準備)</h5>
-
-<p>せっかくなのでNexus7からGitHubにファイルをアップしてみる。</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">$ 公開鍵と秘密鍵を作成。
-$ Nexus7で以下のコマンドを打つ。
-$ dropbearkey -t rsa -f $HOME/.ssh/id_rsa
-$
-$ 作成した鍵を表示。
-$ dropbearkey -y -f ~/.ssh/id_rsa
-$ 
-$ ssh-rsaの1行(公開鍵)をコピーする。
-
-GitHubダッシュボード画面の右上「Account Settings」をクリック。
-(GitHubアカウントは作成済みとします)
-左メニューの「SSH Keys」クリック。
-「Add SSH key」をクリックし、Titleに任意の値、Keyに上記でコピーした内容(公開鍵)を入力する。
-
-GitHubダッシュボード画面の「Repositories」-「New」をクリックし、新規リポジトリを作成する。
-
-$ Nexus7に戻り、以下のファイルを作成し、追記内容を書き込む。
-$ vim /data/data/com.spartacusrex.spartacuside/files/bin/ssh-with-default-key
-
---------------(追記内容)-----------
-#!/data/data/com.spartacusrex.spartacuside/files/system/bin/bash
-exec ssh -i ~/.ssh/id_rsa &quot;$@&quot;
---------------(追記内容)-----------
-
-$ chmod 755 /data/data/com.spartacusrex.spartacuside/files/bin/ssh-with-default-key
-
-$ さらに以下のファイルに追記内容を書き込む。
-$ vim $HOME/.bashrc
-
---------------(追記内容)-----------
-export GIT_SSH=$HOME/bin/ssh-with-default-key
---------------(追記内容)-----------
-</code></pre></div>
-<h5>5.GitHubにファイルをアップ</h5>
-<div class="highlight"><pre><code class="language-text" data-lang="text">$ Nexus7に戻って以下のコマンドを打つ。
-$ cd $HOME/sdcard/wwww
-$ git init
-$ touch new.txt
-$ git add .
-$ git commit -m &#39;add new.txt&#39;
-$ 【】内は自分の設定に読み替える。
-$ git remote add origin git@github.com:【アカウント名】/【リポジトリ名】.git
-$ git push origin master
-$
-$ これでGitHubにnew.txtがアップロードできたはず。
-</code></pre></div>
-<h5>参考ページ</h5>
-
-<p><a href="https://play.google.com/store/apps/details?id=com.andi.serverweb">Terminal IDEの設定</a></p>
-
-<p><a href="http://blog.katsuma.tv/2009/02/first_github.html">Githubへのpush</a></p>
-
-<p><a href="https://jp.linux.com/linux-community/blog/236-mirainoitsuka/403358">Githubへのpush2</a></p>
-
-  </div><!-- /.entry-content -->
-</article><!-- /.hentry -->
-
 
 <div class="pagination">
   
@@ -740,6 +727,12 @@ $ これでGitHubにnew.txtがアップロードできたはず。
       <li>
         
           <a href="/page11">11</a>
+        
+      </li>
+    
+      <li>
+        
+          <a href="/page12">12</a>
         
       </li>
     

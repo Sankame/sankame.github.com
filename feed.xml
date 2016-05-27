@@ -4,13 +4,105 @@
 <generator uri="https://github.com/mojombo/jekyll">Jekyll</generator>
 <link rel="self" type="application/atom+xml" href="/feed.xml" />
 <link rel="alternate" type="text/html" href="" />
-<updated>2016-05-14T13:45:44-04:00</updated>
+<updated>2016-05-27T12:28:25-04:00</updated>
 <id>/</id>
 <author>
   <name>sankame</name>
   <uri>/</uri>
   <email>m2ad0504@outlook.jp</email>
 </author>
+
+
+<entry>
+  <title type="html"><![CDATA[トグル処理を楽に実装 (ビット演算)]]></title>
+ <link rel="alternate" type="text/html" href="/programming-practice/bitwise_operator_toggle/" />
+  <id>/programming-practice/bitwise_operator_toggle</id>
+  <published>2016-05-26T20:00:00-04:00</published>
+  <updated>2016-05-26T20:00:00-04:00</updated>
+  <author>
+    <name>sankame</name>
+    <uri></uri>
+    <email>m2ad0504@outlook.jp</email>
+  </author>
+  <content type="html">
+    &lt;p&gt;&lt;span style=&quot;float:right;&quot;&gt;投稿日：2016年05月26日&lt;/span&gt;&lt;/p&gt;
+
+&lt;h3&gt;0. 環境&lt;/h3&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;[CentOS] 6.4 (64bit版カーネル)
+[PHP] 5.4.17
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;1. XORでトグル処理&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;押すたびにON/OFFが切り替わるようなトグル処理を実装する場合はXORが便利です。&lt;/p&gt;
+
+&lt;script src=&quot;https://gist.github.com/Sankame/46005a2dc4fed64a807f9c15cbb8c010.js&quot;&gt;&lt;/script&gt;
+
+&lt;p&gt;6行目、11行目 : 「XOR 1」するとビットが反転する性質を利用します。(下記)&lt;/p&gt;
+
+&lt;p&gt;&lt;b&gt;XOR&lt;/b&gt;&lt;/p&gt;
+
+&lt;table border=&quot;1&quot;&gt;
+&lt;tr&gt;&lt;td bgcolor=&quot;lightgray&quot;&gt;入力①&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td bgcolor=&quot;lightgray&quot;&gt;入力②&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td bgcolor=&quot;lightgray&quot;&gt;出力&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+    &lt;p&gt;&lt;a href=&quot;/programming-practice/bitwise_operator_toggle/&quot;&gt;トグル処理を楽に実装 (ビット演算)&lt;/a&gt; was originally published by sankame at &lt;a href=&quot;&quot;&gt;IT調べものブログ&lt;/a&gt; on May 26, 2016.&lt;/p&gt;
+  </content>
+</entry>
+
+
+<entry>
+  <title type="html"><![CDATA[状態管理を楽に実装 (ビット演算)]]></title>
+ <link rel="alternate" type="text/html" href="/programming-practice/bitwise_operator_status_control/" />
+  <id>/programming-practice/bitwise_operator_status_control</id>
+  <published>2016-05-26T20:00:00-04:00</published>
+  <updated>2016-05-26T20:00:00-04:00</updated>
+  <author>
+    <name>sankame</name>
+    <uri></uri>
+    <email>m2ad0504@outlook.jp</email>
+  </author>
+  <content type="html">
+    &lt;p&gt;&lt;span style=&quot;float:right;&quot;&gt;投稿日：2016年05月26日&lt;/span&gt;&lt;/p&gt;
+
+&lt;h3&gt;0. 環境&lt;/h3&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;[CentOS] 6.4 (64bit版カーネル)
+[PHP] 5.4.17
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;1. ORとANDで状態管理&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;複数の状態や権限をまとめて管理したい場合、2進数が便利です。&lt;/p&gt;
+
+&lt;script src=&quot;https://gist.github.com/Sankame/5588e4ff2cec15e95d42592bd1746ba7.js&quot;&gt;&lt;/script&gt;
+
+&lt;p&gt;2-5行目 : 2進数の定数(10進数表記)を用意します。&lt;/p&gt;
+
+&lt;p&gt;7行目 : ORでプログラミング言語を足していきます。&lt;/p&gt;
+
+&lt;p&gt;Aさんが使える言語の位にビットが立つイメージです。(下記)&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;    0001 (PHP)
+    0010 (Ruby)
+OR) 1000 (Perl)
+----------
+    1011 (Aさんが使えるプログラミング言語)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;11行目以降 : Aさんが使えるプログラミング言語は何か、ANDで問い合わせます。&lt;/p&gt;
+
+&lt;p&gt;右端の位にビットが立っていれば結果がtrueになり、PHPが使えることが分かります。(下記)&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;     1011 (Aさんが使えるプログラミング言語)
+AND) 0001 (PHP)
+----------
+     0001 (PHPが使える)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+    &lt;p&gt;&lt;a href=&quot;/programming-practice/bitwise_operator_status_control/&quot;&gt;状態管理を楽に実装 (ビット演算)&lt;/a&gt; was originally published by sankame at &lt;a href=&quot;&quot;&gt;IT調べものブログ&lt;/a&gt; on May 26, 2016.&lt;/p&gt;
+  </content>
+</entry>
 
 
 <entry>
@@ -1514,141 +1606,6 @@ A fatal exception has occurred. Program will exit
 &lt;p&gt;&lt;a href=&quot;http://sakashushu.blog.so-net.ne.jp/2014-06-16&quot; target=&quot;_blank&quot;&gt;エラーの際に役立ったページ&lt;/a&gt;&lt;/p&gt;
 
     &lt;p&gt;&lt;a href=&quot;/vagrant/vagrant_setup/&quot;&gt;Vagrant + VirtualBox でCentOS開発環境構築&lt;/a&gt; was originally published by sankame at &lt;a href=&quot;&quot;&gt;IT調べものブログ&lt;/a&gt; on May 05, 2015.&lt;/p&gt;
-  </content>
-</entry>
-
-
-<entry>
-  <title type="html"><![CDATA[jqGridで表示する値と元の値を分ける]]></title>
- <link rel="alternate" type="text/html" href="/jqgrid/jqgrid_formatter/" />
-  <id>/jqgrid/jqgrid_formatter</id>
-  <published>2015-05-01T20:00:00-04:00</published>
-  <updated>2015-05-01T20:00:00-04:00</updated>
-  <author>
-    <name>sankame</name>
-    <uri></uri>
-    <email>m2ad0504@outlook.jp</email>
-  </author>
-  <content type="html">
-    &lt;p&gt;&lt;span style=&quot;float:right;&quot;&gt;投稿日：2015年05月01日&lt;/span&gt;&lt;/p&gt;
-
-&lt;h5&gt;0.環境&lt;/h5&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;[jquery]     1.7.1
-[jquery-ui]  1.10.3
-[jqGrid]     4.5.2
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;h5&gt;1.コード&lt;/h5&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;画面表示は formatter で定義し、処理では元の値を使いたいので unformat で定義します。&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;nx&quot;&gt;jQuery&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;#grid_id&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;jqGrid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;
-    &lt;span class=&quot;c1&quot;&gt;// 省略&lt;/span&gt;
-    &lt;span class=&quot;nx&quot;&gt;colModel&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
-        &lt;span class=&quot;c1&quot;&gt;// 省略&lt;/span&gt;
-        &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;name&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;index&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;name&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;formatter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;formatterName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;unformat&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;unformatName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
-        &lt;span class=&quot;c1&quot;&gt;// 省略&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-    &lt;span class=&quot;c1&quot;&gt;// 省略&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
-
-&lt;span class=&quot;cm&quot;&gt;/** リンクに変更 */&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;formatterName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;cellvalue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;options&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;rowdata&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;&amp;lt;a href=\&amp;quot;javascript:void(0);\&amp;quot; onclick=\&amp;quot;showItem(&amp;#39;&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;rowdata&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;item_id&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;&amp;#39;);\&amp;quot;&amp;gt;&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;cellvalue&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;&amp;lt;/a&amp;gt;&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;val&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;cm&quot;&gt;/** 加工しない元の値 */&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;unformatName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;cellvalue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;options&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;cellvalue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h5&gt;2.参考&lt;/h5&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://www.trirand.com/jqgridwiki/doku.php?id=wiki:custom_formatter&quot; target=&quot;_blank&quot;&gt;参考にしたページ&lt;/a&gt;&lt;/p&gt;
-
-    &lt;p&gt;&lt;a href=&quot;/jqgrid/jqgrid_formatter/&quot;&gt;jqGridで表示する値と元の値を分ける&lt;/a&gt; was originally published by sankame at &lt;a href=&quot;&quot;&gt;IT調べものブログ&lt;/a&gt; on May 01, 2015.&lt;/p&gt;
-  </content>
-</entry>
-
-
-<entry>
-  <title type="html"><![CDATA[ベーシック認証設定 (VirtualHostの場合)]]></title>
- <link rel="alternate" type="text/html" href="/apache/http_basic_authentication/" />
-  <id>/apache/http_basic_authentication</id>
-  <published>2014-08-19T20:00:00-04:00</published>
-  <updated>2014-08-19T20:00:00-04:00</updated>
-  <author>
-    <name>sankame</name>
-    <uri></uri>
-    <email>m2ad0504@outlook.jp</email>
-  </author>
-  <content type="html">
-    &lt;p&gt;&lt;span style=&quot;float:right;&quot;&gt;投稿日：2014年08月19日&lt;/span&gt;&lt;/p&gt;
-
-&lt;h5&gt;0.環境&lt;/h5&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;[CentOS]   5.6 (32bit版カーネル)
-[Apache]   2.2.3
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;h5&gt;1.パスワードファイル作成&lt;/h5&gt;
-
-&lt;ul&gt;
-&lt;li&gt;適当な場所にパスワードファイルを作成。(&amp;quot;user1&amp;quot;は作成したいユーザー名で読み替え)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;    # htpasswd -c /etc/httpd/conf/.htpasswd user1
-
-    New password: 
-
-    Re-type new password: 
-
-    Adding password for user user1
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;h5&gt;2.パスワードファイル設定&lt;/h5&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;VirtualHostを設定している場合、Directoryディレクティブ内に下記を追加。&lt;/p&gt;
-
-&lt;p&gt;AuthUserFileには上記1で作ったパスワードファイルを指定。&lt;/p&gt;
-
-&lt;p&gt;AuthNameはブラウザの認証ダイアログに表示されるメッセージとなります。&lt;/p&gt;
-
-&lt;p&gt;(マルチバイト文字は化ける可能性あり)&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;※下記はApache設定ファイル(/etc/httpd/conf/httpd.conf) の抜粋&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-apache&quot; data-lang=&quot;apache&quot;&gt;&lt;span class=&quot;nb&quot;&gt;NameVirtualHost&lt;/span&gt; *:80
-
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;Directory&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;/web/test&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nb&quot;&gt;Options&lt;/span&gt; FollowSymLinks
-    &lt;span class=&quot;nb&quot;&gt;AllowOverride&lt;/span&gt; FileInfo Options=All,MultiViews
-
-    &lt;span class=&quot;c&quot;&gt;# --- ベーシック認証追加 ---&lt;/span&gt;
-    &lt;span class=&quot;nb&quot;&gt;AuthType&lt;/span&gt; Basic
-    &lt;span class=&quot;nb&quot;&gt;AuthUserFile&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;/etc/httpd/conf/.htpasswd&amp;quot;&lt;/span&gt;
-    &lt;span class=&quot;nb&quot;&gt;AuthName&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;Here is a message.&amp;quot;&lt;/span&gt;
-    &lt;span class=&quot;nb&quot;&gt;Require&lt;/span&gt; valid-user
-    &lt;span class=&quot;c&quot;&gt;# --- ベーシック認証追加 ---&lt;/span&gt;
-
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/Directory&amp;gt;&lt;/span&gt;
-
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;VirtualHost&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;*:80&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nb&quot;&gt;ServerAdmin&lt;/span&gt; test@sample.co.jp
-    &lt;span class=&quot;nb&quot;&gt;DocumentRoot&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;/web/test&amp;quot;&lt;/span&gt;
-    &lt;span class=&quot;nb&quot;&gt;ServerName&lt;/span&gt; test.net
-    &lt;span class=&quot;nb&quot;&gt;ErrorLog&lt;/span&gt; logs/test.net-error_log
-    &lt;span class=&quot;nb&quot;&gt;CustomLog&lt;/span&gt; logs/test.net-access_log common
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/VirtualHost&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;h5&gt;3.再起動&lt;/h5&gt;
-
-&lt;ul&gt;
-&lt;li&gt;最後にApacheを再起動します。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;    # service httpd restart
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-    &lt;p&gt;&lt;a href=&quot;/apache/http_basic_authentication/&quot;&gt;ベーシック認証設定 (VirtualHostの場合)&lt;/a&gt; was originally published by sankame at &lt;a href=&quot;&quot;&gt;IT調べものブログ&lt;/a&gt; on August 19, 2014.&lt;/p&gt;
   </content>
 </entry>
 
