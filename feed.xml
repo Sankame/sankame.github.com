@@ -4,13 +4,67 @@
 <generator uri="https://github.com/mojombo/jekyll">Jekyll</generator>
 <link rel="self" type="application/atom+xml" href="/feed.xml" />
 <link rel="alternate" type="text/html" href="" />
-<updated>2016-05-27T12:28:25-04:00</updated>
+<updated>2016-06-24T13:32:28-04:00</updated>
 <id>/</id>
 <author>
   <name>sankame</name>
   <uri>/</uri>
   <email>m2ad0504@outlook.jp</email>
 </author>
+
+
+<entry>
+  <title type="html"><![CDATA[composer updateでUndefined indexエラー]]></title>
+ <link rel="alternate" type="text/html" href="/composer/composer_error_undefined_index/" />
+  <id>/composer/composer_error_undefined_index</id>
+  <published>2016-06-24T20:00:00-04:00</published>
+  <updated>2016-06-24T20:00:00-04:00</updated>
+  <author>
+    <name>sankame</name>
+    <uri></uri>
+    <email>m2ad0504@outlook.jp</email>
+  </author>
+  <content type="html">
+    &lt;p&gt;&lt;span style=&quot;float:right;&quot;&gt;投稿日：2016年06月24日&lt;/span&gt;&lt;/p&gt;
+
+&lt;h3&gt;0. 環境&lt;/h3&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;[Laravel] 5.1
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;1. 問題&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;composer update を実行すると下記エラーが発生しました。&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;Writing lock file
+Generating autoload files
+&amp;gt; php artisan clear-compiled
+  &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;ErrorException&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
+  Undefined index: HTTP_HOST
+Script php artisan clear-compiled handling the post-update-cmd event returned with error code 1
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3&gt;2. 解決策&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;HTTP_HOST でソースをgrepし、 /app/Http/routes.php 内の下記箇所を修正しました。&lt;/p&gt;
+
+&lt;p&gt;(修正前)&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-php&quot; data-lang=&quot;php&quot;&gt;&lt;span class=&quot;x&quot;&gt;$_SERVER[&amp;#39;HTTP_HOST&amp;#39;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;(修正後)&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-php&quot; data-lang=&quot;php&quot;&gt;&lt;span class=&quot;x&quot;&gt;Request::server(&amp;#39;HTTP_HOST&amp;#39;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3&gt;3. 参考&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://stackoverflow.com/questions/34055053/composer-returning-mysterious-error&quot; target=&quot;_blank&quot;&gt;Composer returning mysterious error&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+    &lt;p&gt;&lt;a href=&quot;/composer/composer_error_undefined_index/&quot;&gt;composer updateでUndefined indexエラー&lt;/a&gt; was originally published by sankame at &lt;a href=&quot;&quot;&gt;IT調べものブログ&lt;/a&gt; on June 24, 2016.&lt;/p&gt;
+  </content>
+</entry>
 
 
 <entry>
@@ -1446,166 +1500,6 @@ A fatal exception has occurred. Program will exit
 &lt;/ul&gt;
 
     &lt;p&gt;&lt;a href=&quot;/androidstudio/android_studio_process_error/&quot;&gt;AndroidStudioでプロセス開始エラー&lt;/a&gt; was originally published by sankame at &lt;a href=&quot;&quot;&gt;IT調べものブログ&lt;/a&gt; on May 09, 2015.&lt;/p&gt;
-  </content>
-</entry>
-
-
-<entry>
-  <title type="html"><![CDATA[Vagrant + VirtualBox でCentOS開発環境構築]]></title>
- <link rel="alternate" type="text/html" href="/vagrant/vagrant_setup/" />
-  <id>/vagrant/vagrant_setup</id>
-  <published>2015-05-05T20:00:00-04:00</published>
-  <updated>2015-05-05T20:00:00-04:00</updated>
-  <author>
-    <name>sankame</name>
-    <uri></uri>
-    <email>m2ad0504@outlook.jp</email>
-  </author>
-  <content type="html">
-    &lt;p&gt;&lt;span style=&quot;float:right;&quot;&gt;投稿日：2015年05月05日&lt;/span&gt;&lt;/p&gt;
-
-&lt;h3&gt;0.環境&lt;/h3&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;[PC]  DELL LATITUDE E5500
-[OS]  Windows7 (32bit 版)
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;h3&gt;1.概要&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;復習を兼ねて、新PCにVagrantで開発環境を作りました。&lt;/p&gt;
-
-&lt;p&gt;VagrantとVirtualBoxの関係は、下記ページの真ん中辺りにある図が分かりやすいです。&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://www.digitalforreallife.com/2012/11/boosting-teamwork-with-vagrant/&quot; target=&quot;_blank&quot;&gt;Boosting teamwork with Vagrant&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;VirtualBox上に仮想マシン(以下VM)起動し、そこにCentOSをインストールして開発環境とします。&lt;/p&gt;
-
-&lt;p&gt;VirtualBoxを操作するためにVagrantというツールを使うイメージです。&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3&gt;2.BIOS設定変更&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;VMを起動する前準備として、BIOSの設定を変更します。&lt;/p&gt;
-
-&lt;p&gt;PC起動時に、OSが起動する前に特定のキーを押してBIOS設定画面を開きます。&lt;/p&gt;
-
-&lt;p&gt;(PCによって異なるので、下記は自分のPCに読み替えて下さい)&lt;/p&gt;
-
-&lt;p&gt;PC起動時に[F2] または [F10]キーを押下。&lt;/p&gt;
-
-&lt;p&gt;[Virtualization Support] - [Virtualization]を選択し、[Enable]にチェックをつけて[Apply]→[Exit]を選択。&lt;/p&gt;
-
-&lt;p&gt;そのままOSが起動するのを待ちます。&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3&gt;3.VirtualBoxインストール&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;下記ページで&amp;quot;VirtualBox 4.3.26 for Windows hosts&amp;quot; をクリックしVirtualBoxをダウンロード。&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://www.virtualbox.org/wiki/Downloads&quot; target=&quot;_blank&quot;&gt;VirtualBoxダウンロード&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;ダウンロードもインストールも私の環境では数分かかりました。&lt;/p&gt;
-
-&lt;p&gt;途中何度かOracle社のコンポーネントをインストールしますか？と聞かれたので全てYesを選択。&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3&gt;4.Vagrantインストール&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;下記ページでWindows用を選択して Vagrantをダウンロード。&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://www.vagrantup.com/downloads.html&quot; target=&quot;_blank&quot;&gt;Vagrantダウンロード&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;インストールが終わったら再起動を求められます。&lt;/p&gt;
-
-&lt;p&gt;boxファイル(用意されたVMイメージ)を取得し、VirtualBoxに追加。&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-control&quot; data-lang=&quot;control&quot;&gt;&lt;span class=&quot;k&quot;&gt;C&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;\Users\【ユーザー名】&amp;gt; vagrant box add CentOS65 https://github.com/2creatives/vagrant-centos/releases/download/v6.5.3/centos65-x86_64-20140116.box&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3&gt;5.Vagrantを使ってVirtualBoxのVMを起動&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;適当なフォルダにVagrantファイルを作成し、VM起動時の設定を定義します。&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-control&quot; data-lang=&quot;control&quot;&gt;&lt;span class=&quot;k&quot;&gt;C&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;\apps\Vagrant\Vagrantfiles&amp;gt;mkdir centos&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;C&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;\apps\Vagrant\Vagrantfiles&amp;gt;cd centos&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;C&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;\apps\Vagrant\Vagrantfiles\centos&amp;gt;vagrant init CentOS65&lt;/span&gt;
-&lt;span class=&quot;err&quot;&gt;A `Vagrantfile` has been placed in this directory. You are now&lt;/span&gt;
-&lt;span class=&quot;err&quot;&gt;ready to `vagrant up` your first virtual environment! Please read&lt;/span&gt;
-&lt;span class=&quot;err&quot;&gt;the comments in the Vagrantfile as well as documentation on&lt;/span&gt;
-&lt;span class=&quot;err&quot;&gt;`vagrantup.com` for more information on using Vagrant.&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;C&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;\apps\Vagrant\Vagrantfiles\centos&amp;gt;dir&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;自動生成された Vagrantfile を編集。&lt;/p&gt;
-
-&lt;p&gt;必要な箇所のコメントアウトを解除します。（編集前後のdiffを記載）&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-diff&quot; data-lang=&quot;diff&quot;&gt;# diff Vagrantfile.org Vagrantfile                       
-29c29
-&amp;lt;   # config.vm.network &amp;quot;private_network&amp;quot;, ip: &amp;quot;192.168.33.10&amp;quot;
-&lt;span class=&quot;gd&quot;&gt;---&lt;/span&gt;
-&amp;gt;   config.vm.network &amp;quot;private_network&amp;quot;, ip: &amp;quot;192.168.33.10&amp;quot;
-46c47
-&amp;lt;   # config.vm.provider &amp;quot;virtualbox&amp;quot; do |vb|
-&lt;span class=&quot;gd&quot;&gt;---&lt;/span&gt;
-&amp;gt;   config.vm.provider &amp;quot;virtualbox&amp;quot; do |vb|
-48c49
-&amp;lt;   #   vb.gui = true
-&lt;span class=&quot;gd&quot;&gt;---&lt;/span&gt;
-&amp;gt;       vb.gui = true
-51,52c52,53
-&amp;lt;   #   vb.memory = &amp;quot;1024&amp;quot;
-&amp;lt;   # end
-&lt;span class=&quot;gd&quot;&gt;---&lt;/span&gt;
-&amp;gt;       vb.memory = &amp;quot;1024&amp;quot;
-&amp;gt;   end
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&amp;quot;vb.gui = true&amp;quot; のコメントアウトを解除しないと、VM起動時に下記エラーが出続けるので注意。&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-control&quot; data-lang=&quot;control&quot;&gt;&lt;span class=&quot;k&quot;&gt;default&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;: &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Warning: Connection timeout. Retrying...&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;編集が終わったら VagrantコマンドでVMを起動。&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-control&quot; data-lang=&quot;control&quot;&gt;&lt;span class=&quot;k&quot;&gt;C&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;\apps\Vagrant\Vagrantfiles\centos&amp;gt; vagrant up&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3&gt;6.ターミナルソフトでVMに接続&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;使い慣れたターミナルソフトでVMに接続します。&lt;/p&gt;
-
-&lt;p&gt;まずは用意された user=vagrant, password=vagrant で接続。&lt;/p&gt;
-
-&lt;p&gt;(下記はpoderosaでの接続例)&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;/assets/posts/img/vagrant_setup/poderosa.png&quot; target=&quot;_blank&quot;&gt;&lt;img width=&quot;20%&quot; height=&quot;20%&quot; title=&quot;接続情報&quot; alt=&quot;接続情報&quot; src=&quot;/assets/posts/img/vagrant_setup/poderosa.png&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;以降は root で接続したいので、rootのパスワードを再設定します。&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;sudo passwd root
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3&gt;7.その他：ファイル共有&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;ホストOS(Windows)とゲストOS(CentOS)でファイル共有したい場合、上記5の Vagrantfile で下記の行を有効にします。&lt;/p&gt;
-
-&lt;p&gt;Vagrantfileの変更を反映するにはVMの再起動が必要。&lt;/p&gt;
-
-&lt;p&gt;(例) 左がWindows、右がCentOSのパス。(Windowsのパスは\を2つ重ねる必要あり)&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-control&quot; data-lang=&quot;control&quot;&gt;&lt;span class=&quot;err&quot;&gt;config.vm.synced_folder &amp;quot;c:\\vm\\share&amp;quot;, &amp;quot;/share&amp;quot;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3&gt;※参考にしたページ&lt;/h3&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://qiita.com/hiroyasu55/items/11a4c996b0c62450940f&quot; target=&quot;_blank&quot;&gt;インストール手順&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://sakashushu.blog.so-net.ne.jp/2014-06-16&quot; target=&quot;_blank&quot;&gt;エラーの際に役立ったページ&lt;/a&gt;&lt;/p&gt;
-
-    &lt;p&gt;&lt;a href=&quot;/vagrant/vagrant_setup/&quot;&gt;Vagrant + VirtualBox でCentOS開発環境構築&lt;/a&gt; was originally published by sankame at &lt;a href=&quot;&quot;&gt;IT調べものブログ&lt;/a&gt; on May 05, 2015.&lt;/p&gt;
   </content>
 </entry>
 

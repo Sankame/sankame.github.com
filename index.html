@@ -157,6 +157,64 @@ enable_page_level_ads: true
   <header>
     
     <div class="entry-meta">
+      <span class="entry-date date published updated"><time datetime="2016-06-24T20:00:00-04:00"><a href="/composer/composer_error_undefined_index/">June 24, 2016</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About sankame">sankame</a></span></span>
+      
+      <span class="entry-reading-time">
+        <i class="fa fa-clock-o"></i>
+        
+        Reading time ~1 minute
+      </span><!-- /.entry-reading-time -->
+      
+    </div><!-- /.entry-meta -->
+    
+      <h1 class="entry-title"><a href="/composer/composer_error_undefined_index/" rel="bookmark" title="composer updateでUndefined indexエラー" itemprop="url">composer updateでUndefined indexエラー</a></h1>
+    
+  </header>
+  <div class="entry-content">
+    <p><span style="float:right;">投稿日：2016年06月24日</span></p>
+
+<h3>0. 環境</h3>
+<div class="highlight"><pre><code class="language-text" data-lang="text">[Laravel] 5.1
+</code></pre></div>
+<h3>1. 問題</h3>
+
+<ul>
+<li><p>composer update を実行すると下記エラーが発生しました。</p>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh">Writing lock file
+Generating autoload files
+&gt; php artisan clear-compiled
+  <span class="o">[</span>ErrorException<span class="o">]</span>
+  Undefined index: HTTP_HOST
+Script php artisan clear-compiled handling the post-update-cmd event returned with error code 1
+</code></pre></div></li>
+</ul>
+
+<h3>2. 解決策</h3>
+
+<ul>
+<li><p>HTTP_HOST でソースをgrepし、 /app/Http/routes.php 内の下記箇所を修正しました。</p>
+
+<p>(修正前)</p>
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="x">$_SERVER[&#39;HTTP_HOST&#39;]</span>
+</code></pre></div>
+<p>(修正後)</p>
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="x">Request::server(&#39;HTTP_HOST&#39;)</span>
+</code></pre></div></li>
+</ul>
+
+<h3>3. 参考</h3>
+
+<ul>
+<li><a href="http://stackoverflow.com/questions/34055053/composer-returning-mysterious-error" target="_blank">Composer returning mysterious error</a></li>
+</ul>
+
+  </div><!-- /.entry-content -->
+</article><!-- /.hentry -->
+
+<article class="hentry">
+  <header>
+    
+    <div class="entry-meta">
       <span class="entry-date date published updated"><time datetime="2016-05-26T20:00:00-04:00"><a href="/programming-practice/bitwise_operator_toggle/">May 26, 2016</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About sankame">sankame</a></span></span>
       
       <span class="entry-reading-time">
@@ -386,94 +444,6 @@ Congratulations, all renewals succeeded. The following certs have been renewed:
 <p><a href="/assets/posts/img/watchos_devices_not_available/change_the_version.jpg" target="_blank"><img width="100%" height="100%" title="ターゲットバージョン変更" alt="ターゲットバージョン変更" src="/assets/posts/img/watchos_devices_not_available/change_the_version.jpg"></a></p>
 
 <p>いくつかサンプルプログラムを作ってて、なぜこれだけターゲットバージョンがデフォルトで2.2になっていたのか不明です。</p></li>
-</ul>
-
-  </div><!-- /.entry-content -->
-</article><!-- /.hentry -->
-
-<article class="hentry">
-  <header>
-    
-    <div class="entry-meta">
-      <span class="entry-date date published updated"><time datetime="2016-05-07T20:00:00-04:00"><a href="/applewatch/unable_to_add_app_id/">May 07, 2016</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About sankame">sankame</a></span></span>
-      
-      <span class="entry-reading-time">
-        <i class="fa fa-clock-o"></i>
-        
-        Reading time ~1 minute
-      </span><!-- /.entry-reading-time -->
-      
-    </div><!-- /.entry-meta -->
-    
-      <h1 class="entry-title"><a href="/applewatch/unable_to_add_app_id/" rel="bookmark" title="AppleWatch 開発中アプリの追加制限を回避" itemprop="url">AppleWatch 開発中アプリの追加制限を回避</a></h1>
-    
-  </header>
-  <div class="entry-content">
-    <p><span>&nbsp;</span><span style="color:#d14; float:right;">更新日：2016年05月11日</span></p>
-
-<p><span style="float:right;">投稿日：2016年05月07日</span></p>
-
-<h3>0.環境</h3>
-<div class="highlight"><pre><code class="language-text" data-lang="text">[OS] Mac OS X 10.11.4
-[IDE] Xcode 7.3
-[iOS] 9.3
-[watchOS] 2.1
-
-※MacとiPhoneはUSBケーブルで接続。
-※iPhoneとAppleWatchはペアリング済み。
-</code></pre></div>
-<h3>1.問題</h3>
-
-<ul>
-<li><p>AppleWatch用のサンプルプログラムを実機で動かしていたら、下記エラーが出るようになりました。</p>
-
-<p><a href="/assets/posts/img/unable_to_add_app_id/error_message.jpg" target="_blank"><img width="50%" height="50%" title="Unable to add App ID" alt="Unable to add App ID" src="/assets/posts/img/unable_to_add_app_id/error_message.jpg"></a></p>
-
-<p><code>Unable to add App ID because the &#39;10&#39; App ID limit in &#39;7&#39; days has been exceeded.</code></p>
-
-<p>「7日間で10個のアプリID制限を超えたため、アプリIDを追加できません」か。。。</p>
-
-<p>Webで調べたところ回避策は2つありましたが、シンプルそうな①をやってみました。</p>
-
-<p><code>① Xcodeに新しいApple IDを追加して、それを使ってインストール</code></p>
-
-<p><code>② 既に実機にインストール済みのアプリの Bundle ID を使い回す</code></p></li>
-</ul>
-
-<h3>2.手順 (文中の【】はマスク)</h3>
-
-<ul>
-<li><p>Xcodeに新しい Apple ID を追加</p>
-
-<p>アプリの[General]-[Team]をクリックし &quot;Add an Account&quot; を選択します。</p>
-
-<p><a href="/assets/posts/img/unable_to_add_app_id/add_account.jpg" target="_blank"><img width="70%" height="70%" title="AppleID追加" alt="AppleID追加" src="/assets/posts/img/unable_to_add_app_id/add_account.jpg"></a></p>
-
-<p>Xcodeに追加するApple IDを要求されますが、未作成なので&quot;Create Apple ID&quot;をクリック。</p>
-
-<p><a href="/assets/posts/img/unable_to_add_app_id/required_to_sign_in.jpg" target="_blank"><img width="50%" height="50%" title="サインイン" alt="サインイン" src="/assets/posts/img/unable_to_add_app_id/required_to_sign_in.jpg"></a></p>
-
-<p>必要項目を入力していくと、最後に「入力したメールアドレス宛てにメールを送ったから確認してね」と表示されます。</p>
-
-<p><a href="/assets/posts/img/unable_to_add_app_id/verification_for_the_email.jpg" target="_blank"><img width="50%" height="50%" title="email確認" alt="email確認" src="/assets/posts/img/unable_to_add_app_id/verification_for_the_email.jpg"></a></p>
-
-<p>上記メールアドレス宛てに確認メールが届いているので、メール文中の&quot;今すぐ確認&quot;をクリックして登録を完了させます。</p>
-
-<p>再度、手順の最初に戻って、&quot;Add an Account&quot;を選択し、登録したての新しいApple IDを入力します。</p>
-
-<p>新しいApple IDを選択すると下記のメッセージが出るので&quot;Fix Issue&quot;→&quot;Choose&quot;をクリックして解消します。</p>
-
-<p><font color="red">【注意】ダイアログ内のプルダウンで新しいApple IDが選択されているか再度確認して下さい</font></p>
-
-<p><a href="/assets/posts/img/unable_to_add_app_id/fix_the_issue.jpg" target="_blank"><img width="50%" height="50%" title="Fix Issue" alt="Fix Issue" src="/assets/posts/img/unable_to_add_app_id/fix_the_issue.jpg"></a></p>
-
-<p>そのままアプリをビルド＆起動すると署名関係の警告が何度か出ますが、&quot;Fix issue&quot; をクリックしていくと実機でアプリが実行できました。</p></li>
-</ul>
-
-<h3>参考ページ</h3>
-
-<ul>
-<li>①<a href="http://stackoverflow.com/questions/36922738/how-to-get-around-apple-app-id-insanity" target="_blank">How to get around Apple app ID insanity</a></li>
 </ul>
 
   </div><!-- /.entry-content -->
