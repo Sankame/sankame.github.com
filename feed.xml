@@ -4,13 +4,52 @@
 <generator uri="https://github.com/mojombo/jekyll">Jekyll</generator>
 <link rel="self" type="application/atom+xml" href="/feed.xml" />
 <link rel="alternate" type="text/html" href="" />
-<updated>2016-06-24T13:32:28-04:00</updated>
+<updated>2016-07-15T12:54:11-04:00</updated>
 <id>/</id>
 <author>
   <name>sankame</name>
   <uri>/</uri>
   <email>m2ad0504@outlook.jp</email>
 </author>
+
+
+<entry>
+  <title type="html"><![CDATA[ショートカットのファイルパス]]></title>
+ <link rel="alternate" type="text/html" href="/windows/windows_shortcut_path/" />
+  <id>/windows/windows_shortcut_path</id>
+  <published>2016-07-15T20:00:00-04:00</published>
+  <updated>2016-07-15T20:00:00-04:00</updated>
+  <author>
+    <name>sankame</name>
+    <uri></uri>
+    <email>m2ad0504@outlook.jp</email>
+  </author>
+  <content type="html">
+    &lt;p&gt;&lt;span style=&quot;float:right;&quot;&gt;投稿日：2016年07月15日&lt;/span&gt;&lt;/p&gt;
+
+&lt;h3&gt;0. 環境&lt;/h3&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;[OS] Windows 7
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;1. 課題&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;ファイル(①)に対してショートカット(②)を作った場合・・・&lt;/p&gt;
+
+&lt;p&gt;① C:\tmp\test.txt&lt;/p&gt;
+
+&lt;p&gt;② C:\tmp2\test.txt - ショートカット&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;エクスプローラーやスタートメニューの「ファイル名を指定して実行」から②を指定してもエラーになります。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/posts/img/windows_shortcut_path/exec-file.jpg&quot; target=&quot;_blank&quot;&gt;&lt;img width=&quot;50%&quot; height=&quot;50%&quot; title=&quot;ショートカットのファイルパス&quot; alt=&quot;ショートカットのファイルパス&quot; src=&quot;/assets/posts/img/windows_shortcut_path/exec-file.jpg&quot;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;これは下記のように &lt;font color=&#39;red&#39;&gt;&amp;quot;.lnk&amp;quot;&lt;/font&gt; をつけると解決します。&lt;/p&gt;
+
+&lt;p&gt;&lt;font color=&#39;red&#39;&gt;C:\tmp2\test.txt - ショートカット.lnk&lt;/font&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;OSの内部的にはこのパスになっているんだと思います・・・&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+    &lt;p&gt;&lt;a href=&quot;/windows/windows_shortcut_path/&quot;&gt;ショートカットのファイルパス&lt;/a&gt; was originally published by sankame at &lt;a href=&quot;&quot;&gt;IT調べものブログ&lt;/a&gt; on July 15, 2016.&lt;/p&gt;
+  </content>
+</entry>
 
 
 <entry>
@@ -1443,63 +1482,6 @@ A fatal exception has occurred. Program will exit
 &lt;/ul&gt;
 
     &lt;p&gt;&lt;a href=&quot;/androidstudio/android_studio_heap_size_error/&quot;&gt;【AndroidStudio】&quot;Failed to complete Gradle execution&quot;エラー&lt;/a&gt; was originally published by sankame at &lt;a href=&quot;&quot;&gt;IT調べものブログ&lt;/a&gt; on May 10, 2015.&lt;/p&gt;
-  </content>
-</entry>
-
-
-<entry>
-  <title type="html"><![CDATA[AndroidStudioでプロセス開始エラー]]></title>
- <link rel="alternate" type="text/html" href="/androidstudio/android_studio_process_error/" />
-  <id>/androidstudio/android_studio_process_error</id>
-  <published>2015-05-09T20:00:00-04:00</published>
-  <updated>2015-05-09T20:00:00-04:00</updated>
-  <author>
-    <name>sankame</name>
-    <uri></uri>
-    <email>m2ad0504@outlook.jp</email>
-  </author>
-  <content type="html">
-    &lt;p&gt;&lt;span style=&quot;float:right;&quot;&gt;投稿日：2015年05月09日&lt;/span&gt;&lt;/p&gt;
-
-&lt;h3&gt;0.環境&lt;/h3&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;[OS]             Windows7 (32bit 版)
-[AndroidStudio]  1.1.0
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;h3&gt;1.エラー内容&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;「Run &amp;#39;app&amp;#39;」ボタンをクリックし、ビルド＆実行しようとすると下記エラーが発生。&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-control&quot; data-lang=&quot;control&quot;&gt;&lt;span class=&quot;k&quot;&gt;Error&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Unable to start the daemon process.&lt;/span&gt;
-&lt;span class=&quot;err&quot;&gt;This problem might be caused by incorrect configuration of the daemon.&lt;/span&gt;
-&lt;span class=&quot;err&quot;&gt;For example, an unrecognized jvm option is used.&lt;/span&gt;
-&lt;span class=&quot;err&quot;&gt;Please refer to the user guide chapter on the daemon at http://gradle.org/docs/2.2.1/userguide/gradle_daemon.html&lt;/span&gt;
-&lt;span class=&quot;err&quot;&gt;Please read the following process output to find out more:&lt;/span&gt;
-&lt;span class=&quot;err&quot;&gt;-----------------------&lt;/span&gt;
-&lt;span class=&quot;err&quot;&gt;Error occurred during initialization of VM&lt;/span&gt;
-&lt;span class=&quot;err&quot;&gt;Could not reserve enough space for object heap&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;Error&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;: &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Could not create the Java Virtual Machine.&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;Error&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;: &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;A fatal exception has occurred. Program will exit.&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3&gt;2.回避方法&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;Android Studioを閉じる。&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;下記フォルダを削除。(不安な場合は例えば次のようにリネーム DELETE_.gradle)&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-control&quot; data-lang=&quot;control&quot;&gt;&lt;span class=&quot;k&quot;&gt;C&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;\ユーザー\【ユーザー名】\.gradle&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Android Studioを起動する。&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;上記で消した.gradleフォルダが再作成され、ビルド＆実行が成功する。&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3&gt;※参考にしたページ&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;http://www.thedevline.com/2014/06/android-studio-unable-to-start-daemon.html&quot; target=&quot;_blank&quot;&gt;Unable to start the daemon process fix Solution&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-    &lt;p&gt;&lt;a href=&quot;/androidstudio/android_studio_process_error/&quot;&gt;AndroidStudioでプロセス開始エラー&lt;/a&gt; was originally published by sankame at &lt;a href=&quot;&quot;&gt;IT調べものブログ&lt;/a&gt; on May 09, 2015.&lt;/p&gt;
   </content>
 </entry>
 
