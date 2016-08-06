@@ -164,7 +164,7 @@ enable_page_level_ads: true
 (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
 </div>
-      <p><span>&nbsp;</span><span style="color:#d14; float:right;">更新日：2016年05月14日</span></p>
+      <p><span>&nbsp;</span><span style="color:#d14; float:right;">更新日：2016年08月06日</span></p>
 
 <p><span style="float:right;">投稿日：2016年02月20日</span></p>
 
@@ -231,7 +231,16 @@ Congratulations, all renewals succeeded. The following certs have been renewed:
 <li><p>Webサーバーを再起動するとブラウザ側の有効期限も延長されました。</p>
 
 <p><a href="/assets/posts/img/letsencrypt_renewal/ssl_after.png" target="_blank"><img width="50%" height="50%" title="SSL証明書更新後" alt="SSL証明書更新後" src="/assets/posts/img/letsencrypt_renewal/ssl_after.png"></a></p></li>
-<li><p>Cronで証明書の自動更新を設定しようかと思いましたが、成功/失敗の取り方がよく分からないので、また別の機会にします。。。(参考ページ③)</p></li>
+<li><p><font color="red">(2016/08/06, 追記)</font> そろそろ面倒になってきたので、証明書の更新をCronに設定しました。</p>
+
+<p>頻繁に更新するとエラーになるようなので(参考ページ③)、10日に1回の実行です。</p>
+
+<p>もし失敗していても、冒頭に書いた通知メールがLet&#39;s Encryptから届くので、気付くことはできそうです。(【】内は読み替え)</p>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="c"># SSL証明書更新。</span>
+<span class="c"># Webサーバー再起動を伴うため、深夜に実行。</span>
+<span class="m">0</span> <span class="m">3</span> */10 * * sh /【ユーザー】/bin/letsencrypt-renew.sh
+</code></pre></div>
+<script src="https://gist.github.com/Sankame/44a737ee39412c62b48a3392625569c6.js"></script></li>
 </ul>
 
 <h3>参考ページ</h3>
