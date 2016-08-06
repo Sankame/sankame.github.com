@@ -4,7 +4,7 @@
 <generator uri="https://github.com/mojombo/jekyll">Jekyll</generator>
 <link rel="self" type="application/atom+xml" href="/feed.xml" />
 <link rel="alternate" type="text/html" href="" />
-<updated>2016-08-06T12:43:36-04:00</updated>
+<updated>2016-08-06T14:23:20-04:00</updated>
 <id>/</id>
 <author>
   <name>sankame</name>
@@ -210,7 +210,9 @@ AND) 0001 (PHP)
     <email>m2ad0504@outlook.jp</email>
   </author>
   <content type="html">
-    &lt;p&gt;&lt;span style=&quot;float:right;&quot;&gt;投稿日：2016年05月14日&lt;/span&gt;&lt;/p&gt;
+    &lt;p&gt;&lt;span&gt;&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;color:#d14; float:right;&quot;&gt;更新日：2016年08月06日&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style=&quot;float:right;&quot;&gt;投稿日：2016年05月14日&lt;/span&gt;&lt;/p&gt;
 
 &lt;h3&gt;0. 環境&lt;/h3&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;[CentOS] 6.4 (64bit版カーネル)
@@ -241,7 +243,8 @@ Congratulations, all renewals succeeded. The following certs have been renewed:
 /etc/letsencrypt/live/【ドメイン名】/fullchain.pem &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;success&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
 ** DRY RUN: simulating &lt;span class=&quot;s1&quot;&gt;&amp;#39;certbot renew&amp;#39;&lt;/span&gt; close to cert expiry
 **          &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;The &lt;span class=&quot;nb&quot;&gt;test &lt;/span&gt;certificates above have not been saved.&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;font id=&quot;cron&quot; color=&quot;red&quot;&gt;(2016/08/06, 追記)&lt;/font&gt; &lt;a href=&quot;/ssl-tls/letsencrypt_renewal/#cron&quot; target=&quot;_blank&quot;&gt;&lt;font color=&quot;green&quot;&gt;dry-runなしでの実行結果はこちら&lt;/font&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h3&gt;参考ページ&lt;/h3&gt;
@@ -766,7 +769,7 @@ Congratulations, all renewals succeeded. The following certs have been renewed:
 &lt;li&gt;&lt;p&gt;Webサーバーを再起動するとブラウザ側の有効期限も延長されました。&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&quot;/assets/posts/img/letsencrypt_renewal/ssl_after.png&quot; target=&quot;_blank&quot;&gt;&lt;img width=&quot;50%&quot; height=&quot;50%&quot; title=&quot;SSL証明書更新後&quot; alt=&quot;SSL証明書更新後&quot; src=&quot;/assets/posts/img/letsencrypt_renewal/ssl_after.png&quot;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;font color=&quot;red&quot;&gt;(2016/08/06, 追記)&lt;/font&gt; そろそろ面倒になってきたので、証明書の更新をCronに設定しました。&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;&lt;font id=&quot;cron&quot; color=&quot;red&quot;&gt;(2016/08/06, 追記)&lt;/font&gt; そろそろ面倒になってきたので、証明書の更新をCronに設定しました。&lt;/p&gt;
 
 &lt;p&gt;頻繁に更新するとエラーになるようなので(参考ページ③)、10日に1回の実行です。&lt;/p&gt;
 
