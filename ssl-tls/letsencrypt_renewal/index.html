@@ -164,7 +164,7 @@ enable_page_level_ads: true
 (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
 </div>
-      <p><span>&nbsp;</span><span style="color:#d14; float:right;">更新日：2016年08月06日</span></p>
+      <p><span>&nbsp;</span><span style="color:#d14; float:right;">更新日：2016年08月22日</span></p>
 
 <p><span style="float:right;">投稿日：2016年02月20日</span></p>
 
@@ -241,6 +241,30 @@ Congratulations, all renewals succeeded. The following certs have been renewed:
 <span class="m">0</span> <span class="m">3</span> */10 * * sh /【ユーザー】/bin/letsencrypt-renew.sh
 </code></pre></div>
 <script src="https://gist.github.com/Sankame/44a737ee39412c62b48a3392625569c6.js"></script></li>
+<li><p><font id="cron" color="red">(2016/08/22, 追記)</font> 上記 renew.log を見たら更新が失敗していたので下記の対応を行いました。</p>
+
+<ul>
+<li><p>依存パッケージのインストールを求めるところで停止していたので、一度、手動で下記コマンドを実行。</p>
+
+<ul>
+<li><p>停止箇所</p>
+
+<p><code>Is this ok [y/N]: Exiting on user Command</code></p></li>
+<li><p>手動実行したコマンド</p>
+
+<p><code>/usr/local/src/certbot/certbot-auto renew</code></p></li>
+</ul></li>
+<li><p>その際、「まだ期限ではないので更新をスキップしたよ」というメッセージが出ました。</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">The following certs are not due for renewal yet:
+  /etc/letsencrypt/live/【ドメイン名】/fullchain.pem (skipped)
+No renewals were attempted.
+</code></pre></div>
+<p>必ず更新するよう、コマンドに --force-renew オプションを追加。(上記 gist の COMMAND にも反映済み)</p></li>
+<li><p>下記メッセージが表示され、cronからの実行も成功しました。</p>
+
+<p><code>Congratulations, all renewals succeeded.</code></p></li>
+<li><p>また10日後くらいにちゃんと更新されているか見てみようと思います…</p></li>
+</ul></li>
 </ul>
 
 <h3>参考ページ</h3>

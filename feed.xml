@@ -4,7 +4,7 @@
 <generator uri="https://github.com/mojombo/jekyll">Jekyll</generator>
 <link rel="self" type="application/atom+xml" href="/feed.xml" />
 <link rel="alternate" type="text/html" href="" />
-<updated>2016-08-20T13:59:48-04:00</updated>
+<updated>2016-08-21T12:34:50-04:00</updated>
 <id>/</id>
 <author>
   <name>sankame</name>
@@ -799,7 +799,7 @@ Setup completed
     <email>m2ad0504@outlook.jp</email>
   </author>
   <content type="html">
-    &lt;p&gt;&lt;span&gt;&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;color:#d14; float:right;&quot;&gt;更新日：2016年08月06日&lt;/span&gt;&lt;/p&gt;
+    &lt;p&gt;&lt;span&gt;&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;color:#d14; float:right;&quot;&gt;更新日：2016年08月22日&lt;/span&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;span style=&quot;float:right;&quot;&gt;投稿日：2016年02月20日&lt;/span&gt;&lt;/p&gt;
 
@@ -876,6 +876,30 @@ Congratulations, all renewals succeeded. The following certs have been renewed:
 &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;3&lt;/span&gt; */10 * * sh /【ユーザー】/bin/letsencrypt-renew.sh
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;script src=&quot;https://gist.github.com/Sankame/44a737ee39412c62b48a3392625569c6.js&quot;&gt;&lt;/script&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;font id=&quot;cron&quot; color=&quot;red&quot;&gt;(2016/08/22, 追記)&lt;/font&gt; 上記 renew.log を見たら更新が失敗していたので下記の対応を行いました。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;依存パッケージのインストールを求めるところで停止していたので、一度、手動で下記コマンドを実行。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;停止箇所&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Is this ok [y/N]: Exiting on user Command&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;手動実行したコマンド&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;/usr/local/src/certbot/certbot-auto renew&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;その際、「まだ期限ではないので更新をスキップしたよ」というメッセージが出ました。&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;The following certs are not due for renewal yet:
+  /etc/letsencrypt/live/【ドメイン名】/fullchain.pem (skipped)
+No renewals were attempted.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;必ず更新するよう、コマンドに --force-renew オプションを追加。(上記 gist の COMMAND にも反映済み)&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;下記メッセージが表示され、cronからの実行も成功しました。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Congratulations, all renewals succeeded.&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;また10日後くらいにちゃんと更新されているか見てみようと思います…&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h3&gt;参考ページ&lt;/h3&gt;
