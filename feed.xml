@@ -4,7 +4,7 @@
 <generator uri="https://github.com/mojombo/jekyll">Jekyll</generator>
 <link rel="self" type="application/atom+xml" href="/feed.xml" />
 <link rel="alternate" type="text/html" href="" />
-<updated>2016-08-21T12:34:50-04:00</updated>
+<updated>2016-09-03T13:35:27-04:00</updated>
 <id>/</id>
 <author>
   <name>sankame</name>
@@ -799,7 +799,7 @@ Setup completed
     <email>m2ad0504@outlook.jp</email>
   </author>
   <content type="html">
-    &lt;p&gt;&lt;span&gt;&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;color:#d14; float:right;&quot;&gt;更新日：2016年08月22日&lt;/span&gt;&lt;/p&gt;
+    &lt;p&gt;&lt;span&gt;&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;color:#d14; float:right;&quot;&gt;更新日：2016年09月04日&lt;/span&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;span style=&quot;float:right;&quot;&gt;投稿日：2016年02月20日&lt;/span&gt;&lt;/p&gt;
 
@@ -898,7 +898,19 @@ No renewals were attempted.
 &lt;li&gt;&lt;p&gt;下記メッセージが表示され、cronからの実行も成功しました。&lt;/p&gt;
 
 &lt;p&gt;&lt;code&gt;Congratulations, all renewals succeeded.&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;また10日後くらいにちゃんと更新されているか見てみようと思います…&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;また10日後くらいにちゃんと更新されているか見てみようと思います…&lt;/p&gt;
+
+&lt;p&gt;&lt;font color=&quot;red&quot;&gt;(2016/09/04, 追記) ログとブラウザを確認したところ、証明書は更新されていました。&lt;/font&gt;&lt;/p&gt;
+
+&lt;p&gt;これでしばらくは放っておいても大丈夫そうです。&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;c&quot;&gt;# cat /var/log/letsencrypt/renew.log&lt;/span&gt;
+
+　：
+&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;省略&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+　：
+Congratulations, all renewals succeeded. The following certs have been renewed:
+/etc/letsencrypt/live/【ドメイン名】/fullchain.pem &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;success&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 

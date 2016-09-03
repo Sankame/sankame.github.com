@@ -354,7 +354,7 @@ Setup completed
     
   </header>
   <div class="entry-content">
-    <p><span>&nbsp;</span><span style="color:#d14; float:right;">更新日：2016年08月22日</span></p>
+    <p><span>&nbsp;</span><span style="color:#d14; float:right;">更新日：2016年09月04日</span></p>
 
 <p><span style="float:right;">投稿日：2016年02月20日</span></p>
 
@@ -453,7 +453,19 @@ No renewals were attempted.
 <li><p>下記メッセージが表示され、cronからの実行も成功しました。</p>
 
 <p><code>Congratulations, all renewals succeeded.</code></p></li>
-<li><p>また10日後くらいにちゃんと更新されているか見てみようと思います…</p></li>
+<li><p>また10日後くらいにちゃんと更新されているか見てみようと思います…</p>
+
+<p><font color="red">(2016/09/04, 追記) ログとブラウザを確認したところ、証明書は更新されていました。</font></p>
+
+<p>これでしばらくは放っておいても大丈夫そうです。</p>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="c"># cat /var/log/letsencrypt/renew.log</span>
+
+　：
+<span class="o">(</span>省略<span class="o">)</span>
+　：
+Congratulations, all renewals succeeded. The following certs have been renewed:
+/etc/letsencrypt/live/【ドメイン名】/fullchain.pem <span class="o">(</span>success<span class="o">)</span>
+</code></pre></div></li>
 </ul></li>
 </ul>
 
