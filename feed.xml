@@ -4,13 +4,72 @@
 <generator uri="https://github.com/mojombo/jekyll">Jekyll</generator>
 <link rel="self" type="application/atom+xml" href="/feed.xml" />
 <link rel="alternate" type="text/html" href="" />
-<updated>2016-09-03T13:35:27-04:00</updated>
+<updated>2016-10-05T12:40:11-04:00</updated>
 <id>/</id>
 <author>
   <name>sankame</name>
   <uri>/</uri>
   <email>m2ad0504@outlook.jp</email>
 </author>
+
+
+<entry>
+  <title type="html"><![CDATA[型 UrlValidator は使用すべきではありません]]></title>
+ <link rel="alternate" type="text/html" href="/java/urlvalidator-is-deprecated/" />
+  <id>/java/urlvalidator-is-deprecated</id>
+  <published>2016-10-05T20:00:00-04:00</published>
+  <updated>2016-10-05T20:00:00-04:00</updated>
+  <author>
+    <name>sankame</name>
+    <uri></uri>
+    <email>m2ad0504@outlook.jp</email>
+  </author>
+  <content type="html">
+    &lt;p&gt;&lt;span style=&quot;float:right;&quot;&gt;投稿日：2016年10月05日&lt;/span&gt;&lt;/p&gt;
+
+&lt;h3&gt;0. 環境&lt;/h3&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;[OS] Mac OS X 10.11.4
+[Java] 1.8.0
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;1. 問題&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;久々にJavaで実装しています。標準ライブラリのjava.net.URLクラスを使うと、URLとして解釈できない文字列を渡すとIllegalArgumentExceptionが発生して扱いずらいですね。&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;n&quot;&gt;url&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;URL&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;create&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;不正なURL&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;うーん、最初、RFCを見て「URLとして許可されている文字列だけ渡す」という処理を入れようか迷いました。&lt;/p&gt;
+
+&lt;p&gt;が、一から組むのも骨が折れるなあ～と思って、困った時の&lt;a href=&quot;https://commons.apache.org/&quot; target=&quot;_blank&quot;&gt;Apache Commons&lt;/a&gt;を探してみたら、しめしめ&lt;a href=&quot;https://commons.apache.org/proper/commons-validator/download_validator.cgi&quot; target=&quot;_blank&quot;&gt;Apache Commons Validator&lt;/a&gt;にUrlValidatorクラスというのがあって利用できそうです。&lt;/p&gt;
+
+&lt;p&gt;さっそくパッケージをimportして使おうと思ったら、下記の警告が出てしまいました。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;型 UrlValidator は使用すべきではありません&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3&gt;2. 解決&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;調べてみたところ、①のパッケージは非推奨で②に変えたら警告も消えました。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;font color=&quot;red&quot;&gt;①こっちは非推奨&lt;/font&gt;&lt;/p&gt;
+
+&lt;p&gt;import org.apache.commons.validator.UrlValidator;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;font color=&quot;green&quot;&gt;②これを使って！&lt;/font&gt;&lt;/p&gt;
+
+&lt;p&gt;import org.apache.commons.validator.routines.UrlValidator;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3&gt;3. 参考&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://stackoverflow.com/questions/14274919/the-type-urlvalidator-is-deprecated&quot; target=&quot;_blank&quot;&gt;The type UrlValidator is deprecated&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+    &lt;p&gt;&lt;a href=&quot;/java/urlvalidator-is-deprecated/&quot;&gt;型 UrlValidator は使用すべきではありません&lt;/a&gt; was originally published by sankame at &lt;a href=&quot;&quot;&gt;IT調べものブログ&lt;/a&gt; on October 05, 2016.&lt;/p&gt;
+  </content>
+</entry>
 
 
 <entry>
@@ -1415,129 +1474,6 @@ lrwxrwxrwx 1 root root 41 12月  6 03:43 2015 privkey.pem -&amp;gt; ../../archiv
 &lt;/ul&gt;
 
     &lt;p&gt;&lt;a href=&quot;/android/android_app_version/&quot;&gt;Androidアプリのバージョンアップができない&lt;/a&gt; was originally published by sankame at &lt;a href=&quot;&quot;&gt;IT調べものブログ&lt;/a&gt; on October 06, 2015.&lt;/p&gt;
-  </content>
-</entry>
-
-
-<entry>
-  <title type="html"><![CDATA[【Angular2】クイックスタート]]></title>
- <link rel="alternate" type="text/html" href="/angular2/angular2_quick_start/" />
-  <id>/angular2/angular2_quick_start</id>
-  <published>2015-06-22T20:00:00-04:00</published>
-  <updated>2015-06-22T20:00:00-04:00</updated>
-  <author>
-    <name>sankame</name>
-    <uri></uri>
-    <email>m2ad0504@outlook.jp</email>
-  </author>
-  <content type="html">
-    &lt;p&gt;&lt;span style=&quot;float:right;&quot;&gt;投稿日：2015年06月22日&lt;/span&gt;&lt;/p&gt;
-
-&lt;h3&gt;0.環境&lt;/h3&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;[CentOS]  6.5
-[node.js] 0.12.4
-[npm]     2.10.1
-[tsd]     0.6.0
-[tsc]     1.5.0-beta
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;h3&gt;1.インストール&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;Googleの&lt;a href=&quot;https://angular.io/docs/js/latest/quickstart.html&quot; target=&quot;_blank&quot;&gt;QuickStartページ&lt;/a&gt;に沿って進めます。(以降、JavaScriptはJSと記述)&lt;/p&gt;
-
-&lt;p&gt;Angular2はJSでも動かせますが、JSのスーパーセットTypeScriptに対応しているので、Googleのページ同様、後者について記述します。&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;最終的に下記の構成になります。&lt;/p&gt;
-
-&lt;p&gt;tscを使ってhello.tsをhello.jsへ変換します。&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;/assets/posts/img/angular2_quick_start/system.jpg&quot; target=&quot;_blank&quot;&gt;&lt;img width=&quot;100%&quot; height=&quot;100%&quot; title=&quot;システム構成&quot; alt=&quot;システム構成&quot; src=&quot;/assets/posts/img/angular2_quick_start/system.jpg&quot;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;まずnode.jsとnpmの依存管理を楽にするため、nvmをインストールします。&lt;/p&gt;
-
-&lt;p&gt;※CentOS 5系だとnode.jsを動かすのに苦労するので、&lt;a href=&quot;http://sankame.github.io/vagrant/vagrant_setup/&quot; target=&quot;_blank&quot;&gt;こちらの記事&lt;/a&gt;を参考にCentOS6.x 環境構築を推奨します。&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;# git clone git://github.com/creationix/nvm.git ~/.nvm
-# source ~/.nvm/nvm.sh
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;node.jsをバージョン指定でインストール。&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;# nvm install 0.12.4
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;nvmでnode.jsのデフォルトバージョンを設定。&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;# nvm alias default v0.12.4
-# vi ~/.bash_profile
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;.bash_profile の末尾に下記を追記。&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[[&lt;/span&gt; -s ~/.nvm/nvm.sh &lt;span class=&quot;o&quot;&gt;]]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;then&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;source&lt;/span&gt; ~/.nvm/nvm.sh
-&lt;span class=&quot;k&quot;&gt;fi&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;tsd (TypeScript用 型定義ファイル管理ツール) をインストール。&lt;/p&gt;
-
-&lt;p&gt;※npmのバージョンが低いとtsdのインストールが止まってしまうので注意。&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;# npm install tsd@0.6.0 -g
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;下記の警告が出たが5分ほどしてインストールが成功。&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;npm WARN engine joi-assert@0.0.3: wanted: &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;node&amp;quot;&lt;/span&gt;:&lt;span class=&quot;s2&quot;&gt;&amp;quot;&amp;gt;= 0.10.0 &amp;lt;= 0.11.0&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;current: &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;node&amp;quot;&lt;/span&gt;:&lt;span class=&quot;s2&quot;&gt;&amp;quot;0.12.4&amp;quot;&lt;/span&gt;,&lt;span class=&quot;s2&quot;&gt;&amp;quot;npm&amp;quot;&lt;/span&gt;:&lt;span class=&quot;s2&quot;&gt;&amp;quot;2.10.1&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;})&lt;/span&gt;
-npm WARN peerDependencies The peer dependency minichain@~0.0.1 included from minitable will no
-npm WARN peerDependencies longer be automatically installed to fulfill the peerDependency
-npm WARN peerDependencies in npm 3+. Your application will need to depend on it explicitly.
-/root/.nvm/versions/node/v0.12.4/bin/tsd -&amp;gt; /root/.nvm/versions/node/v0.12.4/lib/node_modules/tsd/build/cli.js
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;続けてAngular2用の型定義をインストール。&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;# tsd query angular2 --action install
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;※rootユーザー以外だと下記エラーが出る可能性があります。&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;&amp;gt;&amp;gt; install error!
-EACCES, mkdir &amp;#39;/etc/rc.d/init.d/typings&amp;#39;
-Error: EACCES, mkdir &amp;#39;/etc/rc.d/init.d/typings&amp;#39;
-at Error (native)
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;tsc (TypeScript→JS変換ツール) をインストール。&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;# npm install -g typescript@^1.5.0-beta
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3&gt;2.サンプル実行&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;任意のディレクトリで下記サンプルファイルを作成。&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;# cd /app/angular2_quickstart/ # 任意のディレクトリ
-# touch hello.html hello.ts
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;① hello.html&lt;/p&gt;
-
-&lt;script src=&quot;https://gist.github.com/313fb54ffa44bf31ed2a.js?file=hello.html&quot;&gt; &lt;/script&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;② hello.ts&lt;/p&gt;
-
-&lt;script src=&quot;https://gist.github.com/e4ed0d2d8b9c9df5f074.js?file=hello.ts&quot;&gt; &lt;/script&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;上記ディレクトリにて、tscを監視モードで実行。&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;# cd /app/angular2_quickstart/
-# 
-# tsc --watch -m commonjs -t es5 --emitDecoratorMetadata *.ts
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;簡易HTTPサーバーをインストール後、上記ディレクトリで起動します。&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;# npm install http-server -g
-#
-# cd /app/angular2_quickstart/
-#
-# http-server
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;ブラウザ確認&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;下記URLで&amp;quot;Hello World !&amp;quot;が表示されれば成功です。(ホスト名(IP)は自分の環境に読み替え)&lt;/li&gt;
-&lt;li&gt;http://192.168.33.10:8080/hello.html&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3&gt;※参考ページ&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;&lt;a href=&quot;https://angular.io/docs/js/latest/quickstart.html&quot; target=&quot;_blank&quot;&gt;公式ページ (5 MIN QUICKSTART)&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;a href=&quot;http://liginc.co.jp/web/programming/node-js/85318&quot; target=&quot;_blank&quot;&gt;nvm インストール&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-    &lt;p&gt;&lt;a href=&quot;/angular2/angular2_quick_start/&quot;&gt;【Angular2】クイックスタート&lt;/a&gt; was originally published by sankame at &lt;a href=&quot;&quot;&gt;IT調べものブログ&lt;/a&gt; on June 22, 2015.&lt;/p&gt;
   </content>
 </entry>
 
