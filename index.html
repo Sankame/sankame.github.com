@@ -183,7 +183,7 @@ enable_page_level_ads: true
 <li><p>久々にJavaで実装しています。標準ライブラリのjava.net.URLクラスを使うと、URLとして解釈できない文字列を渡すとIllegalArgumentExceptionが発生して扱いずらいですね。</p>
 <div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">url</span> <span class="o">=</span> <span class="n">URL</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="s">&quot;不正なURL&quot;</span><span class="o">);</span>
 </code></pre></div>
-<p>うーん、最初、RFCを見て「URLとして許可されている文字列だけ渡す」という処理を入れようか迷いました。</p>
+<p>うーん、最初、RFCを見て「URLとして許可されている文字列だけ渡す」という実装を入れようか迷いました。</p>
 
 <p>が、一から組むのも骨が折れるなあ～と思って、困った時の<a href="https://commons.apache.org/" target="_blank">Apache Commons</a>を探してみたら、しめしめ<a href="https://commons.apache.org/proper/commons-validator/download_validator.cgi" target="_blank">Apache Commons Validator</a>にUrlValidatorクラスというのがあって利用できそうです。</p>
 
