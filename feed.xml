@@ -4,7 +4,7 @@
 <generator uri="https://github.com/mojombo/jekyll">Jekyll</generator>
 <link rel="self" type="application/atom+xml" href="/feed.xml" />
 <link rel="alternate" type="text/html" href="" />
-<updated>2016-10-05T12:45:35-04:00</updated>
+<updated>2016-10-06T11:48:20-04:00</updated>
 <id>/</id>
 <author>
   <name>sankame</name>
@@ -34,14 +34,15 @@
 &lt;h3&gt;1. 問題&lt;/h3&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;p&gt;久々にJavaで実装しています。標準ライブラリのjava.net.URLクラスを使うと、URLとして解釈できない文字列を渡すとIllegalArgumentExceptionが発生して扱いずらいですね。&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;n&quot;&gt;url&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;URL&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;create&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;不正なURL&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;li&gt;&lt;p&gt;久々にJavaで実装する機会がありました。標準ライブラリのjava.net.URLクラスは、URLとして解釈できない文字列を渡すと例外が投げられるので扱いずらいですね。&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;c1&quot;&gt;// IllegalArgumentException が発生。&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;url&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;URL&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;create&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;不正なURL&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;うーん、最初、RFCを見て「URLとして許可されている文字列だけ渡す」という実装を入れようか迷いました。&lt;/p&gt;
+&lt;p&gt;うーん、最初、RFCを見て「URLとして許可されている文字列だけ渡す」という処理を入れようか迷いました。&lt;/p&gt;
 
-&lt;p&gt;が、一から組むのも骨が折れるなあ～と思って、困った時の&lt;a href=&quot;https://commons.apache.org/&quot; target=&quot;_blank&quot;&gt;Apache Commons&lt;/a&gt;を探してみたら、しめしめ&lt;a href=&quot;https://commons.apache.org/proper/commons-validator/download_validator.cgi&quot; target=&quot;_blank&quot;&gt;Apache Commons Validator&lt;/a&gt;にUrlValidatorクラスというのがあって利用できそうです。&lt;/p&gt;
+&lt;p&gt;が、一から組むのも骨が折れるなあ～と思って、困った時の&lt;a href=&quot;https://commons.apache.org/&quot; target=&quot;_blank&quot;&gt;Apache Commons&lt;/a&gt;を探してみたら、しめしめ&lt;a href=&quot;https://commons.apache.org/proper/commons-validator/download_validator.cgi&quot; target=&quot;_blank&quot;&gt;Apache Commons Validator&lt;/a&gt;にUrlValidatorクラスというのがありました。&lt;/p&gt;
 
-&lt;p&gt;さっそくパッケージをimportして使おうと思ったら、下記の警告が出てしまいました。&lt;/p&gt;
+&lt;p&gt;早速このクラスをimportして使おうと思ったら、下記の警告が出てしまいました。&lt;/p&gt;
 
 &lt;p&gt;&lt;code&gt;型 UrlValidator は使用すべきではありません&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
