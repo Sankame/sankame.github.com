@@ -4,13 +4,88 @@
 <generator uri="https://github.com/mojombo/jekyll">Jekyll</generator>
 <link rel="self" type="application/atom+xml" href="/feed.xml" />
 <link rel="alternate" type="text/html" href="" />
-<updated>2016-10-06T11:48:20-04:00</updated>
+<updated>2016-10-08T09:19:05-04:00</updated>
 <id>/</id>
 <author>
   <name>sankame</name>
   <uri>/</uri>
   <email>m2ad0504@outlook.jp</email>
 </author>
+
+
+<entry>
+  <title type="html"><![CDATA[Eclipseでタブをスペースに置換]]></title>
+ <link rel="alternate" type="text/html" href="/eclipse/convert_tabs_to_spaces_on_eclipse/" />
+  <id>/eclipse/convert_tabs_to_spaces_on_eclipse</id>
+  <published>2016-10-07T20:00:00-04:00</published>
+  <updated>2016-10-07T20:00:00-04:00</updated>
+  <author>
+    <name>sankame</name>
+    <uri></uri>
+    <email>m2ad0504@outlook.jp</email>
+  </author>
+  <content type="html">
+    &lt;p&gt;&lt;span style=&quot;float:right;&quot;&gt;投稿日：2016年10月07日&lt;/span&gt;&lt;/p&gt;
+
+&lt;h3&gt;0. 環境&lt;/h3&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;[OS] Mac OS X 10.11.4
+[Eclipse] Mars.2 Release (4.5.2)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;1. 問題&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;久々にEclipseをさわっていたら、タブをスペースに変換する設定に手間取ったのでメモ。&lt;/p&gt;
+
+&lt;p&gt;(Windowsでもメニュー名を読み替えて頂くと使えます)&lt;/p&gt;
+
+&lt;p&gt;プログラミングで使うインデントに関して、僕はタブ派ですが、職場や&lt;a href=&quot;http://www.gizmodo.jp/2016/09/tab-vs-space.html&quot; target=&quot;_blank&quot;&gt;最近の流れ&lt;/a&gt;からしてもスペースを使わざるを得ないでしょう。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3&gt;2. 解決&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Eclipseに標準でついている機能が動かなかったので、AnyEditToolsというプラグインを入れました。&lt;/p&gt;
+
+&lt;p&gt;メニューの [ヘルプ]-[Install new software] をクリック。&lt;/p&gt;
+
+&lt;p&gt;[作業対象]に下記を入力。(anyぐらいまで打つと補完されます)&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;anyedit - http://andrei.gmxhome.de/eclipse/&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;とりあえず最新バージョンのAnyEditToolsにチェック。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/posts/img/convert_tabs_to_spaces_on_eclipse/install.jpg&quot; target=&quot;_blank&quot;&gt;&lt;img width=&quot;50%&quot; height=&quot;50%&quot; title=&quot;インストール&quot; alt=&quot;インストール&quot; src=&quot;/assets/posts/img/convert_tabs_to_spaces_on_eclipse/install.jpg&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;[次へ]をクリック。&lt;/p&gt;
+
+&lt;p&gt;途中ライセンスへの同意やセキュリティ警告が出ますが、最後までいくと再起動を求められるのでそのままOKをクリックします。&lt;/p&gt;
+
+&lt;p&gt;起動後、Eclipse上で任意のファイルにタブを入力し、保存したタイミングでスペースに置換されます。&lt;/p&gt;
+
+&lt;p&gt;変わらない場合や細かい設定をしたい場合は下記の設定画面から行って下さい。&lt;/p&gt;
+
+&lt;p&gt;メニューの [Eclipse]-[環境設定] をクリック。&lt;/p&gt;
+
+&lt;p&gt;[一般]-[エディタ]-[AnyEdit Tools]&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/posts/img/convert_tabs_to_spaces_on_eclipse/settings.jpg&quot; target=&quot;_blank&quot;&gt;&lt;img width=&quot;50%&quot; height=&quot;50%&quot; title=&quot;設定&quot; alt=&quot;設定&quot; src=&quot;/assets/posts/img/convert_tabs_to_spaces_on_eclipse/settings.jpg&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Eclipseでマークダウンを書く人は[Remove trailing whitespace]のチェックを外しておいたほうがいいかもしれません。&lt;/p&gt;
+
+&lt;p&gt;ファイルフィルタ(上記の[Add Filter])で拡張子mdを除外したり、プロジェクトごとに設定&lt;font color=&quot;green&quot;&gt;(*1)&lt;/font&gt;を変えることもできます。&lt;/p&gt;
+
+&lt;p&gt;&lt;font color=&quot;green&quot;&gt;(*1)プロジェクトごとの設定&lt;/font&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;プロジェクト・エクスプローラーの該当プロジェクトを右クリック。&lt;/li&gt;
+&lt;li&gt;[プロパティ]-[AnyEdit Tools] をクリック。&lt;/li&gt;
+&lt;li&gt;[Enable project specific settings]にチェックを入れる。&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+    &lt;p&gt;&lt;a href=&quot;/eclipse/convert_tabs_to_spaces_on_eclipse/&quot;&gt;Eclipseでタブをスペースに置換&lt;/a&gt; was originally published by sankame at &lt;a href=&quot;&quot;&gt;IT調べものブログ&lt;/a&gt; on October 07, 2016.&lt;/p&gt;
+  </content>
+</entry>
 
 
 <entry>
@@ -1407,74 +1482,6 @@ lrwxrwxrwx 1 root root 41 12月  6 03:43 2015 privkey.pem -&amp;gt; ../../archiv
 &lt;/ul&gt;
 
     &lt;p&gt;&lt;a href=&quot;/googlesheets/google_sheets_colors_for_lines/&quot;&gt;Googleスプレッドシート  行ごとに背景色を変える&lt;/a&gt; was originally published by sankame at &lt;a href=&quot;&quot;&gt;IT調べものブログ&lt;/a&gt; on November 27, 2015.&lt;/p&gt;
-  </content>
-</entry>
-
-
-<entry>
-  <title type="html"><![CDATA[Androidアプリのバージョンアップができない]]></title>
- <link rel="alternate" type="text/html" href="/android/android_app_version/" />
-  <id>/android/android_app_version</id>
-  <published>2015-10-06T20:00:00-04:00</published>
-  <updated>2015-10-06T20:00:00-04:00</updated>
-  <author>
-    <name>sankame</name>
-    <uri></uri>
-    <email>m2ad0504@outlook.jp</email>
-  </author>
-  <content type="html">
-    &lt;p&gt;&lt;span style=&quot;float:right;&quot;&gt;投稿日：2015年10月06日&lt;/span&gt;&lt;/p&gt;
-
-&lt;h3&gt;0.環境&lt;/h3&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;[OS]             Windows7 (32bit 版)
-[AndroidStudio]  1.1.0
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;h3&gt;1.問題&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;Androidアプリをバージョンアップするため、Google Play Developer Console
-でapkファイルをアップしても下記のエラーが出ました。&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;アップロードできませんでした&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;マニフェストファイルに下記のように追記してもダメ。&lt;/p&gt;
-
-&lt;p&gt;(app\【アプリ名】\mobile\src\main\AndroidManifest.xml)&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-xml&quot; data-lang=&quot;xml&quot;&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;utf-8&amp;quot;?&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;manifest&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;xmlns:android=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;http://schemas.android.com/apk/res/android&amp;quot;&lt;/span&gt;
-        &lt;span class=&quot;na&quot;&gt;package=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;【パッケージ名】&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;android:versionCode=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;2&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;android:versionName=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;2.0.1&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3&gt;2.対策&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;しばらくして、AndroidManifest.xml にエラーメッセージが出てるのに気付きました。&lt;/p&gt;
-
-&lt;p&gt;build.gradle を修正しなきゃいけない・・・&lt;/p&gt;
-
-&lt;p&gt;(app\【アプリ名】\mobile\build.gradle)&lt;/p&gt;
-
-&lt;p&gt;下記のようにバージョンを上げて再コンパイルしたらアップロードできました。&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-json&quot; data-lang=&quot;json&quot;&gt;&lt;span class=&quot;err&quot;&gt;android&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;err&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;err&quot;&gt;(省略)&lt;/span&gt;
-        &lt;span class=&quot;err&quot;&gt;:&lt;/span&gt;
-        &lt;span class=&quot;err&quot;&gt;defaultConfig&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;err&quot;&gt;applicationId&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;&amp;quot;【省略】&amp;quot;&lt;/span&gt;
-            &lt;span class=&quot;err&quot;&gt;minSdkVersion&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;16&lt;/span&gt;
-            &lt;span class=&quot;err&quot;&gt;targetSdkVersion&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;21&lt;/span&gt;
-            &lt;span class=&quot;err&quot;&gt;versionCode&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;
-            &lt;span class=&quot;err&quot;&gt;versionName&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;2.0.1&amp;quot;&lt;/span&gt;
-        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;err&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;err&quot;&gt;(省略)&lt;/span&gt;
-    &lt;span class=&quot;err&quot;&gt;:&lt;/span&gt;
-&lt;span class=&quot;err&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-    &lt;p&gt;&lt;a href=&quot;/android/android_app_version/&quot;&gt;Androidアプリのバージョンアップができない&lt;/a&gt; was originally published by sankame at &lt;a href=&quot;&quot;&gt;IT調べものブログ&lt;/a&gt; on October 06, 2015.&lt;/p&gt;
   </content>
 </entry>
 
