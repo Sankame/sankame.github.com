@@ -4,13 +4,64 @@
 <generator uri="https://github.com/mojombo/jekyll">Jekyll</generator>
 <link rel="self" type="application/atom+xml" href="/feed.xml" />
 <link rel="alternate" type="text/html" href="" />
-<updated>2016-10-08T09:19:05-04:00</updated>
+<updated>2016-11-04T12:28:49-04:00</updated>
 <id>/</id>
 <author>
   <name>sankame</name>
   <uri>/</uri>
   <email>m2ad0504@outlook.jp</email>
 </author>
+
+
+<entry>
+  <title type="html"><![CDATA[Type 'ViewController' does not conform to protocol 'WCSessionDelegate']]></title>
+ <link rel="alternate" type="text/html" href="/swift/wcsessiondelegate_in_swift3/" />
+  <id>/swift/wcsessiondelegate_in_swift3</id>
+  <published>2016-11-14T19:00:00-05:00</published>
+  <updated>2016-11-14T19:00:00-05:00</updated>
+  <author>
+    <name>sankame</name>
+    <uri></uri>
+    <email>m2ad0504@outlook.jp</email>
+  </author>
+  <content type="html">
+    &lt;p&gt;&lt;span style=&quot;float:right;&quot;&gt;投稿日：2016年11月14日&lt;/span&gt;&lt;/p&gt;
+
+&lt;h3&gt;0. 環境&lt;/h3&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;[OS] Mac OS X 10.11.6
+[IDE] Xcode 8.1
+[Swift] 3.0
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;1. 問題&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;iPhone &amp;amp; AppleWatchアプリを作成中にSwiftを2.2から3へバージョンアップしたところ、iPhone側で下記のエラーが出るようになりました。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Type &amp;#39;ViewController&amp;#39; does not conform to protocol &amp;#39;WCSessionDelegate&amp;#39;&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3&gt;2. 解決&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;ViewControllerに下記メソッドを追加するとエラーが消えました。&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-swift&quot; data-lang=&quot;swift&quot;&gt;&lt;span class=&quot;n&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;session&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;_&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;session&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;WCSession&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;activationDidCompleteWith&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;activationState&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;WCSessionActivationState&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Error&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;?&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;sessionDidBecomeInactive&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;_&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;session&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;WCSession&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;sessionDidDeactivate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;_&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;session&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;WCSession&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;session&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;activate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;下記の仕様書にもこれらのメソッドは必須と書いていました。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://developer.apple.com/reference/watchconnectivity/wcsessiondelegate&quot; target=&quot;_blank&quot;&gt;[API Reference] WCSessionDelegate&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+    &lt;p&gt;&lt;a href=&quot;/swift/wcsessiondelegate_in_swift3/&quot;&gt;Type &#39;ViewController&#39; does not conform to protocol &#39;WCSessionDelegate&#39;&lt;/a&gt; was originally published by sankame at &lt;a href=&quot;&quot;&gt;IT調べものブログ&lt;/a&gt; on November 14, 2016.&lt;/p&gt;
+  </content>
+</entry>
 
 
 <entry>
@@ -1436,52 +1487,6 @@ lrwxrwxrwx 1 root root 41 12月  6 03:43 2015 privkey.pem -&amp;gt; ../../archiv
 &lt;/ul&gt;
 
     &lt;p&gt;&lt;a href=&quot;/ssl-tls/letsencrypt_setup/&quot;&gt;お薦め無料SSL証明書 - Let&#39;s Encrypt&lt;/a&gt; was originally published by sankame at &lt;a href=&quot;&quot;&gt;IT調べものブログ&lt;/a&gt; on December 06, 2015.&lt;/p&gt;
-  </content>
-</entry>
-
-
-<entry>
-  <title type="html"><![CDATA[Googleスプレッドシート  行ごとに背景色を変える]]></title>
- <link rel="alternate" type="text/html" href="/googlesheets/google_sheets_colors_for_lines/" />
-  <id>/googlesheets/google_sheets_colors_for_lines</id>
-  <published>2015-11-27T19:00:00-05:00</published>
-  <updated>2015-11-27T19:00:00-05:00</updated>
-  <author>
-    <name>sankame</name>
-    <uri></uri>
-    <email>m2ad0504@outlook.jp</email>
-  </author>
-  <content type="html">
-    &lt;p&gt;&lt;span style=&quot;float:right;&quot;&gt;投稿日：2015年11月27日&lt;/span&gt;&lt;/p&gt;
-
-&lt;h3&gt;Googleスプレッドシート  設定方法&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;あるセルに値を入れることで、行全体の色を変える場合の設定です。&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;下記のようなリストを例に、完了日を入れるだけで項目を自動的にグレーアウトします。&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;/assets/posts/img/google_sheets_colors_for_lines/リスト.png&quot; target=&quot;_blank&quot;&gt;&lt;img width=&quot;50%&quot; height=&quot;50%&quot; title=&quot;リスト&quot; alt=&quot;リスト&quot; src=&quot;/assets/posts/img/google_sheets_colors_for_lines/リスト.png&quot;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;メニューで「条件付き書式」を選択。&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;/assets/posts/img/google_sheets_colors_for_lines/条件付き書式.png&quot; target=&quot;_blank&quot;&gt;&lt;img width=&quot;50%&quot; height=&quot;50%&quot; title=&quot;条件付き書式&quot; alt=&quot;条件付き書式&quot; src=&quot;/assets/posts/img/google_sheets_colors_for_lines/条件付き書式.png&quot;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;右端に枠が表示されます。&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;/assets/posts/img/google_sheets_colors_for_lines/条件付き書式設定ルール.png&quot; target=&quot;_blank&quot;&gt;&lt;img width=&quot;30%&quot; height=&quot;30%&quot; title=&quot;条件付き書式設定ルール&quot; alt=&quot;条件付き書式設定ルール&quot; src=&quot;/assets/posts/img/google_sheets_colors_for_lines/条件付き書式設定ルール.png&quot;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;まず範囲を選択します。今回はヘッダーを除いたデータ部分を指定。(A4:C6)&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;次に書式設定の条件を指定します。&lt;/p&gt;
-
-&lt;p&gt;例では「C列の4行目以降に値がある」場合にtrueを返すようにします。&lt;/p&gt;
-
-&lt;p&gt;(C列を固定するため絶対参照の$マークをつけ、4行目からは相対参照にしたいため下記のように指定)&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;=IF($C4 &amp;lt;&amp;gt; &amp;quot;&amp;quot;, true, false)
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;最後に書式設定で上記がtrueの場合に適用される書式を設定します。&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;以上で「完了日」に文字列を入れると行全体をグレーにする設定ができました。&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;/assets/posts/img/google_sheets_colors_for_lines/条件付き書式設定完了.png&quot; target=&quot;_blank&quot;&gt;&lt;img width=&quot;70%&quot; height=&quot;70%&quot; title=&quot;条件付き書式設定完了&quot; alt=&quot;条件付き書式設定完了&quot; src=&quot;/assets/posts/img/google_sheets_colors_for_lines/条件付き書式設定完了.png&quot;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-    &lt;p&gt;&lt;a href=&quot;/googlesheets/google_sheets_colors_for_lines/&quot;&gt;Googleスプレッドシート  行ごとに背景色を変える&lt;/a&gt; was originally published by sankame at &lt;a href=&quot;&quot;&gt;IT調べものブログ&lt;/a&gt; on November 27, 2015.&lt;/p&gt;
   </content>
 </entry>
 
