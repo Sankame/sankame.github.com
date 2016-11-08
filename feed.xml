@@ -4,7 +4,7 @@
 <generator uri="https://github.com/mojombo/jekyll">Jekyll</generator>
 <link rel="self" type="application/atom+xml" href="/feed.xml" />
 <link rel="alternate" type="text/html" href="" />
-<updated>2016-11-05T15:05:33-04:00</updated>
+<updated>2016-11-08T10:30:42-05:00</updated>
 <id>/</id>
 <author>
   <name>sankame</name>
@@ -991,7 +991,7 @@ Setup completed
     <email>m2ad0504@outlook.jp</email>
   </author>
   <content type="html">
-    &lt;p&gt;&lt;span&gt;&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;color:#d14; float:right;&quot;&gt;更新日：2016年09月04日&lt;/span&gt;&lt;/p&gt;
+    &lt;p&gt;&lt;span&gt;&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;color:#d14; float:right;&quot;&gt;更新日：2016年11月09日&lt;/span&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;span style=&quot;float:right;&quot;&gt;投稿日：2016年02月20日&lt;/span&gt;&lt;/p&gt;
 
@@ -1104,6 +1104,34 @@ Congratulations, all renewals succeeded. The following certs have been renewed:
 /etc/letsencrypt/live/【ドメイン名】/fullchain.pem &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;success&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;font id=&quot;cron&quot; color=&quot;red&quot;&gt;(2016/11/09, 追記)&lt;/font&gt; ブラウザ上で証明書の開始日がしばらく更新されていなかったので、上記 renew.log を見たところ、またもやエラーが出ていました…&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;エラー内容&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;Dependencies &lt;span class=&quot;nv&quot;&gt;Resolved&lt;/span&gt;
+
+&lt;span class=&quot;o&quot;&gt;================================================================================&lt;/span&gt;
+ Package Arch Version Repository &lt;span class=&quot;nv&quot;&gt;Size&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;================================================================================&lt;/span&gt;
+Updating:
+ openssl x86_64 1.0.1e-48.el6_8.3 updates 1.5 M
+ openssl-devel x86_64 1.0.1e-48.el6_8.3 updates 1.2 M
+
+Transaction &lt;span class=&quot;nv&quot;&gt;Summary&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;================================================================================&lt;/span&gt;
+Upgrade &lt;span class=&quot;m&quot;&gt;2&lt;/span&gt; Package&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;s&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+
+Total download size: 2.7 M
+Is this ok &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;y/N&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;: Exiting on user Command
+Could not install OS dependencies. Aborting bootstrap!
+Automated renewal failed
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;何とか依存パッケージのインストール確認をスキップできないものかと調べていたら、コマンド集を見つけ、下記のオプションでうまくいきました。(参考ページ④)&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;--non-interactive&lt;/code&gt; (上記 gist の COMMAND にも反映済み)&lt;/p&gt;
+
+&lt;p&gt;ちなみに、同ページに --quiet を指定すると上記オプションも含む、と書かれていましたが、こちらはダメでした。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h3&gt;参考ページ&lt;/h3&gt;
@@ -1112,6 +1140,7 @@ Congratulations, all renewals succeeded. The following certs have been renewed:
 &lt;li&gt;&lt;p&gt;① &lt;a href=&quot;https://letsencrypt.readthedocs.org/en/latest/using.html#renewal&quot; target=&quot;_blank&quot;&gt;公式マニュアル　証明書更新&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;② &lt;a href=&quot;https://tech.nosuz.jp/2015/12/lets-encrypt-https/&quot; target=&quot;_blank&quot;&gt;Let’s Encryptから証明書を取得して常時HTTPS化&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;③ &lt;a href=&quot;http://qiita.com/pm11op/items/5759d4a2c755509f6d42&quot; target=&quot;_blank&quot;&gt;Let&amp;#39;s Encrypt で証明書を小刻みに自動更新&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;④ &lt;a href=&quot;https://letsencrypt.jp/command/&quot; target=&quot;_blank&quot;&gt;Let&amp;#39;s Encrypt コマンド集&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
     &lt;p&gt;&lt;a href=&quot;/ssl-tls/letsencrypt_renewal/&quot;&gt;Let&#39;s Encrypt - 証明書更新&lt;/a&gt; was originally published by sankame at &lt;a href=&quot;&quot;&gt;IT調べものブログ&lt;/a&gt; on February 20, 2016.&lt;/p&gt;

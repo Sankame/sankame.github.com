@@ -162,7 +162,7 @@ enable_page_level_ads: true
       <span class="entry-reading-time">
         <i class="fa fa-clock-o"></i>
         
-        Reading time ~1 minute
+        Reading time ~2 minutes
       </span><!-- /.entry-reading-time -->
       
     </div><!-- /.entry-meta -->
@@ -171,7 +171,7 @@ enable_page_level_ads: true
     
   </header>
   <div class="entry-content">
-    <p><span>&nbsp;</span><span style="color:#d14; float:right;">更新日：2016年09月04日</span></p>
+    <p><span>&nbsp;</span><span style="color:#d14; float:right;">更新日：2016年11月09日</span></p>
 
 <p><span style="float:right;">投稿日：2016年02月20日</span></p>
 
@@ -284,6 +284,34 @@ Congratulations, all renewals succeeded. The following certs have been renewed:
 /etc/letsencrypt/live/【ドメイン名】/fullchain.pem <span class="o">(</span>success<span class="o">)</span>
 </code></pre></div></li>
 </ul></li>
+<li><p><font id="cron" color="red">(2016/11/09, 追記)</font> ブラウザ上で証明書の開始日がしばらく更新されていなかったので、上記 renew.log を見たところ、またもやエラーが出ていました…</p>
+
+<ul>
+<li><p>エラー内容</p>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh">Dependencies <span class="nv">Resolved</span>
+
+<span class="o">================================================================================</span>
+ Package Arch Version Repository <span class="nv">Size</span>
+<span class="o">================================================================================</span>
+Updating:
+ openssl x86_64 1.0.1e-48.el6_8.3 updates 1.5 M
+ openssl-devel x86_64 1.0.1e-48.el6_8.3 updates 1.2 M
+
+Transaction <span class="nv">Summary</span>
+<span class="o">================================================================================</span>
+Upgrade <span class="m">2</span> Package<span class="o">(</span>s<span class="o">)</span>
+
+Total download size: 2.7 M
+Is this ok <span class="o">[</span>y/N<span class="o">]</span>: Exiting on user Command
+Could not install OS dependencies. Aborting bootstrap!
+Automated renewal failed
+</code></pre></div></li>
+<li><p>何とか依存パッケージのインストール確認をスキップできないものかと調べていたら、コマンド集を見つけ、下記のオプションでうまくいきました。(参考ページ④)</p>
+
+<p><code>--non-interactive</code> (上記 gist の COMMAND にも反映済み)</p>
+
+<p>ちなみに、同ページに --quiet を指定すると上記オプションも含む、と書かれていましたが、こちらはダメでした。</p></li>
+</ul></li>
 </ul>
 
 <h3>参考ページ</h3>
@@ -292,6 +320,7 @@ Congratulations, all renewals succeeded. The following certs have been renewed:
 <li><p>① <a href="https://letsencrypt.readthedocs.org/en/latest/using.html#renewal" target="_blank">公式マニュアル　証明書更新</a></p></li>
 <li><p>② <a href="https://tech.nosuz.jp/2015/12/lets-encrypt-https/" target="_blank">Let’s Encryptから証明書を取得して常時HTTPS化</a></p></li>
 <li><p>③ <a href="http://qiita.com/pm11op/items/5759d4a2c755509f6d42" target="_blank">Let&#39;s Encrypt で証明書を小刻みに自動更新</a></p></li>
+<li><p>④ <a href="https://letsencrypt.jp/command/" target="_blank">Let&#39;s Encrypt コマンド集</a></p></li>
 </ul>
 
   </div><!-- /.entry-content -->
