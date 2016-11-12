@@ -164,43 +164,57 @@ enable_page_level_ads: true
 (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
 </div>
-      <p><span style="float:right;">投稿日：2013年09月08日</span></p>
+      <p><span>&nbsp;</span><span style="color:#d14; float:right;">更新日：2016年11月13日</span></p>
 
-<h4>Gitコマンド メモ (自分用)</h4>
+<p><span style="float:right;">投稿日：2013年09月08日</span></p>
 
-<h5>(1) .gitignoreファイル <a href="http://www.omakase.org/misc/gitignore.html">参考ページ</a></h5>
-<div class="highlight"><pre><code class="language-text" data-lang="text"># gitの管理外にしたいファイルを定義。下記のようにディレクトリ指定も可能。
-# view .gitignore
+<h2>Gitコマンド メモ (自分用)</h2>
+
+<h3>(1) .gitignoreファイル <a href="http://www.omakase.org/misc/gitignore.html">参考ページ</a></h3>
+
+<ul>
+<li><p>gitの管理外にしたいファイルを定義。下記のようにディレクトリ指定も可能。</p>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="c"># view .gitignore</span>
 app/logs/
-</code></pre></div>
-<h5>(2) インデックスから降ろす(git管理外にする)</h5>
-<div class="highlight"><pre><code class="language-text" data-lang="text"># インデックスから降ろすだけ。
-# git rm --cached -f hoge.txt
+</code></pre></div></li>
+</ul>
 
-# インデックスから降ろして、ファイルを物理削除。
-# git rm -f hoge.txt
-</code></pre></div>
-<h5>(3) ブランチ操作(2013/10/07)</h5>
-<div class="highlight"><pre><code class="language-text" data-lang="text"># 今いるブランチは？
-# git branch
+<h3>(2) インデックスから降ろす(git管理外にする)</h3>
+
+<ul>
+<li><p>インデックスから降ろすだけ。</p>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="c"># git rm --cached -f hoge.txt</span>
+</code></pre></div></li>
+<li><p>インデックスから降ろして、ファイルを物理削除。</p>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="c"># git rm -f hoge.txt</span>
+</code></pre></div></li>
+</ul>
+
+<h3>(3) ブランチ操作(2013/10/07)</h3>
+
+<ul>
+<li><p>今いるブランチは？</p>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="c"># git branch</span>
 * master
-
-# ブランチtest1を作って、test1へ切り替える。
-# git branch test1
-# git checkout test1
-Switched to branch &#39;test1&#39;
-
-# masterブランチへ戻る。
-# git checkout master
-Switched to branch &#39;master&#39;
-
-# 使わなくなったブランチtest1を削除。
-# git branch -d test1
-Deleted branch test1 (was 0854f22).
-# git branch
+</code></pre></div></li>
+<li><p>ブランチtest1を作って、test1へ切り替える。</p>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="c"># git branch test1</span>
+<span class="c"># git checkout test1</span>
+Switched to branch <span class="s1">&#39;test1&#39;</span>
+</code></pre></div></li>
+<li><p>masterブランチへ戻る。</p>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="c"># git checkout master</span>
+Switched to branch <span class="s1">&#39;master&#39;</span>
+</code></pre></div></li>
+<li><p>使わなくなったブランチtest1を削除。</p>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="c"># git branch -d test1</span>
+Deleted branch test1 <span class="o">(</span>was 0854f22<span class="o">)</span>.
+<span class="c"># git branch</span>
 * master
-</code></pre></div>
-<h5>(4) GitHubからソースを取得(2013/10/07)</h5>
+</code></pre></div></li>
+</ul>
+
+<h3>(4) GitHubからソースを取得(2013/10/07)</h3>
 
 <ul>
 <li><p>4-1.GitHubで対象のリポジトリに移動後、画面右下のボタン(下記)をクリックしてURLをクリップボードにコピー。</p>
@@ -209,19 +223,46 @@ Deleted branch test1 (was 0854f22).
 <li><p>4-2.git clone の後に上記4-1でコピーしたURLを貼り付ける。</p>
 
 <p>予めGitHubに登録した公開鍵のパスフレーズを入力。</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text"># git clone git@github.com:Sankame/test.git
-Cloning into &#39;test&#39;...
-Enter passphrase for key &#39;/root/.ssh/id_rsa&#39;: 
+<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="c"># git clone git@github.com:Sankame/test.git</span>
+Cloning into <span class="s1">&#39;test&#39;</span>...
+Enter passphrase <span class="k">for</span> key <span class="s1">&#39;/root/.ssh/id_rsa&#39;</span>: 
 </code></pre></div></li>
 </ul>
 
-<h5>(5) ローカル変更の取り消し(2014/02/24)</h5>
-<div class="highlight"><pre><code class="language-text" data-lang="text"># ファイル指定でローカル変更を取り消し。
-# git checkout filename
-# 
-# 全てのローカル変更を取り消し。
-# git checkout .
-</code></pre></div>
+<h3>(5) ローカル変更の取り消し(2014/02/24)</h3>
+
+<ul>
+<li><p>ファイル指定でローカル変更を取り消し。</p>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="c"># git checkout filename</span>
+</code></pre></div></li>
+<li><p>全てのローカル変更を取り消し。</p>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="c"># git checkout .</span>
+</code></pre></div></li>
+</ul>
+
+<h3>(6) リモートのブランチをローカルに取り込む(2016/11/13)</h3>
+
+<ul>
+<li><p>リモートブランチを全て表示。</p>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="c"># git branch -a</span>
+</code></pre></div></li>
+<li><p>最新情報を取得。</p>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="c"># git fetch</span>
+</code></pre></div></li>
+<li><p>ローカルブランチ名を指定してリモートブランチをチェックアウトし、指定したローカルブランチへ切り替え。</p>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="c"># git checkout -b branch_name origin/branch_name</span>
+</code></pre></div></li>
+</ul>
+
+<h3>(7) ローカル変更を破棄してリモートの最新を取り込む(2016/11/13)</h3>
+
+<ul>
+<li><p>とにかくリモートの情報で上書きしたい時。</p>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="c"># git fetch origin</span>
+<span class="c"># git reset --hard origin/master</span>
+</code></pre></div></li>
+</ul>
+
       <br>
       <br>
       <div>
