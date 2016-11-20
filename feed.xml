@@ -4,13 +4,125 @@
 <generator uri="https://github.com/mojombo/jekyll">Jekyll</generator>
 <link rel="self" type="application/atom+xml" href="/feed.xml" />
 <link rel="alternate" type="text/html" href="" />
-<updated>2016-11-12T12:54:49-05:00</updated>
+<updated>2016-11-20T12:55:58-05:00</updated>
 <id>/</id>
 <author>
   <name>sankame</name>
   <uri>/</uri>
   <email>m2ad0504@outlook.jp</email>
 </author>
+
+
+<entry>
+  <title type="html"><![CDATA[WCSession#sendMessage()の代わりにupdateApplicationContext()を使う際の注意点]]></title>
+ <link rel="alternate" type="text/html" href="/applewatch/wcsession_sendmessage_slow_in_swift3/" />
+  <id>/applewatch/wcsession_sendmessage_slow_in_swift3</id>
+  <published>2016-11-20T19:00:00-05:00</published>
+  <updated>2016-11-20T19:00:00-05:00</updated>
+  <author>
+    <name>sankame</name>
+    <uri></uri>
+    <email>m2ad0504@outlook.jp</email>
+  </author>
+  <content type="html">
+    &lt;p&gt;&lt;span style=&quot;float:right;&quot;&gt;投稿日：2016年11月20日&lt;/span&gt;&lt;/p&gt;
+
+&lt;h3&gt;0. 環境&lt;/h3&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;[OS] Mac OS X 10.11.6
+[IDE] Xcode 8.1
+[Swift] 3.0
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;1. 問題&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;WCSession#sendMessage()を使ってAppleWatchからiPhoneアプリへメッセージを送っても、30秒ほどしないと通知されない。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;AppleWatch側&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-swift&quot; data-lang=&quot;swift&quot;&gt;&lt;span class=&quot;p&quot;&gt;@&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;IBAction&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tapButton&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;message&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;fromChild&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;AppleWatchからのメッセージ&amp;quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;WCSession&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;default&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sendMessage&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;message&lt;/span&gt;
+            &lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;replyHandler&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;reply&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+            &lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;errorHandler&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;error&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;iPhone側&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-swift&quot; data-lang=&quot;swift&quot;&gt;&lt;span class=&quot;k&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;session&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;_&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;session&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;WCSession&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;didReceiveMessage&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Any&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;replyHandler&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;@&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;escaping&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Any&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Void&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;watchMessage&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;fromChild&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;as&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;?&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;watchMessage&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;error&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3&gt;2. 対策&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;replyHandlerを設定するなど、いろいろ情報はあったのですが、結局 sendMessage() を諦め、updateApplicationContext() を使うことにしました。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;ただ updateApplicationContext() は状態が変わった際に通知するためのメソッドなので、二回目以降の値が変わらないとiPhone側のメソッドが呼び出されません。&lt;/p&gt;
+
+&lt;p&gt;API仕様書には明記されていませんがそのような動きをしています。(「3. 参考ページ」参照)&lt;/p&gt;
+
+&lt;p&gt;ですので、sendMessage() と同じように使いたい場合は、毎回変わる値をダミーとして設定すると実現できます。(多少強引ですが、下記例では時間を設定しています)&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;AppleWatch側&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-swift&quot; data-lang=&quot;swift&quot;&gt;&lt;span class=&quot;p&quot;&gt;@&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;IBAction&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tapButton&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dateFormatter&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;DateFormatter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;dateFormatter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;locale&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Locale&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;identifier&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;ja_JP&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;dateFormatter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;timeStyle&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;medium&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;dateFormatter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dateStyle&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;medium&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;item&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Dictionary&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
+        &lt;span class=&quot;s&quot;&gt;&amp;quot;message&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;AppleWatchからのメッセージ&amp;quot;&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;date&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dateFormatter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;from&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;NSDate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Date&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)]&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;message&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;fromChild&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;item&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;try&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;WCSession&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;default&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;updateApplicationContext&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;catch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;iPhone側&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-swift&quot; data-lang=&quot;swift&quot;&gt;&lt;span class=&quot;k&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;session&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;_&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;session&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;WCSession&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;didReceiveApplicationContext&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;applicationContext&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Any&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;DispatchQueue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;async&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Void&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;watchMessage&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;applicationContext&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;fromChild&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;as&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;?&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Dictionary&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;label&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;text&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;watchMessage&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;message&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;!&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt;
+
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3&gt;3. 参考ページ&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://developer.apple.com/reference/watchconnectivity/wcsession&quot; target=&quot;_blank&quot;&gt;API Reference WCSession&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+    &lt;p&gt;&lt;a href=&quot;/applewatch/wcsession_sendmessage_slow_in_swift3/&quot;&gt;WCSession#sendMessage()の代わりにupdateApplicationContext()を使う際の注意点&lt;/a&gt; was originally published by sankame at &lt;a href=&quot;&quot;&gt;IT調べものブログ&lt;/a&gt; on November 20, 2016.&lt;/p&gt;
+  </content>
+</entry>
 
 
 <entry>
@@ -1330,198 +1442,6 @@ Permission denied &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;publickey,gssapi
 &lt;/ul&gt;
 
     &lt;p&gt;&lt;a href=&quot;/programming-practice/programming_practice_A/&quot;&gt;プログラミング問題A&lt;/a&gt; was originally published by sankame at &lt;a href=&quot;&quot;&gt;IT調べものブログ&lt;/a&gt; on December 30, 2015.&lt;/p&gt;
-  </content>
-</entry>
-
-
-<entry>
-  <title type="html"><![CDATA[お薦め無料SSL証明書 - Let's Encrypt]]></title>
- <link rel="alternate" type="text/html" href="/ssl-tls/letsencrypt_setup/" />
-  <id>/ssl-tls/letsencrypt_setup</id>
-  <published>2015-12-06T19:00:00-05:00</published>
-  <updated>2015-12-06T19:00:00-05:00</updated>
-  <author>
-    <name>sankame</name>
-    <uri></uri>
-    <email>m2ad0504@outlook.jp</email>
-  </author>
-  <content type="html">
-    &lt;p&gt;&lt;span&gt;&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;color:#d14; float:right;&quot;&gt;更新日：2016年02月20日&lt;/span&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;span style=&quot;float:right;&quot;&gt;投稿日：2015年12月06日&lt;/span&gt;&lt;/p&gt;
-
-&lt;h3&gt;0.環境&lt;/h3&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;[CentOS] 6.4 (64bit版カーネル)
-[Apache] 2.2.15
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;h3&gt;1.セットアップ&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;個人で借りているレンタルサーバーで、有料のSSL証明書を使っていたのですが、
-有効期間切れを機にフリーのものに乗り換えてみました。&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;最近 Public Beta に入った Let&amp;#39;s Encrypt というサービスを利用します。&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;/assets/posts/img/letsencrypt_setup/letsencrypt_top.png&quot; target=&quot;_blank&quot;&gt;&lt;img width=&quot;80%&quot; height=&quot;80%&quot; title=&quot;Let&#39;s Encryptトップ&quot; alt=&quot;Let&#39;s Encryptトップ&quot; src=&quot;/assets/posts/img/letsencrypt_setup/letsencrypt_top.png&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;下記ページに沿って進めます。(その他の参考ページは末尾に記載)&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://letsencrypt.org/howitworks/&quot; target=&quot;_blank&quot;&gt;&lt;font color=&quot;green&quot;&gt;Let&amp;#39;s Encrypt 操作方法&lt;/font&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;任意のディレクトリに Let&amp;#39;s Encrypt クライアントをダウンロード。&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;# cd /usr/local/src
-# git clone https://github.com/letsencrypt/letsencrypt
-# cd letsencrypt
-# ./letsencrypt-auto --help
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;おお！ helpだから使い方が表示されるかと思いきや、依存関係のあるパッケージがダウンロードされた・・・&lt;/p&gt;
-
-&lt;p&gt;しかも下記メッセージによると、どうやらPythonのバージョンが古くて失敗してるっぽい。&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;  ：
-(省略)
-  ：
-Complete!
-WARNING: Python 2.6 support is very experimental at present...
-if you would like to work on improving it, please ensure you have backups
-and then run this script again with the --debug flag!
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;ググってみると同じ問題で悩んでる人がいました。&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://github.com/letsencrypt/letsencrypt/issues/1046&quot; target=&quot;_blank&quot;&gt;&lt;font color=&quot;green&quot;&gt;letsencrypt-autoは Python 2.6では動かない&lt;/font&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;さらにググって下記ページに従ってPython2.7インストール。&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://community.letsencrypt.org/t/redhat-centos-6-x-users-need-python-2-7/2190&quot; target=&quot;_blank&quot;&gt;&lt;font color=&quot;green&quot;&gt;CentOS 6系は Python 2.7をインストールする必要あり&lt;/font&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;実行コマンドは下記の通り。&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;# yum install python27 python27-python-devel python27-python-setuptools python27-python-tools python27-python-virtualenv
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;python バージョンを調べる。&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;# python --version
-Python 2.6.6
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;&lt;font color=&quot;red&quot;&gt;(注) 2.6のままですが気にせず続行します。&lt;/font&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;font color=&quot;red&quot;&gt;(yum管理外でPythonをソースからビルドしてインストールすると letsencrypt-auto が動かなくなりました)&lt;/font&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;コマンドを再実行すると、もうPythonが古い旨のメッセージは出なくなりました。&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;# ./letsencrypt-auto --help
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;続けてドメイン認証を試みます。&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;# ./letsencrypt-auto --apache -d 【ドメイン名】
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;エラーメッセージが・・・(【】内は読み替え)&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;Updating letsencrypt and virtual environment dependencies.......
-Running with virtualenv: /root/.local/share/letsencrypt/bin/letsencrypt --apache -d 【ドメイン名】
-Version: 1.1-20080819
-Version: 1.1-20080819
-The apache plugin is not working; there may be problems with your existing configuration.
-The error was: NoInstallationError()
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;ユーザーガイドによるとApache2.2系だとapacheプラグイン(--apache)は使えないようです。&lt;/p&gt;
-
-&lt;p&gt;となると、下記の通りstandaloneかwebrootのいずれかを実行しないといけません。&lt;/p&gt;
-
-&lt;p&gt;If you want to use a webserver that doesn&amp;#39;t have full plugin support yet, you can still use &amp;quot;standalone&amp;quot; or &amp;quot;webroot&amp;quot; plugins to obtain a certificate: (&lt;a href=&quot;https://letsencrypt.readthedocs.org/en/latest/using.html#standalone&quot; target=&quot;_blank&quot;&gt;ユーザーガイド抜粋&lt;/a&gt;)&lt;/p&gt;
-
-&lt;p&gt;僕の場合、1つのサーバーに複数のvirtual hostを立てているのでwebrootプラグインを使います。&lt;/p&gt;
-
-&lt;p&gt;さらにwebrootプラグインだとApache無停止でいけるそうです。&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;念のため、既に書いてあったSSL用のvirtual hostはコメントアウトしてApache再起動。&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;#&amp;lt;VirtualHost *:443&amp;gt;
-#    ：
-# 【省略
-#    ：
-#&amp;lt;/VirtualHost&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;下記コマンド実行。&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;# ./letsencrypt-auto certonly --webroot -w 【ドキュメントルート】 -d 【ドメイン名】
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;連絡用e-mailを入力し、利用規約を確認します。&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;/assets/posts/img/letsencrypt_setup/enter_email.png&quot; target=&quot;_blank&quot;&gt;&lt;img width=&quot;80%&quot; height=&quot;80%&quot; title=&quot;email入力&quot; alt=&quot;email入力&quot; src=&quot;/assets/posts/img/letsencrypt_setup/enter_email.png&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;/assets/posts/img/letsencrypt_setup/read_terms_of_service.png&quot; target=&quot;_blank&quot;&gt;&lt;img width=&quot;80%&quot; height=&quot;80%&quot; title=&quot;利用規約&quot; alt=&quot;利用規約&quot; src=&quot;/assets/posts/img/letsencrypt_setup/read_terms_of_service.png&quot;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;エラーメッセージ。&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;Updating letsencrypt and virtual environment dependencies.......
-Running with virtualenv: /root/.local/share/letsencrypt/bin/letsencrypt certonly --webroot -w 【ドキュメントルート】 -d 【ドメイン名】
-Version: 1.1-20080819
-Version: 1.1-20080819
-Failed authorization procedure. 【ドメイン名】 (http-01): urn:acme:error:unauthorized :: The client lacks sufficient authorization :: Invalid response from http://【ドメイン名】/.well-known/acme-challenge/【省略】 [【サーバーIP】]: 401
-
-IMPORTANT NOTES:
- - The following &amp;#39;urn:acme:error:unauthorized&amp;#39; errors were reported by
-   the server:
-
-   Domains: 【ドメイン名】
-   Error: The client lacks sufficient authorization
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;ドキュメントルートにファイルを配置して、インターネットからアクセスを試みているけど失敗してるっぽい・・・&lt;/p&gt;
-
-&lt;p&gt;試しにブラウザから上記URLにアクセス。&lt;/p&gt;
-
-&lt;p&gt;元々、port80(http)からport443(https)へリダイレクトする設定にしていたためエラーになっていました。&lt;/p&gt;
-
-&lt;p&gt;リダイレクトを無効にし、ブラウザから上記URLにアクセスできることを確認した上で、再度サーバー上で下記を実行。&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;# ./letsencrypt-auto certonly --webroot -w 【ドキュメントルート】 -d 【ドメイン名】
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;下記メッセージが表示され認証が成功！&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;Updating letsencrypt and virtual environment dependencies.......
-Running with virtualenv: /root/.local/share/letsencrypt/bin/letsencrypt certonly --webroot -w 【ドキュメントルート】 -d 【ドメイン名】
-Version: 1.1-20080819
-Version: 1.1-20080819
-
-IMPORTANT NOTES:
- - Congratulations! Your certificate and chain have been saved at
-   /etc/letsencrypt/live/【ドメイン名】/fullchain.pem. Your cert will
-   expire on 2016-03-04. To obtain a new version of the certificate in
-   the future, simply run Let&amp;#39;s Encrypt again.
- - If like Let&amp;#39;s Encrypt, please consider supporting our work by:
-
-   Donating to ISRG / Let&amp;#39;s Encrypt:   https://letsencrypt.org/donate
-   Donating to EFF:                    https://eff.org/donate-le
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;この後どうすれば・・・？&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;ユーザーガイドによると、apahceプラグインなら全自動で設定してくれるようですが、今回は使ってないので手動で証明書ファイルを設定する必要あり。&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;上記メッセージのパスを覗いてみると、必要なファイル一式がありました。&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;# ll /etc/letsencrypt/live/【ドメイン名】
-#
-lrwxrwxrwx 1 root root 38 12月  6 03:43 2015 cert.pem -&amp;gt; ../../archive/【ドメイン名】/cert1.pem
-lrwxrwxrwx 1 root root 39 12月  6 03:43 2015 chain.pem -&amp;gt; ../../archive/【ドメイン名】/chain1.pem
-lrwxrwxrwx 1 root root 43 12月  6 03:43 2015 fullchain.pem -&amp;gt; ../../archive/【ドメイン名】/fullchain1.pem
-lrwxrwxrwx 1 root root 41 12月  6 03:43 2015 privkey.pem -&amp;gt; ../../archive/【ドメイン名】/privkey1.pem
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;fullchainを除く3ファイルをport443のvirtual hostに設定してapache再起動。&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;&amp;lt;VirtualHost *:443&amp;gt;
-    ServerAdmin  【メールアドレス】
-    DocumentRoot &amp;quot;【ドキュメントルート】&amp;quot;
-    ServerName   【ドメイン名】
-    SSLEngine on
-    SSLCertificateFile      /etc/letsencrypt/live/【ドメイン名】/cert.pem
-    SSLCertificateKeyFile   /etc/letsencrypt/live/【ドメイン名】/privkey.pem
-    SSLCertificateChainFile /etc/letsencrypt/live/【ドメイン名】/chain.pem
-
-    ErrorLog  logs/【ドメイン名】-error_log
-    CustomLog logs/【ドメイン名】-access_log common
-&amp;lt;/VirtualHost&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;# service httpd restart
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;httpからhttpsへのリダイレクト設定も元に戻します。&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;ブラウザでサイトにアクセスするとSSLマークが表示されました！(ドメイン名はマスク済み)&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;/assets/posts/img/letsencrypt_setup/browser.png&quot; target=&quot;_blank&quot;&gt;&lt;img width=&quot;50%&quot; height=&quot;50%&quot; title=&quot;ブラウザSSL表示&quot; alt=&quot;ブラウザSSL表示&quot; src=&quot;/assets/posts/img/letsencrypt_setup/browser.png&quot;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Let&amp;#39;s Enctyptは有効期間が比較的短いので、SSL証明書の次回更新日をスケジュール帳に書き込んでおしまい。(自動化できないかしら)&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;組織の実在証明はありませんが、個人で暗号化メインならこれで十分ですね。何より無料がうれしいです。&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;font color=&quot;red&quot;&gt;(2016/02/20追記) 証明書の更新方法はこちら&lt;/font&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;/ssl-tls/letsencrypt_renewal/&quot; target=&quot;_blank&quot;&gt;Let&amp;#39;s Encrypt - 証明書更新&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3&gt;参考ページ&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;&lt;a href=&quot;https://letsencrypt.readthedocs.org/en/latest/using.html#installation&quot; target=&quot;_blank&quot;&gt;ユーザーガイド&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/letsencrypt/letsencrypt&quot; target=&quot;_blank&quot;&gt;Let&amp;#39;s Encrypt クライアントツール&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-    &lt;p&gt;&lt;a href=&quot;/ssl-tls/letsencrypt_setup/&quot;&gt;お薦め無料SSL証明書 - Let&#39;s Encrypt&lt;/a&gt; was originally published by sankame at &lt;a href=&quot;&quot;&gt;IT調べものブログ&lt;/a&gt; on December 06, 2015.&lt;/p&gt;
   </content>
 </entry>
 
