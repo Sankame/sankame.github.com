@@ -4,13 +4,101 @@
 <generator uri="https://github.com/mojombo/jekyll">Jekyll</generator>
 <link rel="self" type="application/atom+xml" href="/feed.xml" />
 <link rel="alternate" type="text/html" href="" />
-<updated>2016-11-24T10:10:54-05:00</updated>
+<updated>2016-12-24T13:26:35-05:00</updated>
 <id>/</id>
 <author>
   <name>sankame</name>
   <uri>/</uri>
   <email>m2ad0504@outlook.jp</email>
 </author>
+
+
+<entry>
+  <title type="html"><![CDATA[ApacheのProxyPassでhtmlタグがそのまま表示される]]></title>
+ <link rel="alternate" type="text/html" href="/apache/mod_proxy_text_plain/" />
+  <id>/apache/mod_proxy_text_plain</id>
+  <published>2016-12-24T19:00:00-05:00</published>
+  <updated>2016-12-24T19:00:00-05:00</updated>
+  <author>
+    <name>sankame</name>
+    <uri></uri>
+    <email>m2ad0504@outlook.jp</email>
+  </author>
+  <content type="html">
+    &lt;p&gt;&lt;span style=&quot;float:right;&quot;&gt;投稿日：2016年12月24日&lt;/span&gt;&lt;/p&gt;
+
+&lt;h3&gt;0. 環境&lt;/h3&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;[CentOS] 6.8 (64bit版カーネル)
+[Apache] 2.2.15
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;1. 問題&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;ApacheのProxyPassディレクティブ(mod_proxy)を指定して、バックエンドから受け取ったコンテンツを表示しようとするとhtmlタグがそのまま表示されてしまいます。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Apache設定ファイルの抜粋&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-apache&quot; data-lang=&quot;apache&quot;&gt;&lt;span class=&quot;nb&quot;&gt;NameVirtualHost&lt;/span&gt; *:80
+
+&lt;span class=&quot;c&quot;&gt;# 省略&lt;/span&gt;
+
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;VirtualHost&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;*:80&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;ServerAdmin&lt;/span&gt; test@local
+    &lt;span class=&quot;nb&quot;&gt;ServerName&lt;/span&gt; test.local
+
+    &lt;span class=&quot;nb&quot;&gt;ProxyPreserveHost&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;On&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;ProxyPass&lt;/span&gt; / http://127.0.0.1:8080/
+    &lt;span class=&quot;nb&quot;&gt;ProxyPassReverse&lt;/span&gt; / http://127.0.0.1:8080/
+
+    &lt;span class=&quot;nb&quot;&gt;ErrorLog&lt;/span&gt; logs/test.local-error_log
+    &lt;span class=&quot;nb&quot;&gt;CustomLog&lt;/span&gt; logs/test.local-access_log combined
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/VirtualHost&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3&gt;2. 対策&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;ChromeのDeveloper Toolsなどで見ると、下記のようにHTTPレスポンスヘッダーで平文が指定されています。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Content-Type text/plain; charset=UTF-8&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;デフォルトのMIMEタイプ指定を無効にすることで解消しました。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Apache設定ファイルの抜粋&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-apache&quot; data-lang=&quot;apache&quot;&gt;&lt;span class=&quot;nb&quot;&gt;NameVirtualHost&lt;/span&gt; *:80
+
+&lt;span class=&quot;c&quot;&gt;# 省略&lt;/span&gt;
+
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;VirtualHost&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;*:80&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;ServerAdmin&lt;/span&gt; test@local
+    &lt;span class=&quot;nb&quot;&gt;ServerName&lt;/span&gt; test.local
+
+    &lt;span class=&quot;c&quot;&gt;# ----- この行を追加 ----- &lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;DefaultType&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;None&lt;/span&gt;
+    &lt;span class=&quot;c&quot;&gt;# ----- この行を追加 ----- &lt;/span&gt;
+
+    &lt;span class=&quot;nb&quot;&gt;ProxyPreserveHost&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;On&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;ProxyPass&lt;/span&gt; / http://127.0.0.1:8080/
+    &lt;span class=&quot;nb&quot;&gt;ProxyPassReverse&lt;/span&gt; / http://127.0.0.1:8080/
+
+    &lt;span class=&quot;nb&quot;&gt;ErrorLog&lt;/span&gt; logs/test.local-error_log
+    &lt;span class=&quot;nb&quot;&gt;CustomLog&lt;/span&gt; logs/test.local-access_log combined
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/VirtualHost&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3&gt;3. 参考ページ&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://stackoverflow.com/questions/5034131/mod-proxy-ajp-error-renders-html-as-text-plain-prompts-user-to-save-as&quot; target=&quot;_blank&quot;&gt;mod&lt;em&gt;proxy&lt;/em&gt;ajp error: renders html as text/plain, prompts user to “save as…”&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+    &lt;p&gt;&lt;a href=&quot;/apache/mod_proxy_text_plain/&quot;&gt;ApacheのProxyPassでhtmlタグがそのまま表示される&lt;/a&gt; was originally published by sankame at &lt;a href=&quot;&quot;&gt;IT調べものブログ&lt;/a&gt; on December 24, 2016.&lt;/p&gt;
+  </content>
+</entry>
 
 
 <entry>
@@ -1401,47 +1489,6 @@ Permission denied &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;publickey,gssapi
 &lt;/ul&gt;
 
     &lt;p&gt;&lt;a href=&quot;/android/notification_compat_builder_setvibrate/&quot;&gt;setVibrateメソッドの使い方&lt;/a&gt; was originally published by sankame at &lt;a href=&quot;&quot;&gt;IT調べものブログ&lt;/a&gt; on February 07, 2016.&lt;/p&gt;
-  </content>
-</entry>
-
-
-<entry>
-  <title type="html"><![CDATA[プログラミング問題A]]></title>
- <link rel="alternate" type="text/html" href="/programming-practice/programming_practice_A/" />
-  <id>/programming-practice/programming_practice_A</id>
-  <published>2015-12-30T19:00:00-05:00</published>
-  <updated>2015-12-30T19:00:00-05:00</updated>
-  <author>
-    <name>sankame</name>
-    <uri></uri>
-    <email>m2ad0504@outlook.jp</email>
-  </author>
-  <content type="html">
-    &lt;p&gt;&lt;span style=&quot;float:right;&quot;&gt;投稿日：2015年12月30日&lt;/span&gt;&lt;/p&gt;
-
-&lt;h3&gt;環境&lt;/h3&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;[CentOS]   5.6 (32bit版カーネル) 
-[PHP]      5.4.17
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;h3&gt;問題A-1&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;10進数の任意の値をn進数に変換する関数を作成して下さい。(nは1～16の正の整数)&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;サンプルはPHP。&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3&gt;サンプルA-1&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;実行方法&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;php changeDecimalToBaseN.php
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;ソース&lt;/p&gt;
-
-&lt;script src=&quot;https://gist.github.com/Sankame/87f7b5050a802e5e5710.js&quot;&gt;&lt;/script&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-    &lt;p&gt;&lt;a href=&quot;/programming-practice/programming_practice_A/&quot;&gt;プログラミング問題A&lt;/a&gt; was originally published by sankame at &lt;a href=&quot;&quot;&gt;IT調べものブログ&lt;/a&gt; on December 30, 2015.&lt;/p&gt;
   </content>
 </entry>
 
