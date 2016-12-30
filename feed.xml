@@ -4,13 +4,80 @@
 <generator uri="https://github.com/mojombo/jekyll">Jekyll</generator>
 <link rel="self" type="application/atom+xml" href="/feed.xml" />
 <link rel="alternate" type="text/html" href="" />
-<updated>2016-12-24T13:26:35-05:00</updated>
+<updated>2016-12-30T09:36:38-05:00</updated>
 <id>/</id>
 <author>
   <name>sankame</name>
   <uri>/</uri>
   <email>m2ad0504@outlook.jp</email>
 </author>
+
+
+<entry>
+  <title type="html"><![CDATA[Swift3のループ処理]]></title>
+ <link rel="alternate" type="text/html" href="/swift/swift3_loop/" />
+  <id>/swift/swift3_loop</id>
+  <published>2016-12-29T19:00:00-05:00</published>
+  <updated>2016-12-29T19:00:00-05:00</updated>
+  <author>
+    <name>sankame</name>
+    <uri></uri>
+    <email>m2ad0504@outlook.jp</email>
+  </author>
+  <content type="html">
+    &lt;p&gt;&lt;span style=&quot;float:right;&quot;&gt;投稿日：2016年12月29日&lt;/span&gt;&lt;/p&gt;
+
+&lt;h3&gt;0. 環境&lt;/h3&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;[Swift] 3.0.2
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;1. ループ(インクリメント、デクリメント)&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Swift3からループ処理は下記のようになります。&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-swift&quot; data-lang=&quot;swift&quot;&gt;&lt;span class=&quot;c1&quot;&gt;// ****************************&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// forループ(インクリメント)&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// ****************************&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;-----&amp;lt;A-1&amp;gt;-----&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;index&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;1.&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;.5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;index&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;-----&amp;lt;A-2&amp;gt;-----&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;1.&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;.5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;forEach&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;index&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;index&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;-----&amp;lt;上記A-2の簡略表記&amp;gt;-----&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;1.&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;.5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;forEach&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// ****************************&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// 逆順forループ(デクリメント)&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// ****************************&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;-----&amp;lt;B-1&amp;gt;-----&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;index&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;1.&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;.5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;reversed&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;index&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;-----&amp;lt;B-2&amp;gt;-----&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;1.&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;.5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;reversed&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;forEach&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;index&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;index&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;-----&amp;lt;上記B-2の簡略表記&amp;gt;-----&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;1.&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;.5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;reversed&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;forEach&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;上記コードはIBM Swift Sandboxで実際に動かすことができます。&lt;/p&gt;
+
+&lt;p&gt;下記リンク先の真ん中にある三角ボタンをクリックして下さい。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://swiftlang.ng.bluemix.net/#/repl/58666b6e21d05e7f89715590&quot; target=&quot;_blank&quot;&gt;Swift3でのforループ&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;(Chrome推奨。Firefoxでは動きませんでした。)&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+    &lt;p&gt;&lt;a href=&quot;/swift/swift3_loop/&quot;&gt;Swift3のループ処理&lt;/a&gt; was originally published by sankame at &lt;a href=&quot;&quot;&gt;IT調べものブログ&lt;/a&gt; on December 29, 2016.&lt;/p&gt;
+  </content>
+</entry>
 
 
 <entry>
@@ -1433,62 +1500,6 @@ Permission denied &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;publickey,gssapi
 &lt;/ul&gt;
 
     &lt;p&gt;&lt;a href=&quot;/rundeck/rundeck_ssh_error/&quot;&gt;Rundeckでssh接続エラー&lt;/a&gt; was originally published by sankame at &lt;a href=&quot;&quot;&gt;IT調べものブログ&lt;/a&gt; on February 14, 2016.&lt;/p&gt;
-  </content>
-</entry>
-
-
-<entry>
-  <title type="html"><![CDATA[setVibrateメソッドの使い方]]></title>
- <link rel="alternate" type="text/html" href="/android/notification_compat_builder_setvibrate/" />
-  <id>/android/notification_compat_builder_setvibrate</id>
-  <published>2016-02-07T19:00:00-05:00</published>
-  <updated>2016-02-07T19:00:00-05:00</updated>
-  <author>
-    <name>sankame</name>
-    <uri></uri>
-    <email>m2ad0504@outlook.jp</email>
-  </author>
-  <content type="html">
-    &lt;p&gt;&lt;span style=&quot;float:right;&quot;&gt;投稿日：2016年02月07日&lt;/span&gt;&lt;/p&gt;
-
-&lt;h3&gt;環境&lt;/h3&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;[Android SDK]  API 21: Android 5.0(Lollipop)
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;h3&gt;実装&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;スマートウォッチ(Android Wear)に通知を送るため、NotificationCompat.Builder の&lt;/p&gt;
-
-&lt;p&gt;setVibrateメソッドを使った際の自分用メモ。&lt;/p&gt;
-
-&lt;p&gt;バイブレーション・パターンの設定は下記仕様ですが、&lt;/p&gt;
-
-&lt;p&gt;long型配列の&lt;font color=&quot;green&quot;&gt;&lt;b&gt;1つ目の要素を除いて、偶数は振動、奇数は休止&lt;/b&gt;&lt;/font&gt;&lt;/p&gt;
-
-&lt;p&gt;と覚えておけば良さそうです。&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;n&quot;&gt;NotificationCompat&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;Builder&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;builder&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;NotificationCompat&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;Builder&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;getApplicationContext&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;// 単位はミリ秒&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;// &lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;// 要素1 : 振動開始までの時間&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;// 要素2 : 振動&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;// 要素3 : 休止&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;// 要素4 : (これ以降は要素2-3の繰り返し)&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;builder&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setVibrate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;long&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]{&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;500&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;250&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;500&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;250&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1000&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;});&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;下記の例だと、ツー・ツ・ツ　みたいな感じになります。&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;c1&quot;&gt;// 1秒振動、0.1秒休止、0.1秒振動、0.05秒休止、0.1秒振動&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;builder&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setVibrate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;long&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]{&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1000&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;50&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;});&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3&gt;関連リンク&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;http://developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html&quot; target=&quot;_blank&quot;&gt;API : NotificationCompat.Builder&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-    &lt;p&gt;&lt;a href=&quot;/android/notification_compat_builder_setvibrate/&quot;&gt;setVibrateメソッドの使い方&lt;/a&gt; was originally published by sankame at &lt;a href=&quot;&quot;&gt;IT調べものブログ&lt;/a&gt; on February 07, 2016.&lt;/p&gt;
   </content>
 </entry>
 
