@@ -4,13 +4,47 @@
 <generator uri="https://github.com/mojombo/jekyll">Jekyll</generator>
 <link rel="self" type="application/atom+xml" href="/feed.xml" />
 <link rel="alternate" type="text/html" href="" />
-<updated>2016-12-30T10:17:16-05:00</updated>
+<updated>2017-01-03T11:57:55-05:00</updated>
 <id>/</id>
 <author>
   <name>sankame</name>
   <uri>/</uri>
   <email>m2ad0504@outlook.jp</email>
 </author>
+
+
+<entry>
+  <title type="html"><![CDATA[Swift3の大文字・小文字変換]]></title>
+ <link rel="alternate" type="text/html" href="/swift/swift3_uppercase_lowercase/" />
+  <id>/swift/swift3_uppercase_lowercase</id>
+  <published>2017-01-02T19:00:00-05:00</published>
+  <updated>2017-01-02T19:00:00-05:00</updated>
+  <author>
+    <name>sankame</name>
+    <uri></uri>
+    <email>m2ad0504@outlook.jp</email>
+  </author>
+  <content type="html">
+    &lt;p&gt;&lt;span style=&quot;float:right;&quot;&gt;投稿日：2017年01月02日&lt;/span&gt;&lt;/p&gt;
+
+&lt;h3&gt;0. 環境&lt;/h3&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;[Swift] 3.0.2
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;1. 大文字・小文字処理&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Swift3から大文字・小文字変換は下記のようになります。&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-swift&quot; data-lang=&quot;swift&quot;&gt;&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;uppercase&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;TEST&amp;quot;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;大文字→小文字：&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;uppercase&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;lowercased&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lowercase&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;test&amp;quot;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;小文字→大文字：&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lowercase&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;uppercased&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+    &lt;p&gt;&lt;a href=&quot;/swift/swift3_uppercase_lowercase/&quot;&gt;Swift3の大文字・小文字変換&lt;/a&gt; was originally published by sankame at &lt;a href=&quot;&quot;&gt;IT調べものブログ&lt;/a&gt; on January 02, 2017.&lt;/p&gt;
+  </content>
+</entry>
 
 
 <entry>
@@ -1411,95 +1445,6 @@ Automated renewal failed
 &lt;/ul&gt;
 
     &lt;p&gt;&lt;a href=&quot;/ssl-tls/letsencrypt_renewal/&quot;&gt;Let&#39;s Encrypt - 証明書の更新と自動化&lt;/a&gt; was originally published by sankame at &lt;a href=&quot;&quot;&gt;IT調べものブログ&lt;/a&gt; on February 20, 2016.&lt;/p&gt;
-  </content>
-</entry>
-
-
-<entry>
-  <title type="html"><![CDATA[Rundeckでssh接続エラー]]></title>
- <link rel="alternate" type="text/html" href="/rundeck/rundeck_ssh_error/" />
-  <id>/rundeck/rundeck_ssh_error</id>
-  <published>2016-02-14T19:00:00-05:00</published>
-  <updated>2016-02-14T19:00:00-05:00</updated>
-  <author>
-    <name>sankame</name>
-    <uri></uri>
-    <email>m2ad0504@outlook.jp</email>
-  </author>
-  <content type="html">
-    &lt;p&gt;&lt;span style=&quot;float:right;&quot;&gt;投稿日：2016年02月14日&lt;/span&gt;&lt;/p&gt;
-
-&lt;h3&gt;環境&lt;/h3&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;[CentOS] 5.6
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;h3&gt;セットアップ (文中の【】はマスク)&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;下記記事の「リモートサーバでの実行」にそってRundeckのリモート接続を試してみました。&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://dev.classmethod.jp/server-side/server/try-rundeck-job/&quot; target=&quot;_blank&quot;&gt;ジョブスケジューラ「Rundeck」を試してみる&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;下記のエラーが出るが原因が分からず…&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;/assets/posts/img/rundeck_ssh_error/rundeck_ssh_error.png&quot; target=&quot;_blank&quot;&gt;&lt;img width=&quot;100%&quot; height=&quot;100%&quot; title=&quot;RundeckSSHエラー&quot; alt=&quot;RundeckSSHエラー&quot; src=&quot;/assets/posts/img/rundeck_ssh_error/rundeck_ssh_error.png&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;22:34:10 remote 1. hogeと表示。 Authentication failure connecting to node: &lt;span class=&quot;s2&quot;&gt;&amp;quot;remote&amp;quot;&lt;/span&gt;. Make sure your resource definitions and credentials are up to date.
-22:34:10 Failed: AuthenticationFailure: Authentication failure connecting to node: &lt;span class=&quot;s2&quot;&gt;&amp;quot;remote&amp;quot;&lt;/span&gt;. Make sure your resource definitions and credentials are up to date.
-22:34:10 localhost Execution failed: 21: &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;Workflow result: , step failures: &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;Dispatch failed on &lt;span class=&quot;m&quot;&gt;1&lt;/span&gt; nodes: &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;remote: AuthenticationFailure: Authentication failure connecting to node: &lt;span class=&quot;s2&quot;&gt;&amp;quot;remote&amp;quot;&lt;/span&gt;. Make sure your resource definitions and credentials are up to date.&lt;span class=&quot;o&quot;&gt;]}&lt;/span&gt;, Node failures: &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;remote&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=[&lt;/span&gt;AuthenticationFailure: Authentication failure connecting to node: &lt;span class=&quot;s2&quot;&gt;&amp;quot;remote&amp;quot;&lt;/span&gt;. Make sure your resource definitions and credentials are up to date.&lt;span class=&quot;o&quot;&gt;]}&lt;/span&gt;, status: failed&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Log levelを&amp;quot;Debug&amp;quot;にして調査。&lt;/p&gt;
-
-&lt;p&gt;Rundeckの対象のプロジェクトで[Prepare and Run...]-[Log level] を&amp;quot;Debug&amp;quot;に変更し、エラーの詳細を表示します。&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;エラー詳細を見ると、まず公開鍵認証を試みて失敗して、さらにその後パスワード認証でも失敗しているようです。&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;22:37:48 Authentications that can &lt;span class=&quot;k&quot;&gt;continue&lt;/span&gt;: publickey,password,keyboard-interactive
-22:37:48 Next authentication method: publickey
-22:37:48 Authentications that can &lt;span class=&quot;k&quot;&gt;continue&lt;/span&gt;: password,keyboard-interactive
-22:37:48 Next authentication method: password
-22:37:48 Disconnecting from 【IPアドレス】 port 22
-22:37:48 Authentication failure connecting to node: &lt;span class=&quot;s2&quot;&gt;&amp;quot;remote&amp;quot;&lt;/span&gt;. Make sure your resource definitions and credentials are up to date.
-22:37:48 Failed: AuthenticationFailure: Authentication failure connecting to node: &lt;span class=&quot;s2&quot;&gt;&amp;quot;remote&amp;quot;&lt;/span&gt;. Make sure your resource definitions and credentials are up to date.
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;おかしいなあ、そもそも公開鍵認証で接続できる想定なんだけど…&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Rundeck以前にそもそもsshで失敗しているようなので、ssh単体で実行してみます。&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;c&quot;&gt;# ssh -i $(awk &amp;#39;/framework.ssh.keypath = / {print $3}&amp;#39; /etc/rundeck/framework.properties) rundeck@【IPアドレス】&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;さらにコマンドを簡素化して実行してみると、パスワードを設定していない公開鍵使っているのになぜかパスワードを聞かれます。&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;22:16:34&lt;span class=&quot;o&quot;&gt;][&lt;/span&gt;rundeck@【サーバー名】 ~/.ssh&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;ssh -i /var/lib/rundeck/.ssh/id_rsa rundeck@【IPアドレス】
-rundeck@【IPアドレス】&lt;span class=&quot;s1&quot;&gt;&amp;#39;s password: &lt;/span&gt;
-&lt;span class=&quot;s1&quot;&gt;Permission denied, please try again.&lt;/span&gt;
-&lt;span class=&quot;s1&quot;&gt;rundeck@【IPアドレス】&amp;#39;&lt;/span&gt;s password: 
-Permission denied, please try again.
-rundeck@【IPアドレス】&lt;span class=&quot;err&quot;&gt;&amp;#39;&lt;/span&gt;s password: 
-Permission denied &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;publickey,gssapi-keyex,gssapi-with-mic,password&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;.
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;色々試した結果、接続先サーバーの公開鍵ファイルのパーミッションが原因でした。&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;接続元&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;ssh -i /var/lib/rundeck/.ssh/id_rsa rundeck@【IPアドレス】
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;接続先&lt;/p&gt;
-
-&lt;p&gt;パーミッションが緩い分には問題ないだろうと思っていたら、&lt;font color=&quot;red&quot;&gt;厳密に600じゃないとダメ&lt;/font&gt;なんですね。。。&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;chmod 600 authorized_keys&lt;/code&gt; で下記のように修正したらssh接続もRundeckからのリモート接続も成功しました。&lt;/p&gt;
-
-&lt;p&gt;(変更前)&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;-rw-rw-r--. &lt;span class=&quot;m&quot;&gt;1&lt;/span&gt; rundeck rundeck &lt;span class=&quot;m&quot;&gt;403&lt;/span&gt; 2月 &lt;span class=&quot;m&quot;&gt;4&lt;/span&gt; 15:58 &lt;span class=&quot;m&quot;&gt;2016&lt;/span&gt; authorized_keys
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;(変更後)&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;-rw-------. &lt;span class=&quot;m&quot;&gt;1&lt;/span&gt; rundeck rundeck &lt;span class=&quot;m&quot;&gt;403&lt;/span&gt; 2月 &lt;span class=&quot;m&quot;&gt;4&lt;/span&gt; 15:58 &lt;span class=&quot;m&quot;&gt;2016&lt;/span&gt; authorized_keys
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3&gt;参考になった記事&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;&lt;a href=&quot;http://qiita.com/gotohiro55/items/36a22516de2b381b3c6e&quot; target=&quot;_blank&quot;&gt;SSHの鍵認証設定&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;a href=&quot;https://rundeck.lighthouseapp.com/projects/59277/tickets/345-add-resource&quot; target=&quot;_blank&quot;&gt;Rundeck Development&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-    &lt;p&gt;&lt;a href=&quot;/rundeck/rundeck_ssh_error/&quot;&gt;Rundeckでssh接続エラー&lt;/a&gt; was originally published by sankame at &lt;a href=&quot;&quot;&gt;IT調べものブログ&lt;/a&gt; on February 14, 2016.&lt;/p&gt;
   </content>
 </entry>
 

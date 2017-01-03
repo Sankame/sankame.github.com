@@ -159,6 +159,99 @@ enable_page_level_ads: true
   <header>
     
     <div class="entry-meta">
+      <span class="entry-date date published updated"><time datetime="2016-02-14T19:00:00-05:00"><a href="/rundeck/rundeck_ssh_error/">February 14, 2016</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About sankame">sankame</a></span></span>
+      
+      <span class="entry-reading-time">
+        <i class="fa fa-clock-o"></i>
+        
+        Reading time ~1 minute
+      </span><!-- /.entry-reading-time -->
+      
+    </div><!-- /.entry-meta -->
+    
+      <h1 class="entry-title"><a href="/rundeck/rundeck_ssh_error/" rel="bookmark" title="Rundeckでssh接続エラー" itemprop="url">Rundeckでssh接続エラー</a></h1>
+    
+  </header>
+  <div class="entry-content">
+    <p><span style="float:right;">投稿日：2016年02月14日</span></p>
+
+<h3>環境</h3>
+<div class="highlight"><pre><code class="language-text" data-lang="text">[CentOS] 5.6
+</code></pre></div>
+<h3>セットアップ (文中の【】はマスク)</h3>
+
+<ul>
+<li><p>下記記事の「リモートサーバでの実行」にそってRundeckのリモート接続を試してみました。</p>
+
+<p><a href="http://dev.classmethod.jp/server-side/server/try-rundeck-job/" target="_blank">ジョブスケジューラ「Rundeck」を試してみる</a></p>
+
+<p>下記のエラーが出るが原因が分からず…</p>
+
+<p><a href="/assets/posts/img/rundeck_ssh_error/rundeck_ssh_error.png" target="_blank"><img width="100%" height="100%" title="RundeckSSHエラー" alt="RundeckSSHエラー" src="/assets/posts/img/rundeck_ssh_error/rundeck_ssh_error.png"></a></p>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh">22:34:10 remote 1. hogeと表示。 Authentication failure connecting to node: <span class="s2">&quot;remote&quot;</span>. Make sure your resource definitions and credentials are up to date.
+22:34:10 Failed: AuthenticationFailure: Authentication failure connecting to node: <span class="s2">&quot;remote&quot;</span>. Make sure your resource definitions and credentials are up to date.
+22:34:10 localhost Execution failed: 21: <span class="o">[</span>Workflow result: , step failures: <span class="o">{</span><span class="nv">1</span><span class="o">=</span>Dispatch failed on <span class="m">1</span> nodes: <span class="o">[</span>remote: AuthenticationFailure: Authentication failure connecting to node: <span class="s2">&quot;remote&quot;</span>. Make sure your resource definitions and credentials are up to date.<span class="o">]}</span>, Node failures: <span class="o">{</span><span class="nv">remote</span><span class="o">=[</span>AuthenticationFailure: Authentication failure connecting to node: <span class="s2">&quot;remote&quot;</span>. Make sure your resource definitions and credentials are up to date.<span class="o">]}</span>, status: failed<span class="o">]</span>
+</code></pre></div></li>
+<li><p>Log levelを&quot;Debug&quot;にして調査。</p>
+
+<p>Rundeckの対象のプロジェクトで[Prepare and Run...]-[Log level] を&quot;Debug&quot;に変更し、エラーの詳細を表示します。</p></li>
+<li><p>エラー詳細を見ると、まず公開鍵認証を試みて失敗して、さらにその後パスワード認証でも失敗しているようです。</p>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh">22:37:48 Authentications that can <span class="k">continue</span>: publickey,password,keyboard-interactive
+22:37:48 Next authentication method: publickey
+22:37:48 Authentications that can <span class="k">continue</span>: password,keyboard-interactive
+22:37:48 Next authentication method: password
+22:37:48 Disconnecting from 【IPアドレス】 port 22
+22:37:48 Authentication failure connecting to node: <span class="s2">&quot;remote&quot;</span>. Make sure your resource definitions and credentials are up to date.
+22:37:48 Failed: AuthenticationFailure: Authentication failure connecting to node: <span class="s2">&quot;remote&quot;</span>. Make sure your resource definitions and credentials are up to date.
+</code></pre></div>
+<p>おかしいなあ、そもそも公開鍵認証で接続できる想定なんだけど…</p></li>
+<li><p>Rundeck以前にそもそもsshで失敗しているようなので、ssh単体で実行してみます。</p>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="c"># ssh -i $(awk &#39;/framework.ssh.keypath = / {print $3}&#39; /etc/rundeck/framework.properties) rundeck@【IPアドレス】</span>
+</code></pre></div></li>
+<li><p>さらにコマンドを簡素化して実行してみると、パスワードを設定していない公開鍵使っているのになぜかパスワードを聞かれます。</p>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="o">[</span>22:16:34<span class="o">][</span>rundeck@【サーバー名】 ~/.ssh<span class="o">]</span><span class="nv">$ </span>ssh -i /var/lib/rundeck/.ssh/id_rsa rundeck@【IPアドレス】
+rundeck@【IPアドレス】<span class="s1">&#39;s password: </span>
+<span class="s1">Permission denied, please try again.</span>
+<span class="s1">rundeck@【IPアドレス】&#39;</span>s password: 
+Permission denied, please try again.
+rundeck@【IPアドレス】<span class="err">&#39;</span>s password: 
+Permission denied <span class="o">(</span>publickey,gssapi-keyex,gssapi-with-mic,password<span class="o">)</span>.
+</code></pre></div></li>
+<li><p>色々試した結果、接続先サーバーの公開鍵ファイルのパーミッションが原因でした。</p>
+
+<ul>
+<li><p>接続元</p>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh">ssh -i /var/lib/rundeck/.ssh/id_rsa rundeck@【IPアドレス】
+</code></pre></div></li>
+<li><p>接続先</p>
+
+<p>パーミッションが緩い分には問題ないだろうと思っていたら、<font color="red">厳密に600じゃないとダメ</font>なんですね。。。</p>
+
+<p><code>chmod 600 authorized_keys</code> で下記のように修正したらssh接続もRundeckからのリモート接続も成功しました。</p>
+
+<p>(変更前)</p>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh">-rw-rw-r--. <span class="m">1</span> rundeck rundeck <span class="m">403</span> 2月 <span class="m">4</span> 15:58 <span class="m">2016</span> authorized_keys
+</code></pre></div>
+<p>(変更後)</p>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh">-rw-------. <span class="m">1</span> rundeck rundeck <span class="m">403</span> 2月 <span class="m">4</span> 15:58 <span class="m">2016</span> authorized_keys
+</code></pre></div></li>
+</ul></li>
+</ul>
+
+<h3>参考になった記事</h3>
+
+<ul>
+<li><p><a href="http://qiita.com/gotohiro55/items/36a22516de2b381b3c6e" target="_blank">SSHの鍵認証設定</a></p></li>
+<li><p><a href="https://rundeck.lighthouseapp.com/projects/59277/tickets/345-add-resource" target="_blank">Rundeck Development</a></p></li>
+</ul>
+
+  </div><!-- /.entry-content -->
+</article><!-- /.hentry -->
+
+<article class="hentry">
+  <header>
+    
+    <div class="entry-meta">
       <span class="entry-date date published updated"><time datetime="2016-02-07T19:00:00-05:00"><a href="/android/notification_compat_builder_setvibrate/">February 07, 2016</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About sankame">sankame</a></span></span>
       
       <span class="entry-reading-time">
@@ -506,78 +599,6 @@ lrwxrwxrwx 1 root root 41 12月  6 03:43 2015 privkey.pem -&gt; ../../archive/�
   </div><!-- /.entry-content -->
 </article><!-- /.hentry -->
 
-<article class="hentry">
-  <header>
-    
-    <div class="entry-meta">
-      <span class="entry-date date published updated"><time datetime="2015-10-06T20:00:00-04:00"><a href="/android/android_app_version/">October 06, 2015</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About sankame">sankame</a></span></span>
-      
-      <span class="entry-reading-time">
-        <i class="fa fa-clock-o"></i>
-        
-        Reading time ~1 minute
-      </span><!-- /.entry-reading-time -->
-      
-    </div><!-- /.entry-meta -->
-    
-      <h1 class="entry-title"><a href="/android/android_app_version/" rel="bookmark" title="Androidアプリのバージョンアップができない" itemprop="url">Androidアプリのバージョンアップができない</a></h1>
-    
-  </header>
-  <div class="entry-content">
-    <p><span style="float:right;">投稿日：2015年10月06日</span></p>
-
-<h3>0.環境</h3>
-<div class="highlight"><pre><code class="language-text" data-lang="text">[OS]             Windows7 (32bit 版)
-[AndroidStudio]  1.1.0
-</code></pre></div>
-<h3>1.問題</h3>
-
-<ul>
-<li><p>Androidアプリをバージョンアップするため、Google Play Developer Console
-でapkファイルをアップしても下記のエラーが出ました。</p>
-
-<p><code>アップロードできませんでした</code></p>
-
-<p>マニフェストファイルに下記のように追記してもダメ。</p>
-
-<p>(app\【アプリ名】\mobile\src\main\AndroidManifest.xml)</p>
-<div class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>
-    <span class="nt">&lt;manifest</span> <span class="na">xmlns:android=</span><span class="s">&quot;http://schemas.android.com/apk/res/android&quot;</span>
-        <span class="na">package=</span><span class="s">&quot;【パッケージ名】&quot;</span> <span class="na">android:versionCode=</span><span class="s">&quot;2&quot;</span> <span class="na">android:versionName=</span><span class="s">&quot;2.0.1&quot;</span><span class="nt">&gt;</span>
-</code></pre></div></li>
-</ul>
-
-<h3>2.対策</h3>
-
-<ul>
-<li><p>しばらくして、AndroidManifest.xml にエラーメッセージが出てるのに気付きました。</p>
-
-<p>build.gradle を修正しなきゃいけない・・・</p>
-
-<p>(app\【アプリ名】\mobile\build.gradle)</p>
-
-<p>下記のようにバージョンを上げて再コンパイルしたらアップロードできました。</p>
-<div class="highlight"><pre><code class="language-json" data-lang="json"><span class="err">android</span> <span class="p">{</span>
-        <span class="err">:</span>
-    <span class="err">(省略)</span>
-        <span class="err">:</span>
-        <span class="err">defaultConfig</span> <span class="err">{</span>
-            <span class="err">applicationId</span> <span class="nt">&quot;【省略】&quot;</span>
-            <span class="err">minSdkVersion</span> <span class="mi">16</span>
-            <span class="err">targetSdkVersion</span> <span class="mi">21</span>
-            <span class="err">versionCode</span> <span class="mi">2</span>
-            <span class="err">versionName</span> <span class="s2">&quot;2.0.1&quot;</span>
-        <span class="p">}</span>
-    <span class="err">:</span>
-    <span class="err">(省略)</span>
-    <span class="err">:</span>
-<span class="err">}</span>
-</code></pre></div></li>
-</ul>
-
-  </div><!-- /.entry-content -->
-</article><!-- /.hentry -->
-
 
 <div class="pagination">
   
@@ -684,7 +705,7 @@ lrwxrwxrwx 1 root root 41 12月  6 03:43 2015 privkey.pem -&gt; ../../archive/�
 
 <div class="footer-wrapper">
   <footer role="contentinfo">
-    <span>&copy; 2016 sankame. Powered by <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> using the <a href="http://mademistakes.com/hpstr/" rel="notfollow">HPSTR Theme</a>.</span>
+    <span>&copy; 2017 sankame. Powered by <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> using the <a href="http://mademistakes.com/hpstr/" rel="notfollow">HPSTR Theme</a>.</span>
   </footer>
 </div><!-- /.footer-wrapper -->
 
