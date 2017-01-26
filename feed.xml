@@ -4,7 +4,7 @@
 <generator uri="https://github.com/mojombo/jekyll">Jekyll</generator>
 <link rel="self" type="application/atom+xml" href="/feed.xml" />
 <link rel="alternate" type="text/html" href="" />
-<updated>2017-01-16T09:40:53-05:00</updated>
+<updated>2017-01-26T10:47:17-05:00</updated>
 <id>/</id>
 <author>
   <name>sankame</name>
@@ -25,7 +25,9 @@
     <email>m2ad0504@outlook.jp</email>
   </author>
   <content type="html">
-    &lt;p&gt;&lt;span style=&quot;float:right;&quot;&gt;投稿日：2017年01月02日&lt;/span&gt;&lt;/p&gt;
+    &lt;p&gt;&lt;span&gt;&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;color:#d14; float:right;&quot;&gt;更新日：2017年01月27日&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style=&quot;float:right;&quot;&gt;投稿日：2017年01月02日&lt;/span&gt;&lt;/p&gt;
 
 &lt;h3&gt;0. 環境&lt;/h3&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;[Swift] 3.0.2
@@ -67,7 +69,7 @@
 
 &lt;p&gt;&lt;a href=&quot;http://swiftlang.ng.bluemix.net/#/repl/586d095a159cb34b17238967&quot; target=&quot;_blank&quot;&gt;Swift3で大文字・小文字処理&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;(Chrome推奨。Firefoxでは動きませんでした。)&lt;/p&gt;&lt;/li&gt;
+&lt;p&gt;(ChromeまたはFirefox推奨)&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h3&gt;2. 参考ページ&lt;/h3&gt;
@@ -94,12 +96,14 @@
     <email>m2ad0504@outlook.jp</email>
   </author>
   <content type="html">
-    &lt;p&gt;&lt;span style=&quot;float:right;&quot;&gt;投稿日：2016年12月29日&lt;/span&gt;&lt;/p&gt;
+    &lt;p&gt;&lt;span&gt;&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;color:#d14; float:right;&quot;&gt;更新日：2017年01月27日&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style=&quot;float:right;&quot;&gt;投稿日：2016年12月29日&lt;/span&gt;&lt;/p&gt;
 
 &lt;h3&gt;0. 環境&lt;/h3&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;[Swift] 3.0.2
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;h3&gt;1. ループ(インクリメント、デクリメント)&lt;/h3&gt;
+&lt;h3&gt;1. ループ(インクリメント、デクリメント、ループカウンターを利用)&lt;/h3&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;p&gt;Swift3からループ処理は下記のようになります。&lt;/p&gt;
@@ -134,14 +138,26 @@
 
 &lt;span class=&quot;n&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;-----&amp;lt;上記B-2の簡略表記&amp;gt;-----&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;1.&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;.5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;reversed&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;forEach&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// ****************************&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// ループカウンターを利用&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// ****************************&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;-----&amp;lt;ループカウンターを利用&amp;gt;-----&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;array&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;A&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;B&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;C&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;D&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;E&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;index&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;element&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;enumerated&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;//indexが偶数の要素のみ出力。&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;index&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;element&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;上記コードはIBM Swift Sandboxで実際に動かすことができます。&lt;/p&gt;
 
 &lt;p&gt;下記リンク先の真ん中にある三角ボタンをクリックして下さい。&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;http://swiftlang.ng.bluemix.net/#/repl/58666b6e21d05e7f89715590&quot; target=&quot;_blank&quot;&gt;Swift3でのforループ&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://swiftlang.ng.bluemix.net/#/repl/588a183c2979cf121ef9aaae&quot; target=&quot;_blank&quot;&gt;Swift3でのforループ&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;(Chrome推奨。Firefoxでは動きませんでした。)&lt;/p&gt;&lt;/li&gt;
+&lt;p&gt;(ChromeまたはFirefox推奨)&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
     &lt;p&gt;&lt;a href=&quot;/swift/swift3_loop/&quot;&gt;Swift3のループ処理&lt;/a&gt; was originally published by sankame at &lt;a href=&quot;&quot;&gt;プログラマー備忘録&lt;/a&gt; on December 29, 2016.&lt;/p&gt;
