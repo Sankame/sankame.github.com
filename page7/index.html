@@ -160,6 +160,67 @@ enable_page_level_ads: true
   <header>
     
     <div class="entry-meta">
+      <span class="entry-date date published updated"><time datetime="2015-05-09T20:00:00-04:00"><a href="/androidstudio/android_studio_process_error/">May 09, 2015</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About sankame">sankame</a></span></span>
+      
+      <span class="entry-reading-time">
+        <i class="fa fa-clock-o"></i>
+        
+        Reading time ~1 minute
+      </span><!-- /.entry-reading-time -->
+      
+    </div><!-- /.entry-meta -->
+    
+      <h1 class="entry-title"><a href="/androidstudio/android_studio_process_error/" rel="bookmark" title="AndroidStudioでプロセス開始エラー" itemprop="url">AndroidStudioでプロセス開始エラー</a></h1>
+    
+  </header>
+  <div class="entry-content">
+    <p><span style="float:right;">投稿日：2015年05月09日</span></p>
+
+<h3>0.環境</h3>
+<div class="highlight"><pre><code class="language-text" data-lang="text">[OS]             Windows7 (32bit 版)
+[AndroidStudio]  1.1.0
+</code></pre></div>
+<h3>1.エラー内容</h3>
+
+<ul>
+<li><p>「Run &#39;app&#39;」ボタンをクリックし、ビルド＆実行しようとすると下記エラーが発生。</p>
+<div class="highlight"><pre><code class="language-control" data-lang="control"><span class="k">Error</span><span class="w">:</span><span class="s">Unable to start the daemon process.</span>
+<span class="err">This problem might be caused by incorrect configuration of the daemon.</span>
+<span class="err">For example, an unrecognized jvm option is used.</span>
+<span class="err">Please refer to the user guide chapter on the daemon at http://gradle.org/docs/2.2.1/userguide/gradle_daemon.html</span>
+<span class="err">Please read the following process output to find out more:</span>
+<span class="err">-----------------------</span>
+<span class="err">Error occurred during initialization of VM</span>
+<span class="err">Could not reserve enough space for object heap</span>
+<span class="k">Error</span><span class="w">: </span><span class="s">Could not create the Java Virtual Machine.</span>
+<span class="k">Error</span><span class="w">: </span><span class="s">A fatal exception has occurred. Program will exit.</span>
+</code></pre></div></li>
+</ul>
+
+<h3>2.回避方法</h3>
+
+<ul>
+<li><p>Android Studioを閉じる。</p></li>
+<li><p>下記フォルダを削除。(不安な場合は例えば次のようにリネーム DELETE_.gradle)</p>
+<div class="highlight"><pre><code class="language-control" data-lang="control"><span class="k">C</span><span class="w">:</span><span class="s">\ユーザー\【ユーザー名】\.gradle</span>
+</code></pre></div></li>
+<li><p>Android Studioを起動する。</p></li>
+<li><p>上記で消した.gradleフォルダが再作成され、ビルド＆実行が成功する。</p></li>
+</ul>
+
+<h3>※参考にしたページ</h3>
+
+<ul>
+<li><a href="http://www.thedevline.com/2014/06/android-studio-unable-to-start-daemon.html" target="_blank">Unable to start the daemon process fix Solution</a></li>
+</ul>
+
+  </div><!-- /.entry-content -->
+</article><!-- /.hentry -->
+
+<article class="hentry">
+  <header>
+    
+    <div class="entry-meta">
       <span class="entry-date date published updated"><time datetime="2015-05-05T20:00:00-04:00"><a href="/vagrant/vagrant_setup/">May 05, 2015</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About sankame">sankame</a></span></span>
       
       <span class="entry-reading-time">
@@ -517,77 +578,6 @@ enable_page_level_ads: true
 
 <p><a href="/assets/posts/img/android_wear_chage_face/watch-3.jpeg" target="_blank"><img width="20%" height="20%" title="ウォッチ-ウォッチフェイス変更" alt="ウォッチ-ウォッチフェイス変更" src="/assets/posts/img/android_wear_chage_face/watch-3.jpeg"></a></p></li>
 <li><p>⑦【ウォッチ】上記でPlayストアからインストールした時計アプリを見つけ、タップするとホーム画面に設定されます。</p></li>
-</ul></li>
-</ul>
-
-  </div><!-- /.entry-content -->
-</article><!-- /.hentry -->
-
-<article class="hentry">
-  <header>
-    
-    <div class="entry-meta">
-      <span class="entry-date date published updated"><time datetime="2014-07-20T20:00:00-04:00"><a href="/laravel/laravel_passing_data_from_basecontroller/">July 20, 2014</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About sankame">sankame</a></span></span>
-      
-      <span class="entry-reading-time">
-        <i class="fa fa-clock-o"></i>
-        
-        Reading time ~1 minute
-      </span><!-- /.entry-reading-time -->
-      
-    </div><!-- /.entry-meta -->
-    
-      <h1 class="entry-title"><a href="/laravel/laravel_passing_data_from_basecontroller/" rel="bookmark" title="【Laravel】全てのビューに値を渡す" itemprop="url">【Laravel】全てのビューに値を渡す</a></h1>
-    
-  </header>
-  <div class="entry-content">
-    <p><span style="float:right;">投稿日：2014年07月20日</span></p>
-
-<h5>0.環境</h5>
-<div class="highlight"><pre><code class="language-text" data-lang="text">[CentOS]   5.6 (32bit版カーネル)
-[Apache]   2.2.3
-[PHP]      5.4.1
-[Laravel]  4.1.23
-</code></pre></div>
-<h5>1.課題</h5>
-
-<ul>
-<li>全ビュー(Bladeテンプレート)で使う値をBaseControllerから渡したい。</li>
-</ul>
-
-<h5>2.対策</h5>
-
-<ul>
-<li><p>Laravelの作法としてあっているか不明ですが、一旦これで値は渡せました。</p>
-
-<p>下記例では、設定ファイルの基底URL(app.php内のurl変数)をビューに渡しています。</p>
-
-<ul>
-<li><p>①　app/config/local/app.php</p>
-
-<p>(本番環境の場合、app/config/app.php に定義して下さい)</p>
-
-<script src="https://gist.github.com/2a3ec0e21cea5584245b.js?file=app.php"> </script></li>
-<li><p>②　app/controllers/BaseController.php</p>
-
-<p>getBaseUrl() メソッドを定義し、基底URLを返します。</p>
-
-<p>(staticでないとビューで実行できない)</p>
-
-<script src="https://gist.github.com/fa1b2701da0e48c1a939.js?file=BaseController.php"> </script></li>
-<li><p>各コントローラは②を継承します。(コード抜粋)</p>
-
-<p>class EachController extends BaseController {</p></li>
-<li><p>③　app/views/layout.blade.php (コード抜粋)</p>
-
-<p>全てのビューで共通に使っているビューで、BaseControllerから値を取得します。</p>
-
-<script src="https://gist.github.com/97b5ca9f99076723dbae.js?file=layout.blade.php"> </script></li>
-</ul></li>
-<li><p>参考</p>
-
-<ul>
-<li><a href="http://forumsarchive.laravel.io/viewtopic.php?id=8123" target="_blank">Passing data from base controller to default blade.</a></li>
 </ul></li>
 </ul>
 
