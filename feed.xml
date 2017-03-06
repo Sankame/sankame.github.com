@@ -4,7 +4,7 @@
 <generator uri="https://github.com/mojombo/jekyll">Jekyll</generator>
 <link rel="self" type="application/atom+xml" href="/feed.xml" />
 <link rel="alternate" type="text/html" href="" />
-<updated>2017-03-05T13:29:10-05:00</updated>
+<updated>2017-03-06T11:38:30-05:00</updated>
 <id>/</id>
 <author>
   <name>sankame</name>
@@ -25,7 +25,9 @@
     <email>m2ad0504@outlook.jp</email>
   </author>
   <content type="html">
-    &lt;p&gt;&lt;span style=&quot;float:right;&quot;&gt;投稿日：2017年02月25日&lt;/span&gt;&lt;/p&gt;
+    &lt;p&gt;&lt;span&gt;&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;color:#d14; float:right;&quot;&gt;更新日：2017年03月07日&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style=&quot;float:right;&quot;&gt;投稿日：2017年02月25日&lt;/span&gt;&lt;/p&gt;
 
 &lt;h3&gt;0. 環境&lt;/h3&gt;
 
@@ -140,13 +142,16 @@ v7.6.0
 &lt;script src=&quot;https://gist.github.com/Sankame/db5caad7d75a4064ef98f140a39de5bc.js&quot;&gt;&lt;/script&gt;
 
 &lt;p&gt;続けて下記コマンドを打つと指定したディレクトリに結合・圧縮したCSS、JSファイルが出力されます。&lt;/p&gt;
-
-&lt;p&gt;HTMLからはそれらを読み込むよう修正します。(上記の例ではbundle.css、bundle.js)&lt;/p&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;gulp
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;HTMLからはそれらを読み込むよう修正します。(上記の例ではbundle.css、bundle.js)&lt;/p&gt;
+
+&lt;p&gt;イメージはこんな感じです。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/posts/img/speed_up_website_gulp/gulp_image.jpg&quot; target=&quot;_blank&quot;&gt;&lt;img width=&quot;100%&quot; height=&quot;100%&quot; title=&quot;gulpイメージ&quot; alt=&quot;gulpイメージ&quot; src=&quot;/assets/posts/img/speed_up_website_gulp/gulp_image.jpg&quot;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;ブラウザでJSエラー発生。&lt;/p&gt;
 
-&lt;p&gt;ブラウザで確認したところ下記エラーが表示されました。&lt;/p&gt;
+&lt;p&gt;修正後の画面をブラウザで確認したところ下記エラーが表示されました。&lt;/p&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;Bootstrap&amp;#39;s JavaScript requires jQuery
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;どうやら上記の書き方だと、CSSやJSの読み込み順序が任意になり、BootstrapでjQueryが使えない状態になってるようです。&lt;/p&gt;
