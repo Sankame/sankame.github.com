@@ -4,13 +4,131 @@
 <generator uri="https://github.com/mojombo/jekyll">Jekyll</generator>
 <link rel="self" type="application/atom+xml" href="/feed.xml" />
 <link rel="alternate" type="text/html" href="" />
-<updated>2017-03-06T11:38:30-05:00</updated>
+<updated>2017-03-19T11:17:37-04:00</updated>
 <id>/</id>
 <author>
   <name>sankame</name>
   <uri>/</uri>
   <email>m2ad0504@outlook.jp</email>
 </author>
+
+
+<entry>
+  <title type="html"><![CDATA[Hugoクイックスタート]]></title>
+ <link rel="alternate" type="text/html" href="/hugo/hugo_quickstart/" />
+  <id>/hugo/hugo_quickstart</id>
+  <published>2017-03-18T20:00:00-04:00</published>
+  <updated>2017-03-18T20:00:00-04:00</updated>
+  <author>
+    <name>sankame</name>
+    <uri></uri>
+    <email>m2ad0504@outlook.jp</email>
+  </author>
+  <content type="html">
+    &lt;p&gt;&lt;span style=&quot;float:right;&quot;&gt;投稿日：2017年03月18日&lt;/span&gt;&lt;/p&gt;
+
+&lt;h3&gt;0. 環境&lt;/h3&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;[Mac] 10.11.6
+[Hugo] 0.19
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;1.インストール&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;ここ数年、ブログウェアはjekyllを使ってましたが、下記の点が不便だったので、評判の良いHugoを試してみました。まずはサンプルを動かすところまで。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;初期構築やバージョンアップが大変だったので、他のPCに環境を作る気になれない。(今ならDockerという手もありますが…)&lt;/li&gt;
+&lt;li&gt;記事の生成に時間がかかるようになってきた。&lt;/li&gt;
+&lt;li&gt;記事の更新後、2～3回リロードしないとブラウザに反映されない。&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&quot;https://gohugo.io/tutorials/installing-on-mac/&quot; target=&quot;_blank&quot;&gt;インストール・マニュアル&lt;/a&gt;に従って進めました。&lt;/p&gt;
+
+&lt;p&gt;僕の場合、Homebrewは既に入っていたのでStep2からやりました。&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;brew update
+
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;brew install hugo
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;「インストール後にバージョンを調べてね」と書いてあるので念のためチェックです。&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;ls -l &lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt; which hugo &lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;
+lrwxr-xr-x  &lt;span class=&quot;m&quot;&gt;1&lt;/span&gt; mx  admin  &lt;span class=&quot;m&quot;&gt;28&lt;/span&gt;  &lt;span class=&quot;m&quot;&gt;3&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;19&lt;/span&gt; 03:08 /usr/local/bin/hugo -&amp;gt; ../Cellar/hugo/0.19/bin/hugo
+
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;hugo version
+Hugo Static Site Generator v0.19 darwin/amd64 BuildDate: 2017-02-27T19:21:29+09:00
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;2行とも0.19なので問題なさそうです。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3&gt;2.サンプル作成&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&quot;https://gohugo.io/overview/quickstart/&quot; target=&quot;_blank&quot;&gt;こちらのページ&lt;/a&gt;に沿ってサンプルを作成しました。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;適当なディレクトリで下記を実行します。(僕の場合 /app/hugo-test/ なので読み替えて下さい)&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; /app/hugo-test/
+
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;hugo new site bookshelf
+
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;bookshelf/
+
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;tree -a
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;目的別のディレクトリが作成されていると思います。&lt;/p&gt;
+
+&lt;p&gt;treeコマンドが使えない場合、下記でインストールしましょう。&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;brew install tree
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;サンプル記事を作成します。&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;hugo new post/good-to-great.md
+/app/hugo-test/bookshelf/content/post/good-to-great.md created
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;さらにGitHubから適当なテーマを取得。&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;themes/
+
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git clone https://github.com/dim0627/hugo_theme_robust.git
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;bookshelfディレクトリへ戻った後、テーマと下書きモードを指定してビルトインサーバーを起動します。&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; ..
+
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;hugo server --theme&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;hugo_theme_robust --buildDrafts
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;ブラウザで下記URLにアクセスすると、先ほど作った&amp;quot;good to great&amp;quot;という記事が表示されました。(テンプレートは日本人デザイナー作！)&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://localhost:1313/&quot; target=&quot;_blank&quot;&gt;http://localhost:1313/&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/posts/img/hugo_quickstart/hugo-init.jpg&quot; target=&quot;_blank&quot;&gt;&lt;img width=&quot;100%&quot; height=&quot;100%&quot; title=&quot;xxx&quot; alt=&quot;xxx&quot; src=&quot;/assets/posts/img/hugo_quickstart/hugo-init.jpg&quot;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3&gt;3.サンプル更新&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;次に記事を更新してみます。&lt;/p&gt;
+
+&lt;p&gt;そのままbookshelfディレクトリでファイルを開きます。&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;vim content/post/good-to-great.md
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;適当に書き込むと…&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;+++
+&lt;span class=&quot;nv&quot;&gt;date&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;2017-03-19T03:39:26+09:00&amp;quot;&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;title&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;good to great&amp;quot;&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;draft&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;true&lt;/span&gt;
+
++++
+
+ここに記事を書いていく。
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;画面に反映されました。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/posts/img/hugo_quickstart/hugo-edit.jpg&quot; target=&quot;_blank&quot;&gt;&lt;img width=&quot;100%&quot; height=&quot;100%&quot; title=&quot;xxx&quot; alt=&quot;xxx&quot; src=&quot;/assets/posts/img/hugo_quickstart/hugo-edit.jpg&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;記事を編集するとブラウザのリロードも自動でやってくれるので便利です。&lt;/p&gt;
+
+&lt;p&gt;ChromeのDeveloper Toolsで見ると、自動リロードはWebSocketを使っているようですね。(オレンジの枠線)&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/posts/img/hugo_quickstart/hugo-websocket.jpg&quot; target=&quot;_blank&quot;&gt;&lt;img width=&quot;100%&quot; height=&quot;100%&quot; title=&quot;xxx&quot; alt=&quot;xxx&quot; src=&quot;/assets/posts/img/hugo_quickstart/hugo-websocket.jpg&quot;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+    &lt;p&gt;&lt;a href=&quot;/hugo/hugo_quickstart/&quot;&gt;Hugoクイックスタート&lt;/a&gt; was originally published by sankame at &lt;a href=&quot;&quot;&gt;プログラマー備忘録&lt;/a&gt; on March 18, 2017.&lt;/p&gt;
+  </content>
+</entry>
 
 
 <entry>
@@ -1395,77 +1513,6 @@ The operation couldn’t be completed. (FBSOpenApplicationErrorDomain error 3.)
 &lt;/ul&gt;
 
     &lt;p&gt;&lt;a href=&quot;/applewatch/apple_watch_sample/&quot;&gt;AppleWatchサンプルプログラム&lt;/a&gt; was originally published by sankame at &lt;a href=&quot;&quot;&gt;プログラマー備忘録&lt;/a&gt; on May 01, 2016.&lt;/p&gt;
-  </content>
-</entry>
-
-
-<entry>
-  <title type="html"><![CDATA[pod setup で SSLエラー]]></title>
- <link rel="alternate" type="text/html" href="/cocoapods/pod_setup_ssl_error/" />
-  <id>/cocoapods/pod_setup_ssl_error</id>
-  <published>2016-04-20T20:00:00-04:00</published>
-  <updated>2016-04-20T20:00:00-04:00</updated>
-  <author>
-    <name>sankame</name>
-    <uri></uri>
-    <email>m2ad0504@outlook.jp</email>
-  </author>
-  <content type="html">
-    &lt;p&gt;&lt;span style=&quot;float:right;&quot;&gt;投稿日：2016年04月20日&lt;/span&gt;&lt;/p&gt;
-
-&lt;h3&gt;0.環境&lt;/h3&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;[OS] Mac OS X 10.11.4
-[cocoapods] 1.0.0.beta.6
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;h3&gt;1.エラー内容&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;pod setupを実行すると下記エラーが発生。&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;pod setup --verbose
-
-Setting up CocoaPods master repo
-
-Cloning spec repo &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;master&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; from &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;https://github.com/CocoaPods/Specs.git&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;branch &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;master&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;/usr/bin/git clone https://github.com/CocoaPods/Specs.git master
-  Cloning into &lt;span class=&quot;s1&quot;&gt;&amp;#39;master&amp;#39;&lt;/span&gt;...
-  fatal: unable to access &lt;span class=&quot;s1&quot;&gt;&amp;#39;https://github.com/CocoaPods/Specs.git/&amp;#39;&lt;/span&gt;: SSLRead&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; error -9806
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;!&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; /usr/bin/git clone https://github.com/CocoaPods/Specs.git master
-
-Cloning into &lt;span class=&quot;s1&quot;&gt;&amp;#39;master&amp;#39;&lt;/span&gt;...
-fatal: unable to access &lt;span class=&quot;s1&quot;&gt;&amp;#39;https://github.com/CocoaPods/Specs.git/&amp;#39;&lt;/span&gt;: SSLRead&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; error -9806
-
-        ：
-     【省略】
-        ：
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3&gt;2.解決方法&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;Safariで下記URLにアクセス。(他のブラウザではダメ) &lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://github.com&quot; target=&quot;_blank&quot;&gt;https://github.com&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;再度、下記を実行するとwifi経由で1時間以上経ってからようやく成功…&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;pod setup --verbose
-
-Setting up CocoaPods master repo
-
-        ：
-     【省略】
-        ：
-
-Setup completed
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3&gt;参考ページ&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;http://stackoverflow.com/questions/20939105/pod-install-returns-fatal-error-ssl-certificate-issue&quot; target=&quot;_blank&quot;&gt;pod install returns fatal error: SSL certificate issue?&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-    &lt;p&gt;&lt;a href=&quot;/cocoapods/pod_setup_ssl_error/&quot;&gt;pod setup で SSLエラー&lt;/a&gt; was originally published by sankame at &lt;a href=&quot;&quot;&gt;プログラマー備忘録&lt;/a&gt; on April 20, 2016.&lt;/p&gt;
   </content>
 </entry>
 

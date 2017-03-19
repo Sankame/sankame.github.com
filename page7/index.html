@@ -160,6 +160,57 @@ enable_page_level_ads: true
   <header>
     
     <div class="entry-meta">
+      <span class="entry-date date published updated"><time datetime="2015-05-10T20:00:00-04:00"><a href="/androidstudio/android_studio_heap_size_error/">May 10, 2015</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About sankame">sankame</a></span></span>
+      
+      <span class="entry-reading-time">
+        <i class="fa fa-clock-o"></i>
+        
+        Reading time ~1 minute
+      </span><!-- /.entry-reading-time -->
+      
+    </div><!-- /.entry-meta -->
+    
+      <h1 class="entry-title"><a href="/androidstudio/android_studio_heap_size_error/" rel="bookmark" title="【AndroidStudio】"Failed to complete Gradle execution"エラー" itemprop="url">【AndroidStudio】"Failed to complete Gradle execution"エラー</a></h1>
+    
+  </header>
+  <div class="entry-content">
+    <p><span style="float:right;">投稿日：2015年05月10日</span></p>
+
+<h3>0.環境</h3>
+<div class="highlight"><pre><code class="language-text" data-lang="text">[OS]             Windows7 (32bit 版)
+[AndroidStudio]  1.1.0
+</code></pre></div>
+<h3>1.エラー内容</h3>
+
+<ul>
+<li><p>「Run &#39;app&#39;」ボタンをクリックし、ビルド＆実行しようとすると下記エラーダイアログが表示される。</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">Failed to complete Gradle execution
+Cause:
+A fatal exception has occurred. Program will exit
+</code></pre></div></li>
+</ul>
+
+<h3>2.回避方法</h3>
+
+<ul>
+<li><p>メニューから [File] -&gt; [Settings] -&gt; [Gradle] とたどって、[Gradle VM options] に &quot;-XX:MaxHeapSize=256m -Xmx256m&quot; を入力。(下記画像のオレンジ枠線)</p>
+
+<p><a href="/assets/posts/img/android_studio_heap_size_error/vm_options.png" target="_blank"><img width="20%" height="20%" title="VMオプション設定" alt="VMオプション設定" src="/assets/posts/img/android_studio_heap_size_error/vm_options.png"></a></p></li>
+</ul>
+
+<h3>※参考にしたページ</h3>
+
+<ul>
+<li><a href="https://code.google.com/p/android/issues/detail?id=67946" target="_blank">Failed to complete Gradle Execution</a></li>
+</ul>
+
+  </div><!-- /.entry-content -->
+</article><!-- /.hentry -->
+
+<article class="hentry">
+  <header>
+    
+    <div class="entry-meta">
       <span class="entry-date date published updated"><time datetime="2015-05-09T20:00:00-04:00"><a href="/androidstudio/android_studio_process_error/">May 09, 2015</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About sankame">sankame</a></span></span>
       
       <span class="entry-reading-time">
@@ -521,66 +572,6 @@ enable_page_level_ads: true
 </ul>
 <div class="highlight"><pre><code class="language-text" data-lang="text">    # service httpd restart
 </code></pre></div>
-  </div><!-- /.entry-content -->
-</article><!-- /.hentry -->
-
-<article class="hentry">
-  <header>
-    
-    <div class="entry-meta">
-      <span class="entry-date date published updated"><time datetime="2014-07-25T20:00:00-04:00"><a href="/androidwear/android_wear_chage_face/">July 25, 2014</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About sankame">sankame</a></span></span>
-      
-      <span class="entry-reading-time">
-        <i class="fa fa-clock-o"></i>
-        
-        Reading time ~1 minute
-      </span><!-- /.entry-reading-time -->
-      
-    </div><!-- /.entry-meta -->
-    
-      <h1 class="entry-title"><a href="/androidwear/android_wear_chage_face/" rel="bookmark" title="【Android Wear】ホーム画面の時計を変更" itemprop="url">【Android Wear】ホーム画面の時計を変更</a></h1>
-    
-  </header>
-  <div class="entry-content">
-    <p><span style="float:right;">投稿日：2014年07月25日</span></p>
-
-<h5>0.環境</h5>
-<div class="highlight"><pre><code class="language-text" data-lang="text">[スマートフォン(OS)]  GALAXY S4 (Android 4.4.2)
-[スマートウォッチ(OS)] Gear Live (4.4W)
-※以下、スマートフォンは「スマホ」、スマートウォッチは「ウォッチ」と記載。
-</code></pre></div>
-<h5>1.ホーム画面の時計(ウォッチフェイス)を変更</h5>
-
-<ul>
-<li><p>Samsung Gear Live のホーム画面の時計デザインを変える方法は下記の通りです。</p>
-
-<p>(スマホとウォッチはBluetoothで同期されている前提)</p>
-
-<ul>
-<li><p>①【スマホ】Playストアから好みのデザインの時計アプリをインストールします。(<a href="http://weekly.ascii.jp/elem/000/000/239/239437/" target="_blank">参考リンク</a>)</p>
-
-<p>(例) Playストアで &quot;WearFaces&quot; で検索。</p></li>
-<li><p>②【スマホ】Android Wearアプリを起動し、右上のネジマークをタップ。</p>
-
-<p><a href="/assets/posts/img/android_wear_chage_face/phone-1.png" target="_blank"><img width="20%" height="20%" title="スマホ-設定" alt="スマホ-設定" src="/assets/posts/img/android_wear_chage_face/phone-1.png"></a></p></li>
-<li><p>③【スマホ】一番下までスクロールし、「アプリの再同期」をタップ。</p>
-
-<p><a href="/assets/posts/img/android_wear_chage_face/phone-2.png" target="_blank"><img width="20%" height="20%" title="スマホ-アプリ同期" alt="スマホ-アプリ同期" src="/assets/posts/img/android_wear_chage_face/phone-2.png"></a></p></li>
-<li><p>④【ウォッチ】ホーム画面をタップし、メニュー画面を一番下までスクロールした後「設定」をタップ。</p>
-
-<p><code>(2014/07/30, 追記) 後日気づきました。ホーム画面で時計を長押し(ロングタップ)すると一気に時計変更画面に行けます。(下記⑦)</code></p>
-
-<p><a href="/assets/posts/img/android_wear_chage_face/watch-1.jpeg" target="_blank"><img width="20%" height="20%" title="ウォッチ-設定" alt="ウォッチ-設定" src="/assets/posts/img/android_wear_chage_face/watch-1.jpeg"></a></p></li>
-<li><p>⑤【ウォッチ】設定画面で上にフリック。</p>
-
-<p><a href="/assets/posts/img/android_wear_chage_face/watch-2.jpeg" target="_blank"><img width="20%" height="20%" title="ウォッチ-設定2" alt="ウォッチ-設定2" src="/assets/posts/img/android_wear_chage_face/watch-2.jpeg"></a></p></li>
-<li><p>⑥【ウォッチ】一番下までスクロールした後、「ウォッチフェイスの変更」をタップ。</p>
-
-<p><a href="/assets/posts/img/android_wear_chage_face/watch-3.jpeg" target="_blank"><img width="20%" height="20%" title="ウォッチ-ウォッチフェイス変更" alt="ウォッチ-ウォッチフェイス変更" src="/assets/posts/img/android_wear_chage_face/watch-3.jpeg"></a></p></li>
-<li><p>⑦【ウォッチ】上記でPlayストアからインストールした時計アプリを見つけ、タップするとホーム画面に設定されます。</p></li>
-</ul></li>
-</ul>
-
   </div><!-- /.entry-content -->
 </article><!-- /.hentry -->
 
