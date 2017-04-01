@@ -670,7 +670,8 @@ Swift3で大文字・小文字処理
         </section>
         
 
-	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
 <ins class="adsbygoogle"
      style="display:block"
@@ -680,6 +681,7 @@ Swift3で大文字・小文字処理
 <script>
 (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
+
 
     
         <section id="footer">
@@ -781,7 +783,8 @@ Swift3で大文字・小文字処理
             
             <script>hljs.initHighlightingOnLoad();</script>
             
-        <script type="text/javascript">
+        
+<script type="text/javascript">
 
   var _gaq = _gaq || [];
   _gaq.push(['_setAccount', 'UA-37675354-1']);
@@ -794,6 +797,7 @@ Swift3で大文字・小文字処理
   })();
 
 </script>
+
     </body>
 </html>
 
