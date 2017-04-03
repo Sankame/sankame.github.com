@@ -56,6 +56,7 @@
         
 
         
+
         
             
         
@@ -69,6 +70,10 @@
             <link rel="stylesheet" href="/css/monokai-sublime.css">
         
 
+        
+            
+                
+            
         
 
         
@@ -90,13 +95,6 @@
 
     <nav class="links">
         <ul>
-            
-                <li>
-                    <a href="/blog">
-                        
-                            <i class="fa fa-newspaper-o">&nbsp;</i>Blog
-                    </a>
-                </li>
             
                 <li>
                     <a href="/categories">
@@ -143,17 +141,6 @@
     
         <section>
             <ul class="links">
-                
-                    <li>
-                        <a href="/blog">
-                            <h3>
-                                
-                                    <i class="fa fa-newspaper-o">&nbsp;</i>
-                                
-                                Blog
-                            </h3>
-                        </a>
-                    </li>
                 
                     <li>
                         <a href="/categories">
