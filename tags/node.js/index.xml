@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Node.js on プログラマー備忘録</title>
+    <link>/tags/node.js/index.xml</link>
+    <description>Recent content in Node.js on プログラマー備忘録</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <atom:link href="/tags/node.js/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>【Angular2】クイックスタート</title>
+      <link>/blog/2015-06-23-angular2_quick_start/</link>
+      <pubDate>Tue, 23 Jun 2015 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2015-06-23-angular2_quick_start/</guid>
+      <description>
+
+&lt;h3 id=&#34;0-環境&#34;&gt;0.環境&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;[CentOS]  6.5
+[node.js] 0.12.4
+[npm]     2.10.1
+[tsd]     0.6.0
+[tsc]     1.5.0-beta
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;1-インストール&#34;&gt;1.インストール&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Googleの&lt;a href=&#34;https://angular.io/docs/js/latest/quickstart.html&#34; target=&#34;_blank&#34;&gt;QuickStartページ&lt;/a&gt;に沿って進めます。(以降、JavaScriptはJSと記述)&lt;/p&gt;
+
+&lt;p&gt;Angular2はJSでも動かせますが、JSのスーパーセットTypeScriptに対応しているので、Googleのページ同様、後者について記述します。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;最終的に下記の構成になります。&lt;/p&gt;
+
+&lt;p&gt;tscを使ってhello.tsをhello.jsへ変換します。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;/assets/posts/img/angular2_quick_start/system.jpg&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;100%&#34; height=&#34;100%&#34; title=&#34;システム構成&#34; alt=&#34;システム構成&#34; src=&#34;/assets/posts/img/angular2_quick_start/system.jpg&#34;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;まずnode.jsとnpmの依存管理を楽にするため、nvmをインストールします。&lt;/p&gt;
+
+&lt;p&gt;※CentOS 5系だとnode.jsを動かすのに苦労するので、&lt;a href=&#34;http://sankame.github.io/vagrant/vagrant_setup/&#34; target=&#34;_blank&#34;&gt;こちらの記事&lt;/a&gt;を参考にCentOS6.x 環境構築を推奨します。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# git clone git://github.com/creationix/nvm.git ~/.nvm
+# source ~/.nvm/nvm.sh
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;node.jsをバージョン指定でインストール。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# nvm install 0.12.4
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;nvmでnode.jsのデフォルトバージョンを設定。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# nvm alias default v0.12.4
+# vi ~/.bash_profile
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;.bash_profile の末尾に下記を追記。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;if [[ -s ~/.nvm/nvm.sh ]];
+    then source ~/.nvm/nvm.sh
+fi
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;tsd (TypeScript用 型定義ファイル管理ツール) をインストール。&lt;/p&gt;
+
+&lt;p&gt;※npmのバージョンが低いとtsdのインストールが止まってしまうので注意。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# npm install tsd@0.6.0 -g
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;下記の警告が出たが5分ほどしてインストールが成功。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;npm WARN engine joi-assert@0.0.3: wanted: {&amp;quot;node&amp;quot;:&amp;quot;&amp;gt;= 0.10.0 &amp;lt;= 0.11.0&amp;quot;} (current: {&amp;quot;node&amp;quot;:&amp;quot;0.12.4&amp;quot;,&amp;quot;npm&amp;quot;:&amp;quot;2.10.1&amp;quot;})
+npm WARN peerDependencies The peer dependency minichain@~0.0.1 included from minitable will no
+npm WARN peerDependencies longer be automatically installed to fulfill the peerDependency
+npm WARN peerDependencies in npm 3+. Your application will need to depend on it explicitly.
+/root/.nvm/versions/node/v0.12.4/bin/tsd -&amp;gt; /root/.nvm/versions/node/v0.12.4/lib/node_modules/tsd/build/cli.js
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;続けてAngular2用の型定義をインストール。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# tsd query angular2 --action install
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;※rootユーザー以外だと下記エラーが出る可能性があります。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt; install error!
+EACCES, mkdir &#39;/etc/rc.d/init.d/typings&#39;
+Error: EACCES, mkdir &#39;/etc/rc.d/init.d/typings&#39;
+at Error (native)
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;tsc (TypeScript→JS変換ツール) をインストール。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# npm install -g typescript@^1.5.0-beta
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;2-サンプル実行&#34;&gt;2.サンプル実行&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;任意のディレクトリで下記サンプルファイルを作成。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# cd /app/angular2_quickstart/ # 任意のディレクトリ
+# touch hello.html hello.ts
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;① hello.html&lt;/p&gt;
+
+&lt;p&gt;{% gist 313fb54ffa44bf31ed2a hello.html%}&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;② hello.ts&lt;/p&gt;
+
+&lt;p&gt;{% gist e4ed0d2d8b9c9df5f074 hello.ts%}&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;上記ディレクトリにて、tscを監視モードで実行。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# cd /app/angular2_quickstart/
+# 
+# tsc --watch -m commonjs -t es5 --emitDecoratorMetadata *.ts
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;簡易HTTPサーバーをインストール後、上記ディレクトリで起動します。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# npm install http-server -g
+#
+# cd /app/angular2_quickstart/
+#
+# http-server
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;ブラウザ確認&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;下記URLで&amp;rdquo;Hello World !&amp;ldquo;が表示されれば成功です。(ホスト名(IP)は自分の環境に読み替え)&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;http://192.168.33.10:8080/hello.html&#34;&gt;http://192.168.33.10:8080/hello.html&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;参考ページ&#34;&gt;※参考ページ&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://angular.io/docs/js/latest/quickstart.html&#34; target=&#34;_blank&#34;&gt;公式ページ (5 MIN QUICKSTART)&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;http://liginc.co.jp/web/programming/node-js/85318&#34; target=&#34;_blank&#34;&gt;nvm インストール&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
