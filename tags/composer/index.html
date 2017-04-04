@@ -617,7 +617,7 @@ Swift3で大文字・小文字処理
                     <li>
                         <article>
                             <header>
-                                <a href="/categories/tips/">Tips</a>
+                                <a href="/categories/tips/">tips</a>
                                 <span style="float:right;">14</span>
                             </header>
                         </article>
