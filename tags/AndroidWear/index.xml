@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>AndroidWear on プログラマー備忘録</title>
+    <link>/tags/androidwear/index.xml</link>
+    <description>Recent content in AndroidWear on プログラマー備忘録</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <atom:link href="/tags/androidwear/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>【Android Wear】ホーム画面の時計を変更</title>
+      <link>/blog/2014-07-26-android_wear_chage_face/</link>
+      <pubDate>Sat, 26 Jul 2014 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2014-07-26-android_wear_chage_face/</guid>
+      <description>
+
+&lt;h5 id=&#34;0-環境&#34;&gt;0.環境&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code&gt;[スマートフォン(OS)]  GALAXY S4 (Android 4.4.2)
+[スマートウォッチ(OS)] Gear Live (4.4W)
+※以下、スマートフォンは「スマホ」、スマートウォッチは「ウォッチ」と記載。
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id=&#34;1-ホーム画面の時計-ウォッチフェイス-を変更&#34;&gt;1.ホーム画面の時計(ウォッチフェイス)を変更&lt;/h5&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Samsung Gear Live のホーム画面の時計デザインを変える方法は下記の通りです。&lt;/p&gt;
+
+&lt;p&gt;(スマホとウォッチはBluetoothで同期されている前提)&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;①【スマホ】Playストアから好みのデザインの時計アプリをインストールします。(&lt;a href=&#34;http://weekly.ascii.jp/elem/000/000/239/239437/&#34; target=&#34;_blank&#34;&gt;参考リンク&lt;/a&gt;)&lt;/p&gt;
+
+&lt;p&gt;(例) Playストアで &amp;ldquo;WearFaces&amp;rdquo; で検索。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;②【スマホ】Android Wearアプリを起動し、右上のネジマークをタップ。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;/assets/posts/img/android_wear_chage_face/phone-1.png&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;20%&#34; height=&#34;20%&#34; title=&#34;スマホ-設定&#34; alt=&#34;スマホ-設定&#34; src=&#34;/assets/posts/img/android_wear_chage_face/phone-1.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;③【スマホ】一番下までスクロールし、「アプリの再同期」をタップ。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;/assets/posts/img/android_wear_chage_face/phone-2.png&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;20%&#34; height=&#34;20%&#34; title=&#34;スマホ-アプリ同期&#34; alt=&#34;スマホ-アプリ同期&#34; src=&#34;/assets/posts/img/android_wear_chage_face/phone-2.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;④【ウォッチ】ホーム画面をタップし、メニュー画面を一番下までスクロールした後「設定」をタップ。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;(2014/07/30, 追記) 後日気づきました。ホーム画面で時計を長押し(ロングタップ)すると一気に時計変更画面に行けます。(下記⑦)&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;/assets/posts/img/android_wear_chage_face/watch-1.jpeg&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;20%&#34; height=&#34;20%&#34; title=&#34;ウォッチ-設定&#34; alt=&#34;ウォッチ-設定&#34; src=&#34;/assets/posts/img/android_wear_chage_face/watch-1.jpeg&#34;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;⑤【ウォッチ】設定画面で上にフリック。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;/assets/posts/img/android_wear_chage_face/watch-2.jpeg&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;20%&#34; height=&#34;20%&#34; title=&#34;ウォッチ-設定2&#34; alt=&#34;ウォッチ-設定2&#34; src=&#34;/assets/posts/img/android_wear_chage_face/watch-2.jpeg&#34;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;⑥【ウォッチ】一番下までスクロールした後、「ウォッチフェイスの変更」をタップ。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;/assets/posts/img/android_wear_chage_face/watch-3.jpeg&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;20%&#34; height=&#34;20%&#34; title=&#34;ウォッチ-ウォッチフェイス変更&#34; alt=&#34;ウォッチ-ウォッチフェイス変更&#34; src=&#34;/assets/posts/img/android_wear_chage_face/watch-3.jpeg&#34;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;⑦【ウォッチ】上記でPlayストアからインストールした時計アプリを見つけ、タップするとホーム画面に設定されます。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
