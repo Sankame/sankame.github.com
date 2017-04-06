@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ReviveAdServer on プログラマー備忘録</title>
+    <link>/tags/reviveadserver/index.xml</link>
+    <description>Recent content in ReviveAdServer on プログラマー備忘録</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <atom:link href="/tags/reviveadserver/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Revive Ad Server インストール (旧OpenX)</title>
+      <link>/blog/2014-05-04-revive_adserver_install/</link>
+      <pubDate>Sun, 04 May 2014 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2014-05-04-revive_adserver_install/</guid>
+      <description>
+
+&lt;h3 id=&#34;0-環境&#34;&gt;0.環境&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;[CentOS]           5.6 (32bit版カーネル)
+[Apache]           2.2.3
+[PHP]              5.4.17
+[Revive AdServer]  3.0.4
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;1-インストール&#34;&gt;1.インストール&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;1-0.ダウンロード&lt;/p&gt;
+
+&lt;p&gt;適当なディレクトリにソースをダウンロードし、Apache公開ディレクトリへ移動。&lt;/p&gt;
+
+&lt;p&gt;(公開ディレクトリは自分の環境に読み替えて下さい)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;# wget http://download.revive-adserver.com/revive-adserver-3.0.4.tar.gz
+# tar xzf revive-adserver-3.0.4.tar.gz
+# mv revive-adserver-3.0.4 revive-adserver
+# mv revive-adserver /app/.
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;1-1.インストール開始&lt;/p&gt;
+
+&lt;p&gt;ブラウザから、上記インストール先URLへアクセス。&lt;/p&gt;
+
+&lt;p&gt;(例) &lt;a href=&#34;http://localhost/revive-adserver&#34;&gt;http://localhost/revive-adserver&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;ウィザードに従ってインストールを進めます。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;/assets/posts/img/revive_adserver_install/step1.png&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;100%&#34; height=&#34;100%&#34; title=&#34;step1&#34; alt=&#34;step1&#34; src=&#34;/assets/posts/img/revive_adserver_install/step1.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;ldquo;I Agree &amp;gt;&amp;gt;&amp;ldquo;ボタンを押すと、&amp;rdquo;File Permissions - 7 errors&amp;rdquo; というエラーが表示されました。&lt;/p&gt;
+
+&lt;p&gt;画面に表示されたコマンドをそのままコンソールで実行。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;# chmod -R a+w /app/revive-adserver/var
+# chmod -R a+w /app/revive-adserver/var/cache
+# chmod -R a+w /app/revive-adserver/var/plugins
+# chmod -R a+w /app/revive-adserver/var/templates_compiled
+# chmod -R a+w /app/revive-adserver/plugins
+# chmod -R a+w /app/revive-adserver/www/admin/plugins
+# chmod -R a+w /app/revive-adserver/www/images
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;再びインストール画面へ戻って&amp;rdquo;Retry&amp;rdquo;を押すと、次のステップへ進めます。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;1-2.DB設定&lt;/p&gt;
+
+&lt;p&gt;DB情報の入力画面が表示されますが、その前に下記コマンド(※1)でMySQL上にDBを作成。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;/assets/posts/img/revive_adserver_install/step2.png&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;100%&#34; height=&#34;100%&#34; title=&#34;step2&#34; alt=&#34;step2&#34; src=&#34;/assets/posts/img/revive_adserver_install/step2.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;(※1) コマンド (DB名、ユーザ名、パスワードは任意に設定して下さい)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;# mysql -h 127.0.0.1 -u root -p
+mysql&amp;gt; create database reviveadserver;
+mysql&amp;gt; grant all privileges on reviveadserver.* to admin@localhost identified by &#39;password&#39;;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;再びインストール画面へ戻り、上記のDB情報を入力後、&amp;rdquo;Continue &amp;gt;&amp;gt;&amp;rdquo; を押します。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;1-3.管理ユーザ登録&lt;/p&gt;
+
+&lt;p&gt;Revive AdServerの管理ユーザを登録します。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;/assets/posts/img/revive_adserver_install/step3.png&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;100%&#34; height=&#34;100%&#34; title=&#34;step3&#34; alt=&#34;step3&#34; src=&#34;/assets/posts/img/revive_adserver_install/step3.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;言語とタイムゾーンを変更。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Language:  Japanese
+Timezone:  (GMT+0900) Asia/Tokyo
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;1-4.登録完了&lt;/p&gt;
+
+&lt;p&gt;登録完了しました。&lt;/p&gt;
+
+&lt;p&gt;「インストール中にエラーが発生しました」と表示されましたが、指定されたログを見てもエラーの記述はありませんでした。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;/assets/posts/img/revive_adserver_install/step4.png&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;100%&#34; height=&#34;100%&#34; title=&#34;step4&#34; alt=&#34;step4&#34; src=&#34;/assets/posts/img/revive_adserver_install/step4.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;参考&#34;&gt;参考&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://tec-blog.menue.jp/?p=278&#34; target=&#34;_blank&#34;&gt;Revive Adserver(旧OpenX)で広告配信&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
