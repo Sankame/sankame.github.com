@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Jenkins on プログラマー備忘録</title>
+    <link>/tags/jenkins/index.xml</link>
+    <description>Recent content in Jenkins on プログラマー備忘録</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <atom:link href="/tags/jenkins/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Jenkins から Seleniumを動かしてみる</title>
+      <link>/blog/2014-06-04-jenkins_selenium/</link>
+      <pubDate>Wed, 04 Jun 2014 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2014-06-04-jenkins_selenium/</guid>
+      <description>
+
+&lt;h3 id=&#34;0-環境&#34;&gt;0.環境&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;・親ノード端末
+  [CentOS]   5.6 (32bit版カーネル)
+  [ruby]     2.1.1p76
+  [rvm]      1.25.25
+  [java]     1.7.0_51
+  [Jenkins]  1.562
+
+・子ノード端末
+  [Windows]  Vista Home Premium (32bit)
+  [java]     1.7.0_51
+  [IE]       8
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;1-準備&#34;&gt;1.準備&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Jenkinsインストール&lt;/p&gt;
+
+&lt;p&gt;下記のリンクを参考にJenkinsをインストールしました。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://d.hatena.ne.jp/katsuren/20121030/1351569655&#34;&gt;俺の成長日記&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://oscasierra.net/2013/05/jenkins-to-redhat/&#34;&gt;OSCALOG&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://kohkimakimoto.hatenablog.com/entry/2013/11/22/192646&#34;&gt;JenkinsをCentOSにインストールしたときのメモ&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;前回の続き&lt;/p&gt;
+
+&lt;p&gt;親ノードと子ノードでSelenium Serverを起動します。(下記リンク参照)&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;/Selenium/2014/05/24/selenium_webdriver/&#34;&gt;Selenium WebDriverを動かしてみる&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;前回と異なる点は、Jenkinsがポート4444を使っていたので、Selenium Serverは4445を使って起動します。&lt;/p&gt;
+
+&lt;p&gt;・親ノード&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;    # java -jar selenium-server-standalone-2.41.0.jar -role hub -port 4445
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;・子ノード&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;    &amp;gt; java -jar selenium-server-standalone-2.41.0.jar -role webdriver -hub http://192.168.130.130:4445/grid/register -Dwebdriver.ie.driver=./IEDriverServer.exe
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Jenkins プラグイン追加&lt;/p&gt;
+
+&lt;p&gt;rvmでrubyを使っているので、予めJenkinsにrvmプラグインを追加。&lt;/p&gt;
+
+&lt;p&gt;Jenkinsのダッシュボードから[Jenkinsの管理]-[プラグインの管理]-[利用可能]&lt;/p&gt;
+
+&lt;p&gt;右上のフィルターでrvmと打つとRVMプラグインが表示されるのでチェックをつけ、[再起動せずにインストール]クリック。&lt;/p&gt;
+
+&lt;p&gt;(インストールは何回か失敗することがあります)&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Jenkins ジョブ追加&lt;/p&gt;
+
+&lt;p&gt;Jenkinsのダッシュボードから[新規ジョブ作成]、ジョブ名を入力し、[フリースタイル・プロジェクトのビルド]を選択して[OK]クリック。&lt;/p&gt;
+
+&lt;p&gt;ビルド環境のRVMで使用したいrubyのバージョンを指定。(自分の場合 2.1.1) (下図参照)&lt;/p&gt;
+
+&lt;p&gt;シェルスクリプトで下記のように指定。(パス等は読み替えて下さい) (下図参照)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;/usr/local/rvm/rubies/ruby-2.1.1/bin/ruby /app/seleniumtest/seleniumtest_4445.rb
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;「保存」ボタンクリック。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;/assets/posts/img/jenkins_selenium/jenkins_project.png&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;50%&#34; height=&#34;50%&#34; title=&#34;Jenkinsプロジェクト設定&#34; alt=&#34;Jenkinsプロジェクト設定&#34; src=&#34;/assets/posts/img/jenkins_selenium/jenkins_project.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;rubyスクリプト&lt;/p&gt;
+
+&lt;p&gt;上記でJenkinsに設定した &amp;ldquo;seleniumtest_4445.rb&amp;rdquo; は以下の内容です。(ポート番号4445でアクセス)&lt;/p&gt;
+
+&lt;p&gt;{% gist dc5fb2d680b67acefbf3 seleniumtest_4445.rb%}&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;2-起動&#34;&gt;2.起動&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;ビルド実行&lt;/p&gt;
+
+&lt;p&gt;上記で作成したジョブで「ビルド実行」をクリック。&lt;/p&gt;
+
+&lt;p&gt;子ノードでIEが起動すれば成功です。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
