@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Cocoapods on プログラマー備忘録</title>
+    <link>/tags/cocoapods/index.xml</link>
+    <description>Recent content in Cocoapods on プログラマー備忘録</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <atom:link href="/tags/cocoapods/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>pod setup で SSLエラー</title>
+      <link>/blog/2016-04-21-pod_setup_ssl_error/</link>
+      <pubDate>Thu, 21 Apr 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2016-04-21-pod_setup_ssl_error/</guid>
+      <description>
+
+&lt;h3 id=&#34;0-環境&#34;&gt;0.環境&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;[OS] Mac OS X 10.11.4
+[cocoapods] 1.0.0.beta.6
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;1-エラー内容&#34;&gt;1.エラー内容&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;pod setupを実行すると下記エラーが発生。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;$ pod setup --verbose
+
+Setting up CocoaPods master repo
+
+Cloning spec repo `master` from `https://github.com/CocoaPods/Specs.git` (branch `master`)
+  $ /usr/bin/git clone https://github.com/CocoaPods/Specs.git master
+  Cloning into &#39;master&#39;...
+  fatal: unable to access &#39;https://github.com/CocoaPods/Specs.git/&#39;: SSLRead() return error -9806
+[!] /usr/bin/git clone https://github.com/CocoaPods/Specs.git master
+
+Cloning into &#39;master&#39;...
+fatal: unable to access &#39;https://github.com/CocoaPods/Specs.git/&#39;: SSLRead() return error -9806
+
+        ：
+     【省略】
+        ：
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;2-解決方法&#34;&gt;2.解決方法&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Safariで下記URLにアクセス。(他のブラウザではダメ)&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com&#34; target=&#34;_blank&#34;&gt;&lt;a href=&#34;https://github.com&#34;&gt;https://github.com&lt;/a&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;再度、下記を実行するとwifi経由で1時間以上経ってからようやく成功…&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;$ pod setup --verbose
+
+Setting up CocoaPods master repo
+
+        ：
+     【省略】
+        ：
+
+Setup completed
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;参考ページ&#34;&gt;参考ページ&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://stackoverflow.com/questions/20939105/pod-install-returns-fatal-error-ssl-certificate-issue&#34; target=&#34;_blank&#34;&gt;pod install returns fatal error: SSL certificate issue?&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
