@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>DELL on プログラマー備忘録</title>
+    <link>https://sankame.github.io/tags/dell/index.xml</link>
+    <description>Recent content in DELL on プログラマー備忘録</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <atom:link href="https://sankame.github.io/tags/dell/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>DELL E5520 のタッチパッドをOFFにする</title>
+      <link>https://sankame.github.io/blog/2013-07-05-dell_e5520_touchpad/</link>
+      <pubDate>Fri, 05 Jul 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2013-07-05-dell_e5520_touchpad/</guid>
+      <description>
+
+&lt;h5 id=&#34;環境&#34;&gt;環境&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code&gt;[PC] DELL E5520
+[OS] Windows 7 Professional (SP1)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id=&#34;1-ドライバダウンロード&#34;&gt;1. ドライバダウンロード&lt;/h5&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://www.dell.com/support/drivers/jp/ja/jpdhs1/Product/latitude-e5520&#34;&gt;ダウンロードページ&lt;/a&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;上記ダウンロードページを開く。
+&amp;quot;マウス、キーボード、入力デバイス&amp;quot; を開く。
+&amp;quot;Dell Multi-Touch Touchpad Driver&amp;quot; の右横にある「ファイルのダウンロード」をクリック。
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id=&#34;2-ドライバファイルの選択&#34;&gt;2. ドライバファイルの選択&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code&gt;Hard-Drive-ALPS_MULTI-TOUCH-TOUCHPAD_A06_GGY5W_SETUP_ZPE.exe
+を選択して「続行」をクリック。
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id=&#34;3-ダウンロードセレクタ&#34;&gt;3. ダウンロードセレクタ&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;quot;単一ファイルのダウンロード&amp;quot;
+を選択して「続行」をクリック。
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id=&#34;4-インストール&#34;&gt;4. インストール&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code&gt;ダウンロード後、EXEファイルを実行。
+インストールしたら再起動。
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id=&#34;5-アプリ起動&#34;&gt;5. アプリ起動&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code&gt;Windows[スタートメニュー] - [コントロールパネル]を開く。
+Dell Touchpad が増えているのでダブルクリック。
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id=&#34;6-タッチパッドoff&#34;&gt;6. タッチパッドOff&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code&gt;DELLポインティングデバイス　というダイアログが起動。
+左メニューで任意のものを選択して、タッチパッドのOn/Offで O をクリックして、保存ボタンクリック。
+こうするとタッチパッドがOffになる。
+
+※見つからない場合は右上の「表示方法」を「小さいアイコン」または「大きいアイコン」に変更する。
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://detail.chiebukuro.yahoo.co.jp/qa/question_detail/q13104530838&#34;&gt;参考ページ&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
