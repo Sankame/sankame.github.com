@@ -1,0 +1,875 @@
+<!DOCTYPE HTML>
+
+<html>
+    <head>
+        
+            
+                <title>ポイントだけ ApacheBench</title>
+            
+        
+
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="generator" content="Hugo 0.19" />
+        
+
+
+        
+        
+            <meta name="description" content="ポイントだけ ApacheBench">
+        
+
+        
+
+  <meta name="twitter:card" content="summary"/>
+
+
+
+<meta name="twitter:text:title" content="ポイントだけ ApacheBench"/>
+<meta name="twitter:title" content="ポイントだけ ApacheBench"/>
+<meta name="twitter:description" content="ポイントだけ ApacheBench"/>
+<meta name="twitter:site" content="@handycola"/>
+
+        <meta property="og:title" content="ポイントだけ ApacheBench" />
+<meta property="og:description" content="ポイントだけ ApacheBench" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://sankame.github.io/blog/2014-06-07-apache_bench/" />
+
+
+
+<meta property="article:published_time" content="2014-06-07T00:00:00&#43;00:00"/>
+<meta property="article:modified_time" content="2014-06-07T00:00:00&#43;00:00"/>
+
+
+
+
+
+
+
+
+
+
+
+        
+<meta itemprop="name" content="ポイントだけ ApacheBench">
+<meta itemprop="description" content="ポイントだけ ApacheBench">
+
+
+<meta itemprop="dateModified" content="2014-06-07T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="375">
+
+
+
+<meta itemprop="keywords" content="tips,エラー解決,セットアップ,チューニング,プログラミング,Android,AndroidStudio,AndroidWear,Angular2,Apache,ApacheBench,AppleWatch,Bitbucket,CentOS,DELL,Eclipse,FreeMind,Git,GitHub,GoogleSheets,Hugo,Java,JavaScript,Jekyll,Jenkins,Kitura,Laravel,Let&#39;sEncrypt,MeCab,MindMapMemo,MySQL,NTP,Nexus7,Nginx,OpenX,PHP,PHPDebugBar,Phalcon,Redis,ReviveAdServer,Ruby,RubyGems,Rundeck,SSL-TLS,Selenium,Smarty,Subversion,Swift,Touchpad,TypeScript,Vagrant,VirtualBox,Website-Optimization,Xcode,ab,bash,cocoapods,composer,fitbit,gulp,jqGrid,node.js,npm,programming-practice,shell,ssh,wget,windows,プロジェクター," />
+
+        
+
+        
+
+        
+
+        
+            
+        
+
+        
+        
+            <link rel="stylesheet" href="/css/google-font.css" />
+            <link rel="stylesheet" href="/css/font-awesome.min.css" />
+            <link rel="stylesheet" href="/css/main.css" />
+            <link rel="stylesheet" href="/css/add-on.css" />
+            <link rel="stylesheet" href="/css/monokai-sublime.css">
+        
+
+        
+            
+                
+            
+        
+
+        
+        
+        
+            
+        
+    </head>
+    <body>
+
+        
+        <div id="wrapper">
+
+    
+    
+<header id="header">
+    
+        <h2><a href="/">プログラマー備忘録</i></a></h2>
+    
+
+    <nav class="links">
+        <ul>
+            
+                <li>
+                    <a href="/categories">
+                        Categories
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="/about">
+                        About
+                    </a>
+                </li>
+            
+        </ul>
+    </nav>
+    <nav class="main">
+        <ul>
+            
+            <li id="share-nav" class="share-menu" style="display:none;">
+                <a class="fa-share-alt" href="#share-menu">Share</a>
+            </li>
+            
+            <li class="search">
+                <a class="fa-search" href="#search">Search</a>
+                <form id="search" method="get" action="//google.com/search">
+                    <input type="text" name="q" placeholder="Search" />
+                    <input type="hidden" name="q" value="site:https://sankame.github.io/">
+                </form>
+            </li>
+            <li class="menu">
+                <a class="fa-bars" href="#menu">Menu</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+
+<section id="menu">
+
+    
+        <section>
+            <form class="search" method="get" action="//google.com/search">
+                <input type="text" name="q" placeholder="Search" />
+                <input type="hidden" name="q" value="site:https://sankame.github.io/">
+            </form>
+        </section>
+
+    
+        <section>
+            <ul class="links">
+                
+                    <li>
+                        <a href="/categories">
+                            <h3>
+                                
+                                Categories
+                            </h3>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/about">
+                            <h3>
+                                
+                                About
+                            </h3>
+                        </a>
+                    </li>
+                
+            </ul>
+        </section>
+
+    
+        <section>
+            <ul class="links">
+                <header>
+                    <h3>Recent Posts</h3>
+                </header>
+                
+                    
+                
+
+                
+                    <li>
+                        <a href="https://sankame.github.io/blog/2017-04-16-speed_up_website_use_browser_cache/"><p>Webサイト・スピードアップ - ブラウザキャッシュ利用</p></a>
+                    </li>
+                
+                    <li>
+                        <a href="https://sankame.github.io/blog/2017-03-19-hugo_quickstart/"><p>Hugoクイックスタート</p></a>
+                    </li>
+                
+            </ul>
+        </section>
+
+    
+        
+</section>
+
+    <section id="share-menu">
+    <section id="social-share-nav">
+        <ul class="links">
+            <header>
+                <h3>Share this post <i class="fa fa-smile-o"></i></h3>
+            </header>
+            
+
+<li><a href="//twitter.com/share?url=https%3a%2f%2fsankame.github.io%2fblog%2f2014-06-07-apache_bench%2f&text=%e3%83%9d%e3%82%a4%e3%83%b3%e3%83%88%e3%81%a0%e3%81%91%20ApacheBench&via=handycola" target="_blank" class="share-btn twitter">
+    <i class="fa fa-twitter"></i>
+    <p>Twitter</p>
+</a></li>
+
+
+<li><a href="//plus.google.com/share?url=https%3a%2f%2fsankame.github.io%2fblog%2f2014-06-07-apache_bench%2f" target="_blank" class="share-btn google-plus">
+    <i class="fa fa-google-plus"></i>
+    <p>Google+</p>
+</a></li>
+
+
+<li><a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fsankame.github.io%2fblog%2f2014-06-07-apache_bench%2f" target="_blank" class="share-btn facebook">
+    <i class="fa fa-facebook"></i>
+    <p>Facebook</p>
+</a></li>
+
+
+<li><a href="//reddit.com/submit?url=https%3a%2f%2fsankame.github.io%2fblog%2f2014-06-07-apache_bench%2f&title=%e3%83%9d%e3%82%a4%e3%83%b3%e3%83%88%e3%81%a0%e3%81%91%20ApacheBench" target="_blank" class="share-btn reddit">
+    <i class="fa fa-reddit-alien"></i>
+    <p>Reddit</p>
+</a></li>
+
+
+<li><a href="//www.linkedin.com/shareArticle?url=https%3a%2f%2fsankame.github.io%2fblog%2f2014-06-07-apache_bench%2f&title=%e3%83%9d%e3%82%a4%e3%83%b3%e3%83%88%e3%81%a0%e3%81%91%20ApacheBench" target="_blank" class="share-btn linkedin">
+    <i class="fa fa-linkedin"></i>
+    <p>LinkedIn</p>
+</a></li>
+
+
+<li><a href="//www.stumbleupon.com/submit?url=https%3a%2f%2fsankame.github.io%2fblog%2f2014-06-07-apache_bench%2f&title=%e3%83%9d%e3%82%a4%e3%83%b3%e3%83%88%e3%81%a0%e3%81%91%20ApacheBench" target="_blank" class="share-btn stumbleupon">
+    <i class="fa fa-stumbleupon"></i>
+    <p>StumbleUpon</p>
+</a></li>
+
+
+<li><a href="mailto:?subject=Check out this post by &body=https%3a%2f%2fsankame.github.io%2fblog%2f2014-06-07-apache_bench%2f" target="_blank" class="share-btn email">
+    <i class="fa fa-envelope"></i>
+    <p>Email</p>
+</a></li>
+
+        </ul>
+    </section>
+</section>
+
+    
+    <div id="main">
+        
+        
+        <article class="post">
+    <header>
+    <div class="title">
+        
+            <h1><a href="https://sankame.github.io/blog/2014-06-07-apache_bench/">ポイントだけ ApacheBench</a></h1>
+            
+        
+        
+            <p>ポイントだけ ApacheBench</p>
+        
+    </div>
+    <div class="meta">
+        
+            
+        
+
+        <time class="published"
+            datetime='2014-06-07'>
+            June 7, 2014</time>
+        <span class="author"></span>
+        
+            <p>2 minute read</p>
+        
+        
+    </div>
+</header>
+
+
+    <section id="social-share">
+        <ul class="icons">
+            
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+<ins class="adsbygoogle"
+     style="display:inline-block;width:320px;height:100px"
+     data-ad-client="ca-pub-7938855665302783"
+     data-ad-slot="8432517159"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+        </ul>
+    </section>
+    
+
+    <div id="content">
+        
+
+<h5 id="0-環境">0.環境</h5>
+
+<pre><code>  [CentOS]      5.6 (32bit版カーネル)
+  [Apache]      2.2.3
+  [ApacheBench] 2.0.40-dev
+</code></pre>
+
+<h5 id="1-基本">1.基本</h5>
+
+<ul>
+<li><p>実行</p>
+
+<p>Apacheをインストールすると ab というコマンドで負荷テストが行えます。</p>
+
+<p>主に使うのは2つのオプションで、下記のように実行します。</p>
+
+<p>後述の &ldquo;Requests per second&rdquo; が十分な値になるよう、n と c の値を増やして負荷をかけます。</p>
+
+<p>(n : リクエスト数　c : 同時接続数)</p>
+
+<pre><code>ab -n 10000 -c 100 &quot;http://test.vm/test.php&quot;
+</code></pre>
+
+<p>※abでテストできるのはサーバ側の処理だけなので、HTMLレンダリングやJavascript実行等、</p>
+
+<p>　トータルの計測を行いたい場合は、下記のようなツールを検討して下さい。</p>
+
+<p><a href="http://gtmetrix.com/">GTmetrix</a></p>
+
+<p><a href="http://knowledge.sakura.ad.jp/tech/1599/">PageSpeed</a></p></li>
+
+<li><p>結果</p>
+
+<p>下記のような実行結果が表示されるので、主に2つの項目を確認します。</p>
+
+<ul>
+<li><p>Failed requests (失敗したリクエスト数)</p>
+
+<p>この項目が0であることを確認します。</p>
+
+<p>但し、表示毎にHTMLのバイト数が異なるサイトの場合、ここがカウントされ、さらに内訳を表す &ldquo;Length:&rdquo; もカウントされます。</p>
+
+<p>(1つ前の結果とHTMLのバイト数を比較し、異なる場合は Length がカウントされる仕様)</p>
+
+<p>上記のようなサイトの場合、&rdquo;Failed requests&rdquo; に数字があっても、全て Length が原因ならば無視してかまいませんが、</p>
+
+<p>念のため、Apacheのアクセスログを確認し、HTTP Response Code が全て200になっていることを確認して下さい。</p></li>
+
+<li><p>Requests per second (秒間に処理したリクエスト数)</p>
+
+<p>対象WEBサイトのアクセス数などから算出した基準を達成しているか確認します。</p>
+
+<p>(例) 月間 1億 PVのサイトの場合、アクセスが均等という前提で、秒間 38.5 リクエストは達成する必要がありそうです。</p>
+
+<pre><code>100,000,000 / 30 / 24 / 60 / 60 ≒ 38.5
+</code></pre>
+
+<p><code>(注意) 下記 &quot;ab 実行結果&quot; は文字を表示するだけのページなので &quot;Requests per second&quot; はかなり高い数字になっています。</code></p></li>
+
+<li><p>ab 実行結果</p>
+
+<pre><code># ab -n 10000 -c 100 &quot;http://test.vm/test.php&quot;
+
+This is ApacheBench, Version 2.0.40-dev &lt;$Revision: 1.146 $&gt; apache-2.0
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Copyright 2006 The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking test.vm (be patient)
+Completed 1000 requests
+Completed 2000 requests
+Completed 3000 requests
+Completed 4000 requests
+Completed 5000 requests
+Completed 6000 requests
+Completed 7000 requests
+Completed 8000 requests
+Completed 9000 requests
+Finished 10000 requests
+
+Server Software:        Apache/2.2.3
+Server Hostname:        test.vm
+Server Port:            80
+
+Document Path:          /test.php
+Document Length:        80 bytes
+
+Concurrency Level:      100
+Time taken for tests:   5.772060 seconds
+Complete requests:      10000
+Failed requests:        9899
+   (Connect: 0, Length: 9899, Exceptions: 0)
+Write errors:           0
+Total transferred:      2418216 bytes
+HTML transferred:       499081 bytes
+Requests per second:    1732.48 [#/sec] (mean)
+Time per request:       57.721 [ms] (mean)
+Time per request:       0.577 [ms] (mean, across all concurrent requests)
+Transfer rate:          409.04 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    0   0.3      0       6
+Processing:     5   56 112.2     55    5769
+Waiting:        5   54  77.3     55    4398
+Total:          5   57 112.2     55    5769
+
+Percentage of the requests served within a certain time (ms)
+  50%     55
+  66%     56
+  75%     58
+  80%     59
+  90%     62
+  95%     69
+  98%     77
+  99%    284
+ 100%   5769 (longest request)
+</code></pre></li>
+</ul></li>
+</ul>
+
+<h5 id="2-応用">2.応用</h5>
+
+<ul>
+<li><p>コマンドサンプル</p>
+
+<p>他によく使うオプションを記載しておきます。</p>
+
+<p>Cookieを指定。(C : [Cookie名]=[値])</p>
+
+<pre><code>ab -n 100 -c 10 -C 'id=test' &quot;http://test.vm/test.php&quot;
+</code></pre>
+
+<p>複数のCookieを指定。</p>
+
+<pre><code>ab -n 100 -c 10 -C 'id=test;flag=1' &quot;http://test.vm/test.php&quot;
+</code></pre></li>
+
+<li><p>host名の指定が必要な場合</p>
+
+<p>host名の指定が必須のWEBサイトで、かつ ab 実行環境で /etc/hosts に記載ができない場合、</p>
+
+<p>下記のようにヘッダオプション(-H) と Host を使います。</p>
+
+<p>これに対応した ab はApache 2.2.22 以降で、自分の環境は未対応だったのでソースを落としてきてビルドしました。</p>
+
+<p><code>(注意) ab を使うだけなので、Apacheのインストール(make install)は行わない。</code></p>
+
+<pre><code># cd /usr/local/src/
+# wget http://ftp.meisei-u.ac.jp/mirror/apache/dist//httpd/httpd-2.2.27.tar.gz
+# tar xzf httpd-2.2.27.tar.gz
+# cd httpd-2.2.27
+# ./configure
+# make
+# 
+# /usr/local/src/httpd-2.2.27/support/ab -n 100 -c 10 -H 'Host: test.vm' &quot;http://192.168.130.130/test.php&quot;
+#
+# /usr/local/src/httpd-2.2.27/support/ab -V
+#This is ApacheBench, Version 2.3 &lt;$Revision: 655654 $&gt;
+</code></pre></li>
+</ul>
+
+    </div>
+
+    <footer>
+        <ul class="stats">
+    
+        
+
+        
+        
+            <li>
+                
+                
+                    
+
+                    
+
+                    
+
+                    
+                        Categories
+                    
+                
+            </li>
+        
+    
+
+    
+    
+    </footer>
+</article>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+<ins class="adsbygoogle"
+     style="display:inline-block;width:300px;height:250px"
+     data-ad-client="ca-pub-7938855665302783"
+     data-ad-slot="1328052757"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+
+<ul class="actions pagination">
+    
+    <li><a href="https://sankame.github.io/blog/2014-06-04-jenkins_selenium/"
+    class="button big previous">Jenkins から Seleniumを動かしてみる</a></li>
+    
+
+    
+    <li><a href="https://sankame.github.io/blog/2014-06-21-github_to_bitbucket/"
+    class="button big next">GithubからBitbucketへソース移行</a></li>
+    
+</ul>
+
+
+
+    </div>
+    
+<section id="sidebar">
+
+    
+        <section id="intro">
+            
+            
+                
+                    <a href="/" class="logo"><img src="/assets/avatar.jpg" alt="Sankame" /></a>
+                
+            
+            
+                <header>
+                    <h2>プログラマー備忘録</h2>
+                    <p></p>
+                </header>
+            
+            <ul class="icons">
+                
+                
+                    
+<li><a href="//github.com/Sankame" target="_blank" title="GitHub" class="fa fa-github"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li><a href="//facebook.com/100014073908728" target="_blank" title="Facebook" class="fa fa-facebook"></a></li>
+
+
+
+<li><a href="//twitter.com/handycola" target="_blank" title="Twitter" class="fa fa-twitter"></a></li>
+
+
+
+<li><a href="mailto:m2ad0504@outlook.jp" title="Email" class="fa fa-envelope"></a></li>
+
+
+                
+            </ul>
+        </section>
+
+    
+        <section id="recent-posts">
+            <ul class="posts">
+                <header>
+                    <h3>Recent Posts</h3>
+                </header>
+                
+                    
+                
+
+                
+                    
+                
+
+                
+                    <li>
+                        <article>
+                            <header>
+                                <h3><a href="https://sankame.github.io/blog/2017-04-16-speed_up_website_use_browser_cache/">Webサイト・スピードアップ - ブラウザキャッシュ利用</a></h3>
+                                
+                                    
+                                
+                                <time class="published" datetime=
+                                    '2017-04-16'>
+                                    April 16, 2017</time>
+                            </header>
+                        </article>
+                    </li>
+                
+                    <li>
+                        <article>
+                            <header>
+                                <h3><a href="https://sankame.github.io/blog/2017-03-19-hugo_quickstart/">Hugoクイックスタート</a></h3>
+                                
+                                    
+                                
+                                <time class="published" datetime=
+                                    '2017-03-19'>
+                                    March 19, 2017</time>
+                            </header>
+                        </article>
+                    </li>
+                
+
+                
+                    <li>
+                        <ul class="actions">
+                            <li><a href=
+                            
+                                /blog/
+                            
+                            class="button">View more posts</a></li>
+                        </ul>
+                    </li>
+                
+            </ul>
+        </section>
+
+    
+    
+    
+    
+        <section id="categories">
+            <ul class="posts">
+                <header>
+                    <h3><a href="/categories/">Categories</a></h3>
+                </header>
+
+                
+                    
+                
+
+                
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/%E3%82%BB%E3%83%83%E3%83%88%E3%82%A2%E3%83%83%E3%83%97/">セットアップ</a>
+                                <span style="float:right;">33</span>
+                            </header>
+                        </article>
+                    </li>
+                
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/tips/">tips</a>
+                                <span style="float:right;">15</span>
+                            </header>
+                        </article>
+                    </li>
+                
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/%E3%82%A8%E3%83%A9%E3%83%BC%E8%A7%A3%E6%B1%BA/">エラー解決</a>
+                                <span style="float:right;">15</span>
+                            </header>
+                        </article>
+                    </li>
+                
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0/">プログラミング</a>
+                                <span style="float:right;">6</span>
+                            </header>
+                        </article>
+                    </li>
+                
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/%E3%83%81%E3%83%A5%E3%83%BC%E3%83%8B%E3%83%B3%E3%82%B0/">チューニング</a>
+                                <span style="float:right;">2</span>
+                            </header>
+                        </article>
+                    </li>
+                
+            </ul>
+        </section>
+    
+
+    
+        
+        <section class="blurb">
+            <h2>About</h2>
+            <p>老舗インターネット・メディア企業で働くプログラマー</p>
+
+            <ul class="actions">
+                <li><a href="/about/" class="button">Learn More</a></li>
+            </ul>
+        </section>
+        
+
+	
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+<ins class="adsbygoogle"
+     style="display:inline-block;width:300px;height:250px"
+     data-ad-client="ca-pub-7938855665302783"
+     data-ad-slot="8711718758"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+
+    
+        <section id="footer">
+            <ul class="icons">
+                
+                
+                    
+<li><a href="//github.com/Sankame" target="_blank" title="GitHub" class="fa fa-github"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li><a href="//facebook.com/100014073908728" target="_blank" title="Facebook" class="fa fa-facebook"></a></li>
+
+
+
+<li><a href="//twitter.com/handycola" target="_blank" title="Twitter" class="fa fa-twitter"></a></li>
+
+
+
+<li><a href="mailto:m2ad0504@outlook.jp" title="Email" class="fa fa-envelope"></a></li>
+
+
+                
+            </ul>
+
+            <p class="copyright">&copy; プログラマー備忘録. Design: <a href="http://html5up.net" target="_blank">HTML5 UP</a>. Ported by <a href="//github.com/jpescador" target="_blank">Julio Pescador</a>. Powered by <a href="//gohugo.io" target="_blank">Hugo</a></p>
+        </section>
+
+</section>
+
+            </div>
+        <a id="back-to-top" href="#" class="fa fa-arrow-up fa-border fa-2x"></a>
+        
+
+        
+        
+            
+        
+
+        
+        
+            <script src="/js/jquery.min.js"></script>
+            <script src="/js/skel.min.js"></script>
+            <script src="/js/util.js"></script>
+            <script src="/js/main.js"></script>
+            <script src="/js/backToTop.js"></script>
+            <script src="/js/highlight.pack.js"></script>
+        
+
+        
+
+            
+            <script>hljs.initHighlightingOnLoad();</script>
+            
+        
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-37675354-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+    </body>
+</html>
+

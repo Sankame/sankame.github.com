@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Bitbucket on プログラマー備忘録</title>
+    <link>https://sankame.github.io/tags/bitbucket/index.xml</link>
+    <description>Recent content in Bitbucket on プログラマー備忘録</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <atom:link href="https://sankame.github.io/tags/bitbucket/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>GithubからBitbucketへソース移行</title>
+      <link>https://sankame.github.io/blog/2014-06-21-github_to_bitbucket/</link>
+      <pubDate>Sat, 21 Jun 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2014-06-21-github_to_bitbucket/</guid>
+      <description>
+
+&lt;h5 id=&#34;0-環境&#34;&gt;0.環境&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code&gt;  [CentOS]   5.6 (32bit版カーネル)
+  [Git]      1.9.4
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id=&#34;1-ダウンロード&#34;&gt;1.ダウンロード&lt;/h5&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Githubのソース取得&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/github_to_bitbucket/1.github.png&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;50%&#34; height=&#34;50%&#34; title=&#34;githubリポジトリ&#34; alt=&#34;githubリポジトリ&#34; src=&#34;https://sankame.github.io/assets/posts/img/github_to_bitbucket/1.github.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;任意のディレクトリへ移動。&lt;/p&gt;
+
+&lt;p&gt;GitHubのリポジトリから対象ソースを取得。(上図の画面右下がURL)&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;# git clone git@github.com:Sankame/repo-of-github.git&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;取得したソースの第1階層へ移動。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;# cd repo-of-github/&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Bitbucketへソースアップ&lt;/p&gt;
+
+&lt;p&gt;予めBitbucket上で任意のリポジトリを作っておきます。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/github_to_bitbucket/2.bitbucket_make_repo.png&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;50%&#34; height=&#34;50%&#34; title=&#34;bitbucketリポジトリ作成&#34; alt=&#34;bitbucketリポジトリ作成&#34; src=&#34;https://sankame.github.io/assets/posts/img/github_to_bitbucket/2.bitbucket_make_repo.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;空のリポジトリができました。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/github_to_bitbucket/3.bitbucket_new_repo.png&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;50%&#34; height=&#34;50%&#34; title=&#34;bitbucket新規リポジトリ&#34; alt=&#34;bitbucket新規リポジトリ&#34; src=&#34;https://sankame.github.io/assets/posts/img/github_to_bitbucket/3.bitbucket_new_repo.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;上記で GitHub から取得したソースは origin がGitHubになっているので、 Bitbucket へ変更。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# git remote -v
+ origin  git@github.com:Sankame/repo-of-github.git (fetch) 
+ origin  git@github.com:Sankame/repo-of-github.git (push)
+     
+ # git remote rm origin
+ # git remote add origin git@bitbucket.org:Sankame/repo-of-bitbucket.git
+ # git push -u origin --all # pushes up the repo and its refs for the first time
+ # git push -u origin --tags # pushes up any tags
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;GithubのソースがBitbucketへ取り込まれました。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/github_to_bitbucket/4.bitbucket_imported_repo.png&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;50%&#34; height=&#34;50%&#34; title=&#34;bitbucket取り込んだソース&#34; alt=&#34;bitbucket取り込んだソース&#34; src=&#34;https://sankame.github.io/assets/posts/img/github_to_bitbucket/4.bitbucket_imported_repo.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;※上記 &amp;quot;git remote add origin&amp;quot; でプロトコルにhttpsを指定していて、&amp;quot;git push&amp;quot; で下記エラーが出た場合は下記の「2.git pushが動かない場合」参照。&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;fatal: Unable to find remote helper for &#39;https&#39;&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h5 id=&#34;2-git-pushが動かない場合&#34;&gt;2.git pushが動かない場合&lt;/h5&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Gitをhttpsへ対応させる&lt;/p&gt;
+
+&lt;p&gt;下記URLを見るとcurl-develがないのが原因と書いてあったが、自分の環境には既に入っていたので、&lt;/p&gt;
+
+&lt;p&gt;gitを再コンパイル＆インストールしたところうまくいきました。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://clavier.hatenablog.com/entry/2013/05/18/204050&#34; target=&#34;_blank&#34;&gt;CentOSに最新のgitをインストールする&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;※gitのソースが手元にある場合は再取得しなくてもOKです。&lt;/p&gt;
+
+&lt;p&gt;※rootで操作しているのでインストール時にprefix指定&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# wget https://www.kernel.org/pub/software/scm/git/git-1.9.4.tar.gz
+ # tar xzf git-1.9.4.tar.gz
+ # cd git-1.9.4
+ # ./configure
+ # make clean
+ # make
+ # make prefix=/usr install
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
