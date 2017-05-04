@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Programming-practice on プログラマー備忘録</title>
+    <link>https://sankame.github.io/tags/programming-practice/index.xml</link>
+    <description>Recent content in Programming-practice on プログラマー備忘録</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <atom:link href="https://sankame.github.io/tags/programming-practice/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>トグル処理を楽に実装 (ビット演算)</title>
+      <link>https://sankame.github.io/blog/2016-05-27-bitwise_operator_toggle/</link>
+      <pubDate>Fri, 27 May 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2016-05-27-bitwise_operator_toggle/</guid>
+      <description>
+
+&lt;h3 id=&#34;0-環境&#34;&gt;0. 環境&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;[CentOS] 6.4 (64bit版カーネル)
+[PHP] 5.4.17
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;1-xorでトグル処理&#34;&gt;1. XORでトグル処理&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;押すたびにON/OFFが切り替わるようなトグル処理を実装する場合はXORが便利です。&lt;/p&gt;
+
+&lt;script src=&#34;https://gist.github.com/Sankame/46005a2dc4fed64a807f9c15cbb8c010.js&#34;&gt;&lt;/script&gt;
+
+&lt;p&gt;6行目、11行目 : 「XOR 1」するとビットが反転する性質を利用します。(下記)&lt;/p&gt;
+
+&lt;p&gt;&lt;b&gt;XOR&lt;/b&gt;&lt;/p&gt;
+
+&lt;table border=&#34;1&#34;&gt;
+&lt;tr&gt;&lt;td bgcolor=&#34;lightgray&#34;&gt;入力①&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td bgcolor=&#34;lightgray&#34;&gt;入力②&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td bgcolor=&#34;lightgray&#34;&gt;出力&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>状態管理を楽に実装 (ビット演算)</title>
+      <link>https://sankame.github.io/blog/2016-05-27-bitwise_operator_status_control/</link>
+      <pubDate>Fri, 27 May 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2016-05-27-bitwise_operator_status_control/</guid>
+      <description>
+
+&lt;h3 id=&#34;0-環境&#34;&gt;0. 環境&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;[CentOS] 6.4 (64bit版カーネル)
+[PHP] 5.4.17
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;1-orとandで状態管理&#34;&gt;1. ORとANDで状態管理&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;複数の状態や権限をまとめて管理したい場合、2進数が便利です。&lt;/p&gt;
+
+&lt;script src=&#34;https://gist.github.com/Sankame/5588e4ff2cec15e95d42592bd1746ba7.js&#34;&gt;&lt;/script&gt;
+
+&lt;p&gt;2-5行目 : 2進数の定数(10進数表記)を用意します。&lt;/p&gt;
+
+&lt;p&gt;7行目 : ORでプログラミング言語を足していきます。&lt;/p&gt;
+
+&lt;p&gt;Aさんが使える言語の位にビットが立つイメージです。(下記)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    0001 (PHP)
+    0010 (Ruby)
+OR) 1000 (Perl)
+----------
+    1011 (Aさんが使えるプログラミング言語)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;11行目以降 : Aさんが使えるプログラミング言語は何か、ANDで問い合わせます。&lt;/p&gt;
+
+&lt;p&gt;右端の位にビットが立っていれば結果がtrueになり、PHPが使えることが分かります。(下記)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;     1011 (Aさんが使えるプログラミング言語)
+AND) 0001 (PHP)
+----------
+     0001 (PHPが使える)
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>プログラミング問題A</title>
+      <link>https://sankame.github.io/blog/2015-12-31-programming_practice_A/</link>
+      <pubDate>Thu, 31 Dec 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2015-12-31-programming_practice_A/</guid>
+      <description>
+
+&lt;h3 id=&#34;環境&#34;&gt;環境&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;[CentOS]   5.6 (32bit版カーネル) 
+[PHP]      5.4.17
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;問題a-1&#34;&gt;問題A-1&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;10進数の任意の値をn進数に変換する関数を作成して下さい。(nは1～16の正の整数)&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;サンプルはPHP。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;サンプルa-1&#34;&gt;サンプルA-1&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;実行方法&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;$ php changeDecimalToBaseN.php
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;ソース&lt;/p&gt;
+
+&lt;script src=&#34;https://gist.github.com/Sankame/87f7b5050a802e5e5710.js&#34;&gt;&lt;/script&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
