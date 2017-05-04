@@ -1,0 +1,784 @@
+
+
+
+    
+
+
+
+
+<!DOCTYPE HTML>
+
+<html>
+    <head>
+        
+            <title>MindMapMemo - プログラマー備忘録</title>
+        
+
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="generator" content="Hugo 0.19" />
+        
+
+
+        
+        
+            
+                <meta name="description" content="HTML5 UP theme, Future Imperfect with some extra goodies, ported by Julio Pescador. Powered by Hugo">
+            
+        
+
+        
+        <meta property="og:title" content="MindMapMemo" />
+<meta property="og:description" content="HTML5 UP theme, Future Imperfect with some extra goodies, ported by Julio Pescador. Powered by Hugo" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://sankame.github.io/tags/mindmapmemo/" />
+
+
+
+<meta property="og:updated_time" content="2013-09-01T00:00:00&#43;00:00"/>
+
+
+
+
+
+
+
+
+
+
+        
+<meta itemprop="name" content="MindMapMemo">
+<meta itemprop="description" content="HTML5 UP theme, Future Imperfect with some extra goodies, ported by Julio Pescador. Powered by Hugo">
+
+
+        
+
+        
+
+        
+
+        
+            
+        
+
+        
+        
+            <link rel="stylesheet" href="/css/google-font.css" />
+            <link rel="stylesheet" href="/css/font-awesome.min.css" />
+            <link rel="stylesheet" href="/css/main.css" />
+            <link rel="stylesheet" href="/css/add-on.css" />
+            <link rel="stylesheet" href="/css/monokai-sublime.css">
+        
+
+        
+            
+                
+            
+                
+                    <link rel="stylesheet" href="/css/sankame.css" />
+                
+            
+        
+
+        
+        
+        
+            
+        
+    </head>
+    <body>
+
+        
+        <div id="wrapper">
+
+    
+<header id="header">
+    
+        <h2><a href="/">プログラマー備忘録</i></a></h2>
+    
+
+    <nav class="links">
+        <ul>
+            
+                <li>
+                    <a href="/categories">
+                        Categories
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="/about">
+                        About
+                    </a>
+                </li>
+            
+        </ul>
+    </nav>
+    <nav class="main">
+        <ul>
+            
+            <li class="search">
+                <a class="fa-search" href="#search">Search</a>
+                <form id="search" method="get" action="//google.com/search">
+                    <input type="text" name="q" placeholder="Search" />
+                    <input type="hidden" name="q" value="site:https://sankame.github.io/">
+                </form>
+            </li>
+            <li class="menu">
+                <a class="fa-bars" href="#menu">Menu</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+
+<section id="menu">
+
+    
+        <section>
+            <form class="search" method="get" action="//google.com/search">
+                <input type="text" name="q" placeholder="Search" />
+                <input type="hidden" name="q" value="site:https://sankame.github.io/">
+            </form>
+        </section>
+
+    
+        <section>
+            <ul class="links">
+                
+                    <li>
+                        <a href="/categories">
+                            <h3>
+                                
+                                Categories
+                            </h3>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/about">
+                            <h3>
+                                
+                                About
+                            </h3>
+                        </a>
+                    </li>
+                
+            </ul>
+        </section>
+
+    
+        <section>
+            <ul class="links">
+                <header>
+                    <h3>Recent Posts</h3>
+                </header>
+                
+                    
+                
+
+                
+                    <li>
+                        <a href="https://sankame.github.io/blog/2017-04-16-speed_up_website_use_browser_cache/"><p>Webサイト・スピードアップ - ブラウザキャッシュ利用</p></a>
+                    </li>
+                
+                    <li>
+                        <a href="https://sankame.github.io/blog/2017-03-19-hugo_quickstart/"><p>Hugoクイックスタート</p></a>
+                    </li>
+                
+            </ul>
+        </section>
+
+    
+        
+</section>
+
+    
+    <div id="main">
+        
+        
+            
+        
+
+        
+            <article class="post">
+    <header>
+    <div class="title">
+        
+            <h2><a href="https://sankame.github.io/blog/2013-09-02-nexus7_projected_to_pc/">Nexus7のスクリーンをプロジェクターに映す (Android Screen Cast)</a></h2>
+        
+        
+            <p>Android Screen Castを使ってNexus7のスクリーンをプロジェクターに映します。</p>
+        
+    </div>
+    <div class="meta">
+        
+            
+        
+
+        <time class="published"
+            datetime='2013-09-01'>
+            September 1, 2013</time>
+        <span class="author"></span>
+        
+            <p>1 minute read</p>
+        
+        
+    </div>
+</header>
+
+    
+
+    <p>環境 [タブレット(OS)] Nexus7(Android 4.2.2) [PC(OS)] Gateway SX2800(Windows Vista Home Premium)  0. 検討  プレゼンでNexus7のスクリーンをプロジェクターに映したいと考え、検討した結果、下記C案にしました。
+ A.変換器を使う →Nexus7はMHL非対応…
+ B.アプリで解決 →PCに映像を送信する方法。有料かつNexus7のRoot化が必要。
+ C.アプリで解決 →PCに映像を送信する方法。無料かつRoot化の必要もなし。Nexus7の映像がPCに届くまで数秒のタイムラグあり。
+   1. PCにAndroid SDKをインストール  下記ページの[download here] - [Download the SDK]ボタンをクリック。
+ダウンロード
+ 規約に同意したら「I have read and agree…」にチェック。
+ 32ビットか64ビットかは、次の手順で調べます。
+[スタート]メニュー - [コンピュータ]右クリック - [プロパティ]
+[システムの種類]を確認。
+  2. Nexus7とPCをUSBケーブルで接続 3. Android Screen Cast  (3-1) Android Screen Castを下記リンクからダウンロードし、PCの任意のフォルダに保存します。
+ダウンロード
+ (3-2) コマンドプロンプトで上記3-1のフォルダに移動し、下記コマンドを実行。</p>
+
+    <footer>
+        <ul class="actions">
+            <li><a href="https://sankame.github.io/blog/2013-09-02-nexus7_projected_to_pc/" class="button big">Continue Reading</a></li>
+        </ul>
+        <ul class="stats">
+    
+        
+
+        
+        
+            <li>
+                
+                
+                    
+
+                    
+
+                    
+
+                    
+                        Categories
+                    
+                
+            </li>
+        
+    
+
+    
+    
+    </footer>
+</article>
+
+        
+            <article class="post">
+    <header>
+    <div class="title">
+        
+            <h2><a href="https://sankame.github.io/blog/2013-08-26-mysql_command/">MySQLコマンド メモ</a></h2>
+        
+        
+            <p>MySQLコマンド メモ</p>
+        
+    </div>
+    <div class="meta">
+        
+            
+        
+
+        <time class="published"
+            datetime='2013-08-26'>
+            August 26, 2013</time>
+        <span class="author"></span>
+        
+            <p>1 minute read</p>
+        
+        
+    </div>
+</header>
+
+    
+
+    <p>MySQLコマンド メモ WebサーバとDBサーバが1台のマシンにある場合によく行う操作。 # そのマシンのMySQLサーバにrootで接続 # (パスワードを聞かれるので入力してEnter) # mysql -h 127.0.0.1 -u root -p mysql&gt; &ndash; UTF8でDBを作成し、接続ユーザを作成 (先頭がtestの文字は読み替えて下さい) mysql&gt; create database testdb default character set utf8; mysql&gt; grant all on testdb.* to &lsquo;testuser&rsquo;@&lsquo;localhost&rsquo; identified by &lsquo;testpassword&rsquo;; mysql&gt; flush privileges; mysql&gt; &ndash; 別マシンからDBへ接続する必要がある場合は、以下のように別ユーザを作成 mysql&gt; &ndash; (192.168.0.1の部分を別マシンのIPに読み替える) mysql&gt; grant all on testdb.* to testuser@192.168.0.1 identified by &lsquo;testpassword&rsquo;; mysql&gt; &ndash; 作成したDBに切り替え、テーブルを作成 mysql&gt; use testdb; mysql&gt; DROP TABLE IF EXISTS <code>users</code>; mysql&gt; CREATE TABLE <code>users</code> ( mysql&gt; <code>id</code> bigint unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY, mysql&gt; <code>username</code> varchar(32) NOT NULL mysql&gt; ) ENGINE=InnoDB;</p>
+
+    <footer>
+        <ul class="actions">
+            <li><a href="https://sankame.github.io/blog/2013-08-26-mysql_command/" class="button big">Continue Reading</a></li>
+        </ul>
+        <ul class="stats">
+    
+        
+
+        
+        
+            <li>
+                
+                
+                    
+
+                    
+
+                    
+
+                    
+                        Categories
+                    
+                
+            </li>
+        
+    
+
+    
+    
+    </footer>
+</article>
+
+        
+            <article class="post">
+    <header>
+    <div class="title">
+        
+            <h2><a href="https://sankame.github.io/blog/2013-08-11-nexus7_github_devenv/">Nexus7とGitHubでプログラミング環境を作る</a></h2>
+        
+        
+    </div>
+    <div class="meta">
+        
+            
+        
+
+        <time class="published"
+            datetime='2013-08-11'>
+            August 11, 2013</time>
+        <span class="author"></span>
+        
+            <p>1 minute read</p>
+        
+        
+    </div>
+</header>
+
+    
+
+    <p>0.環境 [端末] Nexus7 [OS] Android 4.2.2 [BlueToothキーボード] ELECOM TK-FBP013  1.インストール  (1-1) Nexus7にBit Web Serverをインストールします。
+ダウンロード
+Android上でPHPとMySQLを動かせるアプリ。(有料 約230円) root化しないで使用可能。  (1-2) Nexus7にTerminal IDEをインストールします。
+ダウンロード
+Android用の開発環境。(java、c、c++等のコンパイラを含む) root化しないで使用可能。   2.Hello World  Nexus7にBlueToothキーボードを接続。
+Nexus7でTerminal IDEを起動します。
+いくつかボタンが表示されるので、[Install System]をクリック。
+Overwrite ALLにチェックを入れ、[Install System]をクリックし、システムアップデート。
+[Terminal IDE]をクリック。
+コンソールが起動するので、ファイルを作成し、下記内容を書き込みます。
+$ cd $HOME/sdcard/wwww $ $ vim test_hello.php   Nexus7でBit Web Serverを起動。
+[Localhost]をクリック。
+ブラウザが起動し、表示されたファイル一覧から上記で作成したtest_hello.phpをクリック。
+ブラウザにhelloと表示されれば成功です。
+  3.GitHubにファイルをプッシュ(準備)  せっかくなのでNexus7からGitHubにファイルをプッシュしてみます。
+公開鍵と秘密鍵を作成。(Nexus7で下記コマンドを実行)
+$ dropbearkey -t rsa -f $HOME/.</p>
+
+    <footer>
+        <ul class="actions">
+            <li><a href="https://sankame.github.io/blog/2013-08-11-nexus7_github_devenv/" class="button big">Continue Reading</a></li>
+        </ul>
+        <ul class="stats">
+    
+        
+
+        
+        
+            <li>
+                
+                
+                    
+
+                    
+
+                    
+
+                    
+                        Categories
+                    
+                
+            </li>
+        
+    
+
+    
+    
+    </footer>
+</article>
+
+        
+
+        
+<ul class="actions pagination">
+    
+        <li><a href="/tags/mindmapmemo/page/18/"
+                class="button big previous">Previous Page</a></li>
+    
+
+    
+        <li><a href="/tags/mindmapmemo/page/20/"
+                class="button big next">Next Page</a></li>
+    
+</ul>
+
+    </div>
+    
+<section id="sidebar">
+
+    
+        <section id="intro">
+            
+            
+                
+                    <a href="/" class="logo"><img src="/assets/avatar.jpg" alt="Sankame" /></a>
+                
+            
+            
+                <header>
+                    <h2>プログラマー備忘録</h2>
+                    <p></p>
+                </header>
+            
+            <ul class="icons">
+                
+                    <li><a href="https://sankame.github.io/tags/mindmapmemo/index.xml" type="application/rss+xml"
+                        target="_blank" title="RSS" class="fa fa-rss"></a></li>
+                
+                
+                    
+<li><a href="//github.com/Sankame" target="_blank" title="GitHub" class="fa fa-github"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li><a href="//facebook.com/100014073908728" target="_blank" title="Facebook" class="fa fa-facebook"></a></li>
+
+
+
+<li><a href="//twitter.com/handycola" target="_blank" title="Twitter" class="fa fa-twitter"></a></li>
+
+
+
+<li><a href="mailto:m2ad0504@outlook.jp" title="Email" class="fa fa-envelope"></a></li>
+
+
+                
+            </ul>
+        </section>
+
+    
+        <section id="recent-posts">
+            <ul class="posts">
+                <header>
+                    <h3>Recent Posts</h3>
+                </header>
+                
+                    
+                
+
+                
+                    
+                
+
+                
+                    <li>
+                        <article>
+                            <header>
+                                <h3><a href="https://sankame.github.io/blog/2017-04-16-speed_up_website_use_browser_cache/">Webサイト・スピードアップ - ブラウザキャッシュ利用</a></h3>
+                                
+                                    
+                                
+                                <time class="published" datetime=
+                                    '2017-04-16'>
+                                    April 16, 2017</time>
+                            </header>
+                        </article>
+                    </li>
+                
+                    <li>
+                        <article>
+                            <header>
+                                <h3><a href="https://sankame.github.io/blog/2017-03-19-hugo_quickstart/">Hugoクイックスタート</a></h3>
+                                
+                                    
+                                
+                                <time class="published" datetime=
+                                    '2017-03-19'>
+                                    March 19, 2017</time>
+                            </header>
+                        </article>
+                    </li>
+                
+
+                
+                    <li>
+                        <ul class="actions">
+                            <li><a href=
+                            
+                                /blog/
+                            
+                            class="button">View more posts</a></li>
+                        </ul>
+                    </li>
+                
+            </ul>
+        </section>
+
+    
+    
+    
+    
+        <section id="categories">
+            <ul class="posts">
+                <header>
+                    <h3><a href="/categories/">Categories</a></h3>
+                </header>
+
+                
+                    
+                
+
+                
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/%E3%82%BB%E3%83%83%E3%83%88%E3%82%A2%E3%83%83%E3%83%97/">セットアップ</a>
+                                <span style="float:right;">33</span>
+                            </header>
+                        </article>
+                    </li>
+                
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/tips/">tips</a>
+                                <span style="float:right;">15</span>
+                            </header>
+                        </article>
+                    </li>
+                
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/%E3%82%A8%E3%83%A9%E3%83%BC%E8%A7%A3%E6%B1%BA/">エラー解決</a>
+                                <span style="float:right;">15</span>
+                            </header>
+                        </article>
+                    </li>
+                
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0/">プログラミング</a>
+                                <span style="float:right;">6</span>
+                            </header>
+                        </article>
+                    </li>
+                
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/%E3%83%81%E3%83%A5%E3%83%BC%E3%83%8B%E3%83%B3%E3%82%B0/">チューニング</a>
+                                <span style="float:right;">2</span>
+                            </header>
+                        </article>
+                    </li>
+                
+            </ul>
+        </section>
+    
+
+    
+        
+        <section class="blurb">
+            <h2>About</h2>
+            <p>老舗インターネット・メディア企業で働くプログラマー</p>
+
+            <ul class="actions">
+                <li><a href="/about/" class="button">Learn More</a></li>
+            </ul>
+        </section>
+        
+
+	
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+<ins class="adsbygoogle"
+     style="display:inline-block;width:300px;height:250px"
+     data-ad-client="ca-pub-7938855665302783"
+     data-ad-slot="8711718758"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+
+    
+        <section id="footer">
+            <ul class="icons">
+                
+                    <li><a href="https://sankame.github.io/tags/mindmapmemo/index.xml" type="application/rss+xml"
+                        target="_blank" title="RSS" class="fa fa-rss"></a></li>
+                
+                
+                    
+<li><a href="//github.com/Sankame" target="_blank" title="GitHub" class="fa fa-github"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li><a href="//facebook.com/100014073908728" target="_blank" title="Facebook" class="fa fa-facebook"></a></li>
+
+
+
+<li><a href="//twitter.com/handycola" target="_blank" title="Twitter" class="fa fa-twitter"></a></li>
+
+
+
+<li><a href="mailto:m2ad0504@outlook.jp" title="Email" class="fa fa-envelope"></a></li>
+
+
+                
+            </ul>
+
+            <p class="copyright">&copy; プログラマー備忘録. Design: <a href="http://html5up.net" target="_blank">HTML5 UP</a>. Ported by <a href="//github.com/jpescador" target="_blank">Julio Pescador</a>. Powered by <a href="//gohugo.io" target="_blank">Hugo</a></p>
+        </section>
+
+</section>
+
+            </div>
+        <a id="back-to-top" href="#" class="fa fa-arrow-up fa-border fa-2x"></a>
+        
+
+        
+        
+            
+        
+
+        
+        
+            <script src="/js/jquery.min.js"></script>
+            <script src="/js/skel.min.js"></script>
+            <script src="/js/util.js"></script>
+            <script src="/js/main.js"></script>
+            <script src="/js/backToTop.js"></script>
+            <script src="/js/highlight.pack.js"></script>
+        
+
+        
+
+            
+            <script>hljs.initHighlightingOnLoad();</script>
+            
+        
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-37675354-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+    </body>
+</html>
+

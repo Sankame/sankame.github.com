@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>FreeMind on プログラマー備忘録</title>
+    <link>https://sankame.github.io/tags/freemind/index.xml</link>
+    <description>Recent content in FreeMind on プログラマー備忘録</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <atom:link href="https://sankame.github.io/tags/freemind/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>スマホ(Android)とPCでMindMapを使う</title>
+      <link>https://sankame.github.io/blog/2013-10-04-mind_map_tools/</link>
+      <pubDate>Fri, 04 Oct 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2013-10-04-mind_map_tools/</guid>
+      <description>
+
+&lt;h5 id=&#34;0-環境&#34;&gt;0.環境&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code&gt;[スマホ端末/OS] GALAXY S SC-02B / Android2.2
+[PC端末/OS]    Gateway SX2800 / Windows Vista Home Premium
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id=&#34;1-スマホでマインドマップ作成&#34;&gt;1.スマホでマインドマップ作成&lt;/h5&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;1-1.スマホにMindMapMemoをインストールする。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;1-2.マインドマップのファイルを作成後、「オプション」-「メール送信(SD保存)」-「FreeMind(.mm)」を選択。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;1-3.共有するためのアプリ一覧が表示されるので、PCへファイルを送信できるアプリを選択。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h5 id=&#34;2-pcにfreemindをインストール&#34;&gt;2.PCにFreeMindをインストール&lt;/h5&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;2-1.下記リンク先のページで[0.8.1]をクリック。&lt;/p&gt;
+
+&lt;p&gt;(0.9.0では上記スマホで作成したファイルをうまく開けませんでした)&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://sourceforge.net/projects/freemind/files/freemind/&#34;&gt;FreeMindソース&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;2-2.[freemind-bin-0_8_1.zip]をクリック。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;2-3.PCにダウンロード後、解凍してFreemind.exeをダブルクリック。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;2-4.メニューの「ファイル」-「開く」で、スマホから送信した拡張子がmmのファイルを選択。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;2-5.スマホではカラフルに作ったのにFreeMindで開くと白黒になっている。まあ内容が分かるからいいか…&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
