@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>GoogleSheets on プログラマー備忘録</title>
+    <link>https://sankame.github.io/tags/googlesheets/index.xml</link>
+    <description>Recent content in GoogleSheets on プログラマー備忘録</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <atom:link href="https://sankame.github.io/tags/googlesheets/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Googleスプレッドシート  行ごとに背景色を変える</title>
+      <link>https://sankame.github.io/blog/2015-11-28-google_sheets_colors_for_lines/</link>
+      <pubDate>Sat, 28 Nov 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2015-11-28-google_sheets_colors_for_lines/</guid>
+      <description>
+
+&lt;h3 id=&#34;googleスプレッドシート-設定方法&#34;&gt;Googleスプレッドシート  設定方法&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;あるセルに値を入れることで、行全体の色を変える場合の設定です。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;下記のようなリストを例に、完了日を入れるだけで項目を自動的にグレーアウトします。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/google_sheets_colors_for_lines/リスト.png&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;50%&#34; height=&#34;50%&#34; title=&#34;リスト&#34; alt=&#34;リスト&#34; src=&#34;https://sankame.github.io/assets/posts/img/google_sheets_colors_for_lines/リスト.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;メニューで「条件付き書式」を選択。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/google_sheets_colors_for_lines/条件付き書式.png&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;50%&#34; height=&#34;50%&#34; title=&#34;条件付き書式&#34; alt=&#34;条件付き書式&#34; src=&#34;https://sankame.github.io/assets/posts/img/google_sheets_colors_for_lines/条件付き書式.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;右端に枠が表示されます。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/google_sheets_colors_for_lines/条件付き書式設定ルール.png&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;30%&#34; height=&#34;30%&#34; title=&#34;条件付き書式設定ルール&#34; alt=&#34;条件付き書式設定ルール&#34; src=&#34;https://sankame.github.io/assets/posts/img/google_sheets_colors_for_lines/条件付き書式設定ルール.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;まず範囲を選択します。今回はヘッダーを除いたデータ部分を指定。(A4:C6)&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;次に書式設定の条件を指定します。&lt;/p&gt;
+
+&lt;p&gt;例では「C列の4行目以降に値がある」場合にtrueを返すようにします。&lt;/p&gt;
+
+&lt;p&gt;(C列を固定するため絶対参照の$マークをつけ、4行目からは相対参照にしたいため下記のように指定)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;=IF($C4 &amp;lt;&amp;gt; &amp;quot;&amp;quot;, true, false)
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;最後に書式設定で上記がtrueの場合に適用される書式を設定します。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;以上で「完了日」に文字列を入れると行全体をグレーにする設定ができました。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/google_sheets_colors_for_lines/条件付き書式設定完了.png&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;70%&#34; height=&#34;70%&#34; title=&#34;条件付き書式設定完了&#34; alt=&#34;条件付き書式設定完了&#34; src=&#34;https://sankame.github.io/assets/posts/img/google_sheets_colors_for_lines/条件付き書式設定完了.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
