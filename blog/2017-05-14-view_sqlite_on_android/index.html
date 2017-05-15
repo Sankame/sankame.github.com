@@ -1,0 +1,919 @@
+<!DOCTYPE HTML>
+
+<html>
+    <head>
+        
+            
+                <title>AndroidのSQLite DBを参照</title>
+            
+        
+
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="generator" content="Hugo 0.19" />
+        
+
+
+        
+        
+            <meta name="description" content="Androidアプリ開発でデバッグを楽にするため、SQLiteのDBを参照する方法について調べました。">
+        
+
+        
+
+  <meta name="twitter:card" content="summary"/>
+
+
+
+<meta name="twitter:text:title" content="AndroidのSQLite DBを参照"/>
+<meta name="twitter:title" content="AndroidのSQLite DBを参照"/>
+<meta name="twitter:description" content="Androidアプリ開発でデバッグを楽にするため、SQLiteのDBを参照する方法について調べました。"/>
+<meta name="twitter:site" content="@handycola"/>
+
+        <meta property="og:title" content="AndroidのSQLite DBを参照" />
+<meta property="og:description" content="Androidアプリ開発でデバッグを楽にするため、SQLiteのDBを参照する方法について調べました。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://sankame.github.io/blog/2017-05-14-view_sqlite_on_android/" />
+
+
+
+<meta property="article:published_time" content="2017-05-14T00:00:00&#43;00:00"/>
+<meta property="article:modified_time" content="2017-05-14T00:00:00&#43;00:00"/>
+
+
+
+
+
+
+
+
+
+
+
+        
+<meta itemprop="name" content="AndroidのSQLite DBを参照">
+<meta itemprop="description" content="Androidアプリ開発でデバッグを楽にするため、SQLiteのDBを参照する方法について調べました。">
+
+
+<meta itemprop="dateModified" content="2017-05-14T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="240">
+
+
+
+<meta itemprop="keywords" content="tips,エラー解決,セットアップ,チューニング,プログラミング,Android,AndroidStudio,AndroidWear,Angular2,Apache,ApacheBench,AppleWatch,Bitbucket,CentOS,DELL,Eclipse,FreeMind,Git,GitHub,GoogleSheets,Hugo,Java,JavaScript,Jekyll,Jenkins,Kitura,Laravel,Let&#39;sEncrypt,MeCab,MindMapMemo,MySQL,NTP,Nexus7,Nginx,OpenX,PHP,PHPDebugBar,Phalcon,Redis,ReviveAdServer,Ruby,RubyGems,Rundeck,SQLite,SSL-TLS,Selenium,Smarty,Subversion,Swift,Touchpad,TypeScript,Vagrant,VirtualBox,Website-Optimization,Xcode,ab,bash,cocoapods,composer,fitbit,gulp,jqGrid,node.js,npm,programming-practice,shell,ssh,wget,windows,プロジェクター," />
+
+        
+
+        
+
+        
+
+        
+            
+        
+
+        
+        
+            <link rel="stylesheet" href="/css/google-font.css" />
+            <link rel="stylesheet" href="/css/font-awesome.min.css" />
+            <link rel="stylesheet" href="/css/main.css" />
+            <link rel="stylesheet" href="/css/add-on.css" />
+            <link rel="stylesheet" href="/css/monokai-sublime.css">
+        
+
+        
+            
+                
+            
+                
+                    <link rel="stylesheet" href="/css/sankame.css" />
+                
+            
+        
+
+        
+        
+        
+            
+        
+    </head>
+    <body>
+
+        
+        <div id="wrapper">
+
+    
+    
+<header id="header">
+    
+        <h2><a href="/">プログラマー備忘録</i></a></h2>
+    
+
+    <nav class="links">
+        <ul>
+            
+                <li>
+                    <a href="/categories">
+                        Categories
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="/about">
+                        About
+                    </a>
+                </li>
+            
+        </ul>
+    </nav>
+    <nav class="main">
+        <ul>
+            
+            <li id="share-nav" class="share-menu" style="display:none;">
+                <a class="fa-share-alt" href="#share-menu">Share</a>
+            </li>
+            
+            <li class="search">
+                <a class="fa-search" href="#search">Search</a>
+                <form id="search" method="get" action="//google.com/search">
+                    <input type="text" name="q" placeholder="Search" />
+                    <input type="hidden" name="q" value="site:https://sankame.github.io/">
+                </form>
+            </li>
+            <li class="menu">
+                <a class="fa-bars" href="#menu">Menu</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+
+<section id="menu">
+
+    
+        <section>
+            <form class="search" method="get" action="//google.com/search">
+                <input type="text" name="q" placeholder="Search" />
+                <input type="hidden" name="q" value="site:https://sankame.github.io/">
+            </form>
+        </section>
+
+    
+        <section>
+            <ul class="links">
+                
+                    <li>
+                        <a href="/categories">
+                            <h3>
+                                
+                                Categories
+                            </h3>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/about">
+                            <h3>
+                                
+                                About
+                            </h3>
+                        </a>
+                    </li>
+                
+            </ul>
+        </section>
+
+    
+        <section>
+            <ul class="links">
+                <header>
+                    <h3>Recent Posts</h3>
+                </header>
+                
+                    
+                
+
+                
+                    <li>
+                        <a href="https://sankame.github.io/blog/2017-05-14-view_sqlite_on_android/"><p>AndroidのSQLite DBを参照</p></a>
+                    </li>
+                
+                    <li>
+                        <a href="https://sankame.github.io/blog/2017-04-16-speed_up_website_use_browser_cache/"><p>Webサイト・スピードアップ - ブラウザキャッシュ利用</p></a>
+                    </li>
+                
+            </ul>
+        </section>
+
+    
+        
+</section>
+
+    <section id="share-menu">
+    <section id="social-share-nav">
+        <ul class="links">
+            <header>
+                <h3>Share this post <i class="fa fa-smile-o"></i></h3>
+            </header>
+            
+
+<li><a href="//twitter.com/share?url=https%3a%2f%2fsankame.github.io%2fblog%2f2017-05-14-view_sqlite_on_android%2f&text=Android%e3%81%aeSQLite%20DB%e3%82%92%e5%8f%82%e7%85%a7&via=handycola" target="_blank" class="share-btn twitter">
+    <i class="fa fa-twitter"></i>
+    <p>Twitter</p>
+</a></li>
+
+
+<li><a href="//plus.google.com/share?url=https%3a%2f%2fsankame.github.io%2fblog%2f2017-05-14-view_sqlite_on_android%2f" target="_blank" class="share-btn google-plus">
+    <i class="fa fa-google-plus"></i>
+    <p>Google+</p>
+</a></li>
+
+
+<li><a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fsankame.github.io%2fblog%2f2017-05-14-view_sqlite_on_android%2f" target="_blank" class="share-btn facebook">
+    <i class="fa fa-facebook"></i>
+    <p>Facebook</p>
+</a></li>
+
+
+<li><a href="//reddit.com/submit?url=https%3a%2f%2fsankame.github.io%2fblog%2f2017-05-14-view_sqlite_on_android%2f&title=Android%e3%81%aeSQLite%20DB%e3%82%92%e5%8f%82%e7%85%a7" target="_blank" class="share-btn reddit">
+    <i class="fa fa-reddit-alien"></i>
+    <p>Reddit</p>
+</a></li>
+
+
+<li><a href="//www.linkedin.com/shareArticle?url=https%3a%2f%2fsankame.github.io%2fblog%2f2017-05-14-view_sqlite_on_android%2f&title=Android%e3%81%aeSQLite%20DB%e3%82%92%e5%8f%82%e7%85%a7" target="_blank" class="share-btn linkedin">
+    <i class="fa fa-linkedin"></i>
+    <p>LinkedIn</p>
+</a></li>
+
+
+<li><a href="//www.stumbleupon.com/submit?url=https%3a%2f%2fsankame.github.io%2fblog%2f2017-05-14-view_sqlite_on_android%2f&title=Android%e3%81%aeSQLite%20DB%e3%82%92%e5%8f%82%e7%85%a7" target="_blank" class="share-btn stumbleupon">
+    <i class="fa fa-stumbleupon"></i>
+    <p>StumbleUpon</p>
+</a></li>
+
+
+<li><a href="mailto:?subject=Check out this post by &body=https%3a%2f%2fsankame.github.io%2fblog%2f2017-05-14-view_sqlite_on_android%2f" target="_blank" class="share-btn email">
+    <i class="fa fa-envelope"></i>
+    <p>Email</p>
+</a></li>
+
+        </ul>
+    </section>
+</section>
+
+    
+    <div id="main">
+        
+        
+        <article class="post">
+    <header>
+    <div class="title">
+        
+            <h1><a href="https://sankame.github.io/blog/2017-05-14-view_sqlite_on_android/">AndroidのSQLite DBを参照</a></h1>
+            
+        
+        
+            <p>Androidアプリ開発でデバッグを楽にするため、SQLiteのDBを参照する方法について調べました。</p>
+        
+    </div>
+    <div class="meta">
+        
+            
+        
+
+        <time class="published"
+            datetime='2017-05-14'>
+            May 14, 2017</time>
+        <span class="author"></span>
+        
+            <p>2 minute read</p>
+        
+        
+    </div>
+</header>
+
+
+    <section id="social-share">
+        <ul class="icons">
+            
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+<ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-7938855665302783"
+     data-ad-slot="9392921550"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+        </ul>
+    </section>
+    
+
+    <div id="content">
+        
+
+<p><span>&nbsp;</span><span style="color:#d14; float:right;">更新日：2017年05月16日</span></p>
+
+<h1 id="0-環境">0.環境</h1>
+
+<ul>
+<li><p>PC側</p>
+
+<pre><code>[OS]             Windows7 (32bit 版)
+[Android Studio] 1.5.1
+</code></pre></li>
+
+<li><p>スマホ側</p>
+
+<pre><code>[OS]             Android 5.1.1
+[SQLite]         3.8.6.1
+</code></pre></li>
+</ul>
+
+<h1 id="1-前提">1. 前提</h1>
+
+<ul>
+<li><p>まずSQLiteのデータをファイル形式で保存するよう設定します。</p></li>
+
+<li><p>例として、SQLiteを操作するライブラリにSQLiteOpenHelperを使用した場合について記載します。</p></li>
+
+<li><p>コンストラクタの第二引数でDBファイル名を指定します。</p></li>
+
+<li><p>(未指定の場合、データはメモリにのみ保持されます)</p>
+
+<pre><code class="language-java">class DatabaseHelper extends SQLiteOpenHelper {
+
+    public DatabaseHelper(Context context) {
+        //DBファイル名を指定。
+        super(context, &quot;example.db&quot;, null, 1);
+    }
+</code></pre></li>
+
+<li><p>PCからAndroid端末にあるSQLiteのDBファイルを見る方法を調べました。</p></li>
+
+<li><p>試行錯誤した内容を書いているため、結論だけ知りたい場合は、4まで読み飛ばして下さい。</p></li>
+</ul>
+
+<h1 id="2-adb-androidデバッグ用インターフェース-利用">2. ADB(Androidデバッグ用インターフェース) 利用</h1>
+
+<ul>
+<li><p>ネットを検索して結構あったのが、ADBを使ってSQLiteのDBファイルをAndroid端末からPCへコピーし、その後DBビューワーで参照するというものです。</p></li>
+
+<li><p>PCでコマンドプロンプトから下記コマンドを実行すると、カレントディレクトリにtarget.db(任意)というファイルができます。</p>
+
+<pre><code class="language-console">C:\Users\【ユーザー名】&gt;adb -d shell &quot;run-as 【アプリケーションID】 cat databases/【DBファイル名】&quot;&gt;target.db
+</code></pre></li>
+
+<li><p>【】内は読み替えて下さい。</p>
+
+<ul>
+<li><p>【アプリケーションID】: Android Studioの[File]-[Project Structure]-[Flavors]-[Application Id]</p></li>
+
+<li><p>【DBファイル名】: 上記1で指定したファイル名。</p></li>
+</ul></li>
+
+<li><p>Database BrowserやPupSQLiteというビューワーでtarget.dbを開いても、下記エラーが出てレコードが表示されません。</p>
+
+<p><code>database disk image is malformed</code></p></li>
+
+<li><p><a href="http://qiita.com/tsunet111/items/2c21706fd67f5ecb047d" target="_blank">この修復方法</a>を試しましたが次のエラーが出て、上記ビューワーで見てもレコードが0件でした。</p>
+
+<pre><code class="language-console">Error: near line 6: NOT NULL constraint failed: 【テーブル名】.【カラム名】
+</code></pre></li>
+
+<li><p>Android(Linux系)とWindowsだからリダイレクションでデータの受け渡しがうまくいってないのかな？と推測し、Linuxコマンドも使えるPower Shellを使ってみたところ、最初の結果と異なり、target.dbのファイルサイズは倍になりました。</p></li>
+
+<li><p>再度、上記のビューワーで開こうとしたところ、復号化パスワードを求められ開けませんでした…</p></li>
+</ul>
+
+<h1 id="3-android-device-monitor-利用">3. Android Device Monitor 利用</h1>
+
+<ul>
+<li><p>方針を変え、Android Studioの付属ツールを使ってDBファイルをPCへコピーする方法を試しました。</p>
+
+<pre><code class="language-text">Android Studioのメニューで[Tools]-[Android]-[Android Device Monitor]-[File Explorer]タブ
+</code></pre></li>
+
+<li><p>&ldquo;data&rdquo;ディレクトリはあるのですが、その下のディレクトリが表示されず、DBファイルまでたどり着けなかったため諦めました。</p></li>
+</ul>
+
+<h1 id="4-stetho-利用">4. stetho 利用</h1>
+
+<ul>
+<li><p>facebookが提供している<a href="https://github.com/facebook/stetho" target="_blank">stetho</a>というデバッグツールを使いました。</p>
+
+<ul>
+<li><p>(4-1) 準備</p>
+
+<ul>
+<li><p><a href="http://facebook.github.io/stetho/#download" target="_blank">このページ</a>からjarをダウンロードし、下記ディレクトリへコピーします。</p>
+
+<p><code>[アプリのルート]-[mobile]-[libs]</code></p></li>
+
+<li><p>僕のbuild.gradleは、もともとlibsの全jarを読み込み対象にしていたのでひとまずそのままにしました。</p></li>
+
+<li><p>(build.gradle抜粋)</p>
+
+<pre><code class="language-java">    dependencies {
+        compile fileTree(dir: 'libs', include: ['*.jar'])
+        wearApp project(':wear')
+        compile 'com.android.support:appcompat-v7:21.0.3'
+        compile 'com.google.android.gms:play-services:6.5.87'
+        compile &quot;com.android.support:support-v4:20.0.+&quot;
+        compile files('libs/gson-2.5.jar')
+    }
+</code></pre></li>
+
+<li><p>さらに、ソースコードへ下記①、②を追記します。</p>
+
+<pre><code class="language-java">//①
+import com.facebook.stetho.Stetho;
+
+public class MainActivity extends ActionBarActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+
+        super.onCreate(savedInstanceState);
+        //②
+        Stetho.initializeWithDefaults(this);
+
+        // 以下省略
+</code></pre></li>
+</ul></li>
+
+<li><p>(4-2) エラー対応</p>
+
+<ul>
+<li><p>ビルドしたところ、下記エラーが発生しました。</p></li>
+
+<li><p>ライブラリを重複して読み込もうとする際に出るエラーのようです。</p>
+
+<pre><code class="language-console">:mobile:dexDebug
+AGPBI: {&quot;kind&quot;:&quot;simple&quot;,&quot;text&quot;:&quot;UNEXPECTED TOP-LEVEL EXCEPTION:&quot;,&quot;sources&quot;:[{}]}
+AGPBI: {&quot;kind&quot;:&quot;simple&quot;,&quot;text&quot;:&quot;com.android.dex.DexException: Multiple dex files define Landroid/support/v7/appcompat/R$anim;&quot;,&quot;sources&quot;:[{}]}
+AGPBI: {&quot;kind&quot;:&quot;simple&quot;,&quot;text&quot;:&quot;\tat com.android.dx.merge.DexMerger.readSortableTypes(DexMerger.java:596)&quot;,&quot;sources&quot;:[{}]}
+AGPBI: {&quot;kind&quot;:&quot;simple&quot;,&quot;text&quot;:&quot;\tat com.android.dx.merge.DexMerger.getSortedTypes(DexMerger.java:554)&quot;,&quot;sources&quot;:[{}]}
+AGPBI: {&quot;kind&quot;:&quot;simple&quot;,&quot;text&quot;:&quot;\tat com.android.dx.merge.DexMerger.mergeClassDefs(DexMerger.java:535)&quot;,&quot;sources&quot;:[{}]}
+AGPBI: {&quot;kind&quot;:&quot;simple&quot;,&quot;text&quot;:&quot;\tat com.android.dx.merge.DexMerger.mergeDexes(DexMerger.java:171)&quot;,&quot;sources&quot;:[{}]}
+AGPBI: {&quot;kind&quot;:&quot;simple&quot;,&quot;text&quot;:&quot;\tat com.android.dx.merge.DexMerger.merge(DexMerger.java:189)&quot;,&quot;sources&quot;:[{}]}
+AGPBI: {&quot;kind&quot;:&quot;simple&quot;,&quot;text&quot;:&quot;\tat com.android.dx.command.dexer.Main.mergeLibraryDexBuffers(Main.java:454)&quot;,&quot;sources&quot;:[{}]}
+AGPBI: {&quot;kind&quot;:&quot;simple&quot;,&quot;text&quot;:&quot;\tat com.android.dx.command.dexer.Main.runMonoDex(Main.java:303)&quot;,&quot;sources&quot;:[{}]}
+AGPBI: {&quot;kind&quot;:&quot;simple&quot;,&quot;text&quot;:&quot;\tat com.android.dx.command.dexer.Main.run(Main.java:246)&quot;,&quot;sources&quot;:[{}]}
+AGPBI: {&quot;kind&quot;:&quot;simple&quot;,&quot;text&quot;:&quot;\tat com.android.dx.command.dexer.Main.main(Main.java:215)&quot;,&quot;sources&quot;:[{}]}
+AGPBI: {&quot;kind&quot;:&quot;simple&quot;,&quot;text&quot;:&quot;\tat com.android.dx.command.Main.main(Main.java:106)&quot;,&quot;sources&quot;:[{}]}
+
+FAILED
+
+FAILURE: Build failed with an exception.
+</code></pre></li>
+
+<li><p>下記のようにbuild.gradleを変更し、stethoを個別に定義するようにしました。</p></li>
+
+<li><p><s>さらに上記エラーメッセージの3行目から推測して、除外設定も追加しています。(<a href="http://stackoverflow.com/questions/27719436/how-to-remove-duplicate-libraries-added-via-gradle/27773664" target="_blank">参考ページ</a>)</s></p></li>
+
+<li><p><font color="red">(2017/05/16,追記)除外設定はなくてもOKでした。まだ追いきれてませんが、fileTreeによる指定がまずかったようです。</font></p></li>
+
+<li><p>(build.gradle抜粋)</p>
+
+<pre><code class="language-java">dependencies {
+    //この指定はやめる。
+    //compile fileTree(dir: 'libs', include: ['*.jar'])
+    wearApp project(':wear')
+    compile 'com.android.support:appcompat-v7:21.0.3'
+    compile 'com.google.android.gms:play-services:6.5.87'
+    compile &quot;com.android.support:support-v4:20.0.+&quot;
+    compile files('libs/gson-2.5.jar')
+                
+    //これを含めるのはデバッグ時のみにし、重複エラーが出たので除外設定を追加。
+    //debugCompile ('com.facebook.stetho:stetho:1.5.0') {
+    //  exclude group: 'android.support', module: 'library'
+    //}
+                
+    //(2017/05/16,追記) この指定で十分でした。
+    debugCompile ('com.facebook.stetho:stetho:1.5.0')
+}
+</code></pre></li>
+</ul></li>
+
+<li><p>(4-3) 使い方</p>
+
+<ul>
+<li><p>アプリをビルドして、Chromeのアドレスバーに下記URLを入力します。</p>
+
+<p><code>chrome://inspect</code></p></li>
+
+<li><p>Android端末名の下にアプリ名が表示されるので、&rdquo;inspect&rdquo;をクリック。</p>
+
+<p><a href="/assets/posts/img/view_sqlite_on_android/chrome.jpg" target="_blank"><img width="80%" height="80%" title="chrome" alt="chrome" src="/assets/posts/img/view_sqlite_on_android/chrome.jpg"></a></p></li>
+
+<li><p>新しいウィンドウが開き、[Web SQL]-【アプリケーションID】-【テーブル名】を開くとSQLiteのデータが参照できました。</p></li>
+
+<li><p>さらに、【アプリケーションID】をクリックすると右ペインにプロンプト(&gt;)が表示され、そこでSQL文も実行できるのでかなり使えそうです。</p>
+
+<p><a href="/assets/posts/img/view_sqlite_on_android/view_sqlite_db.jpg" target="_blank"><img width="80%" height="80%" title="chrome" alt="chrome" src="/assets/posts/img/view_sqlite_on_android/view_sqlite_db.jpg"></a></p></li>
+</ul></li>
+</ul></li>
+</ul>
+
+    </div>
+
+    <footer>
+        <ul class="stats">
+    
+        
+
+        
+        
+            <li>
+                
+                
+                    
+
+                    
+
+                    
+
+                    
+                        Categories
+                    
+                
+            </li>
+        
+    
+
+    
+    
+    </footer>
+</article>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+<ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-7938855665302783"
+     data-ad-slot="1590453150"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+
+<ul class="actions pagination">
+    
+    <li><a href="https://sankame.github.io/blog/2017-04-16-speed_up_website_use_browser_cache/"
+    class="button big previous">Webサイト・スピードアップ - ブラウザキャッシュ利用</a></li>
+    
+
+    
+</ul>
+
+
+
+    </div>
+    
+<section id="sidebar">
+
+    
+        <section id="intro">
+            
+            
+                
+                    <a href="/" class="logo"><img src="/assets/avatar.jpg" alt="Sankame" /></a>
+                
+            
+            
+                <header>
+                    <h2>プログラマー備忘録</h2>
+                    <p></p>
+                </header>
+            
+            <ul class="icons">
+                
+                
+                    
+<li><a href="//github.com/Sankame" target="_blank" title="GitHub" class="fa fa-github"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li><a href="//facebook.com/100014073908728" target="_blank" title="Facebook" class="fa fa-facebook"></a></li>
+
+
+
+<li><a href="//twitter.com/handycola" target="_blank" title="Twitter" class="fa fa-twitter"></a></li>
+
+
+
+<li><a href="mailto:m2ad0504@outlook.jp" title="Email" class="fa fa-envelope"></a></li>
+
+
+                
+            </ul>
+        </section>
+
+    
+        <section id="recent-posts">
+            <ul class="posts">
+                <header>
+                    <h3>Recent Posts</h3>
+                </header>
+                
+                    
+                
+
+                
+                    
+                
+
+                
+                    <li>
+                        <article>
+                            <header>
+                                <h3><a href="https://sankame.github.io/blog/2017-05-14-view_sqlite_on_android/">AndroidのSQLite DBを参照</a></h3>
+                                
+                                    
+                                
+                                <time class="published" datetime=
+                                    '2017-05-14'>
+                                    May 14, 2017</time>
+                            </header>
+                        </article>
+                    </li>
+                
+                    <li>
+                        <article>
+                            <header>
+                                <h3><a href="https://sankame.github.io/blog/2017-04-16-speed_up_website_use_browser_cache/">Webサイト・スピードアップ - ブラウザキャッシュ利用</a></h3>
+                                
+                                    
+                                
+                                <time class="published" datetime=
+                                    '2017-04-16'>
+                                    April 16, 2017</time>
+                            </header>
+                        </article>
+                    </li>
+                
+
+                
+                    <li>
+                        <ul class="actions">
+                            <li><a href=
+                            
+                                /blog/
+                            
+                            class="button">View more posts</a></li>
+                        </ul>
+                    </li>
+                
+            </ul>
+        </section>
+
+    
+    
+    
+    
+        <section id="categories">
+            <ul class="posts">
+                <header>
+                    <h3><a href="/categories/">Categories</a></h3>
+                </header>
+
+                
+                    
+                
+
+                
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/%E3%82%BB%E3%83%83%E3%83%88%E3%82%A2%E3%83%83%E3%83%97/">セットアップ</a>
+                                <span style="float:right;">34</span>
+                            </header>
+                        </article>
+                    </li>
+                
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/tips/">tips</a>
+                                <span style="float:right;">15</span>
+                            </header>
+                        </article>
+                    </li>
+                
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/%E3%82%A8%E3%83%A9%E3%83%BC%E8%A7%A3%E6%B1%BA/">エラー解決</a>
+                                <span style="float:right;">15</span>
+                            </header>
+                        </article>
+                    </li>
+                
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0/">プログラミング</a>
+                                <span style="float:right;">6</span>
+                            </header>
+                        </article>
+                    </li>
+                
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/%E3%83%81%E3%83%A5%E3%83%BC%E3%83%8B%E3%83%B3%E3%82%B0/">チューニング</a>
+                                <span style="float:right;">2</span>
+                            </header>
+                        </article>
+                    </li>
+                
+            </ul>
+        </section>
+    
+
+    
+        
+        <section class="blurb">
+            <h2>About</h2>
+            <p>老舗インターネット・メディア企業で働くプログラマー</p>
+
+            <ul class="actions">
+                <li><a href="/about/" class="button">Learn More</a></li>
+            </ul>
+        </section>
+        
+
+	
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+<ins class="adsbygoogle"
+     style="display:inline-block;width:300px;height:250px"
+     data-ad-client="ca-pub-7938855665302783"
+     data-ad-slot="8711718758"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+
+    
+        <section id="footer">
+            <ul class="icons">
+                
+                
+                    
+<li><a href="//github.com/Sankame" target="_blank" title="GitHub" class="fa fa-github"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li><a href="//facebook.com/100014073908728" target="_blank" title="Facebook" class="fa fa-facebook"></a></li>
+
+
+
+<li><a href="//twitter.com/handycola" target="_blank" title="Twitter" class="fa fa-twitter"></a></li>
+
+
+
+<li><a href="mailto:m2ad0504@outlook.jp" title="Email" class="fa fa-envelope"></a></li>
+
+
+                
+            </ul>
+
+            <p class="copyright">&copy; プログラマー備忘録. Design: <a href="http://html5up.net" target="_blank">HTML5 UP</a>. Ported by <a href="//github.com/jpescador" target="_blank">Julio Pescador</a>. Powered by <a href="//gohugo.io" target="_blank">Hugo</a></p>
+        </section>
+
+</section>
+
+            </div>
+        <a id="back-to-top" href="#" class="fa fa-arrow-up fa-border fa-2x"></a>
+        
+
+        
+        
+            
+        
+
+        
+        
+            <script src="/js/jquery.min.js"></script>
+            <script src="/js/skel.min.js"></script>
+            <script src="/js/util.js"></script>
+            <script src="/js/main.js"></script>
+            <script src="/js/backToTop.js"></script>
+            <script src="/js/highlight.pack.js"></script>
+        
+
+        
+
+            
+            <script>hljs.initHighlightingOnLoad();</script>
+            
+        
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-37675354-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+    </body>
+</html>
+
