@@ -1,0 +1,1031 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>エラー解決 on プログラマー備忘録</title>
+    <link>https://sankame.github.io/categories/%E3%82%A8%E3%83%A9%E3%83%BC%E8%A7%A3%E6%B1%BA/index.xml</link>
+    <description>Recent content in エラー解決 on プログラマー備忘録</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <atom:link href="https://sankame.github.io/categories/%E3%82%A8%E3%83%A9%E3%83%BC%E8%A7%A3%E6%B1%BA/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>ApacheのProxyPassでhtmlタグがそのまま表示される</title>
+      <link>https://sankame.github.io/blog/2016-12-25-mod_proxy_text_plain/</link>
+      <pubDate>Sun, 25 Dec 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2016-12-25-mod_proxy_text_plain/</guid>
+      <description>
+
+&lt;h3 id=&#34;0-環境&#34;&gt;0. 環境&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;[CentOS] 6.8 (64bit版カーネル)
+[Apache] 2.2.15
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;1-問題&#34;&gt;1. 問題&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;ApacheのProxyPassディレクティブ(mod_proxy)を指定して、バックエンドから受け取ったコンテンツを表示しようとするとhtmlタグがそのまま表示されてしまいます。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Apache設定ファイルの抜粋&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-apache&#34;&gt;NameVirtualHost *:80
+        
+# 省略
+        
+&amp;lt;VirtualHost *:80&amp;gt;
+    ServerAdmin test@local
+    ServerName test.local
+
+    ProxyPreserveHost On
+    ProxyPass / http://127.0.0.1:8080/
+    ProxyPassReverse / http://127.0.0.1:8080/
+
+    ErrorLog logs/test.local-error_log
+    CustomLog logs/test.local-access_log combined
+&amp;lt;/VirtualHost&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;2-対策&#34;&gt;2. 対策&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;ChromeのDeveloper Toolsなどで見ると、下記のようにHTTPレスポンスヘッダーで平文が指定されています。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Content-Type text/plain; charset=UTF-8&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;デフォルトのMIMEタイプ指定を無効にすることで解消しました。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Apache設定ファイルの抜粋&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-apache&#34;&gt;NameVirtualHost *:80
+        
+# 省略
+        
+&amp;lt;VirtualHost *:80&amp;gt;
+    ServerAdmin test@local
+    ServerName test.local
+
+    # ----- この行を追加 ----- 
+    DefaultType None
+    # ----- この行を追加 ----- 
+
+    ProxyPreserveHost On
+    ProxyPass / http://127.0.0.1:8080/
+    ProxyPassReverse / http://127.0.0.1:8080/
+
+    ErrorLog logs/test.local-error_log
+    CustomLog logs/test.local-access_log combined
+&amp;lt;/VirtualHost&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;3-参考ページ&#34;&gt;3. 参考ページ&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://stackoverflow.com/questions/5034131/mod-proxy-ajp-error-renders-html-as-text-plain-prompts-user-to-save-as&#34; target=&#34;_blank&#34;&gt;mod_proxy_ajp error: renders html as text/plain, prompts user to “save as…”&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>AppleWatchアプリ開発におけるWCSessionのメソッド使用方法</title>
+      <link>https://sankame.github.io/blog/2016-11-21-wcsession_sendmessage_slow_in_swift3/</link>
+      <pubDate>Mon, 21 Nov 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2016-11-21-wcsession_sendmessage_slow_in_swift3/</guid>
+      <description>
+
+&lt;h3 id=&#34;0-環境&#34;&gt;0. 環境&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;[OS] Mac OS X 10.11.6
+[IDE] Xcode 8.1
+[Swift] 3.0
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;1-問題&#34;&gt;1. 問題&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;WCSession#sendMessage()を使ってAppleWatchからiPhoneアプリへメッセージを送っても、30秒ほどしないと通知されない。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;AppleWatch側&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-swift&#34;&gt;@IBAction func tapButton() {
+
+    let message = [ &amp;quot;fromChild&amp;quot;: &amp;quot;AppleWatchからのメッセージ&amp;quot; ]
+
+    WCSession.default().sendMessage(
+            message
+            , replyHandler: { reply in }
+            , errorHandler: { error in }
+    )
+
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;iPhone側&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-swift&#34;&gt;func session(_ session: WCSession, didReceiveMessage message: [String: Any], replyHandler: @escaping ([String: Any]) -&amp;gt; Void) {
+
+    if let watchMessage = message[&amp;quot;fromChild&amp;quot;] as? String {
+        print(watchMessage)
+    }
+    else{
+        print(&amp;quot;error&amp;quot;)
+    }
+
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;2-対策&#34;&gt;2. 対策&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;replyHandlerを設定するなど、いろいろ情報はあったのですが、結局 sendMessage() を諦め、updateApplicationContext() を使うことにしました。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;ただ updateApplicationContext() は状態が変わった際に通知するためのメソッドなので、二回目以降の値が変わらないとiPhone側のメソッドが呼び出されません。&lt;/p&gt;
+
+&lt;p&gt;API仕様書には明記されていませんがそのような動きをしています。(「3. 参考ページ」参照)&lt;/p&gt;
+
+&lt;p&gt;ですので、sendMessage() と同じように使いたい場合は、毎回変わる値をダミーとして設定すると実現できます。(多少強引ですが、下記例では時間を設定しています)&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;AppleWatch側&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-swift&#34;&gt;@IBAction func tapButton() {
+
+    let dateFormatter = DateFormatter()
+    dateFormatter.locale = Locale(identifier: &amp;quot;ja_JP&amp;quot;)
+    dateFormatter.timeStyle = .medium
+    dateFormatter.dateStyle = .medium
+
+    let item: Dictionary&amp;lt;String, String&amp;gt; = [
+        &amp;quot;message&amp;quot;: &amp;quot;AppleWatchからのメッセージ&amp;quot;
+        , &amp;quot;date&amp;quot;: dateFormatter.string(from: NSDate() as Date)]
+
+    let message = [ &amp;quot;fromChild&amp;quot;: item ]
+
+    do{
+        try WCSession.default().updateApplicationContext(message)
+    }catch{
+        print(error)
+    }
+
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;iPhone側&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-swift&#34;&gt;func session(_ session: WCSession, didReceiveApplicationContext applicationContext: [String : Any]) {
+
+    DispatchQueue.main.async { () -&amp;gt; Void in
+        if let watchMessage = applicationContext[&amp;quot;fromChild&amp;quot;] as? Dictionary&amp;lt;String, String&amp;gt; {
+            self.label.text = watchMessage[&amp;quot;message&amp;quot;]! as String
+        }
+    }
+    return
+
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;3-参考ページ&#34;&gt;3. 参考ページ&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://developer.apple.com/reference/watchconnectivity/wcsession&#34; target=&#34;_blank&#34;&gt;API Reference WCSession&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Type &#39;ViewController&#39; does not conform to protocol &#39;WCSessionDelegate&#39;</title>
+      <link>https://sankame.github.io/blog/2016-11-15-wcsessiondelegate_in_swift3/</link>
+      <pubDate>Tue, 15 Nov 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2016-11-15-wcsessiondelegate_in_swift3/</guid>
+      <description>
+
+&lt;h3 id=&#34;0-環境&#34;&gt;0. 環境&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;[OS] Mac OS X 10.11.6
+[IDE] Xcode 8.1
+[Swift] 3.0
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;1-問題&#34;&gt;1. 問題&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;iPhone &amp;amp; AppleWatchアプリを作成中にSwiftを2.2から3へバージョンアップしたところ、iPhone側で下記のエラーが出るようになりました。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Type &#39;ViewController&#39; does not conform to protocol &#39;WCSessionDelegate&#39;&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;2-解決&#34;&gt;2. 解決&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;ViewControllerに下記メソッドを追加するとエラーが消えました。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-swift&#34;&gt;public func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
+}
+
+func sessionDidBecomeInactive(_ session: WCSession) {
+}
+
+func sessionDidDeactivate(_ session: WCSession) {
+    session.activate()
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;下記の仕様書にもこれらのメソッドは必須と書かれています。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://developer.apple.com/reference/watchconnectivity/wcsessiondelegate&#34; target=&#34;_blank&#34;&gt;[API Reference] WCSessionDelegate&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;3-参考ページ&#34;&gt;3. 参考ページ&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://forums.developer.apple.com/thread/63452&#34; target=&#34;_blank&#34;&gt;Migrating app from Swift 2.2 to 3.0 with WCSessionDelegate&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>型 UrlValidator は使用すべきではありません</title>
+      <link>https://sankame.github.io/blog/2016-10-06-urlvalidator-is-deprecated/</link>
+      <pubDate>Thu, 06 Oct 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2016-10-06-urlvalidator-is-deprecated/</guid>
+      <description>
+
+&lt;h3 id=&#34;0-環境&#34;&gt;0. 環境&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;[OS] Mac OS X 10.11.4
+[Java] 1.8.0
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;1-問題&#34;&gt;1. 問題&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;久々にJavaで実装する機会がありました。標準ライブラリのjava.net.URLクラスは、URLとして解釈できない文字列を渡すと例外が投げられるので扱いずらいですね。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;// IllegalArgumentException が発生。
+url = URL.create(&amp;quot;不正なURL&amp;quot;);
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;うーん、最初、RFCを見て「URLとして許可されている文字列だけ渡す」という処理を入れようか迷いました。&lt;/p&gt;
+
+&lt;p&gt;が、一から組むのも骨が折れるなあ～と思って、困った時の&lt;a href=&#34;https://commons.apache.org/&#34; target=&#34;_blank&#34;&gt;Apache Commons&lt;/a&gt;を探してみたら、しめしめ&lt;a href=&#34;https://commons.apache.org/proper/commons-validator/download_validator.cgi&#34; target=&#34;_blank&#34;&gt;Apache Commons Validator&lt;/a&gt;にUrlValidatorクラスというのがありました。&lt;/p&gt;
+
+&lt;p&gt;早速このクラスをimportして使おうと思ったら、下記の警告が出てしまいました。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;型 UrlValidator は使用すべきではありません&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;2-解決&#34;&gt;2. 解決&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;調べてみたところ、①のパッケージは非推奨で②に変えたら警告も消えました。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;font color=&#34;red&#34;&gt;①こっちは非推奨&lt;/font&gt;&lt;/p&gt;
+
+&lt;p&gt;import org.apache.commons.validator.UrlValidator;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;font color=&#34;green&#34;&gt;②これを使って！&lt;/font&gt;&lt;/p&gt;
+
+&lt;p&gt;import org.apache.commons.validator.routines.UrlValidator;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;3-参考&#34;&gt;3. 参考&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://stackoverflow.com/questions/14274919/the-type-urlvalidator-is-deprecated&#34; target=&#34;_blank&#34;&gt;The type UrlValidator is deprecated&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>composer updateでUndefined indexエラー</title>
+      <link>https://sankame.github.io/blog/</link>
+      <pubDate>Sat, 25 Jun 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/</guid>
+      <description>
+
+&lt;h3 id=&#34;0-環境&#34;&gt;0. 環境&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;[Laravel] 5.1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;1-問題&#34;&gt;1. 問題&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;composer update を実行すると下記エラーが発生しました。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;Writing lock file
+Generating autoload files
+&amp;gt; php artisan clear-compiled
+  [ErrorException]
+  Undefined index: HTTP_HOST
+Script php artisan clear-compiled handling the post-update-cmd event returned with error code 1
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;2-解決策&#34;&gt;2. 解決策&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;HTTP_HOST でソースをgrepし、 /app/Http/routes.php 内の下記箇所を修正しました。&lt;/p&gt;
+
+&lt;p&gt;(修正前)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;$_SERVER[&#39;HTTP_HOST&#39;]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;(修正後)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;Request::server(&#39;HTTP_HOST&#39;)
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;3-参考&#34;&gt;3. 参考&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://stackoverflow.com/questions/34055053/composer-returning-mysterious-error&#34; target=&#34;_blank&#34;&gt;Composer returning mysterious error&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>watchOSのバージョンエラー</title>
+      <link>https://sankame.github.io/blog/2016-05-09-watchos_devices_not_available/</link>
+      <pubDate>Mon, 09 May 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2016-05-09-watchos_devices_not_available/</guid>
+      <description>
+
+&lt;h3 id=&#34;0-環境&#34;&gt;0.環境&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;[OS] Mac OS X 10.11.4
+[IDE] Xcode 7.3
+[iOS] 9.3
+[watchOS] 2.1
+
+※MacとiPhoneはUSBケーブルで接続。
+※iPhoneとAppleWatchはペアリング済み。
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;1-問題-文中-はマスク&#34;&gt;1.問題 (文中【】はマスク)&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;AppleWatch用のサンプルプログラムを実機で動かそうとしたら下記3つのエラーが出ました。&lt;/p&gt;
+
+&lt;p&gt;&lt;b&gt;エラー1&lt;/b&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;A build only device cannot be used to run this target.&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;No supported watchOS devices are available. Pair a device to run your application or choose a simulated device as the destination.&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;b&gt;エラー2&lt;/b&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Could not launch &#39;【アプリ名】 WatchKit App&#39; on 【iPhoneデバイス名】&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;OS version lower than deployment target&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;b&gt;エラー3&lt;/b&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Can&#39;t install application&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;【アプリ名】 WatchKit App.app cannot be installed on 【AppleWatchデバイス名】.&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;The Info.plist in 【アプリ名】 WatchKit App.app specifies a minimum iOS version of 2.2 which is too high to be installed on 【AppleWatchデバイス名】.&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;2-手順&#34;&gt;2.手順&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;AppleWatch実機のOSバージョンとXcodeで指定しているターゲットバージョンが異なるようだったので、下記の変更を行ったら実機にインストールされました。&lt;/p&gt;
+
+&lt;p&gt;プロジェクトナビゲーターで該当プロジェクトを選択。&lt;/p&gt;
+
+&lt;p&gt;&amp;ldquo;Build Settings&amp;rdquo;を選択してターゲットを表示。&lt;font color=&#34;orange&#34;&gt;(A-1、A-2)&lt;/font&gt;&lt;/p&gt;
+
+&lt;p&gt;watchOSのバージョンを実機に合わせます。(僕の場合2.2→2.1に変更) &lt;font color=&#34;orange&#34;&gt;(A-3)&lt;/font&gt;&lt;/p&gt;
+
+&lt;p&gt;(&amp;ldquo;WatchKit App&amp;rdquo;の方を変更すると、&amp;rdquo;WatchKit Extension&amp;rdquo;の方も変わります)&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/watchos_devices_not_available/change_the_version.jpg&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;100%&#34; height=&#34;100%&#34; title=&#34;ターゲットバージョン変更&#34; alt=&#34;ターゲットバージョン変更&#34; src=&#34;https://sankame.github.io/assets/posts/img/watchos_devices_not_available/change_the_version.jpg&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;いくつかサンプルプログラムを作ってて、なぜこれだけターゲットバージョンがデフォルトで2.2になっていたのか不明です。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>AppleWatch 開発中アプリのインストール制限を回避</title>
+      <link>https://sankame.github.io/blog/2016-05-08-unable_to_add_app_id/</link>
+      <pubDate>Sun, 08 May 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2016-05-08-unable_to_add_app_id/</guid>
+      <description>
+
+&lt;p&gt;&lt;span&gt;&amp;nbsp;&lt;/span&gt;&lt;span style=&#34;color:#d14; float:right;&#34;&gt;更新日：2016年05月11日&lt;/span&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;0-環境&#34;&gt;0.環境&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;[OS] Mac OS X 10.11.4
+[IDE] Xcode 7.3
+[iOS] 9.3
+[watchOS] 2.1
+
+※ MacとiPhoneはUSBケーブルで接続。
+※ iPhoneとAppleWatchはペアリング済み。
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;1-問題&#34;&gt;1.問題&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;AppleWatch用のサンプルプログラムを実機で動かしていたら、下記エラーが出るようになりました。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/unable_to_add_app_id/error_message.jpg&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;50%&#34; height=&#34;50%&#34; title=&#34;Unable to add App ID&#34; alt=&#34;Unable to add App ID&#34; src=&#34;https://sankame.github.io/assets/posts/img/unable_to_add_app_id/error_message.jpg&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Unable to add App ID because the &#39;10&#39; App ID limit in &#39;7&#39; days has been exceeded.&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;「7日間で10個のアプリID制限を超えたため、アプリIDを追加できません」か。。。&lt;/p&gt;
+
+&lt;p&gt;Webで調べたところ回避策は2つありましたが、簡単そうな①をやってみました。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;① Xcodeに新しいApple IDを追加して、それを使ってインストール&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;② 既に実機にインストール済みのアプリの Bundle ID を使い回す&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;2-手順-文中の-内は読み替えて下さい&#34;&gt;2.手順 (文中の【】内は読み替えて下さい)&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Xcodeに新しい Apple ID を追加&lt;/p&gt;
+
+&lt;p&gt;アプリの[General]-[Team]をクリックし &amp;ldquo;Add an Account&amp;rdquo; を選択します。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/unable_to_add_app_id/add_account.jpg&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;70%&#34; height=&#34;70%&#34; title=&#34;AppleID追加&#34; alt=&#34;AppleID追加&#34; src=&#34;https://sankame.github.io/assets/posts/img/unable_to_add_app_id/add_account.jpg&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Xcodeに追加するApple IDを要求されますが、未作成なので&amp;rdquo;Create Apple ID&amp;rdquo;をクリック。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/unable_to_add_app_id/required_to_sign_in.jpg&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;50%&#34; height=&#34;50%&#34; title=&#34;サインイン&#34; alt=&#34;サインイン&#34; src=&#34;https://sankame.github.io/assets/posts/img/unable_to_add_app_id/required_to_sign_in.jpg&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;必要項目を入力していくと、最後に「入力したメールアドレス宛てにメールを送ったから確認してね」と表示されます。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/unable_to_add_app_id/verification_for_the_email.jpg&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;50%&#34; height=&#34;50%&#34; title=&#34;email確認&#34; alt=&#34;email確認&#34; src=&#34;https://sankame.github.io/assets/posts/img/unable_to_add_app_id/verification_for_the_email.jpg&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;上記メールアドレス宛てに確認メールが届いているので、メール本文内の&amp;rdquo;今すぐ確認&amp;rdquo;をクリックして登録を完了させます。&lt;/p&gt;
+
+&lt;p&gt;再度、手順の最初に戻って、&amp;rdquo;Add an Account&amp;rdquo;を選択し、登録したての新しいApple IDを入力します。&lt;/p&gt;
+
+&lt;p&gt;新しいApple IDを選択すると下記のメッセージが出るので&amp;rdquo;Fix Issue&amp;rdquo;→&amp;rdquo;Choose&amp;rdquo;をクリックして解消します。&lt;/p&gt;
+
+&lt;p&gt;&lt;font color=&#34;red&#34;&gt;【注意】ダイアログ内のプルダウンで新しいApple IDが選択されているか再度確認して下さい&lt;/font&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/unable_to_add_app_id/fix_the_issue.jpg&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;50%&#34; height=&#34;50%&#34; title=&#34;Fix Issue&#34; alt=&#34;Fix Issue&#34; src=&#34;https://sankame.github.io/assets/posts/img/unable_to_add_app_id/fix_the_issue.jpg&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;そのままアプリをビルド＆起動すると署名関係の警告が何度か出ますが、&amp;rdquo;Fix issue&amp;rdquo; をクリックしていくと実機でアプリを実行できました。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;参考ページ&#34;&gt;参考ページ&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;①&lt;a href=&#34;http://stackoverflow.com/questions/36922738/how-to-get-around-apple-app-id-insanity&#34; target=&#34;_blank&#34;&gt;How to get around Apple app ID insanity&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>pod setup で SSLエラー</title>
+      <link>https://sankame.github.io/blog/2016-04-21-pod_setup_ssl_error/</link>
+      <pubDate>Thu, 21 Apr 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2016-04-21-pod_setup_ssl_error/</guid>
+      <description>
+
+&lt;h3 id=&#34;0-環境&#34;&gt;0.環境&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;[OS] Mac OS X 10.11.4
+[cocoapods] 1.0.0.beta.6
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;1-エラー内容&#34;&gt;1.エラー内容&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;pod setupを実行すると下記エラーが発生。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;$ pod setup --verbose
+
+Setting up CocoaPods master repo
+
+Cloning spec repo `master` from `https://github.com/CocoaPods/Specs.git` (branch `master`)
+  $ /usr/bin/git clone https://github.com/CocoaPods/Specs.git master
+  Cloning into &#39;master&#39;...
+  fatal: unable to access &#39;https://github.com/CocoaPods/Specs.git/&#39;: SSLRead() return error -9806
+[!] /usr/bin/git clone https://github.com/CocoaPods/Specs.git master
+
+Cloning into &#39;master&#39;...
+fatal: unable to access &#39;https://github.com/CocoaPods/Specs.git/&#39;: SSLRead() return error -9806
+
+        ：
+     【省略】
+        ：
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;2-解決方法&#34;&gt;2.解決方法&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Safariで下記URLにアクセス。(他のブラウザではダメ)&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com&#34; target=&#34;_blank&#34;&gt;&lt;a href=&#34;https://github.com&#34;&gt;https://github.com&lt;/a&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;再度、下記を実行するとwifi経由で1時間以上経ってからようやく成功…&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;$ pod setup --verbose
+
+Setting up CocoaPods master repo
+
+        ：
+     【省略】
+        ：
+
+Setup completed
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;参考ページ&#34;&gt;参考ページ&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://stackoverflow.com/questions/20939105/pod-install-returns-fatal-error-ssl-certificate-issue&#34; target=&#34;_blank&#34;&gt;pod install returns fatal error: SSL certificate issue?&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Rundeckでssh接続エラー</title>
+      <link>https://sankame.github.io/blog/2016-02-15-rundeck_ssh_error/</link>
+      <pubDate>Mon, 15 Feb 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2016-02-15-rundeck_ssh_error/</guid>
+      <description>
+
+&lt;h1 id=&#34;0-環境&#34;&gt;0.環境&lt;/h1&gt;
+
+&lt;pre&gt;&lt;code&gt;[CentOS] 5.6
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;1-内容-文中の-は読み替えて下さい&#34;&gt;1.内容 (文中の【】は読み替えて下さい)&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;(1-1) エラー発生&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;下記ページの「リモートサーバでの実行」にそってRundeckのリモート接続を試してみました。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;http://dev.classmethod.jp/server-side/server/try-rundeck-job/&#34; target=&#34;_blank&#34;&gt;ジョブスケジューラ「Rundeck」を試してみる&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;このエラーが出て、原因が分からず…&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/rundeck_ssh_error/rundeck_ssh_error.png&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;100%&#34; height=&#34;100%&#34; title=&#34;RundeckSSHエラー&#34; alt=&#34;RundeckSSHエラー&#34; src=&#34;https://sankame.github.io/assets/posts/img/rundeck_ssh_error/rundeck_ssh_error.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;22:34:10 remote 1. hogeと表示。 Authentication failure connecting to node: &amp;quot;remote&amp;quot;. Make sure your resource definitions and credentials are up to date.
+22:34:10 Failed: AuthenticationFailure: Authentication failure connecting to node: &amp;quot;remote&amp;quot;. Make sure your resource definitions and credentials are up to date.
+22:34:10 localhost Execution failed: 21: [Workflow result: , step failures: {1=Dispatch failed on 1 nodes: [remote: AuthenticationFailure: Authentication failure connecting to node: &amp;quot;remote&amp;quot;. Make sure your resource definitions and credentials are up to date.]}, Node failures: {remote=[AuthenticationFailure: Authentication failure connecting to node: &amp;quot;remote&amp;quot;. Make sure your resource definitions and credentials are up to date.]}, status: failed]
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;(1-2) デバッグ&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;まずはRundeckで対象プロジェクトの[Prepare and Run&amp;hellip;]-[Log level] を&amp;rdquo;Debug&amp;rdquo;に変更し、エラーの詳細を表示させます。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;詳細を見ると、最初の公開鍵認証で失敗し、さらにその後のパスワード認証でも失敗しているようです。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;22:37:48 Authentications that can continue: publickey,password,keyboard-interactive
+22:37:48 Next authentication method: publickey
+22:37:48 Authentications that can continue: password,keyboard-interactive
+22:37:48 Next authentication method: password
+22:37:48 Disconnecting from 【IPアドレス】 port 22
+22:37:48 Authentication failure connecting to node: &amp;quot;remote&amp;quot;. Make sure your resource definitions and credentials are up to date.
+22:37:48 Failed: AuthenticationFailure: Authentication failure connecting to node: &amp;quot;remote&amp;quot;. Make sure your resource definitions and credentials are up to date.
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;おかしいなあ、公開鍵認証で接続できる想定なんだけど…&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Rundeck以前にそもそもsshで失敗しているようなので、ssh単体で実行してみます。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;ssh -i $(awk &#39;/framework.ssh.keypath = / {print $3}&#39; /etc/rundeck/framework.properties) rundeck@【IPアドレス】
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;さらにコマンドを簡素化して実行してみると、パスワード未設定の公開鍵を使っているのになぜかパスワードを聞かれます。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;[22:16:34][rundeck@【サーバー名】 ~/.ssh]$ ssh -i /var/lib/rundeck/.ssh/id_rsa rundeck@【IPアドレス】
+rundeck@【IPアドレス】&#39;s password: 
+Permission denied, please try again.
+rundeck@【IPアドレス】&#39;s password: 
+Permission denied, please try again.
+rundeck@【IPアドレス】&#39;s password: 
+Permission denied (publickey,gssapi-keyex,gssapi-with-mic,password).
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;(1-3) 原因&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;色々試した結果、接続先サーバーにある公開鍵ファイルのパーミッションが原因でした。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&amp;lt;接続元&amp;gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;ssh -i /var/lib/rundeck/.ssh/id_rsa rundeck@【IPアドレス】
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&amp;lt;接続先&amp;gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;パーミッションが緩い分には問題ないだろうと思っていたら、&lt;font color=&#34;red&#34;&gt;厳密に600じゃないとダメ&lt;/font&gt;なんですね…&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;code&gt;chmod 600 authorized_keys&lt;/code&gt; で下記のように修正したらssh接続もRundeckからのリモート接続も成功しました。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;(変更前)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;-rw-rw-r--. 1 rundeck rundeck 403 2月 4 15:58 2016 authorized_keys
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;(変更後)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;-rw-------. 1 rundeck rundeck 403 2月 4 15:58 2016 authorized_keys
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;2-参考になった記事&#34;&gt;2. 参考になった記事&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;http://qiita.com/gotohiro55/items/36a22516de2b381b3c6e&#34; target=&#34;_blank&#34;&gt;SSHの鍵認証設定&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://rundeck.lighthouseapp.com/projects/59277/tickets/345-add-resource&#34; target=&#34;_blank&#34;&gt;Rundeck Development&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Androidアプリのバージョンアップができない</title>
+      <link>https://sankame.github.io/blog/2015-10-07-android_app_version/</link>
+      <pubDate>Wed, 07 Oct 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2015-10-07-android_app_version/</guid>
+      <description>
+
+&lt;h3 id=&#34;0-環境&#34;&gt;0.環境&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;[OS]             Windows7 (32bit 版)
+[AndroidStudio]  1.1.0
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;1-問題&#34;&gt;1.問題&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Androidアプリをバージョンアップするため、Google Play Developer Console
+でapkファイルをアップしても下記のエラーが出ました。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;アップロードできませんでした&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;マニフェストファイルに下記のように追記してもダメ。&lt;/p&gt;
+
+&lt;p&gt;(app\【アプリ名】\mobile\src\main\AndroidManifest.xml)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-xml&#34;&gt;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;utf-8&amp;quot;?&amp;gt;
+    &amp;lt;manifest xmlns:android=&amp;quot;http://schemas.android.com/apk/res/android&amp;quot;
+        package=&amp;quot;【パッケージ名】&amp;quot; android:versionCode=&amp;quot;2&amp;quot; android:versionName=&amp;quot;2.0.1&amp;quot;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;2-対策&#34;&gt;2.対策&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;しばらくして、AndroidManifest.xml にエラーメッセージが出てるのに気付きました。&lt;/p&gt;
+
+&lt;p&gt;build.gradle を修正しなきゃいけない・・・&lt;/p&gt;
+
+&lt;p&gt;(app\【アプリ名】\mobile\build.gradle)&lt;/p&gt;
+
+&lt;p&gt;下記のようにバージョンを上げて再コンパイルしたらアップロードできました。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-json&#34;&gt;android {
+        :
+    (省略)
+        :
+        defaultConfig {
+            applicationId &amp;quot;【省略】&amp;quot;
+            minSdkVersion 16
+            targetSdkVersion 21
+            versionCode 2
+            versionName &amp;quot;2.0.1&amp;quot;
+        }
+    :
+    (省略)
+    :
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>【AndroidStudio】&#34;Failed to complete Gradle execution&#34;エラー</title>
+      <link>https://sankame.github.io/blog/2015-05-11-android_studio_heap_size_error/</link>
+      <pubDate>Mon, 11 May 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2015-05-11-android_studio_heap_size_error/</guid>
+      <description>
+
+&lt;h3 id=&#34;0-環境&#34;&gt;0.環境&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;[OS]             Windows7 (32bit 版)
+[AndroidStudio]  1.1.0
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;1-エラー内容&#34;&gt;1.エラー内容&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;「Run &amp;lsquo;app&amp;rsquo;」ボタンをクリックし、ビルド＆実行しようとすると下記エラーダイアログが表示される。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Failed to complete Gradle execution
+Cause:
+A fatal exception has occurred. Program will exit
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;2-回避方法&#34;&gt;2.回避方法&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;メニューから [File] -&amp;gt; [Settings] -&amp;gt; [Gradle] とたどって、[Gradle VM options] に &amp;ldquo;-XX:MaxHeapSize=256m -Xmx256m&amp;rdquo; を入力。(下記画像のオレンジ枠線)&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/android_studio_heap_size_error/vm_options.png&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;20%&#34; height=&#34;20%&#34; title=&#34;VMオプション設定&#34; alt=&#34;VMオプション設定&#34; src=&#34;https://sankame.github.io/assets/posts/img/android_studio_heap_size_error/vm_options.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;参考にしたページ&#34;&gt;※参考にしたページ&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://code.google.com/p/android/issues/detail?id=67946&#34; target=&#34;_blank&#34;&gt;Failed to complete Gradle Execution&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>AndroidStudioでプロセス開始エラー</title>
+      <link>https://sankame.github.io/blog/2015-05-10-android_studio_process_error/</link>
+      <pubDate>Sun, 10 May 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2015-05-10-android_studio_process_error/</guid>
+      <description>
+
+&lt;h1 id=&#34;0-環境&#34;&gt;0.環境&lt;/h1&gt;
+
+&lt;pre&gt;&lt;code&gt;[OS]             Windows7 (32bit 版)
+[AndroidStudio]  1.1.0
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;1-エラー内容&#34;&gt;1.エラー内容&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;AndroidStudioで「Run &amp;lsquo;app&amp;rsquo;」ボタンをクリックし、ビルド＆実行しようとすると下記エラーが発生しました。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;Error:Unable to start the daemon process.
+This problem might be caused by incorrect configuration of the daemon.
+For example, an unrecognized jvm option is used.
+Please refer to the user guide chapter on the daemon at http://gradle.org/docs/2.2.1/userguide/gradle_daemon.html
+Please read the following process output to find out more:
+-----------------------
+Error occurred during initialization of VM
+Could not reserve enough space for object heap
+Error: Could not create the Java Virtual Machine.
+Error: A fatal exception has occurred. Program will exit.
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;2-回避方法&#34;&gt;2.回避方法&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Android Studioを閉じます。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;下記フォルダを削除。(不安な場合は例えば次のようにリネーム DELETE_.gradle)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;C:\ユーザー\【ユーザー名】\.gradle
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Android Studioを起動。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;上記で消した.gradleフォルダが再作成され、ビルド＆実行が成功しました。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;3-参考にしたページ&#34;&gt;3.参考にしたページ&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.thedevline.com/2014/06/android-studio-unable-to-start-daemon.html&#34; target=&#34;_blank&#34;&gt;Unable to start the daemon process fix Solution&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>【Laravel】全てのビューに値を渡す</title>
+      <link>https://sankame.github.io/blog/2014-07-21-laravel_passing_data_from_basecontroller/</link>
+      <pubDate>Mon, 21 Jul 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2014-07-21-laravel_passing_data_from_basecontroller/</guid>
+      <description>
+
+&lt;h1 id=&#34;0-環境&#34;&gt;0.環境&lt;/h1&gt;
+
+&lt;pre&gt;&lt;code&gt;[CentOS]   5.6 (32bit版カーネル)
+[Apache]   2.2.3
+[PHP]      5.4.1
+[Laravel]  4.1.23
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;1-課題&#34;&gt;1.課題&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;全ビュー(Bladeテンプレート)で使う値をBaseControllerから渡したい。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;2-対策&#34;&gt;2.対策&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Laravelの作法としてあっているか不明ですが、一旦これで値は渡せました。&lt;/p&gt;
+
+&lt;p&gt;下記例では、設定ファイルの基底URL(app.php内のurl変数)をビューに渡しています。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;①　app/config/local/app.php&lt;/p&gt;
+
+&lt;p&gt;(本番環境の場合、app/config/app.php に定義して下さい)&lt;/p&gt;
+
+&lt;script src=&#34;https://gist.github.com/Sankame/2a3ec0e21cea5584245b.js&#34;&gt;&lt;/script&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;②　app/controllers/BaseController.php&lt;/p&gt;
+
+&lt;p&gt;getBaseUrl() メソッドを定義し、基底URLを返します。&lt;/p&gt;
+
+&lt;p&gt;(staticでないとビューで実行できない)&lt;/p&gt;
+
+&lt;script src=&#34;https://gist.github.com/Sankame/fa1b2701da0e48c1a939.js&#34;&gt;&lt;/script&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;各コントローラは②を継承します。(コード抜粋)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;class EachController extends BaseController {
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;③　app/views/layout.blade.php (コード抜粋)&lt;/p&gt;
+
+&lt;p&gt;全てのビューで共通に使っているビューで、BaseControllerから値を取得します。&lt;/p&gt;
+
+&lt;script src=&#34;https://gist.github.com/Sankame/97b5ca9f99076723dbae.js&#34;&gt;&lt;/script&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>【Laravel】AjaxでPOSTできない</title>
+      <link>https://sankame.github.io/blog/2014-07-15-laravel_trailing_slash_redirect/</link>
+      <pubDate>Tue, 15 Jul 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2014-07-15-laravel_trailing_slash_redirect/</guid>
+      <description>
+
+&lt;h1 id=&#34;0-環境&#34;&gt;0.環境&lt;/h1&gt;
+
+&lt;pre&gt;&lt;code&gt;[CentOS]   5.6 (32bit版カーネル)
+[Apache]   2.2.3
+[PHP]      5.4.1
+[Laravel]  4.1.23
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;1-問題&#34;&gt;1.問題&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;PHPのLaravelフレームワークを使っていたら、AjaxでPOSTした値がサーバ側で取得できずにはまりました。&lt;/p&gt;
+
+&lt;p&gt;①から②へ test という名前で hoge という値を送信します。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;① Javascript側&lt;/p&gt;
+
+&lt;script src=&#34;https://gist.github.com/Sankame/a9da32445d224fb1df63.js&#34;&gt;&lt;/script&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;② PHP側&lt;/p&gt;
+
+&lt;script src=&#34;https://gist.github.com/Sankame/649420870dc9835cb08c.js&#34;&gt;&lt;/script&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;ログ出力結果を見ると、下記のようにPOST値が取得できていません。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[2014-07-16 12:09:36] local.DEBUG:  [] []
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;2-原因&#34;&gt;2.原因&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Firefox の &amp;ldquo;Live HTTP headers&amp;rdquo; アドオンでURLの遷移を見たところ、下記のようにリダイレクトしていることがわかりました。(違いは末尾のスラッシュ)&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://local.vm/test/&#34;&gt;http://local.vm/test/&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;↓↓↓&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://local.vm/test&#34;&gt;http://local.vm/test&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;ソースを grep したところ、.htaccessでリダイレクトしていました。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;■ ソース&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;app-root/public/.htaccess&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;■ 記述&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-apache&#34;&gt;# Redirect Trailing Slashes...
+RewriteRule ^(.*)/$ /$1 [L,R=301]
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;3-対策&#34;&gt;3.対策&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Laravel は trailing slash 非推奨なのか？ とにかく下記のように修正。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;[修正箇所] 上記ソース ajax-test.js (6行目)&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;[修正内容] URLの末尾のスラッシュを削除し、/test に修正。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;ログにもPOST値(hoge)が出力されました。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[2014-07-16 13:03:39] local.DEBUG: hoge [] []
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;参考にしたページ&#34;&gt;参考にしたページ&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;http://www.suzukikenichi.com/blog/do-we-need-a-trailing-slash-at-the-end-of-url/&#34; target=&#34;_blank&#34;&gt;URLの終りに「/」(スラッシュ)は必要?、不要?&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;http://stackoverflow.com/questions/22063520/laravel-slash-after-url-redirects-to-root-folder&#34; target=&#34;_blank&#34;&gt;Laravel slash after url redirects to root folder&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>GitHubPagesが動かない</title>
+      <link>https://sankame.github.io/blog/2012-12-27-github_pages_doesnt_work/</link>
+      <pubDate>Thu, 27 Dec 2012 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2012-12-27-github_pages_doesnt_work/</guid>
+      <description>
+
+&lt;h4 id=&#34;githubpagesでブログを公開しようと-下記ページに従って作業したがindex-htmlすら表示されない&#34;&gt;GitHubPagesでブログを公開しようと、下記ページに従って作業したがindex.htmlすら表示されない…&lt;/h4&gt;
+
+&lt;h4 id=&#34;参考ページ-http-tokkono-cute-coocan-jp-blog-slow-index-php-programming-github-pages-almost-perfect-guide&#34;&gt;&lt;a href=&#34;http://tokkono.cute.coocan.jp/blog/slow/index.php/programming/github-pages-almost-perfect-guide/&#34;&gt;参考ページ&lt;/a&gt;&lt;/h4&gt;
+
+&lt;h4 id=&#34;1-githubに登録したメールアドレスの受信箱をチェック&#34;&gt;1.GitHubに登録したメールアドレスの受信箱をチェック&lt;/h4&gt;
+
+&lt;p&gt;&amp;ldquo;Page build failure&amp;rdquo;というサブジェクトでGitHubからメールが届いていた。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;The page build failed with the following error:
+
+You need a verified email address in your GitHub account to publish Pages.
+You can verify your email addresses from your Settings panel:
+
+https://github.com/settings/emails
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;設定パネルであなたのメアドが正しいことを確認してください、と書いてある。&lt;/p&gt;
+
+&lt;p&gt;上記メール内のリンクを押してページ遷移した後、メールアドレスの確認ボタンをクリック。&lt;/p&gt;
+
+&lt;p&gt;その後、github pagesのページ作成ボタンを押すと下記URLにアクセスできた。
+(usernameは読み替え)&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://username.github.com/&#34;&gt;http://username.github.com/&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
