@@ -1,0 +1,795 @@
+
+
+
+    
+
+
+
+
+<!DOCTYPE HTML>
+
+<html>
+    <head>
+        
+            <title>Rundeck - プログラマー備忘録</title>
+        
+
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="generator" content="Hugo 0.19" />
+        
+
+
+        
+        
+            
+                <meta name="description" content="HTML5 UP theme, Future Imperfect with some extra goodies, ported by Julio Pescador. Powered by Hugo">
+            
+        
+
+        
+        <meta property="og:title" content="Rundeck" />
+<meta property="og:description" content="HTML5 UP theme, Future Imperfect with some extra goodies, ported by Julio Pescador. Powered by Hugo" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://sankame.github.io/tags/rundeck/" />
+
+
+
+<meta property="og:updated_time" content="2014-06-04T00:00:00&#43;00:00"/>
+
+
+
+
+
+
+
+
+
+
+        
+<meta itemprop="name" content="Rundeck">
+<meta itemprop="description" content="HTML5 UP theme, Future Imperfect with some extra goodies, ported by Julio Pescador. Powered by Hugo">
+
+
+        
+
+        
+
+        
+
+        
+            
+        
+
+        
+        
+            <link rel="stylesheet" href="/css/google-font.css" />
+            <link rel="stylesheet" href="/css/font-awesome.min.css" />
+            <link rel="stylesheet" href="/css/main.css" />
+            <link rel="stylesheet" href="/css/add-on.css" />
+            <link rel="stylesheet" href="/css/monokai-sublime.css">
+        
+
+        
+            
+                
+            
+                
+                    <link rel="stylesheet" href="/css/sankame.css" />
+                
+            
+        
+
+        
+        
+        
+            
+        
+    </head>
+    <body>
+
+        
+        <div id="wrapper">
+
+    
+<header id="header">
+    
+        <h2><a href="/">プログラマー備忘録</i></a></h2>
+    
+
+    <nav class="links">
+        <ul>
+            
+                <li>
+                    <a href="/categories">
+                        Categories
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="/about">
+                        About
+                    </a>
+                </li>
+            
+        </ul>
+    </nav>
+    <nav class="main">
+        <ul>
+            
+            <li class="search">
+                <a class="fa-search" href="#search">Search</a>
+                <form id="search" method="get" action="//google.com/search">
+                    <input type="text" name="q" placeholder="Search" />
+                    <input type="hidden" name="q" value="site:https://sankame.github.io/">
+                </form>
+            </li>
+            <li class="menu">
+                <a class="fa-bars" href="#menu">Menu</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+
+<section id="menu">
+
+    
+        <section>
+            <form class="search" method="get" action="//google.com/search">
+                <input type="text" name="q" placeholder="Search" />
+                <input type="hidden" name="q" value="site:https://sankame.github.io/">
+            </form>
+        </section>
+
+    
+        <section>
+            <ul class="links">
+                
+                    <li>
+                        <a href="/categories">
+                            <h3>
+                                
+                                Categories
+                            </h3>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/about">
+                            <h3>
+                                
+                                About
+                            </h3>
+                        </a>
+                    </li>
+                
+            </ul>
+        </section>
+
+    
+        <section>
+            <ul class="links">
+                <header>
+                    <h3>Recent Posts</h3>
+                </header>
+                
+                    
+                
+
+                
+                    <li>
+                        <a href="https://sankame.github.io/blog/2017-05-14-view_sqlite_on_android/"><p>AndroidのSQLite DBを参照</p></a>
+                    </li>
+                
+                    <li>
+                        <a href="https://sankame.github.io/blog/2017-04-16-speed_up_website_use_browser_cache/"><p>Webサイト・スピードアップ - ブラウザキャッシュ利用</p></a>
+                    </li>
+                
+            </ul>
+        </section>
+
+    
+        
+</section>
+
+    
+    <div id="main">
+        
+        
+            
+        
+
+        
+            <article class="post">
+    <header>
+    <div class="title">
+        
+            <h2><a href="https://sankame.github.io/blog/2014-06-04-jenkins_selenium/">Jenkins から Seleniumを動かしてみる</a></h2>
+        
+        
+    </div>
+    <div class="meta">
+        
+            
+        
+
+        <time class="published"
+            datetime='2014-06-04'>
+            June 4, 2014</time>
+        <span class="author"></span>
+        
+            <p>1 minute read</p>
+        
+        
+    </div>
+</header>
+
+    
+
+    <p>0.環境 ・親ノード端末 [CentOS] 5.6 (32bit版カーネル) [ruby] 2.1.1p76 [rvm] 1.25.25 [java] 1.7.0_51 [Jenkins] 1.562 ・子ノード端末 [Windows] Vista Home Premium (32bit) [java] 1.7.0_51 [IE] 8  1.準備  (1-1) 下記リンクを参考にJenkinsをインストールしました。
+ 俺の成長日記
+ OSCALOG
+ JenkinsをCentOSにインストールしたときのメモ
+  (1-2) Seleniumの設定は前回と同じです。(Selenium WebDriverを動かしてみる)
+ 前回と異なる点は、Jenkinsがデフォルトでポート4444を使うので、Selenium Serverは4445に変更しました。
+ 親ノード</p>
+
+<h1 id="java-jar-selenium-server-standalone-2-41-0-jar-role-hub-port-4445-子ノード">java -jar selenium-server-standalone-2.41.0.jar -role hub -port 4445  子ノード</h1>
+
+<p>&gt; java -jar selenium-server-standalone-2.41.0.jar -role webdriver -hub <a href="http://192.168.130.130:4445/grid/register">http://192.168.130.130:4445/grid/register</a> -Dwebdriver.ie.driver=./IEDriverServer.exe   (1-3) Jenkins プラグイン追加
+ rvmでrubyを使っているので、予めJenkinsにrvmプラグインを追加。</p>
+
+    <footer>
+        <ul class="actions">
+            <li><a href="https://sankame.github.io/blog/2014-06-04-jenkins_selenium/" class="button big">Continue Reading</a></li>
+        </ul>
+        <ul class="stats">
+    
+        
+
+        
+        
+            <li>
+                
+                
+                    
+
+                    
+
+                    
+
+                    
+                        Categories
+                    
+                
+            </li>
+        
+    
+
+    
+    
+    </footer>
+</article>
+
+        
+            <article class="post">
+    <header>
+    <div class="title">
+        
+            <h2><a href="https://sankame.github.io/blog/2014-05-24-selenium_webdriver/">Selenium WebDriverを動かしてみる</a></h2>
+        
+        
+    </div>
+    <div class="meta">
+        
+            
+        
+
+        <time class="published"
+            datetime='2014-05-24'>
+            May 24, 2014</time>
+        <span class="author"></span>
+        
+            <p>1 minute read</p>
+        
+        
+    </div>
+</header>
+
+    
+
+    <p>0.環境 ・親ノード端末 [CentOS] 5.6 (32bit版カーネル) [ruby] 2.1.1p76 [rvm] 1.25.25 [java] 1.7.0_51 ・子ノード端末 [Windows] Vista Home Premium (32bit) [java] 1.7.0_51 [IE] 8  1.準備  ■ 目的
+ブラウザテストの自動化に興味があり、面白そうな記事があったので自分でも試してみました。
+(Jenkinsとの連携は今回やっていません)
+ ■ 親ノード
+親ノード端末の適当なディレクトリに Selenium Server をダウンロード後、起動します。</p>
+
+<h1 id="cd-usr-local-bin-wget-http-selenium-release-storage-googleapis-com-2-41-selenium-server-standalone-2-41-0-jar-java-jar-selenium-server-standalone-2-41-0-jar-role-hub-子ノード">cd /usr/local/bin/ # wget <a href="http://selenium-release.storage.googleapis.com/2.41/selenium-server-standalone-2.41.0.jar">http://selenium-release.storage.googleapis.com/2.41/selenium-server-standalone-2.41.0.jar</a> # java -jar selenium-server-standalone-2.41.0.jar -role hub  ■ 子ノード</h1>
+
+<p>子ノード端末の適当なフォルダに Selenium Server とIEドライバーをダウンロード後、起動します。
+ダウンロードページ
+まず&rdquo;Selenium Server (formerly the Selenium RC Server)&rdquo; をダウンロード。
+次に&rdquo;The Internet Explorer Driver Server&rdquo; をダウンロードします。</p>
+
+    <footer>
+        <ul class="actions">
+            <li><a href="https://sankame.github.io/blog/2014-05-24-selenium_webdriver/" class="button big">Continue Reading</a></li>
+        </ul>
+        <ul class="stats">
+    
+        
+
+        
+        
+            <li>
+                
+                
+                    
+
+                    
+
+                    
+
+                    
+                        Categories
+                    
+                
+            </li>
+        
+    
+
+    
+    
+    </footer>
+</article>
+
+        
+            <article class="post">
+    <header>
+    <div class="title">
+        
+            <h2><a href="https://sankame.github.io/blog/2014-05-18-jekyll_version_up/">Jekyllを1.0.2へバージョンアップ</a></h2>
+        
+        
+            <p>Jekyllを1.0.2へバージョンアップ</p>
+        
+    </div>
+    <div class="meta">
+        
+            
+        
+
+        <time class="published"
+            datetime='2014-05-18'>
+            May 18, 2014</time>
+        <span class="author"></span>
+        
+            <p>1 minute read</p>
+        
+        
+    </div>
+</header>
+
+    
+
+    <p>0.環境 [CentOS] 5.6 (32bit版カーネル) [ruby] 2.1.1p76 [rvm] 1.25.25 [jekyll] 0.11.2 =&gt; 1.0.2  1.インストール 参考ページ  インストール
+本ブログはjekyll 0.11.2で作成してきましたが、別件でrubyのバージョンを上げたことでjekyllが動か
+なくなってしまったため、思い切って1.0.2への移行を行いました。初期インストールの内容
+いくつかハマった点を共有します。
+まず、複数バージョンのrubyを使いたかったので下記ページに沿ってrvmをインストール。
+rvmインストール
+rootで実行したためか /usr/local/rvm にインストールされたので、上記記事内のパスは読み替えました。
+ruby 2.1.1をインストール。</p>
+
+<h1 id="rvm-install-2-1-1-rvm-use-2-1-1-適当な場所にgemfileを作成し-jekyllを追記してインストール開始">rvm install 2.1.1 # rvm use 2.1.1  適当な場所にGemfileを作成し、jekyllを追記してインストール開始。</h1>
+
+<h1 id="bundle-init-echo-quot-gem-jekyll-1-0-2-quot-gt-gt-gemfile-bundle-install-インストールされたことを確認します">bundle init # echo &quot;gem &lsquo;jekyll&rsquo;, &lsquo;1.0.2&rsquo;&quot; &gt;&gt; Gemfile # bundle install  インストールされたことを確認します。</h1>
+
+<h1 id="gem-list-grep-jekyll-jekyll-1-0-2-jekyll-coffeescript-1-0-0-jekyll-sass-converter-1-0-0-起動">gem list|grep jekyll jekyll (1.0.2) jekyll-coffeescript (1.0.0) jekyll-sass-converter (1.0.0)  起動</h1>
+
+<p>任意の場所へ移動し、bootstrapをダウンロードします。bootstrapクイックスタート
+(前バージョンとは別の場所にしました)</p>
+
+<h1 id="cd-var-www-html-jekyll2-git-clone-https-github">cd /var/www/html/jekyll2/ # git clone <a href="https://github">https://github</a>.</h1>
+</p>
+
+    <footer>
+        <ul class="actions">
+            <li><a href="https://sankame.github.io/blog/2014-05-18-jekyll_version_up/" class="button big">Continue Reading</a></li>
+        </ul>
+        <ul class="stats">
+    
+        
+
+        
+        
+            <li>
+                
+                
+                    
+
+                    
+
+                    
+
+                    
+                        Categories
+                    
+                
+            </li>
+        
+    
+
+    
+    
+    </footer>
+</article>
+
+        
+
+        
+<ul class="actions pagination">
+    
+        <li><a href="/tags/rundeck/page/15/"
+                class="button big previous">Previous Page</a></li>
+    
+
+    
+        <li><a href="/tags/rundeck/page/17/"
+                class="button big next">Next Page</a></li>
+    
+</ul>
+
+    </div>
+    
+<section id="sidebar">
+
+    
+        <section id="intro">
+            
+            
+                
+                    <a href="/" class="logo"><img src="/assets/avatar.jpg" alt="Sankame" /></a>
+                
+            
+            
+                <header>
+                    <h2>プログラマー備忘録</h2>
+                    <p></p>
+                </header>
+            
+            <ul class="icons">
+                
+                    <li><a href="https://sankame.github.io/tags/rundeck/index.xml" type="application/rss+xml"
+                        target="_blank" title="RSS" class="fa fa-rss"></a></li>
+                
+                
+                    
+<li><a href="//github.com/Sankame" target="_blank" title="GitHub" class="fa fa-github"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li><a href="//facebook.com/100014073908728" target="_blank" title="Facebook" class="fa fa-facebook"></a></li>
+
+
+
+<li><a href="//twitter.com/handycola" target="_blank" title="Twitter" class="fa fa-twitter"></a></li>
+
+
+
+<li><a href="mailto:m2ad0504@outlook.jp" title="Email" class="fa fa-envelope"></a></li>
+
+
+                
+            </ul>
+        </section>
+
+    
+        <section id="recent-posts">
+            <ul class="posts">
+                <header>
+                    <h3>Recent Posts</h3>
+                </header>
+                
+                    
+                
+
+                
+                    
+                
+
+                
+                    <li>
+                        <article>
+                            <header>
+                                <h3><a href="https://sankame.github.io/blog/2017-05-14-view_sqlite_on_android/">AndroidのSQLite DBを参照</a></h3>
+                                
+                                    
+                                
+                                <time class="published" datetime=
+                                    '2017-05-14'>
+                                    May 14, 2017</time>
+                            </header>
+                        </article>
+                    </li>
+                
+                    <li>
+                        <article>
+                            <header>
+                                <h3><a href="https://sankame.github.io/blog/2017-04-16-speed_up_website_use_browser_cache/">Webサイト・スピードアップ - ブラウザキャッシュ利用</a></h3>
+                                
+                                    
+                                
+                                <time class="published" datetime=
+                                    '2017-04-16'>
+                                    April 16, 2017</time>
+                            </header>
+                        </article>
+                    </li>
+                
+
+                
+                    <li>
+                        <ul class="actions">
+                            <li><a href=
+                            
+                                /blog/
+                            
+                            class="button">View more posts</a></li>
+                        </ul>
+                    </li>
+                
+            </ul>
+        </section>
+
+    
+    
+    
+    
+        <section id="categories">
+            <ul class="posts">
+                <header>
+                    <h3><a href="/categories/">Categories</a></h3>
+                </header>
+
+                
+                    
+                
+
+                
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/%E3%82%BB%E3%83%83%E3%83%88%E3%82%A2%E3%83%83%E3%83%97/">セットアップ</a>
+                                <span style="float:right;">34</span>
+                            </header>
+                        </article>
+                    </li>
+                
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/tips/">tips</a>
+                                <span style="float:right;">15</span>
+                            </header>
+                        </article>
+                    </li>
+                
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/%E3%82%A8%E3%83%A9%E3%83%BC%E8%A7%A3%E6%B1%BA/">エラー解決</a>
+                                <span style="float:right;">15</span>
+                            </header>
+                        </article>
+                    </li>
+                
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0/">プログラミング</a>
+                                <span style="float:right;">6</span>
+                            </header>
+                        </article>
+                    </li>
+                
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/%E3%83%81%E3%83%A5%E3%83%BC%E3%83%8B%E3%83%B3%E3%82%B0/">チューニング</a>
+                                <span style="float:right;">2</span>
+                            </header>
+                        </article>
+                    </li>
+                
+            </ul>
+        </section>
+    
+
+    
+        
+        <section class="blurb">
+            <h2>About</h2>
+            <p>老舗インターネット・メディア企業で働くプログラマー</p>
+
+            <ul class="actions">
+                <li><a href="/about/" class="button">Learn More</a></li>
+            </ul>
+        </section>
+        
+
+	
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+<ins class="adsbygoogle"
+     style="display:inline-block;width:300px;height:250px"
+     data-ad-client="ca-pub-7938855665302783"
+     data-ad-slot="8711718758"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+
+    
+        <section id="footer">
+            <ul class="icons">
+                
+                    <li><a href="https://sankame.github.io/tags/rundeck/index.xml" type="application/rss+xml"
+                        target="_blank" title="RSS" class="fa fa-rss"></a></li>
+                
+                
+                    
+<li><a href="//github.com/Sankame" target="_blank" title="GitHub" class="fa fa-github"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li><a href="//facebook.com/100014073908728" target="_blank" title="Facebook" class="fa fa-facebook"></a></li>
+
+
+
+<li><a href="//twitter.com/handycola" target="_blank" title="Twitter" class="fa fa-twitter"></a></li>
+
+
+
+<li><a href="mailto:m2ad0504@outlook.jp" title="Email" class="fa fa-envelope"></a></li>
+
+
+                
+            </ul>
+
+            <p class="copyright">&copy; プログラマー備忘録. Design: <a href="http://html5up.net" target="_blank">HTML5 UP</a>. Ported by <a href="//github.com/jpescador" target="_blank">Julio Pescador</a>. Powered by <a href="//gohugo.io" target="_blank">Hugo</a></p>
+        </section>
+
+</section>
+
+            </div>
+        <a id="back-to-top" href="#" class="fa fa-arrow-up fa-border fa-2x"></a>
+        
+
+        
+        
+            
+        
+
+        
+        
+            <script src="/js/jquery.min.js"></script>
+            <script src="/js/skel.min.js"></script>
+            <script src="/js/util.js"></script>
+            <script src="/js/main.js"></script>
+            <script src="/js/backToTop.js"></script>
+            <script src="/js/highlight.pack.js"></script>
+        
+
+        
+
+            
+            <script>hljs.initHighlightingOnLoad();</script>
+            
+        
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-37675354-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+    </body>
+</html>
+
