@@ -1,9 +1,0 @@
-/* 大文字固定を解除。 */
-h1, h2, h3{
-text-transform: none;
-}
-
-header p {
-text-transform: none;
-}
-
