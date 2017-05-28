@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>CentOS on プログラマー備忘録</title>
+    <link>https://sankame.github.io/tags/centos/index.xml</link>
+    <description>Recent content in CentOS on プログラマー備忘録</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <atom:link href="https://sankame.github.io/tags/centos/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>wget ファイル名を指定してダウンロード</title>
+      <link>https://sankame.github.io/blog/2014-07-03-wget_option_O/</link>
+      <pubDate>Thu, 03 Jul 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2014-07-03-wget_option_O/</guid>
+      <description>
+
+&lt;h1 id=&#34;o-オプションを使って-ダウンロードファイル名を指定します&#34;&gt;-O オプションを使って、ダウンロードファイル名を指定します。&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;下記例では MyWget という名前に変更。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;# wget -O MyWget http://ftp.gnu.org/gnu/wget/wget-1.15.tar.gz
+# ls
+# -rw-r--r--  1 root  root  3417936  1月 19 19:17 MyWget
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>CentOSコマンド メモ</title>
+      <link>https://sankame.github.io/blog/2012-12-31-centos_command/</link>
+      <pubDate>Mon, 31 Dec 2012 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2012-12-31-centos_command/</guid>
+      <description>
+
+&lt;p&gt;&lt;span&gt;&amp;nbsp;&lt;/span&gt;&lt;span style=&#34;color:#d14; float:right;&#34;&gt;更新日：2015年03月18日&lt;/span&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;centosコマンド-メモ&#34;&gt;CentOSコマンド メモ&lt;/h4&gt;
+
+&lt;h5 id=&#34;ファイル検索&#34;&gt;・ファイル検索&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code&gt; find / -name filename
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id=&#34;locateインストール-更新日-2013-01-01&#34;&gt;・locateインストール (更新日：2013/01/01)&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code&gt;# which locate
+/usr/bin/which: no locate in ・・・以下省略
+
+# パッケージ名がlocateではないので注意。
+# yum install mlocate
+
+# which locate
+/usr/bin/locate
+
+# 下記コマンドでDBを更新するとlocateが使えるようになる。
+# updatedb
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id=&#34;dateで日時設定-更新日-2013-01-27&#34;&gt;・dateで日時設定 (更新日：2013/01/27)&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code&gt;# 引数を次の順番に設定。→ date [月][日][時間][分][年]
+
+# date 012723232013
+2013年  1月 27日 日曜日 23:23:00 JST
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id=&#34;centosバージョン-更新日-2013-07-07&#34;&gt;・CentOSバージョン (更新日：2013/07/07)&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code&gt;# cat /etc/redhat-release
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id=&#34;cpuアーキテクチャ確認-更新日-2013-07-07&#34;&gt;・CPUアーキテクチャ確認 (更新日：2013/07/07)&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code&gt;# grep flags /proc/cpuinfo | grep lm | wc -l
+# 上記が0ならCPU 32bit、1ならCPU 64bit
+# lm(long mode)フラグがあれば64bit
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id=&#34;カーネルバージョン確認-更新日-2013-07-07&#34;&gt;・カーネルバージョン確認 (更新日：2013/07/07)&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code&gt;# uname -a|grep x86_64|wc -l
+# 上記が0なら32bitカーネル、1ならCPU 64bitカーネル
+# (x86_64 の場合、64bit)
+# (i386/i486/i586/i686 の場合、32bit)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://www.cyberciti.biz/faq/linux-how-to-find-if-processor-is-64-bit-or-not/&#34;&gt;参考ページ&lt;/a&gt;&lt;/p&gt;
+
+&lt;h5 id=&#34;phpバージョン-更新日-2013-07-07&#34;&gt;・PHPバージョン (更新日：2013/07/07)&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code&gt;# php -v
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id=&#34;apacheバージョン-更新日-2013-09-16&#34;&gt;・Apacheバージョン (更新日：2013/09/16)&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code&gt;# httpd -v
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id=&#34;svnバージョン-更新日-2013-09-26&#34;&gt;・SVNバージョン (更新日：2013/09/26)&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code&gt;# svn --version --quiet
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id=&#34;historyコマンドに日時-タイムスタンプ-追加-更新日-2013-09-24&#34;&gt;・historyコマンドに日時(タイムスタンプ)追加 (更新日：2013/09/24)&lt;/h5&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;1.bashプロファイルを編集。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ vim ~/.bash_profile
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;2.以下を記述。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;HISTTIMEFORMAT=&#39;%Y-%m-%d %T &#39;
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;3.すぐに反映させたい場合は以下のコマンドを実行。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ source ~/.bash_profile
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h5 id=&#34;port使用状況チェック-更新日-2014-05-07&#34;&gt;・port使用状況チェック (更新日：2014/05/07)&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code&gt;$ netstat -anp
+$ netstat -anp | grep 【ポート番号】
+
+-a：接続待ち状態にあるソケットも、接続待ち状態にないソケットも表示する。
+-n：ホスト・ポート・ユーザーなどの名前を解決せずに、数字のアドレスで表示する。
+-p：各ソケットが属しているプログラムの PID と名前が表示される。
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id=&#34;crontabバックアップ-更新日-2015-03-18&#34;&gt;・crontabバックアップ (更新日：2015/03/18)&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code&gt;$ crontab -l &amp;gt; crontab.bak
+$ crontab -e
+
+クーロンの設定を変更後、バックアップとの差分を見る。
+
+$ crontab -l | diff crontab.bak -
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

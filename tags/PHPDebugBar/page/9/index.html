@@ -1,0 +1,775 @@
+
+
+
+    
+
+
+
+
+<!DOCTYPE HTML>
+
+<html>
+    <head>
+        
+            <title>PHPDebugBar - プログラマー備忘録</title>
+        
+
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="generator" content="Hugo 0.19" />
+        
+
+
+        
+        
+            
+                <meta name="description" content="HTML5 UP theme, Future Imperfect with some extra goodies, ported by Julio Pescador. Powered by Hugo">
+            
+        
+
+        
+        
+        <meta name="robots" content="noindex">
+        
+
+        
+        <meta property="og:title" content="PHPDebugBar" />
+<meta property="og:description" content="HTML5 UP theme, Future Imperfect with some extra goodies, ported by Julio Pescador. Powered by Hugo" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://sankame.github.io/tags/phpdebugbar/" />
+
+
+
+<meta property="og:updated_time" content="2016-02-21T00:00:00&#43;00:00"/>
+
+
+
+
+
+
+
+
+
+
+        
+<meta itemprop="name" content="PHPDebugBar">
+<meta itemprop="description" content="HTML5 UP theme, Future Imperfect with some extra goodies, ported by Julio Pescador. Powered by Hugo">
+
+
+        
+
+        
+
+        
+
+        
+            
+        
+
+        
+        
+            <link rel="stylesheet" href="/css/google-font.css" />
+            <link rel="stylesheet" href="/css/font-awesome.min.css" />
+            <link rel="stylesheet" href="/css/main.css" />
+            <link rel="stylesheet" href="/css/add-on.css" />
+            <link rel="stylesheet" href="/css/monokai-sublime.css">
+        
+
+        
+            
+                
+            
+                
+                    <link rel="stylesheet" href="/css/sankame.css" />
+                
+            
+        
+
+        
+        
+        
+            
+        
+    </head>
+    <body>
+
+        
+        <div id="wrapper">
+
+    
+<header id="header">
+    
+        <h2><a href="/">プログラマー備忘録</i></a></h2>
+    
+
+    <nav class="links">
+        <ul>
+            
+                <li>
+                    <a href="/categories">
+                        Categories
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="/about">
+                        About
+                    </a>
+                </li>
+            
+        </ul>
+    </nav>
+    <nav class="main">
+        <ul>
+            
+            <li class="search">
+                <a class="fa-search" href="#search">Search</a>
+                <form id="search" method="get" action="//google.com/search">
+                    <input type="text" name="q" placeholder="Search" />
+                    <input type="hidden" name="q" value="site:https://sankame.github.io/">
+                </form>
+            </li>
+            <li class="menu">
+                <a class="fa-bars" href="#menu">Menu</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+
+<section id="menu">
+
+    
+        <section>
+            <form class="search" method="get" action="//google.com/search">
+                <input type="text" name="q" placeholder="Search" />
+                <input type="hidden" name="q" value="site:https://sankame.github.io/">
+            </form>
+        </section>
+
+    
+        <section>
+            <ul class="links">
+                
+                    <li>
+                        <a href="/categories">
+                            <h3>
+                                
+                                Categories
+                            </h3>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/about">
+                            <h3>
+                                
+                                About
+                            </h3>
+                        </a>
+                    </li>
+                
+            </ul>
+        </section>
+
+    
+        <section>
+            <ul class="links">
+                <header>
+                    <h3>Recent Posts</h3>
+                </header>
+                
+                    
+                
+
+                
+                    <li>
+                        <a href="https://sankame.github.io/blog/2017-05-14-view_sqlite_on_android/"><p>AndroidのSQLite DBを参照</p></a>
+                    </li>
+                
+                    <li>
+                        <a href="https://sankame.github.io/blog/2017-04-16-speed_up_website_use_browser_cache/"><p>Webサイト・スピードアップ - ブラウザキャッシュ利用</p></a>
+                    </li>
+                
+            </ul>
+        </section>
+
+    
+        
+</section>
+
+    
+    <div id="main">
+        
+        
+            
+        
+
+        
+            <article class="post">
+    <header>
+    <div class="title">
+        
+            <h2><a href="https://sankame.github.io/blog/2016-02-21-letsencrypt_renewal/">Let&#39;s Encrypt - 証明書の更新と自動化</a></h2>
+        
+        
+            <p>Let&#39;s Encrypt - 証明書の更新と自動化</p>
+        
+    </div>
+    <div class="meta">
+        
+            
+        
+
+        <time class="published"
+            datetime='2016-02-21'>
+            February 21, 2016</time>
+        <span class="author"></span>
+        
+            <p>2 minute read</p>
+        
+        
+    </div>
+</header>
+
+    
+
+    <p>&nbsp;更新日：2016年11月09日
+0.環境 [CentOS] 6.4 (64bit版カーネル) [Apache] 2.2.15 [Firefox] 44.0.2  1.メールで期限通知 (【】はマスク情報)  年末に設定した Let&rsquo;s Encrypt のSSL証明書の期限が迫り、下記のお知らせメールが届きました。
+Let&rsquo;s Encrypt certificate expiration notice Hello, Your certificate (or certificates) for the names listed below will expire in 17 days (on 04 Mar 16 17:44 +0000). Please make sure to renew your certificate before then, or visitors to your website will encounter errors. 【以下省略】  ブラウザで有効期限を確認するとそろそろ切れそうです。
+ブラウザのアドレスバーの鍵マークをクリックし、[ &gt; ] - [詳細を表示] - [セキュリティ] - [証明書を表示] - [有効期限]</p>
+
+    <footer>
+        <ul class="actions">
+            <li><a href="https://sankame.github.io/blog/2016-02-21-letsencrypt_renewal/" class="button big">Continue Reading</a></li>
+        </ul>
+        <ul class="stats">
+    
+        
+
+        
+        
+            <li>
+                
+                
+                    
+
+                    
+
+                    
+
+                    
+                        Categories
+                    
+                
+            </li>
+        
+    
+
+    
+    
+    </footer>
+</article>
+
+        
+            <article class="post">
+    <header>
+    <div class="title">
+        
+            <h2><a href="https://sankame.github.io/blog/2016-02-15-rundeck_ssh_error/">Rundeckでssh接続エラー</a></h2>
+        
+        
+    </div>
+    <div class="meta">
+        
+            
+        
+
+        <time class="published"
+            datetime='2016-02-15'>
+            February 15, 2016</time>
+        <span class="author"></span>
+        
+            <p>2 minute read</p>
+        
+        
+    </div>
+</header>
+
+    
+
+    <p>0.環境 [CentOS] 5.6  1.内容 (文中の【】は読み替えて下さい)  (1-1) エラー発生
+ 下記ページの「リモートサーバでの実行」にそってRundeckのリモート接続を試してみました。
+ ジョブスケジューラ「Rundeck」を試してみる
+ このエラーが出て、原因が分からず…</p>
+
+<p>22:34:10 remote 1. hogeと表示。 Authentication failure connecting to node: &quot;remote&quot;. Make sure your resource definitions and credentials are up to date. 22:34:10 Failed: AuthenticationFailure: Authentication failure connecting to node: &quot;remote&quot;. Make sure your resource definitions and credentials are up to date. 22:34:10 localhost Execution failed: 21: [Workflow result: , step failures: {1=Dispatch failed on 1 nodes: [remote: AuthenticationFailure: Authentication failure connecting to node: &quot;remote&quot;.</p>
+
+    <footer>
+        <ul class="actions">
+            <li><a href="https://sankame.github.io/blog/2016-02-15-rundeck_ssh_error/" class="button big">Continue Reading</a></li>
+        </ul>
+        <ul class="stats">
+    
+        
+
+        
+        
+            <li>
+                
+                
+                    
+
+                    
+
+                    
+
+                    
+                        Categories
+                    
+                
+            </li>
+        
+    
+
+    
+    
+    </footer>
+</article>
+
+        
+            <article class="post">
+    <header>
+    <div class="title">
+        
+            <h2><a href="https://sankame.github.io/blog/2016-02-08-notification_compat_builder_setvibrate/">setVibrateメソッドの使い方</a></h2>
+        
+        
+            <p>setVibrateメソッドの使い方</p>
+        
+    </div>
+    <div class="meta">
+        
+            
+        
+
+        <time class="published"
+            datetime='2016-02-08'>
+            February 8, 2016</time>
+        <span class="author"></span>
+        
+            <p>1 minute read</p>
+        
+        
+    </div>
+</header>
+
+    
+
+    <p>環境 [Android SDK] API 21: Android 5.0(Lollipop)  実装  スマートウォッチ(Android Wear)に通知を送るため、NotificationCompat.Builder の
+setVibrateメソッドを使った際の自分用メモ。
+バイブレーション・パターンの設定は下記仕様ですが、
+long型配列の1つ目の要素を除いて、偶数は振動、奇数は休止
+と覚えておけば良さそうです。
+NotificationCompat.Builder builder = new NotificationCompat.Builder( getApplicationContext() ); // 単位はミリ秒 // // 要素1 : 振動開始までの時間 // 要素2 : 振動 // 要素3 : 休止 // 要素4 : (これ以降は要素2-3の繰り返し) builder.setVibrate(new long[]{0, 500, 250, 500, 250, 1000});  下記の例だと、ツー・ツ・ツ　みたいな感じになります。
+// 1秒振動、0.1秒休止、0.1秒振動、0.05秒休止、0.1秒振動 builder.setVibrate(new long[]{0, 1000, 100, 100, 50, 100});   関連リンク  API : NotificationCompat.Builder</p>
+
+    <footer>
+        <ul class="actions">
+            <li><a href="https://sankame.github.io/blog/2016-02-08-notification_compat_builder_setvibrate/" class="button big">Continue Reading</a></li>
+        </ul>
+        <ul class="stats">
+    
+        
+
+        
+        
+            <li>
+                
+                
+                    
+
+                    
+
+                    
+
+                    
+                        Categories
+                    
+                
+            </li>
+        
+    
+
+    
+    
+    </footer>
+</article>
+
+        
+
+        
+<ul class="actions pagination">
+    
+        <li><a href="/tags/phpdebugbar/page/8/"
+                class="button big previous">Previous Page</a></li>
+    
+
+    
+        <li><a href="/tags/phpdebugbar/page/10/"
+                class="button big next">Next Page</a></li>
+    
+</ul>
+
+    </div>
+    
+<section id="sidebar">
+
+    
+        <section id="intro">
+            
+            
+                
+                    <a href="/" class="logo"><img src="/assets/avatar.jpg" alt="Sankame" /></a>
+                
+            
+            
+                <header>
+                    <h2>プログラマー備忘録</h2>
+                    <p></p>
+                </header>
+            
+            <ul class="icons">
+                
+                    <li><a href="https://sankame.github.io/tags/phpdebugbar/index.xml" type="application/rss+xml"
+                        target="_blank" title="RSS" class="fa fa-rss"></a></li>
+                
+                
+                    
+<li><a href="//github.com/Sankame" target="_blank" title="GitHub" class="fa fa-github"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li><a href="//facebook.com/100014073908728" target="_blank" title="Facebook" class="fa fa-facebook"></a></li>
+
+
+
+<li><a href="//twitter.com/handycola" target="_blank" title="Twitter" class="fa fa-twitter"></a></li>
+
+
+
+<li><a href="mailto:m2ad0504@outlook.jp" title="Email" class="fa fa-envelope"></a></li>
+
+
+                
+            </ul>
+        </section>
+
+    
+        <section id="recent-posts">
+            <ul class="posts">
+                <header>
+                    <h3>Recent Posts</h3>
+                </header>
+                
+                    
+                
+
+                
+                    
+                
+
+                
+                    <li>
+                        <article>
+                            <header>
+                                <h3><a href="https://sankame.github.io/blog/2017-05-14-view_sqlite_on_android/">AndroidのSQLite DBを参照</a></h3>
+                                
+                                    
+                                
+                                <time class="published" datetime=
+                                    '2017-05-14'>
+                                    May 14, 2017</time>
+                            </header>
+                        </article>
+                    </li>
+                
+                    <li>
+                        <article>
+                            <header>
+                                <h3><a href="https://sankame.github.io/blog/2017-04-16-speed_up_website_use_browser_cache/">Webサイト・スピードアップ - ブラウザキャッシュ利用</a></h3>
+                                
+                                    
+                                
+                                <time class="published" datetime=
+                                    '2017-04-16'>
+                                    April 16, 2017</time>
+                            </header>
+                        </article>
+                    </li>
+                
+
+                
+                    <li>
+                        <ul class="actions">
+                            <li><a href=
+                            
+                                /blog/
+                            
+                            class="button">View more posts</a></li>
+                        </ul>
+                    </li>
+                
+            </ul>
+        </section>
+
+    
+    
+    
+    
+        <section id="categories">
+            <ul class="posts">
+                <header>
+                    <h3><a href="/categories/">Categories</a></h3>
+                </header>
+
+                
+                    
+                
+
+                
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/%E3%82%BB%E3%83%83%E3%83%88%E3%82%A2%E3%83%83%E3%83%97/">セットアップ</a>
+                                <span style="float:right;">34</span>
+                            </header>
+                        </article>
+                    </li>
+                
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/tips/">tips</a>
+                                <span style="float:right;">15</span>
+                            </header>
+                        </article>
+                    </li>
+                
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/%E3%82%A8%E3%83%A9%E3%83%BC%E8%A7%A3%E6%B1%BA/">エラー解決</a>
+                                <span style="float:right;">15</span>
+                            </header>
+                        </article>
+                    </li>
+                
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0/">プログラミング</a>
+                                <span style="float:right;">6</span>
+                            </header>
+                        </article>
+                    </li>
+                
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/%E3%83%81%E3%83%A5%E3%83%BC%E3%83%8B%E3%83%B3%E3%82%B0/">チューニング</a>
+                                <span style="float:right;">2</span>
+                            </header>
+                        </article>
+                    </li>
+                
+            </ul>
+        </section>
+    
+
+    
+        
+        <section class="blurb">
+            <h2>About</h2>
+            <p>老舗インターネット・メディア企業で働くプログラマー</p>
+
+            <ul class="actions">
+                <li><a href="/about/" class="button">Learn More</a></li>
+            </ul>
+        </section>
+        
+
+	
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+<ins class="adsbygoogle"
+     style="display:inline-block;width:300px;height:250px"
+     data-ad-client="ca-pub-7938855665302783"
+     data-ad-slot="8711718758"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+
+    
+        <section id="footer">
+            <ul class="icons">
+                
+                    <li><a href="https://sankame.github.io/tags/phpdebugbar/index.xml" type="application/rss+xml"
+                        target="_blank" title="RSS" class="fa fa-rss"></a></li>
+                
+                
+                    
+<li><a href="//github.com/Sankame" target="_blank" title="GitHub" class="fa fa-github"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li><a href="//facebook.com/100014073908728" target="_blank" title="Facebook" class="fa fa-facebook"></a></li>
+
+
+
+<li><a href="//twitter.com/handycola" target="_blank" title="Twitter" class="fa fa-twitter"></a></li>
+
+
+
+<li><a href="mailto:m2ad0504@outlook.jp" title="Email" class="fa fa-envelope"></a></li>
+
+
+                
+            </ul>
+
+            <p class="copyright">&copy; プログラマー備忘録. Design: <a href="http://html5up.net" target="_blank">HTML5 UP</a>. Ported by <a href="//github.com/jpescador" target="_blank">Julio Pescador</a>. Powered by <a href="//gohugo.io" target="_blank">Hugo</a></p>
+        </section>
+
+</section>
+
+            </div>
+        <a id="back-to-top" href="#" class="fa fa-arrow-up fa-border fa-2x"></a>
+        
+
+        
+        
+            
+        
+
+        
+        
+            <script src="/js/jquery.min.js"></script>
+            <script src="/js/skel.min.js"></script>
+            <script src="/js/util.js"></script>
+            <script src="/js/main.js"></script>
+            <script src="/js/backToTop.js"></script>
+            <script src="/js/highlight.pack.js"></script>
+        
+
+        
+
+            
+            <script>hljs.initHighlightingOnLoad();</script>
+            
+        
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-37675354-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+    </body>
+</html>
+
