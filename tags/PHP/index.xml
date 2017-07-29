@@ -1,0 +1,739 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>PHP on プログラマー備忘録</title>
+    <link>https://sankame.github.io/tags/php/index.xml</link>
+    <description>Recent content in PHP on プログラマー備忘録</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <copyright>Powered by [Hugo](//gohugo.io). Theme by [hugo-theme-wave](https://github.com/syui/hugo-theme-wave).</copyright>
+    <atom:link href="https://sankame.github.io/tags/php/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>composer updateでUndefined indexエラー</title>
+      <link>https://sankame.github.io/blog/</link>
+      <pubDate>Sat, 25 Jun 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/</guid>
+      <description>
+
+&lt;h3 id=&#34;0-環境&#34;&gt;0. 環境&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;[Laravel] 5.1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;1-問題&#34;&gt;1. 問題&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;composer update を実行すると下記エラーが発生しました。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;Writing lock file
+Generating autoload files
+&amp;gt; php artisan clear-compiled
+  [ErrorException]
+  Undefined index: HTTP_HOST
+Script php artisan clear-compiled handling the post-update-cmd event returned with error code 1
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;2-解決策&#34;&gt;2. 解決策&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;HTTP_HOST でソースをgrepし、 /app/Http/routes.php 内の下記箇所を修正しました。&lt;/p&gt;
+
+&lt;p&gt;(修正前)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;$_SERVER[&#39;HTTP_HOST&#39;]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;(修正後)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;Request::server(&#39;HTTP_HOST&#39;)
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;3-参考&#34;&gt;3. 参考&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://stackoverflow.com/questions/34055053/composer-returning-mysterious-error&#34; target=&#34;_blank&#34;&gt;Composer returning mysterious error&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>トグル処理を楽に実装 (ビット演算)</title>
+      <link>https://sankame.github.io/blog/2016-05-27-bitwise_operator_toggle/</link>
+      <pubDate>Fri, 27 May 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2016-05-27-bitwise_operator_toggle/</guid>
+      <description>
+
+&lt;h3 id=&#34;0-環境&#34;&gt;0. 環境&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;[CentOS] 6.4 (64bit版カーネル)
+[PHP] 5.4.17
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;1-xorでトグル処理&#34;&gt;1. XORでトグル処理&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;押すたびにON/OFFが切り替わるようなトグル処理を実装する場合はXORが便利です。&lt;/p&gt;
+
+&lt;script src=&#34;https://gist.github.com/Sankame/46005a2dc4fed64a807f9c15cbb8c010.js&#34;&gt;&lt;/script&gt;
+
+&lt;p&gt;6行目、11行目 : 「XOR 1」するとビットが反転する性質を利用します。(下記)&lt;/p&gt;
+
+&lt;p&gt;&lt;b&gt;XOR&lt;/b&gt;&lt;/p&gt;
+
+&lt;table border=&#34;1&#34;&gt;
+&lt;tr&gt;&lt;td bgcolor=&#34;lightgray&#34;&gt;入力①&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td bgcolor=&#34;lightgray&#34;&gt;入力②&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td bgcolor=&#34;lightgray&#34;&gt;出力&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>状態管理を楽に実装 (ビット演算)</title>
+      <link>https://sankame.github.io/blog/2016-05-27-bitwise_operator_status_control/</link>
+      <pubDate>Fri, 27 May 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2016-05-27-bitwise_operator_status_control/</guid>
+      <description>
+
+&lt;h3 id=&#34;0-環境&#34;&gt;0. 環境&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;[CentOS] 6.4 (64bit版カーネル)
+[PHP] 5.4.17
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;1-orとandで状態管理&#34;&gt;1. ORとANDで状態管理&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;複数の状態や権限をまとめて管理したい場合、2進数が便利です。&lt;/p&gt;
+
+&lt;script src=&#34;https://gist.github.com/Sankame/5588e4ff2cec15e95d42592bd1746ba7.js&#34;&gt;&lt;/script&gt;
+
+&lt;p&gt;2-5行目 : 2進数の定数(10進数表記)を用意します。&lt;/p&gt;
+
+&lt;p&gt;7行目 : ORでプログラミング言語を足していきます。&lt;/p&gt;
+
+&lt;p&gt;Aさんが使える言語の位にビットが立つイメージです。(下記)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    0001 (PHP)
+    0010 (Ruby)
+OR) 1000 (Perl)
+----------
+    1011 (Aさんが使えるプログラミング言語)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;11行目以降 : Aさんが使えるプログラミング言語は何か、ANDで問い合わせます。&lt;/p&gt;
+
+&lt;p&gt;右端の位にビットが立っていれば結果がtrueになり、PHPが使えることが分かります。(下記)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;     1011 (Aさんが使えるプログラミング言語)
+AND) 0001 (PHP)
+----------
+     0001 (PHPが使える)
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>プログラミング問題A</title>
+      <link>https://sankame.github.io/blog/2015-12-31-programming_practice_A/</link>
+      <pubDate>Thu, 31 Dec 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2015-12-31-programming_practice_A/</guid>
+      <description>
+
+&lt;h3 id=&#34;環境&#34;&gt;環境&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;[CentOS]   5.6 (32bit版カーネル) 
+[PHP]      5.4.17
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;問題a-1&#34;&gt;問題A-1&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;10進数の任意の値をn進数に変換する関数を作成して下さい。(nは1～16の正の整数)&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;サンプルはPHP。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;サンプルa-1&#34;&gt;サンプルA-1&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;実行方法&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;$ php changeDecimalToBaseN.php
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;ソース&lt;/p&gt;
+
+&lt;script src=&#34;https://gist.github.com/Sankame/87f7b5050a802e5e5710.js&#34;&gt;&lt;/script&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>【Laravel】integerメソッドの引数</title>
+      <link>https://sankame.github.io/blog/2015-05-27-laravel_migration_integer_args/</link>
+      <pubDate>Wed, 27 May 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2015-05-27-laravel_migration_integer_args/</guid>
+      <description>
+
+&lt;h3 id=&#34;0-環境&#34;&gt;0.環境&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;[PHP]     5.4.17
+[Laravel] 4.1.30
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;1-内容&#34;&gt;1.内容&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Fluentテーブルビルダーのintegerメソッドの引数について、意外と探すのに手間取ったのでメモ。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;integerメソッド抜粋
+&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;/**
+ * @param $column        テーブルのカラム名
+ * @param $autoIncrement 自動採番するかどうか
+ * @param $unsigned      0以上の正の整数とするか
+ */
+public function integer($column, $autoIncrement = false, $unsigned = false)
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;参考にしたページ&#34;&gt;※参考にしたページ&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://stackoverflow.com/questions/28895454/laravel-migration-incorrect-table-definition&#34; target=&#34;_blank&#34;&gt;Laravel Migration incorrect table definition&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>【Laravel】全てのビューに値を渡す</title>
+      <link>https://sankame.github.io/blog/2014-07-21-laravel_passing_data_from_basecontroller/</link>
+      <pubDate>Mon, 21 Jul 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2014-07-21-laravel_passing_data_from_basecontroller/</guid>
+      <description>
+
+&lt;h1 id=&#34;0-環境&#34;&gt;0.環境&lt;/h1&gt;
+
+&lt;pre&gt;&lt;code&gt;[CentOS]   5.6 (32bit版カーネル)
+[Apache]   2.2.3
+[PHP]      5.4.1
+[Laravel]  4.1.23
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;1-課題&#34;&gt;1.課題&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;全ビュー(Bladeテンプレート)で使う値をBaseControllerから渡したい。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;2-対策&#34;&gt;2.対策&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Laravelの作法としてあっているか不明ですが、一旦これで値は渡せました。&lt;/p&gt;
+
+&lt;p&gt;下記例では、設定ファイルの基底URL(app.php内のurl変数)をビューに渡しています。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;①　app/config/local/app.php&lt;/p&gt;
+
+&lt;p&gt;(本番環境の場合、app/config/app.php に定義して下さい)&lt;/p&gt;
+
+&lt;script src=&#34;https://gist.github.com/Sankame/2a3ec0e21cea5584245b.js&#34;&gt;&lt;/script&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;②　app/controllers/BaseController.php&lt;/p&gt;
+
+&lt;p&gt;getBaseUrl() メソッドを定義し、基底URLを返します。&lt;/p&gt;
+
+&lt;p&gt;(staticでないとビューで実行できない)&lt;/p&gt;
+
+&lt;script src=&#34;https://gist.github.com/Sankame/fa1b2701da0e48c1a939.js&#34;&gt;&lt;/script&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;各コントローラは②を継承します。(コード抜粋)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;class EachController extends BaseController {
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;③　app/views/layout.blade.php (コード抜粋)&lt;/p&gt;
+
+&lt;p&gt;全てのビューで共通に使っているビューで、BaseControllerから値を取得します。&lt;/p&gt;
+
+&lt;script src=&#34;https://gist.github.com/Sankame/97b5ca9f99076723dbae.js&#34;&gt;&lt;/script&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>【Laravel】AjaxでPOSTできない</title>
+      <link>https://sankame.github.io/blog/2014-07-15-laravel_trailing_slash_redirect/</link>
+      <pubDate>Tue, 15 Jul 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2014-07-15-laravel_trailing_slash_redirect/</guid>
+      <description>
+
+&lt;h1 id=&#34;0-環境&#34;&gt;0.環境&lt;/h1&gt;
+
+&lt;pre&gt;&lt;code&gt;[CentOS]   5.6 (32bit版カーネル)
+[Apache]   2.2.3
+[PHP]      5.4.1
+[Laravel]  4.1.23
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;1-問題&#34;&gt;1.問題&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;PHPのLaravelフレームワークを使っていたら、AjaxでPOSTした値がサーバ側で取得できずにはまりました。&lt;/p&gt;
+
+&lt;p&gt;①から②へ test という名前で hoge という値を送信します。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;① Javascript側&lt;/p&gt;
+
+&lt;script src=&#34;https://gist.github.com/Sankame/a9da32445d224fb1df63.js&#34;&gt;&lt;/script&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;② PHP側&lt;/p&gt;
+
+&lt;script src=&#34;https://gist.github.com/Sankame/649420870dc9835cb08c.js&#34;&gt;&lt;/script&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;ログ出力結果を見ると、下記のようにPOST値が取得できていません。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[2014-07-16 12:09:36] local.DEBUG:  [] []
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;2-原因&#34;&gt;2.原因&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Firefox の &amp;ldquo;Live HTTP headers&amp;rdquo; アドオンでURLの遷移を見たところ、下記のようにリダイレクトしていることがわかりました。(違いは末尾のスラッシュ)&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://local.vm/test/&#34;&gt;http://local.vm/test/&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;↓↓↓&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://local.vm/test&#34;&gt;http://local.vm/test&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;ソースを grep したところ、.htaccessでリダイレクトしていました。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;■ ソース&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;app-root/public/.htaccess&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;■ 記述&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-apache&#34;&gt;# Redirect Trailing Slashes...
+RewriteRule ^(.*)/$ /$1 [L,R=301]
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;3-対策&#34;&gt;3.対策&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Laravel は trailing slash 非推奨なのか？ とにかく下記のように修正。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;[修正箇所] 上記ソース ajax-test.js (6行目)&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;[修正内容] URLの末尾のスラッシュを削除し、/test に修正。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;ログにもPOST値(hoge)が出力されました。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[2014-07-16 13:03:39] local.DEBUG: hoge [] []
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;参考にしたページ&#34;&gt;参考にしたページ&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;http://www.suzukikenichi.com/blog/do-we-need-a-trailing-slash-at-the-end-of-url/&#34; target=&#34;_blank&#34;&gt;URLの終りに「/」(スラッシュ)は必要?、不要?&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;http://stackoverflow.com/questions/22063520/laravel-slash-after-url-redirects-to-root-folder&#34; target=&#34;_blank&#34;&gt;Laravel slash after url redirects to root folder&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Revive Ad Server インストール (旧OpenX)</title>
+      <link>https://sankame.github.io/blog/2014-05-04-revive_adserver_install/</link>
+      <pubDate>Sun, 04 May 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2014-05-04-revive_adserver_install/</guid>
+      <description>
+
+&lt;h3 id=&#34;0-環境&#34;&gt;0.環境&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;[CentOS]           5.6 (32bit版カーネル)
+[Apache]           2.2.3
+[PHP]              5.4.17
+[Revive AdServer]  3.0.4
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;1-インストール&#34;&gt;1.インストール&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;1-0.ダウンロード&lt;/p&gt;
+
+&lt;p&gt;適当なディレクトリにソースをダウンロードし、Apache公開ディレクトリへ移動。&lt;/p&gt;
+
+&lt;p&gt;(公開ディレクトリは自分の環境に読み替えて下さい)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;# wget http://download.revive-adserver.com/revive-adserver-3.0.4.tar.gz
+# tar xzf revive-adserver-3.0.4.tar.gz
+# mv revive-adserver-3.0.4 revive-adserver
+# mv revive-adserver /app/.
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;1-1.インストール開始&lt;/p&gt;
+
+&lt;p&gt;ブラウザから、上記インストール先URLへアクセス。&lt;/p&gt;
+
+&lt;p&gt;(例) &lt;a href=&#34;http://localhost/revive-adserver&#34;&gt;http://localhost/revive-adserver&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;ウィザードに従ってインストールを進めます。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/revive_adserver_install/step1.png&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;100%&#34; height=&#34;100%&#34; title=&#34;step1&#34; alt=&#34;step1&#34; src=&#34;https://sankame.github.io/assets/posts/img/revive_adserver_install/step1.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;ldquo;I Agree &amp;gt;&amp;gt;&amp;ldquo;ボタンを押すと、&amp;rdquo;File Permissions - 7 errors&amp;rdquo; というエラーが表示されました。&lt;/p&gt;
+
+&lt;p&gt;画面に表示されたコマンドをそのままコンソールで実行。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;# chmod -R a+w /app/revive-adserver/var
+# chmod -R a+w /app/revive-adserver/var/cache
+# chmod -R a+w /app/revive-adserver/var/plugins
+# chmod -R a+w /app/revive-adserver/var/templates_compiled
+# chmod -R a+w /app/revive-adserver/plugins
+# chmod -R a+w /app/revive-adserver/www/admin/plugins
+# chmod -R a+w /app/revive-adserver/www/images
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;再びインストール画面へ戻って&amp;rdquo;Retry&amp;rdquo;を押すと、次のステップへ進めます。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;1-2.DB設定&lt;/p&gt;
+
+&lt;p&gt;DB情報の入力画面が表示されますが、その前に下記コマンド(※1)でMySQL上にDBを作成。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/revive_adserver_install/step2.png&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;100%&#34; height=&#34;100%&#34; title=&#34;step2&#34; alt=&#34;step2&#34; src=&#34;https://sankame.github.io/assets/posts/img/revive_adserver_install/step2.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;(※1) コマンド (DB名、ユーザ名、パスワードは任意に設定して下さい)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;# mysql -h 127.0.0.1 -u root -p
+mysql&amp;gt; create database reviveadserver;
+mysql&amp;gt; grant all privileges on reviveadserver.* to admin@localhost identified by &#39;password&#39;;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;再びインストール画面へ戻り、上記のDB情報を入力後、&amp;rdquo;Continue &amp;gt;&amp;gt;&amp;rdquo; を押します。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;1-3.管理ユーザ登録&lt;/p&gt;
+
+&lt;p&gt;Revive AdServerの管理ユーザを登録します。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/revive_adserver_install/step3.png&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;100%&#34; height=&#34;100%&#34; title=&#34;step3&#34; alt=&#34;step3&#34; src=&#34;https://sankame.github.io/assets/posts/img/revive_adserver_install/step3.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;言語とタイムゾーンを変更。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Language:  Japanese
+Timezone:  (GMT+0900) Asia/Tokyo
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;1-4.登録完了&lt;/p&gt;
+
+&lt;p&gt;登録完了しました。&lt;/p&gt;
+
+&lt;p&gt;「インストール中にエラーが発生しました」と表示されましたが、指定されたログを見てもエラーの記述はありませんでした。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/revive_adserver_install/step4.png&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;100%&#34; height=&#34;100%&#34; title=&#34;step4&#34; alt=&#34;step4&#34; src=&#34;https://sankame.github.io/assets/posts/img/revive_adserver_install/step4.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;参考&#34;&gt;参考&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://tec-blog.menue.jp/?p=278&#34; target=&#34;_blank&#34;&gt;Revive Adserver(旧OpenX)で広告配信&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>PHPからfitbit API を使ってみる</title>
+      <link>https://sankame.github.io/blog/2014-02-04-php_fitbit_api/</link>
+      <pubDate>Tue, 04 Feb 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2014-02-04-php_fitbit_api/</guid>
+      <description>
+
+&lt;p&gt;&lt;span&gt;&amp;nbsp;&lt;/span&gt;&lt;span style=&#34;color:#d14; float:right;&#34;&gt;更新日：2015年02月08日&lt;/span&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;0-環境&#34;&gt;0.環境&lt;/h1&gt;
+
+&lt;pre&gt;&lt;code&gt;[CentOS]   5.6 (32bit版カーネル)
+[Apache]   2.2.3
+[PHP]      5.4.1
+[device]   Fitbit One
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;1-oauth-extensionインストール-fitbit-api実行&#34;&gt;1.OAuth Extensionインストール → fitbit API実行&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;(1-1) fitbit(活動量計)の&lt;a href=&#34;https://wiki.fitbit.com/display/API/API+PHP+Client&#34; target=&#34;_blank&#34;&gt;API使用手順&lt;/a&gt;にそって作業を進めます。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;下記コマンドを実行。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# pecl install oauth-0.99.9
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;エラー発生。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;　：
+（割愛）
+　：
+/var/tmp/oauth/oauth.c:2058: warning: assignment from incompatible pointer type
+/var/tmp/oauth/oauth.c: In function &#39;zm_shutdown_oauth&#39;:
+/var/tmp/oauth/oauth.c:2092: warning: implicit declaration of function &#39;curl_global_cleanup&#39;
+make: *** [oauth.lo] エラー 1
+ERROR: `make&#39; failed
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://bugs.php.net/bug.php?id=59153&#34; target=&#34;_blank&#34;&gt;こんな情報&lt;/a&gt;を見つけ、下記コマンドを実行。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# yum install curl-devel
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;エラーは変わらず、さらに&lt;a href=&#34;http://blog.gmane.org/gmane.comp.php.install/month=20101201&#34; target=&#34;_blank&#34;&gt;こんな情報&lt;/a&gt;を見つけ、下記コマンドを実行。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# yum install pcre pcre-devel
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;またまたエラー発生。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;OAuthを使うための&lt;a href=&#34;http://www.php.net/manual/ja/oauth.requirements.php&#34; target=&#34;_blank&#34;&gt;条件&lt;/a&gt;を発見。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;http://blog.flatlabs.net/20100611_062745/&#34; target=&#34;_blank&#34;&gt;良さそうなページ&lt;/a&gt;を見つけ、下記コマンドを実行。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# pecl install oauth-beta
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;お、成功！&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Build process completed successfully
+Installing &#39;/usr/lib/php/modules/oauth.so&#39;
+install ok: channel://pecl.php.net/oauth-1.2.3
+configuration option &amp;quot;php_ini&amp;quot; is not set to php.ini location
+You should add &amp;quot;extension=oauth.so&amp;quot; to php.ini
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;後は指示通りExtensionを追加します。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# vi /etc/php.d/oauth.ini
+extension=oauth.so
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;(1-2) サンプルプログラム実行。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;準備ができたので、&lt;a href=&#34;http://dev.fitbit.com/&#34; target=&#34;_blank&#34;&gt;開発者用ページ&lt;/a&gt;から&lt;a href=&#34;https://wiki.fitbit.com/download/attachments/884784/completeAuthorization.php?version=2&amp;modificationDate=1297797897000&amp;api=v2&#34; target=&#34;_blank&#34;&gt;サンプルプログラム&lt;/a&gt;をダウンロード。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;サンプルプログラムを自分の設定に合わせて修正します。(下記1-3参照)&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Apacheのドキュメントルートに配置して、ブラウザからアクセスするとエラーが発生。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;(localhostは自分の環境に読み替えて下さい)&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://localhost/completeAuthorization.php&#34;&gt;http://localhost/completeAuthorization.php&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;body_recv の値を見てみると、&amp;rdquo;fieldName&amp;rdquo;:&amp;ldquo;oauth_timestamp&amp;rdquo; があやしい。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;(僕のVM(CentOS)では、時刻同期していないため時間が狂っています…)&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;date コマンドで正しい時刻に合わせ、再度ブラウザからアクセスすると下記メッセージが画面に表示されました。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;healthcheck（individual）がFitbit.com上のあなたのプロフィールおよびデータへのアクセスを要求しています：
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;「許可する」をクリックするとサンプルページが表示され、僕の健康データが表示されました。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;(予め fitbitの「&lt;a href=&#34;https://dev.fitbit.com/apps/new&#34; target=&#34;_blank&#34;&gt;開発者ページ&lt;/a&gt;」で、callbackのページを上記URLにしておきます)&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;※ OAuthは&lt;a href=&#34;http://yuroyoro.hatenablog.com/entry/20100506/1273137673&#34; target=&#34;_blank&#34;&gt;こちらのページ&lt;/a&gt;で復習。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;(1-3) サンプルプログラム修正(【変更】は自分の設定に読み替えて下さい)&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;font color=&#34;red&#34;&gt;(2015/02/08, 更新) APIアクセスをhttpsに変更。&lt;/font&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;script src=&#34;https://gist.github.com/Sankame/8787002.js&#34;&gt;&lt;/script&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>PHPメモ</title>
+      <link>https://sankame.github.io/blog/2014-02-02-php_sample/</link>
+      <pubDate>Sun, 02 Feb 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2014-02-02-php_sample/</guid>
+      <description>
+
+&lt;h4 id=&#34;phpメモ-自分用&#34;&gt;PHPメモ (自分用)&lt;/h4&gt;
+
+&lt;h5 id=&#34;1-extensionが追加されたかコマンドラインで確認&#34;&gt;(1) extensionが追加されたかコマンドラインで確認&lt;/h5&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;下記は例。OAuthの部分は任意のextension名に置き換える。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# php -r &amp;quot;echo phpinfo();&amp;quot;|grep OAuth
+OAuth
+OAuth support =&amp;gt; enabled
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Smartyで3点リーダー(省略)表現</title>
+      <link>https://sankame.github.io/blog/2013-05-12-smarty_ellipses/</link>
+      <pubDate>Sun, 12 May 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2013-05-12-smarty_ellipses/</guid>
+      <description>
+
+&lt;h5 id=&#34;10文字以上の場合-9文字目を-にして残りを切り捨てる&#34;&gt;10文字以上の場合、9文字目を…にして残りを切り捨てる。&lt;/h5&gt;
+
+&lt;h5 id=&#34;半角-全角ともに1文字として扱う&#34;&gt;(半角、全角ともに1文字として扱う)&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code&gt;{if mb_strlen($keyword) &amp;gt; 9}
+    {assign var=cutKeyword value=$keyword|mb_substr:0:8|cat:&#39;…&#39;}
+{else}
+    {assign var=cutKeyword value=$keyword}
+{/if}
+&amp;lt;a class=&amp;quot;keyword-link&amp;quot; href=&amp;quot;#&amp;quot; title=&amp;quot;{$keyword}&amp;quot;&amp;gt;{$cutKeyword}&amp;lt;/a&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id=&#34;上記コードで各文字列を変換した場合&#34;&gt;上記コードで各文字列を変換した場合。&lt;/h5&gt;
+
+&lt;h5 id=&#34;は変換前後を表す&#34;&gt;(&amp;ldquo;→&amp;rdquo; は変換前後を表す)&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code&gt;１２３４５６７８　　　→　１２３４５６７８
+１２３４５６７８９　　→　１２３４５６７８９
+１２３４５６７８９Ａ　→　１２３４５６７８…
+123456789          →　123456789
+123456789A         →　12345678…
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>PHPでMeCabを利用</title>
+      <link>https://sankame.github.io/blog/2013-04-29-php_mecab/</link>
+      <pubDate>Mon, 29 Apr 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2013-04-29-php_mecab/</guid>
+      <description>
+
+&lt;h1 id=&#34;0-環境&#34;&gt;0.環境&lt;/h1&gt;
+
+&lt;pre&gt;&lt;code&gt;[CentOS] 5.6 (32bit版カーネル)
+[PHP]    5.3.3
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;1-mecabインストール&#34;&gt;1.MeCabインストール&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;まずは下記の手順でMeCabをインストール。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/blog/2013-01-28-mecab_install/&#34; target=&#34;_blank&#34;&gt;MeCabインストール方法&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;2-php-mecabインストール&#34;&gt;2.php_mecabインストール&lt;/h1&gt;
+
+&lt;pre&gt;&lt;code&gt;# wget -O php_mecab-0.5.zip https://nodeload.github.com/rsky/php-mecab/zip/master --no-check-certificate
+# 
+# unzip php_mecab-0.5.zip
+# 
+# mv -f php-mecab-master php_mecab-0.5
+# 
+# cd php_mecab-0.5/mecab
+# 
+# phpize
+# 
+# ./configure
+# 
+# make
+# 
+# make test
+# 
+# make install
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;3-テスト&#34;&gt;3.テスト&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;インストールが成功したら、phpからテストします。&lt;/p&gt;
+
+&lt;p&gt;(Apache経由で動かす場合はhttpdを再起動して下さい)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# echo &amp;quot;extension=mecab.so&amp;quot; &amp;gt; /etc/php.d/mecab.ini
+# vim mecabtest.php
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;script src=&#34;https://gist.github.com/Sankame/d0ff28564c451c4372cf.js&#34;&gt;&lt;/script&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;4-作成したphpファイルを実行&#34;&gt;4.作成したphpファイルを実行&lt;/h1&gt;
+
+&lt;pre&gt;&lt;code&gt;# php mecabtest.php 
+
+すもも  名詞,一般,*,*,*,*,すもも,スモモ,スモモ
+も      助詞,係助詞,*,*,*,*,も,モ,モ
+もも    名詞,一般,*,*,*,*,もも,モモ,モモ
+も      助詞,係助詞,*,*,*,*,も,モ,モ
+もも    名詞,一般,*,*,*,*,もも,モモ,モモ
+の      助詞,連体化,*,*,*,*,の,ノ,ノ
+うち    名詞,非自立,副詞可能,*,*,*,うち,ウチ,ウチ
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;参考ページ&#34;&gt;参考ページ&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://kohkimakimoto.hatenablog.com/entry/2012/05/02/112020&#34; target=&#34;_blank&#34;&gt;MeCabのインストール手順&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>PHPサンプル isset関数化</title>
+      <link>https://sankame.github.io/blog/2012-12-28-php_sample_viaisset/</link>
+      <pubDate>Fri, 28 Dec 2012 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2012-12-28-php_sample_viaisset/</guid>
+      <description>
+
+&lt;h4 id=&#34;undefined-index-noticeを防ぐためのissetが冗長なので関数化&#34;&gt;&amp;ldquo;Undefined index&amp;rdquo; Noticeを防ぐためのissetが冗長なので関数化。&lt;/h4&gt;
+
+&lt;script src=&#34;https://gist.github.com/4389910.js&#34;&gt;&lt;/script&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
