@@ -1,0 +1,681 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Android on プログラマー備忘録</title>
+    <link>https://sankame.github.io/tags/android/index.xml</link>
+    <description>Recent content in Android on プログラマー備忘録</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <copyright>Powered by [Hugo](//gohugo.io). Theme by [hugo-theme-wave](https://github.com/syui/hugo-theme-wave).</copyright>
+    <atom:link href="https://sankame.github.io/tags/android/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>AndroidのSQLite DBを参照</title>
+      <link>https://sankame.github.io/blog/2017-05-14-view_sqlite_on_android/</link>
+      <pubDate>Sun, 14 May 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2017-05-14-view_sqlite_on_android/</guid>
+      <description>
+
+&lt;p&gt;&lt;span&gt;&amp;nbsp;&lt;/span&gt;&lt;span style=&#34;color:#d14; float:right;&#34;&gt;更新日：2017年05月16日&lt;/span&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;0-環境&#34;&gt;0.環境&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;PC側&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[OS]             Windows7 (32bit 版)
+[Android Studio] 1.5.1
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;スマホ側&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[OS]             Android 5.1.1
+[SQLite]         3.8.6.1
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;1-前提&#34;&gt;1. 前提&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;まずSQLiteのデータをファイル形式で保存するよう設定します。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;例として、SQLiteを操作するライブラリにSQLiteOpenHelperを使用した場合について記載します。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;コンストラクタの第二引数でDBファイル名を指定します。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;(未指定の場合、データはメモリにのみ保持されます)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;class DatabaseHelper extends SQLiteOpenHelper {
+
+    public DatabaseHelper(Context context) {
+        //DBファイル名を指定。
+        super(context, &amp;quot;example.db&amp;quot;, null, 1);
+    }
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;PCからAndroid端末にあるSQLiteのDBファイルを見る方法を調べました。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;試行錯誤した内容を書いているため、結論だけ知りたい場合は、4まで読み飛ばして下さい。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;2-adb-androidデバッグ用インターフェース-利用&#34;&gt;2. ADB(Androidデバッグ用インターフェース) 利用&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;ネットを検索して結構あったのが、ADBを使ってSQLiteのDBファイルをAndroid端末からPCへコピーし、その後DBビューワーで参照するというものです。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;PCでコマンドプロンプトから下記コマンドを実行すると、カレントディレクトリにtarget.db(任意)というファイルができます。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;C:\Users\【ユーザー名】&amp;gt;adb -d shell &amp;quot;run-as 【アプリケーションID】 cat databases/【DBファイル名】&amp;quot;&amp;gt;target.db
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;【】内は読み替えて下さい。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;【アプリケーションID】: Android Studioの[File]-[Project Structure]-[Flavors]-[Application Id]&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;【DBファイル名】: 上記1で指定したファイル名。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Database BrowserやPupSQLiteというビューワーでtarget.dbを開いても、下記エラーが出てレコードが表示されません。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;database disk image is malformed&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;http://qiita.com/tsunet111/items/2c21706fd67f5ecb047d&#34; target=&#34;_blank&#34;&gt;この修復方法&lt;/a&gt;を試しましたが次のエラーが出て、上記ビューワーで見てもレコードが0件でした。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;Error: near line 6: NOT NULL constraint failed: 【テーブル名】.【カラム名】
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Android(Linux系)とWindowsだからリダイレクションでデータの受け渡しがうまくいってないのかな？と推測し、Linuxコマンドも使えるPower Shellを使ってみたところ、最初の結果と異なり、target.dbのファイルサイズは倍になりました。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;再度、上記のビューワーで開こうとしたところ、復号化パスワードを求められ開けませんでした…&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;3-android-device-monitor-利用&#34;&gt;3. Android Device Monitor 利用&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;方針を変え、Android Studioの付属ツールを使ってDBファイルをPCへコピーする方法を試しました。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;Android Studioのメニューで[Tools]-[Android]-[Android Device Monitor]-[File Explorer]タブ
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&amp;ldquo;data&amp;rdquo;ディレクトリはあるのですが、その下のディレクトリが表示されず、DBファイルまでたどり着けなかったため諦めました。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;4-stetho-利用&#34;&gt;4. stetho 利用&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;facebookが提供している&lt;a href=&#34;https://github.com/facebook/stetho&#34; target=&#34;_blank&#34;&gt;stetho&lt;/a&gt;というデバッグツールを使いました。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;(4-1) 準備&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;http://facebook.github.io/stetho/#download&#34; target=&#34;_blank&#34;&gt;このページ&lt;/a&gt;からjarをダウンロードし、下記ディレクトリへコピーします。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;[アプリのルート]-[mobile]-[libs]&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;僕のbuild.gradleは、もともとlibsの全jarを読み込み対象にしていたのでひとまずそのままにしました。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;(build.gradle抜粋)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;    dependencies {
+        compile fileTree(dir: &#39;libs&#39;, include: [&#39;*.jar&#39;])
+        wearApp project(&#39;:wear&#39;)
+        compile &#39;com.android.support:appcompat-v7:21.0.3&#39;
+        compile &#39;com.google.android.gms:play-services:6.5.87&#39;
+        compile &amp;quot;com.android.support:support-v4:20.0.+&amp;quot;
+        compile files(&#39;libs/gson-2.5.jar&#39;)
+    }
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;さらに、ソースコードへ下記①、②を追記します。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;//①
+import com.facebook.stetho.Stetho;
+
+public class MainActivity extends ActionBarActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+
+        super.onCreate(savedInstanceState);
+        //②
+        Stetho.initializeWithDefaults(this);
+
+        // 以下省略
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;(4-2) エラー対応&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;ビルドしたところ、下記エラーが発生しました。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;ライブラリを重複して読み込もうとする際に出るエラーのようです。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;:mobile:dexDebug
+AGPBI: {&amp;quot;kind&amp;quot;:&amp;quot;simple&amp;quot;,&amp;quot;text&amp;quot;:&amp;quot;UNEXPECTED TOP-LEVEL EXCEPTION:&amp;quot;,&amp;quot;sources&amp;quot;:[{}]}
+AGPBI: {&amp;quot;kind&amp;quot;:&amp;quot;simple&amp;quot;,&amp;quot;text&amp;quot;:&amp;quot;com.android.dex.DexException: Multiple dex files define Landroid/support/v7/appcompat/R$anim;&amp;quot;,&amp;quot;sources&amp;quot;:[{}]}
+AGPBI: {&amp;quot;kind&amp;quot;:&amp;quot;simple&amp;quot;,&amp;quot;text&amp;quot;:&amp;quot;\tat com.android.dx.merge.DexMerger.readSortableTypes(DexMerger.java:596)&amp;quot;,&amp;quot;sources&amp;quot;:[{}]}
+AGPBI: {&amp;quot;kind&amp;quot;:&amp;quot;simple&amp;quot;,&amp;quot;text&amp;quot;:&amp;quot;\tat com.android.dx.merge.DexMerger.getSortedTypes(DexMerger.java:554)&amp;quot;,&amp;quot;sources&amp;quot;:[{}]}
+AGPBI: {&amp;quot;kind&amp;quot;:&amp;quot;simple&amp;quot;,&amp;quot;text&amp;quot;:&amp;quot;\tat com.android.dx.merge.DexMerger.mergeClassDefs(DexMerger.java:535)&amp;quot;,&amp;quot;sources&amp;quot;:[{}]}
+AGPBI: {&amp;quot;kind&amp;quot;:&amp;quot;simple&amp;quot;,&amp;quot;text&amp;quot;:&amp;quot;\tat com.android.dx.merge.DexMerger.mergeDexes(DexMerger.java:171)&amp;quot;,&amp;quot;sources&amp;quot;:[{}]}
+AGPBI: {&amp;quot;kind&amp;quot;:&amp;quot;simple&amp;quot;,&amp;quot;text&amp;quot;:&amp;quot;\tat com.android.dx.merge.DexMerger.merge(DexMerger.java:189)&amp;quot;,&amp;quot;sources&amp;quot;:[{}]}
+AGPBI: {&amp;quot;kind&amp;quot;:&amp;quot;simple&amp;quot;,&amp;quot;text&amp;quot;:&amp;quot;\tat com.android.dx.command.dexer.Main.mergeLibraryDexBuffers(Main.java:454)&amp;quot;,&amp;quot;sources&amp;quot;:[{}]}
+AGPBI: {&amp;quot;kind&amp;quot;:&amp;quot;simple&amp;quot;,&amp;quot;text&amp;quot;:&amp;quot;\tat com.android.dx.command.dexer.Main.runMonoDex(Main.java:303)&amp;quot;,&amp;quot;sources&amp;quot;:[{}]}
+AGPBI: {&amp;quot;kind&amp;quot;:&amp;quot;simple&amp;quot;,&amp;quot;text&amp;quot;:&amp;quot;\tat com.android.dx.command.dexer.Main.run(Main.java:246)&amp;quot;,&amp;quot;sources&amp;quot;:[{}]}
+AGPBI: {&amp;quot;kind&amp;quot;:&amp;quot;simple&amp;quot;,&amp;quot;text&amp;quot;:&amp;quot;\tat com.android.dx.command.dexer.Main.main(Main.java:215)&amp;quot;,&amp;quot;sources&amp;quot;:[{}]}
+AGPBI: {&amp;quot;kind&amp;quot;:&amp;quot;simple&amp;quot;,&amp;quot;text&amp;quot;:&amp;quot;\tat com.android.dx.command.Main.main(Main.java:106)&amp;quot;,&amp;quot;sources&amp;quot;:[{}]}
+
+FAILED
+
+FAILURE: Build failed with an exception.
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;下記のようにbuild.gradleを変更し、stethoを個別に定義するようにしました。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;s&gt;さらに上記エラーメッセージの3行目から推測して、除外設定も追加しています。(&lt;a href=&#34;http://stackoverflow.com/questions/27719436/how-to-remove-duplicate-libraries-added-via-gradle/27773664&#34; target=&#34;_blank&#34;&gt;参考ページ&lt;/a&gt;)&lt;/s&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;font color=&#34;red&#34;&gt;(2017/05/16,追記)除外設定はなくてもOKでした。まだ追いきれてませんが、fileTreeによる指定がまずかったようです。&lt;/font&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;(build.gradle抜粋)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;dependencies {
+    //この指定はやめる。
+    //compile fileTree(dir: &#39;libs&#39;, include: [&#39;*.jar&#39;])
+    wearApp project(&#39;:wear&#39;)
+    compile &#39;com.android.support:appcompat-v7:21.0.3&#39;
+    compile &#39;com.google.android.gms:play-services:6.5.87&#39;
+    compile &amp;quot;com.android.support:support-v4:20.0.+&amp;quot;
+    compile files(&#39;libs/gson-2.5.jar&#39;)
+                
+    //これを含めるのはデバッグ時のみにし、重複エラーが出たので除外設定を追加。
+    //debugCompile (&#39;com.facebook.stetho:stetho:1.5.0&#39;) {
+    //  exclude group: &#39;android.support&#39;, module: &#39;library&#39;
+    //}
+                
+    //(2017/05/16,追記) この指定で十分でした。
+    debugCompile (&#39;com.facebook.stetho:stetho:1.5.0&#39;)
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;(4-3) 使い方&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;アプリをビルドして、Chromeのアドレスバーに下記URLを入力します。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;chrome://inspect&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Android端末名の下にアプリ名が表示されるので、&amp;rdquo;inspect&amp;rdquo;をクリック。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/view_sqlite_on_android/chrome.jpg&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;80%&#34; height=&#34;80%&#34; title=&#34;chrome&#34; alt=&#34;chrome&#34; src=&#34;https://sankame.github.io/assets/posts/img/view_sqlite_on_android/chrome.jpg&#34;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;新しいウィンドウが開き、[Web SQL]-【アプリケーションID】-【テーブル名】を開くとSQLiteのデータが参照できました。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;さらに、【アプリケーションID】をクリックすると右ペインにプロンプト(&amp;gt;)が表示され、そこでSQL文も実行できるのでかなり使えそうです。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/view_sqlite_on_android/view_sqlite_db.jpg&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;80%&#34; height=&#34;80%&#34; title=&#34;chrome&#34; alt=&#34;chrome&#34; src=&#34;https://sankame.github.io/assets/posts/img/view_sqlite_on_android/view_sqlite_db.jpg&#34;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>setVibrateメソッドの使い方</title>
+      <link>https://sankame.github.io/blog/2016-02-08-notification_compat_builder_setvibrate/</link>
+      <pubDate>Mon, 08 Feb 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2016-02-08-notification_compat_builder_setvibrate/</guid>
+      <description>
+
+&lt;h3 id=&#34;環境&#34;&gt;環境&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;[Android SDK]  API 21: Android 5.0(Lollipop)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;実装&#34;&gt;実装&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;スマートウォッチ(Android Wear)に通知を送るため、NotificationCompat.Builder の&lt;/p&gt;
+
+&lt;p&gt;setVibrateメソッドを使った際の自分用メモ。&lt;/p&gt;
+
+&lt;p&gt;バイブレーション・パターンの設定は下記仕様ですが、&lt;/p&gt;
+
+&lt;p&gt;long型配列の&lt;font color=&#34;green&#34;&gt;&lt;b&gt;1つ目の要素を除いて、偶数は振動、奇数は休止&lt;/b&gt;&lt;/font&gt;&lt;/p&gt;
+
+&lt;p&gt;と覚えておけば良さそうです。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;NotificationCompat.Builder builder = new NotificationCompat.Builder( getApplicationContext() );
+
+// 単位はミリ秒
+// 
+// 要素1 : 振動開始までの時間
+// 要素2 : 振動
+// 要素3 : 休止
+// 要素4 : (これ以降は要素2-3の繰り返し)
+builder.setVibrate(new long[]{0, 500, 250, 500, 250, 1000});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;下記の例だと、ツー・ツ・ツ　みたいな感じになります。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;// 1秒振動、0.1秒休止、0.1秒振動、0.05秒休止、0.1秒振動
+builder.setVibrate(new long[]{0, 1000, 100, 100, 50, 100});
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;関連リンク&#34;&gt;関連リンク&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html&#34; target=&#34;_blank&#34;&gt;API : NotificationCompat.Builder&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Androidアプリのバージョンアップができない</title>
+      <link>https://sankame.github.io/blog/2015-10-07-android_app_version/</link>
+      <pubDate>Wed, 07 Oct 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2015-10-07-android_app_version/</guid>
+      <description>
+
+&lt;h3 id=&#34;0-環境&#34;&gt;0.環境&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;[OS]             Windows7 (32bit 版)
+[AndroidStudio]  1.1.0
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;1-問題&#34;&gt;1.問題&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Androidアプリをバージョンアップするため、Google Play Developer Console
+でapkファイルをアップしても下記のエラーが出ました。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;アップロードできませんでした&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;マニフェストファイルに下記のように追記してもダメ。&lt;/p&gt;
+
+&lt;p&gt;(app\【アプリ名】\mobile\src\main\AndroidManifest.xml)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-xml&#34;&gt;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;utf-8&amp;quot;?&amp;gt;
+    &amp;lt;manifest xmlns:android=&amp;quot;http://schemas.android.com/apk/res/android&amp;quot;
+        package=&amp;quot;【パッケージ名】&amp;quot; android:versionCode=&amp;quot;2&amp;quot; android:versionName=&amp;quot;2.0.1&amp;quot;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;2-対策&#34;&gt;2.対策&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;しばらくして、AndroidManifest.xml にエラーメッセージが出てるのに気付きました。&lt;/p&gt;
+
+&lt;p&gt;build.gradle を修正しなきゃいけない・・・&lt;/p&gt;
+
+&lt;p&gt;(app\【アプリ名】\mobile\build.gradle)&lt;/p&gt;
+
+&lt;p&gt;下記のようにバージョンを上げて再コンパイルしたらアップロードできました。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-json&#34;&gt;android {
+        :
+    (省略)
+        :
+        defaultConfig {
+            applicationId &amp;quot;【省略】&amp;quot;
+            minSdkVersion 16
+            targetSdkVersion 21
+            versionCode 2
+            versionName &amp;quot;2.0.1&amp;quot;
+        }
+    :
+    (省略)
+    :
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>【AndroidStudio】&#34;Failed to complete Gradle execution&#34;エラー</title>
+      <link>https://sankame.github.io/blog/2015-05-11-android_studio_heap_size_error/</link>
+      <pubDate>Mon, 11 May 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2015-05-11-android_studio_heap_size_error/</guid>
+      <description>
+
+&lt;h3 id=&#34;0-環境&#34;&gt;0.環境&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;[OS]             Windows7 (32bit 版)
+[AndroidStudio]  1.1.0
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;1-エラー内容&#34;&gt;1.エラー内容&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;「Run &amp;lsquo;app&amp;rsquo;」ボタンをクリックし、ビルド＆実行しようとすると下記エラーダイアログが表示される。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Failed to complete Gradle execution
+Cause:
+A fatal exception has occurred. Program will exit
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;2-回避方法&#34;&gt;2.回避方法&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;メニューから [File] -&amp;gt; [Settings] -&amp;gt; [Gradle] とたどって、[Gradle VM options] に &amp;ldquo;-XX:MaxHeapSize=256m -Xmx256m&amp;rdquo; を入力。(下記画像のオレンジ枠線)&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/android_studio_heap_size_error/vm_options.png&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;20%&#34; height=&#34;20%&#34; title=&#34;VMオプション設定&#34; alt=&#34;VMオプション設定&#34; src=&#34;https://sankame.github.io/assets/posts/img/android_studio_heap_size_error/vm_options.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;参考にしたページ&#34;&gt;※参考にしたページ&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://code.google.com/p/android/issues/detail?id=67946&#34; target=&#34;_blank&#34;&gt;Failed to complete Gradle Execution&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>AndroidStudioでプロセス開始エラー</title>
+      <link>https://sankame.github.io/blog/2015-05-10-android_studio_process_error/</link>
+      <pubDate>Sun, 10 May 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2015-05-10-android_studio_process_error/</guid>
+      <description>
+
+&lt;h1 id=&#34;0-環境&#34;&gt;0.環境&lt;/h1&gt;
+
+&lt;pre&gt;&lt;code&gt;[OS]             Windows7 (32bit 版)
+[AndroidStudio]  1.1.0
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;1-エラー内容&#34;&gt;1.エラー内容&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;AndroidStudioで「Run &amp;lsquo;app&amp;rsquo;」ボタンをクリックし、ビルド＆実行しようとすると下記エラーが発生しました。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;Error:Unable to start the daemon process.
+This problem might be caused by incorrect configuration of the daemon.
+For example, an unrecognized jvm option is used.
+Please refer to the user guide chapter on the daemon at http://gradle.org/docs/2.2.1/userguide/gradle_daemon.html
+Please read the following process output to find out more:
+-----------------------
+Error occurred during initialization of VM
+Could not reserve enough space for object heap
+Error: Could not create the Java Virtual Machine.
+Error: A fatal exception has occurred. Program will exit.
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;2-回避方法&#34;&gt;2.回避方法&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Android Studioを閉じます。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;下記フォルダを削除。(不安な場合は例えば次のようにリネーム DELETE_.gradle)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;C:\ユーザー\【ユーザー名】\.gradle
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Android Studioを起動。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;上記で消した.gradleフォルダが再作成され、ビルド＆実行が成功しました。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;3-参考にしたページ&#34;&gt;3.参考にしたページ&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.thedevline.com/2014/06/android-studio-unable-to-start-daemon.html&#34; target=&#34;_blank&#34;&gt;Unable to start the daemon process fix Solution&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>【Android Wear】ホーム画面の時計を変更</title>
+      <link>https://sankame.github.io/blog/2014-07-26-android_wear_chage_face/</link>
+      <pubDate>Sat, 26 Jul 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2014-07-26-android_wear_chage_face/</guid>
+      <description>
+
+&lt;h1 id=&#34;0-環境&#34;&gt;0.環境&lt;/h1&gt;
+
+&lt;pre&gt;&lt;code&gt;[スマートフォン(OS)]  GALAXY S4 (Android 4.4.2)
+[スマートウォッチ(OS)] Gear Live (4.4W)
+
+※以降、スマートフォンは「スマホ」、スマートウォッチは「ウォッチ」と記載。
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;1-ホーム画面の時計-ウォッチフェイス-を変更&#34;&gt;1.ホーム画面の時計(ウォッチフェイス)を変更&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Samsung Gear Live のホーム画面の時計デザインを変える方法は下記の通りです。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;(スマホとウォッチはBluetoothで同期されている前提)&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;①【スマホ】Playストアから好みのデザインの時計アプリをインストールします。(&lt;a href=&#34;http://weekly.ascii.jp/elem/000/000/239/239437/&#34; target=&#34;_blank&#34;&gt;参考リンク&lt;/a&gt;)&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;(例) Playストアで &amp;quot;WearFaces&amp;quot; で検索。&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;②【スマホ】Android Wearアプリを起動し、右上のネジマークをタップ。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/android_wear_chage_face/phone-1.png&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;20%&#34; height=&#34;20%&#34; title=&#34;スマホ-設定&#34; alt=&#34;スマホ-設定&#34; src=&#34;https://sankame.github.io/assets/posts/img/android_wear_chage_face/phone-1.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;③【スマホ】一番下までスクロールし、「アプリの再同期」をタップ。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/android_wear_chage_face/phone-2.png&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;20%&#34; height=&#34;20%&#34; title=&#34;スマホ-アプリ同期&#34; alt=&#34;スマホ-アプリ同期&#34; src=&#34;https://sankame.github.io/assets/posts/img/android_wear_chage_face/phone-2.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;④【ウォッチ】ホーム画面をタップし、メニュー画面を一番下までスクロールした後「設定」をタップ。&lt;/p&gt;
+
+&lt;p&gt;&lt;font color=&#34;red&#34;&gt;(2014/07/30, 追記) 後日気づきました。ホーム画面で時計を長押し(ロングタップ)すると一気に時計変更画面に行けます。(下記⑦)&lt;/font&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/android_wear_chage_face/watch-1.jpeg&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;20%&#34; height=&#34;20%&#34; title=&#34;ウォッチ-設定&#34; alt=&#34;ウォッチ-設定&#34; src=&#34;https://sankame.github.io/assets/posts/img/android_wear_chage_face/watch-1.jpeg&#34;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;⑤【ウォッチ】設定画面で上にフリック。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/android_wear_chage_face/watch-2.jpeg&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;20%&#34; height=&#34;20%&#34; title=&#34;ウォッチ-設定2&#34; alt=&#34;ウォッチ-設定2&#34; src=&#34;https://sankame.github.io/assets/posts/img/android_wear_chage_face/watch-2.jpeg&#34;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;⑥【ウォッチ】一番下までスクロールした後、「ウォッチフェイスの変更」をタップ。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/android_wear_chage_face/watch-3.jpeg&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;20%&#34; height=&#34;20%&#34; title=&#34;ウォッチ-ウォッチフェイス変更&#34; alt=&#34;ウォッチ-ウォッチフェイス変更&#34; src=&#34;https://sankame.github.io/assets/posts/img/android_wear_chage_face/watch-3.jpeg&#34;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;⑦【ウォッチ】上記でPlayストアからインストールした時計アプリを見つけ、タップするとホーム画面に設定されます。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Nexus7のスクリーンをプロジェクターに映す (Android Screen Cast)</title>
+      <link>https://sankame.github.io/blog/2013-09-02-nexus7_projected_to_pc/</link>
+      <pubDate>Sun, 01 Sep 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2013-09-02-nexus7_projected_to_pc/</guid>
+      <description>
+
+&lt;h1 id=&#34;環境&#34;&gt;環境&lt;/h1&gt;
+
+&lt;pre&gt;&lt;code&gt;[タブレット(OS)] Nexus7(Android 4.2.2)
+[PC(OS)]      Gateway SX2800(Windows Vista Home Premium)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;0-検討&#34;&gt;0. 検討&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;プレゼンでNexus7のスクリーンをプロジェクターに映したいと考え、検討した結果、下記C案にしました。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;http://www.amazon.co.jp/dp/B005RUM754/ref=as_li_ss_til?tag=uni6605-22&amp;camp=1027&amp;creative=7407&amp;linkCode=as4&amp;creativeASIN=B005RUM754&amp;adid=004HQM7Z4FR3M83JKTW2&amp;&amp;ref-refURL=http%3A%2F%2Flove-guava.com%2Fit-is-difficult-in-it-being-unexpected-to-output-the-screen-of-nexus7-to-a-display%2F&#34; target=&#34;_blank&#34;&gt;A.変換器を使う&lt;/a&gt; →Nexus7はMHL非対応…&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://play.google.com/store/apps/details?id=com.awindinc.sphone2tv&#34; target=&#34;_blank&#34;&gt;B.アプリで解決&lt;/a&gt; →PCに映像を送信する方法。有料かつNexus7のRoot化が必要。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;http://www.moongift.jp/2009/09/androidscreencast&#34; target=&#34;_blank&#34;&gt;C.アプリで解決&lt;/a&gt; →PCに映像を送信する方法。無料かつRoot化の必要もなし。Nexus7の映像がPCに届くまで数秒のタイムラグあり。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;1-pcにandroid-sdkをインストール&#34;&gt;1. PCにAndroid SDKをインストール&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;下記ページの[download here] - [Download the SDK]ボタンをクリック。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://code.google.com/p/androidscreencast/&#34; target=&#34;_blank&#34;&gt;ダウンロード&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;規約に同意したら「I have read and agree…」にチェック。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;32ビットか64ビットかは、次の手順で調べます。&lt;/p&gt;
+
+&lt;p&gt;[スタート]メニュー - [コンピュータ]右クリック - [プロパティ]&lt;/p&gt;
+
+&lt;p&gt;[システムの種類]を確認。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;2-nexus7とpcをusbケーブルで接続&#34;&gt;2. Nexus7とPCをUSBケーブルで接続&lt;/h1&gt;
+
+&lt;h1 id=&#34;3-android-screen-cast&#34;&gt;3. Android Screen Cast&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;(3-1) Android Screen Castを下記リンクからダウンロードし、PCの任意のフォルダに保存します。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://androidscreencast.googlecode.com/svn/trunk/AndroidScreencast/dist/androidscreencast.jnlp&#34; target=&#34;_blank&#34;&gt;ダウンロード&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;(3-2) コマンドプロンプトで上記3-1のフォルダに移動し、下記コマンドを実行。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;gt; javaws androidscreencast.jnlp
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;(3-3) JREをバージョンアップするよう警告が出たので、最新版をインストールしました。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;gt; java -version
+  java version &amp;quot;1.7.0_25&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;(3-4) 再び3-2のコマンドを実行すると下記エラーが発生。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Timeout getting device list&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;(3-5) adb usb 実行 (&lt;a href=&#34;http://code.google.com/p/androidscreencast/issues/detail?id=49&#34; target=&#34;_blank&#34;&gt;参考ページ&lt;/a&gt;)&lt;/p&gt;
+
+&lt;p&gt;PCでコマンドプロンプトを起動し、&amp;rdquo;platform-tools&amp;rdquo;フォルダに移動。(パスは読み替えて下さい)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;gt; cd C:\soft\Android\adt-bundle-windows-x86-20130729\sdk\platform-tools
+&amp;gt; adb usb
+error: device not found
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;4-usbドライバー&#34;&gt;4. USBドライバー&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;(4-1) USBドライバー&lt;/p&gt;
+
+&lt;p&gt;上記3-5でエラーになったので、USBドライバーをインストールします。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;(4-2) インストール&lt;/p&gt;
+
+&lt;p&gt;PC側で、上記1でダウンロードした&amp;rdquo;SDK Manager.exe&amp;rdquo;をダブルクリックします。&lt;/p&gt;
+
+&lt;p&gt;&amp;ldquo;Google USB Driver&amp;rdquo;にチェックして、[Install 1 package&amp;hellip;]をクリック。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://sankame.github.io/assets/posts/img/nexus7_projected_to_pc/10.jpg&#34; alt=&#34;画像10&#34; title=&#34;画像10&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;※ もし&amp;rdquo;Failed to fetch URL&amp;rdquo;というエラーが出た場合は、代替策として下記5を参照して下さい。&lt;/p&gt;
+
+&lt;p&gt;規約に同意したら[Install]をクリック。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://sankame.github.io/assets/posts/img/nexus7_projected_to_pc/11.jpg&#34; alt=&#34;画像11&#34; title=&#34;画像11&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;(4-3) USBドライバー更新&lt;/p&gt;
+
+&lt;p&gt;さらにPC側で、下記ノードを右クリックしてプロパティから[ドライバの更新]をクリック。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[スタート]-[コントロール パネル]-[デバイスマネージャ]-[Android Phone]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;次のパスを選択してドライバを指定します。(パスは読み替えて下さい)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;C:\soft\Android\adt-bundle-windows-x86-20130729\sdk\extras
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;インストールが完了したらPCを再起動。 →下記5を飛ばして6以降を参照。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;5-pdanet&#34;&gt;5. PdaNet&lt;/h1&gt;
+
+&lt;p&gt;&lt;font color=&#34;red&#34;&gt;
+ 【注意】
+  PdaNetがインストールするUSBドライバを利用します。
+  PdaNetはモバイル端末経由でPCをネット接続するソフトなので、モバイル端末のネット接続が従量課金の場合は、注意して下さい。
+&lt;/font&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;(5-1) &lt;a href=&#34;http://pdanet.co/a/&#34; target=&#34;_blank&#34;&gt;インストーラー(PdaNetA4126.exe)をダウンロード後、&lt;/a&gt;起動。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;(5-2) インストールの途中で下記メッセージが出ました。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://sankame.github.io/assets/posts/img/nexus7_projected_to_pc/1.jpg&#34; alt=&#34;画像1&#34; title=&#34;画像1&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;(5-3) Nexus7 開発者メニュー&lt;/p&gt;
+
+&lt;p&gt;Nexus7で[設定]-[タブレット情報]-[ビルド番号]を7回タップし、[設定]-[開発者向けオプション]を表示。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;(5-4) Nexus7 USBデバッグ&lt;/p&gt;
+
+&lt;p&gt;Nexus7で[開発者向けオプション]-[USBデバッグ] をONにします。&lt;/p&gt;
+
+&lt;p&gt;直後に、PC側でインストーラーが再開しました。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://sankame.github.io/assets/posts/img/nexus7_projected_to_pc/2.jpg&#34; alt=&#34;画像2&#34; title=&#34;画像2&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;(5-5) Nexus7で下記メッセージが出たので、&amp;rdquo;許可する&amp;rdquo;を選択。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;このパソコンのRSAキーのフィンガープリント…&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;(5-6) PC側で下記メッセージが出たので、&amp;rdquo;インストール&amp;rdquo;をクリック。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://sankame.github.io/assets/posts/img/nexus7_projected_to_pc/3.jpg&#34; alt=&#34;画像3&#34; title=&#34;画像3&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;(5-7) Nexus7で下記メッセージが出たので、そのままOKを選択。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Googleが定期的にインストールされたアプリをチェックする&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;(5-8) インストール完了&lt;/p&gt;
+
+&lt;p&gt;下記画面が表示されればインストールは完了です。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://sankame.github.io/assets/posts/img/nexus7_projected_to_pc/4.jpg&#34; alt=&#34;画像4&#34; title=&#34;画像4&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;6-android-screen-cast起動&#34;&gt;6. Android Screen Cast起動&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;(6-1) PC側のデバイスにAndroid Phoneが追加されていればOKです。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;[スタート]-[コントロール パネル]-[デバイスマネージャ]-[Android Phone]&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;(6-2) 上記3-5のコマンドを再実行すると次のメッセージが表示されました。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;daemon not running. starting it now on port 5037
+    
+daemon started successfully
+    
+restarting in USB mode
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;(6-3) 上記3-2の操作を再実行し、Nexus7の画面がPC側に表示されれば成功です。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;参考にしたページ&#34;&gt;参考にしたページ&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.dominantwire.com/2012/11/how-to-solve-adb-device-not-found-error.html&#34; target=&#34;_blank&#34;&gt;How to Solve ADB : ‘Device Not Found’ Error in Android [SOLVED]&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
