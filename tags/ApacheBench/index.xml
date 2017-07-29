@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ApacheBench on プログラマー備忘録</title>
+    <link>https://sankame.github.io/tags/apachebench/index.xml</link>
+    <description>Recent content in ApacheBench on プログラマー備忘録</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <copyright>Powered by [Hugo](//gohugo.io). Theme by [hugo-theme-wave](https://github.com/syui/hugo-theme-wave).</copyright>
+    <atom:link href="https://sankame.github.io/tags/apachebench/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>ポイントだけ ApacheBench</title>
+      <link>https://sankame.github.io/blog/2014-06-07-apache_bench/</link>
+      <pubDate>Sat, 07 Jun 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2014-06-07-apache_bench/</guid>
+      <description>
+
+&lt;h1 id=&#34;0-環境&#34;&gt;0.環境&lt;/h1&gt;
+
+&lt;pre&gt;&lt;code&gt;  [CentOS]      5.6 (32bit版カーネル)
+  [Apache]      2.2.3
+  [ApacheBench] 2.0.40-dev
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;1-基本&#34;&gt;1.基本&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;(1-1) 実行方法&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Apacheをインストールすると ab というコマンドで負荷テストができます。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;主に使うのは2つのオプションで、下記のように実行します。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;後述の &amp;ldquo;Requests per second&amp;rdquo; が十分な値になるよう、n と c の値を増やして負荷をかけます。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;(n : リクエスト数　c : 同時接続数)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ab -n 10000 -c 100 &amp;quot;http://test.vm/test.php&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;※ abでテストできるのはサーバ側の処理だけなので、HTMLレンダリングやJavascript実行等、&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;トータルの計測を行いたい場合は、下記のようなツールを検討して下さい。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;http://gtmetrix.com/&#34; target=&#34;_blank&#34;&gt;GTmetrix&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;http://knowledge.sakura.ad.jp/tech/1599/&#34; target=&#34;_blank&#34;&gt;PageSpeed&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;(1-2) 結果の確認&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;実行すると下記サンプルのような結果が表示されるので、主に2つの項目を確認します。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;① Failed requests (失敗したリクエスト数)&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;この項目が0であることを確認します。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;但し、表示毎にHTMLのバイト数が異なるサイトの場合、ここがカウントされ、さらに内訳を表す &amp;ldquo;Length:&amp;rdquo; もカウントされます。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;(1つ前の結果とHTMLのバイト数を比較し、異なる場合は Length がカウントされる仕様)&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;上記のようなサイトの場合、&amp;rdquo;Failed requests&amp;rdquo; に数字があっても、全て Length が原因ならば無視してかまいませんが、&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;念のため、Apacheのアクセスログを確認し、HTTP Response Code が全て200になっていることを確認して下さい。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;② Requests per second (秒間に処理したリクエスト数)&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;対象サイトのページビュー数(PV)などから基準値を算出し、それをクリアしているかチェックします。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;(例) 月間 1億 PVのサイトの場合、アクセスが均等という前提で、秒間 38.5 リクエストは達成する必要がありそうです。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;100,000,000 / 30 / 24 / 60 / 60 ≒ 38.5&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;font color=&#34;red&#34;&gt;(注意) 下記の結果は文字を表示するだけのページなので &amp;ldquo;Requests per second&amp;rdquo; はかなり高い数字が出ています。&lt;/font&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;b&gt;ab 実行結果サンプル&lt;/b&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# ab -n 10000 -c 100 &amp;quot;http://test.vm/test.php&amp;quot;
+        
+This is ApacheBench, Version 2.0.40-dev &amp;lt;$Revision: 1.146 $&amp;gt; apache-2.0
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Copyright 2006 The Apache Software Foundation, http://www.apache.org/
+        
+Benchmarking test.vm (be patient)
+Completed 1000 requests
+Completed 2000 requests
+Completed 3000 requests
+Completed 4000 requests
+Completed 5000 requests
+Completed 6000 requests
+Completed 7000 requests
+Completed 8000 requests
+Completed 9000 requests
+Finished 10000 requests
+        
+Server Software:        Apache/2.2.3
+Server Hostname:        test.vm
+Server Port:            80
+        
+Document Path:          /test.php
+Document Length:        80 bytes
+        
+Concurrency Level:      100
+Time taken for tests:   5.772060 seconds
+Complete requests:      10000
+Failed requests:        9899
+   (Connect: 0, Length: 9899, Exceptions: 0)
+Write errors:           0
+Total transferred:      2418216 bytes
+HTML transferred:       499081 bytes
+Requests per second:    1732.48 [#/sec] (mean)
+Time per request:       57.721 [ms] (mean)
+Time per request:       0.577 [ms] (mean, across all concurrent requests)
+Transfer rate:          409.04 [Kbytes/sec] received
+        
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    0   0.3      0       6
+Processing:     5   56 112.2     55    5769
+Waiting:        5   54  77.3     55    4398
+Total:          5   57 112.2     55    5769
+        
+Percentage of the requests served within a certain time (ms)
+  50%     55
+  66%     56
+  75%     58
+  80%     59
+  90%     62
+  95%     69
+  98%     77
+  99%    284
+ 100%   5769 (longest request)
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;2-応用&#34;&gt;2.応用&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;(2-1) コマンドサンプル&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;他に僕がよく使うオプションを記載しておきます。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Cookieを指定。(C : [Cookie名]=[値])&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ab -n 100 -c 10 -C &#39;id=test&#39; &amp;quot;http://test.vm/test.php&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;複数のCookieを指定。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ab -n 100 -c 10 -C &#39;id=test;flag=1&#39; &amp;quot;http://test.vm/test.php&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;(2-2) host名の指定が必要な場合&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;host名の指定が必要なサイトで、かつ /etc/hosts で名前解決ができない環境の場合、&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;下記のようにヘッダオプション(-H) と Host を使います。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;このオプションは   Apache 2.2.22 以降の ab にあり、僕のApacheはそれより古かったため、別途ソースを落としてきてビルドしました。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;font color=&#34;red&#34;&gt;(注意) ab を使うだけなので、Apacheのインストール(make install)は行いません。&lt;/font&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# cd /usr/local/src/
+# wget http://ftp.meisei-u.ac.jp/mirror/apache/dist//httpd/httpd-2.2.27.tar.gz
+# tar xzf httpd-2.2.27.tar.gz
+# cd httpd-2.2.27
+# ./configure
+# make
+# 
+# /usr/local/src/httpd-2.2.27/support/ab -n 100 -c 10 -H &#39;Host: test.vm&#39; &amp;quot;http://192.168.130.130/test.php&amp;quot;
+#
+# /usr/local/src/httpd-2.2.27/support/ab -V
+#This is ApacheBench, Version 2.3 &amp;lt;$Revision: 655654 $&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;これによって、&lt;a href=&#34;http://test.vm/test.php&#34;&gt;http://test.vm/test.php&lt;/a&gt; でアクセスしたのと同じ効果が得られます。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
