@@ -1,0 +1,497 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Let&#39;sEncrypt on プログラマー備忘録</title>
+    <link>https://sankame.github.io/tags/letsencrypt/index.xml</link>
+    <description>Recent content in Let&#39;sEncrypt on プログラマー備忘録</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <copyright>Powered by [Hugo](//gohugo.io). Theme by [hugo-theme-wave](https://github.com/syui/hugo-theme-wave).</copyright>
+    <atom:link href="https://sankame.github.io/tags/letsencrypt/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Let&#39;s Encrypt - certbotコマンド</title>
+      <link>https://sankame.github.io/blog/2016-05-15-letsencrypt_certbot_command/</link>
+      <pubDate>Sun, 15 May 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2016-05-15-letsencrypt_certbot_command/</guid>
+      <description>
+
+&lt;p&gt;&lt;span&gt;&amp;nbsp;&lt;/span&gt;&lt;span style=&#34;color:#d14; float:right;&#34;&gt;更新日：2016年08月06日&lt;/span&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;0-環境&#34;&gt;0. 環境&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;[CentOS] 6.4 (64bit版カーネル)
+[Apache] 2.2.15
+[Firefox] 46.0.1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;1-let-s-encryptのコマンド変更&#34;&gt;1. Let&amp;rsquo;s Encryptのコマンド変更&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://sankame.github.io/ssl-tls/letsencrypt_renewal/&#34; target=&#34;_blank&#34;&gt;証明書を更新した際、&lt;/a&gt; 「letsencrypt-autoコマンドはもう古いよ」という警告が出たので、更新したいと思います。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;2-更新作業-はマスク情報&#34;&gt;2. 更新作業(【】はマスク情報)&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Let&amp;rsquo;s Encryptがβ版の時はgit cloneして /usr/local/src/letsencrypt ディレクトリを作成しましたが、今回はそれとは別ディレクトリを作成します。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;# cd /usr/local/src
+# git clone https://github.com/certbot/certbot
+# cd certbot
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;疑似実行したところ成功したようなので、証明書の期限が迫ってきたら dry-run なしで実行してみたいと思います。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;# ./certbot-auto renew --dry-run
+    
+  ：
+(省略)
+  ：
+Congratulations, all renewals succeeded. The following certs have been renewed:
+/etc/letsencrypt/live/【ドメイン名】/fullchain.pem (success)
+** DRY RUN: simulating &#39;certbot renew&#39; close to cert expiry
+**          (The test certificates above have not been saved.)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;font id=&#34;cron&#34; color=&#34;red&#34;&gt;(2016/08/06, 追記)&lt;/font&gt; &lt;a href=&#34;https://sankame.github.io/ssl-tls/letsencrypt_renewal/#cron&#34; target=&#34;_blank&#34;&gt;&lt;font color=&#34;green&#34;&gt;dry-runなしでの実行結果はこちら&lt;/font&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;参考ページ&#34;&gt;参考ページ&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;① &lt;a href=&#34;https://letsencrypt.org/getting-started/&#34; target=&#34;_blank&#34;&gt;Getting Started&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;② &lt;a href=&#34;https://www.eff.org/deeplinks/2016/05/announcing-certbot-new-tls-robot&#34; target=&#34;_blank&#34;&gt;Announcing Certbot: EFF&amp;rsquo;s Client for Let&amp;rsquo;s Encrypt&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Let&#39;s Encrypt - 証明書の更新と自動化</title>
+      <link>https://sankame.github.io/blog/2016-02-21-letsencrypt_renewal/</link>
+      <pubDate>Sun, 21 Feb 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2016-02-21-letsencrypt_renewal/</guid>
+      <description>
+
+&lt;p&gt;&lt;span&gt;&amp;nbsp;&lt;/span&gt;&lt;span style=&#34;color:#d14; float:right;&#34;&gt;更新日：2016年11月09日&lt;/span&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;0-環境&#34;&gt;0.環境&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;[CentOS] 6.4 (64bit版カーネル)
+[Apache] 2.2.15
+[Firefox] 44.0.2
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;1-メールで期限通知-はマスク情報&#34;&gt;1.メールで期限通知 (【】はマスク情報)&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/ssl-tls/letsencrypt_setup/&#34; target=&#34;_blank&#34;&gt;年末に設定した&lt;/a&gt; Let&amp;rsquo;s Encrypt のSSL証明書の期限が迫り、下記のお知らせメールが届きました。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Let&#39;s Encrypt certificate expiration notice
+
+Hello,
+
+Your certificate (or certificates) for the names listed below will expire in 17 days (on 04 Mar 16 17:44 +0000). Please make sure to renew your certificate before then, or visitors to your website will encounter errors.
+
+【以下省略】
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;ブラウザで有効期限を確認するとそろそろ切れそうです。&lt;/p&gt;
+
+&lt;p&gt;ブラウザのアドレスバーの鍵マークをクリックし、[ &amp;gt; ] - [詳細を表示] - [セキュリティ] - [証明書を表示] - [有効期限]&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/letsencrypt_renewal/ssl_before.png&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;50%&#34; height=&#34;50%&#34; title=&#34;SSL証明書更新前&#34; alt=&#34;SSL証明書更新前&#34; src=&#34;https://sankame.github.io/assets/posts/img/letsencrypt_renewal/ssl_before.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;2-更新作業&#34;&gt;2.更新作業&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;公式マニュアルにそってやってみました。(参考ページ①)&lt;/p&gt;
+
+&lt;p&gt;letsencrypt をインストールしたディレクトリに移動し、下記のコマンドを実行。&lt;/p&gt;
+
+&lt;p&gt;(letsencrypt と letsencrypt-auto コマンドは互換性があるとのことなので、初回セットアップで使ったletsencrypt-autoを指定)&lt;/p&gt;
+
+&lt;p&gt;(ディレクトリを忘れた場合は&lt;code&gt;locate letsencrypt-auto&lt;/code&gt;などで確認)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;# cd /usr/local/src/letsencrypt/
+#
+# ./letsencrypt-auto renew
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;1分ほど待って下記メッセージが表示されました。成功したようです。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;# ./letsencrypt-auto renew
+Updating letsencrypt and virtual environment dependencies...You are using pip version 7.1.2, however version 8.0.2 is available.
+You should consider upgrading via the &#39;pip install --upgrade pip&#39; command.
+....
+Running with virtualenv: 【ディレクトリパス】 renew
+Processing 【ディレクトリパス】
+new certificate deployed without reload, fullchain is 【ディレクトリパス】/fullchain.pem
+
+Congratulations, all renewals succeeded. The following certs have been renewed:
+  【ディレクトリパス】/fullchain.pem (success)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;font color=&#34;red&#34;&gt;(2016/05/14, 追記) 証明書の更新は正常終了しましたが、下記の警告が出ました。&lt;/font&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;WARNING:certbot.cli:You are running with an old copy of letsencrypt-auto that does not receive updates, and is less reliable than more recent versions. We recommend upgrading to the latest certbot-auto script, or using native OS packages.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;letsencrypt-autoコマンドは古くなったようなので、次回から下記を使おうと思います。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/ssl-tls/letsencrypt_certbot_command/&#34; target=&#34;_blank&#34;&gt;certbot-autoコマンドの準備はこちら&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;ブラウザをリロードしたり、再起動しても証明書の有効期限は変わらず。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;公式マニュアルにはありませんが、Webサーバーの再起動が必要なようです。(参考ページ②)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# service httpd restart
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Webサーバーを再起動するとブラウザ側の有効期限も延長されました。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/letsencrypt_renewal/ssl_after.png&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;50%&#34; height=&#34;50%&#34; title=&#34;SSL証明書更新後&#34; alt=&#34;SSL証明書更新後&#34; src=&#34;https://sankame.github.io/assets/posts/img/letsencrypt_renewal/ssl_after.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;font id=&#34;cron&#34; color=&#34;red&#34;&gt;(2016/08/06, 追記)&lt;/font&gt; そろそろ面倒になってきたので、証明書の更新をCronに設定しました。&lt;/p&gt;
+
+&lt;p&gt;頻繁に更新するとエラーになるようなので(参考ページ③)、10日に1回の実行です。&lt;/p&gt;
+
+&lt;p&gt;もし失敗していても、冒頭に書いた通知メールがLet&amp;rsquo;s Encryptから届くので、気付くことはできそうです。(【】内は読み替え)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;# SSL証明書更新。
+# Webサーバー再起動を伴うため、深夜に実行。
+0 3 */10 * * sh /【ユーザー】/bin/letsencrypt-renew.sh
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;script src=&#34;https://gist.github.com/Sankame/44a737ee39412c62b48a3392625569c6.js&#34;&gt;&lt;/script&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;font id=&#34;cron&#34; color=&#34;red&#34;&gt;(2016/08/22, 追記)&lt;/font&gt; 上記 renew.log を見たら更新が失敗していたので下記の対応を行いました。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;依存パッケージのインストールを求めるところで停止していたので、一度、手動で下記コマンドを実行。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;停止箇所&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Is this ok [y/N]: Exiting on user Command&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;手動実行したコマンド&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;/usr/local/src/certbot/certbot-auto renew&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;その際、「まだ期限ではないので更新をスキップしたよ」というメッセージが出ました。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;The following certs are not due for renewal yet:
+  /etc/letsencrypt/live/【ドメイン名】/fullchain.pem (skipped)
+No renewals were attempted.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;必ず更新するよう、コマンドに &amp;ndash;force-renew オプションを追加。(上記 gist の COMMAND にも反映済み)&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;下記メッセージが表示され、cronからの実行も成功しました。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Congratulations, all renewals succeeded.&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;また10日後くらいにちゃんと更新されているか見てみようと思います…&lt;/p&gt;
+
+&lt;p&gt;&lt;font color=&#34;red&#34;&gt;(2016/09/04, 追記) ログとブラウザを確認したところ、証明書は更新されていました。&lt;/font&gt;&lt;/p&gt;
+
+&lt;p&gt;これでしばらくは放っておいても大丈夫そうです。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;# cat /var/log/letsencrypt/renew.log
+        
+　：
+(省略)
+　：
+Congratulations, all renewals succeeded. The following certs have been renewed:
+/etc/letsencrypt/live/【ドメイン名】/fullchain.pem (success)
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;font id=&#34;cron&#34; color=&#34;red&#34;&gt;(2016/11/09, 追記)&lt;/font&gt; ブラウザ上で証明書の開始日がしばらく更新されていなかったので、上記 renew.log を見たところ、またもやエラーが出ていました…&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;エラー内容&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;Dependencies Resolved
+
+================================================================================
+ Package Arch Version Repository Size
+================================================================================
+Updating:
+ openssl x86_64 1.0.1e-48.el6_8.3 updates 1.5 M
+ openssl-devel x86_64 1.0.1e-48.el6_8.3 updates 1.2 M
+
+Transaction Summary
+================================================================================
+Upgrade 2 Package(s)
+
+Total download size: 2.7 M
+Is this ok [y/N]: Exiting on user Command
+Could not install OS dependencies. Aborting bootstrap!
+Automated renewal failed
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;何とか依存パッケージのインストール確認をスキップできないものかと調べていたら、コマンド集を見つけ、下記のオプションでうまくいきました。(参考ページ④)&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;--non-interactive&lt;/code&gt; (上記 gist の COMMAND にも反映済み)&lt;/p&gt;
+
+&lt;p&gt;ちなみに、同ページに &amp;ndash;quiet を指定すると上記オプションも含む、と書かれていましたが、こちらはダメでした。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;参考ページ&#34;&gt;参考ページ&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;① &lt;a href=&#34;https://letsencrypt.readthedocs.org/en/latest/using.html#renewal&#34; target=&#34;_blank&#34;&gt;公式マニュアル　証明書更新&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;② &lt;a href=&#34;https://tech.nosuz.jp/2015/12/lets-encrypt-https/&#34; target=&#34;_blank&#34;&gt;Let’s Encryptから証明書を取得して常時HTTPS化&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;③ &lt;a href=&#34;http://qiita.com/pm11op/items/5759d4a2c755509f6d42&#34; target=&#34;_blank&#34;&gt;Let&amp;rsquo;s Encrypt で証明書を小刻みに自動更新&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;④ &lt;a href=&#34;https://letsencrypt.jp/command/&#34; target=&#34;_blank&#34;&gt;Let&amp;rsquo;s Encrypt コマンド集&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>お薦め無料SSL証明書 - Let&#39;s Encrypt</title>
+      <link>https://sankame.github.io/blog/2015-12-07-letsencrypt_setup/</link>
+      <pubDate>Mon, 07 Dec 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2015-12-07-letsencrypt_setup/</guid>
+      <description>
+
+&lt;p&gt;&lt;span&gt;&amp;nbsp;&lt;/span&gt;&lt;span style=&#34;color:#d14; float:right;&#34;&gt;更新日：2017年04月30日&lt;/span&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;0-環境&#34;&gt;0.環境&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;[CentOS] 6.4 (64bit版カーネル)
+[Apache] 2.2.15
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;1-セットアップ&#34;&gt;1.セットアップ&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;個人利用のレンタルサーバーでは有料のSSL証明書を使っていたのですが、
+有効期限切れを機にフリーのものに乗り換えてみました。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Let&amp;rsquo;s Encrypt というサービスを利用します。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://letsencrypt.org/&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;80%&#34; height=&#34;80%&#34; title=&#34;Let&#39;s Encryptトップ&#34; alt=&#34;Let&#39;s Encryptトップ&#34; src=&#34;https://sankame.github.io/assets/posts/img/letsencrypt_setup/letsencrypt_top.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;下記ページに沿って進めます。(その他の参考ページは末尾に記載)&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://letsencrypt.org/howitworks/&#34; target=&#34;_blank&#34;&gt;&lt;font color=&#34;green&#34;&gt;Let&amp;rsquo;s Encrypt 操作方法&lt;/font&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;任意のディレクトリに Let&amp;rsquo;s Encrypt クライアントをダウンロード。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# cd /usr/local/src
+# git clone https://github.com/letsencrypt/letsencrypt
+# cd letsencrypt
+# ./letsencrypt-auto --help
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;お！ helpだから使い方が表示されるかと思いきや、依存関係のあるパッケージがダウンロードされた・・・&lt;/p&gt;
+
+&lt;p&gt;しかも下記メッセージによると、どうやらPythonのバージョンが古くて失敗してるっぽい。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;  ：
+(省略)
+  ：
+Complete!
+WARNING: Python 2.6 support is very experimental at present...
+if you would like to work on improving it, please ensure you have backups
+and then run this script again with the --debug flag!
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;ググってみると同じ問題で悩んでる人がいました。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/letsencrypt/letsencrypt/issues/1046&#34; target=&#34;_blank&#34;&gt;&lt;font color=&#34;green&#34;&gt;letsencrypt-autoは Python 2.6では動かない&lt;/font&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;さらに調べると下記ページに解決方法がありました。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://community.letsencrypt.org/t/redhat-centos-6-x-users-need-python-2-7/2190&#34; target=&#34;_blank&#34;&gt;&lt;font color=&#34;green&#34;&gt;CentOS 6系は Python 2.7をインストールする必要あり&lt;/font&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;実行コマンドは下記の通り。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# yum install python27 python27-python-devel python27-python-setuptools python27-python-tools python27-python-virtualenv
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;pythonのバージョンを調べる。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# python --version
+Python 2.6.6
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;font color=&#34;red&#34;&gt;(注) 2.6のままですが気にせず続行します。&lt;/font&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;font color=&#34;red&#34;&gt;(yum管理外でPythonをソースからビルドしてインストールすると letsencrypt-auto が動かなくなりました)&lt;/font&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;コマンドを再実行すると、Pythonが古い旨のメッセージはもう出なくなりました。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# ./letsencrypt-auto --help
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;続けてドメイン認証を試みます。(以降【】内は読み替えて下さい)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# ./letsencrypt-auto --apache -d 【ドメイン名】
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;エラーメッセージが・・・&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Updating letsencrypt and virtual environment dependencies.......
+Running with virtualenv: /root/.local/share/letsencrypt/bin/letsencrypt --apache -d 【ドメイン名】
+Version: 1.1-20080819
+Version: 1.1-20080819
+The apache plugin is not working; there may be problems with your existing configuration.
+The error was: NoInstallationError()
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;ユーザーガイドによるとApache2.2系だとapacheプラグイン(&amp;ndash;apache)は使えないようです。&lt;/p&gt;
+
+&lt;p&gt;となると、下記の通りstandaloneかwebrootのいずれかを実行しないといけません。&lt;/p&gt;
+
+&lt;p&gt;If you want to use a webserver that doesn&amp;rsquo;t have full plugin support yet, you can still use &amp;ldquo;standalone&amp;rdquo; or &amp;ldquo;webroot&amp;rdquo; plugins to obtain a certificate: (&lt;a href=&#34;https://letsencrypt.readthedocs.org/en/latest/using.html#standalone&#34; target=&#34;_blank&#34;&gt;ユーザーガイド抜粋&lt;/a&gt;)&lt;/p&gt;
+
+&lt;p&gt;僕の場合、1つのサーバーに複数のvirtual hostを立てているのでwebrootプラグインを使いました。&lt;/p&gt;
+
+&lt;p&gt;さらにwebrootプラグインだとApache無停止でいけるそうです。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;念のため、既に書いてあったSSL用のvirtual hostはコメントアウトしてApacheを再起動します。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#&amp;lt;VirtualHost *:443&amp;gt;
+#    ：
+# 【省略
+#    ：
+#&amp;lt;/VirtualHost&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;下記コマンド実行。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# ./letsencrypt-auto certonly --webroot -w 【ドキュメントルート】 -d 【ドメイン名】
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;連絡用e-mailを入力し、利用規約を確認します。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/letsencrypt_setup/enter_email.png&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;80%&#34; height=&#34;80%&#34; title=&#34;email入力&#34; alt=&#34;email入力&#34; src=&#34;https://sankame.github.io/assets/posts/img/letsencrypt_setup/enter_email.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/letsencrypt_setup/read_terms_of_service.png&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;80%&#34; height=&#34;80%&#34; title=&#34;利用規約&#34; alt=&#34;利用規約&#34; src=&#34;https://sankame.github.io/assets/posts/img/letsencrypt_setup/read_terms_of_service.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;下記のエラーが出ました。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code&gt;Updating letsencrypt and virtual environment dependencies.......
+Running with virtualenv: /root/.local/share/letsencrypt/bin/letsencrypt certonly --webroot -w 【ドキュメントルート】 -d 【ドメイン名】
+Version: 1.1-20080819
+Version: 1.1-20080819
+Failed authorization procedure. 【ドメイン名】 (http-01): urn:acme:error:unauthorized :: The client lacks sufficient authorization :: Invalid response from http://【ドメイン名】/.well-known/acme-challenge/【省略】 [【サーバーIP】]: 401
+
+IMPORTANT NOTES:
+ - The following &#39;urn:acme:error:unauthorized&#39; errors were reported by
+   the server:
+
+   Domains: 【ドメイン名】
+   Error: The client lacks sufficient authorization
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;ドキュメントルートにファイルを配置して、インターネットからアクセスを試みているけど失敗してるっぽい・・・&lt;/p&gt;
+
+&lt;p&gt;試しにブラウザから上記URLにアクセス。&lt;/p&gt;
+
+&lt;p&gt;僕の場合、もともとport80(http)からport443(https)へリダイレクトする設定にしていたためエラーになっていました。&lt;/p&gt;
+
+&lt;p&gt;リダイレクトを無効にし、ブラウザから上記URLにアクセスできることを確認した上で、再度サーバー上で下記を実行。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# ./letsencrypt-auto certonly --webroot -w 【ドキュメントルート】 -d 【ドメイン名】
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;下記メッセージが表示され認証が成功！&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code&gt;Updating letsencrypt and virtual environment dependencies.......
+Running with virtualenv: /root/.local/share/letsencrypt/bin/letsencrypt certonly --webroot -w 【ドキュメントルート】 -d 【ドメイン名】
+Version: 1.1-20080819
+Version: 1.1-20080819
+
+IMPORTANT NOTES:
+ - Congratulations! Your certificate and chain have been saved at
+   /etc/letsencrypt/live/【ドメイン名】/fullchain.pem. Your cert will
+   expire on 2016-03-04. To obtain a new version of the certificate in
+   the future, simply run Let&#39;s Encrypt again.
+ - If like Let&#39;s Encrypt, please consider supporting our work by:
+
+   Donating to ISRG / Let&#39;s Encrypt:   https://letsencrypt.org/donate
+   Donating to EFF:                    https://eff.org/donate-le
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;この後どうすれば・・・？&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;ユーザーガイドによると、apahceプラグインなら全自動で設定してくれるようですが、今回は使ってないので手動で証明書ファイルを設定する必要あり。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;上記メッセージのパスを覗いてみると、必要なファイル一式がありました。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# ll /etc/letsencrypt/live/【ドメイン名】
+#
+lrwxrwxrwx 1 root root 38 12月  6 03:43 2015 cert.pem -&amp;gt; ../../archive/【ドメイン名】/cert1.pem
+lrwxrwxrwx 1 root root 39 12月  6 03:43 2015 chain.pem -&amp;gt; ../../archive/【ドメイン名】/chain1.pem
+lrwxrwxrwx 1 root root 43 12月  6 03:43 2015 fullchain.pem -&amp;gt; ../../archive/【ドメイン名】/fullchain1.pem
+lrwxrwxrwx 1 root root 41 12月  6 03:43 2015 privkey.pem -&amp;gt; ../../archive/【ドメイン名】/privkey1.pem
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;fullchainを除く3ファイルをport443のvirtual hostに設定してApache再起動。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;VirtualHost *:443&amp;gt;
+    ServerAdmin  【メールアドレス】
+    DocumentRoot &amp;quot;【ドキュメントルート】&amp;quot;
+    ServerName   【ドメイン名】
+    SSLEngine on
+    SSLCertificateFile      /etc/letsencrypt/live/【ドメイン名】/cert.pem
+    SSLCertificateKeyFile   /etc/letsencrypt/live/【ドメイン名】/privkey.pem
+    SSLCertificateChainFile /etc/letsencrypt/live/【ドメイン名】/chain.pem
+
+    ErrorLog  logs/【ドメイン名】-error_log
+    CustomLog logs/【ドメイン名】-access_log common
+&amp;lt;/VirtualHost&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;# service httpd restart
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;httpからhttpsへのリダイレクト設定も元に戻します。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;ブラウザでサイトにアクセスするとSSLマークが表示されました！(ドメイン名はマスク済み)&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/letsencrypt_setup/browser.png&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;50%&#34; height=&#34;50%&#34; title=&#34;ブラウザSSL表示&#34; alt=&#34;ブラウザSSL表示&#34; src=&#34;https://sankame.github.io/assets/posts/img/letsencrypt_setup/browser.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Let&amp;rsquo;s Enctyptの証明書は有効期間が短いので、ついでに自動更新の設定もしておきましょう。(下記リンク参照)&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/ssl-tls/letsencrypt_renewal/&#34; target=&#34;_blank&#34;&gt;&lt;font color=&#34;green&#34;&gt;Let&amp;rsquo;s Encrypt - 証明書の更新と自動化&lt;/font&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;組織の実在証明はありませんが、個人で暗号化メインならこれで十分ですね。何より無料がうれしいです。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;参考ページ&#34;&gt;参考ページ&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://letsencrypt.readthedocs.org/en/latest/using.html#installation&#34; target=&#34;_blank&#34;&gt;ユーザーガイド&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://github.com/letsencrypt/letsencrypt&#34; target=&#34;_blank&#34;&gt;Let&amp;rsquo;s Encrypt クライアントツール&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

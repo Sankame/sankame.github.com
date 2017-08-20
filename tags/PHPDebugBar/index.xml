@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>PHPDebugBar on プログラマー備忘録</title>
+    <link>https://sankame.github.io/tags/phpdebugbar/index.xml</link>
+    <description>Recent content in PHPDebugBar on プログラマー備忘録</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <copyright>Powered by [Hugo](//gohugo.io). Theme by [hugo-theme-wave](https://github.com/syui/hugo-theme-wave).</copyright>
+    <atom:link href="https://sankame.github.io/tags/phpdebugbar/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>PHP Debug Bar インストール</title>
+      <link>https://sankame.github.io/blog/2013-09-23-php_debug_bar_install/</link>
+      <pubDate>Mon, 23 Sep 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2013-09-23-php_debug_bar_install/</guid>
+      <description>
+
+&lt;h1 id=&#34;0-環境&#34;&gt;0.環境&lt;/h1&gt;
+
+&lt;pre&gt;&lt;code&gt;[CentOS]  5.6 (32bit版カーネル)
+[Apache]  2.2.3
+[PHP]     5.4.1
+[phalcon] 1.2.1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;1-php-debug-barをインストール&#34;&gt;1.PHP Debug Barをインストール&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;(1-1) Webサーバーのドキュメントルートにcomposer.jsonを配置し、下記内容を記述します。(下図1-3参照)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{
+    &amp;quot;require&amp;quot;: {
+        &amp;quot;maximebf/debugbar&amp;quot;: &amp;quot;&amp;gt;=1.0.0&amp;quot;
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;(1-2) Webサーバーのドキュメントルートで次のコマンドを実行。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# composer install
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;※ composerが未インストールの場合、&lt;a href=&#34;http://9ensan.com/blog/programming/php/php-composer-dependency-management/&#34; target=&#34;_blank&#34;&gt;こちら&lt;/a&gt;を参考にインストールして下さい。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;(1-3) ディレクトリ構成&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;app_root : Webサイトのルートディレクトリ
+public   : 公開ディレクトリ
+薄オレンジ : composerで設置されたディレクトリ
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://sankame.github.io/assets/posts/img/php_debug_bar_install/directory_image.jpg&#34; alt=&#34;ディレクトリ構成&#34; title=&#34;ディレクトリ構成&#34; /&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;2-コードを記述-ポイント以外は割愛&#34;&gt;2.コードを記述 (ポイント以外は割愛)&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;(2-0) index.php(フレームワークのエントリポイント)に次の内容を追記。&lt;/p&gt;
+
+&lt;script src=&#34;https://gist.github.com/Sankame/d953437cd1ac4a5df725.js&#34;&gt;&lt;/script&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;composer関係のファイルをバージョン管理(svn, git等)から除外した場合、
+この記述だけ残してリリースしないよう注意して下さい。
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;(2-1) ControllerBase(全コントローラの親クラス)に次の内容を追記。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;use DebugBar\StandardDebugBar;
+
+class ControllerBase extends Phalcon\Mvc\Controller
+{
+    protected $debugbar;
+
+    // Actionメソッドの後処理
+    public function afterExecuteRoute($dispatcher)
+    {
+        $debugbarRenderer   = $this-&amp;gt;debugbar-&amp;gt;getJavascriptRenderer();
+
+        $this-&amp;gt;view-&amp;gt;setVar(&#39;debugbarHeader&#39;, $debugbarRenderer-&amp;gt;renderHead());
+        $this-&amp;gt;view-&amp;gt;setVar(&#39;debugbarBody&#39;, $debugbarRenderer-&amp;gt;render());
+
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;(2-2) ContactControllerに次の内容を追記。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;// お問い合わせ画面
+public function indexAction()
+{
+    $this-&amp;gt;debugbar[&amp;quot;messages&amp;quot;]-&amp;gt;addMessage(&amp;quot;DebugBarのテスト&amp;quot;);
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;(2-3) index.volt(全viewが使う共通ファイル)に次の内容を追記。&lt;/p&gt;
+
+&lt;script src=&#34;https://gist.github.com/Sankame/eb6d098e2ef1f473ff7d.js&#34;&gt;&lt;/script&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;(2-4) 画面イメージ&lt;/p&gt;
+
+&lt;p&gt;上記2-2で書いたメッセージが表示されています。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://sankame.github.io/assets/posts/img/php_debug_bar_install/screen_image.jpg&#34; alt=&#34;画面イメージ&#34; title=&#34;画面イメージ&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;3-参考ページ&#34;&gt;3.参考ページ&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;http://www.moongift.jp/2013/08/20130829-3/&#34; target=&#34;_blank&#34;&gt;PHP専用のデバッグツールバー「DebugBar」&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;http://phpdebugbar.com/docs/&#34; target=&#34;_blank&#34;&gt;&lt;a href=&#34;http://phpdebugbar.com/docs/&#34;&gt;http://phpdebugbar.com/docs/&lt;/a&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
