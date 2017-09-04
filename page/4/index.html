@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <title>プログラマー備忘録</title>
+    <meta name="generator" content="Hugo 0.19" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    
+    
+
+    
+    
+    <meta name="robots" content="noindex">
+    
+
+    <script src="https://sankame.github.io/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="https://sankame.github.io/bower_components/bootstrap/js/bootstrap.min.js"></script>
+    <script src="https://sankame.github.io/bower_components/bootstrap/js/dropdowns-enhancement.js"></script>
+    <script src="https://sankame.github.io/bower_components/bluebird/js/browser/bluebird.js"></script>
+    
+    
+    
+    <script src="https://sankame.github.io/bower_components/d3/d3.min.js" charset="utf-8"></script>
+    <script src="https://sankame.github.io/bower_components/cal-heatmap/cal-heatmap.min.js"></script>
+    <script src="https://sankame.github.io/bower_components/highlightjs/highlight.pack.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']]}
+      });
+    </script>
+
+    <link rel="icon" href="https://sankame.github.io/favicon.ico" />
+    <link rel="apple-touch-icon" href="https://sankame.github.io/apple-touch-icon.png" />
+    <link rel="stylesheet" href="https://sankame.github.io/bower_components/highlightjs/styles/monokai.css" />
+    <link rel="stylesheet" href="https://sankame.github.io/bower_components/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://sankame.github.io/bower_components/bootstrap/css/dropdowns-enhancement.css" />
+    <link rel="stylesheet" href="https://sankame.github.io/bower_components/talaria/dist/talaria.css" />   
+    <link rel="stylesheet" href="https://sankame.github.io/bower_components/createjs/createjs.css" />
+    <link rel="stylesheet" href="https://sankame.github.io/bower_components/font-awesome/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="https://sankame.github.io/bower_components/icomoon/css/icomoon.css" />
+    <link rel="stylesheet" href="https://sankame.github.io/css/style.css" />
+    <link rel="stylesheet" href="https://sankame.github.io/css/mobile.css" />
+    <link rel="stylesheet" href="https://sankame.github.io/bower_components/cal-heatmap/cal-heatmap.css" />
+    <link rel="stylesheet" href="https://sankame.github.io/css/sankame.css" />
+
+    <link rel="alternate" type="application/rss+xml" title="プログラマー備忘録" href="https://sankame.github.io/index.xml"/>
+    <link rel="feed" type="application/rss+xml" title="プログラマー備忘録" href="https://sankame.github.io/index.xml" />
+
+    
+</head>
+<body>
+<div class="container">
+
+
+<div id="container">
+    
+
+<header id="header">
+  <div id="header-main" class="header-inner">
+    <div class="outer">
+
+	<nav class="navbar navbar-default">
+	  <div class="container-fluid">
+
+    	    <div class="navbar-header">
+      		<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+      		  <span class="sr-only">Toggle navigation</span>
+      		  <span class="icon-bar"></span>
+      		  <span class="icon-bar"></span>
+      		  <span class="icon-bar"></span>
+      		</button>
+		    <h1>
+			    <a class="navbar-brand" href="https://sankame.github.io/">
+				    
+				    
+				    <span class="site-title">プログラマー備忘録</span>
+				    
+			    </a>
+		    </h1>
+	    </div>
+
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+    
+    <li>
+	<a href="https://twitter.com/handycola" target="_blank">
+		<i class="fa fa-twitter" aria-hidden="true"></i>
+	</a>
+
+</li>
+<li>
+	<a href="https://facebook.com/100014073908728" target="_blank">
+		<i class="fa fa-facebook" aria-hidden="true"></i>
+	</a>
+</li>
+<li>
+	<a href="https://stackoverflow.com/users/2849068/sankame" target="_blank">
+		<i class="fa fa-stack-overflow" aria-hidden="true"></i>
+	</a>
+</li>
+<li>
+	<a href="https://sankame.github.io/index.xml" target="_blank">
+		 <i class="fa fa-rss-square" aria-hidden="true"></i>
+	</a>
+</li>
+
+    
+      </ul>
+    </div>
+
+  </div>
+</nav>
+
+</header>
+
+
+
+
+    <div id="top-image">
+	<div id="top-image-wrap">
+		<iframe src="https://sankame.github.io/bower_components/particlesjs/particlesjs.html"></iframe>
+	</div>
+</div>
+
+    <div class="outer">
+
+    <section id="main">
+
+    
+    
+    <article class="article article-type-post" itemscope="" itemprop="blogPost">
+
+	    <div class="article-inner">
+
+            
+            </a>
+
+            <header class="article-header">
+    
+    <h1 class="article-title" itemprop="name">
+	<a href="https://sankame.github.io/blog/2015-12-31-programming_practice_A/" class="permalink">プログラミング問題A</a>
+    </h1>
+	<time datetime="2015-12-31 00:00:00 &#43;0000 UTC" itemprop="datePublished">2015-12-31</time>
+    <div class="article-meta">
+
+        
+    </div>
+</header>
+
+            <div class="article-entry" itemprop="articleBody">
+                <p>
+                     環境 [CentOS] 5.6 (32bit版カーネル) [PHP] 5.4.17  問題A-1  10進数の任意の値をn進数に変換する関数を作成して下さい。(nは1～16の正の整数)
+ サンプルはPHP。
+  サンプルA-1  実行方法
+$ php changeDecimalToBaseN.php  ソース
+   ...
+                </p>
+                <p class="article-more-link">
+                    <a href="https://sankame.github.io/blog/2015-12-31-programming_practice_A/">
+			    Read more
+			    
+                    </a>
+                </p>
+            </div>
+	    
+        </div>
+    </article>
+    
+    <article class="article article-type-post" itemscope="" itemprop="blogPost">
+
+	    <div class="article-inner">
+
+            
+            </a>
+
+            <header class="article-header">
+    
+    <h1 class="article-title" itemprop="name">
+	<a href="https://sankame.github.io/blog/2015-12-07-letsencrypt_setup/" class="permalink">お薦め無料SSL証明書 - Let&#39;s Encrypt</a>
+    </h1>
+	<time datetime="2015-12-07 00:00:00 &#43;0000 UTC" itemprop="datePublished">2015-12-07</time>
+    <div class="article-meta">
+
+        
+    </div>
+</header>
+
+            <div class="article-entry" itemprop="articleBody">
+                <p>
+                    &nbsp;更新日：2017年04月30日
+0.環境 [CentOS] 6.4 (64bit版カーネル) [Apache] 2.2.15  1.セットアップ  個人利用のレンタルサーバーでは有料のSSL証明書を使っていたのですが、 有効期限切れを機にフリーのものに乗り換えてみました。
+ Let&rsquo;s Encrypt というサービスを利用します。
+
+下記のマニュアルに沿って進めました。(その他の参考ページは末尾に記載)
+Let&rsquo;s Encrypt 操作方法
+まずは、任意のディレクトリに Let&rsquo;s Encrypt クライアントをダウンロード。
+# cd /usr/local/src # git clone https://github.com/letsencrypt/letsencrypt # cd letsencrypt # ./letsencrypt-auto --help  お！ helpだから使い方が表示されるかと思いきや、依存関係のあるパッケージがダウンロードされた・・・
+しかも下記メッセージによると、どうやらPythonのバージョンが古くて失敗してるっぽい。
+： (省略) ： Complete! WARNING: Python 2.6 support is very experimental at present... if you would like to work on improving it, please ensure you have backups and then run this script again with the --debug flag! ...
+                </p>
+                <p class="article-more-link">
+                    <a href="https://sankame.github.io/blog/2015-12-07-letsencrypt_setup/">
+			    Read more
+			    
+                    </a>
+                </p>
+            </div>
+	    
+        </div>
+    </article>
+    
+    <article class="article article-type-post" itemscope="" itemprop="blogPost">
+
+	    <div class="article-inner">
+
+            
+            </a>
+
+            <header class="article-header">
+    
+    <h1 class="article-title" itemprop="name">
+	<a href="https://sankame.github.io/blog/2015-11-28-google_sheets_colors_for_lines/" class="permalink">Googleスプレッドシート  行ごとに背景色を変える</a>
+    </h1>
+	<time datetime="2015-11-28 00:00:00 &#43;0000 UTC" itemprop="datePublished">2015-11-28</time>
+    <div class="article-meta">
+
+        
+    </div>
+</header>
+
+            <div class="article-entry" itemprop="articleBody">
+                <p>
+                     Googleスプレッドシート 設定方法  あるセルに値を入れることで、行全体の色を変える場合の設定です。
+ 下記のようなリストを例に、完了日を入れるだけで項目を自動的にグレーアウトします。
+
+ メニューで「条件付き書式」を選択。
+
+ 右端に枠が表示されます。
+
+ まず範囲を選択します。今回はヘッダーを除いたデータ部分を指定。(A4:C6)
+ 次に書式設定の条件を指定します。
+例では「C列の4行目以降に値がある」場合にtrueを返すようにします。
+(C列を固定するため絶対参照の$マークをつけ、4行目からは相対参照にしたいため下記のように指定)
+=IF($C4 &lt;&gt; &quot;&quot;, true, false)  最後に書式設定で上記がtrueの場合に適用される書式を設定します。
+ 以上で「完了日」に文字列を入れると行全体をグレーにする設定ができました。
+
+   ...
+                </p>
+                <p class="article-more-link">
+                    <a href="https://sankame.github.io/blog/2015-11-28-google_sheets_colors_for_lines/">
+			    Read more
+			    
+                    </a>
+                </p>
+            </div>
+	    
+        </div>
+    </article>
+    
+    <article class="article article-type-post" itemscope="" itemprop="blogPost">
+
+	    <div class="article-inner">
+
+            
+            </a>
+
+            <header class="article-header">
+    
+    <h1 class="article-title" itemprop="name">
+	<a href="https://sankame.github.io/blog/2015-10-07-android_app_version/" class="permalink">Androidアプリのバージョンアップができない</a>
+    </h1>
+	<time datetime="2015-10-07 00:00:00 &#43;0000 UTC" itemprop="datePublished">2015-10-07</time>
+    <div class="article-meta">
+
+        
+    </div>
+</header>
+
+            <div class="article-entry" itemprop="articleBody">
+                <p>
+                     0.環境 [OS] Windows7 (32bit 版) [AndroidStudio] 1.1.0  1.問題  Androidアプリをバージョンアップするため、Google Play Developer Console でapkファイルをアップしても下記のエラーが出ました。
+アップロードできませんでした
+マニフェストファイルに下記のように追記してもダメ。
+(app\【アプリ名】\mobile\src\main\AndroidManifest.xml)
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt; &lt;manifest xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot; package=&quot;【パッケージ名】&quot; android:versionCode=&quot;2&quot; android:versionName=&quot;2.0.1&quot;&gt;   2.対策  しばらくして、AndroidManifest.xml にエラーメッセージが出てるのに気付きました。
+build.gradle を修正しなきゃいけない・・・
+(app\【アプリ名】\mobile\build.gradle)
+下記のようにバージョンを上げて再コンパイルしたらアップロードできました。
+android { : (省略) : defaultConfig { applicationId &quot;【省略】&quot; minSdkVersion 16 targetSdkVersion 21 versionCode 2 versionName &quot;2.0.1&quot; } : (省略) : }    ...
+                </p>
+                <p class="article-more-link">
+                    <a href="https://sankame.github.io/blog/2015-10-07-android_app_version/">
+			    Read more
+			    
+                    </a>
+                </p>
+            </div>
+	    
+        </div>
+    </article>
+    
+    <article class="article article-type-post" itemscope="" itemprop="blogPost">
+
+	    <div class="article-inner">
+
+            
+            </a>
+
+            <header class="article-header">
+    
+    <h1 class="article-title" itemprop="name">
+	<a href="https://sankame.github.io/blog/2015-06-23-angular2_quick_start/" class="permalink">【Angular2】クイックスタート</a>
+    </h1>
+	<time datetime="2015-06-23 00:00:00 &#43;0000 UTC" itemprop="datePublished">2015-06-23</time>
+    <div class="article-meta">
+
+        
+    </div>
+</header>
+
+            <div class="article-entry" itemprop="articleBody">
+                <p>
+                    0.環境 [CentOS] 6.5 [node.js] 0.12.4 [npm] 2.10.1 [tsd] 0.6.0 [tsc] 1.5.0-beta  1.インストール  GoogleのQuickStartページに沿って進めます。(以降、JavaScriptはJSと記述)
+Angular2はJSでも動かせますが、JSのスーパーセットTypeScriptに対応しているので、Googleのページ同様、後者を使ってみました。
+ 最終的に下記の構成になります。
+tscを使ってhello.tsをhello.jsへ変換します。
+
+ まずnode.jsとnpmの依存管理を楽にするため、nvmをインストールします。
+※CentOS 5系だとnode.jsを動かすのに苦労するので、こちらの記事を参考にCentOS6.x 環境構築を推奨します。
+# git clone git://github.com/creationix/nvm.git ~/.nvm # source ~/.nvm/nvm.sh  node.jsをバージョン指定でインストール。
+# nvm install 0.12.4  nvmでnode.jsのデフォルトバージョンを設定。
+# nvm alias default v0.12.4 # vi ~/.bash_profile  .bash_profile の末尾に下記を追記。
+if [[ -s ~/.nvm/nvm.sh ]]; then source ~/.nvm/nvm.sh fi  tsd (TypeScript用 型定義ファイル管理ツール) をインストール。
+※npmのバージョンが低いとtsdのインストールが止まってしまうので注意。
+# npm install tsd@0. ...
+                </p>
+                <p class="article-more-link">
+                    <a href="https://sankame.github.io/blog/2015-06-23-angular2_quick_start/">
+			    Read more
+			    
+                    </a>
+                </p>
+            </div>
+	    
+        </div>
+    </article>
+    
+    <article class="article article-type-post" itemscope="" itemprop="blogPost">
+
+	    <div class="article-inner">
+
+            
+            </a>
+
+            <header class="article-header">
+    
+    <h1 class="article-title" itemprop="name">
+	<a href="https://sankame.github.io/blog/2015-05-27-laravel_migration_integer_args/" class="permalink">【Laravel】integerメソッドの引数</a>
+    </h1>
+	<time datetime="2015-05-27 00:00:00 &#43;0000 UTC" itemprop="datePublished">2015-05-27</time>
+    <div class="article-meta">
+
+        
+    </div>
+</header>
+
+            <div class="article-entry" itemprop="articleBody">
+                <p>
+                     0.環境 [PHP] 5.4.17 [Laravel] 4.1.30  1.内容  Fluentテーブルビルダーのintegerメソッドの引数について、意外と探すのに手間取ったのでメモ。
+ integerメソッド抜粋   /** * @param $column テーブルのカラム名 * @param $autoIncrement 自動採番するかどうか * @param $unsigned 0以上の正の整数とするか */ public function integer($column, $autoIncrement = false, $unsigned = false)   ※参考にしたページ  Laravel Migration incorrect table definition   ...
+                </p>
+                <p class="article-more-link">
+                    <a href="https://sankame.github.io/blog/2015-05-27-laravel_migration_integer_args/">
+			    Read more
+			    
+                    </a>
+                </p>
+            </div>
+	    
+        </div>
+    </article>
+    
+    <article class="article article-type-post" itemscope="" itemprop="blogPost">
+
+	    <div class="article-inner">
+
+            
+            </a>
+
+            <header class="article-header">
+    
+    <h1 class="article-title" itemprop="name">
+	<a href="https://sankame.github.io/blog/2015-05-11-android_studio_heap_size_error/" class="permalink">【AndroidStudio】&#34;Failed to complete Gradle execution&#34;エラー</a>
+    </h1>
+	<time datetime="2015-05-11 00:00:00 &#43;0000 UTC" itemprop="datePublished">2015-05-11</time>
+    <div class="article-meta">
+
+        
+    </div>
+</header>
+
+            <div class="article-entry" itemprop="articleBody">
+                <p>
+                     0.環境 [OS] Windows7 (32bit 版) [AndroidStudio] 1.1.0  1.エラー内容  「Run &lsquo;app&rsquo;」ボタンをクリックし、ビルド＆実行しようとすると下記エラーダイアログが表示される。
+Failed to complete Gradle execution Cause: A fatal exception has occurred. Program will exit   2.回避方法  メニューから [File] -&gt; [Settings] -&gt; [Gradle] とたどって、[Gradle VM options] に &ldquo;-XX:MaxHeapSize=256m -Xmx256m&rdquo; を入力。(下記画像のオレンジ枠線)
+
+  ※参考にしたページ  Failed to complete Gradle Execution   ...
+                </p>
+                <p class="article-more-link">
+                    <a href="https://sankame.github.io/blog/2015-05-11-android_studio_heap_size_error/">
+			    Read more
+			    
+                    </a>
+                </p>
+            </div>
+	    
+        </div>
+    </article>
+    
+    <article class="article article-type-post" itemscope="" itemprop="blogPost">
+
+	    <div class="article-inner">
+
+            
+            </a>
+
+            <header class="article-header">
+    
+    <h1 class="article-title" itemprop="name">
+	<a href="https://sankame.github.io/blog/2015-05-10-android_studio_process_error/" class="permalink">AndroidStudioでプロセス開始エラー</a>
+    </h1>
+	<time datetime="2015-05-10 00:00:00 &#43;0000 UTC" itemprop="datePublished">2015-05-10</time>
+    <div class="article-meta">
+
+        
+    </div>
+</header>
+
+            <div class="article-entry" itemprop="articleBody">
+                <p>
+                    0.環境 [OS] Windows7 (32bit 版) [AndroidStudio] 1.1.0  1.エラー内容  AndroidStudioで「Run &lsquo;app&rsquo;」ボタンをクリックし、ビルド＆実行しようとすると下記エラーが発生しました。
+Error:Unable to start the daemon process. This problem might be caused by incorrect configuration of the daemon. For example, an unrecognized jvm option is used. Please refer to the user guide chapter on the daemon at http://gradle.org/docs/2.2.1/userguide/gradle_daemon.html Please read the following process output to find out more: ----------------------- Error occurred during initialization of VM Could not reserve enough space for object heap Error: Could not create the Java Virtual Machine. ...
+                </p>
+                <p class="article-more-link">
+                    <a href="https://sankame.github.io/blog/2015-05-10-android_studio_process_error/">
+			    Read more
+			    
+                    </a>
+                </p>
+            </div>
+	    
+        </div>
+    </article>
+    
+    <article class="article article-type-post" itemscope="" itemprop="blogPost">
+
+	    <div class="article-inner">
+
+            
+            </a>
+
+            <header class="article-header">
+    
+    <h1 class="article-title" itemprop="name">
+	<a href="https://sankame.github.io/blog/2015-05-06-vagrant_setup/" class="permalink">Vagrant &#43; VirtualBox でCentOS開発環境構築</a>
+    </h1>
+	<time datetime="2015-05-06 00:00:00 &#43;0000 UTC" itemprop="datePublished">2015-05-06</time>
+    <div class="article-meta">
+
+        
+    </div>
+</header>
+
+            <div class="article-entry" itemprop="articleBody">
+                <p>
+                    &nbsp;更新日：2017年01月28日
+0.環境 [PC] DELL LATITUDE E5500 [OS] Windows7 (32bit 版)  1.概要  Vagrantで開発環境を作りました。
+VirtualBoxを操作するためにVagrantというツールを使うイメージです。
+
+VirtualBox上に仮想マシン(以下VM)起動し、そこにCentOSをインストールして開発環境とします。
+  2.BIOS設定変更  VMを起動する前準備として、BIOSの設定を変更します。
+PC起動時に、OSが起動する前に特定のキーを押してBIOS設定画面を開きます。
+(PCによって異なるので、下記は自分のPCに読み替えて下さい)
+PC起動時に[F2] または [F10]キーを押下。
+[Virtualization Support] - [Virtualization]を選択し、[Enable]にチェックをつけて[Apply]→[Exit]を選択。
+そのままOSが起動するのを待ちます。
+  3.VirtualBoxインストール  下記ページで&rdquo;VirtualBox 4.3.26 for Windows hosts&rdquo; をクリックしVirtualBoxをダウンロード。
+VirtualBoxダウンロード
+ダウンロードもインストールも僕の環境では数分かかりました。
+途中何度かOracle社のコンポーネントをインストールしますか？と聞かれたので全てYesを選択。
+  4.Vagrantインストール  下記ページでWindows用を選択して Vagrantをダウンロード。
+Vagrantダウンロード
+インストールが終わったら再起動を求められます。
+boxファイル(用意されたVMイメージ)を取得し、VirtualBoxに追加。
+C:\Users\【ユーザー名】&gt; vagrant box add CentOS65 https://github.com/2creatives/vagrant-centos/releases/download/v6.5.3/centos65-x86_64-20140116.box   5.Vagrantを使ってVirtualBoxのVMを起動  適当なフォルダにVagrantファイルを作成し、VM起動時の設定を定義します。
+C:\apps\Vagrant\Vagrantfiles&gt;mkdir centos C:\apps\Vagrant\Vagrantfiles&gt;cd centos C:\apps\Vagrant\Vagrantfiles\centos&gt;vagrant init CentOS65 A `Vagrantfile` has been placed in this directory. ...
+                </p>
+                <p class="article-more-link">
+                    <a href="https://sankame.github.io/blog/2015-05-06-vagrant_setup/">
+			    Read more
+			    
+                    </a>
+                </p>
+            </div>
+	    
+        </div>
+    </article>
+    
+    <article class="article article-type-post" itemscope="" itemprop="blogPost">
+
+	    <div class="article-inner">
+
+            
+            </a>
+
+            <header class="article-header">
+    
+    <h1 class="article-title" itemprop="name">
+	<a href="https://sankame.github.io/blog/2015-05-02-jqgrid_formatter/" class="permalink">jqGridで表示する値と元の値を分ける</a>
+    </h1>
+	<time datetime="2015-05-02 00:00:00 &#43;0000 UTC" itemprop="datePublished">2015-05-02</time>
+    <div class="article-meta">
+
+        
+    </div>
+</header>
+
+            <div class="article-entry" itemprop="articleBody">
+                <p>
+                    0.環境 [jquery] 1.7.1 [jquery-ui] 1.10.3 [jqGrid] 4.5.2  1.コード  画面表示は formatter で定義し、処理では元の値を使いたいので unformat で定義します。
+jQuery(&quot;#grid_id&quot;).jqGrid({ // 省略 colModel: [ // 省略 {name:'name', index:'name', formatter: formatterName, unformat: unformatName}, // 省略 ] // 省略 }); /** リンクに変更 */ function formatterName(cellvalue, options, rowdata) { var val = &quot;&lt;a href=\&quot;javascript:void(0);\&quot; onclick=\&quot;showItem('&quot; + rowdata.item_id + &quot;');\&quot;&gt;&quot; + cellvalue + &quot;&lt;/a&gt;&quot;; return val; } /** 加工しない元の値 */ function unformatName(cellvalue, options) { return cellvalue; }   2. ...
+                </p>
+                <p class="article-more-link">
+                    <a href="https://sankame.github.io/blog/2015-05-02-jqgrid_formatter/">
+			    Read more
+			    
+                    </a>
+                </p>
+            </div>
+	    
+        </div>
+    </article>
+    
+
+    <nav id="page-nav">
+
+    
+        <a class="extend prev" rel="prev" href="/page/3/">
+            « 
+        </a>
+    
+    
+        <a class="extend next" rel="next" href="/page/5/">
+             »
+        </a>
+    
+
+</nav>
+
+</section>
+
+
+    
+<aside id="sidebar">
+    
+
+<div class="widget-wrap">
+    <div class="widget">
+        <ul id="recent-post">
+		<li id="first-recent"><a href="/index.xml" id="firstmove" class="move"><h3 class="widget-title">
+			最近の投稿
+    </h3></a></li>
+    		
+            
+<li><a href="https://sankame.github.io/blog/2017-09-05-android_sqlite_db_upgrade/" class="move">  【Androidアプリ開発】SQLiteのDB定義を変更する方法</a> </li>
+            
+<li><a href="https://sankame.github.io/blog/2017-08-21-android_app_set_activity_title/" class="move">  【Androidアプリ開発】起動アイコンのタイトルにアプリ名を表示</a> </li>
+            
+<li><a href="https://sankame.github.io/blog/2017-08-14-java_list_to_array/" class="move">  【Java】Listから配列へ変換</a> </li>
+            
+        </ul>
+    </div>
+</div>
+
+
+
+    
+
+<div class="widget-wrap">
+    <div class="widget">
+        <ul class="category-list">
+    <h3 class="widget-title">Categories </h3>
+            
+                <a class="category-list-link" href="https://sankame.github.io/categories/tips">
+            <li class="category-list-item">
+                    tips
+                <span class="category-list-count">18</span>
+            </li>
+                </a>
+            
+                <a class="category-list-link" href="https://sankame.github.io/categories/%e3%82%a8%e3%83%a9%e3%83%bc%e8%a7%a3%e6%b1%ba">
+            <li class="category-list-item">
+                    エラー解決
+                <span class="category-list-count">15</span>
+            </li>
+                </a>
+            
+                <a class="category-list-link" href="https://sankame.github.io/categories/%e3%82%bb%e3%83%83%e3%83%88%e3%82%a2%e3%83%83%e3%83%97">
+            <li class="category-list-item">
+                    セットアップ
+                <span class="category-list-count">34</span>
+            </li>
+                </a>
+            
+                <a class="category-list-link" href="https://sankame.github.io/categories/%e3%83%81%e3%83%a5%e3%83%bc%e3%83%8b%e3%83%b3%e3%82%b0">
+            <li class="category-list-item">
+                    チューニング
+                <span class="category-list-count">2</span>
+            </li>
+                </a>
+            
+                <a class="category-list-link" href="https://sankame.github.io/categories/%e3%83%97%e3%83%ad%e3%82%b0%e3%83%a9%e3%83%9f%e3%83%b3%e3%82%b0">
+            <li class="category-list-item">
+                    プログラミング
+                <span class="category-list-count">6</span>
+            </li>
+                </a>
+            
+        </ul>
+    </div>
+</div>
+
+
+
+    
+
+<div class="widget-wrap">
+	<ul class="category-list">
+    <h3 class="widget-title">Tags  </h3>
+    <div class="widget tagcloud">
+    	
+        
+        <a href="https://sankame.github.io/tags/Android" style="font-size: 12px;">Android</a>
+        
+        <a href="https://sankame.github.io/tags/AndroidStudio" style="font-size: 12px;">AndroidStudio</a>
+        
+        <a href="https://sankame.github.io/tags/AndroidWear" style="font-size: 12px;">AndroidWear</a>
+        
+        <a href="https://sankame.github.io/tags/Angular2" style="font-size: 12px;">Angular2</a>
+        
+        <a href="https://sankame.github.io/tags/Apache" style="font-size: 12px;">Apache</a>
+        
+        <a href="https://sankame.github.io/tags/ApacheBench" style="font-size: 12px;">ApacheBench</a>
+        
+        <a href="https://sankame.github.io/tags/AppleWatch" style="font-size: 12px;">AppleWatch</a>
+        
+        <a href="https://sankame.github.io/tags/Bitbucket" style="font-size: 12px;">Bitbucket</a>
+        
+        <a href="https://sankame.github.io/tags/CentOS" style="font-size: 12px;">CentOS</a>
+        
+        <a href="https://sankame.github.io/tags/DELL" style="font-size: 12px;">DELL</a>
+        
+        <a href="https://sankame.github.io/tags/Eclipse" style="font-size: 12px;">Eclipse</a>
+        
+        <a href="https://sankame.github.io/tags/FreeMind" style="font-size: 12px;">FreeMind</a>
+        
+        <a href="https://sankame.github.io/tags/Git" style="font-size: 12px;">Git</a>
+        
+        <a href="https://sankame.github.io/tags/GitHub" style="font-size: 12px;">GitHub</a>
+        
+        <a href="https://sankame.github.io/tags/GoogleSheets" style="font-size: 12px;">GoogleSheets</a>
+        
+        <a href="https://sankame.github.io/tags/Hugo" style="font-size: 12px;">Hugo</a>
+        
+        <a href="https://sankame.github.io/tags/Java" style="font-size: 12px;">Java</a>
+        
+        <a href="https://sankame.github.io/tags/JavaScript" style="font-size: 12px;">JavaScript</a>
+        
+        <a href="https://sankame.github.io/tags/Jekyll" style="font-size: 12px;">Jekyll</a>
+        
+        <a href="https://sankame.github.io/tags/Jenkins" style="font-size: 12px;">Jenkins</a>
+        
+        <a href="https://sankame.github.io/tags/Kitura" style="font-size: 12px;">Kitura</a>
+        
+        <a href="https://sankame.github.io/tags/Laravel" style="font-size: 12px;">Laravel</a>
+        
+        <a href="https://sankame.github.io/tags/Let%27sEncrypt" style="font-size: 12px;">Let&#39;sEncrypt</a>
+        
+        <a href="https://sankame.github.io/tags/MeCab" style="font-size: 12px;">MeCab</a>
+        
+        <a href="https://sankame.github.io/tags/MindMapMemo" style="font-size: 12px;">MindMapMemo</a>
+        
+        <a href="https://sankame.github.io/tags/MySQL" style="font-size: 12px;">MySQL</a>
+        
+        <a href="https://sankame.github.io/tags/NTP" style="font-size: 12px;">NTP</a>
+        
+        <a href="https://sankame.github.io/tags/Nexus7" style="font-size: 12px;">Nexus7</a>
+        
+        <a href="https://sankame.github.io/tags/Nginx" style="font-size: 12px;">Nginx</a>
+        
+        <a href="https://sankame.github.io/tags/OpenX" style="font-size: 12px;">OpenX</a>
+        
+        <a href="https://sankame.github.io/tags/PHP" style="font-size: 12px;">PHP</a>
+        
+        <a href="https://sankame.github.io/tags/PHPDebugBar" style="font-size: 12px;">PHPDebugBar</a>
+        
+        <a href="https://sankame.github.io/tags/Phalcon" style="font-size: 12px;">Phalcon</a>
+        
+        <a href="https://sankame.github.io/tags/Redis" style="font-size: 12px;">Redis</a>
+        
+        <a href="https://sankame.github.io/tags/ReviveAdServer" style="font-size: 12px;">ReviveAdServer</a>
+        
+        <a href="https://sankame.github.io/tags/Ruby" style="font-size: 12px;">Ruby</a>
+        
+        <a href="https://sankame.github.io/tags/RubyGems" style="font-size: 12px;">RubyGems</a>
+        
+        <a href="https://sankame.github.io/tags/Rundeck" style="font-size: 12px;">Rundeck</a>
+        
+        <a href="https://sankame.github.io/tags/SQLite" style="font-size: 12px;">SQLite</a>
+        
+        <a href="https://sankame.github.io/tags/SSL-TLS" style="font-size: 12px;">SSL-TLS</a>
+        
+        <a href="https://sankame.github.io/tags/Selenium" style="font-size: 12px;">Selenium</a>
+        
+        <a href="https://sankame.github.io/tags/Smarty" style="font-size: 12px;">Smarty</a>
+        
+        <a href="https://sankame.github.io/tags/Subversion" style="font-size: 12px;">Subversion</a>
+        
+        <a href="https://sankame.github.io/tags/Swift" style="font-size: 12px;">Swift</a>
+        
+        <a href="https://sankame.github.io/tags/Touchpad" style="font-size: 12px;">Touchpad</a>
+        
+        <a href="https://sankame.github.io/tags/TypeScript" style="font-size: 12px;">TypeScript</a>
+        
+        <a href="https://sankame.github.io/tags/Vagrant" style="font-size: 12px;">Vagrant</a>
+        
+        <a href="https://sankame.github.io/tags/VirtualBox" style="font-size: 12px;">VirtualBox</a>
+        
+        <a href="https://sankame.github.io/tags/Website-Optimization" style="font-size: 12px;">Website-Optimization</a>
+        
+        <a href="https://sankame.github.io/tags/Xcode" style="font-size: 12px;">Xcode</a>
+        
+        <a href="https://sankame.github.io/tags/ab" style="font-size: 12px;">ab</a>
+        
+        <a href="https://sankame.github.io/tags/bash" style="font-size: 12px;">bash</a>
+        
+        <a href="https://sankame.github.io/tags/cocoapods" style="font-size: 12px;">cocoapods</a>
+        
+        <a href="https://sankame.github.io/tags/composer" style="font-size: 12px;">composer</a>
+        
+        <a href="https://sankame.github.io/tags/fitbit" style="font-size: 12px;">fitbit</a>
+        
+        <a href="https://sankame.github.io/tags/gulp" style="font-size: 12px;">gulp</a>
+        
+        <a href="https://sankame.github.io/tags/jqGrid" style="font-size: 12px;">jqGrid</a>
+        
+        <a href="https://sankame.github.io/tags/node.js" style="font-size: 12px;">node.js</a>
+        
+        <a href="https://sankame.github.io/tags/npm" style="font-size: 12px;">npm</a>
+        
+        <a href="https://sankame.github.io/tags/programming-practice" style="font-size: 12px;">programming-practice</a>
+        
+        <a href="https://sankame.github.io/tags/shell" style="font-size: 12px;">shell</a>
+        
+        <a href="https://sankame.github.io/tags/ssh" style="font-size: 12px;">ssh</a>
+        
+        <a href="https://sankame.github.io/tags/wget" style="font-size: 12px;">wget</a>
+        
+        <a href="https://sankame.github.io/tags/windows" style="font-size: 12px;">windows</a>
+        
+        <a href="https://sankame.github.io/tags/%e3%83%97%e3%83%ad%e3%82%b8%e3%82%a7%e3%82%af%e3%82%bf%e3%83%bc" style="font-size: 12px;">プロジェクター</a>
+        
+    </div>
+</ul>
+</div>
+
+
+
+    <br>
+    
+
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-7938855665302783"
+     data-ad-slot="7089480753"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+
+</aside>
+
+
+    </div>
+</div>
+
+<footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+
+	<footer id="footer-left">
+	    &copy; 2017 Sankame. <br>
+	    Powered by <a href="//gohugo.io">Hugo</a>. Theme by <a href="https://github.com/syui/hugo-theme-wave">hugo-theme-wave</a>.
+	</footer>
+
+    </div>
+  </div>
+</footer>
+
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-37675354-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+</body>
+</html>
