@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Eclipse on プログラマー備忘録</title>
+    <link>https://sankame.github.io/tags/eclipse/index.xml</link>
+    <description>Recent content in Eclipse on プログラマー備忘録</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <copyright>Powered by [Hugo](//gohugo.io). Theme by [hugo-theme-wave](https://github.com/syui/hugo-theme-wave).</copyright>
+    <atom:link href="https://sankame.github.io/tags/eclipse/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Eclipseでタブをスペースに置換</title>
+      <link>https://sankame.github.io/blog/2016-10-08-convert_tabs_to_spaces_on_eclipse/</link>
+      <pubDate>Sat, 08 Oct 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2016-10-08-convert_tabs_to_spaces_on_eclipse/</guid>
+      <description>
+
+&lt;h3 id=&#34;0-環境&#34;&gt;0. 環境&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;[OS] Mac OS X 10.11.4
+[Eclipse] Mars.2 Release (4.5.2)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;1-問題&#34;&gt;1. 問題&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;久々にEclipseをさわっていたら、タブをスペースに変換する設定に手間取ったのでメモ。&lt;/p&gt;
+
+&lt;p&gt;(Windowsの場合、メニュー名を読み替えて下さい)&lt;/p&gt;
+
+&lt;p&gt;プログラミングで使うインデントに関して、僕はタブ派ですが、職場や&lt;a href=&#34;http://www.gizmodo.jp/2016/09/tab-vs-space.html&#34; target=&#34;_blank&#34;&gt;最近の流れ&lt;/a&gt;からしてもスペースを使わざるを得ないでしょう。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;2-解決&#34;&gt;2. 解決&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Eclipseに標準でついている機能が動かなかったので、AnyEditToolsというプラグインを入れました。&lt;/p&gt;
+
+&lt;p&gt;メニューの [ヘルプ]-[Install new software] をクリック。&lt;/p&gt;
+
+&lt;p&gt;[作業対象]に下記を入力。(anyぐらいまで打つと補完されます)&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;anyedit - http://andrei.gmxhome.de/eclipse/&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;とりあえず最新バージョンのAnyEditToolsにチェック。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/convert_tabs_to_spaces_on_eclipse/install.jpg&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;50%&#34; height=&#34;50%&#34; title=&#34;インストール&#34; alt=&#34;インストール&#34; src=&#34;https://sankame.github.io/assets/posts/img/convert_tabs_to_spaces_on_eclipse/install.jpg&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;[次へ]をクリック。&lt;/p&gt;
+
+&lt;p&gt;途中ライセンスへの同意やセキュリティ警告が出ますが、最後までいくと再起動を求められるのでそのままOKをクリックします。&lt;/p&gt;
+
+&lt;p&gt;起動後、Eclipse上で任意のファイルにタブを入力し、保存したタイミングでスペースに置換されます。&lt;/p&gt;
+
+&lt;p&gt;変わらない場合や細かい設定をしたい場合は下記の設定画面から行って下さい。&lt;/p&gt;
+
+&lt;p&gt;メニューの [Eclipse]-[環境設定] をクリック。&lt;/p&gt;
+
+&lt;p&gt;[一般]-[エディタ]-[AnyEdit Tools]&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/convert_tabs_to_spaces_on_eclipse/settings.jpg&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;50%&#34; height=&#34;50%&#34; title=&#34;設定&#34; alt=&#34;設定&#34; src=&#34;https://sankame.github.io/assets/posts/img/convert_tabs_to_spaces_on_eclipse/settings.jpg&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Eclipseでマークダウンを書く人は[Remove trailing whitespace]のチェックを外しておいたほうがいいかもしれません。&lt;/p&gt;
+
+&lt;p&gt;ファイルフィルタ(上記の[Add Filter])で拡張子mdを除外したり、プロジェクトごとに設定&lt;font color=&#34;green&#34;&gt;(*1)&lt;/font&gt;を変えることもできます。&lt;/p&gt;
+
+&lt;p&gt;&lt;font color=&#34;green&#34;&gt;(*1)プロジェクトごとの設定&lt;/font&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;プロジェクト・エクスプローラーの該当プロジェクトを右クリック。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;[プロパティ]-[AnyEdit Tools] をクリック。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;[Enable project specific settings]にチェックを入れる。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
