@@ -1,0 +1,1058 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tips on プログラマー備忘録</title>
+    <link>https://sankame.github.io/categories/tips/index.xml</link>
+    <description>Recent content in Tips on プログラマー備忘録</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <copyright>Powered by [Hugo](//gohugo.io). Theme by [hugo-theme-wave](https://github.com/syui/hugo-theme-wave).</copyright>
+    <atom:link href="https://sankame.github.io/categories/tips/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>regファイルでvbscriptを有効にする</title>
+      <link>https://sankame.github.io/blog/2018-01-17-enable_vbscript/</link>
+      <pubDate>Wed, 17 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2018-01-17-enable_vbscript/</guid>
+      <description>
+
+&lt;h1 id=&#34;0-環境&#34;&gt;0. 環境&lt;/h1&gt;
+
+&lt;pre&gt;&lt;code&gt;[OS] Windows 10
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;1-問題&#34;&gt;1. 問題&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Windows UpdateしたらIE11でvbscriptが動かなくなりました。&lt;/p&gt;
+
+&lt;p&gt;おそらくバージョン1709から。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;バージョンはWindows左下のボックスでwinverと入力すると表示されます。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/enable_vbscript/winver.png&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;60%&#34; height=&#34;60%&#34; title=&#34;winver&#34; alt=&#34;winver&#34; src=&#34;https://sankame.github.io/assets/posts/img/enable_vbscript/winver.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;前から予告されてたみたいですが、急に来た感が否めません。&lt;/p&gt;
+
+&lt;p&gt;僕みたいにレガシーシステムの保守をしてて困った人はいるのでは？&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;2-対策&#34;&gt;2. 対策&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;MicroSoft(以下MS)の下記ページに従ってグループポリシーの値を変えたら、vbscriptが有効になりました。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://support.microsoft.com/ja-jp/help/4012494/option-to-disable-vbscript-execution-in-internet-explorer-for-internet&#34; target=&#34;_blank&#34;&gt;Internet Explorer のインターネット ゾーンおよび制限付きサイト ゾーン内の VBScript の実行を無効にするオプション&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;もっと簡単な操作で変更したかったので、GUIではなく、同ページ内のレジストリファイルでのやり方を試しました。&lt;/p&gt;
+
+&lt;p&gt;ここでハマってしまい、いろいろ調べた結果、&lt;a href=&#34;http://bruteforcemahjong.seesaa.net/article/440113523.html&#34; target=&#34;_blank&#34;&gt;こちらのページ&lt;/a&gt;のおかげで解決できました。&lt;/p&gt;
+
+&lt;p&gt;上記MSページのレジストリパスが違っていることが原因でした・・・&lt;/p&gt;
+
+&lt;p&gt;こちらのファイルをWindows上の適当な場所に置いてダブルクリックするとvbscriptが有効になります。&lt;/p&gt;
+
+&lt;script src=&#34;https://gist.github.com/Sankame/d531c4fe1af0c987cf71827e0a25b523.js&#34;&gt;&lt;/script&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;他にも調べたら、&lt;a href=&#34;https://getadmx.com/?Category=Windows_10_2016&amp;Policy=Microsoft.Policies.InternetExplorer::IZ_PolicyAllowVBScript_3&amp;Language=ja-jp&#34; target=&#34;_blank&#34;&gt;正しいレジストリパスを書いたページ&lt;/a&gt;がありました。&lt;/p&gt;
+
+&lt;p&gt;うーん、MS本家が間違ってるってどういうことなんだろう？&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>【Androidアプリ開発】ライブラリ追加時にビルドエラー</title>
+      <link>https://sankame.github.io/blog/2017-10-13-android_duplicate_files_error/</link>
+      <pubDate>Fri, 13 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2017-10-13-android_duplicate_files_error/</guid>
+      <description>
+
+&lt;h2 id=&#34;0-環境&#34;&gt;0. 環境&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;[Windows] 7
+[Java] 1.8
+[Android] 5.1.1
+[Android API] 21
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;1-エラー内容&#34;&gt;1. エラー内容&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;commons-langを使いたくなったので下記のように追記してビルドしたら、エラーが発生しました。 (文中の【】は読み替えて下さい)&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;(アプリルート)/mobile/build.gradle&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-gradle&#34;&gt;dependencies {
+    compile &#39;【他のライブラリ】&#39;
+    compile &#39;【他のライブラリ】&#39;
+    compile &#39;【他のライブラリ】&#39;
+    compile &#39;org.apache.commons:commons-lang3:3.4&#39;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;エラー&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;Error:duplicate files during packaging of APK C:\【パス】\mobile-debug-unaligned.apk
+Path in archive: META-INF/LICENSE.txt
+Origin 1: C:\【パス】\commons-cli-1.2.jar
+Origin 2: C:\【パス】\commons-lang3-3.4.jar
+You can ignore those files in your build.gradle:
+android {
+packagingOptions {
+    exclude &#39;META-INF/LICENSE.txt&#39;
+}
+}
+Error:Execution failed for task &#39;:mobile:packageDebug&#39;.
+&amp;gt; Duplicate files copied in APK META-INF/LICENSE.txt
+File 1: C:\【パス】\commons-cli-1.2.jar
+File 2: C:\【パス】\commons-lang3-3.4.jar
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;2-解決方法&#34;&gt;2. 解決方法&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;apkを作る際、複数のjarから、META-INFフォルダに同名のファイルを書き込もうとしてエラーになっているようです。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;エラーメッセージの通り、build.gradle内でLICENSE.txtの除外を指定したら解消しました。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;(アプリルート)/mobile/build.gradle&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-gradle&#34;&gt;apply plugin: &#39;com.android.application&#39;
+
+android {
+    compileSdkVersion 【バージョン】
+    buildToolsVersion 【バージョン】
+    //エラーが起きたファイルをここに追記。
+    packagingOptions {
+        exclude &#39;META-INF/LICENSE.txt&#39;
+        exclude &#39;META-INF/NOTICE.txt&#39;
+    }
+    defaultConfig {
+        //省略
+    }
+    buildTypes {
+        release {
+            //省略
+        }
+    }
+}
+
+//以下省略
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;ちなみにapk内のMETA-INFOフォルダを確認するには、拡張子apkをzipに変えた後、解凍ソフトでapkを展開して下さい。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>【Androidアプリ開発】「次回から表示しない」ボタン</title>
+      <link>https://sankame.github.io/blog/2017-10-03-android_handling_dialog_using_preference/</link>
+      <pubDate>Tue, 03 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2017-10-03-android_handling_dialog_using_preference/</guid>
+      <description>
+
+&lt;h2 id=&#34;0-環境&#34;&gt;0. 環境&lt;/h2&gt;
+
+&lt;p&gt;&lt;code&gt;[Android] 5.1.1&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;[Android API] 21&lt;/code&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;1-preferenceで実装&#34;&gt;1. Preferenceで実装&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Preferenceを使ってダイアログに「次回から表示しない」ボタンをつける方法をメモ。&lt;/p&gt;
+
+&lt;p&gt;ユーザーに1回だけ何かを伝えたい場合を想定しています。&lt;/p&gt;
+
+&lt;p&gt;(MainActivity.thisなど、適宜読み替えて下さい)&lt;/p&gt;
+
+&lt;script src=&#34;https://gist.github.com/Sankame/9ec48534fad7d8663305f6d9681128b0.js&#34;&gt;&lt;/script&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;2-stethoでpreferenceを編集&#34;&gt;2. stethoでPreferenceを編集&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;開発中にPreferenceの値を変えたり、消したりしたくなると思いますが、そんな時はstethoが便利です。&lt;/p&gt;
+
+&lt;p&gt;stethoを起動し、[Local Storage]で該当のActivityを選択すると右側にPreferenceの値(上記コード17行目)が出ます。&lt;/p&gt;
+
+&lt;p&gt;右クリックで編集や削除が可能です。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/android_handling_dialog_using_preference/stetho.jpg&#34; target=&#34;_blank&#34;&gt;
+&lt;img width=&#34;80%&#34; height=&#34;80%&#34; title=&#34;stethoで編集&#34; alt=&#34;stethoで編集&#34; src=&#34;https://sankame.github.io/assets/posts/img/android_handling_dialog_using_preference/stetho.jpg&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;stethoの設定方法は下記記事の「4. stetho 利用」を参照して下さい。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;関連記事&#34;&gt;関連記事&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://sankame.github.io/blog/2017-05-14-view_sqlite_on_android/&#34; target=&#34;_blank&#34;&gt;AndroidのSQLite DBを参照&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>【Androidアプリ開発】SQLiteのDB定義を変更する際の注意点</title>
+      <link>https://sankame.github.io/blog/2017-09-05-android_sqlite_db_upgrade/</link>
+      <pubDate>Tue, 05 Sep 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2017-09-05-android_sqlite_db_upgrade/</guid>
+      <description>
+
+&lt;h2 id=&#34;0-環境&#34;&gt;0.環境&lt;/h2&gt;
+
+&lt;p&gt;&lt;code&gt;[Android] 5.1.1&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;[Android API] 21&lt;/code&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;1-準備&#34;&gt;1.準備&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Androidアプリ開発で、SQLiteのライブラリを使う際にハマった点をメモ。&lt;/p&gt;
+
+&lt;p&gt;まずコンストラクターでDBを使う準備をします。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+
+class DatabaseHelper extends SQLiteOpenHelper {
+
+    public DatabaseHelper(Context context) {
+        super(context, &amp;quot;test.db&amp;quot;, null, 1);
+
+        //(A)既存のDBを消すには下記コードを使用。
+        //context.deleteDatabase(&amp;quot;DB name is here.&amp;quot;);
+    }
+    //以下省略
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;第2引数でDB名を指定するとDBファイルがAndroid端末に作成されます。&lt;/p&gt;
+
+&lt;p&gt;第4引数ではDBバージョンを指定し、DB定義を変える際はこれを1つ上げるようにします。&lt;/p&gt;
+
+&lt;p&gt;(バージョンを下げるとクラッシュするので注意)&lt;/p&gt;
+
+&lt;p&gt;また、開発中にDBを作り直したい場合は、上記(A)で削除しましょう。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;2-ハマりポイント-ddl記載箇所&#34;&gt;2.ハマりポイント - DDL記載箇所&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;このライブラリは主に使うメソッドが2つあり、DBのバージョンによって下記の通り実行タイミングが異なります。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;DBファイルが未作成の場合&lt;/code&gt; : &lt;code&gt;onCreate&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;DBファイルが既にある場合(DBバージョン1以上)&lt;/code&gt; : &lt;code&gt;onUpgrade&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;ミスりやすいのが、DBバージョン2以降は、onCreateとonUpgradeの両方にDDLを書く必要があるという点です。&lt;/p&gt;
+
+&lt;p&gt;下記のようにusersテーブルがDBバージョン2で追加されたとして、もし、onUpgradeだけに書いてしまうと、DBバージョン1のユーザーにとっては問題ないですが、初期インストールの場合はonCreateしか実行されないため、usersテーブルが作られないことになります。&lt;/p&gt;
+
+&lt;p&gt;なので、DBバージョン2以降に追加するDDLはprivateメソッドに書いて、上記の両メソッドから呼ぶようにしたらいいと思います。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;@Override
+public void onCreate(SQLiteDatabase db) {
+    db.beginTransaction();
+    try {
+        //DBバージョン1でcitiesテーブル作成。
+        String ddlCities = &amp;quot;CREATE TABLE IF NOT EXISTS cities (&amp;quot;
+                        + &amp;quot;city_id INTEGER PRIMARY KEY AUTOINCREMENT&amp;quot;
+                        + &amp;quot;, city_name TEXT&amp;quot;
+                        + &amp;quot;);&amp;quot;;
+        db.execSQL(ddlCities);
+
+        //DBバージョン2でusersテーブル作成。
+        createUsersTable(db);
+
+        db.setTransactionSuccessful();
+    } finally {
+        db.endTransaction();
+    }
+}
+
+@Override
+public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+    db.beginTransaction();
+    try {
+        //DBバージョン2でusersテーブル作成。
+        createUsersTable(db);
+
+        db.setTransactionSuccessful();
+    } finally {
+        db.endTransaction();
+    }
+}
+
+private void createUsersTable(SQLiteDatabase db){
+    String ddlUsers = &amp;quot;CREATE TABLE IF NOT EXISTS users (&amp;quot;
+            + &amp;quot;user_id INTEGER PRIMARY KEY AUTOINCREMENT&amp;quot;
+            + &amp;quot;, user_name TEXT NOT NULL&amp;quot;
+            + &amp;quot;);&amp;quot;;
+    db.execSQL(ddlUsers);
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;3-ハマりポイント-特定のdbバージョンのみで実行するddl&#34;&gt;3.ハマりポイント - 特定のDBバージョンのみで実行するDDL&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;ネットで調べたところ、onUpgrade内ではバージョンによって実行するDDLを管理することになっています。&lt;/p&gt;
+
+&lt;p&gt;イコールを使っている例をいくつか見かけましたが、実運用に入ると都合が悪いケースがあります。&lt;/p&gt;
+
+&lt;p&gt;例えば、アップデートをしばらく保留にしていたユーザーが、DBバージョンを3から5へ一気に上げた場合、&lt;code&gt;newVersion == 4&lt;/code&gt;と指定していると、そのDDLが実行されないことになります。&lt;/p&gt;
+
+&lt;p&gt;次のようにDBバージョンを範囲で指定しておけば、上記のケースでも、addColumnAgeは実行されるので問題なしです。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;@Override
+public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+    db.beginTransaction();
+    try {
+        //イコールだと問題あり。
+        //if(oldVersion == 3 &amp;amp;&amp;amp; newVersion == 4){
+        //    addColumnAge(db);
+        //}
+
+        //DBバージョン4でAgeカラム追加。
+        if(oldVersion &amp;lt;= 3 &amp;amp;&amp;amp; newVersion &amp;gt;= 4){
+            addColumnAge(db);
+        }
+
+        db.setTransactionSuccessful();
+    } finally {
+        db.endTransaction();
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;また、上記「2.ハマりポイント」とも関係しますが、&lt;code&gt;addColumnAge(db);&lt;/code&gt;はonCreate内にも追記します。&lt;/p&gt;
+
+&lt;p&gt;onCreateは &lt;code&gt;DBファイルが未作成の場合&lt;/code&gt; 向けなので、oldVersionなどの条件指定は不要です。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;関連記事&#34;&gt;関連記事&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;SQLiteを使った開発を楽にするには&lt;a href=&#34;https://sankame.github.io/blog/2017-05-14-view_sqlite_on_android/&#34; target=&#34;_blank&#34;&gt;こちら&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>【Androidアプリ開発】起動アイコンのタイトルにアプリ名を表示</title>
+      <link>https://sankame.github.io/blog/2017-08-21-android_app_set_activity_title/</link>
+      <pubDate>Mon, 21 Aug 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2017-08-21-android_app_set_activity_title/</guid>
+      <description>
+
+&lt;h2 id=&#34;0-環境&#34;&gt;0.環境&lt;/h2&gt;
+
+&lt;p&gt;&lt;code&gt;[Android] 5.1.1&lt;/code&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;文中、【】内は読み替えて下さい。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;1-問題&#34;&gt;1.問題&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Androidホーム画面の起動アイコンのタイトルをアプリ名にしたくて、下記(3)を追記したのですが変わりません・・・&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;AndroidManifest.xml&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-xml&#34;&gt;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;utf-8&amp;quot;?&amp;gt;
+&amp;lt;manifest xmlns:android=&amp;quot;http://schemas.android.com/apk/res/android&amp;quot;
+    package=&amp;quot;【パッケージ名】&amp;quot; &amp;gt;
+
+    &amp;lt;application
+        android:allowBackup=&amp;quot;true&amp;quot;
+        android:icon=&amp;quot;@mipmap/ic_launcher&amp;quot;
+        android:label=&amp;quot;(1) App Name&amp;quot;
+        android:theme=&amp;quot;@style/AppTheme&amp;quot; &amp;gt;
+        &amp;lt;activity
+            android:name=&amp;quot;.MyActivity&amp;quot;
+            android:label=&amp;quot;(2) My Activity&#39;s Title&amp;quot; &amp;gt;
+            &amp;lt;intent-filter android:label=&amp;quot;(3) App Name&amp;quot;&amp;gt;
+                &amp;lt;action android:name=&amp;quot;android.intent.action.MAIN&amp;quot; /&amp;gt;
+
+                &amp;lt;category android:name=&amp;quot;android.intent.category.LAUNCHER&amp;quot; /&amp;gt;
+            &amp;lt;/intent-filter&amp;gt;
+        &amp;lt;/activity&amp;gt;
+    &amp;lt;/application&amp;gt;
+
+&amp;lt;/manifest&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;ネットで調べたところ、Android 5.1.1 だと(3)が無視され、下図のように起動アイコンにも(2)が表示されてしまうようです。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/android_app_set_activity_title/before1.png&#34; target=&#34;_blank&#34;&gt;
+&lt;img width=&#34;20%&#34; height=&#34;20%&#34; title=&#34;変更前・起動アイコン&#34; alt=&#34;変更前・起動アイコン&#34; src=&#34;https://sankame.github.io/assets/posts/img/android_app_set_activity_title/before1.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/android_app_set_activity_title/before2.png&#34; target=&#34;_blank&#34;&gt;
+&lt;img width=&#34;50%&#34; height=&#34;50%&#34; title=&#34;変更前・Activity&#34; alt=&#34;変更前・Activity&#34; src=&#34;https://sankame.github.io/assets/posts/img/android_app_set_activity_title/before2.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;2-対策&#34;&gt;2. 対策&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;まず&amp;rdquo;AndroidManifest.xml&amp;rdquo;では、Activityのlabelを下記(3)に変更することで、起動アイコンはアプリ名になります。(intent-filterのlabel指定はやめる)&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;そのままだと、Activityのタイトルもアプリ名になってしまうため、起動時にタイトルを書き換えることにしました。(下記 &amp;ldquo;MyActivity.java&amp;rdquo; 参照)&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;AndroidManifest.xml&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-xml&#34;&gt;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;utf-8&amp;quot;?&amp;gt;
+&amp;lt;manifest xmlns:android=&amp;quot;http://schemas.android.com/apk/res/android&amp;quot;
+    package=&amp;quot;【パッケージ名】&amp;quot; &amp;gt;
+
+    &amp;lt;application
+        android:allowBackup=&amp;quot;true&amp;quot;
+        android:icon=&amp;quot;@mipmap/ic_launcher&amp;quot;
+        android:label=&amp;quot;(1) App Name&amp;quot;
+        android:theme=&amp;quot;@style/AppTheme&amp;quot; &amp;gt;
+        &amp;lt;activity
+            android:name=&amp;quot;.MyActivity&amp;quot;
+            android:label=&amp;quot;(3) App Name&amp;quot; &amp;gt;
+            &amp;lt;intent-filter&amp;gt;
+                &amp;lt;action android:name=&amp;quot;android.intent.action.MAIN&amp;quot; /&amp;gt;
+
+                &amp;lt;category android:name=&amp;quot;android.intent.category.LAUNCHER&amp;quot; /&amp;gt;
+            &amp;lt;/intent-filter&amp;gt;
+        &amp;lt;/activity&amp;gt;
+    &amp;lt;/application&amp;gt;
+&amp;lt;/manifest&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;MyActivity.java&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;public class MyActivity extends ActionBarActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_my);
+
+        // この1行を追記。
+        setTitle(&amp;quot;(2) My Activity&#39;s Title&amp;quot;);
+    }
+
+    // 以下省略
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;こうすることで、起動アイコンにはアプリ名、Activityには専用のタイトルを表示できました。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/android_app_set_activity_title/after1.png&#34; target=&#34;_blank&#34;&gt;
+&lt;img width=&#34;20%&#34; height=&#34;20%&#34; title=&#34;変更後・起動アイコン&#34; alt=&#34;変更後・起動アイコン&#34; src=&#34;https://sankame.github.io/assets/posts/img/android_app_set_activity_title/after1.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/android_app_set_activity_title/after2.png&#34; target=&#34;_blank&#34;&gt;
+&lt;img width=&#34;50%&#34; height=&#34;50%&#34; title=&#34;変更後・Activity&#34; alt=&#34;変更後・Activity&#34; src=&#34;https://sankame.github.io/assets/posts/img/android_app_set_activity_title/after2.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;定数は大体strings.xmlなどのリソースファイルで管理していると思うので、その場合は下記のように記載。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;setTitle(getString(R.string.title_activity_main));
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>【Java】Listから配列へ変換</title>
+      <link>https://sankame.github.io/blog/2017-08-14-java_list_to_array/</link>
+      <pubDate>Mon, 14 Aug 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2017-08-14-java_list_to_array/</guid>
+      <description>
+
+&lt;h3 id=&#34;0-環境&#34;&gt;0.環境&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;[Java] 1.8
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;1-内容&#34;&gt;1. 内容&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;いつも忘れるので、JavaでList型からString型配列へ変換する方法をメモ。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;script src=&#34;https://gist.github.com/Sankame/9fba3734d8c3c061215221ac8f81aaae.js&#34;&gt;&lt;/script&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>crontabを安全に編集したい</title>
+      <link>https://sankame.github.io/blog/2017-01-10-edit_crontab/</link>
+      <pubDate>Tue, 10 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2017-01-10-edit_crontab/</guid>
+      <description>
+
+&lt;h1 id=&#34;0-環境&#34;&gt;0. 環境&lt;/h1&gt;
+
+&lt;p&gt;&lt;code&gt;[CentOS] 6.5&lt;/code&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;1-手順&#34;&gt;1. 手順&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;crontabの内容を適当な場所にコピー。&lt;/p&gt;
+
+&lt;p&gt;(usernameはcronを設定するユーザーに読み替えて下さい)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;$ cp -p /var/spool/cron/[username] ~
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;バックアップを取った後、内容を書き換えます。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;$ cp -p ~/[username] ~/[username].bak
+$ vim ~/[username]
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;crontabに取り込みます。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;$ crontab ~/[username]
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;2-注意&#34;&gt;2. 注意&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;下記でも編集は可能ですが、できれば避けた方がいいと思います。&lt;/p&gt;
+
+&lt;p&gt;キーボードで[E]の横には[R]があり、-r で誤ってcrontabの内容を削除する恐れがあるため。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;$ crontab -e
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>シェルで引数チェック</title>
+      <link>https://sankame.github.io/blog/2017-01-08-sh_check_args/</link>
+      <pubDate>Sun, 08 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2017-01-08-sh_check_args/</guid>
+      <description>
+
+&lt;h3 id=&#34;0-環境&#34;&gt;0. 環境&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;[Mac] 10.11.6
+[GNU bash] 3.2.57
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;1-内容&#34;&gt;1. 内容&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;test.shの先頭で第一引数をチェックして、無い場合は処理を中断します。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;test.sh&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;if [ &amp;quot;$1&amp;quot; = &amp;quot;&amp;quot; ]
+then
+
+    echo &amp;quot;引数を指定して下さい。&amp;quot;
+    # 処理を中断。
+    exit 1
+
+fi
+
+echo &amp;quot;任意の処理&amp;quot;
+echo &amp;quot;引数は$1&amp;quot;
+exit 0
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;実行結果&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code&gt;$ sh test.sh
+引数を指定して下さい。
+
+$ sh test.sh hoge
+任意の処理
+引数はhoge
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Eclipseでタブをスペースに置換</title>
+      <link>https://sankame.github.io/blog/2016-10-08-convert_tabs_to_spaces_on_eclipse/</link>
+      <pubDate>Sat, 08 Oct 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2016-10-08-convert_tabs_to_spaces_on_eclipse/</guid>
+      <description>
+
+&lt;h3 id=&#34;0-環境&#34;&gt;0. 環境&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;[OS] Mac OS X 10.11.4
+[Eclipse] Mars.2 Release (4.5.2)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;1-問題&#34;&gt;1. 問題&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;久々にEclipseをさわっていたら、タブをスペースに変換する設定に手間取ったのでメモ。&lt;/p&gt;
+
+&lt;p&gt;(Windowsの場合、メニュー名を読み替えて下さい)&lt;/p&gt;
+
+&lt;p&gt;プログラミングで使うインデントに関して、僕はタブ派ですが、職場や&lt;a href=&#34;http://www.gizmodo.jp/2016/09/tab-vs-space.html&#34; target=&#34;_blank&#34;&gt;最近の流れ&lt;/a&gt;からしてもスペースを使わざるを得ないでしょう。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;2-解決&#34;&gt;2. 解決&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Eclipseに標準でついている機能が動かなかったので、AnyEditToolsというプラグインを入れました。&lt;/p&gt;
+
+&lt;p&gt;メニューの [ヘルプ]-[Install new software] をクリック。&lt;/p&gt;
+
+&lt;p&gt;[作業対象]に下記を入力。(anyぐらいまで打つと補完されます)&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;anyedit - http://andrei.gmxhome.de/eclipse/&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;とりあえず最新バージョンのAnyEditToolsにチェック。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/convert_tabs_to_spaces_on_eclipse/install.jpg&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;50%&#34; height=&#34;50%&#34; title=&#34;インストール&#34; alt=&#34;インストール&#34; src=&#34;https://sankame.github.io/assets/posts/img/convert_tabs_to_spaces_on_eclipse/install.jpg&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;[次へ]をクリック。&lt;/p&gt;
+
+&lt;p&gt;途中ライセンスへの同意やセキュリティ警告が出ますが、最後までいくと再起動を求められるのでそのままOKをクリックします。&lt;/p&gt;
+
+&lt;p&gt;起動後、Eclipse上で任意のファイルにタブを入力し、保存したタイミングでスペースに置換されます。&lt;/p&gt;
+
+&lt;p&gt;変わらない場合や細かい設定をしたい場合は下記の設定画面から行って下さい。&lt;/p&gt;
+
+&lt;p&gt;メニューの [Eclipse]-[環境設定] をクリック。&lt;/p&gt;
+
+&lt;p&gt;[一般]-[エディタ]-[AnyEdit Tools]&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/convert_tabs_to_spaces_on_eclipse/settings.jpg&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;50%&#34; height=&#34;50%&#34; title=&#34;設定&#34; alt=&#34;設定&#34; src=&#34;https://sankame.github.io/assets/posts/img/convert_tabs_to_spaces_on_eclipse/settings.jpg&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Eclipseでマークダウンを書く人は[Remove trailing whitespace]のチェックを外しておいたほうがいいかもしれません。&lt;/p&gt;
+
+&lt;p&gt;ファイルフィルタ(上記の[Add Filter])で拡張子mdを除外したり、プロジェクトごとに設定&lt;font color=&#34;green&#34;&gt;(*1)&lt;/font&gt;を変えることもできます。&lt;/p&gt;
+
+&lt;p&gt;&lt;font color=&#34;green&#34;&gt;(*1)プロジェクトごとの設定&lt;/font&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;プロジェクト・エクスプローラーの該当プロジェクトを右クリック。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;[プロパティ]-[AnyEdit Tools] をクリック。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;[Enable project specific settings]にチェックを入れる。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>.gitignoreをaddできない</title>
+      <link>https://sankame.github.io/blog/2016-08-21-how-to-add-gitignore/</link>
+      <pubDate>Sun, 21 Aug 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2016-08-21-how-to-add-gitignore/</guid>
+      <description>
+
+&lt;h3 id=&#34;0-環境&#34;&gt;0. 環境&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;[git] 2.7.4 (Apple Git-66)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;1-問題&#34;&gt;1. 問題&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;アプリのルートディレクトリに.gitignoreをおいたのですが、git status で見ても追加対象として出てきません。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;2-解決&#34;&gt;2. 解決&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;最初(A)のように書いていたのですが、これだとダメで、[除外設定]→[例外] の順に書かないといけないようです。&lt;/p&gt;
+
+&lt;p&gt;(「. が先頭にあるファイルは除外してね」→「但し .gitignore は例外だよ」)&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;(A) 修正前&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;script src=&#34;https://gist.github.com/Sankame/5918ea08bcdc09322907a34434277f08.js&#34;&gt;&lt;/script&gt;
+
+&lt;ul&gt;
+&lt;li&gt;(B) 修正後&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;script src=&#34;https://gist.github.com/Sankame/dc68236f9088ca8964f43009cae285cd.js&#34;&gt;&lt;/script&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>ショートカットのファイルパス</title>
+      <link>https://sankame.github.io/blog/2016-07-16-windows_shortcut_path/</link>
+      <pubDate>Sat, 16 Jul 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2016-07-16-windows_shortcut_path/</guid>
+      <description>
+
+&lt;h3 id=&#34;0-環境&#34;&gt;0. 環境&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;[OS] Windows 7
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;1-課題&#34;&gt;1. 課題&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;ファイル(①)に対してショートカット(②)を作った場合・・・&lt;/p&gt;
+
+&lt;p&gt;① C:\tmp\test.txt&lt;/p&gt;
+
+&lt;p&gt;② C:\tmp2\test.txt - ショートカット&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;エクスプローラーやスタートメニューの「ファイル名を指定して実行」から②を指定してもエラーになります。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/windows_shortcut_path/exec-file.jpg&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;50%&#34; height=&#34;50%&#34; title=&#34;ショートカットのファイルパス&#34; alt=&#34;ショートカットのファイルパス&#34; src=&#34;https://sankame.github.io/assets/posts/img/windows_shortcut_path/exec-file.jpg&#34;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;これは下記のように &lt;font color=&#39;red&#39;&gt;&amp;rdquo;.lnk&amp;rdquo;&lt;/font&gt; をつけると解決します。&lt;/p&gt;
+
+&lt;p&gt;&lt;font color=&#39;red&#39;&gt;C:\tmp2\test.txt - ショートカット.lnk&lt;/font&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;OSの内部的にはこのパスになっているんだと思います・・・&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>AppleWatch実機でサンプル実行</title>
+      <link>https://sankame.github.io/blog/2016-05-05-running_it_on_apple_watch/</link>
+      <pubDate>Thu, 05 May 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2016-05-05-running_it_on_apple_watch/</guid>
+      <description>
+
+&lt;h3 id=&#34;0-環境&#34;&gt;0.環境&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;[OS] Mac OS X 10.11.4
+[IDE] Xcode 7.3
+[iOS] 9.3
+[watchOS] 2.1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;1-問題&#34;&gt;1.問題&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;AppleWatch用のサンプルプログラムを実機でも動かしたくなりました。&lt;/p&gt;
+
+&lt;p&gt;最初下記の環境だったのですが、Xcodeでサンプルプログラムを実行すると、&amp;rdquo;paired device unavailable for development&amp;rdquo; というエラー出ました。&lt;/p&gt;
+
+&lt;p&gt;原因が分からなかったので、とりあえずiOSを9.3にバージョンアップしました。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[OS] Mac OS X 10.11.4
+[IDE] Xcode 7.2.1
+[iOS (iPhone)] 9.1
+[watchOS (AppleWatch)] 2.1
+
+※MacとiPhoneはUSBケーブルで接続。
+※iPhoneとAppleWatchはペアリング済み。
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;その後、今度は &amp;ldquo;Could not find Developer Disk Image&amp;rdquo; というエラーで先へ進めず。&lt;/p&gt;
+
+&lt;p&gt;Xcodeの下記フォルダに9.3がないことが原因らしいのですが、そもそもXcode 7.2はiOS9.3には対応していないようです。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Finderを開き、左ペインの&amp;quot;アプリケーション&amp;quot;を選択すると、右ペインにXcode.appが表示されるので右クリックで&amp;quot;パッケージの内容を表示&amp;quot;
+Contents/Developer/Platforms/iPhoneOS.platform/DeviceSupport/
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;2-xcodeバージョンアップ&#34;&gt;2.Xcodeバージョンアップ&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Xcodeを 7.3に上げることにしました。&lt;/p&gt;
+
+&lt;p&gt;・LaunchpadでXcodeを長押し後、Xcodeの左上の×印をクリックしアンインストール。&lt;/p&gt;
+
+&lt;p&gt;　(Dockに残っているけど無視)&lt;/p&gt;
+
+&lt;p&gt;・OS再起動。&lt;/p&gt;
+
+&lt;p&gt;・App StoreからXcodeをインストール。&lt;/p&gt;
+
+&lt;p&gt;　(Macをwifiルーターの近くに持って行って、電源コードをつないで…　終わるまで1時間以上かかりました)&lt;/p&gt;
+
+&lt;p&gt;Launchpadでインストールが終わったことを確認して、Xcodeを起動すると無事7.3になってました。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Xcodeでサンプルプログラムをビルド＆起動。&lt;/p&gt;
+
+&lt;p&gt;Xcode再インストール後は下記の警告が出ますが &amp;ldquo;Fix issue&amp;rdquo; をクリックして先へ進みます。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Failed to code sign &amp;quot;hello-watch WatchKit App&amp;quot;.
+
+No provisioning profiles with a valid signing identity (i.e. certificate and private key pair) matching the bundle identifier “home.hello-watch.watchkitapp” were found.
+
+Xcode can attempt to fix this issue. This will reset your code signing and provisioning settings to recommended values and resolve issues with signing identities and provisioning profiles.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;ビルドは通ったようですが、起動時に下記エラーが出ました。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Error Launching &#39;hello-watch WatchKit Extension&#39;
+Apple Watch is locked. Unlock the device and launch again.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;Error Launching &#39;hello-watch WatchKit Extension&#39;
+The operation couldn’t be completed. (FBSOpenApplicationErrorDomain error 3.)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;開発中アプリなのでAppleWatch側で許可が必要なようです。&lt;/p&gt;
+
+&lt;p&gt;見慣れないアイコンが増えているので、これをタップ。(オレンジの線)&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/running_it_on_apple_watch/installed_sample.jpg&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;30%&#34; height=&#34;30%&#34; title=&#34;AppleWatchサンプルアプリ&#34; alt=&#34;AppleWatchサンプルアプリ&#34; src=&#34;https://sankame.github.io/assets/posts/img/running_it_on_apple_watch/installed_sample.jpg&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;ldquo;信頼されていないAppデベロッパ&amp;rdquo;という警告が出るので、&amp;rdquo;信頼する&amp;rdquo; をタップ。&lt;/p&gt;
+
+&lt;p&gt;再びXcodeでビルド＆起動すると、AppleWatch側で実行されるようになりました。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;参考ページ&#34;&gt;参考ページ&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;①&lt;a href=&#34;http://stackoverflow.com/questions/33380684/ios-watch-kit-paired-device-unavailable-for-development&#34; target=&#34;_blank&#34;&gt;iOS: Watch Kit paired device unavailable for development&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;②&lt;a href=&#34;http://stackoverflow.com/questions/33885080/xcode-7-1-with-ios-9-2-error-could-not-find-developer-disk-image&#34; target=&#34;_blank&#34;&gt;Xcode 7.1 with iOS 9.2 Error (Could not find Developer Disk image) [duplicate]&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;③&lt;a href=&#34;http://swift-bettychang.hatenadiary.jp/entry/2016/03/26/045524&#34; target=&#34;_blank&#34;&gt;Xcode7.3にアップデートできない&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;④&lt;a href=&#34;http://stackoverflow.com/questions/34384015/fbsopenapplicationerrordomain-error-3-when-trying-to-launch-a-watch-kit-app-on-a&#34; target=&#34;_blank&#34;&gt;FBSOpenApplicationErrorDomain error 3 when trying to launch a watch kit app on a physical device&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>AppleWatchサンプルプログラム</title>
+      <link>https://sankame.github.io/blog/2016-05-02-apple_watch_sample/</link>
+      <pubDate>Mon, 02 May 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2016-05-02-apple_watch_sample/</guid>
+      <description>
+
+&lt;h3 id=&#34;0-環境&#34;&gt;0.環境&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;[OS] Mac OS X 10.11.4
+[IDE] Xcode 7.2.1
+[watchOS] 2.1
+[Swift] 2.1.1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;1-完成イメージ&#34;&gt;1.完成イメージ&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;メイン画面からサブ画面へ行って戻るサンプルを作成します。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/apple_watch_sample/result.png&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;50%&#34; height=&#34;50%&#34; title=&#34;完成イメージ&#34; alt=&#34;完成イメージ&#34; src=&#34;https://sankame.github.io/assets/posts/img/apple_watch_sample/result.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;2-プロジェクト作成&#34;&gt;2.プロジェクト作成&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Xcodeのスプラッシュ画面で&amp;rdquo;Create a new Xcode project&amp;rdquo;を選択。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/apple_watch_sample/splash.png&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;50%&#34; height=&#34;50%&#34; title=&#34;スプラッシュ画面&#34; alt=&#34;スプラッシュ画面&#34; src=&#34;https://sankame.github.io/assets/posts/img/apple_watch_sample/splash.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;watchOS Applicationを選択。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/apple_watch_sample/project_template.png&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;50%&#34; height=&#34;50%&#34; title=&#34;テンプレート選択&#34; alt=&#34;テンプレート選択&#34; src=&#34;https://sankame.github.io/assets/posts/img/apple_watch_sample/project_template.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;適当なプロジェクト名を入力して下さい。&lt;/p&gt;
+
+&lt;p&gt;サンプルなので&amp;rdquo;Notification&amp;rdquo;と&amp;rdquo;Glance&amp;rdquo;のチェックは外します。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/apple_watch_sample/project_options.png&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;50%&#34; height=&#34;50%&#34; title=&#34;オプション選択&#34; alt=&#34;オプション選択&#34; src=&#34;https://sankame.github.io/assets/posts/img/apple_watch_sample/project_options.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;プロジェクトを作成するフォルダを選択して下さい。&lt;/p&gt;
+
+&lt;p&gt;下記のように /app/ を指定するとプロジェクトのパスは /app/hello-watch/ になります。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/apple_watch_sample/folder.png&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;50%&#34; height=&#34;50%&#34; title=&#34;フォルダ選択&#34; alt=&#34;フォルダ選択&#34; src=&#34;https://sankame.github.io/assets/posts/img/apple_watch_sample/folder.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;3-実装&#34;&gt;3.実装&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;左のプロジェクトナビゲーターで&amp;rdquo;Interface.storyboard&amp;rdquo;を選択。(A-1)&lt;/p&gt;
+
+&lt;p&gt;デフォルトで用意されている Interface Controller を選択して、Identifier に適当な値(例ではIC1)を入力。 (A-2、A-3、A-4)&lt;/p&gt;
+
+&lt;p&gt;ドラッグ＆ドロップで Label と Button を Interface Controller 上に配置します。 (A-5)&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/apple_watch_sample/ready_controller.png&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;100%&#34; height=&#34;100%&#34; title=&#34;コントローラ準備&#34; alt=&#34;コントローラ準備&#34; src=&#34;https://sankame.github.io/assets/posts/img/apple_watch_sample/ready_controller.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;ドラッグ＆ドロップで Interface Controller をもう一つ追加。(B-1)&lt;/p&gt;
+
+&lt;p&gt;追加した方を選択し、Identifier に適当な値(例ではIC2)を入力。 (B-2、B-3)&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/apple_watch_sample/ready_controller2.png&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;80%&#34; height=&#34;80%&#34; title=&#34;コントローラ準備&#34; alt=&#34;コントローラ準備&#34; src=&#34;https://sankame.github.io/assets/posts/img/apple_watch_sample/ready_controller2.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;上記のIC2に Label を配置し、IC2と入力しておきます。&lt;/p&gt;
+
+&lt;p&gt;区別するため、IC1に配置した Label にはIC1と入力します。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/apple_watch_sample/ready_controller3.png&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;50%&#34; height=&#34;50%&#34; title=&#34;コントローラ準備&#34; alt=&#34;コントローラ準備&#34; src=&#34;https://sankame.github.io/assets/posts/img/apple_watch_sample/ready_controller3.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;アシスタントエディターを表示します。(C-1)&lt;/p&gt;
+
+&lt;p&gt;Button を右クリックし、[Sent Actions]-[selector] からドラッグ＆ドロップでエディターまで線を伸ばします。(C-2)&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/apple_watch_sample/coding1.png&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;100%&#34; height=&#34;100%&#34; title=&#34;実装1&#34; alt=&#34;実装1&#34; src=&#34;https://sankame.github.io/assets/posts/img/apple_watch_sample/coding1.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;適当なメソッド名を入力します。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/apple_watch_sample/coding2.png&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;80%&#34; height=&#34;80%&#34; title=&#34;実装2&#34; alt=&#34;実装2&#34; src=&#34;https://sankame.github.io/assets/posts/img/apple_watch_sample/coding2.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Button タップ時に呼ばれるメソッドが追加されました。(D-1、D-2)&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/apple_watch_sample/coding3.png&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;80%&#34; height=&#34;80%&#34; title=&#34;実装3&#34; alt=&#34;実装3&#34; src=&#34;https://sankame.github.io/assets/posts/img/apple_watch_sample/coding3.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;上記で追加したメソッドにIC2へ遷移するコードを記述します。&lt;/p&gt;
+
+&lt;p&gt;(IC1へ戻るリンクは自動で作成されます)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-swift&#34;&gt;@IBAction func onPushButton() {
+    pushControllerWithName(&amp;quot;IC2&amp;quot;, context: &amp;quot;some messages&amp;quot;)
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;シュミレーターで Apple Watch を選択し、[Command]-[R]キーを押すと数十秒後にプログラムが実行されます。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/apple_watch_sample/run.png&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;100%&#34; height=&#34;100%&#34; title=&#34;実行&#34; alt=&#34;実行&#34; src=&#34;https://sankame.github.io/assets/posts/img/apple_watch_sample/run.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;実機で起動させた際の&lt;a href=&#34;https://sankame.github.io/applewatch/running_it_on_apple_watch/&#34; target=&#34;_blank&#34;&gt;記事はこちら。&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;参考ページ&#34;&gt;参考ページ&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://blog.haranicle.net/watchkit_push/&#34; target=&#34;_blank&#34;&gt;WatchKitでpush画面遷移&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>setVibrateメソッドの使い方</title>
+      <link>https://sankame.github.io/blog/2016-02-08-notification_compat_builder_setvibrate/</link>
+      <pubDate>Mon, 08 Feb 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2016-02-08-notification_compat_builder_setvibrate/</guid>
+      <description>
+
+&lt;h3 id=&#34;環境&#34;&gt;環境&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;[Android SDK]  API 21: Android 5.0(Lollipop)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;実装&#34;&gt;実装&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;スマートウォッチ(Android Wear)に通知を送るため、NotificationCompat.Builder の&lt;/p&gt;
+
+&lt;p&gt;setVibrateメソッドを使った際の自分用メモ。&lt;/p&gt;
+
+&lt;p&gt;バイブレーション・パターンの設定は下記仕様ですが、&lt;/p&gt;
+
+&lt;p&gt;long型配列の&lt;font color=&#34;green&#34;&gt;&lt;b&gt;1つ目の要素を除いて、偶数は振動、奇数は休止&lt;/b&gt;&lt;/font&gt;&lt;/p&gt;
+
+&lt;p&gt;と覚えておけば良さそうです。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;NotificationCompat.Builder builder = new NotificationCompat.Builder( getApplicationContext() );
+
+// 単位はミリ秒
+// 
+// 要素1 : 振動開始までの時間
+// 要素2 : 振動
+// 要素3 : 休止
+// 要素4 : (これ以降は要素2-3の繰り返し)
+builder.setVibrate(new long[]{0, 500, 250, 500, 250, 1000});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;下記の例だと、ツー・ツ・ツ　みたいな感じになります。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;// 1秒振動、0.1秒休止、0.1秒振動、0.05秒休止、0.1秒振動
+builder.setVibrate(new long[]{0, 1000, 100, 100, 50, 100});
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;関連リンク&#34;&gt;関連リンク&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html&#34; target=&#34;_blank&#34;&gt;API : NotificationCompat.Builder&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Googleスプレッドシート  行ごとに背景色を変える</title>
+      <link>https://sankame.github.io/blog/2015-11-28-google_sheets_colors_for_lines/</link>
+      <pubDate>Sat, 28 Nov 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2015-11-28-google_sheets_colors_for_lines/</guid>
+      <description>
+
+&lt;h2 id=&#34;googleスプレッドシート-設定方法&#34;&gt;Googleスプレッドシート  設定方法&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;あるセルに値を入れることで、行全体の色を変える設定です。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;下記のようなリストを例に、完了日を入れるだけで行を自動でグレーアウトします。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/google_sheets_colors_for_lines/リスト.png&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;60%&#34; height=&#34;60%&#34; title=&#34;リスト&#34; alt=&#34;リスト&#34; src=&#34;https://sankame.github.io/assets/posts/img/google_sheets_colors_for_lines/リスト.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;メニューで「条件付き書式」を選択。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/google_sheets_colors_for_lines/条件付き書式.png&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;60%&#34; height=&#34;60%&#34; title=&#34;条件付き書式&#34; alt=&#34;条件付き書式&#34; src=&#34;https://sankame.github.io/assets/posts/img/google_sheets_colors_for_lines/条件付き書式.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;右端に枠が表示されます。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/google_sheets_colors_for_lines/条件付き書式設定ルール.png&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;40%&#34; height=&#34;40%&#34; title=&#34;条件付き書式設定ルール&#34; alt=&#34;条件付き書式設定ルール&#34; src=&#34;https://sankame.github.io/assets/posts/img/google_sheets_colors_for_lines/条件付き書式設定ルール.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;まず範囲を選択します。今回はヘッダーを除いたデータ部分を指定。(A4:C6)&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;次に書式設定の条件を指定します。&lt;/p&gt;
+
+&lt;p&gt;例では「C列の4行目以降に値がある」場合にtrueを返すようにします。&lt;/p&gt;
+
+&lt;p&gt;(C列を固定するため絶対参照の$マークをつけ、4行目からは相対参照にしたいため下記のように指定)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;=IF($C4 &amp;lt;&amp;gt; &amp;quot;&amp;quot;, true, false)
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;最後に書式設定で、上記がtrueの場合に適用される書式を選びます。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;以上で「完了日」に文字列を入れると行全体をグレーにすることができました。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/google_sheets_colors_for_lines/条件付き書式設定完了.png&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;80%&#34; height=&#34;80%&#34; title=&#34;条件付き書式設定完了&#34; alt=&#34;条件付き書式設定完了&#34; src=&#34;https://sankame.github.io/assets/posts/img/google_sheets_colors_for_lines/条件付き書式設定完了.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
