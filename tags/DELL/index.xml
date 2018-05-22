@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>DELL on プログラマー備忘録</title>
+    <link>https://sankame.github.io/tags/dell/index.xml</link>
+    <description>Recent content in DELL on プログラマー備忘録</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <copyright>Powered by [Hugo](//gohugo.io). Theme by [hugo-theme-wave](https://github.com/syui/hugo-theme-wave).</copyright>
+    <atom:link href="https://sankame.github.io/tags/dell/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>DELL E5520 のタッチパッドをOFFにする</title>
+      <link>https://sankame.github.io/blog/2013-07-05-dell_e5520_touchpad/</link>
+      <pubDate>Fri, 05 Jul 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2013-07-05-dell_e5520_touchpad/</guid>
+      <description>
+
+&lt;h1 id=&#34;0-環境&#34;&gt;0. 環境&lt;/h1&gt;
+
+&lt;pre&gt;&lt;code&gt;[PC] DELL E5520
+[OS] Windows 7 Professional (SP1)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;1-手順&#34;&gt;1. 手順&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;(1-1) ドライバーダウンロード&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;http://www.dell.com/support/drivers/jp/ja/jpdhs1/Product/latitude-e5520&#34; target=&#34;_blank&#34;&gt;ダウンロードページ&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;上記ダウンロードページで、&amp;rdquo;マウス、キーボード、入力デバイス&amp;rdquo; を開きます。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&amp;ldquo;Dell Multi-Touch Touchpad Driver&amp;rdquo; の右横にある「ファイルのダウンロード」をクリック。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Hard-Drive-ALPS_MULTI-TOUCH-TOUCHPAD_A06_GGY5W_SETUP_ZPE.exe を選択して「続行」をクリック。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&amp;ldquo;単一ファイルのダウンロード&amp;rdquo;を選択して「続行」をクリック。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;(1-2) インストール&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;ダウンロード後、EXEファイルを実行します。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;インストールが終わったら再起動します。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;(1-3) 設定&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Windows[スタートメニュー] - [コントロールパネル]を開き、Dell Touchpad が増えているのでダブルクリック。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;DELLポインティングデバイス　というダイアログが起動。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;左メニューで任意のものを選択して、タッチパッドのOn/Offで O をクリックして、保存ボタンクリック。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;こうするとタッチパッドがOffになります。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;(見つからない場合は右上の「表示方法」を「小さいアイコン」または「大きいアイコン」に変更して下さい)&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;2-参考ページ&#34;&gt;2. 参考ページ&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://detail.chiebukuro.yahoo.co.jp/qa/question_detail/q13104530838&#34; target=&#34;_blank&#34;&gt;&lt;a href=&#34;http://detail.chiebukuro.yahoo.co.jp/qa/question_detail/q13104530838&#34;&gt;http://detail.chiebukuro.yahoo.co.jp/qa/question_detail/q13104530838&lt;/a&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
