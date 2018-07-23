@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Subversion on プログラマー備忘録</title>
+    <link>https://sankame.github.io/tags/subversion/index.xml</link>
+    <description>Recent content in Subversion on プログラマー備忘録</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <copyright>Powered by [Hugo](//gohugo.io). Theme by [hugo-theme-wave](https://github.com/syui/hugo-theme-wave).</copyright>
+    <atom:link href="https://sankame.github.io/tags/subversion/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>かんたんSubversionリポジトリ作成</title>
+      <link>https://sankame.github.io/blog/2013-01-19-svn_create_repos/</link>
+      <pubDate>Sat, 19 Jan 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2013-01-19-svn_create_repos/</guid>
+      <description>
+
+&lt;p&gt;&lt;span&gt;&amp;nbsp;&lt;/span&gt;&lt;span style=&#34;color:#d14; float:right;&#34;&gt;更新日：2015年05月08日&lt;/span&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;0-環境&#34;&gt;0.環境&lt;/h1&gt;
+
+&lt;pre&gt;&lt;code&gt;[CentOS]     5.6 (32bit版カーネル)
+[Apache]     2.2.3
+[Subversion] 1.6.11
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;1-作成手順&#34;&gt;1.作成手順&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;SVNはインストール済みとします。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;(1-1) リポジトリ作成&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;ブラウザ経由でリポジトリを見るため、予め mod_dav_svn をインストール。(初回のみ)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;# yum install mod_dav_svn
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;データが壊れにくいfsfsを指定し、リポジトリ作成。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;# svnadmin create /var/svn/repos/test --fs-type fsfs
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;SVNの作法通り、下記3つを用意します。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;svn mkdir file:///var/svn/repos/test/trunk -m &amp;quot;create&amp;quot;
+svn mkdir file:///var/svn/repos/test/tags -m &amp;quot;create&amp;quot;
+svn mkdir file:///var/svn/repos/test/branches -m &amp;quot;create&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;(1-2) 既存リポジトリのソースを引き継ぐ場合&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;(例)test_orgリポジトリのソースを一時ディレクトリに出力。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;# svn export file:///var/svn/repos/test_org/ /tmp/test_org
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;上記で出力したソースをtestリポジトリへ取り込みます。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;# svn import /tmp/test_org/trunk file:///var/svn/repos/test/trunk -m &amp;quot;first import&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;(1-3) アクセス設定&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;ブラウザからアクセスするため、apache設定ファイルを修正。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;# vim /etc/httpd/conf.d/subversion.conf
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;下記を追記。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-apache&#34;&gt;&amp;lt;Location /svn/test&amp;gt;
+    DAV svn
+    SVNPath /var/svn/repos/test
+&amp;lt;/Location&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;apacheを再起動します。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;# /etc/init.d/httpd restart
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;下記URLでブラウザからリポジトリにアクセス。(localhostは環境に応じて読み替え)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;# http://localhost/svn/test/
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;コミットするときにエラーが出たので、作成したリポジトリのパーミッションをゆるめに変更しました。&lt;font color=&#34;red&#34;&gt;(注1)&lt;/font&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;# cd /var/svn/repos
+# chmod -R 777 test
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;font color=&#34;red&#34;&gt;(注1) 開発環境など、セキュリティ要件が高くない場合に限ってのみ行って下さい。&lt;/font&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
