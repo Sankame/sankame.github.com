@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>AndroidStudio on プログラマー備忘録</title>
+    <link>https://sankame.github.io/tags/androidstudio/index.xml</link>
+    <description>Recent content in AndroidStudio on プログラマー備忘録</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <copyright>Powered by [Hugo](//gohugo.io). Theme by [hugo-theme-wave](https://github.com/syui/hugo-theme-wave).</copyright>
+    <atom:link href="https://sankame.github.io/tags/androidstudio/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Androidアプリのバージョンアップができない</title>
+      <link>https://sankame.github.io/blog/2015-10-07-android_app_version/</link>
+      <pubDate>Wed, 07 Oct 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2015-10-07-android_app_version/</guid>
+      <description>
+
+&lt;h3 id=&#34;0-環境&#34;&gt;0.環境&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;[OS]             Windows7 (32bit 版)
+[AndroidStudio]  1.1.0
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;1-問題&#34;&gt;1.問題&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Androidアプリをバージョンアップするため、Google Play Developer Console
+でapkファイルをアップしても下記のエラーが出ました。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;アップロードできませんでした&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;マニフェストファイルに下記のように追記してもダメ。&lt;/p&gt;
+
+&lt;p&gt;(app\【アプリ名】\mobile\src\main\AndroidManifest.xml)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-xml&#34;&gt;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;utf-8&amp;quot;?&amp;gt;
+    &amp;lt;manifest xmlns:android=&amp;quot;http://schemas.android.com/apk/res/android&amp;quot;
+        package=&amp;quot;【パッケージ名】&amp;quot; android:versionCode=&amp;quot;2&amp;quot; android:versionName=&amp;quot;2.0.1&amp;quot;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;2-対策&#34;&gt;2.対策&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;しばらくして、AndroidManifest.xml にエラーメッセージが出てるのに気付きました。&lt;/p&gt;
+
+&lt;p&gt;build.gradle を修正しなきゃいけない・・・&lt;/p&gt;
+
+&lt;p&gt;(app\【アプリ名】\mobile\build.gradle)&lt;/p&gt;
+
+&lt;p&gt;下記のようにバージョンを上げて再コンパイルしたらアップロードできました。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-json&#34;&gt;android {
+        :
+    (省略)
+        :
+        defaultConfig {
+            applicationId &amp;quot;【省略】&amp;quot;
+            minSdkVersion 16
+            targetSdkVersion 21
+            versionCode 2
+            versionName &amp;quot;2.0.1&amp;quot;
+        }
+    :
+    (省略)
+    :
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>【AndroidStudio】&#34;Failed to complete Gradle execution&#34;エラー</title>
+      <link>https://sankame.github.io/blog/2015-05-11-android_studio_heap_size_error/</link>
+      <pubDate>Mon, 11 May 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2015-05-11-android_studio_heap_size_error/</guid>
+      <description>
+
+&lt;h2 id=&#34;0-環境&#34;&gt;0.環境&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;[OS]             Windows7 (32bit 版)
+[AndroidStudio]  1.1.0
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;1-エラー内容&#34;&gt;1.エラー内容&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;「Run &amp;lsquo;app&amp;rsquo;」ボタンをクリックし、ビルド＆実行しようとすると下記エラーダイアログが表示される。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;Failed to complete Gradle execution
+Cause:
+A fatal exception has occurred. Program will exit
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;2-回避方法&#34;&gt;2.回避方法&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;メニューから [File] -&amp;gt; [Settings] -&amp;gt; [Gradle] とたどって、[Gradle VM options] に &amp;ldquo;-XX:MaxHeapSize=256m -Xmx256m&amp;rdquo; を入力。(下記画像のオレンジ枠線)&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/android_studio_heap_size_error/vm_options.png&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;70%&#34; height=&#34;70%&#34; title=&#34;VMオプション設定&#34; alt=&#34;VMオプション設定&#34; src=&#34;https://sankame.github.io/assets/posts/img/android_studio_heap_size_error/vm_options.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;参考にしたページ&#34;&gt;参考にしたページ&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://code.google.com/p/android/issues/detail?id=67946&#34; target=&#34;_blank&#34;&gt;Failed to complete Gradle Execution&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>AndroidStudioでプロセス開始エラー</title>
+      <link>https://sankame.github.io/blog/2015-05-10-android_studio_process_error/</link>
+      <pubDate>Sun, 10 May 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2015-05-10-android_studio_process_error/</guid>
+      <description>
+
+&lt;h1 id=&#34;0-環境&#34;&gt;0.環境&lt;/h1&gt;
+
+&lt;pre&gt;&lt;code&gt;[OS]             Windows7 (32bit 版)
+[AndroidStudio]  1.1.0
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;1-エラー内容&#34;&gt;1.エラー内容&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;AndroidStudioで「Run &amp;lsquo;app&amp;rsquo;」ボタンをクリックし、ビルド＆実行しようとすると下記エラーが発生しました。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;Error:Unable to start the daemon process.
+This problem might be caused by incorrect configuration of the daemon.
+For example, an unrecognized jvm option is used.
+Please refer to the user guide chapter on the daemon at http://gradle.org/docs/2.2.1/userguide/gradle_daemon.html
+Please read the following process output to find out more:
+-----------------------
+Error occurred during initialization of VM
+Could not reserve enough space for object heap
+Error: Could not create the Java Virtual Machine.
+Error: A fatal exception has occurred. Program will exit.
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;2-回避方法&#34;&gt;2.回避方法&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Android Studioを閉じます。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;下記フォルダを削除。(不安な場合は例えば次のようにリネーム DELETE_.gradle)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;C:\ユーザー\【ユーザー名】\.gradle
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Android Studioを起動。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;上記で消した.gradleフォルダが再作成され、ビルド＆実行が成功しました。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;3-参考にしたページ&#34;&gt;3.参考にしたページ&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.thedevline.com/2014/06/android-studio-unable-to-start-daemon.html&#34; target=&#34;_blank&#34;&gt;Unable to start the daemon process fix Solution&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
