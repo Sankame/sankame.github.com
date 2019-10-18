@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>MySQL on プログラマー備忘録</title>
+    <link>https://sankame.github.io/tags/mysql/index.xml</link>
+    <description>Recent content in MySQL on プログラマー備忘録</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <copyright>Powered by [Hugo](//gohugo.io). Theme by [hugo-theme-wave](https://github.com/syui/hugo-theme-wave).</copyright>
+    <atom:link href="https://sankame.github.io/tags/mysql/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>MonitでApacheとMySQLを復旧</title>
+      <link>https://sankame.github.io/blog/2018-05-11-monit_for_apache_mysql/</link>
+      <pubDate>Fri, 11 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2018-05-11-monit_for_apache_mysql/</guid>
+      <description>
+
+&lt;p&gt;MonitでApacheとMySQLを復旧させる最低限の設定です。&lt;/p&gt;
+
+&lt;p&gt;(文中のドメイン名やメールアドレスは読み替えて下さい)&lt;/p&gt;
+
+&lt;h1 id=&#34;0-環境&#34;&gt;0. 環境&lt;/h1&gt;
+
+&lt;pre&gt;&lt;code&gt;[CentOS] 6.4 (64bit版カーネル)
+[Monit] 5.25.1
+[Apache] 2.2.15
+[MySQL] 5.1.73
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;1-セットアップ&#34;&gt;1. セットアップ&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;インストール&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;# yum install monit
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;自動起動を設定&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;# chkconfig monit on
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;2-設定&#34;&gt;2. 設定&lt;/h1&gt;
+
+&lt;h2 id=&#34;2-1-apacheの監視設定&#34;&gt;2-1. Apacheの監視設定&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;httpd.conf を開いて、&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;# vim /etc/monit.d/httpd.conf
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;下記を記載。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;check process httpd with pidfile /var/run/httpd/httpd.pid
+start program = &amp;quot;/etc/init.d/httpd start&amp;quot;
+stop program = &amp;quot;/etc/init.d/httpd stop&amp;quot;
+    
+if 5 restarts within 5 cycles then timeout
+
+if failed host example.net port 443
+    protocol HTTP request /home then alert
+group httpd
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;2-2-mysqlの監視設定&#34;&gt;2-2. MySQLの監視設定&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;次に、mysqld.conf を開いて、&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;# vim /etc/monit.d/mysqld.conf
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;下記を記載。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;check process mysqld with pidfile /var/run/mysqld/mysqld.pid
+start program = &amp;quot;/etc/init.d/mysqld start&amp;quot;
+stop program = &amp;quot;/etc/init.d/mysqld stop&amp;quot;
+    
+if 5 restarts within 5 cycles then timeout
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;シンタックスをチェック。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;# monit -t
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;2-3-monitの設定&#34;&gt;2-3. Monitの設定&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;バックアップをとってから、/etc/monit.conf を編集。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;# diff /etc/monit.conf /etc/monit.conf.org
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;編集箇所は下記にdiff形式で表示。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;(1)アラートを送信するメールサーバーを指定。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;(2)送信元メールアドレスを設定。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;(3)送信から除外したいMonitのイベントを指定。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;後述の「3. プロセス監視」でactionイベントが発生するため除外する。&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code&gt;85d84
+&amp;lt; set mailserver localhost
+135c134
+&amp;lt; set mail-format { from: monit@example.net }
+---
+&amp;gt; # set mail-format { from: monit@foo.bar }
+148d146
+&amp;lt; set alert test@gmail.com not on {action}
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Monitを再起動。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;# service monit restart
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;3-監視停止を回避&#34;&gt;3. 監視停止を回避&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Monitが unmonitered状態になってしまうことを防ぐため、念のため下記をcronに設定。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;# crontab -l
+*/5 * * * * /usr/bin/monit monitor all
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>ERROR 2002 (HY000): Can&#39;t connect to local MySQL server through socket &#39;/tmp/mysql.sock&#39; (38)</title>
+      <link>https://sankame.github.io/blog/2017-11-20-fail_to_connect_mysql/</link>
+      <pubDate>Mon, 20 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2017-11-20-fail_to_connect_mysql/</guid>
+      <description>
+
+&lt;h1 id=&#34;0-環境&#34;&gt;0. 環境&lt;/h1&gt;
+
+&lt;pre&gt;&lt;code&gt;[Mac] 10.11.6
+[MySQL] 5.7.20
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;1-問題&#34;&gt;1. 問題&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;MacにMySQLをインストール後、接続しようとするとエラーが出ました。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;$ brew install mysql
+
+$ mysql -uroot
+ERROR 2002 (HY000): Can&#39;t connect to local MySQL server through socket &#39;/tmp/mysql.sock&#39; (38)
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;2-対策&#34;&gt;2. 対策&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;ネットの情報をヒントに、エラーが出ているファイルの所有者を変えたら直りました。(ログインユーザー名は読み替えて下さい)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;$ ll /tmp/mysql.sock
+-rw-r--r--  1 root  wheel  0 11 19 23:46 /tmp/mysql.sock
+
+$ sudo chown [ログインユーザー名] /tmp/mysql.sock
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;念のためリスタート。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;$ brew services restart mysql
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;接続できました。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;$ mysql -uroot
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>MySQLコマンド メモ</title>
+      <link>https://sankame.github.io/blog/2013-08-26-mysql_command/</link>
+      <pubDate>Mon, 26 Aug 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2013-08-26-mysql_command/</guid>
+      <description>
+
+&lt;h4 id=&#34;mysqlコマンド-メモ&#34;&gt;MySQLコマンド メモ&lt;/h4&gt;
+
+&lt;h5 id=&#34;webサーバとdbサーバが1台のマシンにある場合によく行う操作&#34;&gt;WebサーバとDBサーバが1台のマシンにある場合によく行う操作。&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code&gt;# そのマシンのMySQLサーバにrootで接続
+# (パスワードを聞かれるので入力してEnter)
+# mysql -h 127.0.0.1 -u root -p
+
+mysql&amp;gt; -- UTF8でDBを作成し、接続ユーザを作成 (先頭がtestの文字は読み替えて下さい)
+mysql&amp;gt; create database testdb default character set utf8;
+mysql&amp;gt; grant all on testdb.* to &#39;testuser&#39;@&#39;localhost&#39; identified by &#39;testpassword&#39;;
+mysql&amp;gt; flush privileges;
+
+mysql&amp;gt; -- 別マシンからDBへ接続する必要がある場合は、以下のように別ユーザを作成
+mysql&amp;gt; -- (192.168.0.1の部分を別マシンのIPに読み替える)
+mysql&amp;gt; grant all on testdb.* to testuser@192.168.0.1 identified by &#39;testpassword&#39;;
+
+mysql&amp;gt; -- 作成したDBに切り替え、テーブルを作成
+mysql&amp;gt; use testdb;
+
+mysql&amp;gt; DROP TABLE IF EXISTS `users`;
+
+mysql&amp;gt; CREATE TABLE `users` (
+mysql&amp;gt;   `id`         bigint unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY,
+mysql&amp;gt;   `username`   varchar(32) NOT NULL
+mysql&amp;gt; ) ENGINE=InnoDB;
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
