@@ -1,0 +1,1093 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>プログラマー備忘録</title>
+    <link>https://sankame.github.io/index.xml</link>
+    <description>Recent content on プログラマー備忘録</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <copyright>Powered by [Hugo](//gohugo.io). Theme by [hugo-theme-wave](https://github.com/syui/hugo-theme-wave).</copyright>
+    <lastBuildDate>Sun, 03 Nov 2019 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://sankame.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>VSCodeでShift_JISファイルを開く</title>
+      <link>https://sankame.github.io/blog/2019-11-03-vscode_shift_jis/</link>
+      <pubDate>Sun, 03 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2019-11-03-vscode_shift_jis/</guid>
+      <description>
+
+&lt;p&gt;昔秀丸エディタなどで保存したShift_JISのファイルをVisual Studio Codeで開くと文字化けしたので設定方法をメモ。&lt;/p&gt;
+
+&lt;h1 id=&#34;0-環境&#34;&gt;0. 環境&lt;/h1&gt;
+
+&lt;p&gt;&lt;code&gt;[Visual Studio Code] 1.39.2&lt;/code&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;1-手順&#34;&gt;1. 手順&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;設定画面を開きます。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Windowsの場合、[Ctrl] + [,]&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Macの場合、[⌘ command] + [,]&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;検索ボックスに&lt;code&gt;files.autoGuessEncoding&lt;/code&gt;を入力。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;表示された&amp;rdquo;Auto Guess Encoding&amp;rdquo;のチェックボックスをONにする。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>CentOS8にバージョン指定でphpインストール</title>
+      <link>https://sankame.github.io/blog/2019-10-19-install_php_in_centos8/</link>
+      <pubDate>Sat, 19 Oct 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2019-10-19-install_php_in_centos8/</guid>
+      <description>
+
+&lt;p&gt;CentOS8にphpを入れるときのコマンドが分からなかったので要点だけメモ。&lt;/p&gt;
+
+&lt;h1 id=&#34;0-環境&#34;&gt;0. 環境&lt;/h1&gt;
+
+&lt;p&gt;&lt;code&gt;[OS] CentOS8 (64bit)&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;[PHP] 7.4&lt;/code&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;1-手順&#34;&gt;1. 手順&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;デフォルトのパッケージにはphp7.2までしか含まれていないので、remiリポジトリを足しました。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;# dnf -y install https://rpms.remirepo.net/enterprise/remi-release-8.rpm
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;下記コマンドでインストール可能なphpバージョンを調べます。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;# dnf module list php
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&amp;ldquo;Stream&amp;rdquo;という欄に表示された名前を指定してインストールします。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;下記は7.4を指定してますが、2019/10/19時点の安定版は7.3なので、本番環境の場合は注意して下さい。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;# dnf module install php:remi-7.4
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;パッケージの操作方法については、下記に詳細がまとまっています。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;2-参考記事&#34;&gt;2. 参考記事&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://linuxconfig.org/how-to-install-php-on-redhat-8&#34; target=&#34;_blank&#34;&gt;How to install php on RHEL 8 / CentOS 8 Linux&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>VirtualBox起動エラー(rc=-22838)</title>
+      <link>https://sankame.github.io/blog/2019-10-05-virtualbox_does_not_start/</link>
+      <pubDate>Sat, 05 Oct 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2019-10-05-virtualbox_does_not_start/</guid>
+      <description>
+
+&lt;p&gt;4ヶ月くらい起動していなかったVirtualBoxで久々に開発をしようと思ったらエラーが発生しました。
+ネット上の情報はあまりなく、下記のいずれかでした。Bはいつの時点に戻すか分からなかったので、Aでやることにしました。&lt;/p&gt;
+
+&lt;p&gt;(A)VirtualBoxを再インストール。&lt;/p&gt;
+
+&lt;p&gt;(B)Windowsの復元機能を使って、Windowsアップデート前の状態にする。&lt;/p&gt;
+
+&lt;h1 id=&#34;0-環境&#34;&gt;0. 環境&lt;/h1&gt;
+
+&lt;p&gt;&lt;code&gt;[OS] Windows7 (32bit)&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;[VirtualBox] 4.3.26 -&amp;gt; 5.2.32&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;[Vagrant] 1.7.2 -&amp;gt; 2.2.5&lt;/code&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;1-問題&#34;&gt;1. 問題&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;VagrantからVirtualBoxを起動する構成です。(&lt;a href=&#34;https://sankame.github.io/blog/2015-05-06-vagrant_setup/&#34; target=&#34;_blank&#34;&gt;詳細はこちら&lt;/a&gt;)&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;いつものように&lt;code&gt;vagrant up&lt;/code&gt;や&lt;code&gt;vagrant resume&lt;/code&gt;でVirtualBoxを起動しようとしたところ、このエラーが出ました。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/virtualbox_does_not_start/error_22838.png&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;60%&#34; height=&#34;60%&#34; title=&#34;error_22838&#34; alt=&#34;error_22838&#34; src=&#34;https://sankame.github.io/assets/posts/img/virtualbox_does_not_start/error_22838.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;エラーメッセージ&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;supHardenedWinVerifyProcess failed with VERR_ASN1_CURSOR_TAG_MISMATCH: (rc=-22838)
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;2-対応&#34;&gt;2. 対応&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;内部エラーで複雑そうなので、一度VirtualBoxをアンインストールし、新しいバージョンをインストールしました。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;32bit OSに対応してて、新し目のバージョン5.2.32を選択しました。(&lt;a href=&#34;https://www.virtualbox.org/wiki/Download_Old_Builds_5_2&#34; target=&#34;_blank&#34;&gt;5.2.32のWindows hostsをクリック&lt;/a&gt;)&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;64bit OSを使ってる方は、もっと新しいバージョンの方がいいと思います。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;VirtualBoxを再インストール後、&lt;code&gt;vagrant up&lt;/code&gt;を実行すると下記エラーメッセージが表示されました。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;エラーメッセージ&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;The provider &#39;virtualbox&#39; that was requested to back the machine
+&#39;default&#39; is reporting that it isn&#39;t usable on this system. The
+reason is shown below:
+
+Vagrant has detected that you have a version of VirtualBox installed
+that is not supported. Please install one of the supported versions
+listed below to use Vagrant:
+
+4.0, 4.1, 4.2, 4.3
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;現在のVagrantのバージョン(1.7.2)だと、上記バージョンのVirtualBoxにしか対応できないようです。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;VirtualBoxをバージョンダウンするより、Vagrantを上げた方がいいだろうと思って、一度Vagrantをアンインストールした後、下記から最新版を落としてきてインストールしました。(該当するOSとアーキテクチャのリンクからダウンロード。&lt;a href=&#34;https://www.vagrantup.com/downloads.html&#34; target=&#34;_blank&#34;&gt;Download Vagrant&lt;/a&gt;)&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Vagrantを再インストール後、再び&lt;code&gt;vagrant up&lt;/code&gt;するとまたエラーが出ました。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;エラーメッセージ&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;Vagrant failed to initialize at a very early stage:
+        
+The version of powershell currently installed on this host is less than the required minimum version. Please upgrade the installed version of powershell to the minimum required version and run the command again.
+
+Installed version: 2
+
+Minimum required version: 3
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Vagrantをバージョンアップしたら今度はpowershellが対応できなくなったようです・・・&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;powershell ver3以上ということなので、下記の記事を参考にver4をインストールしました。(参考記事3-2、 3-3)&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;参考記事3-3のインストール・ウィザードに関して、僕の環境は32bit OSだったので、Windows6.1-KB2819745-x86-MultiPkg.msuを選択。(64bit版の場合、Windows6.1-KB2819745-x64-MultiPkg.msu)&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;これでようやく復旧しました。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;3-参考にした記事&#34;&gt;3. 参考にした記事&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;3-1. &lt;a href=&#34;https://forums.virtualbox.org/viewtopic.php?f=6&amp;t=75160&#34; target=&#34;_blank&#34;&gt;Failed to start session for virtual machine&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;3-２. &lt;a href=&#34;https://www.whyit.work/entry/2018/04/20/154907&#34; target=&#34;_blank&#34;&gt;Windows PowerShellをバージョンアップする&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;3-３. &lt;a href=&#34;https://qiita.com/takeru08ma/items/969d6656be0086e9242b&#34; target=&#34;_blank&#34;&gt;Windows Power Shell 4.0 を Windows7 にインストールする手順&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>【JavaScript】半角カナと全角カナの相互変換クラス(コピペ用)</title>
+      <link>https://sankame.github.io/blog/2019-09-23-js_change_kana/</link>
+      <pubDate>Mon, 23 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2019-09-23-js_change_kana/</guid>
+      <description>
+
+&lt;p&gt;JavaScriptで半角・全角カナの相互変換を行う疑似クラスです。シンプルなロジックなのでカスタマイズも簡単にできます。
+下記ブラウザで確認していますが、何かあれば&lt;a href=&#34;https://sankame.github.io/about&#34; target=&#34;_blank&#34;&gt;こちら&lt;/a&gt;から連絡いただけると嬉しいです。&lt;/p&gt;
+
+&lt;h1 id=&#34;0-環境&#34;&gt;0. 環境&lt;/h1&gt;
+
+&lt;p&gt;&lt;code&gt;[OS] Windows7&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;[Browser] Chrome, Firefox(69.0), IE11&lt;/code&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;1-サンプル&#34;&gt;1. サンプル&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;使い方は下記サンプル内の&amp;rdquo;Test&amp;rdquo;を見て下さい。記載した2つのメソッドに文字列を渡すだけです。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;script src=&#34;https://gist.github.com/Sankame/5b2422163cb12a10adfcb452d2843556.js&#34;&gt;&lt;/script&gt;
+
+&lt;h1 id=&#34;2-参考にした記事&#34;&gt;2. 参考にした記事&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://qiita.com/hrdaya/items/291276a5a20971592216&#34; target=&#34;_blank&#34;&gt;JavaScriptで正規表現（文字列置換え編）&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://qiita.com/alucky0707/items/de59e49de855e56be733&#34; target=&#34;_blank&#34;&gt;Objectのkeyとvalueを反転させる。もしくはJSでenum的なものを作る。&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>【Androidアプリ開発】CursorWindowAllocationException エラー</title>
+      <link>https://sankame.github.io/blog/2018-08-05-android_cursor_error/</link>
+      <pubDate>Sun, 05 Aug 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2018-08-05-android_cursor_error/</guid>
+      <description>
+
+&lt;p&gt;CursorWindowAllocationException が発生した時の対処方法です。&lt;/p&gt;
+
+&lt;h1 id=&#34;0-環境&#34;&gt;0. 環境&lt;/h1&gt;
+
+&lt;p&gt;&lt;code&gt;[Windows] 7&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;[Java] 1.8&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;[Android] 5.1.1&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;[Android API] 26&lt;/code&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;1-問題&#34;&gt;1. 問題&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;開発中のAndroidアプリでSQLiteを使ってます。&lt;/p&gt;
+
+&lt;p&gt;サブクエリを使って、今までより抽出データが多くなるSQLを書いたところ、画面遷移中に頻繁にクラッシュするようになりました。&lt;/p&gt;
+
+&lt;p&gt;しかも、特定のテスト機(Galaxy S4(Android5.0.1))のみです。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;(A)エラー内容&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Fatal Exception: android.database.CursorWindowAllocationException
+Cursor window allocation of 2048 kb failed. # Open Cursors=700 (# cursors opened by this proc=700)
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;(B)エラー箇所&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;前述のサブクエリを適用した箇所とは全く別の箇所が毎回落ちるポイントでした。(下記2行目)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;Cursor cursorCountUsers = db.rawQuery(&amp;quot;SELECT COUNT(user_id) FROM users&amp;quot;, null);
+cursorCountUsers.moveToFirst();
+int countUserId = cursorCountUsers.getInt(0);
+return countUserId;
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;2-対策&#34;&gt;2. 対策&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://stackoverflow.com/questions/21219039/android-database-cursorwindowallocationexception-when-moving-a-cursor&#34; target=&#34;_blank&#34;&gt;Slackoverflow&lt;/a&gt;で同じ問題を見つけました。&lt;/p&gt;
+
+&lt;p&gt;まず、毎回同じ箇所で落ちるので、上記(B)に&lt;code&gt;cursorCountUsers.close();&lt;/code&gt;を入れたけど直りませんでした。&lt;/p&gt;
+
+&lt;p&gt;次に、ソースコード全体を&amp;rdquo;Cursor&amp;rdquo;で検索をかけ、closeしてない箇所が20くらいあったので全てに追記したところ問題は解消されました。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Javaはgcがあると思ってcloseを甘く見てましたね・・・気を付けないと。&lt;/p&gt;
+
+&lt;p&gt;RAMの空きが30数%あるのに落ちるということは、Slackoverflowの回答者が言う通り、cursorのために用意されたメモリ容量に上限があって、今までよりメモリを使うSQLを書いたせいで、そこが圧迫されたということかもしれません。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>【Androidアプリ開発】FileUriExposedException エラー</title>
+      <link>https://sankame.github.io/blog/2018-07-23-android_use_fileprovider/</link>
+      <pubDate>Mon, 23 Jul 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2018-07-23-android_use_fileprovider/</guid>
+      <description>
+
+&lt;p&gt;Android7 で android.os.FileUriExposedException が発生した時の対処方法です。&lt;/p&gt;
+
+&lt;p&gt;(文中の【】は読み替えて下さい)&lt;/p&gt;
+
+&lt;h1 id=&#34;0-環境&#34;&gt;0. 環境&lt;/h1&gt;
+
+&lt;p&gt;&lt;code&gt;[Windows] 7&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;[Java] 1.8&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;[Android] 5.1.1&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;[Android API] 26&lt;/code&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;1-問題&#34;&gt;1. 問題&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Androidアプリから一時ファイルを作成して、そのURIを外部のアプリに渡すという処理を実装してました。&lt;/p&gt;
+
+&lt;p&gt;(ファイルを作成して、Gmailに添付するなど)&lt;/p&gt;
+
+&lt;p&gt;Android7からfile://による指定ができなくなったため、下記のエラーが発生します。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;android.os.FileUriExposedException: file:///storage/emulated/0/Android/data/【アプリのパッケージ名】/temporary/【一時ファイル名】 exposed beyond app through ClipData.Item.getUri()
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;URIはFileProviderで作らないといけないそうです。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;2-対策&#34;&gt;2. 対策&lt;/h1&gt;
+
+&lt;h2 id=&#34;2-1-androidmanifest-xml&#34;&gt;2-1. AndroidManifest.xml&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;まず、AndroidManifest.xmlにFileProviderの定義を追加します。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;android:resource&lt;/code&gt;には、2-2で作成するファイル名を指定。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;script src=&#34;https://gist.github.com/Sankame/9a8e44313453ca63dcdc18870bfd1179.js&#34;&gt;&lt;/script&gt;
+
+&lt;h2 id=&#34;2-2-res-xml-provider-paths-xml&#34;&gt;2-2. res/xml/provider_paths.xml&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;次に、res/xml/provider_paths.xml を作成します。&lt;/p&gt;
+
+&lt;p&gt;後述の2-3でfileの保存先を &lt;code&gt;Environment.getExternalStorageDirectory()&lt;/code&gt; の直下にしたので、それを表す&lt;code&gt;external-path&lt;/code&gt;を指定します。&lt;/p&gt;
+
+&lt;p&gt;また、直下なので&lt;code&gt;path&lt;/code&gt;はカレントディレクトリになります。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;script src=&#34;https://gist.github.com/Sankame/6cee8d95f46725bf967ef207e13d2ba8.js&#34;&gt;&lt;/script&gt;
+
+&lt;h2 id=&#34;2-3-該当処理を行っているactivity&#34;&gt;2-3. 該当処理を行っているActivity&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;最後に、URIの生成を下記(1)から(2)に変更しました。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;script src=&#34;https://gist.github.com/Sankame/67c40ef8056fba82c23937e2ab54b161.js&#34;&gt;&lt;/script&gt;
+
+&lt;h1 id=&#34;3-参考&#34;&gt;3. 参考&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://developer.android.com/reference/android/support/v4/content/FileProvider&#34; target=&#34;_blank&#34;&gt;FileProviderリファレンス&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>MonitでApacheとMySQLを復旧</title>
+      <link>https://sankame.github.io/blog/2018-05-11-monit_for_apache_mysql/</link>
+      <pubDate>Fri, 11 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2018-05-11-monit_for_apache_mysql/</guid>
+      <description>
+
+&lt;p&gt;MonitでApacheとMySQLを復旧させる最低限の設定です。&lt;/p&gt;
+
+&lt;p&gt;(文中のドメイン名やメールアドレスは読み替えて下さい)&lt;/p&gt;
+
+&lt;h1 id=&#34;0-環境&#34;&gt;0. 環境&lt;/h1&gt;
+
+&lt;pre&gt;&lt;code&gt;[CentOS] 6.4 (64bit版カーネル)
+[Monit] 5.25.1
+[Apache] 2.2.15
+[MySQL] 5.1.73
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;1-セットアップ&#34;&gt;1. セットアップ&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;インストール&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;# yum install monit
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;自動起動を設定&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;# chkconfig monit on
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;2-設定&#34;&gt;2. 設定&lt;/h1&gt;
+
+&lt;h2 id=&#34;2-1-apacheの監視設定&#34;&gt;2-1. Apacheの監視設定&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;httpd.conf を開いて、&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;# vim /etc/monit.d/httpd.conf
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;下記を記載。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;check process httpd with pidfile /var/run/httpd/httpd.pid
+start program = &amp;quot;/etc/init.d/httpd start&amp;quot;
+stop program = &amp;quot;/etc/init.d/httpd stop&amp;quot;
+    
+if 5 restarts within 5 cycles then timeout
+
+if failed host example.net port 443
+    protocol HTTP request /home then alert
+group httpd
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;2-2-mysqlの監視設定&#34;&gt;2-2. MySQLの監視設定&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;次に、mysqld.conf を開いて、&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;# vim /etc/monit.d/mysqld.conf
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;下記を記載。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;check process mysqld with pidfile /var/run/mysqld/mysqld.pid
+start program = &amp;quot;/etc/init.d/mysqld start&amp;quot;
+stop program = &amp;quot;/etc/init.d/mysqld stop&amp;quot;
+    
+if 5 restarts within 5 cycles then timeout
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;シンタックスをチェック。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;# monit -t
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;2-3-monitの設定&#34;&gt;2-3. Monitの設定&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;バックアップをとってから、/etc/monit.conf を編集。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;# diff /etc/monit.conf /etc/monit.conf.org
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;編集箇所は下記にdiff形式で表示。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;(1)アラートを送信するメールサーバーを指定。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;(2)送信元メールアドレスを設定。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;(3)送信から除外したいMonitのイベントを指定。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;後述の「3. プロセス監視」でactionイベントが発生するため除外する。&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code&gt;85d84
+&amp;lt; set mailserver localhost
+135c134
+&amp;lt; set mail-format { from: monit@example.net }
+---
+&amp;gt; # set mail-format { from: monit@foo.bar }
+148d146
+&amp;lt; set alert test@gmail.com not on {action}
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Monitを再起動。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;# service monit restart
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;3-監視停止を回避&#34;&gt;3. 監視停止を回避&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Monitが unmonitered状態になってしまうことを防ぐため、念のため下記をcronに設定。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;# crontab -l
+*/5 * * * * /usr/bin/monit monitor all
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>【Androidアプリ開発】 &#34;Socket is closed&#34; エラー</title>
+      <link>https://sankame.github.io/blog/2018-05-07-android_socket_is_closed/</link>
+      <pubDate>Mon, 07 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2018-05-07-android_socket_is_closed/</guid>
+      <description>
+
+&lt;h1 id=&#34;0-環境&#34;&gt;0. 環境&lt;/h1&gt;
+
+&lt;pre&gt;&lt;code&gt;[Windows] 7
+[Java] 1.8
+[Android] 5.1.1
+[Android API] 26
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;1-問題&#34;&gt;1. 問題&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Androidアプリの開発で、自前のAPIからデータを取得する処理を組んでいたところ、下記エラーが発生するようになりました。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;java.net.SocketException: Socket is closed
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;コードはこちら。&lt;/p&gt;
+
+&lt;script src=&#34;https://gist.github.com/Sankame/848d54b5e12f210811db5b80f8512553.js&#34;&gt;&lt;/script&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;2-対策&#34;&gt;2. 対策&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;まずAPI側でApacheのログを確認したところ、ステータスコード200で問題なしでした。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-apache&#34;&gt;127.0.0.1 - - [05/May/2018:22:55:02 +0900] &amp;quot;POST /api/test HTTP/1.0&amp;quot; 200 11130
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;正常終了するケースとの違いは、レスポンスのデータ量が多くなってることかな。(上記ログ右端)&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;次にAndroidアプリ側の処理があやしいと考えて、いろいろ試した結果、HttpsURLConnectionのクローズのタイミングが問題だと分かりました。&lt;/p&gt;
+
+&lt;p&gt;同オブジェクトを参照しているオブジェクトを全て使い終わってから、クローズする必要がありそうです。(上記(1)→(2)に移す)&lt;/p&gt;
+
+&lt;p&gt;また、クローズ処理を消すだけでも冒頭のエラーは出なくなりましたが、なるべくオブジェクトは明示的に閉じた方が良いと思います。&lt;/p&gt;
+
+&lt;p&gt;なので、最終的にオブジェクトの作成順とは逆にクローズしていく処理を入れました。(下記(3)(4))&lt;/p&gt;
+
+&lt;script src=&#34;https://gist.github.com/Sankame/561d4244e309efd1b9f8f4c2aa72e714.js&#34;&gt;&lt;/script&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Let&#39;s Encrypt - ドメイン削除</title>
+      <link>https://sankame.github.io/blog/2018-04-30-letsencrypt_delete_domain/</link>
+      <pubDate>Mon, 30 Apr 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2018-04-30-letsencrypt_delete_domain/</guid>
+      <description>
+
+&lt;p&gt;&lt;span&gt;&amp;nbsp;&lt;/span&gt;&lt;span style=&#34;color:#d14; float:right;&#34;&gt;更新日：2018年05月01日&lt;/span&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;0-環境&#34;&gt;0. 環境&lt;/h1&gt;
+
+&lt;p&gt;&lt;code&gt;[CentOS] 6.4 (64bit版カーネル)&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;[Apache] 2.2.15&lt;/code&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;1-問題&#34;&gt;1. 問題&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;あるドメインが不要になったのでDNSから削除しました。&lt;/p&gt;
+
+&lt;p&gt;Let&amp;rsquo;s Encryptで証明書を発行していたドメインだったので、証明書の更新時に下記エラーが出るようになりました。&lt;/p&gt;
+
+&lt;p&gt;(&amp;ldquo;example.net&amp;rdquo;は読み替えて下さい)&lt;/p&gt;
+
+&lt;p&gt;それ以外のドメインについては成功メッセージが出ているにも関わらず、ブラウザで確認すると証明書が更新されず、困りました。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;1 renew failure(s), 0 parse failure(s)
+IMPORTANT NOTES:
+    - The following errors were reported by the server:
+    Domain: example.net
+    Type:   None
+    Detail: DNS problem: NXDOMAIN looking up A for example.net
+Automated renewal failed
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;2-対策&#34;&gt;2. 対策&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;下記を撤去することで、certbot-autoで証明書を更新する際にエラーは出なくなりました。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;# mv /etc/letsencrypt/live/example.net/ /tmp/
+
+# mv /etc/letsencrypt/renewal/example.net.conf /tmp/
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;さらにApache設定ファイルから、証明書などを指定した箇所を削除します。&lt;/p&gt;
+
+&lt;p&gt;この状態で起動するかチェックするため、Apacheを再起動しておきましょう。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-apache&#34;&gt;&amp;lt;VirtualHost *:4430&amp;gt;
+    ServerAdmin  admin@example.jp
+    DocumentRoot &amp;quot;/app/example&amp;quot;
+    ServerName   example.net
+#   SSLEngine on
+#   SSLCertificateFile      /etc/letsencrypt/live/example.net/cert.pem
+#   SSLCertificateKeyFile   /etc/letsencrypt/live/example.net/privkey.pem
+#   SSLCertificateChainFile /etc/letsencrypt/live/example.net/chain.pem
+    ErrorLog  logs/example.net-error_log
+    CustomLog logs/example.net-access_log common
+&amp;lt;/VirtualHost&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>regファイルでvbscriptを有効にする</title>
+      <link>https://sankame.github.io/blog/2018-01-17-enable_vbscript/</link>
+      <pubDate>Wed, 17 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2018-01-17-enable_vbscript/</guid>
+      <description>
+
+&lt;h1 id=&#34;0-環境&#34;&gt;0. 環境&lt;/h1&gt;
+
+&lt;pre&gt;&lt;code&gt;[OS] Windows 10
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;1-問題&#34;&gt;1. 問題&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Windows UpdateしたらIE11でvbscriptが動かなくなりました。&lt;/p&gt;
+
+&lt;p&gt;おそらくバージョン1709から。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;バージョンはWindows左下のボックスでwinverと入力すると表示されます。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/enable_vbscript/winver.png&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;60%&#34; height=&#34;60%&#34; title=&#34;winver&#34; alt=&#34;winver&#34; src=&#34;https://sankame.github.io/assets/posts/img/enable_vbscript/winver.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;前から予告されてたみたいですが、急に来た感が否めません。&lt;/p&gt;
+
+&lt;p&gt;僕みたいにレガシーシステムの保守をしてて困った人はいるのでは？&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;2-対策&#34;&gt;2. 対策&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;MicroSoft(以下MS)の下記ページに従ってグループポリシーの値を変えたら、vbscriptが有効になりました。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://support.microsoft.com/ja-jp/help/4012494/option-to-disable-vbscript-execution-in-internet-explorer-for-internet&#34; target=&#34;_blank&#34;&gt;Internet Explorer のインターネット ゾーンおよび制限付きサイト ゾーン内の VBScript の実行を無効にするオプション&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;もっと簡単な操作で変更したかったので、GUIではなく、同ページ内のレジストリファイルでのやり方を試しました。&lt;/p&gt;
+
+&lt;p&gt;ここでハマってしまい、いろいろ調べた結果、&lt;a href=&#34;http://bruteforcemahjong.seesaa.net/article/440113523.html&#34; target=&#34;_blank&#34;&gt;こちらのページ&lt;/a&gt;のおかげで解決できました。&lt;/p&gt;
+
+&lt;p&gt;上記MSページのレジストリパスが違っていることが原因でした・・・&lt;/p&gt;
+
+&lt;p&gt;こちらのファイルをWindows上の適当な場所に置いてダブルクリックするとvbscriptが有効になります。&lt;/p&gt;
+
+&lt;script src=&#34;https://gist.github.com/Sankame/d531c4fe1af0c987cf71827e0a25b523.js&#34;&gt;&lt;/script&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;他にも調べたら、&lt;a href=&#34;https://getadmx.com/?Category=Windows_10_2016&amp;Policy=Microsoft.Policies.InternetExplorer::IZ_PolicyAllowVBScript_3&amp;Language=ja-jp&#34; target=&#34;_blank&#34;&gt;正しいレジストリパスを書いたページ&lt;/a&gt;がありました。&lt;/p&gt;
+
+&lt;p&gt;うーん、MS本家が間違ってるってどういうことなんだろう？&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>ERROR 2002 (HY000): Can&#39;t connect to local MySQL server through socket &#39;/tmp/mysql.sock&#39; (38)</title>
+      <link>https://sankame.github.io/blog/2017-11-20-fail_to_connect_mysql/</link>
+      <pubDate>Mon, 20 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2017-11-20-fail_to_connect_mysql/</guid>
+      <description>
+
+&lt;h1 id=&#34;0-環境&#34;&gt;0. 環境&lt;/h1&gt;
+
+&lt;pre&gt;&lt;code&gt;[Mac] 10.11.6
+[MySQL] 5.7.20
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;1-問題&#34;&gt;1. 問題&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;MacにMySQLをインストール後、接続しようとするとエラーが出ました。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;$ brew install mysql
+
+$ mysql -uroot
+ERROR 2002 (HY000): Can&#39;t connect to local MySQL server through socket &#39;/tmp/mysql.sock&#39; (38)
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;2-対策&#34;&gt;2. 対策&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;ネットの情報をヒントに、エラーが出ているファイルの所有者を変えたら直りました。(ログインユーザー名は読み替えて下さい)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;$ ll /tmp/mysql.sock
+-rw-r--r--  1 root  wheel  0 11 19 23:46 /tmp/mysql.sock
+
+$ sudo chown [ログインユーザー名] /tmp/mysql.sock
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;念のためリスタート。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;$ brew services restart mysql
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;接続できました。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;$ mysql -uroot
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>【Androidアプリ開発】onPrepareActionModeが呼ばれない</title>
+      <link>https://sankame.github.io/blog/2017-10-17-android_onprepareactionmode_not_called/</link>
+      <pubDate>Tue, 17 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2017-10-17-android_onprepareactionmode_not_called/</guid>
+      <description>
+
+&lt;h2 id=&#34;0-環境&#34;&gt;0. 環境&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;[Windows] 7
+[Java] 1.8
+[Android] 5.1.1
+[Android API] 26
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;1-問題&#34;&gt;1. 問題&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;build.gradleで下記の値を上げたところ、onPrepareActionModeが実行されなくなってました。&lt;/p&gt;
+
+&lt;p&gt;onPrepareActionModeは、ListViewのロングタップ時にアクションモードへ切り替えた後、アクションバー内のあるアイコンを隠す処理で使っていたので、困りました。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;compileSdkVersion : 21 → 26&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;buildToolsVersion : 21.1.2 → 26.0.2&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;2-対策&#34;&gt;2. 対策&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;試しに下記 (A) にあった処理を (B) へ移してみたところ、思った通りの動きをしてくれました。&lt;/p&gt;
+
+&lt;p&gt;うーん、前はダメだったからonPrepareActionModeを使ったんだけどなあ。。&lt;/p&gt;
+
+&lt;p&gt;他にネットで情報を見つけられなかったので、一旦これにしておくか。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;list1 = findViewById(R.id.listView1);
+
+list1.setMultiChoiceModeListener(new AbsListView.MultiChoiceModeListener() {
+
+    @Override
+    public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
+        //(A)
+        //MenuItem menuItem1 = menu.findItem(R.id.menu_item1);
+        //menuItem1.setVisible(false);
+        return false;
+    }
+
+    @Override
+    public boolean onCreateActionMode(ActionMode mode, Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_action_mode, menu);
+
+        //(B)
+        MenuItem menuItem1 = menu.findItem(R.id.menu_item1);
+        menuItem1.setVisible(false);
+
+        return true;
+    }
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>【Androidアプリ開発】ライブラリ追加時にビルドエラー</title>
+      <link>https://sankame.github.io/blog/2017-10-13-android_duplicate_files_error/</link>
+      <pubDate>Fri, 13 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2017-10-13-android_duplicate_files_error/</guid>
+      <description>
+
+&lt;h2 id=&#34;0-環境&#34;&gt;0. 環境&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;[Windows] 7
+[Java] 1.8
+[Android] 5.1.1
+[Android API] 21
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;1-エラー内容&#34;&gt;1. エラー内容&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;commons-langを使いたくなったので下記のように追記してビルドしたら、エラーが発生しました。 (文中の【】は読み替えて下さい)&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;(アプリルート)/mobile/build.gradle&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-gradle&#34;&gt;dependencies {
+    compile &#39;【他のライブラリ】&#39;
+    compile &#39;【他のライブラリ】&#39;
+    compile &#39;【他のライブラリ】&#39;
+    compile &#39;org.apache.commons:commons-lang3:3.4&#39;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;エラー&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;Error:duplicate files during packaging of APK C:\【パス】\mobile-debug-unaligned.apk
+Path in archive: META-INF/LICENSE.txt
+Origin 1: C:\【パス】\commons-cli-1.2.jar
+Origin 2: C:\【パス】\commons-lang3-3.4.jar
+You can ignore those files in your build.gradle:
+android {
+packagingOptions {
+    exclude &#39;META-INF/LICENSE.txt&#39;
+}
+}
+Error:Execution failed for task &#39;:mobile:packageDebug&#39;.
+&amp;gt; Duplicate files copied in APK META-INF/LICENSE.txt
+File 1: C:\【パス】\commons-cli-1.2.jar
+File 2: C:\【パス】\commons-lang3-3.4.jar
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;2-解決方法&#34;&gt;2. 解決方法&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;apkを作る際、複数のjarから、META-INFフォルダに同名のファイルを書き込もうとしてエラーになっているようです。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;エラーメッセージの通り、build.gradle内でLICENSE.txtの除外を指定したら解消しました。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;(アプリルート)/mobile/build.gradle&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-gradle&#34;&gt;apply plugin: &#39;com.android.application&#39;
+
+android {
+    compileSdkVersion 【バージョン】
+    buildToolsVersion 【バージョン】
+    //エラーが起きたファイルをここに追記。
+    packagingOptions {
+        exclude &#39;META-INF/LICENSE.txt&#39;
+        exclude &#39;META-INF/NOTICE.txt&#39;
+    }
+    defaultConfig {
+        //省略
+    }
+    buildTypes {
+        release {
+            //省略
+        }
+    }
+}
+
+//以下省略
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;ちなみにapk内のMETA-INFOフォルダを確認するには、拡張子apkをzipに変えた後、解凍ソフトでapkを展開して下さい。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>【Androidアプリ開発】「次回から表示しない」ボタン</title>
+      <link>https://sankame.github.io/blog/2017-10-03-android_handling_dialog_using_preference/</link>
+      <pubDate>Tue, 03 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2017-10-03-android_handling_dialog_using_preference/</guid>
+      <description>
+
+&lt;h2 id=&#34;0-環境&#34;&gt;0. 環境&lt;/h2&gt;
+
+&lt;p&gt;&lt;code&gt;[Android] 5.1.1&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;[Android API] 21&lt;/code&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;1-preferenceで実装&#34;&gt;1. Preferenceで実装&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Preferenceを使ってダイアログに「次回から表示しない」ボタンをつける方法をメモ。&lt;/p&gt;
+
+&lt;p&gt;ユーザーに1回だけ何かを伝えたい場合を想定しています。&lt;/p&gt;
+
+&lt;p&gt;(MainActivity.thisなど、適宜読み替えて下さい)&lt;/p&gt;
+
+&lt;script src=&#34;https://gist.github.com/Sankame/9ec48534fad7d8663305f6d9681128b0.js&#34;&gt;&lt;/script&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;2-stethoでpreferenceを編集&#34;&gt;2. stethoでPreferenceを編集&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;開発中にPreferenceの値を変えたり、消したりしたくなると思いますが、そんな時はstethoが便利です。&lt;/p&gt;
+
+&lt;p&gt;stethoを起動し、[Local Storage]で該当のActivityを選択すると右側にPreferenceの値(上記コード17行目)が出ます。&lt;/p&gt;
+
+&lt;p&gt;右クリックで編集や削除が可能です。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/android_handling_dialog_using_preference/stetho.jpg&#34; target=&#34;_blank&#34;&gt;
+&lt;img width=&#34;80%&#34; height=&#34;80%&#34; title=&#34;stethoで編集&#34; alt=&#34;stethoで編集&#34; src=&#34;https://sankame.github.io/assets/posts/img/android_handling_dialog_using_preference/stetho.jpg&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;stethoの設定方法は下記記事の「4. stetho 利用」を参照して下さい。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;関連記事&#34;&gt;関連記事&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://sankame.github.io/blog/2017-05-14-view_sqlite_on_android/&#34; target=&#34;_blank&#34;&gt;AndroidのSQLite DBを参照&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>【Androidアプリ開発】SQLiteのDB定義を変更する際の注意点</title>
+      <link>https://sankame.github.io/blog/2017-09-05-android_sqlite_db_upgrade/</link>
+      <pubDate>Tue, 05 Sep 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2017-09-05-android_sqlite_db_upgrade/</guid>
+      <description>
+
+&lt;h2 id=&#34;0-環境&#34;&gt;0.環境&lt;/h2&gt;
+
+&lt;p&gt;&lt;code&gt;[Android] 5.1.1&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;[Android API] 21&lt;/code&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;1-準備&#34;&gt;1.準備&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Androidアプリ開発で、SQLiteのライブラリを使う際にハマった点をメモ。&lt;/p&gt;
+
+&lt;p&gt;まずコンストラクターでDBを使う準備をします。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+
+class DatabaseHelper extends SQLiteOpenHelper {
+
+    public DatabaseHelper(Context context) {
+        super(context, &amp;quot;test.db&amp;quot;, null, 1);
+
+        //(A)既存のDBを消すには下記コードを使用。
+        //context.deleteDatabase(&amp;quot;DB name is here.&amp;quot;);
+    }
+    //以下省略
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;第2引数でDB名を指定するとDBファイルがAndroid端末に作成されます。&lt;/p&gt;
+
+&lt;p&gt;第4引数ではDBバージョンを指定し、DB定義を変える際はこれを1つ上げるようにします。&lt;/p&gt;
+
+&lt;p&gt;(バージョンを下げるとクラッシュするので注意)&lt;/p&gt;
+
+&lt;p&gt;また、開発中にDBを作り直したい場合は、上記(A)で削除しましょう。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;2-ハマりポイント-ddl記載箇所&#34;&gt;2.ハマりポイント - DDL記載箇所&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;このライブラリは主に使うメソッドが2つあり、DBのバージョンによって下記の通り実行タイミングが異なります。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;DBファイルが未作成の場合&lt;/code&gt; : &lt;code&gt;onCreate&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;DBファイルが既にある場合(DBバージョン1以上)&lt;/code&gt; : &lt;code&gt;onUpgrade&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;ミスりやすいのが、DBバージョン2以降は、onCreateとonUpgradeの両方にDDLを書く必要があるという点です。&lt;/p&gt;
+
+&lt;p&gt;下記のようにusersテーブルがDBバージョン2で追加されたとして、もし、onUpgradeだけに書いてしまうと、DBバージョン1のユーザーにとっては問題ないですが、初期インストールの場合はonCreateしか実行されないため、usersテーブルが作られないことになります。&lt;/p&gt;
+
+&lt;p&gt;なので、DBバージョン2以降に追加するDDLはprivateメソッドに書いて、上記の両メソッドから呼ぶようにしたらいいと思います。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;@Override
+public void onCreate(SQLiteDatabase db) {
+    db.beginTransaction();
+    try {
+        //DBバージョン1でcitiesテーブル作成。
+        String ddlCities = &amp;quot;CREATE TABLE IF NOT EXISTS cities (&amp;quot;
+                        + &amp;quot;city_id INTEGER PRIMARY KEY AUTOINCREMENT&amp;quot;
+                        + &amp;quot;, city_name TEXT&amp;quot;
+                        + &amp;quot;);&amp;quot;;
+        db.execSQL(ddlCities);
+
+        //DBバージョン2でusersテーブル作成。
+        createUsersTable(db);
+
+        db.setTransactionSuccessful();
+    } finally {
+        db.endTransaction();
+    }
+}
+
+@Override
+public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+    db.beginTransaction();
+    try {
+        //DBバージョン2でusersテーブル作成。
+        createUsersTable(db);
+
+        db.setTransactionSuccessful();
+    } finally {
+        db.endTransaction();
+    }
+}
+
+private void createUsersTable(SQLiteDatabase db){
+    String ddlUsers = &amp;quot;CREATE TABLE IF NOT EXISTS users (&amp;quot;
+            + &amp;quot;user_id INTEGER PRIMARY KEY AUTOINCREMENT&amp;quot;
+            + &amp;quot;, user_name TEXT NOT NULL&amp;quot;
+            + &amp;quot;);&amp;quot;;
+    db.execSQL(ddlUsers);
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;3-ハマりポイント-特定のdbバージョンのみで実行するddl&#34;&gt;3.ハマりポイント - 特定のDBバージョンのみで実行するDDL&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;ネットで調べたところ、onUpgrade内ではバージョンによって実行するDDLを管理することになっています。&lt;/p&gt;
+
+&lt;p&gt;イコールを使っている例をいくつか見かけましたが、実運用に入ると都合が悪いケースがあります。&lt;/p&gt;
+
+&lt;p&gt;例えば、アップデートをしばらく保留にしていたユーザーが、DBバージョンを3から5へ一気に上げた場合、&lt;code&gt;newVersion == 4&lt;/code&gt;と指定していると、そのDDLが実行されないことになります。&lt;/p&gt;
+
+&lt;p&gt;次のようにDBバージョンを範囲で指定しておけば、上記のケースでも、addColumnAgeは実行されるので問題なしです。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;@Override
+public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+    db.beginTransaction();
+    try {
+        //イコールだと問題あり。
+        //if(oldVersion == 3 &amp;amp;&amp;amp; newVersion == 4){
+        //    addColumnAge(db);
+        //}
+
+        //DBバージョン4でAgeカラム追加。
+        if(oldVersion &amp;lt;= 3 &amp;amp;&amp;amp; newVersion &amp;gt;= 4){
+            addColumnAge(db);
+        }
+
+        db.setTransactionSuccessful();
+    } finally {
+        db.endTransaction();
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;また、上記「2.ハマりポイント」とも関係しますが、&lt;code&gt;addColumnAge(db);&lt;/code&gt;はonCreate内にも追記します。&lt;/p&gt;
+
+&lt;p&gt;onCreateは &lt;code&gt;DBファイルが未作成の場合&lt;/code&gt; 向けなので、oldVersionなどの条件指定は不要です。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;関連記事&#34;&gt;関連記事&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;SQLiteを使った開発を楽にするには&lt;a href=&#34;https://sankame.github.io/blog/2017-05-14-view_sqlite_on_android/&#34; target=&#34;_blank&#34;&gt;こちら&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
