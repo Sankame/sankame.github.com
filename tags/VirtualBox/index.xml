@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>VirtualBox on プログラマー備忘録</title>
+    <link>https://sankame.github.io/tags/virtualbox/index.xml</link>
+    <description>Recent content in VirtualBox on プログラマー備忘録</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <copyright>Powered by [Hugo](//gohugo.io). Theme by [hugo-theme-wave](https://github.com/syui/hugo-theme-wave).</copyright>
+    <atom:link href="https://sankame.github.io/tags/virtualbox/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>VirtualBox起動エラー(rc=-22838)</title>
+      <link>https://sankame.github.io/blog/2019-10-05-virtualbox_does_not_start/</link>
+      <pubDate>Sat, 05 Oct 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2019-10-05-virtualbox_does_not_start/</guid>
+      <description>
+
+&lt;p&gt;4ヶ月くらい起動していなかったVirtualBoxで久々に開発をしようと思ったらエラーが発生しました。
+ネット上の情報はあまりなく、下記のいずれかでした。Bはいつの時点に戻すか分からなかったので、Aでやることにしました。&lt;/p&gt;
+
+&lt;p&gt;(A)VirtualBoxを再インストール。&lt;/p&gt;
+
+&lt;p&gt;(B)Windowsの復元機能を使って、Windowsアップデート前の状態にする。&lt;/p&gt;
+
+&lt;h1 id=&#34;0-環境&#34;&gt;0. 環境&lt;/h1&gt;
+
+&lt;p&gt;&lt;code&gt;[OS] Windows7 (32bit)&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;[VirtualBox] 4.3.26 -&amp;gt; 5.2.32&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;[Vagrant] 1.7.2 -&amp;gt; 2.2.5&lt;/code&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;1-問題&#34;&gt;1. 問題&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;VagrantからVirtualBoxを起動する構成です。(&lt;a href=&#34;https://sankame.github.io/blog/2015-05-06-vagrant_setup/&#34; target=&#34;_blank&#34;&gt;詳細はこちら&lt;/a&gt;)&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;いつものように&lt;code&gt;vagrant up&lt;/code&gt;や&lt;code&gt;vagrant resume&lt;/code&gt;でVirtualBoxを起動しようとしたところ、このエラーが出ました。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/virtualbox_does_not_start/error_22838.png&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;60%&#34; height=&#34;60%&#34; title=&#34;error_22838&#34; alt=&#34;error_22838&#34; src=&#34;https://sankame.github.io/assets/posts/img/virtualbox_does_not_start/error_22838.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;エラーメッセージ&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;supHardenedWinVerifyProcess failed with VERR_ASN1_CURSOR_TAG_MISMATCH: (rc=-22838)
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;2-対応&#34;&gt;2. 対応&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;内部エラーで複雑そうなので、一度VirtualBoxをアンインストールし、新しいバージョンをインストールしました。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;32bit OSに対応してて、新し目のバージョン5.2.32を選択しました。(&lt;a href=&#34;https://www.virtualbox.org/wiki/Download_Old_Builds_5_2&#34; target=&#34;_blank&#34;&gt;5.2.32のWindows hostsをクリック&lt;/a&gt;)&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;64bit OSを使ってる方は、もっと新しいバージョンの方がいいと思います。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;VirtualBoxを再インストール後、&lt;code&gt;vagrant up&lt;/code&gt;を実行すると下記エラーメッセージが表示されました。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;エラーメッセージ&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;The provider &#39;virtualbox&#39; that was requested to back the machine
+&#39;default&#39; is reporting that it isn&#39;t usable on this system. The
+reason is shown below:
+
+Vagrant has detected that you have a version of VirtualBox installed
+that is not supported. Please install one of the supported versions
+listed below to use Vagrant:
+
+4.0, 4.1, 4.2, 4.3
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;現在のVagrantのバージョン(1.7.2)だと、上記バージョンのVirtualBoxにしか対応できないようです。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;VirtualBoxをバージョンダウンするより、Vagrantを上げた方がいいだろうと思って、一度Vagrantをアンインストールした後、下記から最新版を落としてきてインストールしました。(該当するOSとアーキテクチャのリンクからダウンロード。&lt;a href=&#34;https://www.vagrantup.com/downloads.html&#34; target=&#34;_blank&#34;&gt;Download Vagrant&lt;/a&gt;)&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Vagrantを再インストール後、再び&lt;code&gt;vagrant up&lt;/code&gt;するとまたエラーが出ました。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;エラーメッセージ&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;Vagrant failed to initialize at a very early stage:
+        
+The version of powershell currently installed on this host is less than the required minimum version. Please upgrade the installed version of powershell to the minimum required version and run the command again.
+
+Installed version: 2
+
+Minimum required version: 3
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Vagrantをバージョンアップしたら今度はpowershellが対応できなくなったようです・・・&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;powershell ver3以上ということなので、下記の記事を参考にver4をインストールしました。(参考記事3-2、 3-3)&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;参考記事3-3のインストール・ウィザードに関して、僕の環境は32bit OSだったので、Windows6.1-KB2819745-x86-MultiPkg.msuを選択。(64bit版の場合、Windows6.1-KB2819745-x64-MultiPkg.msu)&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;これでようやく復旧しました。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;3-参考にした記事&#34;&gt;3. 参考にした記事&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;3-1. &lt;a href=&#34;https://forums.virtualbox.org/viewtopic.php?f=6&amp;t=75160&#34; target=&#34;_blank&#34;&gt;Failed to start session for virtual machine&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;3-２. &lt;a href=&#34;https://www.whyit.work/entry/2018/04/20/154907&#34; target=&#34;_blank&#34;&gt;Windows PowerShellをバージョンアップする&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;3-３. &lt;a href=&#34;https://qiita.com/takeru08ma/items/969d6656be0086e9242b&#34; target=&#34;_blank&#34;&gt;Windows Power Shell 4.0 を Windows7 にインストールする手順&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Vagrant &#43; VirtualBox でCentOS開発環境構築</title>
+      <link>https://sankame.github.io/blog/2015-05-06-vagrant_setup/</link>
+      <pubDate>Wed, 06 May 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2015-05-06-vagrant_setup/</guid>
+      <description>
+
+&lt;p&gt;&lt;span&gt;&amp;nbsp;&lt;/span&gt;&lt;span style=&#34;color:#d14; float:right;&#34;&gt;更新日：2017年01月28日&lt;/span&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;0-環境&#34;&gt;0.環境&lt;/h1&gt;
+
+&lt;pre&gt;&lt;code&gt;[PC]     DELL LATITUDE E5500
+[ホストOS] Windows 7 (32bit 版)
+[ゲストOS] CentOS 6.5 (64bit 版)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;1-概要&#34;&gt;1.概要&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Vagrantで開発環境を作りました。&lt;/p&gt;
+
+&lt;p&gt;VirtualBoxを操作するためにVagrantというツールを使うイメージです。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/vagrant_setup/vagrant.jpg&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;100%&#34; height=&#34;100%&#34; title=&#34;接続情報&#34; alt=&#34;接続情報&#34; src=&#34;https://sankame.github.io/assets/posts/img/vagrant_setup/vagrant.jpg&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;VirtualBox上に仮想マシン(以下VM)起動し、そこにCentOSをインストールして開発環境とします。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;2-bios設定変更&#34;&gt;2.BIOS設定変更&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;VMを起動する準備として、BIOSの設定を変更します。&lt;/p&gt;
+
+&lt;p&gt;PCの電源をONにし、OSが起動する前に特定のキーを押してBIOS設定画面を開きます。&lt;/p&gt;
+
+&lt;p&gt;(PCによって異なるので、下記のキーは読み替えて下さい)&lt;/p&gt;
+
+&lt;p&gt;OS起動時に[F2] または [F10]キーを押下。&lt;/p&gt;
+
+&lt;p&gt;[Virtualization Support] - [Virtualization]を選択し、[Enable]にチェックをつけて[Apply]→[Exit]を選択。&lt;/p&gt;
+
+&lt;p&gt;そのままOSが起動するのを待ちます。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;3-virtualboxインストール&#34;&gt;3.VirtualBoxインストール&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;下記ページで&amp;rdquo;VirtualBox 4.3.26 for Windows hosts&amp;rdquo; をクリックしVirtualBoxをダウンロード。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://www.virtualbox.org/wiki/Downloads&#34; target=&#34;_blank&#34;&gt;VirtualBoxダウンロード&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;ダウンロード、インストールともに僕の環境では数分かかりました。&lt;/p&gt;
+
+&lt;p&gt;途中何度かOracle社のコンポーネントをインストールしますか？と聞かれたので全てYesを選択。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;4-vagrantインストール&#34;&gt;4.Vagrantインストール&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;次のリンク先でWindows用を選択して Vagrantをダウンロード。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://www.vagrantup.com/downloads.html&#34; target=&#34;_blank&#34;&gt;Vagrantダウンロード&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;インストールが終わったら再起動を求められます。&lt;/p&gt;
+
+&lt;p&gt;コマンドプロンプトで下記を実行することで、boxファイル(用意されたVMイメージ)を取得し、VirtualBoxに追加します。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-cmd&#34;&gt;C:\Users\【ユーザー名】&amp;gt; vagrant box add CentOS65 https://github.com/2creatives/vagrant-centos/releases/download/v6.5.3/centos65-x86_64-20140116.box
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;5-vagrantを使ってvirtualboxのvmを起動&#34;&gt;5.Vagrantを使ってVirtualBoxのVMを起動&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;適当なフォルダにVagrantファイルを作成し、VM起動時の設定を定義します。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-cmd&#34;&gt;C:\apps\Vagrant\Vagrantfiles&amp;gt;mkdir centos
+
+C:\apps\Vagrant\Vagrantfiles&amp;gt;cd centos
+
+C:\apps\Vagrant\Vagrantfiles\centos&amp;gt;vagrant init CentOS65
+A `Vagrantfile` has been placed in this directory. You are now
+ready to `vagrant up` your first virtual environment! Please read
+the comments in the Vagrantfile as well as documentation on
+`vagrantup.com` for more information on using Vagrant.
+
+C:\apps\Vagrant\Vagrantfiles\centos&amp;gt;dir
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;次に自動生成された Vagrantfile を編集します。&lt;/p&gt;
+
+&lt;p&gt;必要箇所のコメントアウトを解除。（下記は編集前後のdiff）&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-diff&#34;&gt;# diff Vagrantfile.org Vagrantfile                       
+29c29
+&amp;lt;   # config.vm.network &amp;quot;private_network&amp;quot;, ip: &amp;quot;192.168.33.10&amp;quot;
+---
+&amp;gt;   config.vm.network &amp;quot;private_network&amp;quot;, ip: &amp;quot;192.168.33.10&amp;quot;
+46c47
+&amp;lt;   # config.vm.provider &amp;quot;virtualbox&amp;quot; do |vb|
+---
+&amp;gt;   config.vm.provider &amp;quot;virtualbox&amp;quot; do |vb|
+48c49
+&amp;lt;   #   vb.gui = true
+---
+&amp;gt;       vb.gui = true
+51,52c52,53
+&amp;lt;   #   vb.memory = &amp;quot;1024&amp;quot;
+&amp;lt;   # end
+---
+&amp;gt;       vb.memory = &amp;quot;1024&amp;quot;
+&amp;gt;   end
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&amp;ldquo;vb.gui = true&amp;rdquo; のコメントアウトを解除しないと、VM起動時に下記エラーが出続けるので注意。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-cmd&#34;&gt;default: Warning: Connection timeout. Retrying...
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;編集が終わったら VagrantコマンドでVMを起動します。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-cmd&#34;&gt;C:\apps\Vagrant\Vagrantfiles\centos&amp;gt; vagrant up
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;6-ターミナルソフトでvmに接続&#34;&gt;6.ターミナルソフトでVMに接続&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;使い慣れたターミナルソフトでVMに接続します。&lt;/p&gt;
+
+&lt;p&gt;まずは用意された user=vagrant, password=vagrant で接続。&lt;/p&gt;
+
+&lt;p&gt;(下記はpoderosaでの接続例)&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/vagrant_setup/poderosa.png&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;40%&#34; height=&#34;40%&#34; title=&#34;接続情報&#34; alt=&#34;接続情報&#34; src=&#34;https://sankame.github.io/assets/posts/img/vagrant_setup/poderosa.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;以降は root で接続したいので、rootのパスワードを再設定します。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;$ sudo passwd root
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;7-その他-ファイル共有&#34;&gt;7.その他：ファイル共有&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;ホストOS(Windows)とゲストOS(CentOS)でファイル共有したい場合、上記5の Vagrantfile で下記の行を有効にします。&lt;/p&gt;
+
+&lt;p&gt;Vagrantfileの変更を反映するにはVMの再起動が必要です。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;(例) 左がWindows、右がCentOSのパス。(Windowsのパスは\を2つ重ねる必要あり)&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-cmd&#34;&gt;config.vm.synced_folder &amp;quot;c:\\vm\\share&amp;quot;, &amp;quot;/share&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;参考にしたページ&#34;&gt;参考にしたページ&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://qiita.com/hiroyasu55/items/11a4c996b0c62450940f&#34; target=&#34;_blank&#34;&gt;インストール手順&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://sakashushu.blog.so-net.ne.jp/2014-06-16&#34; target=&#34;_blank&#34;&gt;エラーの際に役立ったページ&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
