@@ -1,0 +1,445 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>プログラミング on プログラマー備忘録</title>
+    <link>https://sankame.github.io/categories/%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0/index.xml</link>
+    <description>Recent content in プログラミング on プログラマー備忘録</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <copyright>Powered by [Hugo](//gohugo.io). Theme by [hugo-theme-wave](https://github.com/syui/hugo-theme-wave).</copyright>
+    <atom:link href="https://sankame.github.io/categories/%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Laravel&#43;PHPUnit&#43;Mockeryでユニットテスト(サンプルコード付)</title>
+      <link>https://sankame.github.io/blog/2020-05-05-laravel_phpunit_mockery/</link>
+      <pubDate>Tue, 05 May 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2020-05-05-laravel_phpunit_mockery/</guid>
+      <description>
+
+&lt;h1 id=&#34;0-環境&#34;&gt;0. 環境&lt;/h1&gt;
+
+&lt;p&gt;&lt;code&gt;[OS] Debian 10&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;[PHP] 7.3.13&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;[Laravel] 7.6.2&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;[PHPUnit] 8.5.3&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;[Mockery] 1.3.1&lt;/code&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;1-方針&#34;&gt;1. 方針&lt;/h1&gt;
+
+&lt;p&gt;下記の方針でユニットテストを書いていきますが、自分のプロジェクトと合わない部分は変えて下さい。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;1-1. 後々CIで動かすことも考慮し、DB接続はモックで代替する。&lt;/li&gt;
+&lt;li&gt;1-2. フレームワークを含めず実装した箇所だけのテストコードを書く。&lt;/li&gt;
+&lt;li&gt;1-3. プロダクションコードの全ロジックを通すテストコードを書く。(「3. テスト記載方法」で後述)&lt;/li&gt;
+&lt;li&gt;1-4. 上記1-2の範囲でツールを用いてカバレッジを計測し、なるべく100%に近づける。(一般的にツールは評価が甘めのため)&lt;/li&gt;
+&lt;li&gt;1-5. テストコードの構成はフレームワークやデファクトスタンダードに合わせる。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;2-設定&#34;&gt;2. 設定&lt;/h1&gt;
+
+&lt;h2 id=&#34;2-1-phpunit&#34;&gt;2-1. PHPUnit&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;LaravelにはPHPUnitが最初から入ってるので、アプリのルートで下記コマンドを実行するとサンプルのテストコードが実行されます。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-linux&#34;&gt;composer exec -v phpunit
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;アプリルートにある&lt;code&gt;tests&lt;/code&gt;ディレクトリにテストコードを格納していきます。同ディレクトリ内はさらに&lt;code&gt;Feature&lt;/code&gt;と&lt;code&gt;Unit&lt;/code&gt;に分かれてます。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-linux&#34;&gt;tests
+|-- CreatesApplication.php
+|-- Feature
+|   `-- ExampleTest.php
+|-- TestCase.php
+`-- Unit
+    `-- ExampleTest.php
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://readouble.com/laravel/5.5/ja/testing.html&#34; target=&#34;_blank&#34;&gt;Laravelの方針&lt;/a&gt;に合わせて、下記の区分けでテストを書いていきます。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Feature&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;機能(エンドポイントURL)視点なので、実質コントローラのホワイトボックステストが該当すると思われます。&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Unit&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;各クラスごとのテスト。&lt;/li&gt;
+&lt;li&gt;DDDを採用している場合はService、Repositoryなど作成したクラスごとのテストケースを格納。&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;あと、Laravelのドキュメントにはありませんが、メンテナンス上プロダクションコードとテストコードのディレクトリ構成を合わせておきましょう。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;プロダクションコード&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-linux&#34;&gt;app/Http/
+|-- Controllers
+|   |-- ContactController.php
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;テストコード&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-linux&#34;&gt;tests/Feature/Http/
+|-- Controllers
+|   |-- ContactControllerTest.php
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;次に方針1-2に沿ってテスト範囲を絞るためにアプリルートの&lt;code&gt;phpunit.xml&lt;/code&gt;を編集します。細かい指定ができるので&lt;a href=&#34;https://phpunit.de/manual/6.5/ja/appendixes.configuration.html#appendixes.configuration.whitelisting-files&#34; target=&#34;_blank&#34;&gt;こちら&lt;/a&gt;も参照してみて下さい。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;filter&amp;gt;
+    &amp;lt;whitelist processUncoveredFilesFromWhitelist=&amp;quot;true&amp;quot;&amp;gt;
+            &amp;lt;directory suffix=&amp;quot;.php&amp;quot;&amp;gt;
+                ./app/Http/Controllers
+            &amp;lt;/directory&amp;gt;
+            &amp;lt;exclude&amp;gt;
+                &amp;lt;file&amp;gt;./app/Http/Controllers/Controller.php&amp;lt;/file&amp;gt;
+            &amp;lt;/exclude&amp;gt;
+    &amp;lt;/whitelist&amp;gt;
+&amp;lt;/filter&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;2-2-mockery&#34;&gt;2-2. Mockery&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;方針1-1に沿ってDBアクセスの代わりにMockeryからダミーの値を返すようにします。&lt;/p&gt;
+
+&lt;p&gt;Mockery(&lt;code&gt;[アプリルート]/vendor/mockery&lt;/code&gt;)が入ってない場合は&lt;a href=&#34;https://readouble.com/mockery/1.0/ja/installation.html&#34; target=&#34;_blank&#34;&gt;こちらのページ&lt;/a&gt;などを参考にインストールして下さい。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;2-3-カバレッジ&#34;&gt;2-3. カバレッジ&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;品質評価の指標として、テストの網羅率を出します。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;[アプリルート]/composer.json&lt;/code&gt;に下記を追記。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;quot;scripts&amp;quot;: {
+        ...
+    &amp;quot;test:coverage&amp;quot;: [
+        &amp;quot;phpunit --coverage-html coverage&amp;quot;
+    ]
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;アプリルートで下記コマンドを実行すると結果が&lt;code&gt;[アプリルート]/coverage&lt;/code&gt;にHTMLで出力されます。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-linux&#34;&gt;composer test:coverage
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;No code coverage driver is available&lt;/code&gt;と出たり、結果が出力されない場合はXdebugのインストールが必要です。&lt;code&gt;php -i&lt;/code&gt;の出力結果を&lt;a href=&#34;https://xdebug.org/wizard&#34; target=&#34;_blank&#34;&gt;こちらの入力フォーム&lt;/a&gt;にはりつけて「Analyze my phpinfo() output」をクリックすると自分の環境に合わせたインストール手順が提示されます。&lt;/p&gt;
+
+&lt;p&gt;また、Mockeryとカバレッジを同時に使う場合は各テストメソッドのDocブロックにこれが必要なので記載しておいて下さい。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;@runInSeparateProcess
+@preserveGlobalState disabled
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;3-テスト記載方法&#34;&gt;3. テスト記載方法&lt;/h1&gt;
+
+&lt;h2 id=&#34;3-1-一般基準&#34;&gt;3-1. 一般基準&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;一般的にユニットテストの基準は「命令網羅」「分岐網羅」「条件網羅」がありますが、ここでは「分岐網羅」(判定条件の真偽を少なくとも1回は実行)に合わせます。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;if($x === 0){
+    //Do something.
+}
+if($y &amp;gt; 1){
+    //Do something.
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;上記プロダクションコードを例に取ると、テストケースはこの2つになります。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;(1) $x=0, $y=2 (両方true)
+(2) $x=1, $y=0 (両方false)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;また、境界値もバグが起きやすい箇所なのでテストに含めましょう。&lt;/p&gt;
+
+&lt;p&gt;ただ、テストケースがむやみに増えてもメンテナンスが大変なので、上記の例だと(2)を&lt;code&gt;$y=1&lt;/code&gt;に変えれば分岐網羅も境界値も同時にまかなえます。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;3-2-phpunitとmockery&#34;&gt;3-2. PHPUnitとMockery&lt;/h2&gt;
+
+&lt;p&gt;ID指定で特定のレコードを引っ張ってきて表示するというよくある編集画面を例にします。
+レコードが取得できれば編集画面を表示し、何かの理由で取得できなかったら中断して一覧画面へ戻します。
+&lt;script src=&#34;https://gist.github.com/Sankame/6cc553841d60ab142909ad7a75b951ee.js&#34;&gt;&lt;/script&gt;&lt;/p&gt;
+
+&lt;p&gt;分岐が1つなので、レコードが正常取得できた場合とできなかった場合のテストを用意します。
+プロダクションコード内で実行が期待されるContactモデルのメソッドをモックに記憶させます。&lt;/p&gt;
+
+&lt;p&gt;・あるIDを引数にしてfindメソッドが呼ばれ1レコードを返却。&lt;/p&gt;
+
+&lt;p&gt;・21行目でedit()が呼ばれるURLにアクセスし、11-17行目で設定した値が画面に表示されることを確認。&lt;/p&gt;
+
+&lt;script src=&#34;https://gist.github.com/Sankame/393556a5fb90b37acb7ceddd22860f3f.js&#34;&gt;&lt;/script&gt;
+
+&lt;p&gt;もう1つはレコードが取得できない場合なので、モックのfindメソッドはnullを返すようにして、期待される動作として14行目で一覧画面への遷移を確認しています。
+&lt;script src=&#34;https://gist.github.com/Sankame/c19a7080ea1ca8a2bfe7a6655cc181ac.js&#34;&gt;&lt;/script&gt;&lt;/p&gt;
+
+&lt;p&gt;テストの書き方は以上ですが、もっとサンプルが見たい場合や自分でコードをさわってみたい場合は下記をご利用下さい。&lt;/p&gt;
+
+&lt;h1 id=&#34;4-サンプルコード&#34;&gt;4. サンプルコード&lt;/h1&gt;
+
+&lt;p&gt;環境を作るのは面倒なのでDockerだけインストールして&lt;a href=&#34;https://hub.docker.com/r/sankame/laravel-sample&#34; target=&#34;_blank&#34;&gt;こちらのDockerイメージ&lt;/a&gt;を持ってきて下さい。ちなみにこのイメージは&lt;a href=&#34;https://hub.docker.com/r/thinkeramir/laravel6.x&#34; target=&#34;_blank&#34;&gt;利用しやすそうだったこれ&lt;/a&gt;をもとに拡張しました。サンプルを動かす手順はこちらです。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Dockerインストール&lt;/p&gt;
+
+&lt;p&gt;自分の環境にあったインストール方法を検索して下さい。Macの場合は&lt;a href=&#34;https://qiita.com/nemui_/items/ed753f6b2eb9960845f7&#34; target=&#34;_blank&#34;&gt;こちらの記事&lt;/a&gt;が分かりやすかったです。Dockerインストールとイメージ取得でディスクは10Gほど使ったと思います。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Dockerイメージ取得&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-linux&#34;&gt;docker pull sankame/laravel-sample
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Dockerイメージからコンテナを起動&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-linux&#34;&gt;docker run -ti -p 8080:80 --name test -d sankame/laravel-sample
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Dockerを入れたマシン上で下記URLにアクセスするとサンプルページが表示されます。
+&lt;a href=&#34;http://localhost:8080/laravel-7-crud-app/public/contacts&#34;&gt;http://localhost:8080/laravel-7-crud-app/public/contacts&lt;/a&gt; (もしインターネット上のサーバーで表示させる場合はドキュメントルートをpublic配下にするよう注意して下さい)&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Dockerコンテナに入る&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-linux&#34;&gt;docker exec -it test /bin/bash
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;アプリルートは&lt;code&gt;/var/www/html/laravel-7-crud-app&lt;/code&gt;です。今回の簡易CRUDアプリはコントローラーからモデルを呼び出すだけなので、&lt;code&gt;[アプリルート]/tests/Feature&lt;/code&gt;配下のみにテストコードを作成しました。&lt;/p&gt;
+
+&lt;p&gt;テスト実行やカバレッジ出力のコマンドは前述の2を参照して下さい。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Swift3の大文字・小文字処理</title>
+      <link>https://sankame.github.io/blog/2017-01-03-swift3_uppercase_lowercase/</link>
+      <pubDate>Tue, 03 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2017-01-03-swift3_uppercase_lowercase/</guid>
+      <description>
+
+&lt;p&gt;&lt;span&gt;&amp;nbsp;&lt;/span&gt;&lt;span style=&#34;color:#d14; float:right;&#34;&gt;更新日：2017年01月27日&lt;/span&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;0-環境&#34;&gt;0. 環境&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;[Swift] 3.0.2
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;1-大文字-小文字処理&#34;&gt;1. 大文字・小文字処理&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Swift3から大文字・小文字の処理は下記のようになります。&lt;/p&gt;
+
+&lt;p&gt;(明示的にするため入れていますが型宣言は省略可)&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;script src=&#34;https://gist.github.com/Sankame/f04ea8d3f243763248ab236c2a33fb69.js&#34;&gt;&lt;/script&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;上記コードはIBM Swift Sandboxで動かせます。&lt;/p&gt;
+
+&lt;p&gt;下記リンク先の真ん中にある三角ボタンをクリックして下さい。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://swiftlang.ng.bluemix.net/#/repl/586d095a159cb34b17238967&#34; target=&#34;_blank&#34;&gt;Swift3で大文字・小文字処理&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;(ChromeまたはFirefox推奨)&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;2-参考ページ&#34;&gt;2. 参考ページ&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://developer.apple.com/reference/foundation/nsstring/1414769-caseinsensitivecompare&#34; target=&#34;_blank&#34;&gt;caseInsensitiveCompare&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://developer.apple.com/reference/foundation/nsstring/1417333-localizedcaseinsensitivecompare&#34; target=&#34;_blank&#34;&gt;localizedCaseInsensitiveCompare&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Swift3のforループ</title>
+      <link>https://sankame.github.io/blog/2016-12-30-swift3_loop/</link>
+      <pubDate>Fri, 30 Dec 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2016-12-30-swift3_loop/</guid>
+      <description>
+
+&lt;p&gt;&lt;span&gt;&amp;nbsp;&lt;/span&gt;&lt;span style=&#34;color:#d14; float:right;&#34;&gt;更新日：2017年02月09日&lt;/span&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;0-環境&#34;&gt;0. 環境&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;[Swift] 3.0.2
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;1-ループ&#34;&gt;1. ループ&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Swift3からループ処理は下記のようになります。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;script src=&#34;https://gist.github.com/Sankame/2f608da7dbbc9313462a1bb4cbc0c1d0.js&#34;&gt;&lt;/script&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;上記コードはIBM Swift Sandboxで実際に動かすことができます。&lt;/p&gt;
+
+&lt;p&gt;下記リンク先の真ん中にある三角ボタンをクリックして下さい。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://swiftlang.ng.bluemix.net/#/repl/589b400e3514ef243889d092&#34; target=&#34;_blank&#34;&gt;Swift3でのforループ&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;(ChromeまたはFirefox推奨)&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>トグル処理を楽に実装 (ビット演算)</title>
+      <link>https://sankame.github.io/blog/2016-05-27-bitwise_operator_toggle/</link>
+      <pubDate>Fri, 27 May 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2016-05-27-bitwise_operator_toggle/</guid>
+      <description>
+
+&lt;h3 id=&#34;0-環境&#34;&gt;0. 環境&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;[CentOS] 6.4 (64bit版カーネル)
+[PHP] 5.4.17
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;1-xorでトグル処理&#34;&gt;1. XORでトグル処理&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;押すたびにON/OFFが切り替わるようなトグル処理を実装する場合はXORが便利です。&lt;/p&gt;
+
+&lt;script src=&#34;https://gist.github.com/Sankame/46005a2dc4fed64a807f9c15cbb8c010.js&#34;&gt;&lt;/script&gt;
+
+&lt;p&gt;6行目、11行目 : 「XOR 1」するとビットが反転する性質を利用します。(下記)&lt;/p&gt;
+
+&lt;p&gt;&lt;b&gt;XOR&lt;/b&gt;&lt;/p&gt;
+
+&lt;table border=&#34;1&#34;&gt;
+&lt;tr&gt;&lt;td bgcolor=&#34;lightgray&#34;&gt;入力①&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td bgcolor=&#34;lightgray&#34;&gt;入力②&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td bgcolor=&#34;lightgray&#34;&gt;出力&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>状態管理を楽に実装 (ビット演算)</title>
+      <link>https://sankame.github.io/blog/2016-05-27-bitwise_operator_status_control/</link>
+      <pubDate>Fri, 27 May 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2016-05-27-bitwise_operator_status_control/</guid>
+      <description>
+
+&lt;h3 id=&#34;0-環境&#34;&gt;0. 環境&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;[CentOS] 6.4 (64bit版カーネル)
+[PHP] 5.4.17
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;1-orとandで状態管理&#34;&gt;1. ORとANDで状態管理&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;複数の状態や権限をまとめて管理したい場合、2進数が便利です。&lt;/p&gt;
+
+&lt;script src=&#34;https://gist.github.com/Sankame/5588e4ff2cec15e95d42592bd1746ba7.js&#34;&gt;&lt;/script&gt;
+
+&lt;p&gt;2-5行目 : 2進数の定数(10進数表記)を用意します。&lt;/p&gt;
+
+&lt;p&gt;7行目 : ORでプログラミング言語を足していきます。&lt;/p&gt;
+
+&lt;p&gt;Aさんが使える言語の位にビットが立つイメージです。(下記)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    0001 (PHP)
+    0010 (Ruby)
+OR) 1000 (Perl)
+----------
+    1011 (Aさんが使えるプログラミング言語)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;11行目以降 : Aさんが使えるプログラミング言語は何か、ANDで問い合わせます。&lt;/p&gt;
+
+&lt;p&gt;右端の位にビットが立っていれば結果がtrueになり、PHPが使えることが分かります。(下記)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;     1011 (Aさんが使えるプログラミング言語)
+AND) 0001 (PHP)
+----------
+     0001 (PHPが使える)
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>プログラミング問題A</title>
+      <link>https://sankame.github.io/blog/2015-12-31-programming_practice_A/</link>
+      <pubDate>Thu, 31 Dec 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2015-12-31-programming_practice_A/</guid>
+      <description>
+
+&lt;h3 id=&#34;環境&#34;&gt;環境&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;[CentOS]   5.6 (32bit版カーネル) 
+[PHP]      5.4.17
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;問題a-1&#34;&gt;問題A-1&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;10進数の任意の値をn進数に変換する関数を作成して下さい。(nは1～16の正の整数)&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;サンプルはPHP。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;サンプルa-1&#34;&gt;サンプルA-1&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;実行方法&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;$ php changeDecimalToBaseN.php
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;ソース&lt;/p&gt;
+
+&lt;script src=&#34;https://gist.github.com/Sankame/87f7b5050a802e5e5710.js&#34;&gt;&lt;/script&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>PHPサンプル isset関数化</title>
+      <link>https://sankame.github.io/blog/2012-12-28-php_sample_viaisset/</link>
+      <pubDate>Fri, 28 Dec 2012 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2012-12-28-php_sample_viaisset/</guid>
+      <description>
+
+&lt;h4 id=&#34;undefined-index-noticeを防ぐためのissetが冗長なので関数化&#34;&gt;&amp;ldquo;Undefined index&amp;rdquo; Noticeを防ぐためのissetが冗長なので関数化。&lt;/h4&gt;
+
+&lt;script src=&#34;https://gist.github.com/4389910.js&#34;&gt;&lt;/script&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
