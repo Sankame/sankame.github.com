@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <title>プログラマー備忘録</title>
+    <meta name="generator" content="Hugo 0.19" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    
+    
+
+    
+    
+    <meta name="robots" content="noindex">
+    
+
+    <script src="https://sankame.github.io/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="https://sankame.github.io/bower_components/bootstrap/js/bootstrap.min.js"></script>
+    <script src="https://sankame.github.io/bower_components/bootstrap/js/dropdowns-enhancement.js"></script>
+    <script src="https://sankame.github.io/bower_components/bluebird/js/browser/bluebird.js"></script>
+    
+    
+    
+    <script src="https://sankame.github.io/bower_components/d3/d3.min.js" charset="utf-8"></script>
+    <script src="https://sankame.github.io/bower_components/cal-heatmap/cal-heatmap.min.js"></script>
+    <script src="https://sankame.github.io/bower_components/highlightjs/highlight.pack.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']]}
+      });
+    </script>
+
+    <link rel="icon" href="https://sankame.github.io/favicon.ico" />
+    <link rel="apple-touch-icon" href="https://sankame.github.io/apple-touch-icon.png" />
+    <link rel="stylesheet" href="https://sankame.github.io/bower_components/highlightjs/styles/monokai.css" />
+    <link rel="stylesheet" href="https://sankame.github.io/bower_components/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://sankame.github.io/bower_components/bootstrap/css/dropdowns-enhancement.css" />
+    <link rel="stylesheet" href="https://sankame.github.io/bower_components/talaria/dist/talaria.css" />   
+    <link rel="stylesheet" href="https://sankame.github.io/bower_components/createjs/createjs.css" />
+    <link rel="stylesheet" href="https://sankame.github.io/bower_components/font-awesome/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="https://sankame.github.io/bower_components/icomoon/css/icomoon.css" />
+    <link rel="stylesheet" href="https://sankame.github.io/css/style.css" />
+    <link rel="stylesheet" href="https://sankame.github.io/css/mobile.css" />
+    <link rel="stylesheet" href="https://sankame.github.io/bower_components/cal-heatmap/cal-heatmap.css" />
+    <link rel="stylesheet" href="https://sankame.github.io/css/sankame.css" />
+
+    <link rel="alternate" type="application/rss+xml" title="プログラマー備忘録" href="https://sankame.github.io/index.xml"/>
+    <link rel="feed" type="application/rss+xml" title="プログラマー備忘録" href="https://sankame.github.io/index.xml" />
+
+    
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-7938855665302783",
+          enable_page_level_ads: true
+     });
+</script>
+</head>
+<body>
+<div class="container">
+
+
+<div id="container">
+    
+
+<header id="header">
+  <div id="header-main" class="header-inner">
+    <div class="outer">
+
+	<nav class="navbar navbar-default">
+	  <div class="container-fluid">
+
+    	    <div class="navbar-header">
+      		<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+      		  <span class="sr-only">Toggle navigation</span>
+      		  <span class="icon-bar"></span>
+      		  <span class="icon-bar"></span>
+      		  <span class="icon-bar"></span>
+      		</button>
+		    <h1>
+			    <a class="navbar-brand" href="https://sankame.github.io/">
+				    
+				    
+				    <span class="site-title">プログラマー備忘録</span>
+				    
+			    </a>
+		    </h1>
+	    </div>
+
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+    
+    <li>
+	<a href="https://twitter.com/handycola" target="_blank">
+		<i class="fa fa-twitter" aria-hidden="true"></i>
+	</a>
+
+</li>
+<li>
+	<a href="https://facebook.com/100014073908728" target="_blank">
+		<i class="fa fa-facebook" aria-hidden="true"></i>
+	</a>
+</li>
+<li>
+	<a href="https://stackoverflow.com/users/2849068/sankame" target="_blank">
+		<i class="fa fa-stack-overflow" aria-hidden="true"></i>
+	</a>
+</li>
+<li>
+	<a href="/index.xml" type="application/rss+xml" target="_blank">
+		<i class="fa fa-rss-square" aria-hidden="true"></i>
+	</a>
+</li>
+
+    
+      </ul>
+    </div>
+
+  </div>
+</nav>
+
+</header>
+
+
+
+
+    <div id="top-image">
+	<div id="top-image-wrap">
+		<iframe src="https://sankame.github.io/bower_components/particlesjs/particlesjs.html"></iframe>
+	</div>
+</div>
+
+    <div class="outer">
+
+    <section id="main">
+
+    
+    
+    <article class="article article-type-post" itemscope="" itemprop="blogPost">
+
+	    <div class="article-inner">
+
+            
+            </a>
+
+            <header class="article-header">
+    
+    <h1 class="article-title" itemprop="name">
+	<a href="https://sankame.github.io/blog/2016-12-30-swift3_loop/" class="permalink">Swift3のforループ</a>
+    </h1>
+	<time datetime="2016-12-30 00:00:00 &#43;0000 UTC" itemprop="datePublished">2016-12-30</time>
+    <div class="article-meta">
+
+        
+    </div>
+</header>
+
+            <div class="article-entry" itemprop="articleBody">
+                <p>
+                     &nbsp;更新日：2017年02月09日
+0. 環境 [Swift] 3.0.2  1. ループ  Swift3からループ処理は下記のようになります。    上記コードはIBM Swift Sandboxで実際に動かすことができます。
+下記リンク先の真ん中にある三角ボタンをクリックして下さい。
+Swift3でのforループ
+(ChromeまたはFirefox推奨)
+   ...
+                </p>
+                <p class="article-more-link">
+                    <a href="https://sankame.github.io/blog/2016-12-30-swift3_loop/">
+			    Read more
+			    
+                    </a>
+                </p>
+            </div>
+	    
+        </div>
+    </article>
+    
+    <article class="article article-type-post" itemscope="" itemprop="blogPost">
+
+	    <div class="article-inner">
+
+            
+            </a>
+
+            <header class="article-header">
+    
+    <h1 class="article-title" itemprop="name">
+	<a href="https://sankame.github.io/blog/2016-12-25-mod_proxy_text_plain/" class="permalink">ApacheのProxyPassでhtmlタグがそのまま表示される</a>
+    </h1>
+	<time datetime="2016-12-25 00:00:00 &#43;0000 UTC" itemprop="datePublished">2016-12-25</time>
+    <div class="article-meta">
+
+        
+    </div>
+</header>
+
+            <div class="article-entry" itemprop="articleBody">
+                <p>
+                    0. 環境 [CentOS] 6.8 (64bit版カーネル) [Apache] 2.2.15  1. 問題  ApacheのProxyPassディレクティブ(mod_proxy)を指定して、バックエンドから受け取ったコンテンツを表示しようとするとhtmlタグがそのまま表示されてしまいます。
+ Apache設定ファイルの抜粋
+NameVirtualHost *:80 # 省略 &lt;VirtualHost *:80&gt; ServerAdmin test@local ServerName test.local ProxyPreserveHost On ProxyPass / http://127.0.0.1:8080/ ProxyPassReverse / http://127.0.0.1:8080/ ErrorLog logs/test.local-error_log CustomLog logs/test.local-access_log combined &lt;/VirtualHost&gt;    2. 対策  ChromeのDeveloper Toolsなどで見ると、下記のようにHTTPレスポンスヘッダーで平文が指定されています。
+Content-Type text/plain; charset=UTF-8
+ デフォルトのMIMEタイプ指定を無効にすることで解消しました。
+ Apache設定ファイルの抜粋
+NameVirtualHost *:80 # 省略 &lt;VirtualHost *:80&gt; ServerAdmin test@local ServerName test.local # ----- この行を追加 ----- DefaultType None # ----- この行を追加 ----- ProxyPreserveHost On ProxyPass / http://127. ...
+                </p>
+                <p class="article-more-link">
+                    <a href="https://sankame.github.io/blog/2016-12-25-mod_proxy_text_plain/">
+			    Read more
+			    
+                    </a>
+                </p>
+            </div>
+	    
+        </div>
+    </article>
+    
+    <article class="article article-type-post" itemscope="" itemprop="blogPost">
+
+	    <div class="article-inner">
+
+            
+            </a>
+
+            <header class="article-header">
+    
+    <h1 class="article-title" itemprop="name">
+	<a href="https://sankame.github.io/blog/2016-11-21-wcsession_sendmessage_slow_in_swift3/" class="permalink">AppleWatchアプリ開発におけるWCSessionのメソッド使用方法</a>
+    </h1>
+	<time datetime="2016-11-21 00:00:00 &#43;0000 UTC" itemprop="datePublished">2016-11-21</time>
+    <div class="article-meta">
+
+        
+    </div>
+</header>
+
+            <div class="article-entry" itemprop="articleBody">
+                <p>
+                    0. 環境 [OS] Mac OS X 10.11.6 [IDE] Xcode 8.1 [Swift] 3.0  1. 問題  WCSession#sendMessage()を使ってAppleWatchからiPhoneアプリへメッセージを送っても、30秒ほどしないと通知されない。
+ AppleWatch側
+@IBAction func tapButton() { let message = [ &quot;fromChild&quot;: &quot;AppleWatchからのメッセージ&quot; ] WCSession.default().sendMessage( message , replyHandler: { reply in } , errorHandler: { error in } ) }  iPhone側
+func session(_ session: WCSession, didReceiveMessage message: [String: Any], replyHandler: @escaping ([String: Any]) -&gt; Void) { if let watchMessage = message[&quot;fromChild&quot;] as? String { print(watchMessage) } else{ print(&quot;error&quot;) } }    2. ...
+                </p>
+                <p class="article-more-link">
+                    <a href="https://sankame.github.io/blog/2016-11-21-wcsession_sendmessage_slow_in_swift3/">
+			    Read more
+			    
+                    </a>
+                </p>
+            </div>
+	    
+        </div>
+    </article>
+    
+    <article class="article article-type-post" itemscope="" itemprop="blogPost">
+
+	    <div class="article-inner">
+
+            
+            </a>
+
+            <header class="article-header">
+    
+    <h1 class="article-title" itemprop="name">
+	<a href="https://sankame.github.io/blog/2016-11-15-wcsessiondelegate_in_swift3/" class="permalink">Type &#39;ViewController&#39; does not conform to protocol &#39;WCSessionDelegate&#39;</a>
+    </h1>
+	<time datetime="2016-11-15 00:00:00 &#43;0000 UTC" itemprop="datePublished">2016-11-15</time>
+    <div class="article-meta">
+
+        
+    </div>
+</header>
+
+            <div class="article-entry" itemprop="articleBody">
+                <p>
+                    0. 環境 [OS] Mac OS X 10.11.6 [IDE] Xcode 8.1 [Swift] 3.0  1. 問題  iPhone &amp; AppleWatchアプリを作成中にSwiftを2.2から3へバージョンアップしたところ、iPhone側で下記のエラーが出るようになりました。
+Type 'ViewController' does not conform to protocol 'WCSessionDelegate'
+  2. 解決  ViewControllerに下記メソッドを追加するとエラーが消えました。
+public func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) { } func sessionDidBecomeInactive(_ session: WCSession) { } func sessionDidDeactivate(_ session: WCSession) { session.activate() }  下記の仕様書にもこれらのメソッドは必須と書かれています。
+[API Reference] WCSessionDelegate
+  3. 参考ページ  Migrating app from Swift 2. ...
+                </p>
+                <p class="article-more-link">
+                    <a href="https://sankame.github.io/blog/2016-11-15-wcsessiondelegate_in_swift3/">
+			    Read more
+			    
+                    </a>
+                </p>
+            </div>
+	    
+        </div>
+    </article>
+    
+    <article class="article article-type-post" itemscope="" itemprop="blogPost">
+
+	    <div class="article-inner">
+
+            
+            </a>
+
+            <header class="article-header">
+    
+    <h1 class="article-title" itemprop="name">
+	<a href="https://sankame.github.io/blog/2016-10-08-convert_tabs_to_spaces_on_eclipse/" class="permalink">Eclipseでタブをスペースに置換</a>
+    </h1>
+	<time datetime="2016-10-08 00:00:00 &#43;0000 UTC" itemprop="datePublished">2016-10-08</time>
+    <div class="article-meta">
+
+        
+    </div>
+</header>
+
+            <div class="article-entry" itemprop="articleBody">
+                <p>
+                     0. 環境 [OS] Mac OS X 10.11.4 [Eclipse] Mars.2 Release (4.5.2)  1. 問題  久々にEclipseをさわっていたら、タブをスペースに変換する設定に手間取ったのでメモ。
+(Windowsの場合、メニュー名を読み替えて下さい)
+プログラミングで使うインデントに関して、僕はタブ派ですが、職場や最近の流れからしてもスペースを使わざるを得ないでしょう。
+  2. 解決  Eclipseに標準でついている機能が動かなかったので、AnyEditToolsというプラグインを入れました。
+メニューの [ヘルプ]-[Install new software] をクリック。
+[作業対象]に下記を入力。(anyぐらいまで打つと補完されます)
+anyedit - http://andrei.gmxhome.de/eclipse/
+とりあえず最新バージョンのAnyEditToolsにチェック。
+
+[次へ]をクリック。
+途中ライセンスへの同意やセキュリティ警告が出ますが、最後までいくと再起動を求められるのでそのままOKをクリックします。
+起動後、Eclipse上で任意のファイルにタブを入力し、保存したタイミングでスペースに置換されます。
+変わらない場合や細かい設定をしたい場合は下記の設定画面から行って下さい。
+メニューの [Eclipse]-[環境設定] をクリック。
+[一般]-[エディタ]-[AnyEdit Tools]
+
+Eclipseでマークダウンを書く人は[Remove trailing whitespace]のチェックを外しておいたほうがいいかもしれません。
+ファイルフィルタ(上記の[Add Filter])で拡張子mdを除外したり、プロジェクトごとに設定(*1)を変えることもできます。
+(*1)プロジェクトごとの設定
+ プロジェクト・エクスプローラーの該当プロジェクトを右クリック。
+ [プロパティ]-[AnyEdit Tools] をクリック。
+ [Enable project specific settings]にチェックを入れる。
+    ...
+                </p>
+                <p class="article-more-link">
+                    <a href="https://sankame.github.io/blog/2016-10-08-convert_tabs_to_spaces_on_eclipse/">
+			    Read more
+			    
+                    </a>
+                </p>
+            </div>
+	    
+        </div>
+    </article>
+    
+    <article class="article article-type-post" itemscope="" itemprop="blogPost">
+
+	    <div class="article-inner">
+
+            
+            </a>
+
+            <header class="article-header">
+    
+    <h1 class="article-title" itemprop="name">
+	<a href="https://sankame.github.io/blog/2016-10-06-urlvalidator-is-deprecated/" class="permalink">型 UrlValidator は使用すべきではありません</a>
+    </h1>
+	<time datetime="2016-10-06 00:00:00 &#43;0000 UTC" itemprop="datePublished">2016-10-06</time>
+    <div class="article-meta">
+
+        
+    </div>
+</header>
+
+            <div class="article-entry" itemprop="articleBody">
+                <p>
+                     0. 環境 [OS] Mac OS X 10.11.4 [Java] 1.8.0  1. 問題  久々にJavaで実装する機会がありました。標準ライブラリのjava.net.URLクラスは、URLとして解釈できない文字列を渡すと例外が投げられるので扱いずらいですね。
+// IllegalArgumentException が発生。 url = URL.create(&quot;不正なURL&quot;);  うーん、最初、RFCを見て「URLとして許可されている文字列だけ渡す」という処理を入れようか迷いました。
+が、一から組むのも骨が折れるなあ～と思って、困った時のApache Commonsを探してみたら、しめしめApache Commons ValidatorにUrlValidatorクラスというのがありました。
+早速このクラスをimportして使おうと思ったら、下記の警告が出てしまいました。
+型 UrlValidator は使用すべきではありません
+  2. 解決  調べてみたところ、①のパッケージは非推奨で②に変えたら警告も消えました。
+ ①こっちは非推奨
+import org.apache.commons.validator.UrlValidator;
+ ②これを使って！
+import org.apache.commons.validator.routines.UrlValidator;
+   3. 参考  The type UrlValidator is deprecated   ...
+                </p>
+                <p class="article-more-link">
+                    <a href="https://sankame.github.io/blog/2016-10-06-urlvalidator-is-deprecated/">
+			    Read more
+			    
+                    </a>
+                </p>
+            </div>
+	    
+        </div>
+    </article>
+    
+    <article class="article article-type-post" itemscope="" itemprop="blogPost">
+
+	    <div class="article-inner">
+
+            
+            </a>
+
+            <header class="article-header">
+    
+    <h1 class="article-title" itemprop="name">
+	<a href="https://sankame.github.io/blog/2016-08-21-how-to-add-gitignore/" class="permalink">.gitignoreをaddできない</a>
+    </h1>
+	<time datetime="2016-08-21 00:00:00 &#43;0000 UTC" itemprop="datePublished">2016-08-21</time>
+    <div class="article-meta">
+
+        
+    </div>
+</header>
+
+            <div class="article-entry" itemprop="articleBody">
+                <p>
+                     0. 環境 [git] 2.7.4 (Apple Git-66)  1. 問題  アプリのルートディレクトリに.gitignoreをおいたのですが、git status で見ても追加対象として出てきません。  2. 解決  最初(A)のように書いていたのですが、これだとダメで、[除外設定]→[例外] の順に書かないといけないようです。
+(「. が先頭にあるファイルは除外してね」→「但し .gitignore は例外だよ」)
+ (A) 修正前    (B) 修正後     ...
+                </p>
+                <p class="article-more-link">
+                    <a href="https://sankame.github.io/blog/2016-08-21-how-to-add-gitignore/">
+			    Read more
+			    
+                    </a>
+                </p>
+            </div>
+	    
+        </div>
+    </article>
+    
+    <article class="article article-type-post" itemscope="" itemprop="blogPost">
+
+	    <div class="article-inner">
+
+            
+            </a>
+
+            <header class="article-header">
+    
+    <h1 class="article-title" itemprop="name">
+	<a href="https://sankame.github.io/blog/2016-08-07-debug-ios-app-with-watchkit/" class="permalink">AppleWatchアプリ開発におけるiOSアプリのデバッグ方法</a>
+    </h1>
+	<time datetime="2016-08-07 00:00:00 &#43;0000 UTC" itemprop="datePublished">2016-08-07</time>
+    <div class="article-meta">
+
+        
+    </div>
+</header>
+
+            <div class="article-entry" itemprop="articleBody">
+                <p>
+                     0. 環境 [OS] Mac OS X 10.11.4 [IDE] Xcode 7.3 [Swift] 2.1.1  1. 課題  AppleWatchのアプリ開発で「WatchKit App」を起動すると、iOSアプリのブレークポイントで停止しない。  2. 対策  XcodeのデバッガーにiOSアプリを手動で追加する必要があります。
+ 「WatchKit App」を選択してアプリ実行。
+
+ iOSアプリのシュミレーターで、iOSアプリを起動。
+ Xcodeに戻って [Debug]-[Attach to Process] からiOSアプリを選択。
+
+ 左のパネルで[Debug navigator]を選択し、下記①②でiOSアプリが選択されていることを確認。
+
+    ...
+                </p>
+                <p class="article-more-link">
+                    <a href="https://sankame.github.io/blog/2016-08-07-debug-ios-app-with-watchkit/">
+			    Read more
+			    
+                    </a>
+                </p>
+            </div>
+	    
+        </div>
+    </article>
+    
+    <article class="article article-type-post" itemscope="" itemprop="blogPost">
+
+	    <div class="article-inner">
+
+            
+            </a>
+
+            <header class="article-header">
+    
+    <h1 class="article-title" itemprop="name">
+	<a href="https://sankame.github.io/blog/2016-07-16-windows_shortcut_path/" class="permalink">ショートカットのファイルパス</a>
+    </h1>
+	<time datetime="2016-07-16 00:00:00 &#43;0000 UTC" itemprop="datePublished">2016-07-16</time>
+    <div class="article-meta">
+
+        
+    </div>
+</header>
+
+            <div class="article-entry" itemprop="articleBody">
+                <p>
+                     0. 環境 [OS] Windows 7  1. 課題  ファイル(①)に対してショートカット(②)を作った場合・・・
+① C:\tmp\test.txt
+② C:\tmp2\test.txt - ショートカット
+ エクスプローラーやスタートメニューの「ファイル名を指定して実行」から②を指定してもエラーになります。
+
+ これは下記のように &rdquo;.lnk&rdquo; をつけると解決します。
+C:\tmp2\test.txt - ショートカット.lnk
+ OSの内部的にはこのパスになっているんだと思います・・・
+   ...
+                </p>
+                <p class="article-more-link">
+                    <a href="https://sankame.github.io/blog/2016-07-16-windows_shortcut_path/">
+			    Read more
+			    
+                    </a>
+                </p>
+            </div>
+	    
+        </div>
+    </article>
+    
+    <article class="article article-type-post" itemscope="" itemprop="blogPost">
+
+	    <div class="article-inner">
+
+            
+            </a>
+
+            <header class="article-header">
+    
+    <h1 class="article-title" itemprop="name">
+	<a href="https://sankame.github.io/blog/" class="permalink">composer updateでUndefined indexエラー</a>
+    </h1>
+	<time datetime="2016-06-25 00:00:00 &#43;0000 UTC" itemprop="datePublished">2016-06-25</time>
+    <div class="article-meta">
+
+        
+    </div>
+</header>
+
+            <div class="article-entry" itemprop="articleBody">
+                <p>
+                     0. 環境 [Laravel] 5.1  1. 問題  composer update を実行すると下記エラーが発生しました。
+Writing lock file Generating autoload files &gt; php artisan clear-compiled [ErrorException] Undefined index: HTTP_HOST Script php artisan clear-compiled handling the post-update-cmd event returned with error code 1   2. 解決策  HTTP_HOST でソースをgrepし、 /app/Http/routes.php 内の下記箇所を修正しました。
+(修正前)
+$_SERVER['HTTP_HOST']  (修正後)
+Request::server('HTTP_HOST')   3. 参考  Composer returning mysterious error   ...
+                </p>
+                <p class="article-more-link">
+                    <a href="https://sankame.github.io/blog/">
+			    Read more
+			    
+                    </a>
+                </p>
+            </div>
+	    
+        </div>
+    </article>
+    
+
+    <nav id="page-nav">
+
+    
+        <a class="extend prev" rel="prev" href="/page/3/">
+            « 
+        </a>
+    
+    
+        <a class="extend next" rel="next" href="/page/5/">
+             »
+        </a>
+    
+
+</nav>
+
+</section>
+
+
+    
+<aside id="sidebar">
+    
+
+<div class="widget-wrap">
+    <div class="widget">
+        <ul id="recent-post">
+		<li id="first-recent"><a href="/index.xml" id="firstmove" class="move"><h3 class="widget-title">
+			最近の投稿
+    </h3></a></li>
+    		
+            
+<li><a href="https://sankame.github.io/blog/2020-06-13-android_class_duplicated/" class="move">  Androidビルド時のクラス重複エラー</a> </li>
+            
+<li><a href="https://sankame.github.io/blog/2020-05-05-laravel_phpunit_mockery/" class="move">  品質管理とUnitTest(Laravel&#43;PHPUnit&#43;Mockeryによるサンプルコード付き)</a> </li>
+            
+<li><a href="https://sankame.github.io/blog/2020-04-30-virtualbox_share_folder/" class="move">  VirtualBoxでWindows10とUbuntu間のファイル共有</a> </li>
+            
+        </ul>
+    </div>
+</div>
+
+
+
+    
+
+<div class="widget-wrap">
+    <div class="widget">
+        <ul class="category-list">
+    <h3 class="widget-title">Categories </h3>
+            
+                <a class="category-list-link" href="https://sankame.github.io/categories/tips">
+            <li class="category-list-item">
+                    tips
+                <span class="category-list-count">26</span>
+            </li>
+                </a>
+            
+                <a class="category-list-link" href="https://sankame.github.io/categories/%e3%82%a8%e3%83%a9%e3%83%bc%e8%a7%a3%e6%b1%ba">
+            <li class="category-list-item">
+                    エラー解決
+                <span class="category-list-count">24</span>
+            </li>
+                </a>
+            
+                <a class="category-list-link" href="https://sankame.github.io/categories/%e3%82%bb%e3%83%83%e3%83%88%e3%82%a2%e3%83%83%e3%83%97">
+            <li class="category-list-item">
+                    セットアップ
+                <span class="category-list-count">37</span>
+            </li>
+                </a>
+            
+                <a class="category-list-link" href="https://sankame.github.io/categories/%e3%83%81%e3%83%a5%e3%83%bc%e3%83%8b%e3%83%b3%e3%82%b0">
+            <li class="category-list-item">
+                    チューニング
+                <span class="category-list-count">2</span>
+            </li>
+                </a>
+            
+                <a class="category-list-link" href="https://sankame.github.io/categories/%e3%83%97%e3%83%ad%e3%82%b0%e3%83%a9%e3%83%9f%e3%83%b3%e3%82%b0">
+            <li class="category-list-item">
+                    プログラミング
+                <span class="category-list-count">7</span>
+            </li>
+                </a>
+            
+        </ul>
+    </div>
+</div>
+
+
+
+    
+
+<div class="widget-wrap">
+	<ul class="category-list">
+    <h3 class="widget-title">Tags  </h3>
+    <div class="widget tagcloud">
+    	
+        
+        <a href="https://sankame.github.io/tags/Android" style="font-size: 12px;">Android</a>
+        
+        <a href="https://sankame.github.io/tags/AndroidStudio" style="font-size: 12px;">AndroidStudio</a>
+        
+        <a href="https://sankame.github.io/tags/AndroidWear" style="font-size: 12px;">AndroidWear</a>
+        
+        <a href="https://sankame.github.io/tags/Angular2" style="font-size: 12px;">Angular2</a>
+        
+        <a href="https://sankame.github.io/tags/Apache" style="font-size: 12px;">Apache</a>
+        
+        <a href="https://sankame.github.io/tags/ApacheBench" style="font-size: 12px;">ApacheBench</a>
+        
+        <a href="https://sankame.github.io/tags/AppleWatch" style="font-size: 12px;">AppleWatch</a>
+        
+        <a href="https://sankame.github.io/tags/Bitbucket" style="font-size: 12px;">Bitbucket</a>
+        
+        <a href="https://sankame.github.io/tags/CentOS" style="font-size: 12px;">CentOS</a>
+        
+        <a href="https://sankame.github.io/tags/DELL" style="font-size: 12px;">DELL</a>
+        
+        <a href="https://sankame.github.io/tags/Eclipse" style="font-size: 12px;">Eclipse</a>
+        
+        <a href="https://sankame.github.io/tags/FreeMind" style="font-size: 12px;">FreeMind</a>
+        
+        <a href="https://sankame.github.io/tags/Git" style="font-size: 12px;">Git</a>
+        
+        <a href="https://sankame.github.io/tags/GitHub" style="font-size: 12px;">GitHub</a>
+        
+        <a href="https://sankame.github.io/tags/GoogleSheets" style="font-size: 12px;">GoogleSheets</a>
+        
+        <a href="https://sankame.github.io/tags/Gradle" style="font-size: 12px;">Gradle</a>
+        
+        <a href="https://sankame.github.io/tags/Hugo" style="font-size: 12px;">Hugo</a>
+        
+        <a href="https://sankame.github.io/tags/Java" style="font-size: 12px;">Java</a>
+        
+        <a href="https://sankame.github.io/tags/JavaScript" style="font-size: 12px;">JavaScript</a>
+        
+        <a href="https://sankame.github.io/tags/Jekyll" style="font-size: 12px;">Jekyll</a>
+        
+        <a href="https://sankame.github.io/tags/Jenkins" style="font-size: 12px;">Jenkins</a>
+        
+        <a href="https://sankame.github.io/tags/Kitura" style="font-size: 12px;">Kitura</a>
+        
+        <a href="https://sankame.github.io/tags/Laravel" style="font-size: 12px;">Laravel</a>
+        
+        <a href="https://sankame.github.io/tags/Let%27sEncrypt" style="font-size: 12px;">Let&#39;sEncrypt</a>
+        
+        <a href="https://sankame.github.io/tags/MeCab" style="font-size: 12px;">MeCab</a>
+        
+        <a href="https://sankame.github.io/tags/MindMapMemo" style="font-size: 12px;">MindMapMemo</a>
+        
+        <a href="https://sankame.github.io/tags/Mockery" style="font-size: 12px;">Mockery</a>
+        
+        <a href="https://sankame.github.io/tags/Monit" style="font-size: 12px;">Monit</a>
+        
+        <a href="https://sankame.github.io/tags/MySQL" style="font-size: 12px;">MySQL</a>
+        
+        <a href="https://sankame.github.io/tags/NTP" style="font-size: 12px;">NTP</a>
+        
+        <a href="https://sankame.github.io/tags/Nexus7" style="font-size: 12px;">Nexus7</a>
+        
+        <a href="https://sankame.github.io/tags/Nginx" style="font-size: 12px;">Nginx</a>
+        
+        <a href="https://sankame.github.io/tags/OpenX" style="font-size: 12px;">OpenX</a>
+        
+        <a href="https://sankame.github.io/tags/PHP" style="font-size: 12px;">PHP</a>
+        
+        <a href="https://sankame.github.io/tags/PHPDebugBar" style="font-size: 12px;">PHPDebugBar</a>
+        
+        <a href="https://sankame.github.io/tags/PHPUnit" style="font-size: 12px;">PHPUnit</a>
+        
+        <a href="https://sankame.github.io/tags/Phalcon" style="font-size: 12px;">Phalcon</a>
+        
+        <a href="https://sankame.github.io/tags/Redis" style="font-size: 12px;">Redis</a>
+        
+        <a href="https://sankame.github.io/tags/ReviveAdServer" style="font-size: 12px;">ReviveAdServer</a>
+        
+        <a href="https://sankame.github.io/tags/Ruby" style="font-size: 12px;">Ruby</a>
+        
+        <a href="https://sankame.github.io/tags/RubyGems" style="font-size: 12px;">RubyGems</a>
+        
+        <a href="https://sankame.github.io/tags/Rundeck" style="font-size: 12px;">Rundeck</a>
+        
+        <a href="https://sankame.github.io/tags/SQLite" style="font-size: 12px;">SQLite</a>
+        
+        <a href="https://sankame.github.io/tags/SSL-TLS" style="font-size: 12px;">SSL-TLS</a>
+        
+        <a href="https://sankame.github.io/tags/Selenium" style="font-size: 12px;">Selenium</a>
+        
+        <a href="https://sankame.github.io/tags/Smarty" style="font-size: 12px;">Smarty</a>
+        
+        <a href="https://sankame.github.io/tags/Subversion" style="font-size: 12px;">Subversion</a>
+        
+        <a href="https://sankame.github.io/tags/Swift" style="font-size: 12px;">Swift</a>
+        
+        <a href="https://sankame.github.io/tags/Touchpad" style="font-size: 12px;">Touchpad</a>
+        
+        <a href="https://sankame.github.io/tags/TypeScript" style="font-size: 12px;">TypeScript</a>
+        
+        <a href="https://sankame.github.io/tags/Ubuntu" style="font-size: 12px;">Ubuntu</a>
+        
+        <a href="https://sankame.github.io/tags/UnitTest" style="font-size: 12px;">UnitTest</a>
+        
+        <a href="https://sankame.github.io/tags/VSCode" style="font-size: 12px;">VSCode</a>
+        
+        <a href="https://sankame.github.io/tags/Vagrant" style="font-size: 12px;">Vagrant</a>
+        
+        <a href="https://sankame.github.io/tags/VirtualBox" style="font-size: 12px;">VirtualBox</a>
+        
+        <a href="https://sankame.github.io/tags/Website-Optimization" style="font-size: 12px;">Website-Optimization</a>
+        
+        <a href="https://sankame.github.io/tags/Xcode" style="font-size: 12px;">Xcode</a>
+        
+        <a href="https://sankame.github.io/tags/ab" style="font-size: 12px;">ab</a>
+        
+        <a href="https://sankame.github.io/tags/bash" style="font-size: 12px;">bash</a>
+        
+        <a href="https://sankame.github.io/tags/cocoapods" style="font-size: 12px;">cocoapods</a>
+        
+        <a href="https://sankame.github.io/tags/composer" style="font-size: 12px;">composer</a>
+        
+        <a href="https://sankame.github.io/tags/cron" style="font-size: 12px;">cron</a>
+        
+        <a href="https://sankame.github.io/tags/fitbit" style="font-size: 12px;">fitbit</a>
+        
+        <a href="https://sankame.github.io/tags/gulp" style="font-size: 12px;">gulp</a>
+        
+        <a href="https://sankame.github.io/tags/jqGrid" style="font-size: 12px;">jqGrid</a>
+        
+        <a href="https://sankame.github.io/tags/node.js" style="font-size: 12px;">node.js</a>
+        
+        <a href="https://sankame.github.io/tags/npm" style="font-size: 12px;">npm</a>
+        
+        <a href="https://sankame.github.io/tags/programming-practice" style="font-size: 12px;">programming-practice</a>
+        
+        <a href="https://sankame.github.io/tags/shell" style="font-size: 12px;">shell</a>
+        
+        <a href="https://sankame.github.io/tags/ssh" style="font-size: 12px;">ssh</a>
+        
+        <a href="https://sankame.github.io/tags/stetho" style="font-size: 12px;">stetho</a>
+        
+        <a href="https://sankame.github.io/tags/vbscript" style="font-size: 12px;">vbscript</a>
+        
+        <a href="https://sankame.github.io/tags/wget" style="font-size: 12px;">wget</a>
+        
+        <a href="https://sankame.github.io/tags/windows" style="font-size: 12px;">windows</a>
+        
+        <a href="https://sankame.github.io/tags/%e3%83%97%e3%83%ad%e3%82%b8%e3%82%a7%e3%82%af%e3%82%bf%e3%83%bc" style="font-size: 12px;">プロジェクター</a>
+        
+        <a href="https://sankame.github.io/tags/%e5%93%81%e8%b3%aa%e7%ae%a1%e7%90%86" style="font-size: 12px;">品質管理</a>
+        
+    </div>
+</ul>
+</div>
+
+
+
+    <br>
+    
+
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-7938855665302783"
+     data-ad-slot="7089480753"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+
+</aside>
+
+
+    </div>
+</div>
+
+<footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+
+	<footer id="footer-left">
+	    &copy; 2020 Webプログラマー <a href="/about" target="_blank">Sankame.</a> <br>
+	    Powered by <a href="//gohugo.io">Hugo</a>. Theme by <a href="https://github.com/syui/hugo-theme-wave">hugo-theme-wave</a>.
+	</footer>
+
+    </div>
+  </div>
+</footer>
+
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-37675354-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+</body>
+</html>
