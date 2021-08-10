@@ -1,0 +1,1739 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>セットアップ on プログラマー備忘録</title>
+    <link>https://sankame.github.io/categories/%E3%82%BB%E3%83%83%E3%83%88%E3%82%A2%E3%83%83%E3%83%97/index.xml</link>
+    <description>Recent content in セットアップ on プログラマー備忘録</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <copyright>Powered by [Hugo](//gohugo.io). Theme by [hugo-theme-wave](https://github.com/syui/hugo-theme-wave).</copyright>
+    <atom:link href="https://sankame.github.io/categories/%E3%82%BB%E3%83%83%E3%83%88%E3%82%A2%E3%83%83%E3%83%97/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Android App Bundleに対応</title>
+      <link>https://sankame.github.io/blog/2021-08-10-android_app_bundle/</link>
+      <pubDate>Tue, 10 Aug 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2021-08-10-android_app_bundle/</guid>
+      <description>
+
+&lt;h1 id=&#34;0-環境&#34;&gt;0. 環境&lt;/h1&gt;
+
+&lt;p&gt;&lt;code&gt;[OS] Windows 11 Home&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;[Android Studio] 3.6.3&lt;/code&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;1-ビルド&#34;&gt;1. ビルド&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;期日が迫ってたので、App Bundle対応を行いました。いくつか「あれ？」と思ったので記載しておきます。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;いつものように、Android Studioでメニューから[Build]-[Generate Signed Bundle / APK&amp;hellip;]を選択。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;ビルド用のダイアログで「Android App Bundle」を選択し、[Next]ボタンをクリックすると下記が開きます。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/android_app_bundle/a4.png&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;80%&#34; height=&#34;80%&#34; title=&#34;秘密鍵保存&#34; alt=&#34;秘密鍵保存&#34; src=&#34;https://sankame.github.io/assets/posts/img/android_app_bundle/a4.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;[Export encryped&amp;hellip;]にチェックを入れ、直下に表示された秘密鍵の保存場所を覚えておきます。(*a)&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;[Next]ボタンを押して先に進むと、aabという拡張子のファイルが生成されます。(*b)&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;2-アプリ公開&#34;&gt;2. アプリ公開&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;いつものようにブラウザでPlay Consoleを開いて、対象のアプリを選択。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;左メニュー[製品版]-[新しいリリースを作成]をクリックし、[App Bundle]を選択すると下記画面に来ます。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/android_app_bundle/a1.png&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;100%&#34; height=&#34;100%&#34; title=&#34;AppBundle&#34; alt=&#34;AppBundle&#34; src=&#34;https://sankame.github.io/assets/posts/img/android_app_bundle/a1.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;前述(*a)の登録がまだなので、[オプトイン]リンクをクリック。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/android_app_bundle/a2.png&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;100%&#34; height=&#34;100%&#34; title=&#34;鍵のアップロード&#34; alt=&#34;鍵のアップロード&#34; src=&#34;https://sankame.github.io/assets/posts/img/android_app_bundle/a2.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;ここで前述の(*a)をアップロード。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/android_app_bundle/a3.png&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;100%&#34; height=&#34;100%&#34; title=&#34;アプリ公開&#34; alt=&#34;アプリ公開&#34; src=&#34;https://sankame.github.io/assets/posts/img/android_app_bundle/a3.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;そのままこの画面に戻ってきて上記(*b)をアップロードするとエラーが出ました。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;app bundle
+予期しないエラーが発生しました。もう一度お試しください（40B24C00）。
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;エラーコードをググっても出てこなかったので、作成中のリリースを一度破棄し、ブラウザを再起動してやり直したらうまくいきました。
+(秘密鍵のアップロードはやり直さなくてOKでした)&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;あとはいつものように必要項目を入力し、フッター部分のボタンを押していくと公開設定が完了します。しばらく「審査中」の後、無事公開されました。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[保存]　→　[リリースのレビュー] → [製品版としての公開を開始] → 確認ダイアログで[公開]クリック
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>【Flutter】ローカルDBの選択-Hive-</title>
+      <link>https://sankame.github.io/blog/2021-07-25-flutter_local_db/</link>
+      <pubDate>Sun, 25 Jul 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2021-07-25-flutter_local_db/</guid>
+      <description>
+
+&lt;h1 id=&#34;0-環境&#34;&gt;0. 環境&lt;/h1&gt;
+
+&lt;p&gt;&lt;code&gt;[OS] MacOS 10.11.6&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;[Flutter] 2.2.3&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;[Dart] 2.13.4&lt;/code&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;1-背景&#34;&gt;1. 背景&lt;/h1&gt;
+
+&lt;p&gt;React NativeでiOSアプリを作成してたんですが、環境周りの不具合に時間を取られ、肝心の実装がほとんどできない状態が続いてました。
+そこで、試しにFlutterをやってみたら、シュミレーターで動かすところまでは比較的楽にできたので乗り換えることにしました。&lt;/p&gt;
+
+&lt;p&gt;JSを使えるエンジニアが多いという理由で、React Nativeが支持されるかな？と予想してたのですが、
+最近、Twitterなどで&lt;a href=&#34;https://quipper.hatenablog.com/entry/2021/07/21/080000&#34; target=&#34;_blank&#34;&gt;React離れ&lt;/a&gt;を
+見かけることが増えてきて、そろそろ潮時かなと思ってきました。&lt;/p&gt;
+
+&lt;h1 id=&#34;2-検討&#34;&gt;2. 検討&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;作成したいアプリがローカルDBを使用しているので、何が良いのかいろいろ見てみました。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://kabochapo.hateblo.jp/entry/2020/02/01/144411&#34; target=&#34;_blank&#34;&gt;こちらのページ&lt;/a&gt;がよくまとまってます。&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;まず、僕の環境で、sqflite、Realm、Moor、ObjectBoxはサンプルアプリすら動かなかったので諦めました。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;作ろうとしてるアプリのAndroid版がSQLite3を使ってるので、sqfliteやそれをラッピングしてるというMoorがいいかなと思ったのですが、下記のエラーが解決できず諦めました。同様のエラーで開発者に対する&lt;a href=&#34;https://github.com/tekartik/sqflite/issues/452&#34; target=&#34;_blank&#34;&gt;質問&lt;/a&gt;が結構挙がってましたが、いまいち決定的な解決方法はなさそうでした。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Error: MissingPluginException(No implementation found for method getDatabasesPath on channel com.tekartik.sqflite)&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;3-hiveサンプルアプリ&#34;&gt;3. Hiveサンプルアプリ&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;上記ページで紹介されてるHiveがさくっと動きました。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://github.com/hivedb/samples&#34; target=&#34;_blank&#34;&gt;サンプルページ&lt;/a&gt;の「Code」ボタンからファイルアイコンをクリックしてURLをコピー。(画像参照)&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/flutter_local_db/hive_sample.png&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;80%&#34; height=&#34;80%&#34; title=&#34;Hiveサンプルコードダウンロード&#34; alt=&#34;Hiveサンプルコードダウンロード&#34; src=&#34;https://sankame.github.io/assets/posts/img/flutter_local_db/hive_sample.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;適当なディレクトリにソースをダウンロードしてアプリを起動します。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ git clone https://github.com/hivedb/samples.git
+
+$ cd samples/todo/
+
+$ flutter create .
+
+$ flutter run
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;To-Doアプリが起動しました。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/flutter_local_db/hive_todo_app.png&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;80%&#34; height=&#34;80%&#34; title=&#34;HiveTodoアプリ&#34; alt=&#34;HiveTodoアプリ&#34; src=&#34;https://sankame.github.io/assets/posts/img/flutter_local_db/hive_todo_app.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>【ReactNative】expo-sqliteのテーブルを開発ツールから参照する方法</title>
+      <link>https://sankame.github.io/blog/2020-07-23-expo_sqlite_db_browsing/</link>
+      <pubDate>Thu, 23 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2020-07-23-expo_sqlite_db_browsing/</guid>
+      <description>
+
+&lt;h1 id=&#34;0-環境&#34;&gt;0. 環境&lt;/h1&gt;
+
+&lt;p&gt;&lt;code&gt;[OS] MacOS 10.11.6&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;[React Native] 0.61.4&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;[SQLite Studio] 3.2.1&lt;/code&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;1-背景&#34;&gt;1. 背景&lt;/h1&gt;
+
+&lt;p&gt;React NativeでiOSアプリを作成中です。
+ローカルストレージとしてExpoのSQLiteを使っていますが、開発ツールからテーブル参照する方法が分からず調べてました。
+アプリから登録されたレコードの確認など、なにかとこの手のツールは必要です。
+Androidアプリ開発のStethoみたいなのがないかなーと思ってましたが、結局こんな感じにしました。&lt;/p&gt;
+
+&lt;h1 id=&#34;2-手順-dbファイルの格納先&#34;&gt;2. 手順(DBファイルの格納先)&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;expo-sqliteが作成するDBファイルの保存先は&lt;code&gt;${FileSystem.documentDirectory}/SQLite/${name}」&lt;/code&gt;なので、まず&lt;code&gt;${FileSystem.documentDirectory}&lt;/code&gt;がどこなのか調べます。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;(詳細は&lt;a href=&#34;https://github.com/expo/expo/blob/76b654737216cb56e430e42fec29ea1610426c7e/docs/pages/versions/v36.0.0/sdk/sqlite.md#sqliteopendatabasename-version-description-size&#34; target=&#34;_blank&#34;&gt;こちらのページ&lt;/a&gt;の&amp;rdquo;SQLite.openDatabase&amp;rdquo;参照)&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;アプリ実行時に必ず通る箇所にログを仕込みます。(importとconsoleの行だけあればどこでもOK)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;import * as FileSystem from &#39;expo-file-system&#39;
+
+class DB {
+
+    static db;
+
+    static getDB(){
+        console.log(&amp;quot;FileSystem; &amp;quot; + FileSystem.documentDirectory);
+    :
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;コンソールに出力されたパスから&lt;code&gt;file://&lt;/code&gt;を削ったものが&lt;code&gt;${FileSystem.documentDirectory}&lt;/code&gt;です。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;さらに上記&lt;code&gt;${name}&lt;/code&gt;は、&lt;code&gt;SQLite.openDatabase();&lt;/code&gt;の引数で指定しているDB名になります。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;3-手順-sqlitestudio&#34;&gt;3. 手順(SQLiteStudio)&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;MacにSQLiteStudioをインストール。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;SQLiteStudioのメニューで[Database]-[Add a database]を選び、上記2で調べたパスを[File]に入力して[OK]をクリック。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/expo_sqlite_db_browsing/specify_db_filepath.jpg&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;80%&#34; height=&#34;80%&#34; title=&#34;SQLiteStudioファイル指定&#34; alt=&#34;SQLiteStudioファイル指定&#34; src=&#34;https://sankame.github.io/assets/posts/img/expo_sqlite_db_browsing/specify_db_filepath.jpg&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;左ペインにテーブルが表示されれば成功です。&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>VirtualBoxでWindows10とUbuntu間のファイル共有</title>
+      <link>https://sankame.github.io/blog/2020-04-30-virtualbox_share_folder/</link>
+      <pubDate>Thu, 30 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2020-04-30-virtualbox_share_folder/</guid>
+      <description>
+
+&lt;h1 id=&#34;0-環境&#34;&gt;0. 環境&lt;/h1&gt;
+
+&lt;p&gt;&lt;code&gt;[VirtualBox] 6.1.6&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;[ホストOS] Windows 10 Home&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;[ゲストOS] Ubuntu 16.4&lt;/code&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;1-やりたいこと&#34;&gt;1. やりたいこと&lt;/h1&gt;
+
+&lt;p&gt;Windows10(ホストOS)にVirtualBoxを入れて、その上でUbuntu(ゲストOS)を動かします。&lt;/p&gt;
+
+&lt;p&gt;その際、ホストOS上のファイルをゲストOSからも操作したい。&lt;/p&gt;
+
+&lt;p&gt;IDEやエディタはホストOS上で起動し、バージョン管理やWebサーバー経由の確認などはゲストOSで行いたいというのが意図です。&lt;/p&gt;
+
+&lt;h1 id=&#34;2-インストール&#34;&gt;2. インストール&lt;/h1&gt;
+
+&lt;p&gt;VirtualBoxとUbuntuのインストール&amp;amp;設定は&lt;a href=&#34;https://qiita.com/pyon_kiti_jp/items/0be8ac17439abf418e48&#34; target=&#34;_blank&#34;&gt;この記事&lt;/a&gt;が分かりやすかったです。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://www.virtualbox.org/wiki/Downloads&#34; target=&#34;_blank&#34;&gt;VirtualBoxのサイト&lt;/a&gt;で下記リンクからダウンロード。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;[VirtualBox 6.1.6 platform packages]-[Windows hosts]&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;また、Ubuntuは&lt;a href=&#34;http://www.releases.ubuntu.com/16.04/&#34; target=&#34;_blank&#34;&gt;こちらのサイト&lt;/a&gt;から「64-bit PC (AMD64) desktop image」をダウンロードしました。&lt;/p&gt;
+
+&lt;p&gt;1.6Gあるので僕の環境だと数時間かかりました。&lt;/p&gt;
+
+&lt;h1 id=&#34;3-共有フォルダ設定&#34;&gt;3. 共有フォルダ設定&lt;/h1&gt;
+
+&lt;p&gt;Ubuntuのインストールが終わったら、VirtualBoxのホーム画面からインストールした仮想マシンを選択して「設定」をクリック。&lt;/p&gt;
+
+&lt;p&gt;下記のウィンドウが起動するので、左メニューの「共有フォルダー」をクリックします。&lt;/p&gt;
+
+&lt;p&gt;さらに右端にあるプラスマークをクリック。
+&lt;a href=&#34;https://sankame.github.io/assets/posts/img/virtualbox_share_folder/list_share_folder.png&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;80%&#34; height=&#34;80%&#34; title=&#34;共有フォルダ一覧&#34; alt=&#34;共有フォルダ一覧&#34; src=&#34;https://sankame.github.io/assets/posts/img/virtualbox_share_folder/list_share_folder.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;下記ウィンドウに必要項目を入力します。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;・「フォルダーのパス」は「その他」を選んで、ホストOS側で共有したいフォルダーを選択。
+・「フォルダー名」は自動で入るのでさわらず。(1)
+・「自動マウント」をチェックONにします。
+・「マウントポイント」はゲストOSの任意のディレクトリを指定。(2)
+・「永続化する」というチェックボックスがある場合、それもON。
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/virtualbox_share_folder/add_share_folder.png&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;40%&#34; height=&#34;40%&#34; title=&#34;共有フォルダ追加&#34; alt=&#34;共有フォルダ追加&#34; src=&#34;https://sankame.github.io/assets/posts/img/virtualbox_share_folder/add_share_folder.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;こんな感じに追加されました。
+&lt;a href=&#34;https://sankame.github.io/assets/posts/img/virtualbox_share_folder/example_share_folder.png&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;80%&#34; height=&#34;80%&#34; title=&#34;共有フォルダ一覧&#34; alt=&#34;共有フォルダ一覧&#34; src=&#34;https://sankame.github.io/assets/posts/img/virtualbox_share_folder/example_share_folder.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;ゲストOSを再起動します。&lt;/p&gt;
+
+&lt;p&gt;これだけだとゲストOSからホストOSの共有フォルダが見えませんでした。&lt;/p&gt;
+
+&lt;p&gt;調べてるといろんなページで「Ubuntuに&amp;rdquo;Gust Additions&amp;rdquo;をインストールする必要がある」と書いてましたが、入れなくても後述の手順でできました。
+(以前はそうだったのかもしれません)&lt;/p&gt;
+
+&lt;p&gt;&amp;ldquo;mount.vboxsf&amp;rdquo;コマンドを使いたいので、ゲストOS上でrootになるかsudoをつけて下記コマンドを実行。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ubuntu&#34;&gt;# apt install virtualbox-guest-utils
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;次にゲストOS側で予めマウントポイントのディレクトリを作成しておきます。(上記(2))&lt;/p&gt;
+
+&lt;p&gt;最後に、第一引数に前述の(1)、第二引数に(2)を指定してこのコマンドを実行するとホスト側のフォルダが参照できました。(下記のshareは読み替えて下さい)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ubuntu&#34;&gt;# mount.vboxsf share /share
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;仮想マシンを落とすと設定が消えてしまったので、&lt;code&gt;~/.bashrc&lt;/code&gt;に上記コマンドを書いておきました。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>CentOS8にバージョン指定でphpインストール</title>
+      <link>https://sankame.github.io/blog/2019-10-19-install_php_in_centos8/</link>
+      <pubDate>Sat, 19 Oct 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2019-10-19-install_php_in_centos8/</guid>
+      <description>
+
+&lt;p&gt;CentOS8にphpを入れるときのコマンドが分からなかったので要点だけメモ。&lt;/p&gt;
+
+&lt;h1 id=&#34;0-環境&#34;&gt;0. 環境&lt;/h1&gt;
+
+&lt;p&gt;&lt;code&gt;[OS] CentOS8 (64bit)&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;[PHP] 7.4&lt;/code&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;1-手順&#34;&gt;1. 手順&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;デフォルトのパッケージにはphp7.2までしか含まれていないので、remiリポジトリを足しました。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;# dnf -y install https://rpms.remirepo.net/enterprise/remi-release-8.rpm
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;下記コマンドでインストール可能なphpバージョンを調べます。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;# dnf module list php
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&amp;ldquo;Stream&amp;rdquo;という欄に表示された名前を指定してインストールします。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;下記は7.4を指定してますが、2019/10/19時点の安定版は7.3なので、本番環境の場合は注意して下さい。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;# dnf module install php:remi-7.4
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;パッケージの操作方法については、下記に詳細がまとまっています。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;2-参考記事&#34;&gt;2. 参考記事&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://linuxconfig.org/how-to-install-php-on-redhat-8&#34; target=&#34;_blank&#34;&gt;How to install php on RHEL 8 / CentOS 8 Linux&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>MonitでApacheとMySQLを復旧</title>
+      <link>https://sankame.github.io/blog/2018-05-11-monit_for_apache_mysql/</link>
+      <pubDate>Fri, 11 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2018-05-11-monit_for_apache_mysql/</guid>
+      <description>
+
+&lt;p&gt;MonitでApacheとMySQLを復旧させる最低限の設定です。&lt;/p&gt;
+
+&lt;p&gt;(文中のドメイン名やメールアドレスは読み替えて下さい)&lt;/p&gt;
+
+&lt;h1 id=&#34;0-環境&#34;&gt;0. 環境&lt;/h1&gt;
+
+&lt;pre&gt;&lt;code&gt;[CentOS] 6.4 (64bit版カーネル)
+[Monit] 5.25.1
+[Apache] 2.2.15
+[MySQL] 5.1.73
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;1-セットアップ&#34;&gt;1. セットアップ&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;インストール&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;# yum install monit
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;自動起動を設定&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;# chkconfig monit on
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;2-設定&#34;&gt;2. 設定&lt;/h1&gt;
+
+&lt;h2 id=&#34;2-1-apacheの監視設定&#34;&gt;2-1. Apacheの監視設定&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;httpd.conf を開いて、&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;# vim /etc/monit.d/httpd.conf
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;下記を記載。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;check process httpd with pidfile /var/run/httpd/httpd.pid
+start program = &amp;quot;/etc/init.d/httpd start&amp;quot;
+stop program = &amp;quot;/etc/init.d/httpd stop&amp;quot;
+    
+if 5 restarts within 5 cycles then timeout
+
+if failed host example.net port 443
+    protocol HTTP request /home then alert
+group httpd
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;2-2-mysqlの監視設定&#34;&gt;2-2. MySQLの監視設定&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;次に、mysqld.conf を開いて、&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;# vim /etc/monit.d/mysqld.conf
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;下記を記載。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;check process mysqld with pidfile /var/run/mysqld/mysqld.pid
+start program = &amp;quot;/etc/init.d/mysqld start&amp;quot;
+stop program = &amp;quot;/etc/init.d/mysqld stop&amp;quot;
+    
+if 5 restarts within 5 cycles then timeout
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;シンタックスをチェック。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;# monit -t
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;2-3-monitの設定&#34;&gt;2-3. Monitの設定&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;バックアップをとってから、/etc/monit.conf を編集。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;# diff /etc/monit.conf /etc/monit.conf.org
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;編集箇所は下記にdiff形式で表示。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;(1)アラートを送信するメールサーバーを指定。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;(2)送信元メールアドレスを設定。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;(3)送信から除外したいMonitのイベントを指定。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;後述の「3. プロセス監視」でactionイベントが発生するため除外する。&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code&gt;85d84
+&amp;lt; set mailserver localhost
+135c134
+&amp;lt; set mail-format { from: monit@example.net }
+---
+&amp;gt; # set mail-format { from: monit@foo.bar }
+148d146
+&amp;lt; set alert test@gmail.com not on {action}
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Monitを再起動。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;# service monit restart
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;3-監視停止を回避&#34;&gt;3. 監視停止を回避&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Monitが unmonitered状態になってしまうことを防ぐため、念のため下記をcronに設定。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;# crontab -l
+*/5 * * * * /usr/bin/monit monitor all
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>AndroidのSQLite DBを参照</title>
+      <link>https://sankame.github.io/blog/2017-05-14-view_sqlite_on_android/</link>
+      <pubDate>Sun, 14 May 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2017-05-14-view_sqlite_on_android/</guid>
+      <description>
+
+&lt;p&gt;&lt;span&gt;&amp;nbsp;&lt;/span&gt;&lt;span style=&#34;color:#d14; float:right;&#34;&gt;更新日：2017年05月16日&lt;/span&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;0-環境&#34;&gt;0.環境&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;PC側&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[OS]             Windows7 (32bit 版)
+[Android Studio] 1.5.1
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;スマホ側&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[OS]             Android 5.1.1
+[SQLite]         3.8.6.1
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;1-前提&#34;&gt;1. 前提&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;まずSQLiteのデータをファイル形式で保存するよう設定します。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;例として、SQLiteを操作するライブラリにSQLiteOpenHelperを使用した場合について記載します。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;コンストラクタの第二引数でDBファイル名を指定します。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;(未指定の場合、データはメモリにのみ保持されます)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;class DatabaseHelper extends SQLiteOpenHelper {
+
+    public DatabaseHelper(Context context) {
+        //DBファイル名を指定。
+        super(context, &amp;quot;example.db&amp;quot;, null, 1);
+    }
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;PCからAndroid端末にあるSQLiteのDBファイルを見る方法を調べました。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;試行錯誤した内容を書いているため、結論だけ知りたい場合は、4まで読み飛ばして下さい。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;2-adb-androidデバッグ用インターフェース-利用&#34;&gt;2. ADB(Androidデバッグ用インターフェース) 利用&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;ネットを検索して結構あったのが、ADBを使ってSQLiteのDBファイルをAndroid端末からPCへコピーし、その後DBビューワーで参照するというものです。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;PCでコマンドプロンプトから下記コマンドを実行すると、カレントディレクトリにtarget.db(任意)というファイルができます。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;C:\Users\【ユーザー名】&amp;gt;adb -d shell &amp;quot;run-as 【アプリケーションID】 cat databases/【DBファイル名】&amp;quot;&amp;gt;target.db
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;【】内は読み替えて下さい。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;【アプリケーションID】: Android Studioの[File]-[Project Structure]-[Flavors]-[Application Id]&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;【DBファイル名】: 上記1で指定したファイル名。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Database BrowserやPupSQLiteというビューワーでtarget.dbを開いても、下記エラーが出てレコードが表示されません。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;database disk image is malformed&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;http://qiita.com/tsunet111/items/2c21706fd67f5ecb047d&#34; target=&#34;_blank&#34;&gt;この修復方法&lt;/a&gt;を試しましたが次のエラーが出て、上記ビューワーで見てもレコードが0件でした。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;Error: near line 6: NOT NULL constraint failed: 【テーブル名】.【カラム名】
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Android(Linux系)とWindowsだからリダイレクションでデータの受け渡しがうまくいってないのかな？と推測し、Linuxコマンドも使えるPower Shellを使ってみたところ、最初の結果と異なり、target.dbのファイルサイズは倍になりました。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;再度、上記のビューワーで開こうとしたところ、復号化パスワードを求められ開けませんでした…&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;3-android-device-monitor-利用&#34;&gt;3. Android Device Monitor 利用&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;方針を変え、Android Studioの付属ツールを使ってDBファイルをPCへコピーする方法を試しました。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;Android Studioのメニューで[Tools]-[Android]-[Android Device Monitor]-[File Explorer]タブ
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&amp;ldquo;data&amp;rdquo;ディレクトリはあるのですが、その下のディレクトリが表示されず、DBファイルまでたどり着けなかったため諦めました。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;4-stetho-利用&#34;&gt;4. stetho 利用&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;facebookが提供している&lt;a href=&#34;https://github.com/facebook/stetho&#34; target=&#34;_blank&#34;&gt;stetho&lt;/a&gt;というデバッグツールを使いました。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;(4-1) 準備&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;http://facebook.github.io/stetho/#download&#34; target=&#34;_blank&#34;&gt;このページ&lt;/a&gt;からjarをダウンロードし、下記ディレクトリへコピーします。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;[アプリのルート]-[mobile]-[libs]&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;僕のbuild.gradleは、もともとlibsの全jarを読み込み対象にしていたのでひとまずそのままにしました。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;(build.gradle抜粋)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;    dependencies {
+        compile fileTree(dir: &#39;libs&#39;, include: [&#39;*.jar&#39;])
+        wearApp project(&#39;:wear&#39;)
+        compile &#39;com.android.support:appcompat-v7:21.0.3&#39;
+        compile &#39;com.google.android.gms:play-services:6.5.87&#39;
+        compile &amp;quot;com.android.support:support-v4:20.0.+&amp;quot;
+        compile files(&#39;libs/gson-2.5.jar&#39;)
+    }
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;さらに、ソースコードへ下記①、②を追記します。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;//①
+import com.facebook.stetho.Stetho;
+
+public class MainActivity extends ActionBarActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+
+        super.onCreate(savedInstanceState);
+        //②
+        Stetho.initializeWithDefaults(this);
+
+        // 以下省略
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;(4-2) エラー対応&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;ビルドしたところ、下記エラーが発生しました。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;ライブラリを重複して読み込もうとする際に出るエラーのようです。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;:mobile:dexDebug
+AGPBI: {&amp;quot;kind&amp;quot;:&amp;quot;simple&amp;quot;,&amp;quot;text&amp;quot;:&amp;quot;UNEXPECTED TOP-LEVEL EXCEPTION:&amp;quot;,&amp;quot;sources&amp;quot;:[{}]}
+AGPBI: {&amp;quot;kind&amp;quot;:&amp;quot;simple&amp;quot;,&amp;quot;text&amp;quot;:&amp;quot;com.android.dex.DexException: Multiple dex files define Landroid/support/v7/appcompat/R$anim;&amp;quot;,&amp;quot;sources&amp;quot;:[{}]}
+AGPBI: {&amp;quot;kind&amp;quot;:&amp;quot;simple&amp;quot;,&amp;quot;text&amp;quot;:&amp;quot;\tat com.android.dx.merge.DexMerger.readSortableTypes(DexMerger.java:596)&amp;quot;,&amp;quot;sources&amp;quot;:[{}]}
+AGPBI: {&amp;quot;kind&amp;quot;:&amp;quot;simple&amp;quot;,&amp;quot;text&amp;quot;:&amp;quot;\tat com.android.dx.merge.DexMerger.getSortedTypes(DexMerger.java:554)&amp;quot;,&amp;quot;sources&amp;quot;:[{}]}
+AGPBI: {&amp;quot;kind&amp;quot;:&amp;quot;simple&amp;quot;,&amp;quot;text&amp;quot;:&amp;quot;\tat com.android.dx.merge.DexMerger.mergeClassDefs(DexMerger.java:535)&amp;quot;,&amp;quot;sources&amp;quot;:[{}]}
+AGPBI: {&amp;quot;kind&amp;quot;:&amp;quot;simple&amp;quot;,&amp;quot;text&amp;quot;:&amp;quot;\tat com.android.dx.merge.DexMerger.mergeDexes(DexMerger.java:171)&amp;quot;,&amp;quot;sources&amp;quot;:[{}]}
+AGPBI: {&amp;quot;kind&amp;quot;:&amp;quot;simple&amp;quot;,&amp;quot;text&amp;quot;:&amp;quot;\tat com.android.dx.merge.DexMerger.merge(DexMerger.java:189)&amp;quot;,&amp;quot;sources&amp;quot;:[{}]}
+AGPBI: {&amp;quot;kind&amp;quot;:&amp;quot;simple&amp;quot;,&amp;quot;text&amp;quot;:&amp;quot;\tat com.android.dx.command.dexer.Main.mergeLibraryDexBuffers(Main.java:454)&amp;quot;,&amp;quot;sources&amp;quot;:[{}]}
+AGPBI: {&amp;quot;kind&amp;quot;:&amp;quot;simple&amp;quot;,&amp;quot;text&amp;quot;:&amp;quot;\tat com.android.dx.command.dexer.Main.runMonoDex(Main.java:303)&amp;quot;,&amp;quot;sources&amp;quot;:[{}]}
+AGPBI: {&amp;quot;kind&amp;quot;:&amp;quot;simple&amp;quot;,&amp;quot;text&amp;quot;:&amp;quot;\tat com.android.dx.command.dexer.Main.run(Main.java:246)&amp;quot;,&amp;quot;sources&amp;quot;:[{}]}
+AGPBI: {&amp;quot;kind&amp;quot;:&amp;quot;simple&amp;quot;,&amp;quot;text&amp;quot;:&amp;quot;\tat com.android.dx.command.dexer.Main.main(Main.java:215)&amp;quot;,&amp;quot;sources&amp;quot;:[{}]}
+AGPBI: {&amp;quot;kind&amp;quot;:&amp;quot;simple&amp;quot;,&amp;quot;text&amp;quot;:&amp;quot;\tat com.android.dx.command.Main.main(Main.java:106)&amp;quot;,&amp;quot;sources&amp;quot;:[{}]}
+
+FAILED
+
+FAILURE: Build failed with an exception.
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;下記のようにbuild.gradleを変更し、stethoを個別に定義するようにしました。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;s&gt;さらに上記エラーメッセージの3行目から推測して、除外設定も追加しています。(&lt;a href=&#34;http://stackoverflow.com/questions/27719436/how-to-remove-duplicate-libraries-added-via-gradle/27773664&#34; target=&#34;_blank&#34;&gt;参考ページ&lt;/a&gt;)&lt;/s&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;font color=&#34;red&#34;&gt;(2017/05/16,追記)除外設定はなくてもOKでした。まだ追いきれてませんが、fileTreeによる指定がまずかったようです。&lt;/font&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;(build.gradle抜粋)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;dependencies {
+    //この指定はやめる。
+    //compile fileTree(dir: &#39;libs&#39;, include: [&#39;*.jar&#39;])
+    wearApp project(&#39;:wear&#39;)
+    compile &#39;com.android.support:appcompat-v7:21.0.3&#39;
+    compile &#39;com.google.android.gms:play-services:6.5.87&#39;
+    compile &amp;quot;com.android.support:support-v4:20.0.+&amp;quot;
+    compile files(&#39;libs/gson-2.5.jar&#39;)
+                
+    //これを含めるのはデバッグ時のみにし、重複エラーが出たので除外設定を追加。
+    //debugCompile (&#39;com.facebook.stetho:stetho:1.5.0&#39;) {
+    //  exclude group: &#39;android.support&#39;, module: &#39;library&#39;
+    //}
+                
+    //(2017/05/16,追記) この指定で十分でした。
+    debugCompile (&#39;com.facebook.stetho:stetho:1.5.0&#39;)
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;(4-3) 使い方&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;アプリをビルドして、Chromeのアドレスバーに下記URLを入力します。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;chrome://inspect&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Android端末名の下にアプリ名が表示されるので、&amp;rdquo;inspect&amp;rdquo;をクリック。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/view_sqlite_on_android/chrome.jpg&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;80%&#34; height=&#34;80%&#34; title=&#34;chrome&#34; alt=&#34;chrome&#34; src=&#34;https://sankame.github.io/assets/posts/img/view_sqlite_on_android/chrome.jpg&#34;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;新しいウィンドウが開き、[Web SQL]-【アプリケーションID】-【テーブル名】を開くとSQLiteのデータが参照できました。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;さらに、【アプリケーションID】をクリックすると右ペインにプロンプト(&amp;gt;)が表示され、そこでSQL文も実行できるのでかなり使えそうです。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/view_sqlite_on_android/view_sqlite_db.jpg&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;80%&#34; height=&#34;80%&#34; title=&#34;chrome&#34; alt=&#34;chrome&#34; src=&#34;https://sankame.github.io/assets/posts/img/view_sqlite_on_android/view_sqlite_db.jpg&#34;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Hugoクイックスタート</title>
+      <link>https://sankame.github.io/blog/2017-03-19-hugo_quickstart/</link>
+      <pubDate>Sun, 19 Mar 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2017-03-19-hugo_quickstart/</guid>
+      <description>
+
+&lt;h3 id=&#34;0-環境&#34;&gt;0. 環境&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;[Mac] 10.11.6
+[Hugo] 0.19
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;1-インストール&#34;&gt;1.インストール&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;ここ数年、ブログウェアはjekyllを使ってましたが、下記の点が不便だったので、評判の良いHugoを試してみました。まずはサンプルを動かすところまで。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;初期構築やバージョンアップが大変だったので、他のPCに環境を作る気になれない。(今ならDockerという手もありますが…)&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;記事の生成に時間がかかるようになってきた。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;記事の更新後、2～3回リロードしないとブラウザに反映されない。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://gohugo.io/tutorials/installing-on-mac/&#34; target=&#34;_blank&#34;&gt;インストール・マニュアル&lt;/a&gt;に従って進めました。&lt;/p&gt;
+
+&lt;p&gt;僕の場合、Homebrewは既に入っていたのでStep2からやりました。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;$ brew update
+    
+$ brew install hugo
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;「インストール後にバージョンを調べてね」と書いてあるので念のためチェックです。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;$ ls -l $( which hugo )
+lrwxr-xr-x  1 mx  admin  28  3 19 03:08 /usr/local/bin/hugo -&amp;gt; ../Cellar/hugo/0.19/bin/hugo
+    
+$ hugo version
+Hugo Static Site Generator v0.19 darwin/amd64 BuildDate: 2017-02-27T19:21:29+09:00
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;2行とも0.19なので問題なさそうです。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;2-サンプル作成&#34;&gt;2.サンプル作成&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://gohugo.io/overview/quickstart/&#34; target=&#34;_blank&#34;&gt;こちらのページ&lt;/a&gt;に沿ってサンプルを作成しました。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;適当なディレクトリで下記を実行します。(僕の場合 /app/hugo-test/ なので読み替えて下さい)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;$ cd /app/hugo-test/
+    
+$ hugo new site bookshelf
+    
+$ cd bookshelf/
+    
+$ tree -a
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;目的別のディレクトリが作成されていると思います。&lt;/p&gt;
+
+&lt;p&gt;treeコマンドが使えない場合、下記でインストールしましょう。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;$ brew install tree
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;サンプル記事を作成します。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;$ hugo new post/good-to-great.md
+/app/hugo-test/bookshelf/content/post/good-to-great.md created
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;さらにGitHubから適当なテーマを取得。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;$ cd themes/
+
+$ git clone https://github.com/dim0627/hugo_theme_robust.git
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;bookshelfディレクトリへ戻った後、テーマと下書きモードを指定してビルトインサーバーを起動します。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;$ cd ..
+    
+$ hugo server --theme=hugo_theme_robust --buildDrafts
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;ブラウザで下記URLにアクセスすると、先ほど作った&amp;rdquo;good to great&amp;rdquo;という記事が表示されました。(テンプレートは日本人デザイナー作！)&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://localhost:1313/&#34; target=&#34;_blank&#34;&gt;&lt;a href=&#34;http://localhost:1313/&#34;&gt;http://localhost:1313/&lt;/a&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/hugo_quickstart/hugo-init.jpg&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;100%&#34; height=&#34;100%&#34; title=&#34;xxx&#34; alt=&#34;xxx&#34; src=&#34;https://sankame.github.io/assets/posts/img/hugo_quickstart/hugo-init.jpg&#34;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;3-サンプル更新&#34;&gt;3.サンプル更新&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;次に記事を更新してみます。&lt;/p&gt;
+
+&lt;p&gt;そのままbookshelfディレクトリでファイルを開きます。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;$ vim content/post/good-to-great.md
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;適当に書き込むと…&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;+++
+date = &amp;quot;2017-03-19T03:39:26+09:00&amp;quot;
+title = &amp;quot;good to great&amp;quot;
+draft = true
+    
++++
+    
+ここに記事を書いていく。
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;画面に反映されました。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/hugo_quickstart/hugo-edit.jpg&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;100%&#34; height=&#34;100%&#34; title=&#34;xxx&#34; alt=&#34;xxx&#34; src=&#34;https://sankame.github.io/assets/posts/img/hugo_quickstart/hugo-edit.jpg&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;記事を編集するとブラウザのリロードも自動でやってくれるので便利です。&lt;/p&gt;
+
+&lt;p&gt;ChromeのDeveloper Toolsで見ると、自動リロードはWebSocketを使っているようですね。(オレンジの枠線)&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/hugo_quickstart/hugo-websocket.jpg&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;100%&#34; height=&#34;100%&#34; title=&#34;xxx&#34; alt=&#34;xxx&#34; src=&#34;https://sankame.github.io/assets/posts/img/hugo_quickstart/hugo-websocket.jpg&#34;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>AppleWatchアプリ開発におけるiOSアプリのデバッグ方法</title>
+      <link>https://sankame.github.io/blog/2016-08-07-debug-ios-app-with-watchkit/</link>
+      <pubDate>Sun, 07 Aug 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2016-08-07-debug-ios-app-with-watchkit/</guid>
+      <description>
+
+&lt;h3 id=&#34;0-環境&#34;&gt;0. 環境&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;[OS] Mac OS X 10.11.4
+[IDE] Xcode 7.3
+[Swift] 2.1.1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;1-課題&#34;&gt;1. 課題&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;AppleWatchのアプリ開発で「WatchKit App」を起動すると、iOSアプリのブレークポイントで停止しない。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;2-対策&#34;&gt;2. 対策&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;XcodeのデバッガーにiOSアプリを手動で追加する必要があります。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;「WatchKit App」を選択してアプリ実行。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/debug-ios-app-with-watchkit/1.jpg&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;50%&#34; height=&#34;50%&#34; title=&#34;xxx&#34; alt=&#34;xxx&#34; src=&#34;https://sankame.github.io/assets/posts/img/debug-ios-app-with-watchkit/1.jpg&#34;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;iOSアプリのシュミレーターで、iOSアプリを起動。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Xcodeに戻って [Debug]-[Attach to Process] からiOSアプリを選択。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/debug-ios-app-with-watchkit/2.jpg&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;50%&#34; height=&#34;50%&#34; title=&#34;xxx&#34; alt=&#34;xxx&#34; src=&#34;https://sankame.github.io/assets/posts/img/debug-ios-app-with-watchkit/2.jpg&#34;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;左のパネルで[Debug navigator]を選択し、下記①②でiOSアプリが選択されていることを確認。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/debug-ios-app-with-watchkit/3.jpg&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;50%&#34; height=&#34;50%&#34; title=&#34;xxx&#34; alt=&#34;xxx&#34; src=&#34;https://sankame.github.io/assets/posts/img/debug-ios-app-with-watchkit/3.jpg&#34;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Let&#39;s Encrypt - certbotコマンド</title>
+      <link>https://sankame.github.io/blog/2016-05-15-letsencrypt_certbot_command/</link>
+      <pubDate>Sun, 15 May 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2016-05-15-letsencrypt_certbot_command/</guid>
+      <description>
+
+&lt;p&gt;&lt;span&gt;&amp;nbsp;&lt;/span&gt;&lt;span style=&#34;color:#d14; float:right;&#34;&gt;更新日：2016年08月06日&lt;/span&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;0-環境&#34;&gt;0. 環境&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;[CentOS] 6.4 (64bit版カーネル)
+[Apache] 2.2.15
+[Firefox] 46.0.1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;1-let-s-encryptのコマンド変更&#34;&gt;1. Let&amp;rsquo;s Encryptのコマンド変更&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://sankame.github.io/ssl-tls/letsencrypt_renewal/&#34; target=&#34;_blank&#34;&gt;証明書を更新した際、&lt;/a&gt; 「letsencrypt-autoコマンドはもう古いよ」という警告が出たので、更新したいと思います。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;2-更新作業-はマスク情報&#34;&gt;2. 更新作業(【】はマスク情報)&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Let&amp;rsquo;s Encryptがβ版の時はgit cloneして /usr/local/src/letsencrypt ディレクトリを作成しましたが、今回はそれとは別ディレクトリを作成します。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;# cd /usr/local/src
+# git clone https://github.com/certbot/certbot
+# cd certbot
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;疑似実行したところ成功したようなので、証明書の期限が迫ってきたら dry-run なしで実行してみたいと思います。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;# ./certbot-auto renew --dry-run
+    
+  ：
+(省略)
+  ：
+Congratulations, all renewals succeeded. The following certs have been renewed:
+/etc/letsencrypt/live/【ドメイン名】/fullchain.pem (success)
+** DRY RUN: simulating &#39;certbot renew&#39; close to cert expiry
+**          (The test certificates above have not been saved.)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;font id=&#34;cron&#34; color=&#34;red&#34;&gt;(2016/08/06, 追記)&lt;/font&gt; &lt;a href=&#34;https://sankame.github.io/ssl-tls/letsencrypt_renewal/#cron&#34; target=&#34;_blank&#34;&gt;&lt;font color=&#34;green&#34;&gt;dry-runなしでの実行結果はこちら&lt;/font&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;参考ページ&#34;&gt;参考ページ&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;① &lt;a href=&#34;https://letsencrypt.org/getting-started/&#34; target=&#34;_blank&#34;&gt;Getting Started&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;② &lt;a href=&#34;https://www.eff.org/deeplinks/2016/05/announcing-certbot-new-tls-robot&#34; target=&#34;_blank&#34;&gt;Announcing Certbot: EFF&amp;rsquo;s Client for Let&amp;rsquo;s Encrypt&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Let&#39;s Encrypt - 証明書の更新と自動化</title>
+      <link>https://sankame.github.io/blog/2016-02-21-letsencrypt_renewal/</link>
+      <pubDate>Sun, 21 Feb 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2016-02-21-letsencrypt_renewal/</guid>
+      <description>
+
+&lt;p&gt;&lt;span&gt;&amp;nbsp;&lt;/span&gt;&lt;span style=&#34;color:#d14; float:right;&#34;&gt;更新日：2016年11月09日&lt;/span&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;0-環境&#34;&gt;0.環境&lt;/h1&gt;
+
+&lt;pre&gt;&lt;code&gt;[CentOS] 6.4 (64bit版カーネル)
+[Apache] 2.2.15
+[Firefox] 44.0.2
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;1-期限通知&#34;&gt;1.期限通知&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;(文中【】はマスク情報)&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/ssl-tls/letsencrypt_setup/&#34; target=&#34;_blank&#34;&gt;年末に設定した&lt;/a&gt; Let&amp;rsquo;s Encrypt のSSL証明書の期限が迫り、下記のお知らせメールが届きました。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;Let&#39;s Encrypt certificate expiration notice
+
+Hello,
+
+Your certificate (or certificates) for the names listed below will expire in 17 days (on 04 Mar 16 17:44 +0000). Please make sure to renew your certificate before then, or visitors to your website will encounter errors.
+
+【以下省略】
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;ブラウザで有効期限を確認するとそろそろ切れそうです。&lt;/p&gt;
+
+&lt;p&gt;ブラウザ(Firefox)のアドレスバーの鍵マークをクリックし、[ &amp;gt; ] - [詳細を表示] - [セキュリティ] - [証明書を表示] - [有効期限]&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/letsencrypt_renewal/ssl_before.png&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;50%&#34; height=&#34;50%&#34; title=&#34;SSL証明書更新前&#34; alt=&#34;SSL証明書更新前&#34; src=&#34;https://sankame.github.io/assets/posts/img/letsencrypt_renewal/ssl_before.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;2-更新作業&#34;&gt;2.更新作業&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;公式マニュアルにそってやってみました。(参考ページ①)&lt;/p&gt;
+
+&lt;p&gt;letsencrypt をインストールしたディレクトリに移動し、下記のコマンドを実行。(letsencrypt と letsencrypt-auto コマンドは互換性があるとのことなので、初回セットアップで使ったletsencrypt-autoを指定)&lt;/p&gt;
+
+&lt;p&gt;(ディレクトリを忘れた場合は&lt;code&gt;locate letsencrypt-auto&lt;/code&gt;などで確認)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;# cd /usr/local/src/letsencrypt/
+#
+# ./letsencrypt-auto renew
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;1分ほど待って下記メッセージが表示されました。成功したようです。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;# ./letsencrypt-auto renew
+Updating letsencrypt and virtual environment dependencies...You are using pip version 7.1.2, however version 8.0.2 is available.
+You should consider upgrading via the &#39;pip install --upgrade pip&#39; command.
+....
+Running with virtualenv: 【ディレクトリパス】 renew
+Processing 【ディレクトリパス】
+new certificate deployed without reload, fullchain is 【ディレクトリパス】/fullchain.pem
+
+Congratulations, all renewals succeeded. The following certs have been renewed:
+【ディレクトリパス】/fullchain.pem (success)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;font color=&#34;red&#34;&gt;(2016/05/14, 追記) 証明書の更新は正常終了しましたが、下記の警告が出ました。&lt;/font&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;WARNING:certbot.cli:You are running with an old copy of letsencrypt-auto that does not receive updates, and is less reliable than more recent versions. We recommend upgrading to the latest certbot-auto script, or using native OS packages.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;letsencrypt-autoコマンドは古くなったようなので、次回から下記を使おうと思います。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/ssl-tls/letsencrypt_certbot_command/&#34; target=&#34;_blank&#34;&gt;certbot-autoコマンドの準備はこちら&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;ブラウザをリロードしたり、再起動しても証明書の有効期限は変わらず…&lt;/p&gt;
+
+&lt;p&gt;公式マニュアルにはありませんが、Webサーバーの再起動が必要なようです。&lt;/p&gt;
+
+&lt;p&gt;(参考ページ②)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;# service httpd restart
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Webサーバーを再起動するとブラウザ側の有効期限も延長されました。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/letsencrypt_renewal/ssl_after.png&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;50%&#34; height=&#34;50%&#34; title=&#34;SSL証明書更新後&#34; alt=&#34;SSL証明書更新後&#34; src=&#34;https://sankame.github.io/assets/posts/img/letsencrypt_renewal/ssl_after.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;font id=&#34;cron&#34; color=&#34;red&#34;&gt;(2016/08/06, 追記)&lt;/font&gt; そろそろ面倒になってきたので、証明書の更新をCronに設定しました。&lt;/p&gt;
+
+&lt;p&gt;頻繁に更新するとエラーになるようなので、10日に1回の実行です。(参考ページ③)&lt;/p&gt;
+
+&lt;p&gt;もし失敗していても、冒頭に載せた通知メールがLet&amp;rsquo;s Encryptから届くので、気付くことはできそうです。(【】内は読み替え)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;# SSL証明書更新。
+# Webサーバー再起動を伴うため、深夜に実行。
+0 3 */10 * * sh /【ユーザー】/bin/letsencrypt-renew.sh
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;shの内容はこちら。&lt;/p&gt;
+
+&lt;script src=&#34;https://gist.github.com/Sankame/44a737ee39412c62b48a3392625569c6.js&#34;&gt;&lt;/script&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;font id=&#34;cron&#34; color=&#34;red&#34;&gt;(2016/08/22, 追記)&lt;/font&gt; 上記 renew.log を見たら更新が失敗していたので下記の対応を行いました。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;依存パッケージのインストールを求めるところで停止していたので、一度、手動で下記コマンドを実行。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;停止箇所&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Is this ok [y/N]: Exiting on user Command&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;手動実行したコマンド&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;/usr/local/src/certbot/certbot-auto renew&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;その際、「まだ期限ではないので更新をスキップしたよ」というメッセージが出ました。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;The following certs are not due for renewal yet:
+  /etc/letsencrypt/live/【ドメイン名】/fullchain.pem (skipped)
+No renewals were attempted.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;強制的に更新するため、コマンドに &amp;ndash;force-renew オプションを追加。(上記 gist にも反映済み)&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;下記メッセージが表示され、cronからの実行も成功しました。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Congratulations, all renewals succeeded.&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;また10日後くらいにちゃんと更新されているか見てみようと思います…&lt;/p&gt;
+
+&lt;p&gt;&lt;font color=&#34;red&#34;&gt;(2016/09/04, 追記) ログとブラウザを確認したところ、証明書は更新されていました。&lt;/font&gt;&lt;/p&gt;
+
+&lt;p&gt;これでしばらく放っておいても大丈夫そうです。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;# cat /var/log/letsencrypt/renew.log
+        
+　：
+(省略)
+　：
+Congratulations, all renewals succeeded. The following certs have been renewed:
+/etc/letsencrypt/live/【ドメイン名】/fullchain.pem (success)
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;font id=&#34;cron&#34; color=&#34;red&#34;&gt;(2016/11/09, 追記)&lt;/font&gt; ブラウザ上で証明書の開始日がしばらく更新されていなかったので、上記 renew.log を見たところ、またもやエラーが出ていました…&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;エラー内容&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;Dependencies Resolved
+
+================================================================================
+ Package Arch Version Repository Size
+================================================================================
+Updating:
+ openssl x86_64 1.0.1e-48.el6_8.3 updates 1.5 M
+ openssl-devel x86_64 1.0.1e-48.el6_8.3 updates 1.2 M
+
+Transaction Summary
+================================================================================
+Upgrade 2 Package(s)
+
+Total download size: 2.7 M
+Is this ok [y/N]: Exiting on user Command
+Could not install OS dependencies. Aborting bootstrap!
+Automated renewal failed
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;何とか依存パッケージのインストール確認をスキップできないものかと調べていたら、コマンド集を見つけ、下記のオプションでうまくいきました。(参考ページ④)&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;--non-interactive&lt;/code&gt; (上記 gist にも反映済み)&lt;/p&gt;
+
+&lt;p&gt;ちなみに、同ページに &lt;code&gt;--quiet&lt;/code&gt; は上記オプションも含む、と書かれていましたが、こちらはダメでした。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;参考ページ&#34;&gt;参考ページ&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;① &lt;a href=&#34;https://letsencrypt.readthedocs.org/en/latest/using.html#renewal&#34; target=&#34;_blank&#34;&gt;公式マニュアル　証明書更新&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;② &lt;a href=&#34;https://tech.nosuz.jp/2015/12/lets-encrypt-https/&#34; target=&#34;_blank&#34;&gt;Let’s Encryptから証明書を取得して常時HTTPS化&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;③ &lt;a href=&#34;http://qiita.com/pm11op/items/5759d4a2c755509f6d42&#34; target=&#34;_blank&#34;&gt;Let&amp;rsquo;s Encrypt で証明書を小刻みに自動更新&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;④ &lt;a href=&#34;https://letsencrypt.jp/command/&#34; target=&#34;_blank&#34;&gt;Let&amp;rsquo;s Encrypt コマンド集&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>お薦め無料SSL証明書 - Let&#39;s Encrypt</title>
+      <link>https://sankame.github.io/blog/2015-12-07-letsencrypt_setup/</link>
+      <pubDate>Mon, 07 Dec 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2015-12-07-letsencrypt_setup/</guid>
+      <description>
+
+&lt;p&gt;&lt;span&gt;&amp;nbsp;&lt;/span&gt;&lt;span style=&#34;color:#d14; float:right;&#34;&gt;更新日：2017年04月30日&lt;/span&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;0-環境&#34;&gt;0.環境&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;[CentOS] 6.4 (64bit版カーネル)
+[Apache] 2.2.15
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;1-セットアップ&#34;&gt;1.セットアップ&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;個人利用のレンタルサーバーでは有料のSSL証明書を使っていたのですが、
+有効期限切れを機にフリーのものに乗り換えてみました。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Let&amp;rsquo;s Encrypt というサービスを利用します。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://letsencrypt.org/&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;80%&#34; height=&#34;80%&#34; title=&#34;Let&#39;s Encryptトップ&#34; alt=&#34;Let&#39;s Encryptトップ&#34; src=&#34;https://sankame.github.io/assets/posts/img/letsencrypt_setup/letsencrypt_top.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;下記のマニュアルに沿って進めました。(その他の参考ページは末尾に記載)&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://letsencrypt.org/howitworks/&#34; target=&#34;_blank&#34;&gt;&lt;font color=&#34;green&#34;&gt;Let&amp;rsquo;s Encrypt 操作方法&lt;/font&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;まずは、任意のディレクトリに Let&amp;rsquo;s Encrypt クライアントをダウンロード。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;# cd /usr/local/src
+# git clone https://github.com/letsencrypt/letsencrypt
+# cd letsencrypt
+# ./letsencrypt-auto --help
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;お！ helpだから使い方が表示されるかと思いきや、依存関係のあるパッケージがダウンロードされた・・・&lt;/p&gt;
+
+&lt;p&gt;しかも下記メッセージによると、どうやらPythonのバージョンが古くて失敗してるっぽい。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;  ：
+(省略)
+  ：
+Complete!
+WARNING: Python 2.6 support is very experimental at present...
+if you would like to work on improving it, please ensure you have backups
+and then run this script again with the --debug flag!
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;ググってみると同じ問題で悩んでる人がいました。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/letsencrypt/letsencrypt/issues/1046&#34; target=&#34;_blank&#34;&gt;&lt;font color=&#34;green&#34;&gt;letsencrypt-autoは Python 2.6では動かない&lt;/font&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;さらに調べると下記ページに解決方法がありました。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://community.letsencrypt.org/t/redhat-centos-6-x-users-need-python-2-7/2190&#34; target=&#34;_blank&#34;&gt;&lt;font color=&#34;green&#34;&gt;CentOS 6系は Python 2.7をインストールする必要あり&lt;/font&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;実行コマンドは下記の通り。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;# yum install python27 python27-python-devel python27-python-setuptools python27-python-tools python27-python-virtualenv
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;pythonのバージョンを調べる。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;# python --version
+Python 2.6.6
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;font color=&#34;red&#34;&gt;(注) 2.6のままですが気にせず続行します。&lt;/font&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;font color=&#34;red&#34;&gt;(yum管理外でPythonをソースからビルドしてインストールすると letsencrypt-auto が動かなくなりました)&lt;/font&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;コマンドを再実行すると、Pythonが古い旨のメッセージはもう出なくなりました。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;# ./letsencrypt-auto --help
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;続けてドメイン認証を試みます。(以降【】内は読み替えて下さい)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;# ./letsencrypt-auto --apache -d 【ドメイン名】
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;エラーメッセージが・・・&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;Updating letsencrypt and virtual environment dependencies.......
+Running with virtualenv: /root/.local/share/letsencrypt/bin/letsencrypt --apache -d 【ドメイン名】
+Version: 1.1-20080819
+Version: 1.1-20080819
+The apache plugin is not working; there may be problems with your existing configuration.
+The error was: NoInstallationError()
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;ユーザーガイドによるとApache2.2系だとapacheプラグイン(&amp;ndash;apache)は使えないようです。&lt;/p&gt;
+
+&lt;p&gt;となると、下記の通りstandaloneかwebrootのいずれかを実行しないといけません。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;If you want to use a webserver that doesn&#39;t have full plugin support yet, you can still use &amp;quot;standalone&amp;quot; or &amp;quot;webroot&amp;quot; plugins to obtain a certificate:&lt;/code&gt; (&lt;a href=&#34;https://letsencrypt.readthedocs.org/en/latest/using.html#standalone&#34; target=&#34;_blank&#34;&gt;ユーザーガイド抜粋&lt;/a&gt;)&lt;/p&gt;
+
+&lt;p&gt;僕の環境では、1つのサーバーに複数のvirtual hostを立てているので、webrootプラグインを選択しました。&lt;/p&gt;
+
+&lt;p&gt;さらにwebrootプラグインだとApache無停止でいけるそうです。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;念のため、既に書いてあったSSL用のvirtual hostはコメントアウトしてApacheを再起動します。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-apache&#34;&gt;#&amp;lt;VirtualHost *:443&amp;gt;
+#    ：
+# 【省略
+#    ：
+#&amp;lt;/VirtualHost&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;下記コマンド実行。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;# ./letsencrypt-auto certonly --webroot -w 【ドキュメントルート】 -d 【ドメイン名】
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;連絡用e-mailを入力し、利用規約を確認します。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/letsencrypt_setup/enter_email.png&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;80%&#34; height=&#34;80%&#34; title=&#34;email入力&#34; alt=&#34;email入力&#34; src=&#34;https://sankame.github.io/assets/posts/img/letsencrypt_setup/enter_email.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/letsencrypt_setup/read_terms_of_service.png&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;80%&#34; height=&#34;80%&#34; title=&#34;利用規約&#34; alt=&#34;利用規約&#34; src=&#34;https://sankame.github.io/assets/posts/img/letsencrypt_setup/read_terms_of_service.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;下記のエラーが出ました。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;Updating letsencrypt and virtual environment dependencies.......
+Running with virtualenv: /root/.local/share/letsencrypt/bin/letsencrypt certonly --webroot -w 【ドキュメントルート】 -d 【ドメイン名】
+Version: 1.1-20080819
+Version: 1.1-20080819
+Failed authorization procedure. 【ドメイン名】 (http-01): urn:acme:error:unauthorized :: The client lacks sufficient authorization :: Invalid response from http://【ドメイン名】/.well-known/acme-challenge/【省略】 [【サーバーIP】]: 401
+
+IMPORTANT NOTES:
+ - The following &#39;urn:acme:error:unauthorized&#39; errors were reported by
+   the server:
+
+   Domains: 【ドメイン名】
+   Error: The client lacks sufficient authorization
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;ドキュメントルートにファイルを配置して、インターネットからアクセスを試みているけど失敗してるっぽい・・・&lt;/p&gt;
+
+&lt;p&gt;試しにブラウザから上記URLにアクセス。&lt;/p&gt;
+
+&lt;p&gt;どうやら、port80(http)からport443(https)へのリダイレクト設定を入れていたことが原因のようです。&lt;/p&gt;
+
+&lt;p&gt;リダイレクトを無効にした後、ブラウザから上記URLにアクセスできることを確認した上で、再度サーバー上で下記を実行。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;# ./letsencrypt-auto certonly --webroot -w 【ドキュメントルート】 -d 【ドメイン名】
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;下記メッセージが表示され認証が成功！&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;Updating letsencrypt and virtual environment dependencies.......
+Running with virtualenv: /root/.local/share/letsencrypt/bin/letsencrypt certonly --webroot -w 【ドキュメントルート】 -d 【ドメイン名】
+Version: 1.1-20080819
+Version: 1.1-20080819
+
+IMPORTANT NOTES:
+ - Congratulations! Your certificate and chain have been saved at
+   /etc/letsencrypt/live/【ドメイン名】/fullchain.pem. Your cert will
+   expire on 2016-03-04. To obtain a new version of the certificate in
+   the future, simply run Let&#39;s Encrypt again.
+ - If like Let&#39;s Encrypt, please consider supporting our work by:
+
+   Donating to ISRG / Let&#39;s Encrypt:   https://letsencrypt.org/donate
+   Donating to EFF:                    https://eff.org/donate-le
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;この後どうすれば・・・？&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;ユーザーガイドによると、apahceプラグインなら全自動で設定してくれるようですが、今回は使ってないので手動で証明書ファイルを設定しないといけません。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;上記メッセージのパスを覗いてみると、必要なファイル一式がありました。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;# ll /etc/letsencrypt/live/【ドメイン名】
+#
+lrwxrwxrwx 1 root root 38 12月  6 03:43 2015 cert.pem -&amp;gt; ../../archive/【ドメイン名】/cert1.pem
+lrwxrwxrwx 1 root root 39 12月  6 03:43 2015 chain.pem -&amp;gt; ../../archive/【ドメイン名】/chain1.pem
+lrwxrwxrwx 1 root root 43 12月  6 03:43 2015 fullchain.pem -&amp;gt; ../../archive/【ドメイン名】/fullchain1.pem
+lrwxrwxrwx 1 root root 41 12月  6 03:43 2015 privkey.pem -&amp;gt; ../../archive/【ドメイン名】/privkey1.pem
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;fullchainを除く3ファイルをport443のvirtual hostに設定して、&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-apache&#34;&gt;&amp;lt;VirtualHost *:443&amp;gt;
+    ServerAdmin  【メールアドレス】
+    DocumentRoot &amp;quot;【ドキュメントルート】&amp;quot;
+    ServerName   【ドメイン名】
+    SSLEngine on
+    SSLCertificateFile      /etc/letsencrypt/live/【ドメイン名】/cert.pem
+    SSLCertificateKeyFile   /etc/letsencrypt/live/【ドメイン名】/privkey.pem
+    SSLCertificateChainFile /etc/letsencrypt/live/【ドメイン名】/chain.pem
+
+    ErrorLog  logs/【ドメイン名】-error_log
+    CustomLog logs/【ドメイン名】-access_log common
+&amp;lt;/VirtualHost&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Apache再起動。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;# service httpd restart
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;httpからhttpsへのリダイレクト設定も元に戻します。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;ブラウザでサイトにアクセスするとSSLマークが表示されました！(ドメイン名はマスク済み)&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/letsencrypt_setup/browser.png&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;50%&#34; height=&#34;50%&#34; title=&#34;ブラウザSSL表示&#34; alt=&#34;ブラウザSSL表示&#34; src=&#34;https://sankame.github.io/assets/posts/img/letsencrypt_setup/browser.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Let&amp;rsquo;s Enctyptの証明書は有効期間が短いので、ついでに自動更新の設定もしておきましょう。(下記リンク参照)&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/ssl-tls/letsencrypt_renewal/&#34; target=&#34;_blank&#34;&gt;&lt;font color=&#34;green&#34;&gt;Let&amp;rsquo;s Encrypt - 証明書の更新と自動化&lt;/font&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;組織の実在証明はありませんが、個人で暗号化メインならこれで十分ですね。何より無料がうれしいです。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;参考ページ&#34;&gt;参考ページ&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://letsencrypt.readthedocs.org/en/latest/using.html#installation&#34; target=&#34;_blank&#34;&gt;ユーザーガイド&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://github.com/letsencrypt/letsencrypt&#34; target=&#34;_blank&#34;&gt;Let&amp;rsquo;s Encrypt クライアントツール&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>【Angular2】クイックスタート</title>
+      <link>https://sankame.github.io/blog/2015-06-23-angular2_quick_start/</link>
+      <pubDate>Tue, 23 Jun 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2015-06-23-angular2_quick_start/</guid>
+      <description>
+
+&lt;h1 id=&#34;0-環境&#34;&gt;0.環境&lt;/h1&gt;
+
+&lt;pre&gt;&lt;code&gt;[CentOS]  6.5
+[node.js] 0.12.4
+[npm]     2.10.1
+[tsd]     0.6.0
+[tsc]     1.5.0-beta
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;1-インストール&#34;&gt;1.インストール&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Googleの&lt;a href=&#34;https://angular.io/docs/js/latest/quickstart.html&#34; target=&#34;_blank&#34;&gt;QuickStartページ&lt;/a&gt;に沿って進めます。(以降、JavaScriptはJSと記述)&lt;/p&gt;
+
+&lt;p&gt;Angular2はJSでも動かせますが、JSのスーパーセットTypeScriptに対応しているので、Googleのページ同様、後者を使ってみました。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;最終的に下記の構成になります。&lt;/p&gt;
+
+&lt;p&gt;tscを使ってhello.tsをhello.jsへ変換します。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/angular2_quick_start/system.jpg&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;100%&#34; height=&#34;100%&#34; title=&#34;システム構成&#34; alt=&#34;システム構成&#34; src=&#34;https://sankame.github.io/assets/posts/img/angular2_quick_start/system.jpg&#34;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;まずnode.jsとnpmの依存管理を楽にするため、nvmをインストールします。&lt;/p&gt;
+
+&lt;p&gt;※CentOS 5系だとnode.jsを動かすのに苦労するので、&lt;a href=&#34;http://sankame.github.io/vagrant/vagrant_setup/&#34; target=&#34;_blank&#34;&gt;こちらの記事&lt;/a&gt;を参考にCentOS6.x 環境構築を推奨します。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# git clone git://github.com/creationix/nvm.git ~/.nvm
+# source ~/.nvm/nvm.sh
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;node.jsをバージョン指定でインストール。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# nvm install 0.12.4
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;nvmでnode.jsのデフォルトバージョンを設定。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# nvm alias default v0.12.4
+# vi ~/.bash_profile
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;.bash_profile の末尾に下記を追記。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;if [[ -s ~/.nvm/nvm.sh ]];
+    then source ~/.nvm/nvm.sh
+fi
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;tsd (TypeScript用 型定義ファイル管理ツール) をインストール。&lt;/p&gt;
+
+&lt;p&gt;※npmのバージョンが低いとtsdのインストールが止まってしまうので注意。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# npm install tsd@0.6.0 -g
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;下記の警告が出ましたが、5分ほどしてインストールが成功しました。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;npm WARN engine joi-assert@0.0.3: wanted: {&amp;quot;node&amp;quot;:&amp;quot;&amp;gt;= 0.10.0 &amp;lt;= 0.11.0&amp;quot;} (current: {&amp;quot;node&amp;quot;:&amp;quot;0.12.4&amp;quot;,&amp;quot;npm&amp;quot;:&amp;quot;2.10.1&amp;quot;})
+npm WARN peerDependencies The peer dependency minichain@~0.0.1 included from minitable will no
+npm WARN peerDependencies longer be automatically installed to fulfill the peerDependency
+npm WARN peerDependencies in npm 3+. Your application will need to depend on it explicitly.
+/root/.nvm/versions/node/v0.12.4/bin/tsd -&amp;gt; /root/.nvm/versions/node/v0.12.4/lib/node_modules/tsd/build/cli.js
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;続けてAngular2用の型定義をインストール。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# tsd query angular2 --action install
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;※rootユーザー以外だと下記エラーが出る可能性があります。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt; install error!
+EACCES, mkdir &#39;/etc/rc.d/init.d/typings&#39;
+Error: EACCES, mkdir &#39;/etc/rc.d/init.d/typings&#39;
+at Error (native)
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;tsc (TypeScript→JS変換ツール) をインストール。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# npm install -g typescript@^1.5.0-beta
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;2-サンプル実行&#34;&gt;2.サンプル実行&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;任意のディレクトリで下記サンプルファイルを作成。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# cd /app/angular2_quickstart/ # 任意のディレクトリ
+# touch hello.html hello.ts
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;① hello.html&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;!-- hello.html --&amp;gt;
+&amp;lt;html&amp;gt;
+  &amp;lt;head&amp;gt;
+    &amp;lt;title&amp;gt;Angular 2 Quickstart&amp;lt;/title&amp;gt;
+    &amp;lt;script src=&amp;quot;https://github.jspm.io/jmcriffey/bower-traceur-runtime@0.0.87/traceur-runtime.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;script src=&amp;quot;https://jspm.io/system@0.16.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;script src=&amp;quot;https://code.angularjs.org/2.0.0-alpha.23/angular2.dev.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body&amp;gt;
+    &amp;lt;!-- The app component created in hello.ts --&amp;gt;
+    &amp;lt;my-app&amp;gt;&amp;lt;/my-app&amp;gt;
+    &amp;lt;script&amp;gt;System.import(&#39;hello&#39;);&amp;lt;/script&amp;gt;
+  &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;② hello.ts&lt;/p&gt;
+
+&lt;script src=&#34;https://gist.github.com/Sankame/e4ed0d2d8b9c9df5f074.js&#34;&gt;&lt;/script&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;上記ディレクトリでtscを監視モードで実行。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# cd /app/angular2_quickstart/
+# 
+# tsc --watch -m commonjs -t es5 --emitDecoratorMetadata *.ts
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;簡易HTTPサーバーをインストール後、上記ディレクトリで起動します。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# npm install http-server -g
+#
+# cd /app/angular2_quickstart/
+#
+# http-server
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;ブラウザ確認&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;下記URLで&amp;rdquo;Hello World !&amp;ldquo;が表示されれば成功です。(ホスト名(IP)は自分の環境に読み替え)&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;http://192.168.33.10:8080/hello.html&#34; target=&#34;_blank&#34;&gt;&lt;a href=&#34;http://192.168.33.10:8080/hello.html&#34;&gt;http://192.168.33.10:8080/hello.html&lt;/a&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;参考ページ&#34;&gt;参考ページ&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://angular.io/docs/js/latest/quickstart.html&#34; target=&#34;_blank&#34;&gt;公式ページ (5 MIN QUICKSTART)&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;http://liginc.co.jp/web/programming/node-js/85318&#34; target=&#34;_blank&#34;&gt;いまアツいJavaScript！ゼロから始めるNode.js入門&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Vagrant &#43; VirtualBox でCentOS開発環境構築</title>
+      <link>https://sankame.github.io/blog/2015-05-06-vagrant_setup/</link>
+      <pubDate>Wed, 06 May 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2015-05-06-vagrant_setup/</guid>
+      <description>
+
+&lt;p&gt;&lt;span&gt;&amp;nbsp;&lt;/span&gt;&lt;span style=&#34;color:#d14; float:right;&#34;&gt;更新日：2017年01月28日&lt;/span&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;0-環境&#34;&gt;0.環境&lt;/h1&gt;
+
+&lt;pre&gt;&lt;code&gt;[PC]     DELL LATITUDE E5500
+[ホストOS] Windows 7 (32bit 版)
+[ゲストOS] CentOS 6.5 (64bit 版)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;1-概要&#34;&gt;1.概要&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Vagrantで開発環境を作りました。&lt;/p&gt;
+
+&lt;p&gt;VirtualBoxを操作するためにVagrantというツールを使うイメージです。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/vagrant_setup/vagrant.jpg&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;100%&#34; height=&#34;100%&#34; title=&#34;接続情報&#34; alt=&#34;接続情報&#34; src=&#34;https://sankame.github.io/assets/posts/img/vagrant_setup/vagrant.jpg&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;VirtualBox上に仮想マシン(以下VM)起動し、そこにCentOSをインストールして開発環境とします。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;2-bios設定変更&#34;&gt;2.BIOS設定変更&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;VMを起動する準備として、BIOSの設定を変更します。&lt;/p&gt;
+
+&lt;p&gt;PCの電源をONにし、OSが起動する前に特定のキーを押してBIOS設定画面を開きます。&lt;/p&gt;
+
+&lt;p&gt;(PCによって異なるので、下記のキーは読み替えて下さい)&lt;/p&gt;
+
+&lt;p&gt;OS起動時に[F2] または [F10]キーを押下。&lt;/p&gt;
+
+&lt;p&gt;[Virtualization Support] - [Virtualization]を選択し、[Enable]にチェックをつけて[Apply]→[Exit]を選択。&lt;/p&gt;
+
+&lt;p&gt;そのままOSが起動するのを待ちます。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;3-virtualboxインストール&#34;&gt;3.VirtualBoxインストール&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;下記ページで&amp;rdquo;VirtualBox 4.3.26 for Windows hosts&amp;rdquo; をクリックしVirtualBoxをダウンロード。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://www.virtualbox.org/wiki/Downloads&#34; target=&#34;_blank&#34;&gt;VirtualBoxダウンロード&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;ダウンロード、インストールともに僕の環境では数分かかりました。&lt;/p&gt;
+
+&lt;p&gt;途中何度かOracle社のコンポーネントをインストールしますか？と聞かれたので全てYesを選択。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;4-vagrantインストール&#34;&gt;4.Vagrantインストール&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;次のリンク先でWindows用を選択して Vagrantをダウンロード。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://www.vagrantup.com/downloads.html&#34; target=&#34;_blank&#34;&gt;Vagrantダウンロード&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;インストールが終わったら再起動を求められます。&lt;/p&gt;
+
+&lt;p&gt;コマンドプロンプトで下記を実行することで、boxファイル(用意されたVMイメージ)を取得し、VirtualBoxに追加します。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-cmd&#34;&gt;C:\Users\【ユーザー名】&amp;gt; vagrant box add CentOS65 https://github.com/2creatives/vagrant-centos/releases/download/v6.5.3/centos65-x86_64-20140116.box
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;5-vagrantを使ってvirtualboxのvmを起動&#34;&gt;5.Vagrantを使ってVirtualBoxのVMを起動&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;適当なフォルダにVagrantファイルを作成し、VM起動時の設定を定義します。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-cmd&#34;&gt;C:\apps\Vagrant\Vagrantfiles&amp;gt;mkdir centos
+
+C:\apps\Vagrant\Vagrantfiles&amp;gt;cd centos
+
+C:\apps\Vagrant\Vagrantfiles\centos&amp;gt;vagrant init CentOS65
+A `Vagrantfile` has been placed in this directory. You are now
+ready to `vagrant up` your first virtual environment! Please read
+the comments in the Vagrantfile as well as documentation on
+`vagrantup.com` for more information on using Vagrant.
+
+C:\apps\Vagrant\Vagrantfiles\centos&amp;gt;dir
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;次に自動生成された Vagrantfile を編集します。&lt;/p&gt;
+
+&lt;p&gt;必要箇所のコメントアウトを解除。（下記は編集前後のdiff）&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-diff&#34;&gt;# diff Vagrantfile.org Vagrantfile                       
+29c29
+&amp;lt;   # config.vm.network &amp;quot;private_network&amp;quot;, ip: &amp;quot;192.168.33.10&amp;quot;
+---
+&amp;gt;   config.vm.network &amp;quot;private_network&amp;quot;, ip: &amp;quot;192.168.33.10&amp;quot;
+46c47
+&amp;lt;   # config.vm.provider &amp;quot;virtualbox&amp;quot; do |vb|
+---
+&amp;gt;   config.vm.provider &amp;quot;virtualbox&amp;quot; do |vb|
+48c49
+&amp;lt;   #   vb.gui = true
+---
+&amp;gt;       vb.gui = true
+51,52c52,53
+&amp;lt;   #   vb.memory = &amp;quot;1024&amp;quot;
+&amp;lt;   # end
+---
+&amp;gt;       vb.memory = &amp;quot;1024&amp;quot;
+&amp;gt;   end
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&amp;ldquo;vb.gui = true&amp;rdquo; のコメントアウトを解除しないと、VM起動時に下記エラーが出続けるので注意。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-cmd&#34;&gt;default: Warning: Connection timeout. Retrying...
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;編集が終わったら VagrantコマンドでVMを起動します。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-cmd&#34;&gt;C:\apps\Vagrant\Vagrantfiles\centos&amp;gt; vagrant up
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;6-ターミナルソフトでvmに接続&#34;&gt;6.ターミナルソフトでVMに接続&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;使い慣れたターミナルソフトでVMに接続します。&lt;/p&gt;
+
+&lt;p&gt;まずは用意された user=vagrant, password=vagrant で接続。&lt;/p&gt;
+
+&lt;p&gt;(下記はpoderosaでの接続例)&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/vagrant_setup/poderosa.png&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;40%&#34; height=&#34;40%&#34; title=&#34;接続情報&#34; alt=&#34;接続情報&#34; src=&#34;https://sankame.github.io/assets/posts/img/vagrant_setup/poderosa.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;以降は root で接続したいので、rootのパスワードを再設定します。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;$ sudo passwd root
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;7-その他-ファイル共有&#34;&gt;7.その他：ファイル共有&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;ホストOS(Windows)とゲストOS(CentOS)でファイル共有したい場合、上記5の Vagrantfile で下記の行を有効にします。&lt;/p&gt;
+
+&lt;p&gt;Vagrantfileの変更を反映するにはVMの再起動が必要です。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;(例) 左がWindows、右がCentOSのパス。(Windowsのパスは\を2つ重ねる必要あり)&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-cmd&#34;&gt;config.vm.synced_folder &amp;quot;c:\\vm\\share&amp;quot;, &amp;quot;/share&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;参考にしたページ&#34;&gt;参考にしたページ&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://qiita.com/hiroyasu55/items/11a4c996b0c62450940f&#34; target=&#34;_blank&#34;&gt;インストール手順&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://sakashushu.blog.so-net.ne.jp/2014-06-16&#34; target=&#34;_blank&#34;&gt;エラーの際に役立ったページ&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>jqGridで表示する値と元の値を分ける</title>
+      <link>https://sankame.github.io/blog/2015-05-02-jqgrid_formatter/</link>
+      <pubDate>Sat, 02 May 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2015-05-02-jqgrid_formatter/</guid>
+      <description>
+
+&lt;h2 id=&#34;0-環境&#34;&gt;0.環境&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;[jquery]     1.7.1
+[jquery-ui]  1.10.3
+[jqGrid]     4.5.2
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;1-コード&#34;&gt;1.コード&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;画面表示は formatter で定義し、処理では元の値を使いたいので unformat で定義します。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;    
+jQuery(&amp;quot;#grid_id&amp;quot;).jqGrid({
+    // 省略
+    colModel: [
+        // 省略
+        {name:&#39;name&#39;, index:&#39;name&#39;, formatter: formatterName, unformat: unformatName},
+        // 省略
+    ]
+    // 省略
+});
+    
+/** リンクに変更 */
+function formatterName(cellvalue, options, rowdata) {
+    var val = &amp;quot;&amp;lt;a href=\&amp;quot;javascript:void(0);\&amp;quot; onclick=\&amp;quot;showItem(&#39;&amp;quot; + rowdata.item_id + &amp;quot;&#39;);\&amp;quot;&amp;gt;&amp;quot; + cellvalue + &amp;quot;&amp;lt;/a&amp;gt;&amp;quot;;
+    return val;
+}
+    
+/** 加工しない元の値 */
+function unformatName(cellvalue, options)
+{
+    return cellvalue;
+}
+    
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;2-参考&#34;&gt;2.参考&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://www.trirand.com/jqgridwiki/doku.php?id=wiki:custom_formatter&#34; target=&#34;_blank&#34;&gt;参考にしたページ&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
