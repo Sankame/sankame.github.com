@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <title>プログラマー備忘録</title>
+    <meta name="generator" content="Hugo 0.19" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    
+    
+
+    
+    
+    <meta name="robots" content="noindex">
+    
+
+    <script src="https://sankame.github.io/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="https://sankame.github.io/bower_components/bootstrap/js/bootstrap.min.js"></script>
+    <script src="https://sankame.github.io/bower_components/bootstrap/js/dropdowns-enhancement.js"></script>
+    <script src="https://sankame.github.io/bower_components/bluebird/js/browser/bluebird.js"></script>
+    
+    
+    
+    <script src="https://sankame.github.io/bower_components/d3/d3.min.js" charset="utf-8"></script>
+    <script src="https://sankame.github.io/bower_components/cal-heatmap/cal-heatmap.min.js"></script>
+    <script src="https://sankame.github.io/bower_components/highlightjs/highlight.pack.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']]}
+      });
+    </script>
+
+    <link rel="icon" href="https://sankame.github.io/favicon.ico" />
+    <link rel="apple-touch-icon" href="https://sankame.github.io/apple-touch-icon.png" />
+    <link rel="stylesheet" href="https://sankame.github.io/bower_components/highlightjs/styles/monokai.css" />
+    <link rel="stylesheet" href="https://sankame.github.io/bower_components/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://sankame.github.io/bower_components/bootstrap/css/dropdowns-enhancement.css" />
+    <link rel="stylesheet" href="https://sankame.github.io/bower_components/talaria/dist/talaria.css" />   
+    <link rel="stylesheet" href="https://sankame.github.io/bower_components/createjs/createjs.css" />
+    <link rel="stylesheet" href="https://sankame.github.io/bower_components/font-awesome/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="https://sankame.github.io/bower_components/icomoon/css/icomoon.css" />
+    <link rel="stylesheet" href="https://sankame.github.io/css/style.css" />
+    <link rel="stylesheet" href="https://sankame.github.io/css/mobile.css" />
+    <link rel="stylesheet" href="https://sankame.github.io/bower_components/cal-heatmap/cal-heatmap.css" />
+    <link rel="stylesheet" href="https://sankame.github.io/css/sankame.css" />
+
+    <link rel="alternate" type="application/rss+xml" title="プログラマー備忘録" href="https://sankame.github.io/index.xml"/>
+    <link rel="feed" type="application/rss+xml" title="プログラマー備忘録" href="https://sankame.github.io/index.xml" />
+
+    
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-7938855665302783",
+          enable_page_level_ads: true
+     });
+</script>
+</head>
+<body>
+<div class="container">
+
+
+<div id="container">
+    
+
+<header id="header">
+  <div id="header-main" class="header-inner">
+    <div class="outer">
+
+	<nav class="navbar navbar-default">
+	  <div class="container-fluid">
+
+    	    <div class="navbar-header">
+      		<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+      		  <span class="sr-only">Toggle navigation</span>
+      		  <span class="icon-bar"></span>
+      		  <span class="icon-bar"></span>
+      		  <span class="icon-bar"></span>
+      		</button>
+		    <h1>
+			    <a class="navbar-brand" href="https://sankame.github.io/">
+				    
+				    
+				    <span class="site-title">プログラマー備忘録</span>
+				    
+			    </a>
+		    </h1>
+	    </div>
+
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+    
+    <li>
+	<a href="https://twitter.com/handycola" target="_blank">
+		<i class="fa fa-twitter" aria-hidden="true"></i>
+	</a>
+
+</li>
+<li>
+	<a href="https://facebook.com/100014073908728" target="_blank">
+		<i class="fa fa-facebook" aria-hidden="true"></i>
+	</a>
+</li>
+<li>
+	<a href="https://stackoverflow.com/users/2849068/sankame" target="_blank">
+		<i class="fa fa-stack-overflow" aria-hidden="true"></i>
+	</a>
+</li>
+<li>
+	<a href="/index.xml" type="application/rss+xml" target="_blank">
+		<i class="fa fa-rss-square" aria-hidden="true"></i>
+	</a>
+</li>
+
+    
+      </ul>
+    </div>
+
+  </div>
+</nav>
+
+</header>
+
+
+
+
+    <div id="top-image">
+	<div id="top-image-wrap">
+		<iframe src="https://sankame.github.io/bower_components/particlesjs/particlesjs.html"></iframe>
+	</div>
+</div>
+
+    <div class="outer">
+
+    <section id="main">
+
+    
+    
+    <article class="article article-type-post" itemscope="" itemprop="blogPost">
+
+	    <div class="article-inner">
+
+            
+            </a>
+
+            <header class="article-header">
+    
+    <h1 class="article-title" itemprop="name">
+	<a href="https://sankame.github.io/blog/2014-02-02-php_sample/" class="permalink">PHPメモ</a>
+    </h1>
+	<time datetime="2014-02-02 00:00:00 &#43;0000 UTC" itemprop="datePublished">2014-02-02</time>
+    <div class="article-meta">
+
+        
+    </div>
+</header>
+
+            <div class="article-entry" itemprop="articleBody">
+                <p>
+                     PHPメモ (自分用) (1) extensionが追加されたかコマンドラインで確認  下記は例。OAuthの部分は任意のextension名に置き換える。
+# php -r &quot;echo phpinfo();&quot;|grep OAuth OAuth OAuth support =&gt; enabled    ...
+                </p>
+                <p class="article-more-link">
+                    <a href="https://sankame.github.io/blog/2014-02-02-php_sample/">
+			    Read more
+			    
+                    </a>
+                </p>
+            </div>
+	    
+        </div>
+    </article>
+    
+    <article class="article article-type-post" itemscope="" itemprop="blogPost">
+
+	    <div class="article-inner">
+
+            
+            </a>
+
+            <header class="article-header">
+    
+    <h1 class="article-title" itemprop="name">
+	<a href="https://sankame.github.io/blog/2013-10-04-mind_map_tools/" class="permalink">スマホ(Android)とPCでMindMapを使う</a>
+    </h1>
+	<time datetime="2013-10-04 00:00:00 &#43;0000 UTC" itemprop="datePublished">2013-10-04</time>
+    <div class="article-meta">
+
+        
+    </div>
+</header>
+
+            <div class="article-entry" itemprop="articleBody">
+                <p>
+                     0.環境 [スマホ端末/OS] GALAXY S SC-02B / Android2.2 [PC端末/OS] Gateway SX2800 / Windows Vista Home Premium  1.スマホでマインドマップ作成  1-1.スマホにMindMapMemoをインストールする。
+ 1-2.マインドマップのファイルを作成後、「オプション」-「メール送信(SD保存)」-「FreeMind(.mm)」を選択。
+ 1-3.共有するためのアプリ一覧が表示されるので、PCへファイルを送信できるアプリを選択。
+  2.PCにFreeMindをインストール  2-1.下記リンク先のページで[0.8.1]をクリック。
+(0.9.0では上記スマホで作成したファイルをうまく開けませんでした)
+FreeMindソース
+ 2-2.[freemind-bin-0_8_1.zip]をクリック。
+ 2-3.PCにダウンロード後、解凍してFreemind.exeをダブルクリック。
+ 2-4.メニューの「ファイル」-「開く」で、スマホから送信した拡張子がmmのファイルを選択。
+ 2-5.スマホではカラフルに作ったのにFreeMindで開くと白黒になっている。まあ内容が分かるからいいか…
+   ...
+                </p>
+                <p class="article-more-link">
+                    <a href="https://sankame.github.io/blog/2013-10-04-mind_map_tools/">
+			    Read more
+			    
+                    </a>
+                </p>
+            </div>
+	    
+        </div>
+    </article>
+    
+    <article class="article article-type-post" itemscope="" itemprop="blogPost">
+
+	    <div class="article-inner">
+
+            
+            </a>
+
+            <header class="article-header">
+    
+    <h1 class="article-title" itemprop="name">
+	<a href="https://sankame.github.io/blog/2013-09-23-php_debug_bar_install/" class="permalink">PHP Debug Bar インストール</a>
+    </h1>
+	<time datetime="2013-09-23 00:00:00 &#43;0000 UTC" itemprop="datePublished">2013-09-23</time>
+    <div class="article-meta">
+
+        
+    </div>
+</header>
+
+            <div class="article-entry" itemprop="articleBody">
+                <p>
+                    0.環境 [CentOS] 5.6 (32bit版カーネル) [Apache] 2.2.3 [PHP] 5.4.1 [phalcon] 1.2.1  1.PHP Debug Barをインストール  (1-1) Webサーバーのドキュメントルートにcomposer.jsonを配置し、下記内容を記述します。(下図1-3参照)
+{ &quot;require&quot;: { &quot;maximebf/debugbar&quot;: &quot;&gt;=1.0.0&quot; } }  (1-2) Webサーバーのドキュメントルートで次のコマンドを実行。
+# composer install  ※ composerが未インストールの場合、こちらを参考にインストールして下さい。
+ (1-3) ディレクトリ構成
+app_root : Webサイトのルートディレクトリ
+public : 公開ディレクトリ
+薄オレンジ : composerで設置されたディレクトリ
+  2.コードを記述 (要点以外は省略)  (2-0) index.php(フレームワークのエントリポイント)に次の内容を追記。
+  composer関係のファイルをバージョン管理(svn, git等)から除外した場合、 この記述だけ残してリリースしないよう注意して下さい。 
+ (2-1) ControllerBase(全コントローラの親クラス)に次の内容を追記。
+use DebugBar\StandardDebugBar; class ControllerBase extends Phalcon\Mvc\Controller { protected $debugbar; // Actionメソッドの後処理 public function afterExecuteRoute($dispatcher) { $debugbarRenderer = $this-&gt;debugbar-&gt;getJavascriptRenderer(); $this-&gt;view-&gt;setVar('debugbarHeader', $debugbarRenderer-&gt;renderHead()); $this-&gt;view-&gt;setVar('debugbarBody', $debugbarRenderer-&gt;render()); } }  (2-2) ContactControllerに次の内容を追記。 ...
+                </p>
+                <p class="article-more-link">
+                    <a href="https://sankame.github.io/blog/2013-09-23-php_debug_bar_install/">
+			    Read more
+			    
+                    </a>
+                </p>
+            </div>
+	    
+        </div>
+    </article>
+    
+    <article class="article article-type-post" itemscope="" itemprop="blogPost">
+
+	    <div class="article-inner">
+
+            
+            </a>
+
+            <header class="article-header">
+    
+    <h1 class="article-title" itemprop="name">
+	<a href="https://sankame.github.io/blog/2013-09-16-ruby_hello_world/" class="permalink">Rubyを始める</a>
+    </h1>
+	<time datetime="2013-09-16 00:00:00 &#43;0000 UTC" itemprop="datePublished">2013-09-16</time>
+    <div class="article-meta">
+
+        
+    </div>
+</header>
+
+            <div class="article-entry" itemprop="articleBody">
+                <p>
+                    Rubyを始める 0.環境  [CentOS] 5.6 (32bit版カーネル) [Apache] 2.2.3  1.Rubyインストール  1-1.Rubyがすでにインストールされているか調べる。
+(インストールされている場合は下記のように表示される)
+# rpm -q ruby ruby-1.8.6.111-1  1-2.インストールされていない場合、下記コマンドでインストール。
+# yum install ruby ruby-devel rdoc irb   2.Apache設定  2-1.mod_cgiがロードされていることを確認。
+# cat /etc/httpd/conf/httpd.conf|grep mod_cgi LoadModule cgi_module modules/mod_cgi.so   3.htacess設定  3-1.Apacheドキュメントルートの.htaccessに下記を追記。
+(ドキュメントルートのパスは読み替えて下さい)
+# cat /var/www/html/.htaccess AddHandler cgi-script .cgi .rb Options +ExecCGI   4.動作確認  4-1.ファイル作成
+# touch /var/www/html/hello.rb  4-2.テストコード記述
+作成したファイルに下記コードを記述。
+(1行目のrubyのパスは、which ruby で調べて読み替えて下さい)
+#!/usr/bin/ruby print &quot;Content-type:text/html\n\n&quot; print &lt;&lt;EOS &lt;HTML&gt; &lt;HEAD&gt; &lt;/HEAD&gt; &lt;BODY&gt; Hello World! ...
+                </p>
+                <p class="article-more-link">
+                    <a href="https://sankame.github.io/blog/2013-09-16-ruby_hello_world/">
+			    Read more
+			    
+                    </a>
+                </p>
+            </div>
+	    
+        </div>
+    </article>
+    
+    <article class="article article-type-post" itemscope="" itemprop="blogPost">
+
+	    <div class="article-inner">
+
+            
+            </a>
+
+            <header class="article-header">
+    
+    <h1 class="article-title" itemprop="name">
+	<a href="https://sankame.github.io/blog/2013-09-09-git_command/" class="permalink">Gitコマンド メモ</a>
+    </h1>
+	<time datetime="2013-09-09 00:00:00 &#43;0000 UTC" itemprop="datePublished">2013-09-09</time>
+    <div class="article-meta">
+
+        
+    </div>
+</header>
+
+            <div class="article-entry" itemprop="articleBody">
+                <p>
+                    &nbsp;更新日：2017年08月24日
+(1) .gitignoreファイル  gitの管理外にしたいファイルを定義。下記のようにディレクトリ指定も可能。
+# view .gitignore app/logs/   (2) インデックスから降ろす(git管理外にする)  インデックスから降ろすだけ。
+# git rm --cached -f hoge.txt  インデックスから降ろして、ファイルを物理削除。
+# git rm -f hoge.txt   (3) ブランチ操作(2013/10/07)  今いるブランチは？
+# git branch *　master  ブランチtest1を作って、test1へ切り替える。
+# git branch test1 # git checkout test1 Switched to branch 'test1'  masterブランチへ戻る。
+# git checkout master Switched to branch 'master'  使わなくなったブランチtest1を削除。
+# git branch -d test1 Deleted branch test1 (was 0854f22). ...
+                </p>
+                <p class="article-more-link">
+                    <a href="https://sankame.github.io/blog/2013-09-09-git_command/">
+			    Read more
+			    
+                    </a>
+                </p>
+            </div>
+	    
+        </div>
+    </article>
+    
+    <article class="article article-type-post" itemscope="" itemprop="blogPost">
+
+	    <div class="article-inner">
+
+            
+            </a>
+
+            <header class="article-header">
+    
+    <h1 class="article-title" itemprop="name">
+	<a href="https://sankame.github.io/blog/2013-09-02-nexus7_projected_to_pc/" class="permalink">Nexus7のスクリーンをプロジェクターに映す (Android Screen Cast)</a>
+    </h1>
+	<time datetime="2013-09-01 00:00:00 &#43;0000 UTC" itemprop="datePublished">2013-09-01</time>
+    <div class="article-meta">
+
+        
+    </div>
+</header>
+
+            <div class="article-entry" itemprop="articleBody">
+                <p>
+                    環境 [タブレット(OS)] Nexus7(Android 4.2.2) [PC(OS)] Gateway SX2800(Windows Vista Home Premium)  0. 検討  プレゼンでNexus7のスクリーンをプロジェクターに映したいと考え、検討した結果、下記C案にしました。
+ A.変換器を使う →Nexus7はMHL非対応…
+ B.アプリで解決 →PCに映像を送信する方法。有料かつNexus7のRoot化が必要。
+ C.アプリで解決 →PCに映像を送信する方法。無料かつRoot化の必要もなし。Nexus7の映像がPCに届くまで数秒のタイムラグあり。
+   1. PCにAndroid SDKをインストール  下記ページの[download here] - [Download the SDK]ボタンをクリック。
+ダウンロード
+ 規約に同意したら「I have read and agree…」にチェック。
+ 32ビットか64ビットかは、次の手順で調べます。
+[スタート]メニュー - [コンピュータ]右クリック - [プロパティ]
+[システムの種類]を確認。
+  2. Nexus7とPCをUSBケーブルで接続 3. Android Screen Cast  (3-1) Android Screen Castを下記リンクからダウンロードし、PCの任意のフォルダに保存します。
+ダウンロード
+ (3-2) コマンドプロンプトで上記3-1のフォルダに移動し、下記コマンドを実行。 ...
+                </p>
+                <p class="article-more-link">
+                    <a href="https://sankame.github.io/blog/2013-09-02-nexus7_projected_to_pc/">
+			    Read more
+			    
+                    </a>
+                </p>
+            </div>
+	    
+        </div>
+    </article>
+    
+    <article class="article article-type-post" itemscope="" itemprop="blogPost">
+
+	    <div class="article-inner">
+
+            
+            </a>
+
+            <header class="article-header">
+    
+    <h1 class="article-title" itemprop="name">
+	<a href="https://sankame.github.io/blog/2013-08-26-mysql_command/" class="permalink">MySQLコマンド メモ</a>
+    </h1>
+	<time datetime="2013-08-26 00:00:00 &#43;0000 UTC" itemprop="datePublished">2013-08-26</time>
+    <div class="article-meta">
+
+        
+    </div>
+</header>
+
+            <div class="article-entry" itemprop="articleBody">
+                <p>
+                     MySQLコマンド メモ WebサーバとDBサーバが1台のマシンにある場合によく行う操作。 # そのマシンのMySQLサーバにrootで接続 # (パスワードを聞かれるので入力してEnter) # mysql -h 127.0.0.1 -u root -p mysql&gt; -- UTF8でDBを作成し、接続ユーザを作成 (先頭がtestの文字は読み替えて下さい) mysql&gt; create database testdb default character set utf8; mysql&gt; grant all on testdb.* to 'testuser'@'localhost' identified by 'testpassword'; mysql&gt; flush privileges; mysql&gt; -- 別マシンからDBへ接続する必要がある場合は、以下のように別ユーザを作成 mysql&gt; -- (192.168.0.1の部分を別マシンのIPに読み替える) mysql&gt; grant all on testdb.* to testuser@192.168.0.1 identified by 'testpassword'; mysql&gt; -- 作成したDBに切り替え、テーブルを作成 mysql&gt; use testdb; mysql&gt; DROP TABLE IF EXISTS `users`; mysql&gt; CREATE TABLE `users` ( mysql&gt; `id` bigint unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY, mysql&gt; `username` varchar(32) NOT NULL mysql&gt; ) ENGINE=InnoDB;   ...
+                </p>
+                <p class="article-more-link">
+                    <a href="https://sankame.github.io/blog/2013-08-26-mysql_command/">
+			    Read more
+			    
+                    </a>
+                </p>
+            </div>
+	    
+        </div>
+    </article>
+    
+    <article class="article article-type-post" itemscope="" itemprop="blogPost">
+
+	    <div class="article-inner">
+
+            
+            </a>
+
+            <header class="article-header">
+    
+    <h1 class="article-title" itemprop="name">
+	<a href="https://sankame.github.io/blog/2013-08-11-nexus7_github_devenv/" class="permalink">Nexus7とGitHubでプログラミング環境を作る</a>
+    </h1>
+	<time datetime="2013-08-11 00:00:00 &#43;0000 UTC" itemprop="datePublished">2013-08-11</time>
+    <div class="article-meta">
+
+        
+    </div>
+</header>
+
+            <div class="article-entry" itemprop="articleBody">
+                <p>
+                    0.環境 [端末] Nexus7 [OS] Android 4.2.2 [BlueToothキーボード] ELECOM TK-FBP013  1.インストール  (1-1) Nexus7にBit Web Serverをインストールします。
+ダウンロード 
+Android上でPHPとMySQLを動かせるアプリ。(有料 約230円) root化しないで使用可能。  (1-2) Nexus7にTerminal IDEをインストールします。
+ダウンロード
+Android用の開発環境。(java、c、c++等のコンパイラを含む) root化しないで使用可能。   2.Hello World  Nexus7にBlueToothキーボードを接続。
+Nexus7でTerminal IDEを起動します。
+いくつかボタンが表示されるので、[Install System]をクリック。
+Overwrite ALLにチェックを入れ、[Install System]をクリックし、システムアップデート。
+[Terminal IDE]をクリック。
+コンソールが起動するので、ファイルを作成し、下記内容を書き込みます。
+$ cd $HOME/sdcard/wwww $ $ vim test_hello.php   Nexus7でBit Web Serverを起動。
+[Localhost]をクリック。
+ブラウザが起動し、表示されたファイル一覧から上記で作成したtest_hello.phpをクリック。
+ブラウザにhelloと表示されれば成功です。
+  3.GitHubにファイルをプッシュ(準備)  せっかくなのでNexus7からGitHubにファイルをプッシュしてみます。
+公開鍵と秘密鍵を作成。(Nexus7で下記コマンドを実行)
+$ dropbearkey -t rsa -f $HOME/. ...
+                </p>
+                <p class="article-more-link">
+                    <a href="https://sankame.github.io/blog/2013-08-11-nexus7_github_devenv/">
+			    Read more
+			    
+                    </a>
+                </p>
+            </div>
+	    
+        </div>
+    </article>
+    
+    <article class="article article-type-post" itemscope="" itemprop="blogPost">
+
+	    <div class="article-inner">
+
+            
+            </a>
+
+            <header class="article-header">
+    
+    <h1 class="article-title" itemprop="name">
+	<a href="https://sankame.github.io/blog/2013-07-10-redis_install/" class="permalink">Redisインストール</a>
+    </h1>
+	<time datetime="2013-07-10 00:00:00 &#43;0000 UTC" itemprop="datePublished">2013-07-10</time>
+    <div class="article-meta">
+
+        
+    </div>
+</header>
+
+            <div class="article-entry" itemprop="articleBody">
+                <p>
+                    環境 [CentOS] 5.6 (32bit版カーネル)  インストール # ソース取得。 # wget http://redis.googlecode.com/files/redis-2.6.7.tar.gz # # tar xzf redis-2.6.7.tar.gz # # cd redis-2.6.7 # # 続いてmakeを実行すると下記エラーが発生。 # make cd src &amp;&amp; make all make[1]: ディレクトリ `/root/redis-2.6.7/src' に入ります LINK redis-server zmalloc.o: In function `zmalloc_used_memory': /root/redis-2.6.7/src/zmalloc.c:223: undefined reference to `__sync_add_and_fetch_4' collect2: ld はステータス 1 で終了しました make[1]: *** [redis-server] エラー 1 make[1]: ディレクトリ `/root/redis-2.6.7/src' から出ます make: *** [all] エラー 2 # アーキテクチャを調べて、コンパイルオプションを指定。 # uname -m i686 # # export CFLAGS=-march=i686 # # make distclean # make # 下記メッセージが出てmakeは通ったらしい。 Hint: To run 'make test' is a good idea ;) # 続いてmake testを実行すると下記エラーが発生。 # make test ERROR: *** [err]: SLOWLOG - RESET subcommand works in tests/unit/slowlog. ...
+                </p>
+                <p class="article-more-link">
+                    <a href="https://sankame.github.io/blog/2013-07-10-redis_install/">
+			    Read more
+			    
+                    </a>
+                </p>
+            </div>
+	    
+        </div>
+    </article>
+    
+    <article class="article article-type-post" itemscope="" itemprop="blogPost">
+
+	    <div class="article-inner">
+
+            
+            </a>
+
+            <header class="article-header">
+    
+    <h1 class="article-title" itemprop="name">
+	<a href="https://sankame.github.io/blog/2013-07-05-dell_e5520_touchpad/" class="permalink">DELL E5520 のタッチパッドをOFFにする</a>
+    </h1>
+	<time datetime="2013-07-05 00:00:00 &#43;0000 UTC" itemprop="datePublished">2013-07-05</time>
+    <div class="article-meta">
+
+        
+    </div>
+</header>
+
+            <div class="article-entry" itemprop="articleBody">
+                <p>
+                     0. 環境 [PC] DELL E5520 [OS] Windows 7 Professional (SP1)  1. 手順  (1-1) ドライバーダウンロード
+ ダウンロードページ
+ 上記ダウンロードページで、&rdquo;マウス、キーボード、入力デバイス&rdquo; を開きます。
+ &ldquo;Dell Multi-Touch Touchpad Driver&rdquo; の右横にある「ファイルのダウンロード」をクリック。
+ Hard-Drive-ALPS_MULTI-TOUCH-TOUCHPAD_A06_GGY5W_SETUP_ZPE.exe を選択して「続行」をクリック。
+ &ldquo;単一ファイルのダウンロード&rdquo;を選択して「続行」をクリック。
+  (1-2) インストール
+ ダウンロード後、EXEファイルを実行します。
+ インストールが終わったら再起動します。
+  (1-3) 設定
+ Windows[スタートメニュー] - [コントロールパネル]を開き、Dell Touchpad が増えているのでダブルクリック。
+ DELLポインティングデバイス　というダイアログが起動。
+ 左メニューで任意のものを選択して、タッチパッドのOn/Offで O をクリックして、保存ボタンクリック。
+ こうするとタッチパッドがOffになります。
+ (見つからない場合は右上の「表示方法」を「小さいアイコン」または「大きいアイコン」に変更して下さい)
+   2. 参考ページ  http://detail.chiebukuro.yahoo.co.jp/qa/question_detail/q13104530838   ...
+                </p>
+                <p class="article-more-link">
+                    <a href="https://sankame.github.io/blog/2013-07-05-dell_e5520_touchpad/">
+			    Read more
+			    
+                    </a>
+                </p>
+            </div>
+	    
+        </div>
+    </article>
+    
+
+    <nav id="page-nav">
+
+    
+        <a class="extend prev" rel="prev" href="/page/8/">
+            « 
+        </a>
+    
+    
+        <a class="extend next" rel="next" href="/page/10/">
+             »
+        </a>
+    
+
+</nav>
+
+</section>
+
+
+    
+<aside id="sidebar">
+    
+
+<div class="widget-wrap">
+    <div class="widget">
+        <ul id="recent-post">
+		<li id="first-recent"><a href="/index.xml" id="firstmove" class="move"><h3 class="widget-title">
+			最近の投稿
+    </h3></a></li>
+    		
+            
+<li><a href="https://sankame.github.io/blog/2021-11-20-flutter_pub_upgrade_error/" class="move">  Error: Unable to &#39;pub upgrade&#39; flutter tool.</a> </li>
+            
+<li><a href="https://sankame.github.io/blog/2021-09-11-mysql_setting_slow_query/" class="move">  MySQLでSlowQueryLogを有効にする</a> </li>
+            
+<li><a href="https://sankame.github.io/blog/2021-08-10-android_app_bundle/" class="move">  Android App Bundleに対応</a> </li>
+            
+        </ul>
+    </div>
+</div>
+
+
+
+    
+
+<div class="widget-wrap">
+    <div class="widget">
+        <ul class="category-list">
+    <h3 class="widget-title">Categories </h3>
+            
+                <a class="category-list-link" href="https://sankame.github.io/categories/tips">
+            <li class="category-list-item">
+                    tips
+                <span class="category-list-count">26</span>
+            </li>
+                </a>
+            
+                <a class="category-list-link" href="https://sankame.github.io/categories/%e3%82%a8%e3%83%a9%e3%83%bc%e8%a7%a3%e6%b1%ba">
+            <li class="category-list-item">
+                    エラー解決
+                <span class="category-list-count">26</span>
+            </li>
+                </a>
+            
+                <a class="category-list-link" href="https://sankame.github.io/categories/%e3%82%bb%e3%83%83%e3%83%88%e3%82%a2%e3%83%83%e3%83%97">
+            <li class="category-list-item">
+                    セットアップ
+                <span class="category-list-count">41</span>
+            </li>
+                </a>
+            
+                <a class="category-list-link" href="https://sankame.github.io/categories/%e3%83%81%e3%83%a5%e3%83%bc%e3%83%8b%e3%83%b3%e3%82%b0">
+            <li class="category-list-item">
+                    チューニング
+                <span class="category-list-count">2</span>
+            </li>
+                </a>
+            
+                <a class="category-list-link" href="https://sankame.github.io/categories/%e3%83%97%e3%83%ad%e3%82%b0%e3%83%a9%e3%83%9f%e3%83%b3%e3%82%b0">
+            <li class="category-list-item">
+                    プログラミング
+                <span class="category-list-count">7</span>
+            </li>
+                </a>
+            
+        </ul>
+    </div>
+</div>
+
+
+
+    
+
+<div class="widget-wrap">
+	<ul class="category-list">
+    <h3 class="widget-title">Tags  </h3>
+    <div class="widget tagcloud">
+    	
+        
+        <a href="https://sankame.github.io/tags/Android" style="font-size: 12px;">Android</a>
+        
+        <a href="https://sankame.github.io/tags/AndroidStudio" style="font-size: 12px;">AndroidStudio</a>
+        
+        <a href="https://sankame.github.io/tags/AndroidWear" style="font-size: 12px;">AndroidWear</a>
+        
+        <a href="https://sankame.github.io/tags/Angular2" style="font-size: 12px;">Angular2</a>
+        
+        <a href="https://sankame.github.io/tags/Apache" style="font-size: 12px;">Apache</a>
+        
+        <a href="https://sankame.github.io/tags/ApacheBench" style="font-size: 12px;">ApacheBench</a>
+        
+        <a href="https://sankame.github.io/tags/AppleWatch" style="font-size: 12px;">AppleWatch</a>
+        
+        <a href="https://sankame.github.io/tags/Bitbucket" style="font-size: 12px;">Bitbucket</a>
+        
+        <a href="https://sankame.github.io/tags/CentOS" style="font-size: 12px;">CentOS</a>
+        
+        <a href="https://sankame.github.io/tags/DELL" style="font-size: 12px;">DELL</a>
+        
+        <a href="https://sankame.github.io/tags/Eclipse" style="font-size: 12px;">Eclipse</a>
+        
+        <a href="https://sankame.github.io/tags/Flutter" style="font-size: 12px;">Flutter</a>
+        
+        <a href="https://sankame.github.io/tags/FreeMind" style="font-size: 12px;">FreeMind</a>
+        
+        <a href="https://sankame.github.io/tags/Git" style="font-size: 12px;">Git</a>
+        
+        <a href="https://sankame.github.io/tags/GitHub" style="font-size: 12px;">GitHub</a>
+        
+        <a href="https://sankame.github.io/tags/GoogleSheets" style="font-size: 12px;">GoogleSheets</a>
+        
+        <a href="https://sankame.github.io/tags/Gradle" style="font-size: 12px;">Gradle</a>
+        
+        <a href="https://sankame.github.io/tags/Hive" style="font-size: 12px;">Hive</a>
+        
+        <a href="https://sankame.github.io/tags/Hugo" style="font-size: 12px;">Hugo</a>
+        
+        <a href="https://sankame.github.io/tags/Java" style="font-size: 12px;">Java</a>
+        
+        <a href="https://sankame.github.io/tags/JavaScript" style="font-size: 12px;">JavaScript</a>
+        
+        <a href="https://sankame.github.io/tags/Jekyll" style="font-size: 12px;">Jekyll</a>
+        
+        <a href="https://sankame.github.io/tags/Jenkins" style="font-size: 12px;">Jenkins</a>
+        
+        <a href="https://sankame.github.io/tags/Kitura" style="font-size: 12px;">Kitura</a>
+        
+        <a href="https://sankame.github.io/tags/Laravel" style="font-size: 12px;">Laravel</a>
+        
+        <a href="https://sankame.github.io/tags/Let%27sEncrypt" style="font-size: 12px;">Let&#39;sEncrypt</a>
+        
+        <a href="https://sankame.github.io/tags/MeCab" style="font-size: 12px;">MeCab</a>
+        
+        <a href="https://sankame.github.io/tags/MindMapMemo" style="font-size: 12px;">MindMapMemo</a>
+        
+        <a href="https://sankame.github.io/tags/Mockery" style="font-size: 12px;">Mockery</a>
+        
+        <a href="https://sankame.github.io/tags/Monit" style="font-size: 12px;">Monit</a>
+        
+        <a href="https://sankame.github.io/tags/MySQL" style="font-size: 12px;">MySQL</a>
+        
+        <a href="https://sankame.github.io/tags/NTP" style="font-size: 12px;">NTP</a>
+        
+        <a href="https://sankame.github.io/tags/Nexus7" style="font-size: 12px;">Nexus7</a>
+        
+        <a href="https://sankame.github.io/tags/Nginx" style="font-size: 12px;">Nginx</a>
+        
+        <a href="https://sankame.github.io/tags/OpenX" style="font-size: 12px;">OpenX</a>
+        
+        <a href="https://sankame.github.io/tags/PHP" style="font-size: 12px;">PHP</a>
+        
+        <a href="https://sankame.github.io/tags/PHPDebugBar" style="font-size: 12px;">PHPDebugBar</a>
+        
+        <a href="https://sankame.github.io/tags/PHPUnit" style="font-size: 12px;">PHPUnit</a>
+        
+        <a href="https://sankame.github.io/tags/Phalcon" style="font-size: 12px;">Phalcon</a>
+        
+        <a href="https://sankame.github.io/tags/ReactNative" style="font-size: 12px;">ReactNative</a>
+        
+        <a href="https://sankame.github.io/tags/Redis" style="font-size: 12px;">Redis</a>
+        
+        <a href="https://sankame.github.io/tags/ReviveAdServer" style="font-size: 12px;">ReviveAdServer</a>
+        
+        <a href="https://sankame.github.io/tags/Ruby" style="font-size: 12px;">Ruby</a>
+        
+        <a href="https://sankame.github.io/tags/RubyGems" style="font-size: 12px;">RubyGems</a>
+        
+        <a href="https://sankame.github.io/tags/Rundeck" style="font-size: 12px;">Rundeck</a>
+        
+        <a href="https://sankame.github.io/tags/SQLite" style="font-size: 12px;">SQLite</a>
+        
+        <a href="https://sankame.github.io/tags/SSL-TLS" style="font-size: 12px;">SSL-TLS</a>
+        
+        <a href="https://sankame.github.io/tags/Selenium" style="font-size: 12px;">Selenium</a>
+        
+        <a href="https://sankame.github.io/tags/Smarty" style="font-size: 12px;">Smarty</a>
+        
+        <a href="https://sankame.github.io/tags/Subversion" style="font-size: 12px;">Subversion</a>
+        
+        <a href="https://sankame.github.io/tags/Swift" style="font-size: 12px;">Swift</a>
+        
+        <a href="https://sankame.github.io/tags/Touchpad" style="font-size: 12px;">Touchpad</a>
+        
+        <a href="https://sankame.github.io/tags/TypeScript" style="font-size: 12px;">TypeScript</a>
+        
+        <a href="https://sankame.github.io/tags/Ubuntu" style="font-size: 12px;">Ubuntu</a>
+        
+        <a href="https://sankame.github.io/tags/UnitTest" style="font-size: 12px;">UnitTest</a>
+        
+        <a href="https://sankame.github.io/tags/VSCode" style="font-size: 12px;">VSCode</a>
+        
+        <a href="https://sankame.github.io/tags/Vagrant" style="font-size: 12px;">Vagrant</a>
+        
+        <a href="https://sankame.github.io/tags/VirtualBox" style="font-size: 12px;">VirtualBox</a>
+        
+        <a href="https://sankame.github.io/tags/Website-Optimization" style="font-size: 12px;">Website-Optimization</a>
+        
+        <a href="https://sankame.github.io/tags/Windows" style="font-size: 12px;">Windows</a>
+        
+        <a href="https://sankame.github.io/tags/Xcode" style="font-size: 12px;">Xcode</a>
+        
+        <a href="https://sankame.github.io/tags/ab" style="font-size: 12px;">ab</a>
+        
+        <a href="https://sankame.github.io/tags/bash" style="font-size: 12px;">bash</a>
+        
+        <a href="https://sankame.github.io/tags/cocoapods" style="font-size: 12px;">cocoapods</a>
+        
+        <a href="https://sankame.github.io/tags/composer" style="font-size: 12px;">composer</a>
+        
+        <a href="https://sankame.github.io/tags/cron" style="font-size: 12px;">cron</a>
+        
+        <a href="https://sankame.github.io/tags/fitbit" style="font-size: 12px;">fitbit</a>
+        
+        <a href="https://sankame.github.io/tags/gulp" style="font-size: 12px;">gulp</a>
+        
+        <a href="https://sankame.github.io/tags/jqGrid" style="font-size: 12px;">jqGrid</a>
+        
+        <a href="https://sankame.github.io/tags/node.js" style="font-size: 12px;">node.js</a>
+        
+        <a href="https://sankame.github.io/tags/npm" style="font-size: 12px;">npm</a>
+        
+        <a href="https://sankame.github.io/tags/programming-practice" style="font-size: 12px;">programming-practice</a>
+        
+        <a href="https://sankame.github.io/tags/shell" style="font-size: 12px;">shell</a>
+        
+        <a href="https://sankame.github.io/tags/ssh" style="font-size: 12px;">ssh</a>
+        
+        <a href="https://sankame.github.io/tags/stetho" style="font-size: 12px;">stetho</a>
+        
+        <a href="https://sankame.github.io/tags/vbscript" style="font-size: 12px;">vbscript</a>
+        
+        <a href="https://sankame.github.io/tags/wget" style="font-size: 12px;">wget</a>
+        
+        <a href="https://sankame.github.io/tags/windows" style="font-size: 12px;">windows</a>
+        
+        <a href="https://sankame.github.io/tags/%e3%83%97%e3%83%ad%e3%82%b8%e3%82%a7%e3%82%af%e3%82%bf%e3%83%bc" style="font-size: 12px;">プロジェクター</a>
+        
+        <a href="https://sankame.github.io/tags/%e5%93%81%e8%b3%aa%e7%ae%a1%e7%90%86" style="font-size: 12px;">品質管理</a>
+        
+    </div>
+</ul>
+</div>
+
+
+
+    <br>
+    
+
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-7938855665302783"
+     data-ad-slot="7089480753"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+
+</aside>
+
+
+    </div>
+</div>
+
+<footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+
+	<footer id="footer-left">
+	    &copy; 2022 Webプログラマー <a href="/about" target="_blank">Sankame.</a> <br>
+	    Powered by <a href="//gohugo.io">Hugo</a>. Theme by <a href="https://github.com/syui/hugo-theme-wave">hugo-theme-wave</a>.
+	</footer>
+
+    </div>
+  </div>
+</footer>
+
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-37675354-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+</body>
+</html>
