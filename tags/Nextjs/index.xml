@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Nextjs on プログラマー備忘録</title>
+    <link>https://sankame.github.io/tags/nextjs/index.xml</link>
+    <description>Recent content in Nextjs on プログラマー備忘録</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <copyright>Powered by [Hugo](//gohugo.io). Theme by [hugo-theme-wave](https://github.com/syui/hugo-theme-wave).</copyright>
+    <atom:link href="https://sankame.github.io/tags/nextjs/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Next.jsが遅い</title>
+      <link>https://sankame.github.io/blog/2022-05-21-nextjs_so_slow/</link>
+      <pubDate>Sat, 21 May 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2022-05-21-nextjs_so_slow/</guid>
+      <description>
+
+&lt;h1 id=&#34;0-環境&#34;&gt;0. 環境&lt;/h1&gt;
+
+&lt;p&gt;&lt;code&gt;[OS] ubuntu 16.04&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;[Node.js] 17.1.0&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;[Next.js] 12.1.6&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;[Prisma] 3.13.0&lt;/code&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;1-問題&#34;&gt;1. 問題&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Next.jsを勉強するため、下記構成のサンプルアプリをいじってたのですが、とにかく画面ロード時間が遅くて使い物にならない。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;構成&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;[Next.js] -&amp;gt; [Prisma] -&amp;gt; [PlanetScale(サーバーレスDB)]&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;起動コマンド&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;# npm run dev
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;2-対応&#34;&gt;2. 対応&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;最初、当てずっぽうで、PlanetScaleへの通信が遅いのかと考え、DBをローカルに持ってきましたが変わりませんでした。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;その後、Prismaの処理をコメントアウトしても重かったので、Next.jsに照準を絞りました。&lt;/p&gt;
+
+&lt;p&gt;原因の切り分けをしないと、ググることすらできないです。
+(最初、「Prisma 遅い」とかで調べてました・・・)&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;最終的にポーリングの時間を長くしたら、画面の表示は軽くなりました。&lt;/p&gt;
+
+&lt;script src=&#34;https://gist.github.com/Sankame/516efc1c20c0fd8f8fda8ffc1c3f27d5.js&#34;&gt;&lt;/script&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;自分が知らない技術を勉強する際、最初の環境設定が面倒なので、ついつい、Githubなどから公開されてるソースを落としてきて動かすことが多いです。&lt;/p&gt;
+
+&lt;p&gt;各パラメーターの意味を知らないまま始めるので、今回のようにハマることがあります。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

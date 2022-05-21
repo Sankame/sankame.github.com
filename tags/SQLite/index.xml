@@ -1,0 +1,452 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>SQLite on プログラマー備忘録</title>
+    <link>https://sankame.github.io/tags/sqlite/index.xml</link>
+    <description>Recent content in SQLite on プログラマー備忘録</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <copyright>Powered by [Hugo](//gohugo.io). Theme by [hugo-theme-wave](https://github.com/syui/hugo-theme-wave).</copyright>
+    <atom:link href="https://sankame.github.io/tags/sqlite/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>【ReactNative】expo-sqliteのテーブルを開発ツールから参照する方法</title>
+      <link>https://sankame.github.io/blog/2020-07-23-expo_sqlite_db_browsing/</link>
+      <pubDate>Thu, 23 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2020-07-23-expo_sqlite_db_browsing/</guid>
+      <description>
+
+&lt;h1 id=&#34;0-環境&#34;&gt;0. 環境&lt;/h1&gt;
+
+&lt;p&gt;&lt;code&gt;[OS] MacOS 10.11.6&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;[React Native] 0.61.4&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;[SQLite Studio] 3.2.1&lt;/code&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;1-背景&#34;&gt;1. 背景&lt;/h1&gt;
+
+&lt;p&gt;React NativeでiOSアプリを作成中です。
+ローカルストレージとしてExpoのSQLiteを使っていますが、開発ツールからテーブル参照する方法が分からず調べてました。
+アプリから登録されたレコードの確認など、なにかとこの手のツールは必要です。
+Androidアプリ開発のStethoみたいなのがないかなーと思ってましたが、結局こんな感じにしました。&lt;/p&gt;
+
+&lt;h1 id=&#34;2-手順-dbファイルの格納先&#34;&gt;2. 手順(DBファイルの格納先)&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;expo-sqliteが作成するDBファイルの保存先は&lt;code&gt;${FileSystem.documentDirectory}/SQLite/${name}」&lt;/code&gt;なので、まず&lt;code&gt;${FileSystem.documentDirectory}&lt;/code&gt;がどこなのか調べます。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;(詳細は&lt;a href=&#34;https://github.com/expo/expo/blob/76b654737216cb56e430e42fec29ea1610426c7e/docs/pages/versions/v36.0.0/sdk/sqlite.md#sqliteopendatabasename-version-description-size&#34; target=&#34;_blank&#34;&gt;こちらのページ&lt;/a&gt;の&amp;rdquo;SQLite.openDatabase&amp;rdquo;参照)&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;アプリ実行時に必ず通る箇所にログを仕込みます。(importとconsoleの行だけあればどこでもOK)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;import * as FileSystem from &#39;expo-file-system&#39;
+
+class DB {
+
+    static db;
+
+    static getDB(){
+        console.log(&amp;quot;FileSystem; &amp;quot; + FileSystem.documentDirectory);
+    :
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;コンソールに出力されたパスから&lt;code&gt;file://&lt;/code&gt;を削ったものが&lt;code&gt;${FileSystem.documentDirectory}&lt;/code&gt;です。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;さらに上記&lt;code&gt;${name}&lt;/code&gt;は、&lt;code&gt;SQLite.openDatabase();&lt;/code&gt;の引数で指定しているDB名になります。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;3-手順-sqlitestudio&#34;&gt;3. 手順(SQLiteStudio)&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;MacにSQLiteStudioをインストール。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;SQLiteStudioのメニューで[Database]-[Add a database]を選び、上記2で調べたパスを[File]に入力して[OK]をクリック。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/expo_sqlite_db_browsing/specify_db_filepath.jpg&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;80%&#34; height=&#34;80%&#34; title=&#34;SQLiteStudioファイル指定&#34; alt=&#34;SQLiteStudioファイル指定&#34; src=&#34;https://sankame.github.io/assets/posts/img/expo_sqlite_db_browsing/specify_db_filepath.jpg&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;左ペインにテーブルが表示されれば成功です。&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>【Androidアプリ開発】SQLiteのDB定義を変更する際の注意点</title>
+      <link>https://sankame.github.io/blog/2017-09-05-android_sqlite_db_upgrade/</link>
+      <pubDate>Tue, 05 Sep 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2017-09-05-android_sqlite_db_upgrade/</guid>
+      <description>
+
+&lt;h2 id=&#34;0-環境&#34;&gt;0.環境&lt;/h2&gt;
+
+&lt;p&gt;&lt;code&gt;[Android] 5.1.1&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;[Android API] 21&lt;/code&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;1-準備&#34;&gt;1.準備&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Androidアプリ開発で、SQLiteのライブラリを使う際にハマった点をメモ。&lt;/p&gt;
+
+&lt;p&gt;まずコンストラクターでDBを使う準備をします。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+
+class DatabaseHelper extends SQLiteOpenHelper {
+
+    public DatabaseHelper(Context context) {
+        super(context, &amp;quot;test.db&amp;quot;, null, 1);
+
+        //(A)既存のDBを消すには下記コードを使用。
+        //context.deleteDatabase(&amp;quot;DB name is here.&amp;quot;);
+    }
+    //以下省略
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;第2引数でDB名を指定するとDBファイルがAndroid端末に作成されます。&lt;/p&gt;
+
+&lt;p&gt;第4引数ではDBバージョンを指定し、DB定義を変える際はこれを1つ上げるようにします。&lt;/p&gt;
+
+&lt;p&gt;(バージョンを下げるとクラッシュするので注意)&lt;/p&gt;
+
+&lt;p&gt;また、開発中にDBを作り直したい場合は、上記(A)で削除しましょう。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;2-ハマりポイント-ddl記載箇所&#34;&gt;2.ハマりポイント - DDL記載箇所&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;このライブラリは主に使うメソッドが2つあり、DBのバージョンによって下記の通り実行タイミングが異なります。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;DBファイルが未作成の場合&lt;/code&gt; : &lt;code&gt;onCreate&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;DBファイルが既にある場合(DBバージョン1以上)&lt;/code&gt; : &lt;code&gt;onUpgrade&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;ミスりやすいのが、DBバージョン2以降は、onCreateとonUpgradeの両方にDDLを書く必要があるという点です。&lt;/p&gt;
+
+&lt;p&gt;下記のようにusersテーブルがDBバージョン2で追加されたとして、もし、onUpgradeだけに書いてしまうと、DBバージョン1のユーザーにとっては問題ないですが、初期インストールの場合はonCreateしか実行されないため、usersテーブルが作られないことになります。&lt;/p&gt;
+
+&lt;p&gt;なので、DBバージョン2以降に追加するDDLはprivateメソッドに書いて、上記の両メソッドから呼ぶようにしたらいいと思います。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;@Override
+public void onCreate(SQLiteDatabase db) {
+    db.beginTransaction();
+    try {
+        //DBバージョン1でcitiesテーブル作成。
+        String ddlCities = &amp;quot;CREATE TABLE IF NOT EXISTS cities (&amp;quot;
+                        + &amp;quot;city_id INTEGER PRIMARY KEY AUTOINCREMENT&amp;quot;
+                        + &amp;quot;, city_name TEXT&amp;quot;
+                        + &amp;quot;);&amp;quot;;
+        db.execSQL(ddlCities);
+
+        //DBバージョン2でusersテーブル作成。
+        createUsersTable(db);
+
+        db.setTransactionSuccessful();
+    } finally {
+        db.endTransaction();
+    }
+}
+
+@Override
+public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+    db.beginTransaction();
+    try {
+        //DBバージョン2でusersテーブル作成。
+        createUsersTable(db);
+
+        db.setTransactionSuccessful();
+    } finally {
+        db.endTransaction();
+    }
+}
+
+private void createUsersTable(SQLiteDatabase db){
+    String ddlUsers = &amp;quot;CREATE TABLE IF NOT EXISTS users (&amp;quot;
+            + &amp;quot;user_id INTEGER PRIMARY KEY AUTOINCREMENT&amp;quot;
+            + &amp;quot;, user_name TEXT NOT NULL&amp;quot;
+            + &amp;quot;);&amp;quot;;
+    db.execSQL(ddlUsers);
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;3-ハマりポイント-特定のdbバージョンのみで実行するddl&#34;&gt;3.ハマりポイント - 特定のDBバージョンのみで実行するDDL&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;ネットで調べたところ、onUpgrade内ではバージョンによって実行するDDLを管理することになっています。&lt;/p&gt;
+
+&lt;p&gt;イコールを使っている例をいくつか見かけましたが、実運用に入ると都合が悪いケースがあります。&lt;/p&gt;
+
+&lt;p&gt;例えば、アップデートをしばらく保留にしていたユーザーが、DBバージョンを3から5へ一気に上げた場合、&lt;code&gt;newVersion == 4&lt;/code&gt;と指定していると、そのDDLが実行されないことになります。&lt;/p&gt;
+
+&lt;p&gt;次のようにDBバージョンを範囲で指定しておけば、上記のケースでも、addColumnAgeは実行されるので問題なしです。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;@Override
+public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+    db.beginTransaction();
+    try {
+        //イコールだと問題あり。
+        //if(oldVersion == 3 &amp;amp;&amp;amp; newVersion == 4){
+        //    addColumnAge(db);
+        //}
+
+        //DBバージョン4でAgeカラム追加。
+        if(oldVersion &amp;lt;= 3 &amp;amp;&amp;amp; newVersion &amp;gt;= 4){
+            addColumnAge(db);
+        }
+
+        db.setTransactionSuccessful();
+    } finally {
+        db.endTransaction();
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;また、上記「2.ハマりポイント」とも関係しますが、&lt;code&gt;addColumnAge(db);&lt;/code&gt;はonCreate内にも追記します。&lt;/p&gt;
+
+&lt;p&gt;onCreateは &lt;code&gt;DBファイルが未作成の場合&lt;/code&gt; 向けなので、oldVersionなどの条件指定は不要です。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;関連記事&#34;&gt;関連記事&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;SQLiteを使った開発を楽にするには&lt;a href=&#34;https://sankame.github.io/blog/2017-05-14-view_sqlite_on_android/&#34; target=&#34;_blank&#34;&gt;こちら&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>AndroidのSQLite DBを参照</title>
+      <link>https://sankame.github.io/blog/2017-05-14-view_sqlite_on_android/</link>
+      <pubDate>Sun, 14 May 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2017-05-14-view_sqlite_on_android/</guid>
+      <description>
+
+&lt;p&gt;&lt;span&gt;&amp;nbsp;&lt;/span&gt;&lt;span style=&#34;color:#d14; float:right;&#34;&gt;更新日：2022年01月01日&lt;/span&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;0-環境&#34;&gt;0.環境&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;PC側&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[OS]             Windows7 (32bit 版)
+[Android Studio] 1.5.1
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;スマホ側&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[OS]             Android 5.1.1
+[SQLite]         3.8.6.1
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;1-前提&#34;&gt;1. 前提&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;まずSQLiteのデータをファイル形式で保存するよう設定します。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;例として、SQLiteを操作するライブラリにSQLiteOpenHelperを使用した場合について記載します。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;コンストラクタの第二引数でDBファイル名を指定します。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;(未指定の場合、データはメモリにのみ保持されます)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;class DatabaseHelper extends SQLiteOpenHelper {
+
+    public DatabaseHelper(Context context) {
+        //DBファイル名を指定。
+        super(context, &amp;quot;example.db&amp;quot;, null, 1);
+    }
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;PCからAndroid端末にあるSQLiteのDBファイルを見る方法を調べました。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;試行錯誤した内容を書いているため、結論だけ知りたい場合は、4まで読み飛ばして下さい。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;2-adb-androidデバッグ用インターフェース-利用&#34;&gt;2. ADB(Androidデバッグ用インターフェース) 利用&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;ネットを検索して結構あったのが、ADBを使ってSQLiteのDBファイルをAndroid端末からPCへコピーし、その後DBビューワーで参照するというものです。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;PCでコマンドプロンプトから下記コマンドを実行すると、カレントディレクトリにtarget.db(任意)というファイルができます。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;C:\Users\【ユーザー名】&amp;gt;adb -d shell &amp;quot;run-as 【アプリケーションID】 cat databases/【DBファイル名】&amp;quot;&amp;gt;target.db
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;【】内は読み替えて下さい。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;【アプリケーションID】: Android Studioの[File]-[Project Structure]-[Flavors]-[Application Id]&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;【DBファイル名】: 上記1で指定したファイル名。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Database BrowserやPupSQLiteというビューワーでtarget.dbを開いても、下記エラーが出てレコードが表示されません。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;database disk image is malformed&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;http://qiita.com/tsunet111/items/2c21706fd67f5ecb047d&#34; target=&#34;_blank&#34;&gt;この修復方法&lt;/a&gt;を試しましたが次のエラーが出て、上記ビューワーで見てもレコードが0件でした。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;Error: near line 6: NOT NULL constraint failed: 【テーブル名】.【カラム名】
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Android(Linux系)とWindowsだからリダイレクションでデータの受け渡しがうまくいってないのかな？と推測し、Linuxコマンドも使えるPower Shellを使ってみたところ、最初の結果と異なり、target.dbのファイルサイズは倍になりました。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;再度、上記のビューワーで開こうとしたところ、復号化パスワードを求められ開けませんでした…&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;3-android-device-monitor-利用&#34;&gt;3. Android Device Monitor 利用&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;方針を変え、Android Studioの付属ツールを使ってDBファイルをPCへコピーする方法を試しました。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;Android Studioのメニューで[Tools]-[Android]-[Android Device Monitor]-[File Explorer]タブ
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&amp;ldquo;data&amp;rdquo;ディレクトリはあるのですが、その下のディレクトリが表示されず、DBファイルまでたどり着けなかったため諦めました。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;4-stetho-利用&#34;&gt;4. stetho 利用&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;facebookが提供している&lt;a href=&#34;https://github.com/facebook/stetho&#34; target=&#34;_blank&#34;&gt;stetho&lt;/a&gt;というデバッグツールを使いました。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;(4-1) 準備&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;http://facebook.github.io/stetho/#download&#34; target=&#34;_blank&#34;&gt;このページ&lt;/a&gt;からjarをダウンロードし、下記ディレクトリへコピーします。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;[アプリのルート]-[mobile]-[libs]&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;僕のbuild.gradleは、もともとlibsの全jarを読み込み対象にしていたのでひとまずそのままにしました。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;(build.gradle抜粋)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;    dependencies {
+        compile fileTree(dir: &#39;libs&#39;, include: [&#39;*.jar&#39;])
+        wearApp project(&#39;:wear&#39;)
+        compile &#39;com.android.support:appcompat-v7:21.0.3&#39;
+        compile &#39;com.google.android.gms:play-services:6.5.87&#39;
+        compile &amp;quot;com.android.support:support-v4:20.0.+&amp;quot;
+        compile files(&#39;libs/gson-2.5.jar&#39;)
+    }
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;さらに、ソースコードへ下記①、②を追記します。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;//①
+import com.facebook.stetho.Stetho;
+
+public class MainActivity extends ActionBarActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+
+        super.onCreate(savedInstanceState);
+        //②
+        Stetho.initializeWithDefaults(this);
+
+        // 以下省略
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;(4-2) エラー対応&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;ビルドしたところ、下記エラーが発生しました。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;ライブラリを重複して読み込もうとする際に出るエラーのようです。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;:mobile:dexDebug
+AGPBI: {&amp;quot;kind&amp;quot;:&amp;quot;simple&amp;quot;,&amp;quot;text&amp;quot;:&amp;quot;UNEXPECTED TOP-LEVEL EXCEPTION:&amp;quot;,&amp;quot;sources&amp;quot;:[{}]}
+AGPBI: {&amp;quot;kind&amp;quot;:&amp;quot;simple&amp;quot;,&amp;quot;text&amp;quot;:&amp;quot;com.android.dex.DexException: Multiple dex files define Landroid/support/v7/appcompat/R$anim;&amp;quot;,&amp;quot;sources&amp;quot;:[{}]}
+AGPBI: {&amp;quot;kind&amp;quot;:&amp;quot;simple&amp;quot;,&amp;quot;text&amp;quot;:&amp;quot;\tat com.android.dx.merge.DexMerger.readSortableTypes(DexMerger.java:596)&amp;quot;,&amp;quot;sources&amp;quot;:[{}]}
+AGPBI: {&amp;quot;kind&amp;quot;:&amp;quot;simple&amp;quot;,&amp;quot;text&amp;quot;:&amp;quot;\tat com.android.dx.merge.DexMerger.getSortedTypes(DexMerger.java:554)&amp;quot;,&amp;quot;sources&amp;quot;:[{}]}
+AGPBI: {&amp;quot;kind&amp;quot;:&amp;quot;simple&amp;quot;,&amp;quot;text&amp;quot;:&amp;quot;\tat com.android.dx.merge.DexMerger.mergeClassDefs(DexMerger.java:535)&amp;quot;,&amp;quot;sources&amp;quot;:[{}]}
+AGPBI: {&amp;quot;kind&amp;quot;:&amp;quot;simple&amp;quot;,&amp;quot;text&amp;quot;:&amp;quot;\tat com.android.dx.merge.DexMerger.mergeDexes(DexMerger.java:171)&amp;quot;,&amp;quot;sources&amp;quot;:[{}]}
+AGPBI: {&amp;quot;kind&amp;quot;:&amp;quot;simple&amp;quot;,&amp;quot;text&amp;quot;:&amp;quot;\tat com.android.dx.merge.DexMerger.merge(DexMerger.java:189)&amp;quot;,&amp;quot;sources&amp;quot;:[{}]}
+AGPBI: {&amp;quot;kind&amp;quot;:&amp;quot;simple&amp;quot;,&amp;quot;text&amp;quot;:&amp;quot;\tat com.android.dx.command.dexer.Main.mergeLibraryDexBuffers(Main.java:454)&amp;quot;,&amp;quot;sources&amp;quot;:[{}]}
+AGPBI: {&amp;quot;kind&amp;quot;:&amp;quot;simple&amp;quot;,&amp;quot;text&amp;quot;:&amp;quot;\tat com.android.dx.command.dexer.Main.runMonoDex(Main.java:303)&amp;quot;,&amp;quot;sources&amp;quot;:[{}]}
+AGPBI: {&amp;quot;kind&amp;quot;:&amp;quot;simple&amp;quot;,&amp;quot;text&amp;quot;:&amp;quot;\tat com.android.dx.command.dexer.Main.run(Main.java:246)&amp;quot;,&amp;quot;sources&amp;quot;:[{}]}
+AGPBI: {&amp;quot;kind&amp;quot;:&amp;quot;simple&amp;quot;,&amp;quot;text&amp;quot;:&amp;quot;\tat com.android.dx.command.dexer.Main.main(Main.java:215)&amp;quot;,&amp;quot;sources&amp;quot;:[{}]}
+AGPBI: {&amp;quot;kind&amp;quot;:&amp;quot;simple&amp;quot;,&amp;quot;text&amp;quot;:&amp;quot;\tat com.android.dx.command.Main.main(Main.java:106)&amp;quot;,&amp;quot;sources&amp;quot;:[{}]}
+
+FAILED
+
+FAILURE: Build failed with an exception.
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;下記のようにbuild.gradleを変更し、stethoを個別に定義するようにしました。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;s&gt;さらに上記エラーメッセージの3行目から推測して、除外設定も追加しています。(&lt;a href=&#34;http://stackoverflow.com/questions/27719436/how-to-remove-duplicate-libraries-added-via-gradle/27773664&#34; target=&#34;_blank&#34;&gt;参考ページ&lt;/a&gt;)&lt;/s&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;font color=&#34;red&#34;&gt;(2017/05/16,追記)除外設定はなくてもOKでした。まだ追いきれてませんが、fileTreeによる指定がまずかったようです。&lt;/font&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;(build.gradle抜粋)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;dependencies {
+    //この指定はやめる。
+    //compile fileTree(dir: &#39;libs&#39;, include: [&#39;*.jar&#39;])
+    wearApp project(&#39;:wear&#39;)
+    compile &#39;com.android.support:appcompat-v7:21.0.3&#39;
+    compile &#39;com.google.android.gms:play-services:6.5.87&#39;
+    compile &amp;quot;com.android.support:support-v4:20.0.+&amp;quot;
+    compile files(&#39;libs/gson-2.5.jar&#39;)
+                
+    //これを含めるのはデバッグ時のみにし、重複エラーが出たので除外設定を追加。
+    //debugCompile (&#39;com.facebook.stetho:stetho:1.5.0&#39;) {
+    //  exclude group: &#39;android.support&#39;, module: &#39;library&#39;
+    //}
+                
+    //(2017/05/16,追記) この指定で十分でした。
+    debugCompile (&#39;com.facebook.stetho:stetho:1.5.0&#39;)
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;(4-3) 使い方&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;アプリをビルドして、&lt;span style=&#34;color:#d14;&#34;&gt;&lt;s&gt;Chrome&lt;/s&gt; Brave&lt;/span&gt;のアドレスバーに下記URLを入力します。
+&lt;span style=&#34;color:#d14;&#34;&gt;Chromeでは画面が崩れるようになったため、代わりに
+&lt;a href=&#34;https://brave.com/ja/&#34; target=&#34;_blank&#34;&gt;Brave&lt;/a&gt;というブラウザを使用。
+&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;s&gt;&lt;code&gt;chrome://inspect&lt;/code&gt;&lt;/s&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;brave://inspect/#devices&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Android端末名の下にアプリ名が表示されるので、&amp;rdquo;inspect&amp;rdquo;をクリック。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/view_sqlite_on_android/chrome.jpg&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;80%&#34; height=&#34;80%&#34; title=&#34;chrome&#34; alt=&#34;chrome&#34; src=&#34;https://sankame.github.io/assets/posts/img/view_sqlite_on_android/chrome.jpg&#34;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;s&gt;新しいウィンドウが開き、[Web SQL]-【アプリケーションID】-【テーブル名】を開くとSQLiteのデータが参照できました。&lt;/s&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;span style=&#34;color:#d14;&#34;&gt;新しいウィンドウが開き、[Application]-[Storage]-[Web SQL]-【DB名】-【テーブル名】を
+開くとSQLiteのデータが参照できました。&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;s&gt;さらに、【アプリケーションID】をクリックすると右ペインにプロンプト(&amp;gt;)が表示され、そこでSQL文も実行できるのでかなり使えそうです。&lt;/s&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;span style=&#34;color:#d14;&#34;&gt;さらに、上記の【DB名】をクリックすると右ペインにプロンプト(&amp;gt;)が表示され、
+そこでSQL文も実行できるのでかなり使えそうです。&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/view_sqlite_on_android/view_sqlite_db.jpg&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;80%&#34; height=&#34;80%&#34; title=&#34;chrome&#34; alt=&#34;chrome&#34; src=&#34;https://sankame.github.io/assets/posts/img/view_sqlite_on_android/view_sqlite_db.jpg&#34;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

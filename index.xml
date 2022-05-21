@@ -1,0 +1,1204 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>プログラマー備忘録</title>
+    <link>https://sankame.github.io/index.xml</link>
+    <description>Recent content on プログラマー備忘録</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <copyright>Powered by [Hugo](//gohugo.io). Theme by [hugo-theme-wave](https://github.com/syui/hugo-theme-wave).</copyright>
+    <lastBuildDate>Sat, 21 May 2022 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://sankame.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Next.jsが遅い</title>
+      <link>https://sankame.github.io/blog/2022-05-21-nextjs_so_slow/</link>
+      <pubDate>Sat, 21 May 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2022-05-21-nextjs_so_slow/</guid>
+      <description>
+
+&lt;h1 id=&#34;0-環境&#34;&gt;0. 環境&lt;/h1&gt;
+
+&lt;p&gt;&lt;code&gt;[OS] ubuntu 16.04&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;[Node.js] 17.1.0&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;[Next.js] 12.1.6&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;[Prisma] 3.13.0&lt;/code&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;1-問題&#34;&gt;1. 問題&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Next.jsを勉強するため、下記構成のサンプルアプリをいじってたのですが、とにかく画面ロード時間が遅くて使い物にならない。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;構成&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;[Next.js] -&amp;gt; [Prisma] -&amp;gt; [PlanetScale(サーバーレスDB)]&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;起動コマンド&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;# npm run dev
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;2-対応&#34;&gt;2. 対応&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;最初、当てずっぽうで、PlanetScaleへの通信が遅いのかと考え、DBをローカルに持ってきましたが変わりませんでした。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;その後、Prismaの処理をコメントアウトしても重かったので、Next.jsに照準を絞りました。&lt;/p&gt;
+
+&lt;p&gt;原因の切り分けをしないと、ググることすらできないです。
+(最初、「Prisma 遅い」とかで調べてました・・・)&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;最終的にポーリングの時間を長くしたら、画面の表示は軽くなりました。&lt;/p&gt;
+
+&lt;script src=&#34;https://gist.github.com/Sankame/516efc1c20c0fd8f8fda8ffc1c3f27d5.js&#34;&gt;&lt;/script&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;自分が知らない技術を勉強する際、最初の環境設定が面倒なので、ついつい、Githubなどから公開されてるソースを落としてきて動かすことが多いです。&lt;/p&gt;
+
+&lt;p&gt;各パラメーターの意味を知らないまま始めるので、今回のようにハマることがあります。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>WindowsUpdate後に再度VirtualBoxでVM起動エラー</title>
+      <link>https://sankame.github.io/blog/2022-03-26-virtualbox_does_not_start_after_windows_update/</link>
+      <pubDate>Sat, 26 Mar 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2022-03-26-virtualbox_does_not_start_after_windows_update/</guid>
+      <description>
+
+&lt;h1 id=&#34;0-環境&#34;&gt;0. 環境&lt;/h1&gt;
+
+&lt;p&gt;&lt;code&gt;[OS] Windows11 Home&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;[VirtualBox] 6.1.22 -&amp;gt; 6.1.32&lt;/code&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;1-問題&#34;&gt;1. 問題&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;VirtualBoxから仮想マシンが起動できなくなりました。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/virtualbox_does_not_start_after_windows_update/error.png&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;40%&#34; height=&#34;40%&#34; title=&#34;vm_fails_to_start&#34; alt=&#34;vm_fails_to_start&#34; src=&#34;https://sankame.github.io/assets/posts/img/virtualbox_does_not_start_after_windows_update/error.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;エラーメッセージ&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-command&#34;&gt;仮想マシン&amp;quot;ubuntu_64&amp;quot;のセッションを開けませんでした。
+
+Failed to get device handle and/or partition ID for 0000000001b5bc40 (hPartitionDevice=0000000000000b95, Last=0xc0000002/1) (VERR_NEM_VM_CREATE_FAILED).
+
+終了コード : E_FAIL (0x80004005)
+コンポーネント: ConsoleWrap
+インターフェース: IConsole {872da645-4a9b-1727-bee2-5585105b9eed}
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;2-原因&#34;&gt;2. 原因&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;たぶん、Windows11のUpdateが原因。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;因果関係は確かではないですが、下記WindowsUpdateの前後があやしい。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-command&#34;&gt;Cumulative Update for Windows 11, version 22H2 Insider Preview (10.0.22581.100) (KB5013283)
+
+Microsoft Defender Antivirus のセキュリティ インテリジェンス更新プログラム - KB2267602 (バージョン 1.361.759.0)
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;3-対応&#34;&gt;3. 対応&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;VirtualBoxのメニューで[ファイル]-[アップデートを確認(H)&amp;hellip;]&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;リンクをクリックし、最新バージョンのexeファイルをダウンロード。(VirtualBox-6.1.32-149290-Win.exe)&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;念のため、VirtualBoxを閉じる。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;exeファイルを実行し、バージョンを &lt;code&gt;6.1.22 -&amp;gt; 6.1.32&lt;/code&gt; に上げたらエラーは発生しなくなりました。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;4-その他&#34;&gt;4. その他&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;以前、&lt;a href=&#34;https://sankame.github.io/blog/2021-08-06-windows_update_causes_vm_error/&#34; target=&#34;_blank&#34;&gt;同じような問題&lt;/a&gt;が発生しましたが、今回の原因はそれではなかったようです。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://qiita.com/mariaquilac/items/5b7a146f248e7bbd9aa8&#34; target=&#34;_blank&#34;&gt;参考:Hyper-V周りの設定&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Error: Unable to &#39;pub upgrade&#39; flutter tool.</title>
+      <link>https://sankame.github.io/blog/2021-11-20-flutter_pub_upgrade_error/</link>
+      <pubDate>Sat, 20 Nov 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2021-11-20-flutter_pub_upgrade_error/</guid>
+      <description>
+
+&lt;h1 id=&#34;0-環境&#34;&gt;0. 環境&lt;/h1&gt;
+
+&lt;p&gt;&lt;code&gt;[OS] MacOS 10.11.6&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;[Flutter] 2.2.3&lt;/code&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;1-問題&#34;&gt;1. 問題&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;flutterアプリの修正中に、&amp;rdquo;flutter upgrade&amp;rdquo;を実行したら、いつものコマンドでアプリが起動しなくなってしまいました。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;(いつものコマンド)&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;flutter run -d chrome --web-port=5000&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;(エラー内容)&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Error: Unable to &#39;pub upgrade&#39; flutter tool. Retrying in five seconds&lt;/code&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;コンソールいっぱいにエラーメッセージが出ましたが、代表させて上記のみ記載。&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;ググると&lt;a href=&#34;https://stackoverflow.com/questions/49497109/error-unable-to-pub-upgrade-flutter-tool-retrying-in-five-seconds&#34; target=&#34;_blank&#34;&gt;同じエラー&lt;/a&gt;に関する情報がありました。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;ここに書いてある方法では直らなかったので、flutterを以前のバージョンに戻すことにしました。&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;2-対応&#34;&gt;2. 対応&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;flutterを配置している場所を確認。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-command&#34;&gt;$ which flutter
+[path_to_flutter]/flutter/bin/flutter
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;[path_to_flutter] にあるflutterディレクトリをバックアップとしてリネーム。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;[path_to_flutter] に古いバージョンのflutterをダウンロード。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://docs.flutter.dev/development/tools/sdk/releases?tab=macos&#34; target=&#34;_blank&#34;&gt;前のバージョンのflutter&lt;/a&gt;(僕は2.2.3を取得しました)&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;OSごとにタブが分かれているので注意。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;ダウンロードしたファイルを解凍し、下記のように元のディレクトリ名と同じになっているか確認。(こうすればPATHの変更も不要)&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;[path_to_flutter]/flutter/&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;任意の場所で下記コマンドを実行。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-command&#34;&gt;$ flutter precache
+$ flutter doctor
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;最後にアプリのルートで下記を実行。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-command&#34;&gt;$ flutter pub get
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;根本解決ではありませんが、ひとまず開発環境を復旧させたい場合の対処でした。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>MySQLでSlowQueryLogを有効にする</title>
+      <link>https://sankame.github.io/blog/2021-09-11-mysql_setting_slow_query/</link>
+      <pubDate>Sat, 11 Sep 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2021-09-11-mysql_setting_slow_query/</guid>
+      <description>
+
+&lt;h1 id=&#34;0-環境&#34;&gt;0. 環境&lt;/h1&gt;
+
+&lt;p&gt;&lt;code&gt;[OS] CentOS 6.10&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;[MySQL] 5.1&lt;/code&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;1-前提&#34;&gt;1. 前提&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;MySQLシステム変数は、SESSIONとGLOBALがあるので注意。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;有効範囲はそれぞれ「SESSIONは接続ごと」「GLOBALはMySQL起動中」というふうに異なります。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;GLOBALスコープで設定した値は、MySQL再起動で消失します。(これを防ぎたい場合、mysql.cnfに直接記載)&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;MySQL8からは、&lt;code&gt;SET PERSIST ..&lt;/code&gt; とすることで消失を防げる。&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;2-接続&#34;&gt;2. 接続&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;MySQLに接続。&lt;code&gt;mysql -u root -p&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;3-コマンド-sessionスコープ&#34;&gt;3. コマンド (SESSIONスコープ)&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;下記は、&lt;code&gt;SHOW SESSION VARIABLES ..&lt;/code&gt;と書いたのと同義。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;現在の値&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sql&#34;&gt;-- SlowQueryを出力するか？
+SHOW VARIABLES LIKE &#39;slow_query_log&#39;;
+-- 何秒を超えたらSlowQueryとして出力するか？
+SHOW VARIABLES LIKE &#39;long_query_time&#39;;
+-- SlowQuery出力先のファイル名
+SHOW VARIABLES LIKE &#39;slow_query_log_file&#39;;
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;更新&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sql&#34;&gt;SET long_query_time = 3;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;(注)&lt;code&gt;slow_query_log&lt;/code&gt;と&lt;code&gt;slow_query_log_file&lt;/code&gt;はGLOBALスコープでのみ変更可能。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;4-コマンド-globalスコープ&#34;&gt;4. コマンド (GLOBALスコープ)&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;現在の値&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sql&#34;&gt;-- SlowQueryを出力するか？
+SHOW GLOBAL VARIABLES LIKE &#39;slow_query_log&#39;;
+-- 何秒を超えたらSlowQueryとして出力するか？
+SHOW GLOBAL VARIABLES LIKE &#39;long_query_time&#39;;
+-- SlowQuery出力先のファイル名
+SHOW GLOBAL VARIABLES LIKE &#39;slow_query_log_file&#39;;
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;更新&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sql&#34;&gt;SET GLOBAL slow_query_log = &#39;ON&#39;;
+SET GLOBAL long_query_time = 3;
+SET GLOBAL slow_query_log_file = &#39;/var/tmp.log&#39;;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;(注)&lt;code&gt;slow_query_log&lt;/code&gt;と&lt;code&gt;slow_query_log_file&lt;/code&gt;はGLOBALスコープのみに存在する変数のため、上記を実行するとすぐにSESSIONスコープにも反映されます。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;5-確認用sql&#34;&gt;5. 確認用SQL&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;下記SQLを実行してSlowQueryLogに出力されるか確認して下さい。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sql&#34;&gt;SELECT SLEEP(4);
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Android App Bundleに対応</title>
+      <link>https://sankame.github.io/blog/2021-08-10-android_app_bundle/</link>
+      <pubDate>Tue, 10 Aug 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2021-08-10-android_app_bundle/</guid>
+      <description>
+
+&lt;h1 id=&#34;0-環境&#34;&gt;0. 環境&lt;/h1&gt;
+
+&lt;p&gt;&lt;code&gt;[OS] Windows 11 Home&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;[Android Studio] 3.6.3&lt;/code&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;1-ビルド&#34;&gt;1. ビルド&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;期日が迫ってたので、App Bundle対応を行いました。いくつか「あれ？」と思ったので記載しておきます。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;いつものように、Android Studioでメニューから[Build]-[Generate Signed Bundle / APK&amp;hellip;]を選択。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;ビルド用のダイアログで「Android App Bundle」を選択し、[Next]ボタンをクリックすると下記が開きます。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/android_app_bundle/a4.png&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;80%&#34; height=&#34;80%&#34; title=&#34;秘密鍵保存&#34; alt=&#34;秘密鍵保存&#34; src=&#34;https://sankame.github.io/assets/posts/img/android_app_bundle/a4.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;[Export encryped&amp;hellip;]にチェックを入れ、直下に表示された秘密鍵の保存場所を覚えておきます。(*a)&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;[Next]ボタンを押して先に進むと、aabという拡張子のファイルが生成されます。(*b)&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;2-アプリ公開&#34;&gt;2. アプリ公開&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;いつものようにブラウザでPlay Consoleを開いて、対象のアプリを選択。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;左メニュー[製品版]-[新しいリリースを作成]をクリックし、[App Bundle]を選択すると下記画面に来ます。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/android_app_bundle/a1.png&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;100%&#34; height=&#34;100%&#34; title=&#34;AppBundle&#34; alt=&#34;AppBundle&#34; src=&#34;https://sankame.github.io/assets/posts/img/android_app_bundle/a1.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;前述(*a)の登録がまだなので、[オプトイン]リンクをクリック。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/android_app_bundle/a2.png&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;100%&#34; height=&#34;100%&#34; title=&#34;鍵のアップロード&#34; alt=&#34;鍵のアップロード&#34; src=&#34;https://sankame.github.io/assets/posts/img/android_app_bundle/a2.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;ここで前述の(*a)をアップロード。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/android_app_bundle/a3.png&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;100%&#34; height=&#34;100%&#34; title=&#34;アプリ公開&#34; alt=&#34;アプリ公開&#34; src=&#34;https://sankame.github.io/assets/posts/img/android_app_bundle/a3.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;そのままこの画面に戻ってきて上記(*b)をアップロードするとエラーが出ました。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;app bundle
+予期しないエラーが発生しました。もう一度お試しください（40B24C00）。
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;エラーコードをググっても出てこなかったので、作成中のリリースを一度破棄し、ブラウザを再起動してやり直したらうまくいきました。
+(秘密鍵のアップロードはやり直さなくてOKでした)&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;あとはいつものように必要項目を入力し、フッター部分のボタンを押していくと公開設定が完了します。しばらく「審査中」の後、無事公開されました。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[保存]　→　[リリースのレビュー] → [製品版としての公開を開始] → 確認ダイアログで[公開]クリック
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>WindowsUpdate後のVirtualBox起動エラー</title>
+      <link>https://sankame.github.io/blog/2021-08-06-windows_update_causes_vm_error/</link>
+      <pubDate>Fri, 06 Aug 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2021-08-06-windows_update_causes_vm_error/</guid>
+      <description>
+
+&lt;h1 id=&#34;0-環境&#34;&gt;0. 環境&lt;/h1&gt;
+
+&lt;p&gt;&lt;code&gt;[OS] Windows 11 Home&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;[VirtualBox] 6.1.22&lt;/code&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;1-問題&#34;&gt;1. 問題&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;1週間くらい前にWindowsUpdateしたら、下記エラーでVMが起動しなくなりました。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;仮想マシン&amp;quot;ubuntu_64&amp;quot;のセッションを開けませんでした。
+
+Failed to get device handle and/or partition ID for 00000000027d6520 (hPartitionDevice=0000000000000bd1, Last=0xc0000002/1) (VERR_NEM_VM_CREATE_FAILED).
+
+終了コード : E_FAIL (0x80004005)
+コンポーネント: ConsoleWrap
+インターフェース: IConsole {872da645-4a9b-1727-bee2-5585105b9eed}
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;WindowsUpdate後にUIが変わってたのでたぶん「&lt;a href=&#34;https://blogs.windows.com/japan/2021/07/21/announcing-the-first-insider-preview-for-windows-11/&#34; target=&#34;_blank&#34;&gt;Windows 11 Insider Preview&lt;/a&gt;」のせいだと思います。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Windowsタスクバーの虫眼鏡マークをクリックし「設定」と入力。&lt;/li&gt;
+&lt;li&gt;設定画面が開くので左メニューから「Windows Update」をクリックすると履歴が参照可能。&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;2-対応&#34;&gt;2. 対応&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Windowsタスクバーの虫眼鏡マークをクリックし「コントロールパネル」と入力。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;「コントロールパネル」内の「プログラムと機能」をクリック。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;「プログラムと機能」内の左のメニュー「Windowsの機能の有効化または無効化」をクリック。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;下記が開くので、「Windows ハイパーバイザー プラットフォーム」にチェックし、Windowsを再起動したら直りました。(WindowsUpdateでデフォルトのOffに戻ってしまったようです…)&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/windows_update_causes_vm_error/hyper-v.png&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;80%&#34; height=&#34;80%&#34; title=&#34;hyper-vの有効化&#34; alt=&#34;hyper-vの有効化&#34; src=&#34;https://sankame.github.io/assets/posts/img/windows_update_causes_vm_error/hyper-v.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>【Flutter】ローカルDBの選択-Hive-</title>
+      <link>https://sankame.github.io/blog/2021-07-25-flutter_local_db/</link>
+      <pubDate>Sun, 25 Jul 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2021-07-25-flutter_local_db/</guid>
+      <description>
+
+&lt;h1 id=&#34;0-環境&#34;&gt;0. 環境&lt;/h1&gt;
+
+&lt;p&gt;&lt;code&gt;[OS] MacOS 10.11.6&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;[Flutter] 2.2.3&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;[Dart] 2.13.4&lt;/code&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;1-背景&#34;&gt;1. 背景&lt;/h1&gt;
+
+&lt;p&gt;React NativeでiOSアプリを作成してたんですが、環境周りの不具合に時間を取られ、肝心の実装がほとんどできない状態が続いてました。
+そこで、試しにFlutterをやってみたら、シュミレーターで動かすところまでは比較的楽にできたので乗り換えることにしました。&lt;/p&gt;
+
+&lt;p&gt;JSを使えるエンジニアが多いという理由で、React Nativeが支持されるかな？と予想してたのですが、
+最近、Twitterなどで&lt;a href=&#34;https://quipper.hatenablog.com/entry/2021/07/21/080000&#34; target=&#34;_blank&#34;&gt;React離れ&lt;/a&gt;を
+見かけることが増えてきて、そろそろ潮時かなと思ってきました。&lt;/p&gt;
+
+&lt;h1 id=&#34;2-検討&#34;&gt;2. 検討&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;作成したいアプリがローカルDBを使用しているので、何が良いのかいろいろ見てみました。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://kabochapo.hateblo.jp/entry/2020/02/01/144411&#34; target=&#34;_blank&#34;&gt;こちらのページ&lt;/a&gt;がよくまとまってます。&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;まず、僕の環境で、sqflite、Realm、Moor、ObjectBoxはサンプルアプリすら動かなかったので諦めました。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;作ろうとしてるアプリのAndroid版がSQLite3を使ってるので、sqfliteやそれをラッピングしてるというMoorがいいかなと思ったのですが、下記のエラーが解決できず諦めました。同様のエラーで開発者に対する&lt;a href=&#34;https://github.com/tekartik/sqflite/issues/452&#34; target=&#34;_blank&#34;&gt;質問&lt;/a&gt;が結構挙がってましたが、いまいち決定的な解決方法はなさそうでした。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Error: MissingPluginException(No implementation found for method getDatabasesPath on channel com.tekartik.sqflite)&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;3-hiveサンプルアプリ&#34;&gt;3. Hiveサンプルアプリ&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;上記ページで紹介されてるHiveがさくっと動きました。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://github.com/hivedb/samples&#34; target=&#34;_blank&#34;&gt;サンプルページ&lt;/a&gt;の「Code」ボタンからファイルアイコンをクリックしてURLをコピー。(画像参照)&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/flutter_local_db/hive_sample.png&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;80%&#34; height=&#34;80%&#34; title=&#34;Hiveサンプルコードダウンロード&#34; alt=&#34;Hiveサンプルコードダウンロード&#34; src=&#34;https://sankame.github.io/assets/posts/img/flutter_local_db/hive_sample.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;適当なディレクトリにソースをダウンロードしてアプリを起動します。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ git clone https://github.com/hivedb/samples.git
+
+$ cd samples/todo/
+
+$ flutter create .
+
+$ flutter run
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;To-Doアプリが起動しました。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/flutter_local_db/hive_todo_app.png&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;80%&#34; height=&#34;80%&#34; title=&#34;HiveTodoアプリ&#34; alt=&#34;HiveTodoアプリ&#34; src=&#34;https://sankame.github.io/assets/posts/img/flutter_local_db/hive_todo_app.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>【ReactNative】expo-sqliteのテーブルを開発ツールから参照する方法</title>
+      <link>https://sankame.github.io/blog/2020-07-23-expo_sqlite_db_browsing/</link>
+      <pubDate>Thu, 23 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2020-07-23-expo_sqlite_db_browsing/</guid>
+      <description>
+
+&lt;h1 id=&#34;0-環境&#34;&gt;0. 環境&lt;/h1&gt;
+
+&lt;p&gt;&lt;code&gt;[OS] MacOS 10.11.6&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;[React Native] 0.61.4&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;[SQLite Studio] 3.2.1&lt;/code&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;1-背景&#34;&gt;1. 背景&lt;/h1&gt;
+
+&lt;p&gt;React NativeでiOSアプリを作成中です。
+ローカルストレージとしてExpoのSQLiteを使っていますが、開発ツールからテーブル参照する方法が分からず調べてました。
+アプリから登録されたレコードの確認など、なにかとこの手のツールは必要です。
+Androidアプリ開発のStethoみたいなのがないかなーと思ってましたが、結局こんな感じにしました。&lt;/p&gt;
+
+&lt;h1 id=&#34;2-手順-dbファイルの格納先&#34;&gt;2. 手順(DBファイルの格納先)&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;expo-sqliteが作成するDBファイルの保存先は&lt;code&gt;${FileSystem.documentDirectory}/SQLite/${name}」&lt;/code&gt;なので、まず&lt;code&gt;${FileSystem.documentDirectory}&lt;/code&gt;がどこなのか調べます。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;(詳細は&lt;a href=&#34;https://github.com/expo/expo/blob/76b654737216cb56e430e42fec29ea1610426c7e/docs/pages/versions/v36.0.0/sdk/sqlite.md#sqliteopendatabasename-version-description-size&#34; target=&#34;_blank&#34;&gt;こちらのページ&lt;/a&gt;の&amp;rdquo;SQLite.openDatabase&amp;rdquo;参照)&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;アプリ実行時に必ず通る箇所にログを仕込みます。(importとconsoleの行だけあればどこでもOK)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;import * as FileSystem from &#39;expo-file-system&#39;
+
+class DB {
+
+    static db;
+
+    static getDB(){
+        console.log(&amp;quot;FileSystem; &amp;quot; + FileSystem.documentDirectory);
+    :
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;コンソールに出力されたパスから&lt;code&gt;file://&lt;/code&gt;を削ったものが&lt;code&gt;${FileSystem.documentDirectory}&lt;/code&gt;です。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;さらに上記&lt;code&gt;${name}&lt;/code&gt;は、&lt;code&gt;SQLite.openDatabase();&lt;/code&gt;の引数で指定しているDB名になります。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;3-手順-sqlitestudio&#34;&gt;3. 手順(SQLiteStudio)&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;MacにSQLiteStudioをインストール。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;SQLiteStudioのメニューで[Database]-[Add a database]を選び、上記2で調べたパスを[File]に入力して[OK]をクリック。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/expo_sqlite_db_browsing/specify_db_filepath.jpg&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;80%&#34; height=&#34;80%&#34; title=&#34;SQLiteStudioファイル指定&#34; alt=&#34;SQLiteStudioファイル指定&#34; src=&#34;https://sankame.github.io/assets/posts/img/expo_sqlite_db_browsing/specify_db_filepath.jpg&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;左ペインにテーブルが表示されれば成功です。&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Androidビルド時のクラス重複エラー</title>
+      <link>https://sankame.github.io/blog/2020-06-13-android_class_duplicated/</link>
+      <pubDate>Sat, 13 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2020-06-13-android_class_duplicated/</guid>
+      <description>
+
+&lt;h1 id=&#34;0-環境&#34;&gt;0. 環境&lt;/h1&gt;
+
+&lt;p&gt;&lt;code&gt;[Gradle] 5.6.4&lt;/code&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;1-問題&#34;&gt;1. 問題&lt;/h1&gt;
+
+&lt;p&gt;こちらの情報を元にFabricからFirebaseへの移行を行いました。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://firebase.google.com/docs/android/setup?hl=ja&#34; target=&#34;_blank&#34;&gt;Android プロジェクトに Firebase を追加する&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://firebase.google.com/docs/crashlytics/upgrade-sdk?authuser=0&amp;platform=android&#34; target=&#34;_blank&#34;&gt;Upgrade to the Firebase Crashlytics SDK&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;コード修正後、エラーが発生してビルドできず・・・&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;Duplicate class com.google.android.gms.measurement.AppMeasurement found in modules jetified-firebase-analytics-impl-12.0.1-runtime.jar (com.google.firebase:firebase-analytics-impl:12.0.1) and jetified-play-services-measurement-impl-17.4.3-runtime.jar (com.google.android.gms:play-services-measurement-impl:17.4.3)
+Duplicate class com.google.android.gms.measurement.AppMeasurement$ConditionalUserProperty found in modules jetified-firebase-analytics-impl-12.0.1-runtime.jar (com.google.firebase:firebase-analytics-impl:12.0.1) and jetified-play-services-measurement-impl-17.4.3-runtime.jar (com.google.android.gms:play-services-measurement-impl:17.4.3)
+Duplicate class com.google.android.gms.measurement.AppMeasurement$Event found in modules jetified-firebase-analytics-impl-12.0.1-runtime.jar (com.google.firebase:firebase-analytics-impl:12.0.1) and jetified-play-services-measurement-impl-17.4.3-runtime.jar (com.google.android.gms:play-services-measurement-impl:17.4.3)
+Duplicate class com.google.android.gms.measurement.AppMeasurement$EventInterceptor found in modules jetified-firebase-analytics-impl-12.0.1-runtime.jar (com.google.firebase:firebase-analytics-impl:12.0.1) and jetified-play-services-measurement-impl-17.4.3-runtime.jar (com.google.android.gms:play-services-measurement-impl:17.4.3)
+Duplicate class com.google.android.gms.measurement.AppMeasurement$OnEventListener found in modules jetified-firebase-analytics-impl-12.0.1-runtime.jar (com.google.firebase:firebase-analytics-impl:12.0.1) and jetified-play-services-measurement-impl-17.4.3-runtime.jar (com.google.android.gms:play-services-measurement-impl:17.4.3)
+Duplicate class com.google.android.gms.measurement.AppMeasurement$Param found in modules jetified-firebase-analytics-impl-12.0.1-runtime.jar (com.google.firebase:firebase-analytics-impl:12.0.1) and jetified-play-services-measurement-impl-17.4.3-runtime.jar (com.google.android.gms:play-services-measurement-impl:17.4.3)
+Duplicate class com.google.android.gms.measurement.AppMeasurement$UserProperty found in modules jetified-firebase-analytics-impl-12.0.1-runtime.jar (com.google.firebase:firebase-analytics-impl:12.0.1) and jetified-play-services-measurement-impl-17.4.3-runtime.jar (com.google.android.gms:play-services-measurement-impl:17.4.3)
+Duplicate class com.google.firebase.analytics.FirebaseAnalytics found in modules jetified-firebase-analytics-impl-12.0.1-runtime.jar (com.google.firebase:firebase-analytics-impl:12.0.1) and jetified-play-services-measurement-api-17.4.3-runtime.jar (com.google.android.gms:play-services-measurement-api:17.4.3)
+Duplicate class com.google.firebase.analytics.FirebaseAnalytics$Event found in modules jetified-firebase-analytics-impl-12.0.1-runtime.jar (com.google.firebase:firebase-analytics-impl:12.0.1) and jetified-play-services-measurement-api-17.4.3-runtime.jar (com.google.android.gms:play-services-measurement-api:17.4.3)
+Duplicate class com.google.firebase.analytics.FirebaseAnalytics$Param found in modules jetified-firebase-analytics-impl-12.0.1-runtime.jar (com.google.firebase:firebase-analytics-impl:12.0.1) and jetified-play-services-measurement-api-17.4.3-runtime.jar (com.google.android.gms:play-services-measurement-api:17.4.3)
+Duplicate class com.google.firebase.analytics.FirebaseAnalytics$UserProperty found in modules jetified-firebase-analytics-impl-12.0.1-runtime.jar (com.google.firebase:firebase-analytics-impl:12.0.1) and jetified-play-services-measurement-api-17.4.3-runtime.jar (com.google.android.gms:play-services-measurement-api:17.4.3)
+
+Go to the documentation to learn how to Fix dependency resolution errors.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;2-解決&#34;&gt;2. 解決&lt;/h1&gt;
+
+&lt;p&gt;エラーは「&lt;code&gt;com.google.firebase:firebase-analytics&lt;/code&gt;と&lt;code&gt;com.google.android.gms:play-services&lt;/code&gt;に含まれているjarがかぶってるよ」という内容に見えます。&lt;/p&gt;
+
+&lt;p&gt;Firebase移行で足した下記(a)を削除したらビルドが通るようになりました。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;[アプリルート]/mobile/build.gradle&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;dependencies {
+    ...
+        
+    //(a)
+    //implementation &#39;com.google.firebase:firebase-analytics:17.4.3&#39;
+
+    //(b)
+    implementation &#39;com.google.android.gms:play-services:12.0.1&#39;
+
+    ...
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;こちらの&lt;a href=&#34;https://mvnrepository.com/artifact/com.google.android.gms/play-services/12.0.1&#34; target=&#34;_blank&#34;&gt;リンク&lt;/a&gt;を見ると(b)のパッケージには&lt;code&gt;firebase-analytics&lt;/code&gt;が含まれているため、(a)と衝突してしまったと思われます。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>About</title>
+      <link>https://sankame.github.io/about/</link>
+      <pubDate>Thu, 21 May 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/about/</guid>
+      <description>
+
+&lt;h1 id=&#34;sankame&#34;&gt;Sankame&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;1976年生まれ&lt;/li&gt;
+&lt;li&gt;千葉県在住&lt;/li&gt;
+&lt;li&gt;ITエンジニア、プログラマー&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;職歴&#34;&gt;職歴&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;(2001-2011) 受託系システム会社に所属&lt;/li&gt;
+&lt;li&gt;(2011-2020) Webメディア会社に所属&lt;/li&gt;
+&lt;li&gt;(2020-) Webサービス提供会社に所属&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;好きな言語&#34;&gt;好きな言語&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Java&lt;/li&gt;
+&lt;li&gt;php&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;連絡先&#34;&gt;連絡先&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;m2ad0504@outlook.jp&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>品質管理とUnitTest(Laravel&#43;PHPUnit&#43;Mockeryによるサンプルコード付き)</title>
+      <link>https://sankame.github.io/blog/2020-05-05-laravel_phpunit_mockery/</link>
+      <pubDate>Tue, 05 May 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2020-05-05-laravel_phpunit_mockery/</guid>
+      <description>
+
+&lt;h1 id=&#34;環境&#34;&gt;環境&lt;/h1&gt;
+
+&lt;p&gt;&lt;code&gt;[OS] Debian 10&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;[PHP] 7.3.13&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;[Laravel] 7.6.2&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;[PHPUnit] 8.5.3&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;[Mockery] 1.3.1&lt;/code&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;はじめに&#34;&gt;はじめに&lt;/h1&gt;
+
+&lt;p&gt;ソフトウェアやアプリケーション開発にとって品質管理は切っても切り離せない存在です。
+日本の従来の品質管理は散布図やPB曲線などを用いて定量化を重視してきました。&lt;/p&gt;
+
+&lt;p&gt;しかし、それらは品質を数値化し分析することに寄りすぎていると感じるのは僕だけでしょうか？
+品質管理の本来の目的は「品質を上げること」にあるはずです。&lt;/p&gt;
+
+&lt;p&gt;一言で品質と言っても様々ですが、「品質 = 要求仕様に則った実装」と定義すると、品質向上のための必要十分な施策はUnitTestによるホワイトボックステストが一番の近道だと考えています。
+実際、ネットの情報を見ても、Googleなどのテック企業はUnitTestを中心に据えているように見えます。
+その上で、報告などの目的でどうしても品質を定量化したいのであれば、UnitTestのカバレッジ計測ツールを使ったら良いのではないでしょうか。&lt;/p&gt;
+
+&lt;h1 id=&#34;1-方針&#34;&gt;1. 方針&lt;/h1&gt;
+
+&lt;p&gt;下記の方針でユニットテストを書いていきますが、自分のプロジェクトと合わない部分は変えて下さい。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;1-1. 後々CIで動かすことも考慮し、DB接続はモックで代替する。&lt;/li&gt;
+&lt;li&gt;1-2. フレームワークを含めず実装した箇所だけのテストコードを書く。&lt;/li&gt;
+&lt;li&gt;1-3. プロダクションコードの全ロジックを通すテストコードを書く。(「3. テスト記載方法」で後述)&lt;/li&gt;
+&lt;li&gt;1-4. 上記1-2の範囲でツールを用いてカバレッジを計測し、なるべく100%に近づける。(一般的にツールは評価が甘めのため)&lt;/li&gt;
+&lt;li&gt;1-5. テストコードの構成はフレームワークやデファクトスタンダードに合わせる。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;2-設定&#34;&gt;2. 設定&lt;/h1&gt;
+
+&lt;h2 id=&#34;2-1-phpunit&#34;&gt;2-1. PHPUnit&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;LaravelにはPHPUnitが最初から入ってるので、アプリのルートで下記コマンドを実行するとサンプルのテストコードが実行されます。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-linux&#34;&gt;composer exec -v phpunit
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;アプリルートにある&lt;code&gt;tests&lt;/code&gt;ディレクトリにテストコードを格納していきます。同ディレクトリ内はさらに&lt;code&gt;Feature&lt;/code&gt;と&lt;code&gt;Unit&lt;/code&gt;に分かれてます。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-linux&#34;&gt;tests
+|-- CreatesApplication.php
+|-- Feature
+|   `-- ExampleTest.php
+|-- TestCase.php
+`-- Unit
+    `-- ExampleTest.php
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://readouble.com/laravel/5.5/ja/testing.html&#34; target=&#34;_blank&#34;&gt;Laravelの方針&lt;/a&gt;に合わせて、下記の区分けでテストを書いていきます。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Feature&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;機能(エンドポイントURL)視点なので、実質コントローラのホワイトボックステストが該当すると思われます。&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Unit&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;各クラスごとのテスト。&lt;/li&gt;
+&lt;li&gt;DDDを採用している場合はService、Repositoryなど作成したクラスごとのテストケースを格納。&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;あと、Laravelのドキュメントにはありませんが、メンテナンス上プロダクションコードとテストコードのディレクトリ構成を合わせておきましょう。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;プロダクションコード&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-linux&#34;&gt;app/Http/
+|-- Controllers
+|   |-- ContactController.php
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;テストコード&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-linux&#34;&gt;tests/Feature/Http/
+|-- Controllers
+|   |-- ContactControllerTest.php
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;次に方針1-2に沿ってテスト範囲を絞るためにアプリルートの&lt;code&gt;phpunit.xml&lt;/code&gt;を編集します。細かい指定ができるので&lt;a href=&#34;https://phpunit.de/manual/6.5/ja/appendixes.configuration.html#appendixes.configuration.whitelisting-files&#34; target=&#34;_blank&#34;&gt;こちら&lt;/a&gt;も参照してみて下さい。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;filter&amp;gt;
+    &amp;lt;whitelist processUncoveredFilesFromWhitelist=&amp;quot;true&amp;quot;&amp;gt;
+            &amp;lt;directory suffix=&amp;quot;.php&amp;quot;&amp;gt;
+                ./app/Http/Controllers
+            &amp;lt;/directory&amp;gt;
+            &amp;lt;exclude&amp;gt;
+                &amp;lt;file&amp;gt;./app/Http/Controllers/Controller.php&amp;lt;/file&amp;gt;
+            &amp;lt;/exclude&amp;gt;
+    &amp;lt;/whitelist&amp;gt;
+&amp;lt;/filter&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;2-2-mockery&#34;&gt;2-2. Mockery&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;方針1-1に沿ってDBアクセスの代わりにMockeryからダミーの値を返すようにします。&lt;/p&gt;
+
+&lt;p&gt;Mockery(&lt;code&gt;[アプリルート]/vendor/mockery&lt;/code&gt;)が入ってない場合は&lt;a href=&#34;https://readouble.com/mockery/1.0/ja/installation.html&#34; target=&#34;_blank&#34;&gt;こちらのページ&lt;/a&gt;などを参考にインストールして下さい。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;2-3-カバレッジ&#34;&gt;2-3. カバレッジ&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;品質評価の指標として、テストの網羅率を出します。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;[アプリルート]/composer.json&lt;/code&gt;に下記を追記。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;quot;scripts&amp;quot;: {
+        ...
+    &amp;quot;test:coverage&amp;quot;: [
+        &amp;quot;phpunit --coverage-html coverage&amp;quot;
+    ]
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;アプリルートで下記コマンドを実行すると結果が&lt;code&gt;[アプリルート]/coverage&lt;/code&gt;にHTMLで出力されます。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-linux&#34;&gt;composer test:coverage
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;No code coverage driver is available&lt;/code&gt;と出たり、結果が出力されない場合はXdebugのインストールが必要です。&lt;code&gt;php -i&lt;/code&gt;の出力結果を&lt;a href=&#34;https://xdebug.org/wizard&#34; target=&#34;_blank&#34;&gt;こちらの入力フォーム&lt;/a&gt;にはりつけて「Analyze my phpinfo() output」をクリックすると自分の環境に合わせたインストール手順が提示されます。&lt;/p&gt;
+
+&lt;p&gt;また、Mockeryとカバレッジを同時に使う場合は各テストメソッドのDocブロックにこれが必要なので記載しておいて下さい。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;@runInSeparateProcess
+@preserveGlobalState disabled
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;3-テスト記載方法&#34;&gt;3. テスト記載方法&lt;/h1&gt;
+
+&lt;h2 id=&#34;3-1-一般基準&#34;&gt;3-1. 一般基準&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;一般的にユニットテストの基準は「命令網羅」「分岐網羅」「条件網羅」がありますが、ここでは「分岐網羅」(判定条件の真偽を少なくとも1回は実行)に合わせます。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;if($x === 0){
+    //Do something.
+}
+if($y &amp;gt; 1){
+    //Do something.
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;上記プロダクションコードを例に取ると、テストケースはこの2つになります。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;(1) $x=0, $y=2 (両方true)
+(2) $x=1, $y=0 (両方false)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;フローチャートにすると分かりやすいですが、(1)は赤線、(2)は青線で各ルートを1回は通すイメージです。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/laravel_phpunit_mockery/flow.png&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;60%&#34; height=&#34;60%&#34; title=&#34;分岐網羅&#34; alt=&#34;分岐網羅&#34; src=&#34;https://sankame.github.io/assets/posts/img/laravel_phpunit_mockery/flow.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;また、境界値もバグが起きやすい箇所なのでテストに含めましょう。&lt;/p&gt;
+
+&lt;p&gt;ただ、テストケースがむやみに増えてもメンテナンスが大変なので、上記の例だと(2)を&lt;code&gt;$y=1&lt;/code&gt;に変えれば分岐網羅も境界値も同時にまかなえます。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;3-2-phpunitとmockery&#34;&gt;3-2. PHPUnitとMockery&lt;/h2&gt;
+
+&lt;p&gt;ID指定で特定のレコードを引っ張ってきて表示するというよくある編集画面を例にします。
+レコードが取得できれば編集画面を表示し、何かの理由で取得できなかったら中断して一覧画面へ戻します。
+&lt;script src=&#34;https://gist.github.com/Sankame/6cc553841d60ab142909ad7a75b951ee.js&#34;&gt;&lt;/script&gt;&lt;/p&gt;
+
+&lt;p&gt;分岐が1つなので、レコードが正常取得できた場合とできなかった場合のテストを用意します。
+プロダクションコード内で実行が期待されるContactモデルのメソッドをモックに記憶させます。&lt;/p&gt;
+
+&lt;p&gt;・あるIDを引数にしてfindメソッドが呼ばれ1レコードを返却。&lt;/p&gt;
+
+&lt;p&gt;・21行目でedit()が呼ばれるURLにアクセスし、11-17行目で設定した値が画面に表示されることを確認。&lt;/p&gt;
+
+&lt;script src=&#34;https://gist.github.com/Sankame/393556a5fb90b37acb7ceddd22860f3f.js&#34;&gt;&lt;/script&gt;
+
+&lt;p&gt;もう1つはレコードが取得できない場合なので、モックのfindメソッドはnullを返すようにして、期待される動作として14行目で一覧画面への遷移を確認しています。
+&lt;script src=&#34;https://gist.github.com/Sankame/c19a7080ea1ca8a2bfe7a6655cc181ac.js&#34;&gt;&lt;/script&gt;&lt;/p&gt;
+
+&lt;p&gt;テストの書き方は以上ですが、もっとサンプルが見たい場合や自分でコードをさわってみたい場合は下記をご利用下さい。&lt;/p&gt;
+
+&lt;h1 id=&#34;4-サンプルコード&#34;&gt;4. サンプルコード&lt;/h1&gt;
+
+&lt;p&gt;環境を作るのは面倒なのでDockerだけインストールして&lt;a href=&#34;https://hub.docker.com/r/sankame/laravel-sample&#34; target=&#34;_blank&#34;&gt;こちらのDockerイメージ&lt;/a&gt;を持ってきて下さい。ちなみにこのイメージは&lt;a href=&#34;https://hub.docker.com/r/thinkeramir/laravel6.x&#34; target=&#34;_blank&#34;&gt;利用しやすそうだったこれ&lt;/a&gt;をもとに拡張しました。サンプルを動かす手順はこちらです。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Dockerインストール&lt;/p&gt;
+
+&lt;p&gt;自分の環境にあったインストール方法を検索して下さい。Macの場合は&lt;a href=&#34;https://qiita.com/nemui_/items/ed753f6b2eb9960845f7&#34; target=&#34;_blank&#34;&gt;こちらの記事&lt;/a&gt;が分かりやすかったです。Dockerインストールとイメージ取得でディスクは10Gほど使ったと思います。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Dockerイメージ取得&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-linux&#34;&gt;docker pull sankame/laravel-sample
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Dockerイメージからコンテナを起動&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-linux&#34;&gt;docker run -ti -p 8080:80 --name test -d sankame/laravel-sample
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Dockerを入れたマシン上で下記URLにアクセスするとサンプルページが表示されます。
+&lt;a href=&#34;http://localhost:8080/laravel-7-crud-app/public/contacts&#34;&gt;http://localhost:8080/laravel-7-crud-app/public/contacts&lt;/a&gt; (もしインターネット上のサーバーで表示させる場合はドキュメントルートをpublic配下にするよう注意して下さい)&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Dockerコンテナに入る&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-linux&#34;&gt;docker exec -it test /bin/bash
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;アプリルートは&lt;code&gt;/var/www/html/laravel-7-crud-app&lt;/code&gt;です。今回の簡易CRUDアプリはコントローラーからモデルを呼び出すだけなので、&lt;code&gt;[アプリルート]/tests/Feature&lt;/code&gt;配下のみにテストコードを作成しました。&lt;/p&gt;
+
+&lt;p&gt;テスト実行やカバレッジ出力のコマンドは前述の2を参照して下さい。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>VirtualBoxでWindows10とUbuntu間のファイル共有</title>
+      <link>https://sankame.github.io/blog/2020-04-30-virtualbox_share_folder/</link>
+      <pubDate>Thu, 30 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2020-04-30-virtualbox_share_folder/</guid>
+      <description>
+
+&lt;h1 id=&#34;0-環境&#34;&gt;0. 環境&lt;/h1&gt;
+
+&lt;p&gt;&lt;code&gt;[VirtualBox] 6.1.6&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;[ホストOS] Windows 10 Home&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;[ゲストOS] Ubuntu 16.4&lt;/code&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;1-やりたいこと&#34;&gt;1. やりたいこと&lt;/h1&gt;
+
+&lt;p&gt;Windows10(ホストOS)にVirtualBoxを入れて、その上でUbuntu(ゲストOS)を動かします。&lt;/p&gt;
+
+&lt;p&gt;その際、ホストOS上のファイルをゲストOSからも操作したい。&lt;/p&gt;
+
+&lt;p&gt;IDEやエディタはホストOS上で起動し、バージョン管理やWebサーバー経由の確認などはゲストOSで行いたいというのが意図です。&lt;/p&gt;
+
+&lt;h1 id=&#34;2-インストール&#34;&gt;2. インストール&lt;/h1&gt;
+
+&lt;p&gt;VirtualBoxとUbuntuのインストール&amp;amp;設定は&lt;a href=&#34;https://qiita.com/pyon_kiti_jp/items/0be8ac17439abf418e48&#34; target=&#34;_blank&#34;&gt;この記事&lt;/a&gt;が分かりやすかったです。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://www.virtualbox.org/wiki/Downloads&#34; target=&#34;_blank&#34;&gt;VirtualBoxのサイト&lt;/a&gt;で下記リンクからダウンロード。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;[VirtualBox 6.1.6 platform packages]-[Windows hosts]&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;また、Ubuntuは&lt;a href=&#34;http://www.releases.ubuntu.com/16.04/&#34; target=&#34;_blank&#34;&gt;こちらのサイト&lt;/a&gt;から「64-bit PC (AMD64) desktop image」をダウンロードしました。&lt;/p&gt;
+
+&lt;p&gt;1.6Gあるので僕の環境だと数時間かかりました。&lt;/p&gt;
+
+&lt;h1 id=&#34;3-共有フォルダ設定&#34;&gt;3. 共有フォルダ設定&lt;/h1&gt;
+
+&lt;p&gt;Ubuntuのインストールが終わったら、VirtualBoxのホーム画面からインストールした仮想マシンを選択して「設定」をクリック。&lt;/p&gt;
+
+&lt;p&gt;下記のウィンドウが起動するので、左メニューの「共有フォルダー」をクリックします。&lt;/p&gt;
+
+&lt;p&gt;さらに右端にあるプラスマークをクリック。
+&lt;a href=&#34;https://sankame.github.io/assets/posts/img/virtualbox_share_folder/list_share_folder.png&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;80%&#34; height=&#34;80%&#34; title=&#34;共有フォルダ一覧&#34; alt=&#34;共有フォルダ一覧&#34; src=&#34;https://sankame.github.io/assets/posts/img/virtualbox_share_folder/list_share_folder.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;下記ウィンドウに必要項目を入力します。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;・「フォルダーのパス」は「その他」を選んで、ホストOS側で共有したいフォルダーを選択。
+・「フォルダー名」は自動で入るのでさわらず。(1)
+・「自動マウント」をチェックONにします。
+・「マウントポイント」はゲストOSの任意のディレクトリを指定。(2)
+・「永続化する」というチェックボックスがある場合、それもON。
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/virtualbox_share_folder/add_share_folder.png&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;40%&#34; height=&#34;40%&#34; title=&#34;共有フォルダ追加&#34; alt=&#34;共有フォルダ追加&#34; src=&#34;https://sankame.github.io/assets/posts/img/virtualbox_share_folder/add_share_folder.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;こんな感じに追加されました。
+&lt;a href=&#34;https://sankame.github.io/assets/posts/img/virtualbox_share_folder/example_share_folder.png&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;80%&#34; height=&#34;80%&#34; title=&#34;共有フォルダ一覧&#34; alt=&#34;共有フォルダ一覧&#34; src=&#34;https://sankame.github.io/assets/posts/img/virtualbox_share_folder/example_share_folder.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;ゲストOSを再起動します。&lt;/p&gt;
+
+&lt;p&gt;これだけだとゲストOSからホストOSの共有フォルダが見えませんでした。&lt;/p&gt;
+
+&lt;p&gt;調べてるといろんなページで「Ubuntuに&amp;rdquo;Gust Additions&amp;rdquo;をインストールする必要がある」と書いてましたが、入れなくても後述の手順でできました。
+(以前はそうだったのかもしれません)&lt;/p&gt;
+
+&lt;p&gt;&amp;ldquo;mount.vboxsf&amp;rdquo;コマンドを使いたいので、ゲストOS上でrootになるかsudoをつけて下記コマンドを実行。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ubuntu&#34;&gt;# apt install virtualbox-guest-utils
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;次にゲストOS側で予めマウントポイントのディレクトリを作成しておきます。(上記(2))&lt;/p&gt;
+
+&lt;p&gt;最後に、第一引数に前述の(1)、第二引数に(2)を指定してこのコマンドを実行するとホスト側のフォルダが参照できました。(下記のshareは読み替えて下さい)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ubuntu&#34;&gt;# mount.vboxsf share /share
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;仮想マシンを落とすと設定が消えてしまったので、&lt;code&gt;~/.bashrc&lt;/code&gt;に上記コマンドを書いておきました。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>MySQLでquery_cache系パラメータを設定すると起動エラー</title>
+      <link>https://sankame.github.io/blog/2020-04-01-mysql8_not_support_querycache/</link>
+      <pubDate>Wed, 01 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2020-04-01-mysql8_not_support_querycache/</guid>
+      <description>
+
+&lt;h1 id=&#34;0-環境&#34;&gt;0. 環境&lt;/h1&gt;
+
+&lt;p&gt;&lt;code&gt;[MySQL] 8.0.17&lt;/code&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;1-経緯&#34;&gt;1. 経緯&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;GCP無料枠のメモリ約500MBという貧弱な環境でWordPressを運用してます。&lt;/p&gt;
+
+&lt;p&gt;少しでもパフォーマンス改善したく、MySQLのクエリキャッシュを設定しました。(下記要点のみ記載)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-mysql&#34;&gt;# vim /etc/my.cnf.d/mysql-server.cnf
+    :
+    :
+[mysqld]
+query_cache_type=1
+query_cache_limit=1M
+query_cache_size=20M
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;MySQLを再起動。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-linux&#34;&gt;# mysql -u hoge -phoge -e&amp;quot;SET GLOBAL innodb_fast_shutdown = 1&amp;quot;
+# service mysqld stop
+# service mysqld start
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;起動しなくなりました…&lt;/p&gt;
+
+&lt;p&gt;ログを見ると下記エラーが出てました。(要点のみ記載)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# tail -F /var/log/mysql/mysqld.log
+    :
+    :
+[Server] unknown variable &#39;query_cache_type=1&#39;.
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;2-対応&#34;&gt;2. 対応&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;ネットで情報を漁ったところ、MySQL8からはクエリキャッシュが使えなくなったようです。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://mysqlserverteam.com/mysql-8-0-retiring-support-for-the-query-cache/&#34; target=&#34;_blank&#34;&gt;MySQL 8.0: Retiring Support for the Query Cache&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;代わりにProxySQLというのが紹介されてましたが、ミドルウェアを追加するとメンテするポイントも増えるので今回は見送りました。&lt;/p&gt;
+
+&lt;p&gt;一旦は、WordPressのプラグイン(WP Super Cache)とphp-fpmのチューニングで、DBより手前で何とかする方向で進めます。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;3-参考&#34;&gt;3. 参考&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://bugs.mysql.com/bug.php?id=90557&#34; target=&#34;_blank&#34;&gt;Initializing 8.0.11 fails to populate data directory and mysql system database&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://mgng.mugbum.info/1393&#34; target=&#34;_blank&#34;&gt;MySQL 5.7 → MySQL 8.0 に更新した＆メモ&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>MySQLのdatetimeとtimestampの値比較</title>
+      <link>https://sankame.github.io/blog/2020-03-20-mysql_compare_datetime_timestamp/</link>
+      <pubDate>Fri, 20 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2020-03-20-mysql_compare_datetime_timestamp/</guid>
+      <description>
+
+&lt;p&gt;MySQLで日付系のカラムを比較するときにちょっと手間取ったのでメモ。&lt;/p&gt;
+
+&lt;h1 id=&#34;0-環境&#34;&gt;0. 環境&lt;/h1&gt;
+
+&lt;p&gt;&lt;code&gt;[MySQL] 5.7.14&lt;/code&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;1-前提&#34;&gt;1. 前提&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;2つのテーブルに型が異なるカラムがあったとします。()内は小数秒の桁数の精度を表してます。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;テーブルAの定義抜粋&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;CreateDate datetime(3) # 小数秒あり
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;テーブルBの定義抜粋&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;created_at timestamp # 小数秒なし
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;2-手順&#34;&gt;2. 手順&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;この2カラムが一致していることをWHERE句で指定するには、日付フォーマットを揃えるとうまくいきました。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;SQL文の抜粋&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;AND IFNULL(DATE_FORMAT(a.CreateDate, &#39;%Y%m%d%H%i%S&#39;), &#39;&#39;) = IFNULL(DATE_FORMAT(b.created_at, &#39;%Y%m%d%H%i%S&#39;), &#39;&#39;)
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;今回は秒まで比較できれば十分でしたが、もし小数秒以下も含める場合は、下記を参照してフォーマットを追加して下さい。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.matsubarasystems.com/mysql/mysql-to_char&#34; target=&#34;_blank&#34;&gt;MySQLにおける日付変換&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;3-日付型の違い&#34;&gt;3. 日付型の違い&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;そもそもdatetimeとtimestampの使い分けは？というのはこの記事によくまとまっていました。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://www.codeproject.com/Tips/1215635/MySQL-DATETIME-vs-TIMESTAMP&#34; target=&#34;_blank&#34;&gt;MySQL: DATETIME vs TIMESTAMP&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;ざっくり言うと、こんな感じですね。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;[datetime] 格納できる値の範囲が広いが、その分容量が必要。&lt;/li&gt;
+&lt;li&gt;[timestamp] インデックス、UTC変換、タイムゾーン対応など、機能性を求めるならこっち。&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;4-参考&#34;&gt;4. 参考&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://dev.mysql.com/doc/refman/5.6/ja/date-and-time-type-overview.html&#34; target=&#34;_blank&#34;&gt;日付と時間型の概要&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Let&#39;s Encryptのバグに伴う証明書更新</title>
+      <link>https://sankame.github.io/blog/2020-03-06-lets_encrypt_bug_avoid/</link>
+      <pubDate>Fri, 06 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2020-03-06-lets_encrypt_bug_avoid/</guid>
+      <description>
+
+&lt;p&gt;「バグ対応のため、Let&amp;rsquo;s Encryptの一部証明書が3/4までになる」と同僚が教えてくれました。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://gigazine.net/news/20200304-letsencrypt-caa-rechecking-bug/&#34; target=&#34;_blank&#34;&gt;&amp;ldquo;「バグの影響で特定のサーバー証明書を失効させる」とLet’s Encryptが発表、影響を受けるのは全体の2.6%&amp;rdquo;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;0-環境&#34;&gt;0. 環境&lt;/h1&gt;
+
+&lt;p&gt;&lt;code&gt;[OS] CentOS 7.5&lt;/code&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;1-確認&#34;&gt;1. 確認&lt;/h1&gt;
+
+&lt;p&gt;まず、Let’s Encryptから提供されている下記ツールに対象ホスト名(ドメイン)を入れて影響有無を確認します。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://checkhost.unboundtest.com/&#34; target=&#34;_blank&#34;&gt;Check whether a host&amp;rsquo;s certificate needs replacement&lt;/a&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;2-手順&#34;&gt;2. 手順&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;影響ありの場合、対応方法は証明書を更新すればよいとのことなので、こちらを実行しました。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;certbot renew&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;よくログを見ると処理がスキップされ、更新されてない様子。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;The following certs are not due for renewal yet:
+/path/to/pemfile expires on 2020-05-07 (skipped)
+/path/to/pemfile expires on 2020-05-14 (skipped)
+No renewals were attempted.
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;サーバー負荷を下げるため、有効期限まで余裕があると更新されない仕様になってるようです。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;なので強制的に更新するコマンドを実行しました。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;certbot renew --force-renewal&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;今回は下記のメッセージが出てたので大丈夫そう。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;Congratulations, all renewals succeeded. The following certs have been renewed:
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;前述のツールでOKが出るのと、ブラウザ上で証明書の期限が延びていることを確認しました。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;(注意)Cronなどで定期更新する場合は、サーバー負荷を避けるため、通常の下記コマンドが推奨されてます。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;certbot renew&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;3-参考&#34;&gt;3. 参考&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://letsencrypt.org/caaproblem/&#34; target=&#34;_blank&#34;&gt;Download affected certificate serials for 2020.02.29 CAA Rechecking Incident&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://certbot.eff.org/docs/using.html?highlight=dry%20run&#34; target=&#34;_blank&#34;&gt;Certbot User Guide&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://blog.n-z.jp/blog/2017-04-26-certbot-renew.html&#34; target=&#34;_blank&#34;&gt;cronでcertbot renewの&amp;ndash;force-renewalを使用してはいけない&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
