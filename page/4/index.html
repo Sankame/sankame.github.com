@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <title>プログラマー備忘録</title>
+    <meta name="generator" content="Hugo 0.19" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    
+    
+
+    
+    
+    <meta name="robots" content="noindex">
+    
+
+    <script src="https://sankame.github.io/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="https://sankame.github.io/bower_components/bootstrap/js/bootstrap.min.js"></script>
+    <script src="https://sankame.github.io/bower_components/bootstrap/js/dropdowns-enhancement.js"></script>
+    <script src="https://sankame.github.io/bower_components/bluebird/js/browser/bluebird.js"></script>
+    
+    
+    
+    <script src="https://sankame.github.io/bower_components/d3/d3.min.js" charset="utf-8"></script>
+    <script src="https://sankame.github.io/bower_components/cal-heatmap/cal-heatmap.min.js"></script>
+    <script src="https://sankame.github.io/bower_components/highlightjs/highlight.pack.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']]}
+      });
+    </script>
+
+    <link rel="icon" href="https://sankame.github.io/favicon.ico" />
+    <link rel="apple-touch-icon" href="https://sankame.github.io/apple-touch-icon.png" />
+    <link rel="stylesheet" href="https://sankame.github.io/bower_components/highlightjs/styles/monokai.css" />
+    <link rel="stylesheet" href="https://sankame.github.io/bower_components/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://sankame.github.io/bower_components/bootstrap/css/dropdowns-enhancement.css" />
+    <link rel="stylesheet" href="https://sankame.github.io/bower_components/talaria/dist/talaria.css" />   
+    <link rel="stylesheet" href="https://sankame.github.io/bower_components/createjs/createjs.css" />
+    <link rel="stylesheet" href="https://sankame.github.io/bower_components/font-awesome/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="https://sankame.github.io/bower_components/icomoon/css/icomoon.css" />
+    <link rel="stylesheet" href="https://sankame.github.io/css/style.css" />
+    <link rel="stylesheet" href="https://sankame.github.io/css/mobile.css" />
+    <link rel="stylesheet" href="https://sankame.github.io/bower_components/cal-heatmap/cal-heatmap.css" />
+    <link rel="stylesheet" href="https://sankame.github.io/css/sankame.css" />
+
+    <link rel="alternate" type="application/rss+xml" title="プログラマー備忘録" href="https://sankame.github.io/index.xml"/>
+    <link rel="feed" type="application/rss+xml" title="プログラマー備忘録" href="https://sankame.github.io/index.xml" />
+
+    
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-7938855665302783",
+          enable_page_level_ads: true
+     });
+</script>
+</head>
+<body>
+<div class="container">
+
+
+<div id="container">
+    
+
+<header id="header">
+  <div id="header-main" class="header-inner">
+    <div class="outer">
+
+	<nav class="navbar navbar-default">
+	  <div class="container-fluid">
+
+    	    <div class="navbar-header">
+      		<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+      		  <span class="sr-only">Toggle navigation</span>
+      		  <span class="icon-bar"></span>
+      		  <span class="icon-bar"></span>
+      		  <span class="icon-bar"></span>
+      		</button>
+		    <h1>
+			    <a class="navbar-brand" href="https://sankame.github.io/">
+				    
+				    
+				    <span class="site-title">プログラマー備忘録</span>
+				    
+			    </a>
+		    </h1>
+	    </div>
+
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+    
+    <li>
+	<a href="https://twitter.com/handycola" target="_blank">
+		<i class="fa fa-twitter" aria-hidden="true"></i>
+	</a>
+
+</li>
+<li>
+	<a href="https://facebook.com/100014073908728" target="_blank">
+		<i class="fa fa-facebook" aria-hidden="true"></i>
+	</a>
+</li>
+<li>
+	<a href="https://stackoverflow.com/users/2849068/sankame" target="_blank">
+		<i class="fa fa-stack-overflow" aria-hidden="true"></i>
+	</a>
+</li>
+<li>
+	<a href="/index.xml" type="application/rss+xml" target="_blank">
+		<i class="fa fa-rss-square" aria-hidden="true"></i>
+	</a>
+</li>
+
+    
+      </ul>
+    </div>
+
+  </div>
+</nav>
+
+</header>
+
+
+
+
+    <div id="top-image">
+	<div id="top-image-wrap">
+		<iframe src="https://sankame.github.io/bower_components/particlesjs/particlesjs.html"></iframe>
+	</div>
+</div>
+
+    <div class="outer">
+
+    <section id="main">
+
+    
+    
+    <article class="article article-type-post" itemscope="" itemprop="blogPost">
+
+	    <div class="article-inner">
+
+            
+            </a>
+
+            <header class="article-header">
+    
+    <h1 class="article-title" itemprop="name">
+	<a href="https://sankame.github.io/blog/2017-09-05-android_sqlite_db_upgrade/" class="permalink">【Androidアプリ開発】SQLiteのDB定義を変更する際の注意点</a>
+    </h1>
+	<time datetime="2017-09-05 00:00:00 &#43;0000 UTC" itemprop="datePublished">2017-09-05</time>
+    <div class="article-meta">
+
+        
+    </div>
+</header>
+
+            <div class="article-entry" itemprop="articleBody">
+                <p>
+                    0.環境 [Android] 5.1.1
+[Android API] 21
+1.準備  Androidアプリ開発で、SQLiteのライブラリを使う際にハマった点をメモ。
+まずコンストラクターでDBを使う準備をします。
+import android.content.Context; import android.database.sqlite.SQLiteDatabase; import android.database.sqlite.SQLiteOpenHelper; class DatabaseHelper extends SQLiteOpenHelper { public DatabaseHelper(Context context) { super(context, &quot;test.db&quot;, null, 1); //(A)既存のDBを消すには下記コードを使用。 //context.deleteDatabase(&quot;DB name is here.&quot;); } //以下省略  第2引数でDB名を指定するとDBファイルがAndroid端末に作成されます。
+第4引数ではDBバージョンを指定し、DB定義を変える際はこれを1つ上げるようにします。
+(バージョンを下げるとクラッシュするので注意)
+また、開発中にDBを作り直したい場合は、上記(A)で削除しましょう。
+  2.ハマりポイント - DDL記載箇所  このライブラリは主に使うメソッドが2つあり、DBのバージョンによって下記の通り実行タイミングが異なります。
+DBファイルが未作成の場合 : onCreate
+DBファイルが既にある場合(DBバージョン1以上) : onUpgrade
+ミスりやすいのが、DBバージョン2以降は、onCreateとonUpgradeの両方にDDLを書く必要があるという点です。
+下記のようにusersテーブルがDBバージョン2で追加されたとして、もし、onUpgradeだけに書いてしまうと、DBバージョン1のユーザーにとっては問題ないですが、初期インストールの場合はonCreateしか実行されないため、usersテーブルが作られないことになります。
+なので、DBバージョン2以降に追加するDDLはprivateメソッドに書いて、上記の両メソッドから呼ぶようにしたらいいと思います。
+@Override public void onCreate(SQLiteDatabase db) { db.beginTransaction(); try { //DBバージョン1でcitiesテーブル作成。 String ddlCities = &quot;CREATE TABLE IF NOT EXISTS cities (&quot; + &quot;city_id INTEGER PRIMARY KEY AUTOINCREMENT&quot; + &quot;, city_name TEXT&quot; + &quot;);&quot;; db. ...
+                </p>
+                <p class="article-more-link">
+                    <a href="https://sankame.github.io/blog/2017-09-05-android_sqlite_db_upgrade/">
+			    Read more
+			    
+                    </a>
+                </p>
+            </div>
+	    
+        </div>
+    </article>
+    
+    <article class="article article-type-post" itemscope="" itemprop="blogPost">
+
+	    <div class="article-inner">
+
+            
+            </a>
+
+            <header class="article-header">
+    
+    <h1 class="article-title" itemprop="name">
+	<a href="https://sankame.github.io/blog/2017-08-21-android_app_set_activity_title/" class="permalink">【Androidアプリ開発】起動アイコンのタイトルにアプリ名を表示</a>
+    </h1>
+	<time datetime="2017-08-21 00:00:00 &#43;0000 UTC" itemprop="datePublished">2017-08-21</time>
+    <div class="article-meta">
+
+        
+    </div>
+</header>
+
+            <div class="article-entry" itemprop="articleBody">
+                <p>
+                    0.環境 [Android] 5.1.1
+ 文中、【】内は読み替えて下さい。  1.問題  Androidホーム画面の起動アイコンのタイトルをアプリ名にしたくて、下記(3)を追記したのですが変わりません・・・
+ AndroidManifest.xml
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt; &lt;manifest xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot; package=&quot;【パッケージ名】&quot; &gt; &lt;application android:allowBackup=&quot;true&quot; android:icon=&quot;@mipmap/ic_launcher&quot; android:label=&quot;(1) App Name&quot; android:theme=&quot;@style/AppTheme&quot; &gt; &lt;activity android:name=&quot;.MyActivity&quot; android:label=&quot;(2) My Activity's Title&quot; &gt; &lt;intent-filter android:label=&quot;(3) App Name&quot;&gt; &lt;action android:name=&quot;android.intent.action.MAIN&quot; /&gt; &lt;category android:name=&quot;android.intent.category.LAUNCHER&quot; /&gt; &lt;/intent-filter&gt; &lt;/activity&gt; &lt;/application&gt; &lt;/manifest&gt;  ネットで調べたところ、Android 5.1.1 だと(3)が無視され、下図のように起動アイコンにも(2)が表示されてしまうようです。
+
+
+   2. 対策  まず&rdquo;AndroidManifest.xml&rdquo;では、Activityのlabelを下記(3)に変更することで、起動アイコンはアプリ名になります。(intent-filterのlabel指定はやめる)
+ そのままだと、Activityのタイトルもアプリ名になってしまうため、起動時にタイトルを書き換えることにしました。(下記 &ldquo;MyActivity.java&rdquo; 参照)
+ AndroidManifest.xml
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt; &lt;manifest xmlns:android=&quot;http://schemas. ...
+                </p>
+                <p class="article-more-link">
+                    <a href="https://sankame.github.io/blog/2017-08-21-android_app_set_activity_title/">
+			    Read more
+			    
+                    </a>
+                </p>
+            </div>
+	    
+        </div>
+    </article>
+    
+    <article class="article article-type-post" itemscope="" itemprop="blogPost">
+
+	    <div class="article-inner">
+
+            
+            </a>
+
+            <header class="article-header">
+    
+    <h1 class="article-title" itemprop="name">
+	<a href="https://sankame.github.io/blog/2017-08-14-java_list_to_array/" class="permalink">【Java】Listから配列へ変換</a>
+    </h1>
+	<time datetime="2017-08-14 00:00:00 &#43;0000 UTC" itemprop="datePublished">2017-08-14</time>
+    <div class="article-meta">
+
+        
+    </div>
+</header>
+
+            <div class="article-entry" itemprop="articleBody">
+                <p>
+                     0.環境 [Java] 1.8  1. 内容  いつも忘れるので、JavaでList型からString型配列へ変換する方法をメモ。    ...
+                </p>
+                <p class="article-more-link">
+                    <a href="https://sankame.github.io/blog/2017-08-14-java_list_to_array/">
+			    Read more
+			    
+                    </a>
+                </p>
+            </div>
+	    
+        </div>
+    </article>
+    
+    <article class="article article-type-post" itemscope="" itemprop="blogPost">
+
+	    <div class="article-inner">
+
+            
+            </a>
+
+            <header class="article-header">
+    
+    <h1 class="article-title" itemprop="name">
+	<a href="https://sankame.github.io/blog/2017-05-14-view_sqlite_on_android/" class="permalink">AndroidのSQLite DBを参照</a>
+    </h1>
+	<time datetime="2017-05-14 00:00:00 &#43;0000 UTC" itemprop="datePublished">2017-05-14</time>
+    <div class="article-meta">
+
+        
+    </div>
+</header>
+
+            <div class="article-entry" itemprop="articleBody">
+                <p>
+                    &nbsp;更新日：2022年01月01日
+0.環境  PC側
+[OS] Windows7 (32bit 版) [Android Studio] 1.5.1  スマホ側
+[OS] Android 5.1.1 [SQLite] 3.8.6.1   1. 前提  まずSQLiteのデータをファイル形式で保存するよう設定します。
+ 例として、SQLiteを操作するライブラリにSQLiteOpenHelperを使用した場合について記載します。
+ コンストラクタの第二引数でDBファイル名を指定します。
+ (未指定の場合、データはメモリにのみ保持されます)
+class DatabaseHelper extends SQLiteOpenHelper { public DatabaseHelper(Context context) { //DBファイル名を指定。 super(context, &quot;example.db&quot;, null, 1); }  PCからAndroid端末にあるSQLiteのDBファイルを見る方法を調べました。
+ 試行錯誤した内容を書いているため、結論だけ知りたい場合は、4まで読み飛ばして下さい。
+  2. ADB(Androidデバッグ用インターフェース) 利用  ネットを検索して結構あったのが、ADBを使ってSQLiteのDBファイルをAndroid端末からPCへコピーし、その後DBビューワーで参照するというものです。
+ PCでコマンドプロンプトから下記コマンドを実行すると、カレントディレクトリにtarget.db(任意)というファイルができます。
+C:\Users\【ユーザー名】&gt;adb -d shell &quot;run-as 【アプリケーションID】 cat databases/【DBファイル名】&quot;&gt;target.db  【】内は読み替えて下さい。
+ 【アプリケーションID】: Android Studioの[File]-[Project Structure]-[Flavors]-[Application Id] ...
+                </p>
+                <p class="article-more-link">
+                    <a href="https://sankame.github.io/blog/2017-05-14-view_sqlite_on_android/">
+			    Read more
+			    
+                    </a>
+                </p>
+            </div>
+	    
+        </div>
+    </article>
+    
+    <article class="article article-type-post" itemscope="" itemprop="blogPost">
+
+	    <div class="article-inner">
+
+            
+            </a>
+
+            <header class="article-header">
+    
+    <h1 class="article-title" itemprop="name">
+	<a href="https://sankame.github.io/blog/2017-04-16-speed_up_website_use_browser_cache/" class="permalink">Webサイト・スピードアップ - ブラウザキャッシュ利用</a>
+    </h1>
+	<time datetime="2017-04-16 00:00:00 &#43;0000 UTC" itemprop="datePublished">2017-04-16</time>
+    <div class="article-meta">
+
+        
+    </div>
+</header>
+
+            <div class="article-entry" itemprop="articleBody">
+                <p>
+                    0. 前提  環境などの前提条件は前回の1から3と同じです。
+今回は教科書の[1. Reduce number of HTTP requests]-[Use Browser Cache]をやってみました。
+修正が少ない静的ファイルはブラウザキャッシュの期間を延ばし、2回目以降のアクセスはキャッシュから読み込むことで速度向上につなげます。
+作業は下記の2点です。
+(1) キャッシュ期間延長
+　Webサーバーの設定でjs、cssのブラウザ・キャッシュ期間を延ばします。
+(2) ファイル名のユニーク化
+　上記1によって修正がすぐに反映されないという状況を避けるため、ファイル名に修正ごとのハッシュ値を付けてキャッシュが効かないようにします。(gulpの機能を利用)
+  1. キャッシュ期間延長  nginxの設定ファイルにjs、cssの設定とキャッシュ期間を追記しました。
+記述が冗長なのは追って別の書き方を調べたいと思います。
+server { listen 443 ssl; server_name [ドメイン名]; ssl_certificate [ファイルパス]; ssl_certificate_key [ファイルパス]; location / { proxy_pass http://[ホスト名]:[ポート番号]; proxy_set_header X-Real-IP $remote_addr; proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; proxy_set_header X-Forwarded-Proto https; proxy_set_header X-Forwarded-Port 443; proxy_set_header Host $host; } # --- css/jsの指定を追加。 --- location ~* .(css|js)$ { proxy_pass http://[ホスト名]:[ポート番号]; proxy_set_header X-Real-IP $remote_addr; proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; proxy_set_header X-Forwarded-Proto https; proxy_set_header X-Forwarded-Port 443; proxy_set_header Host $host; # キャッシュ期間を設定。 expires 365d; } # --- css/jsの指定を追加。 --- }  ChromeのDeveloper Toolsで見て、Expiresヘッダーの追加とjs、cssがキャッシュから読み込まれていることを確認します。(下図オレンジの枠線) ...
+                </p>
+                <p class="article-more-link">
+                    <a href="https://sankame.github.io/blog/2017-04-16-speed_up_website_use_browser_cache/">
+			    Read more
+			    
+                    </a>
+                </p>
+            </div>
+	    
+        </div>
+    </article>
+    
+    <article class="article article-type-post" itemscope="" itemprop="blogPost">
+
+	    <div class="article-inner">
+
+            
+            </a>
+
+            <header class="article-header">
+    
+    <h1 class="article-title" itemprop="name">
+	<a href="https://sankame.github.io/blog/2017-03-19-hugo_quickstart/" class="permalink">Hugoクイックスタート</a>
+    </h1>
+	<time datetime="2017-03-19 00:00:00 &#43;0000 UTC" itemprop="datePublished">2017-03-19</time>
+    <div class="article-meta">
+
+        
+    </div>
+</header>
+
+            <div class="article-entry" itemprop="articleBody">
+                <p>
+                    0. 環境 [Mac] 10.11.6 [Hugo] 0.19  1.インストール  ここ数年、ブログウェアはjekyllを使ってましたが、下記の点が不便だったので、評判の良いHugoを試してみました。まずはサンプルを動かすところまで。
+ 初期構築やバージョンアップが大変だったので、他のPCに環境を作る気になれない。(今ならDockerという手もありますが…)
+ 記事の生成に時間がかかるようになってきた。
+ 記事の更新後、2～3回リロードしないとブラウザに反映されない。
+  インストール・マニュアルに従って進めました。
+僕の場合、Homebrewは既に入っていたのでStep2からやりました。
+$ brew update $ brew install hugo  「インストール後にバージョンを調べてね」と書いてあるので念のためチェックです。
+$ ls -l $( which hugo ) lrwxr-xr-x 1 mx admin 28 3 19 03:08 /usr/local/bin/hugo -&gt; ../Cellar/hugo/0.19/bin/hugo $ hugo version Hugo Static Site Generator v0.19 darwin/amd64 BuildDate: 2017-02-27T19:21:29+09:00  2行とも0.19なので問題なさそうです。
+  2.サンプル作成  こちらのページに沿ってサンプルを作成しました。
+ 適当なディレクトリで下記を実行します。(僕の場合 /app/hugo-test/ なので読み替えて下さい) ...
+                </p>
+                <p class="article-more-link">
+                    <a href="https://sankame.github.io/blog/2017-03-19-hugo_quickstart/">
+			    Read more
+			    
+                    </a>
+                </p>
+            </div>
+	    
+        </div>
+    </article>
+    
+    <article class="article article-type-post" itemscope="" itemprop="blogPost">
+
+	    <div class="article-inner">
+
+            
+            </a>
+
+            <header class="article-header">
+    
+    <h1 class="article-title" itemprop="name">
+	<a href="https://sankame.github.io/blog/2017-02-26-speed_up_website_gulp/" class="permalink">Webサイト・スピードアップ - gulp</a>
+    </h1>
+	<time datetime="2017-02-26 00:00:00 &#43;0000 UTC" itemprop="datePublished">2017-02-26</time>
+    <div class="article-meta">
+
+        
+    </div>
+</header>
+
+            <div class="article-entry" itemprop="articleBody">
+                <p>
+                    &nbsp;更新日：2017年03月07日
+0. 環境  フロントエンドの話なのでサーバー環境はあまり関係ないのですが、参考まで。
+ サーバー
+[Nginx] 1.10.2 [Kitura] 1.1.2 [Swift] 3.0.1  ローカル
+[Mac] 10.11.6 [Node.js] 7.6.0 [gulp] 3.9.1    1.準備  仕事でやっているWebサイトのスピードアップを個人でもやってみたくて、適当なページを1つ作ってみました。
+シンプルカレンダー
+そしてパフォーマンス改善の教科書に選んだのはこちらです。
+Speed Up Your Website
+  2.現状  Apacheで運用しているWebアプリが他にあるため、下記のようなちょっと珍しい構成になっています。
+Nginx(リバースプロキシとして使用) + ServerSide-Swift(Kitura)  僕のネット環境(下り57Mbps/上り18Mbps)(※1)だとシンプルカレンダーのロードタイムが約2.5秒(※2)でそこまでストレスは感じませんが、DBを使ってないわりにこの数字なので改善の余地ありです。
+(※1) 回線速度はSPEEDTESTで計測。
+(※2) Chrome Developer Tools で計測。
+  3.ブラウザからのリクエスト削減  Chrome Developer ToolsのNetworkタブで見るとCSS、JavaScript(以下JS)のダウンロードに時間がかかっているので、教科書の[1. Reduce number of HTTP requests]-[Combine files]から取り掛かってみました。
+HTMLから静的ファイル(CSS、JSなど)を複数ダウンロードする際、ブラウザが並列でリクエストできる数が決まっているため、なるべくそれを減らしましょうという内容です。
+複数の静的ファイルをまとめるためのツール(※3)を検討しましたが、一番簡単に実現できそうだったgulpを使いました。
+(※3) webpack、gulp、Grunt
+  4. ...
+                </p>
+                <p class="article-more-link">
+                    <a href="https://sankame.github.io/blog/2017-02-26-speed_up_website_gulp/">
+			    Read more
+			    
+                    </a>
+                </p>
+            </div>
+	    
+        </div>
+    </article>
+    
+    <article class="article article-type-post" itemscope="" itemprop="blogPost">
+
+	    <div class="article-inner">
+
+            
+            </a>
+
+            <header class="article-header">
+    
+    <h1 class="article-title" itemprop="name">
+	<a href="https://sankame.github.io/blog/2017-01-10-edit_crontab/" class="permalink">crontabを安全に編集したい</a>
+    </h1>
+	<time datetime="2017-01-10 00:00:00 &#43;0000 UTC" itemprop="datePublished">2017-01-10</time>
+    <div class="article-meta">
+
+        
+    </div>
+</header>
+
+            <div class="article-entry" itemprop="articleBody">
+                <p>
+                     &nbsp;更新日：2019年09月26日
+0. 環境 [CentOS] 6.5
+1. 手順  crontabの内容を適当な場所にコピー。(本文中ではユーザーのホームディレクトリ)
+usernameはcronを設定するユーザー名に読み替えて下さい。
+$ cp -p /var/spool/cron/[username] ~  上記ディレクトリの参照権限がない場合、これでもOK。
+$ crontab -l &gt; ~/[username]  バックアップを取った後、内容を書き換えます。
+$ cp -p ~/[username] ~/[username].bak $ vim ~/[username]  crontabに取り込みます。
+$ crontab ~/[username]  最後に取り込んだ内容とバックアップを比較しておきます。
+差分として、修正箇所のみが表示されればOK。
+$ crontab -l | diff ~/[username].bak -   2. 注意  下記でも編集は可能ですが、できれば避けた方がいいと思います。
+キーボードで[E]の横には[R]があり、-r で誤ってcrontabの内容を削除する恐れがあるため。
+$ crontab -e    ...
+                </p>
+                <p class="article-more-link">
+                    <a href="https://sankame.github.io/blog/2017-01-10-edit_crontab/">
+			    Read more
+			    
+                    </a>
+                </p>
+            </div>
+	    
+        </div>
+    </article>
+    
+    <article class="article article-type-post" itemscope="" itemprop="blogPost">
+
+	    <div class="article-inner">
+
+            
+            </a>
+
+            <header class="article-header">
+    
+    <h1 class="article-title" itemprop="name">
+	<a href="https://sankame.github.io/blog/2017-01-08-sh_check_args/" class="permalink">シェルで引数チェック</a>
+    </h1>
+	<time datetime="2017-01-08 00:00:00 &#43;0000 UTC" itemprop="datePublished">2017-01-08</time>
+    <div class="article-meta">
+
+        
+    </div>
+</header>
+
+            <div class="article-entry" itemprop="articleBody">
+                <p>
+                     0. 環境 [Mac] 10.11.6 [GNU bash] 3.2.57  1. 内容  test.shの先頭で第一引数をチェックして、無い場合は処理を中断します。
+ test.sh  if [ &quot;$1&quot; = &quot;&quot; ] then echo &quot;引数を指定して下さい。&quot; # 処理を中断。 exit 1 fi echo &quot;任意の処理&quot; echo &quot;引数は$1&quot; exit 0   実行結果  $ sh test.sh 引数を指定して下さい。 $ sh test.sh hoge 任意の処理 引数はhoge    ...
+                </p>
+                <p class="article-more-link">
+                    <a href="https://sankame.github.io/blog/2017-01-08-sh_check_args/">
+			    Read more
+			    
+                    </a>
+                </p>
+            </div>
+	    
+        </div>
+    </article>
+    
+    <article class="article article-type-post" itemscope="" itemprop="blogPost">
+
+	    <div class="article-inner">
+
+            
+            </a>
+
+            <header class="article-header">
+    
+    <h1 class="article-title" itemprop="name">
+	<a href="https://sankame.github.io/blog/2017-01-03-swift3_uppercase_lowercase/" class="permalink">Swift3の大文字・小文字処理</a>
+    </h1>
+	<time datetime="2017-01-03 00:00:00 &#43;0000 UTC" itemprop="datePublished">2017-01-03</time>
+    <div class="article-meta">
+
+        
+    </div>
+</header>
+
+            <div class="article-entry" itemprop="articleBody">
+                <p>
+                     &nbsp;更新日：2017年01月27日
+0. 環境 [Swift] 3.0.2  1. 大文字・小文字処理  Swift3から大文字・小文字の処理は下記のようになります。
+(明示的にするため入れていますが型宣言は省略可)
+    上記コードはIBM Swift Sandboxで動かせます。
+下記リンク先の真ん中にある三角ボタンをクリックして下さい。
+Swift3で大文字・小文字処理
+(ChromeまたはFirefox推奨)
+  2. 参考ページ  caseInsensitiveCompare
+ localizedCaseInsensitiveCompare
+   ...
+                </p>
+                <p class="article-more-link">
+                    <a href="https://sankame.github.io/blog/2017-01-03-swift3_uppercase_lowercase/">
+			    Read more
+			    
+                    </a>
+                </p>
+            </div>
+	    
+        </div>
+    </article>
+    
+
+    <nav id="page-nav">
+
+    
+        <a class="extend prev" rel="prev" href="/page/3/">
+            « 
+        </a>
+    
+    
+        <a class="extend next" rel="next" href="/page/5/">
+             »
+        </a>
+    
+
+</nav>
+
+</section>
+
+
+    
+<aside id="sidebar">
+    
+
+<div class="widget-wrap">
+    <div class="widget">
+        <ul id="recent-post">
+		<li id="first-recent"><a href="/index.xml" id="firstmove" class="move"><h3 class="widget-title">
+			最近の投稿
+    </h3></a></li>
+    		
+            
+<li><a href="https://sankame.github.io/blog/2022-10-09-android_api_level_31/" class="move">  Android APIレベル31対応</a> </li>
+            
+<li><a href="https://sankame.github.io/blog/2022-08-20-fail_to_make_sl_in_vm/" class="move">  VMでシンボリックリンクが作成できない</a> </li>
+            
+<li><a href="https://sankame.github.io/blog/2022-05-21-nextjs_so_slow/" class="move">  Next.jsが遅い</a> </li>
+            
+        </ul>
+    </div>
+</div>
+
+
+
+    
+
+<div class="widget-wrap">
+    <div class="widget">
+        <ul class="category-list">
+    <h3 class="widget-title">Categories </h3>
+            
+                <a class="category-list-link" href="https://sankame.github.io/categories/tips">
+            <li class="category-list-item">
+                    tips
+                <span class="category-list-count">26</span>
+            </li>
+                </a>
+            
+                <a class="category-list-link" href="https://sankame.github.io/categories/%e3%82%a8%e3%83%a9%e3%83%bc%e8%a7%a3%e6%b1%ba">
+            <li class="category-list-item">
+                    エラー解決
+                <span class="category-list-count">29</span>
+            </li>
+                </a>
+            
+                <a class="category-list-link" href="https://sankame.github.io/categories/%e3%82%bb%e3%83%83%e3%83%88%e3%82%a2%e3%83%83%e3%83%97">
+            <li class="category-list-item">
+                    セットアップ
+                <span class="category-list-count">41</span>
+            </li>
+                </a>
+            
+                <a class="category-list-link" href="https://sankame.github.io/categories/%e3%83%81%e3%83%a5%e3%83%bc%e3%83%8b%e3%83%b3%e3%82%b0">
+            <li class="category-list-item">
+                    チューニング
+                <span class="category-list-count">3</span>
+            </li>
+                </a>
+            
+                <a class="category-list-link" href="https://sankame.github.io/categories/%e3%83%97%e3%83%ad%e3%82%b0%e3%83%a9%e3%83%9f%e3%83%b3%e3%82%b0">
+            <li class="category-list-item">
+                    プログラミング
+                <span class="category-list-count">7</span>
+            </li>
+                </a>
+            
+        </ul>
+    </div>
+</div>
+
+
+
+    
+
+<div class="widget-wrap">
+	<ul class="category-list">
+    <h3 class="widget-title">Tags  </h3>
+    <div class="widget tagcloud">
+    	
+        
+        <a href="https://sankame.github.io/tags/Android" style="font-size: 12px;">Android</a>
+        
+        <a href="https://sankame.github.io/tags/AndroidStudio" style="font-size: 12px;">AndroidStudio</a>
+        
+        <a href="https://sankame.github.io/tags/AndroidWear" style="font-size: 12px;">AndroidWear</a>
+        
+        <a href="https://sankame.github.io/tags/Angular2" style="font-size: 12px;">Angular2</a>
+        
+        <a href="https://sankame.github.io/tags/Apache" style="font-size: 12px;">Apache</a>
+        
+        <a href="https://sankame.github.io/tags/ApacheBench" style="font-size: 12px;">ApacheBench</a>
+        
+        <a href="https://sankame.github.io/tags/AppleWatch" style="font-size: 12px;">AppleWatch</a>
+        
+        <a href="https://sankame.github.io/tags/Bitbucket" style="font-size: 12px;">Bitbucket</a>
+        
+        <a href="https://sankame.github.io/tags/CentOS" style="font-size: 12px;">CentOS</a>
+        
+        <a href="https://sankame.github.io/tags/DELL" style="font-size: 12px;">DELL</a>
+        
+        <a href="https://sankame.github.io/tags/Eclipse" style="font-size: 12px;">Eclipse</a>
+        
+        <a href="https://sankame.github.io/tags/Flutter" style="font-size: 12px;">Flutter</a>
+        
+        <a href="https://sankame.github.io/tags/FreeMind" style="font-size: 12px;">FreeMind</a>
+        
+        <a href="https://sankame.github.io/tags/Git" style="font-size: 12px;">Git</a>
+        
+        <a href="https://sankame.github.io/tags/GitHub" style="font-size: 12px;">GitHub</a>
+        
+        <a href="https://sankame.github.io/tags/GoogleSheets" style="font-size: 12px;">GoogleSheets</a>
+        
+        <a href="https://sankame.github.io/tags/Gradle" style="font-size: 12px;">Gradle</a>
+        
+        <a href="https://sankame.github.io/tags/Hive" style="font-size: 12px;">Hive</a>
+        
+        <a href="https://sankame.github.io/tags/Hugo" style="font-size: 12px;">Hugo</a>
+        
+        <a href="https://sankame.github.io/tags/Java" style="font-size: 12px;">Java</a>
+        
+        <a href="https://sankame.github.io/tags/JavaScript" style="font-size: 12px;">JavaScript</a>
+        
+        <a href="https://sankame.github.io/tags/Jekyll" style="font-size: 12px;">Jekyll</a>
+        
+        <a href="https://sankame.github.io/tags/Jenkins" style="font-size: 12px;">Jenkins</a>
+        
+        <a href="https://sankame.github.io/tags/Kitura" style="font-size: 12px;">Kitura</a>
+        
+        <a href="https://sankame.github.io/tags/Laravel" style="font-size: 12px;">Laravel</a>
+        
+        <a href="https://sankame.github.io/tags/Let%27sEncrypt" style="font-size: 12px;">Let&#39;sEncrypt</a>
+        
+        <a href="https://sankame.github.io/tags/MeCab" style="font-size: 12px;">MeCab</a>
+        
+        <a href="https://sankame.github.io/tags/MindMapMemo" style="font-size: 12px;">MindMapMemo</a>
+        
+        <a href="https://sankame.github.io/tags/Mockery" style="font-size: 12px;">Mockery</a>
+        
+        <a href="https://sankame.github.io/tags/Monit" style="font-size: 12px;">Monit</a>
+        
+        <a href="https://sankame.github.io/tags/MySQL" style="font-size: 12px;">MySQL</a>
+        
+        <a href="https://sankame.github.io/tags/NTP" style="font-size: 12px;">NTP</a>
+        
+        <a href="https://sankame.github.io/tags/Nextjs" style="font-size: 12px;">Nextjs</a>
+        
+        <a href="https://sankame.github.io/tags/Nexus7" style="font-size: 12px;">Nexus7</a>
+        
+        <a href="https://sankame.github.io/tags/Nginx" style="font-size: 12px;">Nginx</a>
+        
+        <a href="https://sankame.github.io/tags/OpenX" style="font-size: 12px;">OpenX</a>
+        
+        <a href="https://sankame.github.io/tags/PHP" style="font-size: 12px;">PHP</a>
+        
+        <a href="https://sankame.github.io/tags/PHPDebugBar" style="font-size: 12px;">PHPDebugBar</a>
+        
+        <a href="https://sankame.github.io/tags/PHPUnit" style="font-size: 12px;">PHPUnit</a>
+        
+        <a href="https://sankame.github.io/tags/Phalcon" style="font-size: 12px;">Phalcon</a>
+        
+        <a href="https://sankame.github.io/tags/ReactNative" style="font-size: 12px;">ReactNative</a>
+        
+        <a href="https://sankame.github.io/tags/Redis" style="font-size: 12px;">Redis</a>
+        
+        <a href="https://sankame.github.io/tags/ReviveAdServer" style="font-size: 12px;">ReviveAdServer</a>
+        
+        <a href="https://sankame.github.io/tags/Ruby" style="font-size: 12px;">Ruby</a>
+        
+        <a href="https://sankame.github.io/tags/RubyGems" style="font-size: 12px;">RubyGems</a>
+        
+        <a href="https://sankame.github.io/tags/Rundeck" style="font-size: 12px;">Rundeck</a>
+        
+        <a href="https://sankame.github.io/tags/SQLite" style="font-size: 12px;">SQLite</a>
+        
+        <a href="https://sankame.github.io/tags/SSL-TLS" style="font-size: 12px;">SSL-TLS</a>
+        
+        <a href="https://sankame.github.io/tags/Selenium" style="font-size: 12px;">Selenium</a>
+        
+        <a href="https://sankame.github.io/tags/Smarty" style="font-size: 12px;">Smarty</a>
+        
+        <a href="https://sankame.github.io/tags/Subversion" style="font-size: 12px;">Subversion</a>
+        
+        <a href="https://sankame.github.io/tags/Swift" style="font-size: 12px;">Swift</a>
+        
+        <a href="https://sankame.github.io/tags/Touchpad" style="font-size: 12px;">Touchpad</a>
+        
+        <a href="https://sankame.github.io/tags/TypeScript" style="font-size: 12px;">TypeScript</a>
+        
+        <a href="https://sankame.github.io/tags/Ubuntu" style="font-size: 12px;">Ubuntu</a>
+        
+        <a href="https://sankame.github.io/tags/UnitTest" style="font-size: 12px;">UnitTest</a>
+        
+        <a href="https://sankame.github.io/tags/VSCode" style="font-size: 12px;">VSCode</a>
+        
+        <a href="https://sankame.github.io/tags/Vagrant" style="font-size: 12px;">Vagrant</a>
+        
+        <a href="https://sankame.github.io/tags/VirtualBox" style="font-size: 12px;">VirtualBox</a>
+        
+        <a href="https://sankame.github.io/tags/Website-Optimization" style="font-size: 12px;">Website-Optimization</a>
+        
+        <a href="https://sankame.github.io/tags/Xcode" style="font-size: 12px;">Xcode</a>
+        
+        <a href="https://sankame.github.io/tags/ab" style="font-size: 12px;">ab</a>
+        
+        <a href="https://sankame.github.io/tags/bash" style="font-size: 12px;">bash</a>
+        
+        <a href="https://sankame.github.io/tags/cocoapods" style="font-size: 12px;">cocoapods</a>
+        
+        <a href="https://sankame.github.io/tags/composer" style="font-size: 12px;">composer</a>
+        
+        <a href="https://sankame.github.io/tags/cron" style="font-size: 12px;">cron</a>
+        
+        <a href="https://sankame.github.io/tags/fitbit" style="font-size: 12px;">fitbit</a>
+        
+        <a href="https://sankame.github.io/tags/gulp" style="font-size: 12px;">gulp</a>
+        
+        <a href="https://sankame.github.io/tags/jqGrid" style="font-size: 12px;">jqGrid</a>
+        
+        <a href="https://sankame.github.io/tags/node.js" style="font-size: 12px;">node.js</a>
+        
+        <a href="https://sankame.github.io/tags/npm" style="font-size: 12px;">npm</a>
+        
+        <a href="https://sankame.github.io/tags/programming-practice" style="font-size: 12px;">programming-practice</a>
+        
+        <a href="https://sankame.github.io/tags/shell" style="font-size: 12px;">shell</a>
+        
+        <a href="https://sankame.github.io/tags/ssh" style="font-size: 12px;">ssh</a>
+        
+        <a href="https://sankame.github.io/tags/stetho" style="font-size: 12px;">stetho</a>
+        
+        <a href="https://sankame.github.io/tags/vbscript" style="font-size: 12px;">vbscript</a>
+        
+        <a href="https://sankame.github.io/tags/wget" style="font-size: 12px;">wget</a>
+        
+        <a href="https://sankame.github.io/tags/windows" style="font-size: 12px;">windows</a>
+        
+        <a href="https://sankame.github.io/tags/%e3%83%97%e3%83%ad%e3%82%b8%e3%82%a7%e3%82%af%e3%82%bf%e3%83%bc" style="font-size: 12px;">プロジェクター</a>
+        
+        <a href="https://sankame.github.io/tags/%e5%93%81%e8%b3%aa%e7%ae%a1%e7%90%86" style="font-size: 12px;">品質管理</a>
+        
+    </div>
+</ul>
+</div>
+
+
+
+    <br>
+    
+
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-7938855665302783"
+     data-ad-slot="7089480753"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+
+</aside>
+
+
+    </div>
+</div>
+
+<footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+
+	<footer id="footer-left">
+	    &copy; 2022 Webプログラマー <a href="/about" target="_blank">Sankame.</a> <br>
+	    Powered by <a href="//gohugo.io">Hugo</a>. Theme by <a href="https://github.com/syui/hugo-theme-wave">hugo-theme-wave</a>.
+	</footer>
+
+    </div>
+  </div>
+</footer>
+
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-37675354-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+</body>
+</html>

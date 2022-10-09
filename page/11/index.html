@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <title>プログラマー備忘録</title>
+    <meta name="generator" content="Hugo 0.19" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    
+    
+
+    
+    
+    <meta name="robots" content="noindex">
+    
+
+    <script src="https://sankame.github.io/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="https://sankame.github.io/bower_components/bootstrap/js/bootstrap.min.js"></script>
+    <script src="https://sankame.github.io/bower_components/bootstrap/js/dropdowns-enhancement.js"></script>
+    <script src="https://sankame.github.io/bower_components/bluebird/js/browser/bluebird.js"></script>
+    
+    
+    
+    <script src="https://sankame.github.io/bower_components/d3/d3.min.js" charset="utf-8"></script>
+    <script src="https://sankame.github.io/bower_components/cal-heatmap/cal-heatmap.min.js"></script>
+    <script src="https://sankame.github.io/bower_components/highlightjs/highlight.pack.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']]}
+      });
+    </script>
+
+    <link rel="icon" href="https://sankame.github.io/favicon.ico" />
+    <link rel="apple-touch-icon" href="https://sankame.github.io/apple-touch-icon.png" />
+    <link rel="stylesheet" href="https://sankame.github.io/bower_components/highlightjs/styles/monokai.css" />
+    <link rel="stylesheet" href="https://sankame.github.io/bower_components/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://sankame.github.io/bower_components/bootstrap/css/dropdowns-enhancement.css" />
+    <link rel="stylesheet" href="https://sankame.github.io/bower_components/talaria/dist/talaria.css" />   
+    <link rel="stylesheet" href="https://sankame.github.io/bower_components/createjs/createjs.css" />
+    <link rel="stylesheet" href="https://sankame.github.io/bower_components/font-awesome/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="https://sankame.github.io/bower_components/icomoon/css/icomoon.css" />
+    <link rel="stylesheet" href="https://sankame.github.io/css/style.css" />
+    <link rel="stylesheet" href="https://sankame.github.io/css/mobile.css" />
+    <link rel="stylesheet" href="https://sankame.github.io/bower_components/cal-heatmap/cal-heatmap.css" />
+    <link rel="stylesheet" href="https://sankame.github.io/css/sankame.css" />
+
+    <link rel="alternate" type="application/rss+xml" title="プログラマー備忘録" href="https://sankame.github.io/index.xml"/>
+    <link rel="feed" type="application/rss+xml" title="プログラマー備忘録" href="https://sankame.github.io/index.xml" />
+
+    
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-7938855665302783",
+          enable_page_level_ads: true
+     });
+</script>
+</head>
+<body>
+<div class="container">
+
+
+<div id="container">
+    
+
+<header id="header">
+  <div id="header-main" class="header-inner">
+    <div class="outer">
+
+	<nav class="navbar navbar-default">
+	  <div class="container-fluid">
+
+    	    <div class="navbar-header">
+      		<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+      		  <span class="sr-only">Toggle navigation</span>
+      		  <span class="icon-bar"></span>
+      		  <span class="icon-bar"></span>
+      		  <span class="icon-bar"></span>
+      		</button>
+		    <h1>
+			    <a class="navbar-brand" href="https://sankame.github.io/">
+				    
+				    
+				    <span class="site-title">プログラマー備忘録</span>
+				    
+			    </a>
+		    </h1>
+	    </div>
+
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+    
+    <li>
+	<a href="https://twitter.com/handycola" target="_blank">
+		<i class="fa fa-twitter" aria-hidden="true"></i>
+	</a>
+
+</li>
+<li>
+	<a href="https://facebook.com/100014073908728" target="_blank">
+		<i class="fa fa-facebook" aria-hidden="true"></i>
+	</a>
+</li>
+<li>
+	<a href="https://stackoverflow.com/users/2849068/sankame" target="_blank">
+		<i class="fa fa-stack-overflow" aria-hidden="true"></i>
+	</a>
+</li>
+<li>
+	<a href="/index.xml" type="application/rss+xml" target="_blank">
+		<i class="fa fa-rss-square" aria-hidden="true"></i>
+	</a>
+</li>
+
+    
+      </ul>
+    </div>
+
+  </div>
+</nav>
+
+</header>
+
+
+
+
+    <div id="top-image">
+	<div id="top-image-wrap">
+		<iframe src="https://sankame.github.io/bower_components/particlesjs/particlesjs.html"></iframe>
+	</div>
+</div>
+
+    <div class="outer">
+
+    <section id="main">
+
+    
+    
+    <article class="article article-type-post" itemscope="" itemprop="blogPost">
+
+	    <div class="article-inner">
+
+            
+            </a>
+
+            <header class="article-header">
+    
+    <h1 class="article-title" itemprop="name">
+	<a href="https://sankame.github.io/blog/2012-12-31-centos_command/" class="permalink">CentOSコマンド メモ</a>
+    </h1>
+	<time datetime="2012-12-31 00:00:00 &#43;0000 UTC" itemprop="datePublished">2012-12-31</time>
+    <div class="article-meta">
+
+        
+    </div>
+</header>
+
+            <div class="article-entry" itemprop="articleBody">
+                <p>
+                    &nbsp;更新日：2015年03月18日
+CentOSコマンド メモ ・ファイル検索  find / -name filename  ・locateインストール (更新日：2013/01/01) # which locate /usr/bin/which: no locate in ・・・以下省略 # パッケージ名がlocateではないので注意。 # yum install mlocate # which locate /usr/bin/locate # 下記コマンドでDBを更新するとlocateが使えるようになる。 # updatedb  ・dateで日時設定 (更新日：2013/01/27) # 引数を次の順番に設定。→ date [月][日][時間][分][年] # date 012723232013 2013年 1月 27日 日曜日 23:23:00 JST  ・CentOSバージョン (更新日：2013/07/07) # cat /etc/redhat-release  ・CPUアーキテクチャ確認 (更新日：2013/07/07) # grep flags /proc/cpuinfo | grep lm | wc -l # 上記が0ならCPU 32bit、1ならCPU 64bit # lm(long mode)フラグがあれば64bit  ・カーネルバージョン確認 (更新日：2013/07/07) # uname -a|grep x86_64|wc -l # 上記が0なら32bitカーネル、1ならCPU 64bitカーネル # (x86_64 の場合、64bit) # (i386/i486/i586/i686 の場合、32bit)  参考ページ ...
+                </p>
+                <p class="article-more-link">
+                    <a href="https://sankame.github.io/blog/2012-12-31-centos_command/">
+			    Read more
+			    
+                    </a>
+                </p>
+            </div>
+	    
+        </div>
+    </article>
+    
+    <article class="article article-type-post" itemscope="" itemprop="blogPost">
+
+	    <div class="article-inner">
+
+            
+            </a>
+
+            <header class="article-header">
+    
+    <h1 class="article-title" itemprop="name">
+	<a href="https://sankame.github.io/blog/2012-12-28-php_sample_viaisset/" class="permalink">PHPサンプル isset関数化</a>
+    </h1>
+	<time datetime="2012-12-28 00:00:00 &#43;0000 UTC" itemprop="datePublished">2012-12-28</time>
+    <div class="article-meta">
+
+        
+    </div>
+</header>
+
+            <div class="article-entry" itemprop="articleBody">
+                <p>
+                     &ldquo;Undefined index&rdquo; Noticeを防ぐためのissetが冗長なので関数化。   ...
+                </p>
+                <p class="article-more-link">
+                    <a href="https://sankame.github.io/blog/2012-12-28-php_sample_viaisset/">
+			    Read more
+			    
+                    </a>
+                </p>
+            </div>
+	    
+        </div>
+    </article>
+    
+    <article class="article article-type-post" itemscope="" itemprop="blogPost">
+
+	    <div class="article-inner">
+
+            
+            </a>
+
+            <header class="article-header">
+    
+    <h1 class="article-title" itemprop="name">
+	<a href="https://sankame.github.io/blog/2012-12-27-github_pages_doesnt_work/" class="permalink">GitHubPagesが動かない</a>
+    </h1>
+	<time datetime="2012-12-27 00:00:00 &#43;0000 UTC" itemprop="datePublished">2012-12-27</time>
+    <div class="article-meta">
+
+        
+    </div>
+</header>
+
+            <div class="article-entry" itemprop="articleBody">
+                <p>
+                    GitHubPagesでブログを公開しようと、下記ページに従って作業したがindex.htmlすら表示されない… 参考ページ 1.GitHubに登録したメールアドレスの受信箱をチェック &ldquo;Page build failure&rdquo;というサブジェクトでGitHubからメールが届いていた。
+The page build failed with the following error: You need a verified email address in your GitHub account to publish Pages. You can verify your email addresses from your Settings panel: https://github.com/settings/emails  設定パネルであなたのメアドが正しいことを確認してください、と書いてある。
+上記メール内のリンクを押してページ遷移した後、メールアドレスの確認ボタンをクリック。
+その後、github pagesのページ作成ボタンを押すと下記URLにアクセスできた。 (usernameは読み替え)
+http://username.github.com/ ...
+                </p>
+                <p class="article-more-link">
+                    <a href="https://sankame.github.io/blog/2012-12-27-github_pages_doesnt_work/">
+			    Read more
+			    
+                    </a>
+                </p>
+            </div>
+	    
+        </div>
+    </article>
+    
+    <article class="article article-type-post" itemscope="" itemprop="blogPost">
+
+	    <div class="article-inner">
+
+            
+            </a>
+
+            <header class="article-header">
+    
+    <h1 class="article-title" itemprop="name">
+	<a href="https://sankame.github.io/blog/2012-12-24-openx_install/" class="permalink">OpenXインストール</a>
+    </h1>
+	<time datetime="2012-12-24 00:00:00 &#43;0000 UTC" itemprop="datePublished">2012-12-24</time>
+    <div class="article-meta">
+
+        
+    </div>
+</header>
+
+            <div class="article-entry" itemprop="articleBody">
+                <p>
+                    &nbsp;更新日：2015年06月27日
+ OSS版のOpenXは製品名がRevive AdServerに変わりました。
+インストールはこちらをご確認下さい。(2015/06/27)  ローカルPCのVmwarePlayerにOpenXをインストール。 [マニュアル]に従ってインストールしました。 1.ソース取得  マニュアルの下記リンクからソースをダウンロード。(アンケートがあるためwgetでは落とせない)
+Download the latest installation archive from: here
+ソースをWebサーバへアップし、解凍して公開ディレクトリへ配置する。
+# mv openx-2.8.10 openx # mv openx /var/www/html/  /var/www/html/openx/varと/var/www/html/openx/www/images　に777を与える。
+# cd /var/www/html/openx/ # chmod -R 777 var # chmod -R 777 ./www/images/  ブラウザでhttp://localhost/openx/ へアクセスし、Webのインストーラを起動する。
+下記のディレクトリにも書き込み権限が必要というエラーが出た。
+/var/www/html/openx/plugins
+/var/www/html/openx/www/admin/plugins
+画面にコマンドが書いてあったのでそのまま実行。
+# chmod -R a+w /var/www/html/openx/plugins # chmod -R a+w /var/www/html/openx/www/admin/plugins   2.Registration  Webインストーラを続行、下記項目に入力。
+name, password, e-mail
+  3. ...
+                </p>
+                <p class="article-more-link">
+                    <a href="https://sankame.github.io/blog/2012-12-24-openx_install/">
+			    Read more
+			    
+                    </a>
+                </p>
+            </div>
+	    
+        </div>
+    </article>
+    
+    <article class="article article-type-post" itemscope="" itemprop="blogPost">
+
+	    <div class="article-inner">
+
+            
+            </a>
+
+            <header class="article-header">
+    
+    <h1 class="article-title" itemprop="name">
+	<a href="https://sankame.github.io/blog/2012-12-23-jekyll_and_github/" class="permalink">Jekyllとgithubでブログ作成</a>
+    </h1>
+	<time datetime="2012-12-23 00:00:00 &#43;0000 UTC" itemprop="datePublished">2012-12-23</time>
+    <div class="article-meta">
+
+        
+    </div>
+</header>
+
+            <div class="article-entry" itemprop="articleBody">
+                <p>
+                    ローカルPCのVmwarePlayerにRuby, RubyGems, Jekyllをインストール。 Jekyllで作ったブログをGitHubに設置する。 1.Rubyインストール # インストール済みか？ # rpm -q ruby # インストールされていない場合、インストールを行う。 # yum install ruby ruby-devel rdoc irb  2.RubyGemsインストール # wget http://rubyforge.org/frs/download.php/60718/rubygems-1.3.5.tgz # tar xzf rubygems-1.3.5.tgz # cd rubygems-1.3.5 # ruby setup.rb # インストールされたgemsのバージョン確認。 # gem -v  3.Jekyllインストール # gem install jekyll  下記メッセージ(抜粋)でインストール失敗…
+buffer overflow detected
+3-1. vmware playerの割り当てメモリ変更。192MB -&gt; 256MB (問題の解決とは無関係と思われる) 3-2. Ruby再インストール # cd /etc/yum.repos.d/ # wget http://rubyworks.rubyforge.org/RubyWorks.repo # yum install ruby # ruby -v ruby 1. ...
+                </p>
+                <p class="article-more-link">
+                    <a href="https://sankame.github.io/blog/2012-12-23-jekyll_and_github/">
+			    Read more
+			    
+                    </a>
+                </p>
+            </div>
+	    
+        </div>
+    </article>
+    
+    <article class="article article-type-post" itemscope="" itemprop="blogPost">
+
+	    <div class="article-inner">
+
+            
+            </a>
+
+            <header class="article-header">
+    
+    <h1 class="article-title" itemprop="name">
+	<a href="https://sankame.github.io/blog/2012-12-17-jekyll_tips1/" class="permalink">Jekyll Tips1</a>
+    </h1>
+	<time datetime="2012-12-17 00:00:00 &#43;0000 UTC" itemprop="datePublished">2012-12-17</time>
+    <div class="article-meta">
+
+        
+    </div>
+</header>
+
+            <div class="article-entry" itemprop="articleBody">
+                <p>
+                    Jekyllの設定に関するメモ。 JekyllBootstrapの配置先は下記ディレクトリ。(関連記事) /var/www/html/jekyll/JEKYLL_HOME/ ・画面ヘッダ部分のナビゲーションを変更したい。 (例) 画面ヘッダ部分にArchiveを表示したくない場合 下記ファイルのヘッダ部分の&quot;group: navigation&quot;を#でコメントアウトする。 /var/www/html/jekyll/JEKYLL_HOME/archive.html  ・記事タイトルに日本語を使いたい。 記事のファイル名に日本語は使えないので、YAMLのFront Matterでtitleを指定する。 (例) --- layout: page category: Jekyll tags: [Ruby, RubyGems, Jekyll, GitHub] date: 2012-12-23 00:00:00 title: Jekyllとgithubでブログ作成 ---  ・ループ回数を制限したい。 limitを使う。 (例)最近の5件だけ記事を表示。 {% raw %} &lt;ul class=&quot;posts&quot;&gt; {% for post in site.posts limit:5 %} &lt;li&gt;&lt;span&gt;{{ post.date | date_to_string }}&lt;/span&gt; &amp;raquo; &lt;a href=&quot;{{ BASE_PATH }}{{ post.url }}&quot;&gt;{{ post.title }}&lt;/a&gt;&lt;/li&gt; {% endfor %} &lt;/ul&gt; {% endraw %}  ・liquidの文法をエスケープしたい。参考ページ Markdownの中でif文やliquidの文法をそのまま出力したい場合、下記のタグを使用する。 {{ &quot;{% raw &quot; }}%} エスケープしたい表現 {{ &quot;{% endraw &quot; }}%}  ・日付のフォーマット(書式)を変更したい。参考ページ 日本語を使う場合、ファイルをUTF8で保存する。 (例) {% raw %} { post. ...
+                </p>
+                <p class="article-more-link">
+                    <a href="https://sankame.github.io/blog/2012-12-17-jekyll_tips1/">
+			    Read more
+			    
+                    </a>
+                </p>
+            </div>
+	    
+        </div>
+    </article>
+    
+
+    <nav id="page-nav">
+
+    
+        <a class="extend prev" rel="prev" href="/page/10/">
+            « 
+        </a>
+    
+    
+
+</nav>
+
+</section>
+
+
+    
+<aside id="sidebar">
+    
+
+<div class="widget-wrap">
+    <div class="widget">
+        <ul id="recent-post">
+		<li id="first-recent"><a href="/index.xml" id="firstmove" class="move"><h3 class="widget-title">
+			最近の投稿
+    </h3></a></li>
+    		
+            
+<li><a href="https://sankame.github.io/blog/2022-10-09-android_api_level_31/" class="move">  Android APIレベル31対応</a> </li>
+            
+<li><a href="https://sankame.github.io/blog/2022-08-20-fail_to_make_sl_in_vm/" class="move">  VMでシンボリックリンクが作成できない</a> </li>
+            
+<li><a href="https://sankame.github.io/blog/2022-05-21-nextjs_so_slow/" class="move">  Next.jsが遅い</a> </li>
+            
+        </ul>
+    </div>
+</div>
+
+
+
+    
+
+<div class="widget-wrap">
+    <div class="widget">
+        <ul class="category-list">
+    <h3 class="widget-title">Categories </h3>
+            
+                <a class="category-list-link" href="https://sankame.github.io/categories/tips">
+            <li class="category-list-item">
+                    tips
+                <span class="category-list-count">26</span>
+            </li>
+                </a>
+            
+                <a class="category-list-link" href="https://sankame.github.io/categories/%e3%82%a8%e3%83%a9%e3%83%bc%e8%a7%a3%e6%b1%ba">
+            <li class="category-list-item">
+                    エラー解決
+                <span class="category-list-count">29</span>
+            </li>
+                </a>
+            
+                <a class="category-list-link" href="https://sankame.github.io/categories/%e3%82%bb%e3%83%83%e3%83%88%e3%82%a2%e3%83%83%e3%83%97">
+            <li class="category-list-item">
+                    セットアップ
+                <span class="category-list-count">41</span>
+            </li>
+                </a>
+            
+                <a class="category-list-link" href="https://sankame.github.io/categories/%e3%83%81%e3%83%a5%e3%83%bc%e3%83%8b%e3%83%b3%e3%82%b0">
+            <li class="category-list-item">
+                    チューニング
+                <span class="category-list-count">3</span>
+            </li>
+                </a>
+            
+                <a class="category-list-link" href="https://sankame.github.io/categories/%e3%83%97%e3%83%ad%e3%82%b0%e3%83%a9%e3%83%9f%e3%83%b3%e3%82%b0">
+            <li class="category-list-item">
+                    プログラミング
+                <span class="category-list-count">7</span>
+            </li>
+                </a>
+            
+        </ul>
+    </div>
+</div>
+
+
+
+    
+
+<div class="widget-wrap">
+	<ul class="category-list">
+    <h3 class="widget-title">Tags  </h3>
+    <div class="widget tagcloud">
+    	
+        
+        <a href="https://sankame.github.io/tags/Android" style="font-size: 12px;">Android</a>
+        
+        <a href="https://sankame.github.io/tags/AndroidStudio" style="font-size: 12px;">AndroidStudio</a>
+        
+        <a href="https://sankame.github.io/tags/AndroidWear" style="font-size: 12px;">AndroidWear</a>
+        
+        <a href="https://sankame.github.io/tags/Angular2" style="font-size: 12px;">Angular2</a>
+        
+        <a href="https://sankame.github.io/tags/Apache" style="font-size: 12px;">Apache</a>
+        
+        <a href="https://sankame.github.io/tags/ApacheBench" style="font-size: 12px;">ApacheBench</a>
+        
+        <a href="https://sankame.github.io/tags/AppleWatch" style="font-size: 12px;">AppleWatch</a>
+        
+        <a href="https://sankame.github.io/tags/Bitbucket" style="font-size: 12px;">Bitbucket</a>
+        
+        <a href="https://sankame.github.io/tags/CentOS" style="font-size: 12px;">CentOS</a>
+        
+        <a href="https://sankame.github.io/tags/DELL" style="font-size: 12px;">DELL</a>
+        
+        <a href="https://sankame.github.io/tags/Eclipse" style="font-size: 12px;">Eclipse</a>
+        
+        <a href="https://sankame.github.io/tags/Flutter" style="font-size: 12px;">Flutter</a>
+        
+        <a href="https://sankame.github.io/tags/FreeMind" style="font-size: 12px;">FreeMind</a>
+        
+        <a href="https://sankame.github.io/tags/Git" style="font-size: 12px;">Git</a>
+        
+        <a href="https://sankame.github.io/tags/GitHub" style="font-size: 12px;">GitHub</a>
+        
+        <a href="https://sankame.github.io/tags/GoogleSheets" style="font-size: 12px;">GoogleSheets</a>
+        
+        <a href="https://sankame.github.io/tags/Gradle" style="font-size: 12px;">Gradle</a>
+        
+        <a href="https://sankame.github.io/tags/Hive" style="font-size: 12px;">Hive</a>
+        
+        <a href="https://sankame.github.io/tags/Hugo" style="font-size: 12px;">Hugo</a>
+        
+        <a href="https://sankame.github.io/tags/Java" style="font-size: 12px;">Java</a>
+        
+        <a href="https://sankame.github.io/tags/JavaScript" style="font-size: 12px;">JavaScript</a>
+        
+        <a href="https://sankame.github.io/tags/Jekyll" style="font-size: 12px;">Jekyll</a>
+        
+        <a href="https://sankame.github.io/tags/Jenkins" style="font-size: 12px;">Jenkins</a>
+        
+        <a href="https://sankame.github.io/tags/Kitura" style="font-size: 12px;">Kitura</a>
+        
+        <a href="https://sankame.github.io/tags/Laravel" style="font-size: 12px;">Laravel</a>
+        
+        <a href="https://sankame.github.io/tags/Let%27sEncrypt" style="font-size: 12px;">Let&#39;sEncrypt</a>
+        
+        <a href="https://sankame.github.io/tags/MeCab" style="font-size: 12px;">MeCab</a>
+        
+        <a href="https://sankame.github.io/tags/MindMapMemo" style="font-size: 12px;">MindMapMemo</a>
+        
+        <a href="https://sankame.github.io/tags/Mockery" style="font-size: 12px;">Mockery</a>
+        
+        <a href="https://sankame.github.io/tags/Monit" style="font-size: 12px;">Monit</a>
+        
+        <a href="https://sankame.github.io/tags/MySQL" style="font-size: 12px;">MySQL</a>
+        
+        <a href="https://sankame.github.io/tags/NTP" style="font-size: 12px;">NTP</a>
+        
+        <a href="https://sankame.github.io/tags/Nextjs" style="font-size: 12px;">Nextjs</a>
+        
+        <a href="https://sankame.github.io/tags/Nexus7" style="font-size: 12px;">Nexus7</a>
+        
+        <a href="https://sankame.github.io/tags/Nginx" style="font-size: 12px;">Nginx</a>
+        
+        <a href="https://sankame.github.io/tags/OpenX" style="font-size: 12px;">OpenX</a>
+        
+        <a href="https://sankame.github.io/tags/PHP" style="font-size: 12px;">PHP</a>
+        
+        <a href="https://sankame.github.io/tags/PHPDebugBar" style="font-size: 12px;">PHPDebugBar</a>
+        
+        <a href="https://sankame.github.io/tags/PHPUnit" style="font-size: 12px;">PHPUnit</a>
+        
+        <a href="https://sankame.github.io/tags/Phalcon" style="font-size: 12px;">Phalcon</a>
+        
+        <a href="https://sankame.github.io/tags/ReactNative" style="font-size: 12px;">ReactNative</a>
+        
+        <a href="https://sankame.github.io/tags/Redis" style="font-size: 12px;">Redis</a>
+        
+        <a href="https://sankame.github.io/tags/ReviveAdServer" style="font-size: 12px;">ReviveAdServer</a>
+        
+        <a href="https://sankame.github.io/tags/Ruby" style="font-size: 12px;">Ruby</a>
+        
+        <a href="https://sankame.github.io/tags/RubyGems" style="font-size: 12px;">RubyGems</a>
+        
+        <a href="https://sankame.github.io/tags/Rundeck" style="font-size: 12px;">Rundeck</a>
+        
+        <a href="https://sankame.github.io/tags/SQLite" style="font-size: 12px;">SQLite</a>
+        
+        <a href="https://sankame.github.io/tags/SSL-TLS" style="font-size: 12px;">SSL-TLS</a>
+        
+        <a href="https://sankame.github.io/tags/Selenium" style="font-size: 12px;">Selenium</a>
+        
+        <a href="https://sankame.github.io/tags/Smarty" style="font-size: 12px;">Smarty</a>
+        
+        <a href="https://sankame.github.io/tags/Subversion" style="font-size: 12px;">Subversion</a>
+        
+        <a href="https://sankame.github.io/tags/Swift" style="font-size: 12px;">Swift</a>
+        
+        <a href="https://sankame.github.io/tags/Touchpad" style="font-size: 12px;">Touchpad</a>
+        
+        <a href="https://sankame.github.io/tags/TypeScript" style="font-size: 12px;">TypeScript</a>
+        
+        <a href="https://sankame.github.io/tags/Ubuntu" style="font-size: 12px;">Ubuntu</a>
+        
+        <a href="https://sankame.github.io/tags/UnitTest" style="font-size: 12px;">UnitTest</a>
+        
+        <a href="https://sankame.github.io/tags/VSCode" style="font-size: 12px;">VSCode</a>
+        
+        <a href="https://sankame.github.io/tags/Vagrant" style="font-size: 12px;">Vagrant</a>
+        
+        <a href="https://sankame.github.io/tags/VirtualBox" style="font-size: 12px;">VirtualBox</a>
+        
+        <a href="https://sankame.github.io/tags/Website-Optimization" style="font-size: 12px;">Website-Optimization</a>
+        
+        <a href="https://sankame.github.io/tags/Xcode" style="font-size: 12px;">Xcode</a>
+        
+        <a href="https://sankame.github.io/tags/ab" style="font-size: 12px;">ab</a>
+        
+        <a href="https://sankame.github.io/tags/bash" style="font-size: 12px;">bash</a>
+        
+        <a href="https://sankame.github.io/tags/cocoapods" style="font-size: 12px;">cocoapods</a>
+        
+        <a href="https://sankame.github.io/tags/composer" style="font-size: 12px;">composer</a>
+        
+        <a href="https://sankame.github.io/tags/cron" style="font-size: 12px;">cron</a>
+        
+        <a href="https://sankame.github.io/tags/fitbit" style="font-size: 12px;">fitbit</a>
+        
+        <a href="https://sankame.github.io/tags/gulp" style="font-size: 12px;">gulp</a>
+        
+        <a href="https://sankame.github.io/tags/jqGrid" style="font-size: 12px;">jqGrid</a>
+        
+        <a href="https://sankame.github.io/tags/node.js" style="font-size: 12px;">node.js</a>
+        
+        <a href="https://sankame.github.io/tags/npm" style="font-size: 12px;">npm</a>
+        
+        <a href="https://sankame.github.io/tags/programming-practice" style="font-size: 12px;">programming-practice</a>
+        
+        <a href="https://sankame.github.io/tags/shell" style="font-size: 12px;">shell</a>
+        
+        <a href="https://sankame.github.io/tags/ssh" style="font-size: 12px;">ssh</a>
+        
+        <a href="https://sankame.github.io/tags/stetho" style="font-size: 12px;">stetho</a>
+        
+        <a href="https://sankame.github.io/tags/vbscript" style="font-size: 12px;">vbscript</a>
+        
+        <a href="https://sankame.github.io/tags/wget" style="font-size: 12px;">wget</a>
+        
+        <a href="https://sankame.github.io/tags/windows" style="font-size: 12px;">windows</a>
+        
+        <a href="https://sankame.github.io/tags/%e3%83%97%e3%83%ad%e3%82%b8%e3%82%a7%e3%82%af%e3%82%bf%e3%83%bc" style="font-size: 12px;">プロジェクター</a>
+        
+        <a href="https://sankame.github.io/tags/%e5%93%81%e8%b3%aa%e7%ae%a1%e7%90%86" style="font-size: 12px;">品質管理</a>
+        
+    </div>
+</ul>
+</div>
+
+
+
+    <br>
+    
+
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-7938855665302783"
+     data-ad-slot="7089480753"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+
+</aside>
+
+
+    </div>
+</div>
+
+<footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+
+	<footer id="footer-left">
+	    &copy; 2022 Webプログラマー <a href="/about" target="_blank">Sankame.</a> <br>
+	    Powered by <a href="//gohugo.io">Hugo</a>. Theme by <a href="https://github.com/syui/hugo-theme-wave">hugo-theme-wave</a>.
+	</footer>
+
+    </div>
+  </div>
+</footer>
+
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-37675354-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+</body>
+</html>
