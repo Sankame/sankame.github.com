@@ -1,0 +1,1068 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>エラー解決 on プログラマー備忘録</title>
+    <link>https://sankame.github.io/categories/%E3%82%A8%E3%83%A9%E3%83%BC%E8%A7%A3%E6%B1%BA/index.xml</link>
+    <description>Recent content in エラー解決 on プログラマー備忘録</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <copyright>Powered by [Hugo](//gohugo.io). Theme by [hugo-theme-wave](https://github.com/syui/hugo-theme-wave).</copyright>
+    <atom:link href="https://sankame.github.io/categories/%E3%82%A8%E3%83%A9%E3%83%BC%E8%A7%A3%E6%B1%BA/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>【Apex】アバストによる起動時エラー</title>
+      <link>https://sankame.github.io/blog/2023-01-15-apex_runs_error_by_avast/</link>
+      <pubDate>Sun, 15 Jan 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2023-01-15-apex_runs_error_by_avast/</guid>
+      <description>
+
+&lt;h1 id=&#34;0-環境&#34;&gt;0. 環境&lt;/h1&gt;
+
+&lt;p&gt;&lt;code&gt;[OS] Windows11&lt;/code&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;1-課題&#34;&gt;1. 課題&lt;/h1&gt;
+
+&lt;h3 id=&#34;ゲームapexが急に起動しなくなりました&#34;&gt;ゲームApexが急に起動しなくなりました。&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;「起動時エラー」メッセージの下にファイルパスが記載され、確か、Invalid file pathとなってたと思います。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;調べてみると、指定されたその実行ファイルへのパスが存在してませんでした。(消された？)&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;２-対策&#34;&gt;２. 対策&lt;/h1&gt;
+
+&lt;h3 id=&#34;下記の情報を順に行うことで回復しました&#34;&gt;下記の情報を順に行うことで回復しました。&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Avastがマルウェアと間違えてチェスト(検疫)に移動してしまったようです。これを元の場所に戻してください。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://pecolife.com/apex-legends-origin/&#34; target=&#34;_blank&#34;&gt;Apex Legendsが起動できない場合&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;それだけだとダメでした。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;おそらく、起動ファイルがない状態で何度も起動しようとしたため、ファイルの整合性がおかしくなったようです。(たぶん)&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;下記の「対処法①APEXを修復する」を実施して下さい。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://apple-geeks.com/apex-engine-error-68171&#34; target=&#34;_blank&#34;&gt;Apex エンジンエラーの対処法&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;「ファイルを再取得します」という旨のメッセージが出たまま、何も動きがなかったので、下記ページの内容を確認したところ修復は完了してました。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://detail.chiebukuro.yahoo.co.jp/qa/question_detail/q13136896368&#34; target=&#34;_blank&#34;&gt;ファイルの再取得はどうやって？&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;これで直りました。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Android APIレベル31対応</title>
+      <link>https://sankame.github.io/blog/2022-10-09-android_api_level_31/</link>
+      <pubDate>Sun, 09 Oct 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2022-10-09-android_api_level_31/</guid>
+      <description>
+
+&lt;h1 id=&#34;0-環境&#34;&gt;0. 環境&lt;/h1&gt;
+
+&lt;p&gt;&lt;code&gt;[Host OS] Windows 11 Home&lt;/code&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;1-手順&#34;&gt;1. 手順&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Playストアの規約変更があったので、AndroidアプリのSDKバージョンを31に上げました。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;(アプリルート)/mobile/build.gradle&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;抜粋 (diff)
+&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-diff&#34;&gt;android {
+-    compileSdkVersion 30
++    compileSdkVersion 31
+
+    defaultConfig {
+-       targetSdkVersion 30
++       targetSdkVersion 31
+    }
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;２-ビルドエラー&#34;&gt;２. ビルドエラー&lt;/h1&gt;
+
+&lt;h3 id=&#34;2-1-ビルドと実機へのインストールでエラーが発生&#34;&gt;(2-1) ビルドと実機へのインストールでエラーが発生&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;エラー内容&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;Installation did not succeed.
+The application could not be installed: INSTALL_PARSE_FAILED_MANIFEST_MALFORMED
+Installation failed due to: &#39;null&#39;
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;2-2-マニフェスト修正&#34;&gt;(2-2) マニフェスト修正&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;&amp;lt;intent-filter&amp;gt;&lt;/code&gt;を使っているActivityなどに「android:exported=&amp;ldquo;true&amp;rdquo;」が必要になったようです。
+(デフォルト値が変わったため、今までと同じにするには、この指定が必要)&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;(アプリルート)/mobile/src/main/AndroidManifest.xml&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;修正例 (diff)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-diff&#34;&gt;&amp;lt;activity
+    android:name=&amp;quot;.ClipboardActivity&amp;quot;
++   android:exported=&amp;quot;true&amp;quot;
+    android:label=&amp;quot;@string/title_activity_clipboard&amp;quot;&amp;gt;
+    &amp;lt;intent-filter&amp;gt;
+        &amp;lt;action android:name=&amp;quot;android.intent.action.SEND&amp;quot; /&amp;gt;
+        &amp;lt;category android:name=&amp;quot;android.intent.category.DEFAULT&amp;quot; /&amp;gt;
+        &amp;lt;data android:mimeType=&amp;quot;text/*&amp;quot; /&amp;gt;
+    &amp;lt;/intent-filter&amp;gt;
+&amp;lt;/activity&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;3-アプリクラッシュ&#34;&gt;3. アプリクラッシュ&lt;/h1&gt;
+
+&lt;h3 id=&#34;3-1-ビルドは成功したが-下記アプリクラッシュが発生&#34;&gt;3-1. ビルドは成功したが、下記アプリクラッシュが発生&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;エラー内容&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;java.lang.IllegalArgumentException: com.example.app: Targeting S+ (version 31 and above) requires that one of FLAG_IMMUTABLE or FLAG_MUTABLE be specified when creating a PendingIntent.
+Strongly consider using FLAG_IMMUTABLE, only use FLAG_MUTABLE if some functionality depends on the PendingIntent being mutable, e.g. if it needs to be used with inline replies or bubbles.
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;3-2-pendingintentを修正&#34;&gt;3-2. PendingIntentを修正&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;PendingIntentを使っている箇所を洗い出し、上記で指摘されたフラグを第4引数に足します。(僕のアプリでは下記が該当)&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;PendingIntent.getActivity()
+PendingIntent.getService()
+PendingIntent.getBroadcast()
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;修正例(diff)&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-diff&#34;&gt;- sender = PendingIntent.getBroadcast(context, 0, intent, 0);
++
++ int pendingIntentFlag = 0;
++ if (Build.VERSION.SDK_INT &amp;gt;= Build.VERSION_CODES.S) {
++     pendingIntentFlag = pendingIntentFlag | PendingIntent.FLAG_IMMUTABLE;
++ }
++ sender = PendingIntent.getBroadcast(context, 0, intent, pendingIntentFlag);
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;3-3-設定追加&#34;&gt;3-3. 設定追加&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;さらに下記の記述も必要でした。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;(アプリルート)/mobile/build.gradle&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;抜粋(diff)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-diff&#34;&gt;    dependencies {
++    implementation &#39;androidx.work:work-runtime-ktx:2.7.0&#39;
+    }
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>VMでシンボリックリンクが作成できない</title>
+      <link>https://sankame.github.io/blog/2022-08-20-fail_to_make_sl_in_vm/</link>
+      <pubDate>Sat, 20 Aug 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2022-08-20-fail_to_make_sl_in_vm/</guid>
+      <description>
+
+&lt;h1 id=&#34;0-環境&#34;&gt;0. 環境&lt;/h1&gt;
+
+&lt;p&gt;&lt;code&gt;[Host OS] Windows 11 Home&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;[Oracle VM VirtualBox] 6.1.32&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;[Gust OS] ubuntu 16.04&lt;/code&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;1-問題&#34;&gt;1. 問題&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;VirtualBoxに入れたLinux上で、シンボリック・リンク(Symbolic link)の作成に失敗する。&lt;/p&gt;
+
+&lt;p&gt;下記の例は、node.jsのライブラリをインストールするときに発生してますが、根本の問題は上記の通り。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;root@hoge:/dev/blockchain# npm i express --save
+npm ERR! code EPROTO
+npm ERR! syscall symlink
+npm ERR! path ../mime/cli.js
+npm ERR! dest /dev/blockchain/node_modules/.bin/mime
+npm ERR! errno -71
+npm ERR! EPROTO: protocol error, symlink &#39;../mime/cli.js&#39; -&amp;gt; &#39;/dev/blockchain/node_modules/.bin/mime&#39;
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;2-対応&#34;&gt;2. 対応&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;ネットで調べたら、いろんな情報が出てきましたが、VMを管理者モードで起動するだけで解決しました。&lt;/p&gt;
+
+&lt;p&gt;タスクバーにあるVMのアイコンを2回右クリックして、「管理者として実行」を選択。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/fail_to_make_sl_in_vm/run_vm_as_the_admin.png&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;40%&#34; height=&#34;40%&#34; title=&#34;run_vm_as_the_admin&#34; alt=&#34;run_vm_as_the_admin&#34; src=&#34;https://sankame.github.io/assets/posts/img/fail_to_make_sl_in_vm/run_vm_as_the_admin.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>WindowsUpdate後に再度VirtualBoxでVM起動エラー</title>
+      <link>https://sankame.github.io/blog/2022-03-26-virtualbox_does_not_start_after_windows_update/</link>
+      <pubDate>Sat, 26 Mar 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2022-03-26-virtualbox_does_not_start_after_windows_update/</guid>
+      <description>
+
+&lt;h1 id=&#34;0-環境&#34;&gt;0. 環境&lt;/h1&gt;
+
+&lt;p&gt;&lt;code&gt;[OS] Windows11 Home&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;[VirtualBox] 6.1.22 -&amp;gt; 6.1.32&lt;/code&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;1-問題&#34;&gt;1. 問題&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;VirtualBoxから仮想マシンが起動できなくなりました。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/virtualbox_does_not_start_after_windows_update/error.png&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;40%&#34; height=&#34;40%&#34; title=&#34;vm_fails_to_start&#34; alt=&#34;vm_fails_to_start&#34; src=&#34;https://sankame.github.io/assets/posts/img/virtualbox_does_not_start_after_windows_update/error.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;エラーメッセージ&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-command&#34;&gt;仮想マシン&amp;quot;ubuntu_64&amp;quot;のセッションを開けませんでした。
+
+Failed to get device handle and/or partition ID for 0000000001b5bc40 (hPartitionDevice=0000000000000b95, Last=0xc0000002/1) (VERR_NEM_VM_CREATE_FAILED).
+
+終了コード : E_FAIL (0x80004005)
+コンポーネント: ConsoleWrap
+インターフェース: IConsole {872da645-4a9b-1727-bee2-5585105b9eed}
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;2-原因&#34;&gt;2. 原因&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;たぶん、Windows11のUpdateが原因。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;因果関係は確かではないですが、下記WindowsUpdateの前後があやしい。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-command&#34;&gt;Cumulative Update for Windows 11, version 22H2 Insider Preview (10.0.22581.100) (KB5013283)
+
+Microsoft Defender Antivirus のセキュリティ インテリジェンス更新プログラム - KB2267602 (バージョン 1.361.759.0)
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;3-対応&#34;&gt;3. 対応&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;VirtualBoxのメニューで[ファイル]-[アップデートを確認(H)&amp;hellip;]&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;リンクをクリックし、最新バージョンのexeファイルをダウンロード。(VirtualBox-6.1.32-149290-Win.exe)&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;念のため、VirtualBoxを閉じる。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;exeファイルを実行し、バージョンを &lt;code&gt;6.1.22 -&amp;gt; 6.1.32&lt;/code&gt; に上げたらエラーは発生しなくなりました。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;4-その他&#34;&gt;4. その他&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;以前、&lt;a href=&#34;https://sankame.github.io/blog/2021-08-06-windows_update_causes_vm_error/&#34; target=&#34;_blank&#34;&gt;同じような問題&lt;/a&gt;が発生しましたが、今回の原因はそれではなかったようです。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://qiita.com/mariaquilac/items/5b7a146f248e7bbd9aa8&#34; target=&#34;_blank&#34;&gt;参考:Hyper-V周りの設定&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Error: Unable to &#39;pub upgrade&#39; flutter tool.</title>
+      <link>https://sankame.github.io/blog/2021-11-20-flutter_pub_upgrade_error/</link>
+      <pubDate>Sat, 20 Nov 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2021-11-20-flutter_pub_upgrade_error/</guid>
+      <description>
+
+&lt;h1 id=&#34;0-環境&#34;&gt;0. 環境&lt;/h1&gt;
+
+&lt;p&gt;&lt;code&gt;[OS] MacOS 10.11.6&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;[Flutter] 2.2.3&lt;/code&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;1-問題&#34;&gt;1. 問題&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;flutterアプリの修正中に、&amp;rdquo;flutter upgrade&amp;rdquo;を実行したら、いつものコマンドでアプリが起動しなくなってしまいました。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;(いつものコマンド)&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;flutter run -d chrome --web-port=5000&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;(エラー内容)&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Error: Unable to &#39;pub upgrade&#39; flutter tool. Retrying in five seconds&lt;/code&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;コンソールいっぱいにエラーメッセージが出ましたが、代表させて上記のみ記載。&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;ググると&lt;a href=&#34;https://stackoverflow.com/questions/49497109/error-unable-to-pub-upgrade-flutter-tool-retrying-in-five-seconds&#34; target=&#34;_blank&#34;&gt;同じエラー&lt;/a&gt;に関する情報がありました。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;ここに書いてある方法では直らなかったので、flutterを以前のバージョンに戻すことにしました。&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;2-対応&#34;&gt;2. 対応&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;flutterを配置している場所を確認。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-command&#34;&gt;$ which flutter
+[path_to_flutter]/flutter/bin/flutter
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;[path_to_flutter] にあるflutterディレクトリをバックアップとしてリネーム。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;[path_to_flutter] に古いバージョンのflutterをダウンロード。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://docs.flutter.dev/development/tools/sdk/releases?tab=macos&#34; target=&#34;_blank&#34;&gt;前のバージョンのflutter&lt;/a&gt;(僕は2.2.3を取得しました)&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;OSごとにタブが分かれているので注意。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;ダウンロードしたファイルを解凍し、下記のように元のディレクトリ名と同じになっているか確認。(こうすればPATHの変更も不要)&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;[path_to_flutter]/flutter/&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;任意の場所で下記コマンドを実行。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-command&#34;&gt;$ flutter precache
+$ flutter doctor
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;最後にアプリのルートで下記を実行。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-command&#34;&gt;$ flutter pub get
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;根本解決ではありませんが、ひとまず開発環境を復旧させたい場合の対処でした。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>WindowsUpdate後のVirtualBox起動エラー</title>
+      <link>https://sankame.github.io/blog/2021-08-06-windows_update_causes_vm_error/</link>
+      <pubDate>Fri, 06 Aug 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2021-08-06-windows_update_causes_vm_error/</guid>
+      <description>
+
+&lt;h1 id=&#34;0-環境&#34;&gt;0. 環境&lt;/h1&gt;
+
+&lt;p&gt;&lt;code&gt;[OS] Windows 11 Home&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;[VirtualBox] 6.1.22&lt;/code&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;1-問題&#34;&gt;1. 問題&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;1週間くらい前にWindowsUpdateしたら、下記エラーでVMが起動しなくなりました。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;仮想マシン&amp;quot;ubuntu_64&amp;quot;のセッションを開けませんでした。
+
+Failed to get device handle and/or partition ID for 00000000027d6520 (hPartitionDevice=0000000000000bd1, Last=0xc0000002/1) (VERR_NEM_VM_CREATE_FAILED).
+
+終了コード : E_FAIL (0x80004005)
+コンポーネント: ConsoleWrap
+インターフェース: IConsole {872da645-4a9b-1727-bee2-5585105b9eed}
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;WindowsUpdate後にUIが変わってたのでたぶん「&lt;a href=&#34;https://blogs.windows.com/japan/2021/07/21/announcing-the-first-insider-preview-for-windows-11/&#34; target=&#34;_blank&#34;&gt;Windows 11 Insider Preview&lt;/a&gt;」のせいだと思います。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Windowsタスクバーの虫眼鏡マークをクリックし「設定」と入力。&lt;/li&gt;
+&lt;li&gt;設定画面が開くので左メニューから「Windows Update」をクリックすると履歴が参照可能。&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;2-対応&#34;&gt;2. 対応&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Windowsタスクバーの虫眼鏡マークをクリックし「コントロールパネル」と入力。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;「コントロールパネル」内の「プログラムと機能」をクリック。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;「プログラムと機能」内の左のメニュー「Windowsの機能の有効化または無効化」をクリック。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;下記が開くので、「Windows ハイパーバイザー プラットフォーム」にチェックし、Windowsを再起動したら直りました。(WindowsUpdateでデフォルトのOffに戻ってしまったようです…)&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/windows_update_causes_vm_error/hyper-v.png&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;80%&#34; height=&#34;80%&#34; title=&#34;hyper-vの有効化&#34; alt=&#34;hyper-vの有効化&#34; src=&#34;https://sankame.github.io/assets/posts/img/windows_update_causes_vm_error/hyper-v.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Androidビルド時のクラス重複エラー</title>
+      <link>https://sankame.github.io/blog/2020-06-13-android_class_duplicated/</link>
+      <pubDate>Sat, 13 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2020-06-13-android_class_duplicated/</guid>
+      <description>
+
+&lt;h1 id=&#34;0-環境&#34;&gt;0. 環境&lt;/h1&gt;
+
+&lt;p&gt;&lt;code&gt;[Gradle] 5.6.4&lt;/code&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;1-問題&#34;&gt;1. 問題&lt;/h1&gt;
+
+&lt;p&gt;こちらの情報を元にFabricからFirebaseへの移行を行いました。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://firebase.google.com/docs/android/setup?hl=ja&#34; target=&#34;_blank&#34;&gt;Android プロジェクトに Firebase を追加する&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://firebase.google.com/docs/crashlytics/upgrade-sdk?authuser=0&amp;platform=android&#34; target=&#34;_blank&#34;&gt;Upgrade to the Firebase Crashlytics SDK&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;コード修正後、エラーが発生してビルドできず・・・&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;Duplicate class com.google.android.gms.measurement.AppMeasurement found in modules jetified-firebase-analytics-impl-12.0.1-runtime.jar (com.google.firebase:firebase-analytics-impl:12.0.1) and jetified-play-services-measurement-impl-17.4.3-runtime.jar (com.google.android.gms:play-services-measurement-impl:17.4.3)
+Duplicate class com.google.android.gms.measurement.AppMeasurement$ConditionalUserProperty found in modules jetified-firebase-analytics-impl-12.0.1-runtime.jar (com.google.firebase:firebase-analytics-impl:12.0.1) and jetified-play-services-measurement-impl-17.4.3-runtime.jar (com.google.android.gms:play-services-measurement-impl:17.4.3)
+Duplicate class com.google.android.gms.measurement.AppMeasurement$Event found in modules jetified-firebase-analytics-impl-12.0.1-runtime.jar (com.google.firebase:firebase-analytics-impl:12.0.1) and jetified-play-services-measurement-impl-17.4.3-runtime.jar (com.google.android.gms:play-services-measurement-impl:17.4.3)
+Duplicate class com.google.android.gms.measurement.AppMeasurement$EventInterceptor found in modules jetified-firebase-analytics-impl-12.0.1-runtime.jar (com.google.firebase:firebase-analytics-impl:12.0.1) and jetified-play-services-measurement-impl-17.4.3-runtime.jar (com.google.android.gms:play-services-measurement-impl:17.4.3)
+Duplicate class com.google.android.gms.measurement.AppMeasurement$OnEventListener found in modules jetified-firebase-analytics-impl-12.0.1-runtime.jar (com.google.firebase:firebase-analytics-impl:12.0.1) and jetified-play-services-measurement-impl-17.4.3-runtime.jar (com.google.android.gms:play-services-measurement-impl:17.4.3)
+Duplicate class com.google.android.gms.measurement.AppMeasurement$Param found in modules jetified-firebase-analytics-impl-12.0.1-runtime.jar (com.google.firebase:firebase-analytics-impl:12.0.1) and jetified-play-services-measurement-impl-17.4.3-runtime.jar (com.google.android.gms:play-services-measurement-impl:17.4.3)
+Duplicate class com.google.android.gms.measurement.AppMeasurement$UserProperty found in modules jetified-firebase-analytics-impl-12.0.1-runtime.jar (com.google.firebase:firebase-analytics-impl:12.0.1) and jetified-play-services-measurement-impl-17.4.3-runtime.jar (com.google.android.gms:play-services-measurement-impl:17.4.3)
+Duplicate class com.google.firebase.analytics.FirebaseAnalytics found in modules jetified-firebase-analytics-impl-12.0.1-runtime.jar (com.google.firebase:firebase-analytics-impl:12.0.1) and jetified-play-services-measurement-api-17.4.3-runtime.jar (com.google.android.gms:play-services-measurement-api:17.4.3)
+Duplicate class com.google.firebase.analytics.FirebaseAnalytics$Event found in modules jetified-firebase-analytics-impl-12.0.1-runtime.jar (com.google.firebase:firebase-analytics-impl:12.0.1) and jetified-play-services-measurement-api-17.4.3-runtime.jar (com.google.android.gms:play-services-measurement-api:17.4.3)
+Duplicate class com.google.firebase.analytics.FirebaseAnalytics$Param found in modules jetified-firebase-analytics-impl-12.0.1-runtime.jar (com.google.firebase:firebase-analytics-impl:12.0.1) and jetified-play-services-measurement-api-17.4.3-runtime.jar (com.google.android.gms:play-services-measurement-api:17.4.3)
+Duplicate class com.google.firebase.analytics.FirebaseAnalytics$UserProperty found in modules jetified-firebase-analytics-impl-12.0.1-runtime.jar (com.google.firebase:firebase-analytics-impl:12.0.1) and jetified-play-services-measurement-api-17.4.3-runtime.jar (com.google.android.gms:play-services-measurement-api:17.4.3)
+
+Go to the documentation to learn how to Fix dependency resolution errors.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;2-解決&#34;&gt;2. 解決&lt;/h1&gt;
+
+&lt;p&gt;エラーは「&lt;code&gt;com.google.firebase:firebase-analytics&lt;/code&gt;と&lt;code&gt;com.google.android.gms:play-services&lt;/code&gt;に含まれているjarがかぶってるよ」という内容に見えます。&lt;/p&gt;
+
+&lt;p&gt;Firebase移行で足した下記(a)を削除したらビルドが通るようになりました。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;[アプリルート]/mobile/build.gradle&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;dependencies {
+    ...
+        
+    //(a)
+    //implementation &#39;com.google.firebase:firebase-analytics:17.4.3&#39;
+
+    //(b)
+    implementation &#39;com.google.android.gms:play-services:12.0.1&#39;
+
+    ...
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;こちらの&lt;a href=&#34;https://mvnrepository.com/artifact/com.google.android.gms/play-services/12.0.1&#34; target=&#34;_blank&#34;&gt;リンク&lt;/a&gt;を見ると(b)のパッケージには&lt;code&gt;firebase-analytics&lt;/code&gt;が含まれているため、(a)と衝突してしまったと思われます。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>MySQLでquery_cache系パラメータを設定すると起動エラー</title>
+      <link>https://sankame.github.io/blog/2020-04-01-mysql8_not_support_querycache/</link>
+      <pubDate>Wed, 01 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2020-04-01-mysql8_not_support_querycache/</guid>
+      <description>
+
+&lt;h1 id=&#34;0-環境&#34;&gt;0. 環境&lt;/h1&gt;
+
+&lt;p&gt;&lt;code&gt;[MySQL] 8.0.17&lt;/code&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;1-経緯&#34;&gt;1. 経緯&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;GCP無料枠のメモリ約500MBという貧弱な環境でWordPressを運用してます。&lt;/p&gt;
+
+&lt;p&gt;少しでもパフォーマンス改善したく、MySQLのクエリキャッシュを設定しました。(下記要点のみ記載)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-mysql&#34;&gt;# vim /etc/my.cnf.d/mysql-server.cnf
+    :
+    :
+[mysqld]
+query_cache_type=1
+query_cache_limit=1M
+query_cache_size=20M
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;MySQLを再起動。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-linux&#34;&gt;# mysql -u hoge -phoge -e&amp;quot;SET GLOBAL innodb_fast_shutdown = 1&amp;quot;
+# service mysqld stop
+# service mysqld start
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;起動しなくなりました…&lt;/p&gt;
+
+&lt;p&gt;ログを見ると下記エラーが出てました。(要点のみ記載)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# tail -F /var/log/mysql/mysqld.log
+    :
+    :
+[Server] unknown variable &#39;query_cache_type=1&#39;.
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;2-対応&#34;&gt;2. 対応&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;ネットで情報を漁ったところ、MySQL8からはクエリキャッシュが使えなくなったようです。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://mysqlserverteam.com/mysql-8-0-retiring-support-for-the-query-cache/&#34; target=&#34;_blank&#34;&gt;MySQL 8.0: Retiring Support for the Query Cache&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;代わりにProxySQLというのが紹介されてましたが、ミドルウェアを追加するとメンテするポイントも増えるので今回は見送りました。&lt;/p&gt;
+
+&lt;p&gt;一旦は、WordPressのプラグイン(WP Super Cache)とphp-fpmのチューニングで、DBより手前で何とかする方向で進めます。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;3-参考&#34;&gt;3. 参考&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://bugs.mysql.com/bug.php?id=90557&#34; target=&#34;_blank&#34;&gt;Initializing 8.0.11 fails to populate data directory and mysql system database&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://mgng.mugbum.info/1393&#34; target=&#34;_blank&#34;&gt;MySQL 5.7 → MySQL 8.0 に更新した＆メモ&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Let&#39;s Encryptのバグに伴う証明書更新</title>
+      <link>https://sankame.github.io/blog/2020-03-06-lets_encrypt_bug_avoid/</link>
+      <pubDate>Fri, 06 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2020-03-06-lets_encrypt_bug_avoid/</guid>
+      <description>
+
+&lt;p&gt;「バグ対応のため、Let&amp;rsquo;s Encryptの一部証明書が3/4までになる」と同僚が教えてくれました。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://gigazine.net/news/20200304-letsencrypt-caa-rechecking-bug/&#34; target=&#34;_blank&#34;&gt;&amp;ldquo;「バグの影響で特定のサーバー証明書を失効させる」とLet’s Encryptが発表、影響を受けるのは全体の2.6%&amp;rdquo;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;0-環境&#34;&gt;0. 環境&lt;/h1&gt;
+
+&lt;p&gt;&lt;code&gt;[OS] CentOS 7.5&lt;/code&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;1-確認&#34;&gt;1. 確認&lt;/h1&gt;
+
+&lt;p&gt;まず、Let’s Encryptから提供されている下記ツールに対象ホスト名(ドメイン)を入れて影響有無を確認します。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://checkhost.unboundtest.com/&#34; target=&#34;_blank&#34;&gt;Check whether a host&amp;rsquo;s certificate needs replacement&lt;/a&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;2-手順&#34;&gt;2. 手順&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;影響ありの場合、対応方法は証明書を更新すればよいとのことなので、こちらを実行しました。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;certbot renew&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;よくログを見ると処理がスキップされ、更新されてない様子。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;The following certs are not due for renewal yet:
+/path/to/pemfile expires on 2020-05-07 (skipped)
+/path/to/pemfile expires on 2020-05-14 (skipped)
+No renewals were attempted.
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;サーバー負荷を下げるため、有効期限まで余裕があると更新されない仕様になってるようです。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;なので強制的に更新するコマンドを実行しました。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;certbot renew --force-renewal&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;今回は下記のメッセージが出てたので大丈夫そう。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;Congratulations, all renewals succeeded. The following certs have been renewed:
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;前述のツールでOKが出るのと、ブラウザ上で証明書の期限が延びていることを確認しました。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;(注意)Cronなどで定期更新する場合は、サーバー負荷を避けるため、通常の下記コマンドが推奨されてます。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;certbot renew&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;3-参考&#34;&gt;3. 参考&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://letsencrypt.org/caaproblem/&#34; target=&#34;_blank&#34;&gt;Download affected certificate serials for 2020.02.29 CAA Rechecking Incident&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://certbot.eff.org/docs/using.html?highlight=dry%20run&#34; target=&#34;_blank&#34;&gt;Certbot User Guide&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://blog.n-z.jp/blog/2017-04-26-certbot-renew.html&#34; target=&#34;_blank&#34;&gt;cronでcertbot renewの&amp;ndash;force-renewalを使用してはいけない&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>VirtualBox起動エラー(rc=-22838)</title>
+      <link>https://sankame.github.io/blog/2019-10-05-virtualbox_does_not_start/</link>
+      <pubDate>Sat, 05 Oct 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2019-10-05-virtualbox_does_not_start/</guid>
+      <description>
+
+&lt;p&gt;4ヶ月くらい起動していなかったVirtualBoxで久々に開発をしようと思ったらエラーが発生しました。
+ネット上の情報はあまりなく、下記のいずれかでした。Bはいつの時点に戻すか分からなかったので、Aでやることにしました。&lt;/p&gt;
+
+&lt;p&gt;(A)VirtualBoxを再インストール。&lt;/p&gt;
+
+&lt;p&gt;(B)Windowsの復元機能を使って、Windowsアップデート前の状態にする。&lt;/p&gt;
+
+&lt;h1 id=&#34;0-環境&#34;&gt;0. 環境&lt;/h1&gt;
+
+&lt;p&gt;&lt;code&gt;[OS] Windows7 (32bit)&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;[VirtualBox] 4.3.26 -&amp;gt; 5.2.32&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;[Vagrant] 1.7.2 -&amp;gt; 2.2.5&lt;/code&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;1-問題&#34;&gt;1. 問題&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;VagrantからVirtualBoxを起動する構成です。(&lt;a href=&#34;https://sankame.github.io/blog/2015-05-06-vagrant_setup/&#34; target=&#34;_blank&#34;&gt;詳細はこちら&lt;/a&gt;)&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;いつものように&lt;code&gt;vagrant up&lt;/code&gt;や&lt;code&gt;vagrant resume&lt;/code&gt;でVirtualBoxを起動しようとしたところ、このエラーが出ました。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/virtualbox_does_not_start/error_22838.png&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;60%&#34; height=&#34;60%&#34; title=&#34;error_22838&#34; alt=&#34;error_22838&#34; src=&#34;https://sankame.github.io/assets/posts/img/virtualbox_does_not_start/error_22838.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;エラーメッセージ&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;supHardenedWinVerifyProcess failed with VERR_ASN1_CURSOR_TAG_MISMATCH: (rc=-22838)
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;2-対応&#34;&gt;2. 対応&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;内部エラーで複雑そうなので、一度VirtualBoxをアンインストールし、新しいバージョンをインストールしました。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;32bit OSに対応してて、新し目のバージョン5.2.32を選択しました。(&lt;a href=&#34;https://www.virtualbox.org/wiki/Download_Old_Builds_5_2&#34; target=&#34;_blank&#34;&gt;5.2.32のWindows hostsをクリック&lt;/a&gt;)&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;64bit OSを使ってる方は、もっと新しいバージョンの方がいいと思います。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;VirtualBoxを再インストール後、&lt;code&gt;vagrant up&lt;/code&gt;を実行すると下記エラーメッセージが表示されました。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;エラーメッセージ&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;The provider &#39;virtualbox&#39; that was requested to back the machine
+&#39;default&#39; is reporting that it isn&#39;t usable on this system. The
+reason is shown below:
+
+Vagrant has detected that you have a version of VirtualBox installed
+that is not supported. Please install one of the supported versions
+listed below to use Vagrant:
+
+4.0, 4.1, 4.2, 4.3
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;現在のVagrantのバージョン(1.7.2)だと、上記バージョンのVirtualBoxにしか対応できないようです。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;VirtualBoxをバージョンダウンするより、Vagrantを上げた方がいいだろうと思って、一度Vagrantをアンインストールした後、下記から最新版を落としてきてインストールしました。(該当するOSとアーキテクチャのリンクからダウンロード。&lt;a href=&#34;https://www.vagrantup.com/downloads.html&#34; target=&#34;_blank&#34;&gt;Download Vagrant&lt;/a&gt;)&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Vagrantを再インストール後、再び&lt;code&gt;vagrant up&lt;/code&gt;するとまたエラーが出ました。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;エラーメッセージ&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;Vagrant failed to initialize at a very early stage:
+        
+The version of powershell currently installed on this host is less than the required minimum version. Please upgrade the installed version of powershell to the minimum required version and run the command again.
+
+Installed version: 2
+
+Minimum required version: 3
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Vagrantをバージョンアップしたら今度はpowershellが対応できなくなったようです・・・&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;powershell ver3以上ということなので、下記の記事を参考にver4をインストールしました。(参考記事3-2、 3-3)&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;参考記事3-3のインストール・ウィザードに関して、僕の環境は32bit OSだったので、Windows6.1-KB2819745-x86-MultiPkg.msuを選択。(64bit版の場合、Windows6.1-KB2819745-x64-MultiPkg.msu)&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;これでようやく復旧しました。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;3-参考にした記事&#34;&gt;3. 参考にした記事&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;3-1. &lt;a href=&#34;https://forums.virtualbox.org/viewtopic.php?f=6&amp;t=75160&#34; target=&#34;_blank&#34;&gt;Failed to start session for virtual machine&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;3-２. &lt;a href=&#34;https://www.whyit.work/entry/2018/04/20/154907&#34; target=&#34;_blank&#34;&gt;Windows PowerShellをバージョンアップする&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;3-３. &lt;a href=&#34;https://qiita.com/takeru08ma/items/969d6656be0086e9242b&#34; target=&#34;_blank&#34;&gt;Windows Power Shell 4.0 を Windows7 にインストールする手順&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>【Androidアプリ開発】CursorWindowAllocationException エラー</title>
+      <link>https://sankame.github.io/blog/2018-08-05-android_cursor_error/</link>
+      <pubDate>Sun, 05 Aug 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2018-08-05-android_cursor_error/</guid>
+      <description>
+
+&lt;p&gt;CursorWindowAllocationException が発生した時の対処方法です。&lt;/p&gt;
+
+&lt;h1 id=&#34;0-環境&#34;&gt;0. 環境&lt;/h1&gt;
+
+&lt;p&gt;&lt;code&gt;[Windows] 7&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;[Java] 1.8&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;[Android] 5.1.1&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;[Android API] 26&lt;/code&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;1-問題&#34;&gt;1. 問題&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;開発中のAndroidアプリでSQLiteを使ってます。&lt;/p&gt;
+
+&lt;p&gt;サブクエリを使って、今までより抽出データが多くなるSQLを書いたところ、画面遷移中に頻繁にクラッシュするようになりました。&lt;/p&gt;
+
+&lt;p&gt;しかも、特定のテスト機(Galaxy S4(Android5.0.1))のみです。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;(A)エラー内容&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Fatal Exception: android.database.CursorWindowAllocationException
+Cursor window allocation of 2048 kb failed. # Open Cursors=700 (# cursors opened by this proc=700)
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;(B)エラー箇所&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;前述のサブクエリを適用した箇所とは全く別の箇所が毎回落ちるポイントでした。(下記2行目)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;Cursor cursorCountUsers = db.rawQuery(&amp;quot;SELECT COUNT(user_id) FROM users&amp;quot;, null);
+cursorCountUsers.moveToFirst();
+int countUserId = cursorCountUsers.getInt(0);
+return countUserId;
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;2-対策&#34;&gt;2. 対策&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://stackoverflow.com/questions/21219039/android-database-cursorwindowallocationexception-when-moving-a-cursor&#34; target=&#34;_blank&#34;&gt;Slackoverflow&lt;/a&gt;で同じ問題を見つけました。&lt;/p&gt;
+
+&lt;p&gt;まず、毎回同じ箇所で落ちるので、上記(B)に&lt;code&gt;cursorCountUsers.close();&lt;/code&gt;を入れたけど直りませんでした。&lt;/p&gt;
+
+&lt;p&gt;次に、ソースコード全体を&amp;rdquo;Cursor&amp;rdquo;で検索をかけ、closeしてない箇所が20くらいあったので全てに追記したところ問題は解消されました。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Javaはgcがあると思ってcloseを甘く見てましたね・・・気を付けないと。&lt;/p&gt;
+
+&lt;p&gt;RAMの空きが30数%あるのに落ちるということは、Slackoverflowの回答者が言う通り、cursorのために用意されたメモリ容量に上限があって、今までよりメモリを使うSQLを書いたせいで、そこが圧迫されたということかもしれません。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>【Androidアプリ開発】FileUriExposedException エラー</title>
+      <link>https://sankame.github.io/blog/2018-07-23-android_use_fileprovider/</link>
+      <pubDate>Mon, 23 Jul 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2018-07-23-android_use_fileprovider/</guid>
+      <description>
+
+&lt;p&gt;Android7 で android.os.FileUriExposedException が発生した時の対処方法です。&lt;/p&gt;
+
+&lt;p&gt;(文中の【】は読み替えて下さい)&lt;/p&gt;
+
+&lt;h1 id=&#34;0-環境&#34;&gt;0. 環境&lt;/h1&gt;
+
+&lt;p&gt;&lt;code&gt;[Windows] 7&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;[Java] 1.8&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;[Android] 5.1.1&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;[Android API] 26&lt;/code&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;1-問題&#34;&gt;1. 問題&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Androidアプリから一時ファイルを作成して、そのURIを外部のアプリに渡すという処理を実装してました。&lt;/p&gt;
+
+&lt;p&gt;(ファイルを作成して、Gmailに添付するなど)&lt;/p&gt;
+
+&lt;p&gt;Android7からfile://による指定ができなくなったため、下記のエラーが発生します。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;android.os.FileUriExposedException: file:///storage/emulated/0/Android/data/【アプリのパッケージ名】/temporary/【一時ファイル名】 exposed beyond app through ClipData.Item.getUri()
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;URIはFileProviderで作らないといけないそうです。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;2-対策&#34;&gt;2. 対策&lt;/h1&gt;
+
+&lt;h2 id=&#34;2-1-androidmanifest-xml&#34;&gt;2-1. AndroidManifest.xml&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;まず、AndroidManifest.xmlにFileProviderの定義を追加します。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;android:resource&lt;/code&gt;には、2-2で作成するファイル名を指定。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;script src=&#34;https://gist.github.com/Sankame/9a8e44313453ca63dcdc18870bfd1179.js&#34;&gt;&lt;/script&gt;
+
+&lt;h2 id=&#34;2-2-res-xml-provider-paths-xml&#34;&gt;2-2. res/xml/provider_paths.xml&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;次に、res/xml/provider_paths.xml を作成します。&lt;/p&gt;
+
+&lt;p&gt;後述の2-3でfileの保存先を &lt;code&gt;Environment.getExternalStorageDirectory()&lt;/code&gt; の直下にしたので、それを表す&lt;code&gt;external-path&lt;/code&gt;を指定します。&lt;/p&gt;
+
+&lt;p&gt;また、直下なので&lt;code&gt;path&lt;/code&gt;はカレントディレクトリになります。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;script src=&#34;https://gist.github.com/Sankame/6cee8d95f46725bf967ef207e13d2ba8.js&#34;&gt;&lt;/script&gt;
+
+&lt;h2 id=&#34;2-3-該当処理を行っているactivity&#34;&gt;2-3. 該当処理を行っているActivity&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;最後に、URIの生成を下記(1)から(2)に変更しました。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;script src=&#34;https://gist.github.com/Sankame/67c40ef8056fba82c23937e2ab54b161.js&#34;&gt;&lt;/script&gt;
+
+&lt;h1 id=&#34;3-参考&#34;&gt;3. 参考&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://developer.android.com/reference/android/support/v4/content/FileProvider&#34; target=&#34;_blank&#34;&gt;FileProviderリファレンス&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>【Androidアプリ開発】 &#34;Socket is closed&#34; エラー</title>
+      <link>https://sankame.github.io/blog/2018-05-07-android_socket_is_closed/</link>
+      <pubDate>Mon, 07 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2018-05-07-android_socket_is_closed/</guid>
+      <description>
+
+&lt;h1 id=&#34;0-環境&#34;&gt;0. 環境&lt;/h1&gt;
+
+&lt;pre&gt;&lt;code&gt;[Windows] 7
+[Java] 1.8
+[Android] 5.1.1
+[Android API] 26
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;1-問題&#34;&gt;1. 問題&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Androidアプリの開発で、自前のAPIからデータを取得する処理を組んでいたところ、下記エラーが発生するようになりました。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;java.net.SocketException: Socket is closed
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;コードはこちら。&lt;/p&gt;
+
+&lt;script src=&#34;https://gist.github.com/Sankame/848d54b5e12f210811db5b80f8512553.js&#34;&gt;&lt;/script&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;2-対策&#34;&gt;2. 対策&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;まずAPI側でApacheのログを確認したところ、ステータスコード200で問題なしでした。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-apache&#34;&gt;127.0.0.1 - - [05/May/2018:22:55:02 +0900] &amp;quot;POST /api/test HTTP/1.0&amp;quot; 200 11130
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;正常終了するケースとの違いは、レスポンスのデータ量が多くなってることかな。(上記ログ右端)&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;次にAndroidアプリ側の処理があやしいと考えて、いろいろ試した結果、HttpsURLConnectionのクローズのタイミングが問題だと分かりました。&lt;/p&gt;
+
+&lt;p&gt;同オブジェクトを参照しているオブジェクトを全て使い終わってから、クローズする必要がありそうです。(上記(1)→(2)に移す)&lt;/p&gt;
+
+&lt;p&gt;また、クローズ処理を消すだけでも冒頭のエラーは出なくなりましたが、なるべくオブジェクトは明示的に閉じた方が良いと思います。&lt;/p&gt;
+
+&lt;p&gt;なので、最終的にオブジェクトの作成順とは逆にクローズしていく処理を入れました。(下記(3)(4))&lt;/p&gt;
+
+&lt;script src=&#34;https://gist.github.com/Sankame/561d4244e309efd1b9f8f4c2aa72e714.js&#34;&gt;&lt;/script&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>ERROR 2002 (HY000): Can&#39;t connect to local MySQL server through socket &#39;/tmp/mysql.sock&#39; (38)</title>
+      <link>https://sankame.github.io/blog/2017-11-20-fail_to_connect_mysql/</link>
+      <pubDate>Mon, 20 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2017-11-20-fail_to_connect_mysql/</guid>
+      <description>
+
+&lt;h1 id=&#34;0-環境&#34;&gt;0. 環境&lt;/h1&gt;
+
+&lt;pre&gt;&lt;code&gt;[Mac] 10.11.6
+[MySQL] 5.7.20
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;1-問題&#34;&gt;1. 問題&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;MacにMySQLをインストール後、接続しようとするとエラーが出ました。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;$ brew install mysql
+
+$ mysql -uroot
+ERROR 2002 (HY000): Can&#39;t connect to local MySQL server through socket &#39;/tmp/mysql.sock&#39; (38)
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;2-対策&#34;&gt;2. 対策&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;ネットの情報をヒントに、エラーが出ているファイルの所有者を変えたら直りました。(ログインユーザー名は読み替えて下さい)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;$ ll /tmp/mysql.sock
+-rw-r--r--  1 root  wheel  0 11 19 23:46 /tmp/mysql.sock
+
+$ sudo chown [ログインユーザー名] /tmp/mysql.sock
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;念のためリスタート。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;$ brew services restart mysql
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;接続できました。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;$ mysql -uroot
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>【Androidアプリ開発】onPrepareActionModeが呼ばれない</title>
+      <link>https://sankame.github.io/blog/2017-10-17-android_onprepareactionmode_not_called/</link>
+      <pubDate>Tue, 17 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2017-10-17-android_onprepareactionmode_not_called/</guid>
+      <description>
+
+&lt;h2 id=&#34;0-環境&#34;&gt;0. 環境&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;[Windows] 7
+[Java] 1.8
+[Android] 5.1.1
+[Android API] 26
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;1-問題&#34;&gt;1. 問題&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;build.gradleで下記の値を上げたところ、onPrepareActionModeが実行されなくなってました。&lt;/p&gt;
+
+&lt;p&gt;onPrepareActionModeは、ListViewのロングタップ時にアクションモードへ切り替えた後、アクションバー内のあるアイコンを隠す処理で使っていたので、困りました。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;compileSdkVersion : 21 → 26&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;buildToolsVersion : 21.1.2 → 26.0.2&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;2-対策&#34;&gt;2. 対策&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;試しに下記 (A) にあった処理を (B) へ移してみたところ、思った通りの動きをしてくれました。&lt;/p&gt;
+
+&lt;p&gt;うーん、前はダメだったからonPrepareActionModeを使ったんだけどなあ。。&lt;/p&gt;
+
+&lt;p&gt;他にネットで情報を見つけられなかったので、一旦これにしておくか。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;list1 = findViewById(R.id.listView1);
+
+list1.setMultiChoiceModeListener(new AbsListView.MultiChoiceModeListener() {
+
+    @Override
+    public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
+        //(A)
+        //MenuItem menuItem1 = menu.findItem(R.id.menu_item1);
+        //menuItem1.setVisible(false);
+        return false;
+    }
+
+    @Override
+    public boolean onCreateActionMode(ActionMode mode, Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_action_mode, menu);
+
+        //(B)
+        MenuItem menuItem1 = menu.findItem(R.id.menu_item1);
+        menuItem1.setVisible(false);
+
+        return true;
+    }
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

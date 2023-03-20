@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Apex on プログラマー備忘録</title>
+    <link>https://sankame.github.io/tags/apex/index.xml</link>
+    <description>Recent content in Apex on プログラマー備忘録</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <copyright>Powered by [Hugo](//gohugo.io). Theme by [hugo-theme-wave](https://github.com/syui/hugo-theme-wave).</copyright>
+    <atom:link href="https://sankame.github.io/tags/apex/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>【Apex】アバストによる起動時エラー</title>
+      <link>https://sankame.github.io/blog/2023-01-15-apex_runs_error_by_avast/</link>
+      <pubDate>Sun, 15 Jan 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2023-01-15-apex_runs_error_by_avast/</guid>
+      <description>
+
+&lt;h1 id=&#34;0-環境&#34;&gt;0. 環境&lt;/h1&gt;
+
+&lt;p&gt;&lt;code&gt;[OS] Windows11&lt;/code&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;1-課題&#34;&gt;1. 課題&lt;/h1&gt;
+
+&lt;h3 id=&#34;ゲームapexが急に起動しなくなりました&#34;&gt;ゲームApexが急に起動しなくなりました。&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;「起動時エラー」メッセージの下にファイルパスが記載され、確か、Invalid file pathとなってたと思います。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;調べてみると、指定されたその実行ファイルへのパスが存在してませんでした。(消された？)&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;２-対策&#34;&gt;２. 対策&lt;/h1&gt;
+
+&lt;h3 id=&#34;下記の情報を順に行うことで回復しました&#34;&gt;下記の情報を順に行うことで回復しました。&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Avastがマルウェアと間違えてチェスト(検疫)に移動してしまったようです。これを元の場所に戻してください。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://pecolife.com/apex-legends-origin/&#34; target=&#34;_blank&#34;&gt;Apex Legendsが起動できない場合&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;それだけだとダメでした。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;おそらく、起動ファイルがない状態で何度も起動しようとしたため、ファイルの整合性がおかしくなったようです。(たぶん)&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;下記の「対処法①APEXを修復する」を実施して下さい。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://apple-geeks.com/apex-engine-error-68171&#34; target=&#34;_blank&#34;&gt;Apex エンジンエラーの対処法&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;「ファイルを再取得します」という旨のメッセージが出たまま、何も動きがなかったので、下記ページの内容を確認したところ修復は完了してました。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://detail.chiebukuro.yahoo.co.jp/qa/question_detail/q13136896368&#34; target=&#34;_blank&#34;&gt;ファイルの再取得はどうやって？&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;これで直りました。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

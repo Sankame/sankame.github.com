@@ -1,0 +1,534 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>VirtualBox on プログラマー備忘録</title>
+    <link>https://sankame.github.io/tags/virtualbox/index.xml</link>
+    <description>Recent content in VirtualBox on プログラマー備忘録</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <copyright>Powered by [Hugo](//gohugo.io). Theme by [hugo-theme-wave](https://github.com/syui/hugo-theme-wave).</copyright>
+    <atom:link href="https://sankame.github.io/tags/virtualbox/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>VMでシンボリックリンクが作成できない</title>
+      <link>https://sankame.github.io/blog/2022-08-20-fail_to_make_sl_in_vm/</link>
+      <pubDate>Sat, 20 Aug 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2022-08-20-fail_to_make_sl_in_vm/</guid>
+      <description>
+
+&lt;h1 id=&#34;0-環境&#34;&gt;0. 環境&lt;/h1&gt;
+
+&lt;p&gt;&lt;code&gt;[Host OS] Windows 11 Home&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;[Oracle VM VirtualBox] 6.1.32&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;[Gust OS] ubuntu 16.04&lt;/code&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;1-問題&#34;&gt;1. 問題&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;VirtualBoxに入れたLinux上で、シンボリック・リンク(Symbolic link)の作成に失敗する。&lt;/p&gt;
+
+&lt;p&gt;下記の例は、node.jsのライブラリをインストールするときに発生してますが、根本の問題は上記の通り。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;root@hoge:/dev/blockchain# npm i express --save
+npm ERR! code EPROTO
+npm ERR! syscall symlink
+npm ERR! path ../mime/cli.js
+npm ERR! dest /dev/blockchain/node_modules/.bin/mime
+npm ERR! errno -71
+npm ERR! EPROTO: protocol error, symlink &#39;../mime/cli.js&#39; -&amp;gt; &#39;/dev/blockchain/node_modules/.bin/mime&#39;
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;2-対応&#34;&gt;2. 対応&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;ネットで調べたら、いろんな情報が出てきましたが、VMを管理者モードで起動するだけで解決しました。&lt;/p&gt;
+
+&lt;p&gt;タスクバーにあるVMのアイコンを2回右クリックして、「管理者として実行」を選択。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/fail_to_make_sl_in_vm/run_vm_as_the_admin.png&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;40%&#34; height=&#34;40%&#34; title=&#34;run_vm_as_the_admin&#34; alt=&#34;run_vm_as_the_admin&#34; src=&#34;https://sankame.github.io/assets/posts/img/fail_to_make_sl_in_vm/run_vm_as_the_admin.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>WindowsUpdate後に再度VirtualBoxでVM起動エラー</title>
+      <link>https://sankame.github.io/blog/2022-03-26-virtualbox_does_not_start_after_windows_update/</link>
+      <pubDate>Sat, 26 Mar 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2022-03-26-virtualbox_does_not_start_after_windows_update/</guid>
+      <description>
+
+&lt;h1 id=&#34;0-環境&#34;&gt;0. 環境&lt;/h1&gt;
+
+&lt;p&gt;&lt;code&gt;[OS] Windows11 Home&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;[VirtualBox] 6.1.22 -&amp;gt; 6.1.32&lt;/code&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;1-問題&#34;&gt;1. 問題&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;VirtualBoxから仮想マシンが起動できなくなりました。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/virtualbox_does_not_start_after_windows_update/error.png&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;40%&#34; height=&#34;40%&#34; title=&#34;vm_fails_to_start&#34; alt=&#34;vm_fails_to_start&#34; src=&#34;https://sankame.github.io/assets/posts/img/virtualbox_does_not_start_after_windows_update/error.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;エラーメッセージ&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-command&#34;&gt;仮想マシン&amp;quot;ubuntu_64&amp;quot;のセッションを開けませんでした。
+
+Failed to get device handle and/or partition ID for 0000000001b5bc40 (hPartitionDevice=0000000000000b95, Last=0xc0000002/1) (VERR_NEM_VM_CREATE_FAILED).
+
+終了コード : E_FAIL (0x80004005)
+コンポーネント: ConsoleWrap
+インターフェース: IConsole {872da645-4a9b-1727-bee2-5585105b9eed}
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;2-原因&#34;&gt;2. 原因&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;たぶん、Windows11のUpdateが原因。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;因果関係は確かではないですが、下記WindowsUpdateの前後があやしい。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-command&#34;&gt;Cumulative Update for Windows 11, version 22H2 Insider Preview (10.0.22581.100) (KB5013283)
+
+Microsoft Defender Antivirus のセキュリティ インテリジェンス更新プログラム - KB2267602 (バージョン 1.361.759.0)
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;3-対応&#34;&gt;3. 対応&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;VirtualBoxのメニューで[ファイル]-[アップデートを確認(H)&amp;hellip;]&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;リンクをクリックし、最新バージョンのexeファイルをダウンロード。(VirtualBox-6.1.32-149290-Win.exe)&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;念のため、VirtualBoxを閉じる。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;exeファイルを実行し、バージョンを &lt;code&gt;6.1.22 -&amp;gt; 6.1.32&lt;/code&gt; に上げたらエラーは発生しなくなりました。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;4-その他&#34;&gt;4. その他&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;以前、&lt;a href=&#34;https://sankame.github.io/blog/2021-08-06-windows_update_causes_vm_error/&#34; target=&#34;_blank&#34;&gt;同じような問題&lt;/a&gt;が発生しましたが、今回の原因はそれではなかったようです。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://qiita.com/mariaquilac/items/5b7a146f248e7bbd9aa8&#34; target=&#34;_blank&#34;&gt;参考:Hyper-V周りの設定&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>WindowsUpdate後のVirtualBox起動エラー</title>
+      <link>https://sankame.github.io/blog/2021-08-06-windows_update_causes_vm_error/</link>
+      <pubDate>Fri, 06 Aug 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2021-08-06-windows_update_causes_vm_error/</guid>
+      <description>
+
+&lt;h1 id=&#34;0-環境&#34;&gt;0. 環境&lt;/h1&gt;
+
+&lt;p&gt;&lt;code&gt;[OS] Windows 11 Home&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;[VirtualBox] 6.1.22&lt;/code&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;1-問題&#34;&gt;1. 問題&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;1週間くらい前にWindowsUpdateしたら、下記エラーでVMが起動しなくなりました。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;仮想マシン&amp;quot;ubuntu_64&amp;quot;のセッションを開けませんでした。
+
+Failed to get device handle and/or partition ID for 00000000027d6520 (hPartitionDevice=0000000000000bd1, Last=0xc0000002/1) (VERR_NEM_VM_CREATE_FAILED).
+
+終了コード : E_FAIL (0x80004005)
+コンポーネント: ConsoleWrap
+インターフェース: IConsole {872da645-4a9b-1727-bee2-5585105b9eed}
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;WindowsUpdate後にUIが変わってたのでたぶん「&lt;a href=&#34;https://blogs.windows.com/japan/2021/07/21/announcing-the-first-insider-preview-for-windows-11/&#34; target=&#34;_blank&#34;&gt;Windows 11 Insider Preview&lt;/a&gt;」のせいだと思います。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Windowsタスクバーの虫眼鏡マークをクリックし「設定」と入力。&lt;/li&gt;
+&lt;li&gt;設定画面が開くので左メニューから「Windows Update」をクリックすると履歴が参照可能。&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;2-対応&#34;&gt;2. 対応&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Windowsタスクバーの虫眼鏡マークをクリックし「コントロールパネル」と入力。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;「コントロールパネル」内の「プログラムと機能」をクリック。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;「プログラムと機能」内の左のメニュー「Windowsの機能の有効化または無効化」をクリック。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;下記が開くので、「Windows ハイパーバイザー プラットフォーム」にチェックし、Windowsを再起動したら直りました。(WindowsUpdateでデフォルトのOffに戻ってしまったようです…)&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/windows_update_causes_vm_error/hyper-v.png&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;80%&#34; height=&#34;80%&#34; title=&#34;hyper-vの有効化&#34; alt=&#34;hyper-vの有効化&#34; src=&#34;https://sankame.github.io/assets/posts/img/windows_update_causes_vm_error/hyper-v.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>VirtualBoxでWindows10とUbuntu間のファイル共有</title>
+      <link>https://sankame.github.io/blog/2020-04-30-virtualbox_share_folder/</link>
+      <pubDate>Thu, 30 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2020-04-30-virtualbox_share_folder/</guid>
+      <description>
+
+&lt;h1 id=&#34;0-環境&#34;&gt;0. 環境&lt;/h1&gt;
+
+&lt;p&gt;&lt;code&gt;[VirtualBox] 6.1.6&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;[ホストOS] Windows 10 Home&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;[ゲストOS] Ubuntu 16.4&lt;/code&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;1-やりたいこと&#34;&gt;1. やりたいこと&lt;/h1&gt;
+
+&lt;p&gt;Windows10(ホストOS)にVirtualBoxを入れて、その上でUbuntu(ゲストOS)を動かします。&lt;/p&gt;
+
+&lt;p&gt;その際、ホストOS上のファイルをゲストOSからも操作したい。&lt;/p&gt;
+
+&lt;p&gt;IDEやエディタはホストOS上で起動し、バージョン管理やWebサーバー経由の確認などはゲストOSで行いたいというのが意図です。&lt;/p&gt;
+
+&lt;h1 id=&#34;2-インストール&#34;&gt;2. インストール&lt;/h1&gt;
+
+&lt;p&gt;VirtualBoxとUbuntuのインストール&amp;amp;設定は&lt;a href=&#34;https://qiita.com/pyon_kiti_jp/items/0be8ac17439abf418e48&#34; target=&#34;_blank&#34;&gt;この記事&lt;/a&gt;が分かりやすかったです。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://www.virtualbox.org/wiki/Downloads&#34; target=&#34;_blank&#34;&gt;VirtualBoxのサイト&lt;/a&gt;で下記リンクからダウンロード。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;[VirtualBox 6.1.6 platform packages]-[Windows hosts]&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;また、Ubuntuは&lt;a href=&#34;http://www.releases.ubuntu.com/16.04/&#34; target=&#34;_blank&#34;&gt;こちらのサイト&lt;/a&gt;から「64-bit PC (AMD64) desktop image」をダウンロードしました。&lt;/p&gt;
+
+&lt;p&gt;1.6Gあるので僕の環境だと数時間かかりました。&lt;/p&gt;
+
+&lt;h1 id=&#34;3-共有フォルダ設定&#34;&gt;3. 共有フォルダ設定&lt;/h1&gt;
+
+&lt;p&gt;Ubuntuのインストールが終わったら、VirtualBoxのホーム画面からインストールした仮想マシンを選択して「設定」をクリック。&lt;/p&gt;
+
+&lt;p&gt;下記のウィンドウが起動するので、左メニューの「共有フォルダー」をクリックします。&lt;/p&gt;
+
+&lt;p&gt;さらに右端にあるプラスマークをクリック。
+&lt;a href=&#34;https://sankame.github.io/assets/posts/img/virtualbox_share_folder/list_share_folder.png&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;80%&#34; height=&#34;80%&#34; title=&#34;共有フォルダ一覧&#34; alt=&#34;共有フォルダ一覧&#34; src=&#34;https://sankame.github.io/assets/posts/img/virtualbox_share_folder/list_share_folder.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;下記ウィンドウに必要項目を入力します。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;・「フォルダーのパス」は「その他」を選んで、ホストOS側で共有したいフォルダーを選択。
+・「フォルダー名」は自動で入るのでさわらず。(1)
+・「自動マウント」をチェックONにします。
+・「マウントポイント」はゲストOSの任意のディレクトリを指定。(2)
+・「永続化する」というチェックボックスがある場合、それもON。
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/virtualbox_share_folder/add_share_folder.png&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;40%&#34; height=&#34;40%&#34; title=&#34;共有フォルダ追加&#34; alt=&#34;共有フォルダ追加&#34; src=&#34;https://sankame.github.io/assets/posts/img/virtualbox_share_folder/add_share_folder.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;こんな感じに追加されました。
+&lt;a href=&#34;https://sankame.github.io/assets/posts/img/virtualbox_share_folder/example_share_folder.png&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;80%&#34; height=&#34;80%&#34; title=&#34;共有フォルダ一覧&#34; alt=&#34;共有フォルダ一覧&#34; src=&#34;https://sankame.github.io/assets/posts/img/virtualbox_share_folder/example_share_folder.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;ゲストOSを再起動します。&lt;/p&gt;
+
+&lt;p&gt;これだけだとゲストOSからホストOSの共有フォルダが見えませんでした。&lt;/p&gt;
+
+&lt;p&gt;調べてるといろんなページで「Ubuntuに&amp;rdquo;Gust Additions&amp;rdquo;をインストールする必要がある」と書いてましたが、入れなくても後述の手順でできました。
+(以前はそうだったのかもしれません)&lt;/p&gt;
+
+&lt;p&gt;&amp;ldquo;mount.vboxsf&amp;rdquo;コマンドを使いたいので、ゲストOS上でrootになるかsudoをつけて下記コマンドを実行。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ubuntu&#34;&gt;# apt install virtualbox-guest-utils
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;次にゲストOS側で予めマウントポイントのディレクトリを作成しておきます。(上記(2))&lt;/p&gt;
+
+&lt;p&gt;最後に、第一引数に前述の(1)、第二引数に(2)を指定してこのコマンドを実行するとホスト側のフォルダが参照できました。(下記のshareは読み替えて下さい)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ubuntu&#34;&gt;# mount.vboxsf share /share
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;仮想マシンを落とすと設定が消えてしまったので、&lt;code&gt;~/.bashrc&lt;/code&gt;に上記コマンドを書いておきました。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>VirtualBox起動エラー(rc=-22838)</title>
+      <link>https://sankame.github.io/blog/2019-10-05-virtualbox_does_not_start/</link>
+      <pubDate>Sat, 05 Oct 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2019-10-05-virtualbox_does_not_start/</guid>
+      <description>
+
+&lt;p&gt;4ヶ月くらい起動していなかったVirtualBoxで久々に開発をしようと思ったらエラーが発生しました。
+ネット上の情報はあまりなく、下記のいずれかでした。Bはいつの時点に戻すか分からなかったので、Aでやることにしました。&lt;/p&gt;
+
+&lt;p&gt;(A)VirtualBoxを再インストール。&lt;/p&gt;
+
+&lt;p&gt;(B)Windowsの復元機能を使って、Windowsアップデート前の状態にする。&lt;/p&gt;
+
+&lt;h1 id=&#34;0-環境&#34;&gt;0. 環境&lt;/h1&gt;
+
+&lt;p&gt;&lt;code&gt;[OS] Windows7 (32bit)&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;[VirtualBox] 4.3.26 -&amp;gt; 5.2.32&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;[Vagrant] 1.7.2 -&amp;gt; 2.2.5&lt;/code&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;1-問題&#34;&gt;1. 問題&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;VagrantからVirtualBoxを起動する構成です。(&lt;a href=&#34;https://sankame.github.io/blog/2015-05-06-vagrant_setup/&#34; target=&#34;_blank&#34;&gt;詳細はこちら&lt;/a&gt;)&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;いつものように&lt;code&gt;vagrant up&lt;/code&gt;や&lt;code&gt;vagrant resume&lt;/code&gt;でVirtualBoxを起動しようとしたところ、このエラーが出ました。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/virtualbox_does_not_start/error_22838.png&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;60%&#34; height=&#34;60%&#34; title=&#34;error_22838&#34; alt=&#34;error_22838&#34; src=&#34;https://sankame.github.io/assets/posts/img/virtualbox_does_not_start/error_22838.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;エラーメッセージ&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;supHardenedWinVerifyProcess failed with VERR_ASN1_CURSOR_TAG_MISMATCH: (rc=-22838)
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;2-対応&#34;&gt;2. 対応&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;内部エラーで複雑そうなので、一度VirtualBoxをアンインストールし、新しいバージョンをインストールしました。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;32bit OSに対応してて、新し目のバージョン5.2.32を選択しました。(&lt;a href=&#34;https://www.virtualbox.org/wiki/Download_Old_Builds_5_2&#34; target=&#34;_blank&#34;&gt;5.2.32のWindows hostsをクリック&lt;/a&gt;)&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;64bit OSを使ってる方は、もっと新しいバージョンの方がいいと思います。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;VirtualBoxを再インストール後、&lt;code&gt;vagrant up&lt;/code&gt;を実行すると下記エラーメッセージが表示されました。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;エラーメッセージ&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;The provider &#39;virtualbox&#39; that was requested to back the machine
+&#39;default&#39; is reporting that it isn&#39;t usable on this system. The
+reason is shown below:
+
+Vagrant has detected that you have a version of VirtualBox installed
+that is not supported. Please install one of the supported versions
+listed below to use Vagrant:
+
+4.0, 4.1, 4.2, 4.3
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;現在のVagrantのバージョン(1.7.2)だと、上記バージョンのVirtualBoxにしか対応できないようです。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;VirtualBoxをバージョンダウンするより、Vagrantを上げた方がいいだろうと思って、一度Vagrantをアンインストールした後、下記から最新版を落としてきてインストールしました。(該当するOSとアーキテクチャのリンクからダウンロード。&lt;a href=&#34;https://www.vagrantup.com/downloads.html&#34; target=&#34;_blank&#34;&gt;Download Vagrant&lt;/a&gt;)&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Vagrantを再インストール後、再び&lt;code&gt;vagrant up&lt;/code&gt;するとまたエラーが出ました。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;エラーメッセージ&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;Vagrant failed to initialize at a very early stage:
+        
+The version of powershell currently installed on this host is less than the required minimum version. Please upgrade the installed version of powershell to the minimum required version and run the command again.
+
+Installed version: 2
+
+Minimum required version: 3
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Vagrantをバージョンアップしたら今度はpowershellが対応できなくなったようです・・・&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;powershell ver3以上ということなので、下記の記事を参考にver4をインストールしました。(参考記事3-2、 3-3)&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;参考記事3-3のインストール・ウィザードに関して、僕の環境は32bit OSだったので、Windows6.1-KB2819745-x86-MultiPkg.msuを選択。(64bit版の場合、Windows6.1-KB2819745-x64-MultiPkg.msu)&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;これでようやく復旧しました。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;3-参考にした記事&#34;&gt;3. 参考にした記事&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;3-1. &lt;a href=&#34;https://forums.virtualbox.org/viewtopic.php?f=6&amp;t=75160&#34; target=&#34;_blank&#34;&gt;Failed to start session for virtual machine&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;3-２. &lt;a href=&#34;https://www.whyit.work/entry/2018/04/20/154907&#34; target=&#34;_blank&#34;&gt;Windows PowerShellをバージョンアップする&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;3-３. &lt;a href=&#34;https://qiita.com/takeru08ma/items/969d6656be0086e9242b&#34; target=&#34;_blank&#34;&gt;Windows Power Shell 4.0 を Windows7 にインストールする手順&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Vagrant &#43; VirtualBox でCentOS開発環境構築</title>
+      <link>https://sankame.github.io/blog/2015-05-06-vagrant_setup/</link>
+      <pubDate>Wed, 06 May 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2015-05-06-vagrant_setup/</guid>
+      <description>
+
+&lt;p&gt;&lt;span&gt;&amp;nbsp;&lt;/span&gt;&lt;span style=&#34;color:#d14; float:right;&#34;&gt;更新日：2017年01月28日&lt;/span&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;0-環境&#34;&gt;0.環境&lt;/h1&gt;
+
+&lt;pre&gt;&lt;code&gt;[PC]     DELL LATITUDE E5500
+[ホストOS] Windows 7 (32bit 版)
+[ゲストOS] CentOS 6.5 (64bit 版)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;1-概要&#34;&gt;1.概要&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Vagrantで開発環境を作りました。&lt;/p&gt;
+
+&lt;p&gt;VirtualBoxを操作するためにVagrantというツールを使うイメージです。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/vagrant_setup/vagrant.jpg&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;100%&#34; height=&#34;100%&#34; title=&#34;接続情報&#34; alt=&#34;接続情報&#34; src=&#34;https://sankame.github.io/assets/posts/img/vagrant_setup/vagrant.jpg&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;VirtualBox上に仮想マシン(以下VM)起動し、そこにCentOSをインストールして開発環境とします。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;2-bios設定変更&#34;&gt;2.BIOS設定変更&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;VMを起動する準備として、BIOSの設定を変更します。&lt;/p&gt;
+
+&lt;p&gt;PCの電源をONにし、OSが起動する前に特定のキーを押してBIOS設定画面を開きます。&lt;/p&gt;
+
+&lt;p&gt;(PCによって異なるので、下記のキーは読み替えて下さい)&lt;/p&gt;
+
+&lt;p&gt;OS起動時に[F2] または [F10]キーを押下。&lt;/p&gt;
+
+&lt;p&gt;[Virtualization Support] - [Virtualization]を選択し、[Enable]にチェックをつけて[Apply]→[Exit]を選択。&lt;/p&gt;
+
+&lt;p&gt;そのままOSが起動するのを待ちます。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;3-virtualboxインストール&#34;&gt;3.VirtualBoxインストール&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;下記ページで&amp;rdquo;VirtualBox 4.3.26 for Windows hosts&amp;rdquo; をクリックしVirtualBoxをダウンロード。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://www.virtualbox.org/wiki/Downloads&#34; target=&#34;_blank&#34;&gt;VirtualBoxダウンロード&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;ダウンロード、インストールともに僕の環境では数分かかりました。&lt;/p&gt;
+
+&lt;p&gt;途中何度かOracle社のコンポーネントをインストールしますか？と聞かれたので全てYesを選択。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;4-vagrantインストール&#34;&gt;4.Vagrantインストール&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;次のリンク先でWindows用を選択して Vagrantをダウンロード。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://www.vagrantup.com/downloads.html&#34; target=&#34;_blank&#34;&gt;Vagrantダウンロード&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;インストールが終わったら再起動を求められます。&lt;/p&gt;
+
+&lt;p&gt;コマンドプロンプトで下記を実行することで、boxファイル(用意されたVMイメージ)を取得し、VirtualBoxに追加します。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-cmd&#34;&gt;C:\Users\【ユーザー名】&amp;gt; vagrant box add CentOS65 https://github.com/2creatives/vagrant-centos/releases/download/v6.5.3/centos65-x86_64-20140116.box
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;5-vagrantを使ってvirtualboxのvmを起動&#34;&gt;5.Vagrantを使ってVirtualBoxのVMを起動&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;適当なフォルダにVagrantファイルを作成し、VM起動時の設定を定義します。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-cmd&#34;&gt;C:\apps\Vagrant\Vagrantfiles&amp;gt;mkdir centos
+
+C:\apps\Vagrant\Vagrantfiles&amp;gt;cd centos
+
+C:\apps\Vagrant\Vagrantfiles\centos&amp;gt;vagrant init CentOS65
+A `Vagrantfile` has been placed in this directory. You are now
+ready to `vagrant up` your first virtual environment! Please read
+the comments in the Vagrantfile as well as documentation on
+`vagrantup.com` for more information on using Vagrant.
+
+C:\apps\Vagrant\Vagrantfiles\centos&amp;gt;dir
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;次に自動生成された Vagrantfile を編集します。&lt;/p&gt;
+
+&lt;p&gt;必要箇所のコメントアウトを解除。（下記は編集前後のdiff）&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-diff&#34;&gt;# diff Vagrantfile.org Vagrantfile                       
+29c29
+&amp;lt;   # config.vm.network &amp;quot;private_network&amp;quot;, ip: &amp;quot;192.168.33.10&amp;quot;
+---
+&amp;gt;   config.vm.network &amp;quot;private_network&amp;quot;, ip: &amp;quot;192.168.33.10&amp;quot;
+46c47
+&amp;lt;   # config.vm.provider &amp;quot;virtualbox&amp;quot; do |vb|
+---
+&amp;gt;   config.vm.provider &amp;quot;virtualbox&amp;quot; do |vb|
+48c49
+&amp;lt;   #   vb.gui = true
+---
+&amp;gt;       vb.gui = true
+51,52c52,53
+&amp;lt;   #   vb.memory = &amp;quot;1024&amp;quot;
+&amp;lt;   # end
+---
+&amp;gt;       vb.memory = &amp;quot;1024&amp;quot;
+&amp;gt;   end
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&amp;ldquo;vb.gui = true&amp;rdquo; のコメントアウトを解除しないと、VM起動時に下記エラーが出続けるので注意。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-cmd&#34;&gt;default: Warning: Connection timeout. Retrying...
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;編集が終わったら VagrantコマンドでVMを起動します。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-cmd&#34;&gt;C:\apps\Vagrant\Vagrantfiles\centos&amp;gt; vagrant up
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;6-ターミナルソフトでvmに接続&#34;&gt;6.ターミナルソフトでVMに接続&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;使い慣れたターミナルソフトでVMに接続します。&lt;/p&gt;
+
+&lt;p&gt;まずは用意された user=vagrant, password=vagrant で接続。&lt;/p&gt;
+
+&lt;p&gt;(下記はpoderosaでの接続例)&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/vagrant_setup/poderosa.png&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;40%&#34; height=&#34;40%&#34; title=&#34;接続情報&#34; alt=&#34;接続情報&#34; src=&#34;https://sankame.github.io/assets/posts/img/vagrant_setup/poderosa.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;以降は root で接続したいので、rootのパスワードを再設定します。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;$ sudo passwd root
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;7-その他-ファイル共有&#34;&gt;7.その他：ファイル共有&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;ホストOS(Windows)とゲストOS(CentOS)でファイル共有したい場合、上記5の Vagrantfile で下記の行を有効にします。&lt;/p&gt;
+
+&lt;p&gt;Vagrantfileの変更を反映するにはVMの再起動が必要です。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;(例) 左がWindows、右がCentOSのパス。(Windowsのパスは\を2つ重ねる必要あり)&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-cmd&#34;&gt;config.vm.synced_folder &amp;quot;c:\\vm\\share&amp;quot;, &amp;quot;/share&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;参考にしたページ&#34;&gt;参考にしたページ&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://qiita.com/hiroyasu55/items/11a4c996b0c62450940f&#34; target=&#34;_blank&#34;&gt;インストール手順&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://sakashushu.blog.so-net.ne.jp/2014-06-16&#34; target=&#34;_blank&#34;&gt;エラーの際に役立ったページ&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

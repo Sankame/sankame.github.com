@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Hive on プログラマー備忘録</title>
+    <link>https://sankame.github.io/tags/hive/index.xml</link>
+    <description>Recent content in Hive on プログラマー備忘録</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <copyright>Powered by [Hugo](//gohugo.io). Theme by [hugo-theme-wave](https://github.com/syui/hugo-theme-wave).</copyright>
+    <atom:link href="https://sankame.github.io/tags/hive/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>【Flutter】ローカルDBの選択-Hive-</title>
+      <link>https://sankame.github.io/blog/2021-07-25-flutter_local_db/</link>
+      <pubDate>Sun, 25 Jul 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2021-07-25-flutter_local_db/</guid>
+      <description>
+
+&lt;h1 id=&#34;0-環境&#34;&gt;0. 環境&lt;/h1&gt;
+
+&lt;p&gt;&lt;code&gt;[OS] MacOS 10.11.6&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;[Flutter] 2.2.3&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;[Dart] 2.13.4&lt;/code&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;1-背景&#34;&gt;1. 背景&lt;/h1&gt;
+
+&lt;p&gt;React NativeでiOSアプリを作成してたんですが、環境周りの不具合に時間を取られ、肝心の実装がほとんどできない状態が続いてました。
+そこで、試しにFlutterをやってみたら、シュミレーターで動かすところまでは比較的楽にできたので乗り換えることにしました。&lt;/p&gt;
+
+&lt;p&gt;JSを使えるエンジニアが多いという理由で、React Nativeが支持されるかな？と予想してたのですが、
+最近、Twitterなどで&lt;a href=&#34;https://quipper.hatenablog.com/entry/2021/07/21/080000&#34; target=&#34;_blank&#34;&gt;React離れ&lt;/a&gt;を
+見かけることが増えてきて、そろそろ潮時かなと思ってきました。&lt;/p&gt;
+
+&lt;h1 id=&#34;2-検討&#34;&gt;2. 検討&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;作成したいアプリがローカルDBを使用しているので、何が良いのかいろいろ見てみました。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://kabochapo.hateblo.jp/entry/2020/02/01/144411&#34; target=&#34;_blank&#34;&gt;こちらのページ&lt;/a&gt;がよくまとまってます。&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;まず、僕の環境で、sqflite、Realm、Moor、ObjectBoxはサンプルアプリすら動かなかったので諦めました。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;作ろうとしてるアプリのAndroid版がSQLite3を使ってるので、sqfliteやそれをラッピングしてるというMoorがいいかなと思ったのですが、下記のエラーが解決できず諦めました。同様のエラーで開発者に対する&lt;a href=&#34;https://github.com/tekartik/sqflite/issues/452&#34; target=&#34;_blank&#34;&gt;質問&lt;/a&gt;が結構挙がってましたが、いまいち決定的な解決方法はなさそうでした。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Error: MissingPluginException(No implementation found for method getDatabasesPath on channel com.tekartik.sqflite)&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;3-hiveサンプルアプリ&#34;&gt;3. Hiveサンプルアプリ&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;上記ページで紹介されてるHiveがさくっと動きました。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://github.com/hivedb/samples&#34; target=&#34;_blank&#34;&gt;サンプルページ&lt;/a&gt;の「Code」ボタンからファイルアイコンをクリックしてURLをコピー。(画像参照)&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/flutter_local_db/hive_sample.png&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;80%&#34; height=&#34;80%&#34; title=&#34;Hiveサンプルコードダウンロード&#34; alt=&#34;Hiveサンプルコードダウンロード&#34; src=&#34;https://sankame.github.io/assets/posts/img/flutter_local_db/hive_sample.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;適当なディレクトリにソースをダウンロードしてアプリを起動します。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ git clone https://github.com/hivedb/samples.git
+
+$ cd samples/todo/
+
+$ flutter create .
+
+$ flutter run
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;To-Doアプリが起動しました。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/flutter_local_db/hive_todo_app.png&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;80%&#34; height=&#34;80%&#34; title=&#34;HiveTodoアプリ&#34; alt=&#34;HiveTodoアプリ&#34; src=&#34;https://sankame.github.io/assets/posts/img/flutter_local_db/hive_todo_app.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
