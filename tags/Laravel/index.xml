@@ -1,0 +1,493 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Laravel on プログラマー備忘録</title>
+    <link>https://sankame.github.io/tags/laravel/index.xml</link>
+    <description>Recent content in Laravel on プログラマー備忘録</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <copyright>Powered by [Hugo](//gohugo.io). Theme by [hugo-theme-wave](https://github.com/syui/hugo-theme-wave).</copyright>
+    <atom:link href="https://sankame.github.io/tags/laravel/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>品質管理とUnitTest(Laravel&#43;PHPUnit&#43;Mockeryによるサンプルコード付き)</title>
+      <link>https://sankame.github.io/blog/2020-05-05-laravel_phpunit_mockery/</link>
+      <pubDate>Tue, 05 May 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2020-05-05-laravel_phpunit_mockery/</guid>
+      <description>
+
+&lt;h1 id=&#34;環境&#34;&gt;環境&lt;/h1&gt;
+
+&lt;p&gt;&lt;code&gt;[OS] Debian 10&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;[PHP] 7.3.13&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;[Laravel] 7.6.2&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;[PHPUnit] 8.5.3&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;[Mockery] 1.3.1&lt;/code&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;はじめに&#34;&gt;はじめに&lt;/h1&gt;
+
+&lt;p&gt;ソフトウェアやアプリケーション開発にとって品質管理は切っても切り離せない存在です。
+日本の従来の品質管理は散布図やPB曲線などを用いて定量化を重視してきました。&lt;/p&gt;
+
+&lt;p&gt;しかし、それらは品質を数値化し分析することに寄りすぎていると感じるのは僕だけでしょうか？
+品質管理の本来の目的は「品質を上げること」にあるはずです。&lt;/p&gt;
+
+&lt;p&gt;一言で品質と言っても様々ですが、「品質 = 要求仕様に則った実装」と定義すると、品質向上のための必要十分な施策はUnitTestによるホワイトボックステストが一番の近道だと考えています。
+実際、ネットの情報を見ても、Googleなどのテック企業はUnitTestを中心に据えているように見えます。
+その上で、報告などの目的でどうしても品質を定量化したいのであれば、UnitTestのカバレッジ計測ツールを使ったら良いのではないでしょうか。&lt;/p&gt;
+
+&lt;h1 id=&#34;1-方針&#34;&gt;1. 方針&lt;/h1&gt;
+
+&lt;p&gt;下記の方針でユニットテストを書いていきますが、自分のプロジェクトと合わない部分は変えて下さい。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;1-1. 後々CIで動かすことも考慮し、DB接続はモックで代替する。&lt;/li&gt;
+&lt;li&gt;1-2. フレームワークを含めず実装した箇所だけのテストコードを書く。&lt;/li&gt;
+&lt;li&gt;1-3. プロダクションコードの全ロジックを通すテストコードを書く。(「3. テスト記載方法」で後述)&lt;/li&gt;
+&lt;li&gt;1-4. 上記1-2の範囲でツールを用いてカバレッジを計測し、なるべく100%に近づける。(一般的にツールは評価が甘めのため)&lt;/li&gt;
+&lt;li&gt;1-5. テストコードの構成はフレームワークやデファクトスタンダードに合わせる。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;2-設定&#34;&gt;2. 設定&lt;/h1&gt;
+
+&lt;h2 id=&#34;2-1-phpunit&#34;&gt;2-1. PHPUnit&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;LaravelにはPHPUnitが最初から入ってるので、アプリのルートで下記コマンドを実行するとサンプルのテストコードが実行されます。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-linux&#34;&gt;composer exec -v phpunit
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;アプリルートにある&lt;code&gt;tests&lt;/code&gt;ディレクトリにテストコードを格納していきます。同ディレクトリ内はさらに&lt;code&gt;Feature&lt;/code&gt;と&lt;code&gt;Unit&lt;/code&gt;に分かれてます。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-linux&#34;&gt;tests
+|-- CreatesApplication.php
+|-- Feature
+|   `-- ExampleTest.php
+|-- TestCase.php
+`-- Unit
+    `-- ExampleTest.php
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://readouble.com/laravel/5.5/ja/testing.html&#34; target=&#34;_blank&#34;&gt;Laravelの方針&lt;/a&gt;に合わせて、下記の区分けでテストを書いていきます。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Feature&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;機能(エンドポイントURL)視点なので、実質コントローラのホワイトボックステストが該当すると思われます。&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Unit&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;各クラスごとのテスト。&lt;/li&gt;
+&lt;li&gt;DDDを採用している場合はService、Repositoryなど作成したクラスごとのテストケースを格納。&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;あと、Laravelのドキュメントにはありませんが、メンテナンス上プロダクションコードとテストコードのディレクトリ構成を合わせておきましょう。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;プロダクションコード&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-linux&#34;&gt;app/Http/
+|-- Controllers
+|   |-- ContactController.php
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;テストコード&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-linux&#34;&gt;tests/Feature/Http/
+|-- Controllers
+|   |-- ContactControllerTest.php
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;次に方針1-2に沿ってテスト範囲を絞るためにアプリルートの&lt;code&gt;phpunit.xml&lt;/code&gt;を編集します。細かい指定ができるので&lt;a href=&#34;https://phpunit.de/manual/6.5/ja/appendixes.configuration.html#appendixes.configuration.whitelisting-files&#34; target=&#34;_blank&#34;&gt;こちら&lt;/a&gt;も参照してみて下さい。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;filter&amp;gt;
+    &amp;lt;whitelist processUncoveredFilesFromWhitelist=&amp;quot;true&amp;quot;&amp;gt;
+            &amp;lt;directory suffix=&amp;quot;.php&amp;quot;&amp;gt;
+                ./app/Http/Controllers
+            &amp;lt;/directory&amp;gt;
+            &amp;lt;exclude&amp;gt;
+                &amp;lt;file&amp;gt;./app/Http/Controllers/Controller.php&amp;lt;/file&amp;gt;
+            &amp;lt;/exclude&amp;gt;
+    &amp;lt;/whitelist&amp;gt;
+&amp;lt;/filter&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;2-2-mockery&#34;&gt;2-2. Mockery&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;方針1-1に沿ってDBアクセスの代わりにMockeryからダミーの値を返すようにします。&lt;/p&gt;
+
+&lt;p&gt;Mockery(&lt;code&gt;[アプリルート]/vendor/mockery&lt;/code&gt;)が入ってない場合は&lt;a href=&#34;https://readouble.com/mockery/1.0/ja/installation.html&#34; target=&#34;_blank&#34;&gt;こちらのページ&lt;/a&gt;などを参考にインストールして下さい。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;2-3-カバレッジ&#34;&gt;2-3. カバレッジ&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;品質評価の指標として、テストの網羅率を出します。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;[アプリルート]/composer.json&lt;/code&gt;に下記を追記。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;quot;scripts&amp;quot;: {
+        ...
+    &amp;quot;test:coverage&amp;quot;: [
+        &amp;quot;phpunit --coverage-html coverage&amp;quot;
+    ]
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;アプリルートで下記コマンドを実行すると結果が&lt;code&gt;[アプリルート]/coverage&lt;/code&gt;にHTMLで出力されます。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-linux&#34;&gt;composer test:coverage
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;No code coverage driver is available&lt;/code&gt;と出たり、結果が出力されない場合はXdebugのインストールが必要です。&lt;code&gt;php -i&lt;/code&gt;の出力結果を&lt;a href=&#34;https://xdebug.org/wizard&#34; target=&#34;_blank&#34;&gt;こちらの入力フォーム&lt;/a&gt;にはりつけて「Analyze my phpinfo() output」をクリックすると自分の環境に合わせたインストール手順が提示されます。&lt;/p&gt;
+
+&lt;p&gt;また、Mockeryとカバレッジを同時に使う場合は各テストメソッドのDocブロックにこれが必要なので記載しておいて下さい。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;@runInSeparateProcess
+@preserveGlobalState disabled
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;3-テスト記載方法&#34;&gt;3. テスト記載方法&lt;/h1&gt;
+
+&lt;h2 id=&#34;3-1-一般基準&#34;&gt;3-1. 一般基準&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;一般的にユニットテストの基準は「命令網羅」「分岐網羅」「条件網羅」がありますが、ここでは「分岐網羅」(判定条件の真偽を少なくとも1回は実行)に合わせます。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;if($x === 0){
+    //Do something.
+}
+if($y &amp;gt; 1){
+    //Do something.
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;上記プロダクションコードを例に取ると、テストケースはこの2つになります。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;(1) $x=0, $y=2 (両方true)
+(2) $x=1, $y=0 (両方false)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;フローチャートにすると分かりやすいですが、(1)は赤線、(2)は青線で各ルートを1回は通すイメージです。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/laravel_phpunit_mockery/flow.png&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;60%&#34; height=&#34;60%&#34; title=&#34;分岐網羅&#34; alt=&#34;分岐網羅&#34; src=&#34;https://sankame.github.io/assets/posts/img/laravel_phpunit_mockery/flow.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;また、境界値もバグが起きやすい箇所なのでテストに含めましょう。&lt;/p&gt;
+
+&lt;p&gt;ただ、テストケースがむやみに増えてもメンテナンスが大変なので、上記の例だと(2)を&lt;code&gt;$y=1&lt;/code&gt;に変えれば分岐網羅も境界値も同時にまかなえます。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;3-2-phpunitとmockery&#34;&gt;3-2. PHPUnitとMockery&lt;/h2&gt;
+
+&lt;p&gt;ID指定で特定のレコードを引っ張ってきて表示するというよくある編集画面を例にします。
+レコードが取得できれば編集画面を表示し、何かの理由で取得できなかったら中断して一覧画面へ戻します。
+&lt;script src=&#34;https://gist.github.com/Sankame/6cc553841d60ab142909ad7a75b951ee.js&#34;&gt;&lt;/script&gt;&lt;/p&gt;
+
+&lt;p&gt;分岐が1つなので、レコードが正常取得できた場合とできなかった場合のテストを用意します。
+プロダクションコード内で実行が期待されるContactモデルのメソッドをモックに記憶させます。&lt;/p&gt;
+
+&lt;p&gt;・あるIDを引数にしてfindメソッドが呼ばれ1レコードを返却。&lt;/p&gt;
+
+&lt;p&gt;・21行目でedit()が呼ばれるURLにアクセスし、11-17行目で設定した値が画面に表示されることを確認。&lt;/p&gt;
+
+&lt;script src=&#34;https://gist.github.com/Sankame/393556a5fb90b37acb7ceddd22860f3f.js&#34;&gt;&lt;/script&gt;
+
+&lt;p&gt;もう1つはレコードが取得できない場合なので、モックのfindメソッドはnullを返すようにして、期待される動作として14行目で一覧画面への遷移を確認しています。
+&lt;script src=&#34;https://gist.github.com/Sankame/c19a7080ea1ca8a2bfe7a6655cc181ac.js&#34;&gt;&lt;/script&gt;&lt;/p&gt;
+
+&lt;p&gt;テストの書き方は以上ですが、もっとサンプルが見たい場合や自分でコードをさわってみたい場合は下記をご利用下さい。&lt;/p&gt;
+
+&lt;h1 id=&#34;4-サンプルコード&#34;&gt;4. サンプルコード&lt;/h1&gt;
+
+&lt;p&gt;環境を作るのは面倒なのでDockerだけインストールして&lt;a href=&#34;https://hub.docker.com/r/sankame/laravel-sample&#34; target=&#34;_blank&#34;&gt;こちらのDockerイメージ&lt;/a&gt;を持ってきて下さい。ちなみにこのイメージは&lt;a href=&#34;https://hub.docker.com/r/thinkeramir/laravel6.x&#34; target=&#34;_blank&#34;&gt;利用しやすそうだったこれ&lt;/a&gt;をもとに拡張しました。サンプルを動かす手順はこちらです。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Dockerインストール&lt;/p&gt;
+
+&lt;p&gt;自分の環境にあったインストール方法を検索して下さい。Macの場合は&lt;a href=&#34;https://qiita.com/nemui_/items/ed753f6b2eb9960845f7&#34; target=&#34;_blank&#34;&gt;こちらの記事&lt;/a&gt;が分かりやすかったです。Dockerインストールとイメージ取得でディスクは10Gほど使ったと思います。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Dockerイメージ取得&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-linux&#34;&gt;docker pull sankame/laravel-sample
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Dockerイメージからコンテナを起動&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-linux&#34;&gt;docker run -ti -p 8080:80 --name test -d sankame/laravel-sample
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Dockerを入れたマシン上で下記URLにアクセスするとサンプルページが表示されます。
+&lt;a href=&#34;http://localhost:8080/laravel-7-crud-app/public/contacts&#34;&gt;http://localhost:8080/laravel-7-crud-app/public/contacts&lt;/a&gt; (もしインターネット上のサーバーで表示させる場合はドキュメントルートをpublic配下にするよう注意して下さい)&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Dockerコンテナに入る&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-linux&#34;&gt;docker exec -it test /bin/bash
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;アプリルートは&lt;code&gt;/var/www/html/laravel-7-crud-app&lt;/code&gt;です。今回の簡易CRUDアプリはコントローラーからモデルを呼び出すだけなので、&lt;code&gt;[アプリルート]/tests/Feature&lt;/code&gt;配下のみにテストコードを作成しました。&lt;/p&gt;
+
+&lt;p&gt;テスト実行やカバレッジ出力のコマンドは前述の2を参照して下さい。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>composer updateでUndefined indexエラー</title>
+      <link>https://sankame.github.io/blog/</link>
+      <pubDate>Sat, 25 Jun 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/</guid>
+      <description>
+
+&lt;h3 id=&#34;0-環境&#34;&gt;0. 環境&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;[Laravel] 5.1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;1-問題&#34;&gt;1. 問題&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;composer update を実行すると下記エラーが発生しました。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;Writing lock file
+Generating autoload files
+&amp;gt; php artisan clear-compiled
+  [ErrorException]
+  Undefined index: HTTP_HOST
+Script php artisan clear-compiled handling the post-update-cmd event returned with error code 1
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;2-解決策&#34;&gt;2. 解決策&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;HTTP_HOST でソースをgrepし、 /app/Http/routes.php 内の下記箇所を修正しました。&lt;/p&gt;
+
+&lt;p&gt;(修正前)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;$_SERVER[&#39;HTTP_HOST&#39;]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;(修正後)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;Request::server(&#39;HTTP_HOST&#39;)
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;3-参考&#34;&gt;3. 参考&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://stackoverflow.com/questions/34055053/composer-returning-mysterious-error&#34; target=&#34;_blank&#34;&gt;Composer returning mysterious error&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>【Laravel】integerメソッドの引数</title>
+      <link>https://sankame.github.io/blog/2015-05-27-laravel_migration_integer_args/</link>
+      <pubDate>Wed, 27 May 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2015-05-27-laravel_migration_integer_args/</guid>
+      <description>
+
+&lt;h3 id=&#34;0-環境&#34;&gt;0.環境&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;[PHP]     5.4.17
+[Laravel] 4.1.30
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;1-内容&#34;&gt;1.内容&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Fluentテーブルビルダーのintegerメソッドの引数について、意外と探すのに手間取ったのでメモ。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;integerメソッド抜粋
+&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;/**
+ * @param $column        テーブルのカラム名
+ * @param $autoIncrement 自動採番するかどうか
+ * @param $unsigned      0以上の正の整数とするか
+ */
+public function integer($column, $autoIncrement = false, $unsigned = false)
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;参考にしたページ&#34;&gt;※参考にしたページ&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://stackoverflow.com/questions/28895454/laravel-migration-incorrect-table-definition&#34; target=&#34;_blank&#34;&gt;Laravel Migration incorrect table definition&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>【Laravel】全てのビューに値を渡す</title>
+      <link>https://sankame.github.io/blog/2014-07-21-laravel_passing_data_from_basecontroller/</link>
+      <pubDate>Mon, 21 Jul 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2014-07-21-laravel_passing_data_from_basecontroller/</guid>
+      <description>
+
+&lt;h1 id=&#34;0-環境&#34;&gt;0.環境&lt;/h1&gt;
+
+&lt;pre&gt;&lt;code&gt;[CentOS]   5.6 (32bit版カーネル)
+[Apache]   2.2.3
+[PHP]      5.4.1
+[Laravel]  4.1.23
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;1-課題&#34;&gt;1.課題&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;全ビュー(Bladeテンプレート)で使う値をBaseControllerから渡したい。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;2-対策&#34;&gt;2.対策&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Laravelの作法としてあっているか不明ですが、一旦これで値は渡せました。&lt;/p&gt;
+
+&lt;p&gt;下記例では、設定ファイルの基底URL(app.php内のurl変数)をビューに渡しています。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;①　app/config/local/app.php&lt;/p&gt;
+
+&lt;p&gt;(本番環境の場合、app/config/app.php に定義して下さい)&lt;/p&gt;
+
+&lt;script src=&#34;https://gist.github.com/Sankame/2a3ec0e21cea5584245b.js&#34;&gt;&lt;/script&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;②　app/controllers/BaseController.php&lt;/p&gt;
+
+&lt;p&gt;getBaseUrl() メソッドを定義し、基底URLを返します。&lt;/p&gt;
+
+&lt;p&gt;(staticでないとビューで実行できない)&lt;/p&gt;
+
+&lt;script src=&#34;https://gist.github.com/Sankame/fa1b2701da0e48c1a939.js&#34;&gt;&lt;/script&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;各コントローラは②を継承します。(コード抜粋)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;class EachController extends BaseController {
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;③　app/views/layout.blade.php (コード抜粋)&lt;/p&gt;
+
+&lt;p&gt;全てのビューで共通に使っているビューで、BaseControllerから値を取得します。&lt;/p&gt;
+
+&lt;script src=&#34;https://gist.github.com/Sankame/97b5ca9f99076723dbae.js&#34;&gt;&lt;/script&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>【Laravel】AjaxでPOSTできない</title>
+      <link>https://sankame.github.io/blog/2014-07-15-laravel_trailing_slash_redirect/</link>
+      <pubDate>Tue, 15 Jul 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2014-07-15-laravel_trailing_slash_redirect/</guid>
+      <description>
+
+&lt;h1 id=&#34;0-環境&#34;&gt;0.環境&lt;/h1&gt;
+
+&lt;pre&gt;&lt;code&gt;[CentOS]   5.6 (32bit版カーネル)
+[Apache]   2.2.3
+[PHP]      5.4.1
+[Laravel]  4.1.23
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;1-問題&#34;&gt;1.問題&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;PHPのLaravelフレームワークを使っていたら、AjaxでPOSTした値がサーバ側で取得できずにはまりました。&lt;/p&gt;
+
+&lt;p&gt;①から②へ test という名前で hoge という値を送信します。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;① Javascript側&lt;/p&gt;
+
+&lt;script src=&#34;https://gist.github.com/Sankame/a9da32445d224fb1df63.js&#34;&gt;&lt;/script&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;② PHP側&lt;/p&gt;
+
+&lt;script src=&#34;https://gist.github.com/Sankame/649420870dc9835cb08c.js&#34;&gt;&lt;/script&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;ログ出力結果を見ると、下記のようにPOST値が取得できていません。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[2014-07-16 12:09:36] local.DEBUG:  [] []
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;2-原因&#34;&gt;2.原因&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Firefox の &amp;ldquo;Live HTTP headers&amp;rdquo; アドオンでURLの遷移を見たところ、下記のようにリダイレクトしていることがわかりました。(違いは末尾のスラッシュ)&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://local.vm/test/&#34;&gt;http://local.vm/test/&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;↓↓↓&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://local.vm/test&#34;&gt;http://local.vm/test&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;ソースを grep したところ、.htaccessでリダイレクトしていました。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;■ ソース&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;app-root/public/.htaccess&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;■ 記述&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-apache&#34;&gt;# Redirect Trailing Slashes...
+RewriteRule ^(.*)/$ /$1 [L,R=301]
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;3-対策&#34;&gt;3.対策&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Laravel は trailing slash 非推奨なのか？ とにかく下記のように修正。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;[修正箇所] 上記ソース ajax-test.js (6行目)&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;[修正内容] URLの末尾のスラッシュを削除し、/test に修正。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;ログにもPOST値(hoge)が出力されました。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[2014-07-16 13:03:39] local.DEBUG: hoge [] []
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;参考にしたページ&#34;&gt;参考にしたページ&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;http://www.suzukikenichi.com/blog/do-we-need-a-trailing-slash-at-the-end-of-url/&#34; target=&#34;_blank&#34;&gt;URLの終りに「/」(スラッシュ)は必要?、不要?&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;http://stackoverflow.com/questions/22063520/laravel-slash-after-url-redirects-to-root-folder&#34; target=&#34;_blank&#34;&gt;Laravel slash after url redirects to root folder&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>AdMob on プログラマー備忘録</title>
+    <link>https://sankame.github.io/tags/admob/index.xml</link>
+    <description>Recent content in AdMob on プログラマー備忘録</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <copyright>Powered by [Hugo](//gohugo.io). Theme by [hugo-theme-wave](https://github.com/syui/hugo-theme-wave).</copyright>
+    <atom:link href="https://sankame.github.io/tags/admob/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>AdMob広告にコンテンツが被ったという警告を回避</title>
+      <link>https://sankame.github.io/blog/2024-02-18-admob_alert_contents_over_ads/</link>
+      <pubDate>Sun, 18 Feb 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2024-02-18-admob_alert_contents_over_ads/</guid>
+      <description>
+
+&lt;h1 id=&#34;0-環境&#34;&gt;0. 環境&lt;/h1&gt;
+
+&lt;p&gt;&lt;code&gt;[OS] Android 13 (その他)&lt;/code&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;1-課題&#34;&gt;1. 課題&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;AdMobからの警告&lt;/p&gt;
+
+&lt;p&gt;AdMob管理画面の「ポリシーセンター」で下記の警告が上がりました。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Google が配信する広告の前面に重なって表示されるコンテンツの扱い&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;AdMobに登録済みのメアドにも、同内容のメールが届いていました。
+(「広告配信が中断されないよう、早急にご対応をお願いいたします」という文面で修正までの猶予は確か2-3週間)&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;2-対策&#34;&gt;2. 対策&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;下記2点を対応後「ポリシーセンター」から承認依頼したところ、警告は数日で止まりました。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/admob_alert_contents_over_ads/modify_admob_banners.png&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;50%&#34; height=&#34;50%&#34; title=&#34;AdMob修正点&#34; alt=&#34;AdMob修正点&#34; src=&#34;https://sankame.github.io/assets/posts/img/admob_alert_contents_over_ads/modify_admob_banners.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;(1) 広告の上下に十分なスペースを確保。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;(2) 広告を囲む要素の高さを予め固定しておく。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;それによって、広告のロード後にAdViewの高さがビョンと伸びて、下にあるListViewなどが押し下げられるのを防ぎます。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;僕のアプリではAdViewを内包するLinearLayoutに「android:layout_height=&amp;ldquo;65dp&amp;rdquo;」を設定しました。(高さ65dpのバナー広告のみを対象としているため)&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;x-参考リンク&#34;&gt;x. 参考リンク&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;具体的な修正方法が分からず手探りでしたが、下記の規約に抵触したと思われます。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://support.google.com/admob/answer/6275345?hl=ja#zippy=%2C%E3%82%AF%E3%83%AA%E3%83%83%E3%82%AF%E3%81%97%E3%81%A6%E4%BE%8B%E3%82%92%E8%A1%A8%E7%A4%BA&#34; target=&#34;_blank&#34;&gt;コンテンツに重なった広告（ポリシー違反）&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
