@@ -1,0 +1,832 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Swift on プログラマー備忘録</title>
+    <link>https://sankame.github.io/tags/swift/index.xml</link>
+    <description>Recent content in Swift on プログラマー備忘録</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <copyright>Powered by [Hugo](//gohugo.io). Theme by [hugo-theme-wave](https://github.com/syui/hugo-theme-wave).</copyright>
+    <atom:link href="https://sankame.github.io/tags/swift/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Webサイト・スピードアップ - ブラウザキャッシュ利用</title>
+      <link>https://sankame.github.io/blog/2017-04-16-speed_up_website_use_browser_cache/</link>
+      <pubDate>Sun, 16 Apr 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2017-04-16-speed_up_website_use_browser_cache/</guid>
+      <description>
+
+&lt;h3 id=&#34;0-前提&#34;&gt;0. 前提&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;環境などの前提条件は&lt;a href=&#34;https://sankame.github.io/blog/2017-02-26-speed_up_website_gulp/&#34; target=&#34;_blank&#34;&gt;前回の1から3&lt;/a&gt;と同じです。&lt;/p&gt;
+
+&lt;p&gt;今回は&lt;a href=&#34;https://www.codeproject.com/Articles/26376/Speed-Up-Your-Website-By-Example&#34; target=&#34;_blank&#34;&gt;教科書&lt;/a&gt;の[1. Reduce number of HTTP requests]-[Use Browser Cache]をやってみました。&lt;/p&gt;
+
+&lt;p&gt;修正が少ない静的ファイルはブラウザキャッシュの期間を延ばし、2回目以降のアクセスはキャッシュから読み込むことで速度向上につなげます。&lt;/p&gt;
+
+&lt;p&gt;作業は下記の2点です。&lt;/p&gt;
+
+&lt;p&gt;(1) キャッシュ期間延長&lt;/p&gt;
+
+&lt;p&gt;　Webサーバーの設定でjs、cssのブラウザ・キャッシュ期間を延ばします。&lt;/p&gt;
+
+&lt;p&gt;(2) ファイル名のユニーク化&lt;/p&gt;
+
+&lt;p&gt;　上記1によって修正がすぐに反映されないという状況を避けるため、ファイル名に修正ごとのハッシュ値を付けてキャッシュが効かないようにします。(gulpの機能を利用)&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;1-キャッシュ期間延長&#34;&gt;1. キャッシュ期間延長&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;nginxの設定ファイルにjs、cssの設定とキャッシュ期間を追記しました。&lt;/p&gt;
+
+&lt;p&gt;記述が冗長なのは追って別の書き方を調べたいと思います。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-nginx&#34;&gt;server {
+        listen 443 ssl;
+        server_name [ドメイン名];
+        ssl_certificate [ファイルパス];
+        ssl_certificate_key [ファイルパス];
+
+        location / {
+            proxy_pass http://[ホスト名]:[ポート番号];
+            proxy_set_header X-Real-IP  $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Proto https;
+            proxy_set_header X-Forwarded-Port 443;
+            proxy_set_header Host $host;
+        }
+
+        # --- css/jsの指定を追加。 ---
+        location ~* .(css|js)$ {
+            proxy_pass http://[ホスト名]:[ポート番号];
+            proxy_set_header X-Real-IP  $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Proto https;
+            proxy_set_header X-Forwarded-Port 443;
+            proxy_set_header Host $host;
+            # キャッシュ期間を設定。
+            expires 365d;
+        }
+        # --- css/jsの指定を追加。 ---
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;ChromeのDeveloper Toolsで見て、Expiresヘッダーの追加とjs、cssがキャッシュから読み込まれていることを確認します。(下図オレンジの枠線)&lt;/p&gt;
+
+&lt;p&gt;(注)キャプチャのタイミングに数日のズレあり、また下記2まで対応した後のためファイル名も変更済み。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;変更前&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/speed_up_website_use_browser_cache/before.jpg&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;70%&#34; height=&#34;70%&#34; title=&#34;変更前&#34; alt=&#34;変更前&#34; src=&#34;https://sankame.github.io/assets/posts/img/speed_up_website_use_browser_cache/before.jpg&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;変更後
+&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/speed_up_website_use_browser_cache/after.jpg&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;70%&#34; height=&#34;70%&#34; title=&#34;変更後&#34; alt=&#34;変更後&#34; src=&#34;https://sankame.github.io/assets/posts/img/speed_up_website_use_browser_cache/after.jpg&#34;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;2-ファイル名のユニーク化&#34;&gt;2. ファイル名のユニーク化&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;作業にかかろうと思ったら、gulpコマンドが実行できなくなっていたので、それも記載しておきます。&lt;/p&gt;
+
+&lt;p&gt;Webアプリのルートディレクトリでgulpを実行すると下記メッセージが表示されました。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;$ gulp
+-bash: gulp: command not found
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;前回設定したnodebrewへのパスが消えているようです。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;$ echo $PATH | grep nodebrew
+$
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;$ source ~/.bashrc
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;sourceで再読み込みすればgulpコマンドも使えるのですが、毎回やるのは面倒です。&lt;/p&gt;
+
+&lt;p&gt;Macだと.bashrcがターミナル起動時に読み込まれないようなので、.bash_profileに設定します。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;$ vim ~/.bash_profile
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;末尾にこれを追記します。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;if [ -f ~/.bashrc ]; then
+  . ~/.bashrc
+fi
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;さて、気を取り直して本題です。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/speed_up_website_use_browser_cache/gulp_handle_files.jpg&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;70%&#34; height=&#34;70%&#34; title=&#34;gulpファイル操作&#34; alt=&#34;gulpファイル操作&#34; src=&#34;https://sankame.github.io/assets/posts/img/speed_up_website_use_browser_cache/gulp_handle_files.jpg&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;gulpを使って上記のファイル操作を行います。&lt;font color=&#34;green&#34;&gt;(*1)&lt;/font&gt;&lt;/p&gt;
+
+&lt;p&gt;① これから出力するファイルを予め削除。&lt;/p&gt;
+
+&lt;p&gt;② jsファイルを圧縮、結合。&lt;/p&gt;
+
+&lt;p&gt;③ ファイル名にハッシュ値を付け、さらに変換内容をrev-manifest.jsonに記録。&lt;/p&gt;
+
+&lt;p&gt;④ rev-manifest.jsonを元に、オリジナルファイル(simple-cal.orgディレクトリ配下)内のjsファイル名を置換したファイルをViewsディレクトリに配置。この時、オリジナルは変更されません。また、プログラムから使用されているのはViewsディレクトリ配下のものだけです。&lt;/p&gt;
+
+&lt;p&gt;&lt;font color=&#34;green&#34;&gt;(*1)&lt;/font&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;実際はsimple-calの下にcssディレクトリもありますがスペースの都合で省略。
+ディレクトリ構造はフレームワークに依存するので、適宜読み替えて下さい。
+拡張子stencilはHTMLを生成するためのViewファイルです。
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;この処理を行うため、下記のgulpfile.jsをWebアプリのルートディレクトリに置き、&lt;a href=&#34;https://sankame.github.io/blog/2017-02-26-speed_up_website_gulp/&#34; target=&#34;_blank&#34;&gt;前回&lt;/a&gt;から追加で必要なプラグインをインストールした後、gulpコマンドを実行します。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ npm install --save-dev gulp-clean gulp-rev gulp-rev-replace
+$ 
+$ gulp
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;script src=&#34;https://gist.github.com/Sankame/cbe3bb65777cdeacd381ce2cde18fe6d.js&#34;&gt;&lt;/script&gt;
+
+&lt;p&gt;各タスクの関連については、下図を参照して下さい。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/blog/2017-02-26-speed_up_website_gulp/&#34; target=&#34;_blank&#34;&gt;前回&lt;/a&gt;から改善して、タスクの同期・非同期を明確にしました。&lt;/p&gt;
+
+&lt;p&gt;矢印の集約が同期ポイントで、例えばrev-replaceはjs-revとcss-revの完了を待ってから開始します。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/speed_up_website_use_browser_cache/gulp_task_flow.jpg&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;70%&#34; height=&#34;70%&#34; title=&#34;gulpタスクフロー&#34; alt=&#34;gulpタスクフロー&#34; src=&#34;https://sankame.github.io/assets/posts/img/speed_up_website_use_browser_cache/gulp_task_flow.jpg&#34;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;その他として、僕が使っているフレームワークのようにViewの拡張子(.stencil)が一般的ではない場合、gulp-rev-replaceで置換できないということが起きます。&lt;/p&gt;
+
+&lt;p&gt;これについては&lt;a href=&#34;https://github.com/jamesknelson/gulp-rev-replace#user-content-optionsreplaceinextensions&#34; target=&#34;_blank&#34;&gt;仕様&lt;/a&gt;を確認した後、replaceInExtensionsオプションの指定で解決できました。(上記gulpfile.jsに記載済み)&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;7-結果&#34;&gt;7.結果&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;ここまでやって前後の比較をしたところ、Chromeで下記の結果になりました。&lt;/p&gt;
+
+&lt;p&gt;やはり転送量が大きく削減されていますね。&lt;/p&gt;
+
+&lt;table border=&#34;1&#34; cellspacing=&#34;0&#34;&gt;
+&lt;tr bgcolor=&#34;#fff5ee&#34;&gt;
+    &lt;th width=&#34;20%&#34;&gt;&lt;/th&gt;
+    &lt;th&gt;Before&lt;/th&gt;
+    &lt;th&gt;After&lt;/th&gt;&lt;/tr&gt;
+&lt;tr&gt;
+    &lt;td&gt;Load&lt;br&gt;(5回の平均)&lt;/td&gt;
+    &lt;td&gt;2.7秒&lt;/td&gt;
+    &lt;td&gt;1.9秒&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+    &lt;td&gt;転送量&lt;/td&gt;
+    &lt;td&gt;451KB&lt;/td&gt;
+    &lt;td&gt;34KB&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+    &lt;td&gt;リクエスト数&lt;/td&gt;
+    &lt;td&gt;19&lt;/td&gt;
+    &lt;td&gt;19&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Webサイト・スピードアップ - gulp</title>
+      <link>https://sankame.github.io/blog/2017-02-26-speed_up_website_gulp/</link>
+      <pubDate>Sun, 26 Feb 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2017-02-26-speed_up_website_gulp/</guid>
+      <description>
+
+&lt;p&gt;&lt;span&gt;&amp;nbsp;&lt;/span&gt;&lt;span style=&#34;color:#d14; float:right;&#34;&gt;更新日：2017年03月07日&lt;/span&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;0-環境&#34;&gt;0. 環境&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;フロントエンドの話なのでサーバー環境はあまり関係ないのですが、参考まで。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;サーバー&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[Nginx] 1.10.2
+[Kitura] 1.1.2
+[Swift] 3.0.1
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;ローカル&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[Mac] 10.11.6
+[Node.js] 7.6.0
+[gulp] 3.9.1
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;1-準備&#34;&gt;1.準備&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;仕事でやっているWebサイトのスピードアップを個人でもやってみたくて、適当なページを1つ作ってみました。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://jyear.net/cal/&#34; target=&#34;_blank&#34;&gt;シンプルカレンダー&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;そしてパフォーマンス改善の教科書に選んだのはこちらです。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://www.codeproject.com/Articles/26376/Speed-Up-Your-Website-By-Example&#34; target=&#34;_blank&#34;&gt;Speed Up Your Website&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;2-現状&#34;&gt;2.現状&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Apacheで運用しているWebアプリが他にあるため、下記のようなちょっと珍しい構成になっています。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;Nginx(リバースプロキシとして使用) + ServerSide-Swift(Kitura)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;僕のネット環境(下り57Mbps/上り18Mbps)&lt;font color=&#34;green&#34;&gt;(※1)&lt;/font&gt;だとシンプルカレンダーのロードタイムが約2.5秒&lt;font color=&#34;green&#34;&gt;(※2)&lt;/font&gt;でそこまでストレスは感じませんが、DBを使ってないわりにこの数字なので改善の余地ありです。&lt;/p&gt;
+
+&lt;p&gt;&lt;font color=&#34;green&#34;&gt;(※1)&lt;/font&gt; 回線速度は&lt;a href=&#34;http://www.speedtest.net/&#34; target=&#34;_blank&#34;&gt;SPEEDTEST&lt;/a&gt;で計測。&lt;/p&gt;
+
+&lt;p&gt;&lt;font color=&#34;green&#34;&gt;(※2)&lt;/font&gt; Chrome Developer Tools で計測。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;3-ブラウザからのリクエスト削減&#34;&gt;3.ブラウザからのリクエスト削減&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Chrome Developer ToolsのNetworkタブで見るとCSS、JavaScript(以下JS)のダウンロードに時間がかかっているので、教科書の[1. Reduce number of HTTP requests]-[Combine files]から取り掛かってみました。&lt;/p&gt;
+
+&lt;p&gt;HTMLから静的ファイル(CSS、JSなど)を複数ダウンロードする際、ブラウザが並列でリクエストできる数が決まっているため、なるべくそれを減らしましょうという内容です。&lt;/p&gt;
+
+&lt;p&gt;複数の静的ファイルをまとめるためのツール&lt;font color=&#34;green&#34;&gt;(※3)&lt;/font&gt;を検討しましたが、一番簡単に実現できそうだったgulpを使いました。&lt;/p&gt;
+
+&lt;p&gt;&lt;font color=&#34;green&#34;&gt;(※3)&lt;/font&gt; webpack、gulp、Grunt&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;4-node-jsの準備&#34;&gt;4.Node.jsの準備&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Node.jsのバージョンを切り替えられるよう、nodebrew を使いたいと思います。(既にNode.jsをインストール済みの場合、読み飛ばしてもOKです)&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;HomebrewでNode.jsをインストール済みの場合は一度アンインストール。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;$ brew uninstall node
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;nodebrewをインストール。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;$ brew install nodebrew
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;nodebrewへのパスを通すため、.bashrcの末尾に下記を追記。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;$ vim ~/.bashrc
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;# これを追記
+export PATH=$HOME/.nodebrew/current/bin:$PATH
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;設定を反映します。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;$ source ~/.bashrc
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;続けてNode.jsをインストールします。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;$ nodebrew install-binary latest
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;エラーが出たので、&lt;a href=&#34;https://blog.yug1224.com/archives/5693a5e0fef2539c7d5b149d&#34; target=&#34;_blank&#34;&gt;このページ&lt;/a&gt;に従ってディレクトリを作成。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;$ mkdir ~/.nodebrew
+$ mkdir ~/.nodebrew/src
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;使用するNode.jsのバージョンを指定。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;$ nodebrew ls
+v7.6.0
+
+$ nodebrew use v7
+
+$ node -v
+v7.6.0
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;5-gulpの準備&#34;&gt;5.gulpの準備&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;gulpをインストール。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;自分だけのローカル環境なのでグローバル(-g)を指定してインストール。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;$ npm install -g gulp
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;アプリ(プロジェクト)のルートディレクトリで下記を実行すると、package.jsonファイルが作成されます。(これにパッケージ情報が書き込まれる)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;$ npm init
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;そのままgulpとgulpのプラグインをインストールし、&amp;rdquo;&amp;ndash;save-dev&amp;rdquo;を付けることでpackage.jsonに記録します。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;$ npm install --save-dev gulp
+$ npm install --save-dev gulp-concat gulp-uglify gulp-minify-css
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;アプリのルートディレクトリに gulpfile.js というファイルを作成し、こちらの内容を記入します。(パスは自分の環境に読み替えて下さい)&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;script src=&#34;https://gist.github.com/Sankame/db5caad7d75a4064ef98f140a39de5bc.js&#34;&gt;&lt;/script&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;続けて下記コマンドを打つと指定したディレクトリに結合・圧縮したCSS、JSファイルが出力されます。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;$ gulp
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;HTMLからはそれらを読み込むよう修正します。(上記の例ではbundle.css、bundle.js)&lt;/p&gt;
+
+&lt;p&gt;イメージはこんな感じです。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/speed_up_website_gulp/gulp_image.jpg&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;100%&#34; height=&#34;100%&#34; title=&#34;gulpイメージ&#34; alt=&#34;gulpイメージ&#34; src=&#34;https://sankame.github.io/assets/posts/img/speed_up_website_gulp/gulp_image.jpg&#34;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;ブラウザでJSエラー発生。&lt;/p&gt;
+
+&lt;p&gt;修正後の画面をブラウザで確認したところ下記エラーが表示されました。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Bootstrap&#39;s JavaScript requires jQuery&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;どうやら上記の書き方だと、CSSやJSの読み込み順序が任意になり、BootstrapでjQueryが使えない状態になってるようです。&lt;/p&gt;
+
+&lt;p&gt;もともとHTMLに書いてあったのと同じ順序でCSSとJSを指定するとエラーは出なくなりました。&lt;/p&gt;
+
+&lt;script src=&#34;https://gist.github.com/Sankame/86e56663930ec4b8a2b0c187a7b66d61.js&#34;&gt;&lt;/script&gt;
+
+&lt;p&gt;(IE9以下の指定で読み込んでいたJSもとりあえず含んでいます)&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;6-バックエンドとの接続不良&#34;&gt;6.バックエンドとの接続不良&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;本番へアップすると、数回に一回、ブラウザ側でエラーが発生しました。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-apache&#34;&gt;GET https://jyear.net/simple-cal/js/dist/bundle.js net::ERR_CONTENT_LENGTH_MISMATCH
+(index):47 GET https://jyear.net/simple-cal/css/dist/bundle.css net::ERR_CONTENT_LENGTH_MISMATCH
+(index):2196 Uncaught ReferenceError: $ is not defined
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;またこのエラーが起きるとNginxでは下記のログが出力されていました。(【】はマスク)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-nginx&#34;&gt;upstream prematurely closed connection while reading upstream, client: 【IP】, server: jyear.net, request: &amp;quot;GET /simple-cal/css/dist/bundle.css HTTP/1.1&amp;quot;, upstream: &amp;quot;http://【ホスト名】/simple-cal/css/dist/bundle.css&amp;quot;, host: &amp;quot;jyear.net&amp;quot;, referrer: &amp;quot;https://jyear.net/cal/“
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;いろいろネットで調べたところ、バックエンドから接続が切られるとこのエラーがでるようです。&lt;/p&gt;
+
+&lt;p&gt;Nginxのproxy_connect_timeoutや、Kituraにタイムアウト設定があるか調べたのですが、解決策が見つからなかったため、1つにしていたbundleファイルを分割することにしました。&lt;/p&gt;
+
+&lt;p&gt;分割して1ファイル当たりのサイズを抑えることでエラーは出なくなりました。&lt;/p&gt;
+
+&lt;p&gt;(そもそも1ファイル約200KBだったのでWebで扱うには大きかった…)&lt;/p&gt;
+
+&lt;p&gt;最終的な gulpfile.js はこちらです。&lt;/p&gt;
+
+&lt;script src=&#34;https://gist.github.com/Sankame/4167aaa3bfdbc4cc46f3b6a926f0ed25.js&#34;&gt;&lt;/script&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;7-結果&#34;&gt;7.結果&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;ここまでやって前後の比較をしたところ、Chromeで下記の結果になりました。&lt;/p&gt;
+
+&lt;table border=&#34;1&#34; cellspacing=&#34;0&#34;&gt;
+&lt;tr bgcolor=&#34;#fff5ee&#34;&gt;&lt;th width=&#34;20%&#34;&gt;&lt;/th&gt;&lt;th&gt;Before&lt;/th&gt;&lt;th&gt;After&lt;/th&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Load&lt;br&gt;(5回の平均)&lt;/td&gt;&lt;td&gt;2.2秒&lt;/td&gt;&lt;td&gt;1.6秒&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;転送量&lt;/td&gt;&lt;td&gt;518KB&lt;/td&gt;&lt;td&gt;451KB&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;リクエスト数&lt;/td&gt;&lt;td&gt;28&lt;/td&gt;&lt;td&gt;19&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;p&gt;また、他の計測ツールとしてGTmetrixを使おうとしたのですが、エラーになってしまったため、LighthouseというChrome Extensionを利用しました。&lt;/p&gt;
+
+&lt;p&gt;Lighthouseによる計測結果の詳細はこちら。&lt;a href=&#34;https://sankame.github.io/assets/posts/html/speed_up_website_gulp/gulp_before.html&#34; target=&#34;_blank&#34;&gt;Before&lt;/a&gt;　&lt;a href=&#34;https://sankame.github.io/assets/posts/html/speed_up_website_gulp/gulp_after.html&#34; target=&#34;_blank&#34;&gt;After&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;ldquo;Page load performance&amp;rdquo;の改善でトータル・スコアも若干上がりました。(42→44)&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Swift3の大文字・小文字処理</title>
+      <link>https://sankame.github.io/blog/2017-01-03-swift3_uppercase_lowercase/</link>
+      <pubDate>Tue, 03 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2017-01-03-swift3_uppercase_lowercase/</guid>
+      <description>
+
+&lt;p&gt;&lt;span&gt;&amp;nbsp;&lt;/span&gt;&lt;span style=&#34;color:#d14; float:right;&#34;&gt;更新日：2017年01月27日&lt;/span&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;0-環境&#34;&gt;0. 環境&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;[Swift] 3.0.2
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;1-大文字-小文字処理&#34;&gt;1. 大文字・小文字処理&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Swift3から大文字・小文字の処理は下記のようになります。&lt;/p&gt;
+
+&lt;p&gt;(明示的にするため入れていますが型宣言は省略可)&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;script src=&#34;https://gist.github.com/Sankame/f04ea8d3f243763248ab236c2a33fb69.js&#34;&gt;&lt;/script&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;上記コードはIBM Swift Sandboxで動かせます。&lt;/p&gt;
+
+&lt;p&gt;下記リンク先の真ん中にある三角ボタンをクリックして下さい。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://swiftlang.ng.bluemix.net/#/repl/586d095a159cb34b17238967&#34; target=&#34;_blank&#34;&gt;Swift3で大文字・小文字処理&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;(ChromeまたはFirefox推奨)&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;2-参考ページ&#34;&gt;2. 参考ページ&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://developer.apple.com/reference/foundation/nsstring/1414769-caseinsensitivecompare&#34; target=&#34;_blank&#34;&gt;caseInsensitiveCompare&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://developer.apple.com/reference/foundation/nsstring/1417333-localizedcaseinsensitivecompare&#34; target=&#34;_blank&#34;&gt;localizedCaseInsensitiveCompare&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Swift3のforループ</title>
+      <link>https://sankame.github.io/blog/2016-12-30-swift3_loop/</link>
+      <pubDate>Fri, 30 Dec 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2016-12-30-swift3_loop/</guid>
+      <description>
+
+&lt;p&gt;&lt;span&gt;&amp;nbsp;&lt;/span&gt;&lt;span style=&#34;color:#d14; float:right;&#34;&gt;更新日：2017年02月09日&lt;/span&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;0-環境&#34;&gt;0. 環境&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;[Swift] 3.0.2
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;1-ループ&#34;&gt;1. ループ&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Swift3からループ処理は下記のようになります。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;script src=&#34;https://gist.github.com/Sankame/2f608da7dbbc9313462a1bb4cbc0c1d0.js&#34;&gt;&lt;/script&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;上記コードはIBM Swift Sandboxで実際に動かすことができます。&lt;/p&gt;
+
+&lt;p&gt;下記リンク先の真ん中にある三角ボタンをクリックして下さい。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://swiftlang.ng.bluemix.net/#/repl/589b400e3514ef243889d092&#34; target=&#34;_blank&#34;&gt;Swift3でのforループ&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;(ChromeまたはFirefox推奨)&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>AppleWatchアプリ開発におけるWCSessionのメソッド使用方法</title>
+      <link>https://sankame.github.io/blog/2016-11-21-wcsession_sendmessage_slow_in_swift3/</link>
+      <pubDate>Mon, 21 Nov 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2016-11-21-wcsession_sendmessage_slow_in_swift3/</guid>
+      <description>
+
+&lt;h3 id=&#34;0-環境&#34;&gt;0. 環境&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;[OS] Mac OS X 10.11.6
+[IDE] Xcode 8.1
+[Swift] 3.0
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;1-問題&#34;&gt;1. 問題&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;WCSession#sendMessage()を使ってAppleWatchからiPhoneアプリへメッセージを送っても、30秒ほどしないと通知されない。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;AppleWatch側&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-swift&#34;&gt;@IBAction func tapButton() {
+
+    let message = [ &amp;quot;fromChild&amp;quot;: &amp;quot;AppleWatchからのメッセージ&amp;quot; ]
+
+    WCSession.default().sendMessage(
+            message
+            , replyHandler: { reply in }
+            , errorHandler: { error in }
+    )
+
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;iPhone側&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-swift&#34;&gt;func session(_ session: WCSession, didReceiveMessage message: [String: Any], replyHandler: @escaping ([String: Any]) -&amp;gt; Void) {
+
+    if let watchMessage = message[&amp;quot;fromChild&amp;quot;] as? String {
+        print(watchMessage)
+    }
+    else{
+        print(&amp;quot;error&amp;quot;)
+    }
+
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;2-対策&#34;&gt;2. 対策&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;replyHandlerを設定するなど、いろいろ情報はあったのですが、結局 sendMessage() を諦め、updateApplicationContext() を使うことにしました。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;ただ updateApplicationContext() は状態が変わった際に通知するためのメソッドなので、二回目以降の値が変わらないとiPhone側のメソッドが呼び出されません。&lt;/p&gt;
+
+&lt;p&gt;API仕様書には明記されていませんがそのような動きをしています。(「3. 参考ページ」参照)&lt;/p&gt;
+
+&lt;p&gt;ですので、sendMessage() と同じように使いたい場合は、毎回変わる値をダミーとして設定すると実現できます。(多少強引ですが、下記例では時間を設定しています)&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;AppleWatch側&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-swift&#34;&gt;@IBAction func tapButton() {
+
+    let dateFormatter = DateFormatter()
+    dateFormatter.locale = Locale(identifier: &amp;quot;ja_JP&amp;quot;)
+    dateFormatter.timeStyle = .medium
+    dateFormatter.dateStyle = .medium
+
+    let item: Dictionary&amp;lt;String, String&amp;gt; = [
+        &amp;quot;message&amp;quot;: &amp;quot;AppleWatchからのメッセージ&amp;quot;
+        , &amp;quot;date&amp;quot;: dateFormatter.string(from: NSDate() as Date)]
+
+    let message = [ &amp;quot;fromChild&amp;quot;: item ]
+
+    do{
+        try WCSession.default().updateApplicationContext(message)
+    }catch{
+        print(error)
+    }
+
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;iPhone側&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-swift&#34;&gt;func session(_ session: WCSession, didReceiveApplicationContext applicationContext: [String : Any]) {
+
+    DispatchQueue.main.async { () -&amp;gt; Void in
+        if let watchMessage = applicationContext[&amp;quot;fromChild&amp;quot;] as? Dictionary&amp;lt;String, String&amp;gt; {
+            self.label.text = watchMessage[&amp;quot;message&amp;quot;]! as String
+        }
+    }
+    return
+
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;3-参考ページ&#34;&gt;3. 参考ページ&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://developer.apple.com/reference/watchconnectivity/wcsession&#34; target=&#34;_blank&#34;&gt;API Reference WCSession&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Type &#39;ViewController&#39; does not conform to protocol &#39;WCSessionDelegate&#39;</title>
+      <link>https://sankame.github.io/blog/2016-11-15-wcsessiondelegate_in_swift3/</link>
+      <pubDate>Tue, 15 Nov 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2016-11-15-wcsessiondelegate_in_swift3/</guid>
+      <description>
+
+&lt;h3 id=&#34;0-環境&#34;&gt;0. 環境&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;[OS] Mac OS X 10.11.6
+[IDE] Xcode 8.1
+[Swift] 3.0
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;1-問題&#34;&gt;1. 問題&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;iPhone &amp;amp; AppleWatchアプリを作成中にSwiftを2.2から3へバージョンアップしたところ、iPhone側で下記のエラーが出るようになりました。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Type &#39;ViewController&#39; does not conform to protocol &#39;WCSessionDelegate&#39;&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;2-解決&#34;&gt;2. 解決&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;ViewControllerに下記メソッドを追加するとエラーが消えました。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-swift&#34;&gt;public func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
+}
+
+func sessionDidBecomeInactive(_ session: WCSession) {
+}
+
+func sessionDidDeactivate(_ session: WCSession) {
+    session.activate()
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;下記の仕様書にもこれらのメソッドは必須と書かれています。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://developer.apple.com/reference/watchconnectivity/wcsessiondelegate&#34; target=&#34;_blank&#34;&gt;[API Reference] WCSessionDelegate&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;3-参考ページ&#34;&gt;3. 参考ページ&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://forums.developer.apple.com/thread/63452&#34; target=&#34;_blank&#34;&gt;Migrating app from Swift 2.2 to 3.0 with WCSessionDelegate&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>AppleWatchアプリ開発におけるiOSアプリのデバッグ方法</title>
+      <link>https://sankame.github.io/blog/2016-08-07-debug-ios-app-with-watchkit/</link>
+      <pubDate>Sun, 07 Aug 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2016-08-07-debug-ios-app-with-watchkit/</guid>
+      <description>
+
+&lt;h3 id=&#34;0-環境&#34;&gt;0. 環境&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;[OS] Mac OS X 10.11.4
+[IDE] Xcode 7.3
+[Swift] 2.1.1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;1-課題&#34;&gt;1. 課題&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;AppleWatchのアプリ開発で「WatchKit App」を起動すると、iOSアプリのブレークポイントで停止しない。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;2-対策&#34;&gt;2. 対策&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;XcodeのデバッガーにiOSアプリを手動で追加する必要があります。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;「WatchKit App」を選択してアプリ実行。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/debug-ios-app-with-watchkit/1.jpg&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;50%&#34; height=&#34;50%&#34; title=&#34;xxx&#34; alt=&#34;xxx&#34; src=&#34;https://sankame.github.io/assets/posts/img/debug-ios-app-with-watchkit/1.jpg&#34;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;iOSアプリのシュミレーターで、iOSアプリを起動。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Xcodeに戻って [Debug]-[Attach to Process] からiOSアプリを選択。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/debug-ios-app-with-watchkit/2.jpg&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;50%&#34; height=&#34;50%&#34; title=&#34;xxx&#34; alt=&#34;xxx&#34; src=&#34;https://sankame.github.io/assets/posts/img/debug-ios-app-with-watchkit/2.jpg&#34;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;左のパネルで[Debug navigator]を選択し、下記①②でiOSアプリが選択されていることを確認。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/debug-ios-app-with-watchkit/3.jpg&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;50%&#34; height=&#34;50%&#34; title=&#34;xxx&#34; alt=&#34;xxx&#34; src=&#34;https://sankame.github.io/assets/posts/img/debug-ios-app-with-watchkit/3.jpg&#34;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>AppleWatchサンプルプログラム</title>
+      <link>https://sankame.github.io/blog/2016-05-02-apple_watch_sample/</link>
+      <pubDate>Mon, 02 May 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2016-05-02-apple_watch_sample/</guid>
+      <description>
+
+&lt;h3 id=&#34;0-環境&#34;&gt;0.環境&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;[OS] Mac OS X 10.11.4
+[IDE] Xcode 7.2.1
+[watchOS] 2.1
+[Swift] 2.1.1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;1-完成イメージ&#34;&gt;1.完成イメージ&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;メイン画面からサブ画面へ行って戻るサンプルを作成します。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/apple_watch_sample/result.png&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;50%&#34; height=&#34;50%&#34; title=&#34;完成イメージ&#34; alt=&#34;完成イメージ&#34; src=&#34;https://sankame.github.io/assets/posts/img/apple_watch_sample/result.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;2-プロジェクト作成&#34;&gt;2.プロジェクト作成&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Xcodeのスプラッシュ画面で&amp;rdquo;Create a new Xcode project&amp;rdquo;を選択。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/apple_watch_sample/splash.png&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;50%&#34; height=&#34;50%&#34; title=&#34;スプラッシュ画面&#34; alt=&#34;スプラッシュ画面&#34; src=&#34;https://sankame.github.io/assets/posts/img/apple_watch_sample/splash.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;watchOS Applicationを選択。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/apple_watch_sample/project_template.png&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;50%&#34; height=&#34;50%&#34; title=&#34;テンプレート選択&#34; alt=&#34;テンプレート選択&#34; src=&#34;https://sankame.github.io/assets/posts/img/apple_watch_sample/project_template.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;適当なプロジェクト名を入力して下さい。&lt;/p&gt;
+
+&lt;p&gt;サンプルなので&amp;rdquo;Notification&amp;rdquo;と&amp;rdquo;Glance&amp;rdquo;のチェックは外します。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/apple_watch_sample/project_options.png&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;50%&#34; height=&#34;50%&#34; title=&#34;オプション選択&#34; alt=&#34;オプション選択&#34; src=&#34;https://sankame.github.io/assets/posts/img/apple_watch_sample/project_options.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;プロジェクトを作成するフォルダを選択して下さい。&lt;/p&gt;
+
+&lt;p&gt;下記のように /app/ を指定するとプロジェクトのパスは /app/hello-watch/ になります。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/apple_watch_sample/folder.png&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;50%&#34; height=&#34;50%&#34; title=&#34;フォルダ選択&#34; alt=&#34;フォルダ選択&#34; src=&#34;https://sankame.github.io/assets/posts/img/apple_watch_sample/folder.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;3-実装&#34;&gt;3.実装&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;左のプロジェクトナビゲーターで&amp;rdquo;Interface.storyboard&amp;rdquo;を選択。(A-1)&lt;/p&gt;
+
+&lt;p&gt;デフォルトで用意されている Interface Controller を選択して、Identifier に適当な値(例ではIC1)を入力。 (A-2、A-3、A-4)&lt;/p&gt;
+
+&lt;p&gt;ドラッグ＆ドロップで Label と Button を Interface Controller 上に配置します。 (A-5)&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/apple_watch_sample/ready_controller.png&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;100%&#34; height=&#34;100%&#34; title=&#34;コントローラ準備&#34; alt=&#34;コントローラ準備&#34; src=&#34;https://sankame.github.io/assets/posts/img/apple_watch_sample/ready_controller.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;ドラッグ＆ドロップで Interface Controller をもう一つ追加。(B-1)&lt;/p&gt;
+
+&lt;p&gt;追加した方を選択し、Identifier に適当な値(例ではIC2)を入力。 (B-2、B-3)&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/apple_watch_sample/ready_controller2.png&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;80%&#34; height=&#34;80%&#34; title=&#34;コントローラ準備&#34; alt=&#34;コントローラ準備&#34; src=&#34;https://sankame.github.io/assets/posts/img/apple_watch_sample/ready_controller2.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;上記のIC2に Label を配置し、IC2と入力しておきます。&lt;/p&gt;
+
+&lt;p&gt;区別するため、IC1に配置した Label にはIC1と入力します。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/apple_watch_sample/ready_controller3.png&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;50%&#34; height=&#34;50%&#34; title=&#34;コントローラ準備&#34; alt=&#34;コントローラ準備&#34; src=&#34;https://sankame.github.io/assets/posts/img/apple_watch_sample/ready_controller3.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;アシスタントエディターを表示します。(C-1)&lt;/p&gt;
+
+&lt;p&gt;Button を右クリックし、[Sent Actions]-[selector] からドラッグ＆ドロップでエディターまで線を伸ばします。(C-2)&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/apple_watch_sample/coding1.png&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;100%&#34; height=&#34;100%&#34; title=&#34;実装1&#34; alt=&#34;実装1&#34; src=&#34;https://sankame.github.io/assets/posts/img/apple_watch_sample/coding1.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;適当なメソッド名を入力します。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/apple_watch_sample/coding2.png&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;80%&#34; height=&#34;80%&#34; title=&#34;実装2&#34; alt=&#34;実装2&#34; src=&#34;https://sankame.github.io/assets/posts/img/apple_watch_sample/coding2.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Button タップ時に呼ばれるメソッドが追加されました。(D-1、D-2)&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/apple_watch_sample/coding3.png&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;80%&#34; height=&#34;80%&#34; title=&#34;実装3&#34; alt=&#34;実装3&#34; src=&#34;https://sankame.github.io/assets/posts/img/apple_watch_sample/coding3.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;上記で追加したメソッドにIC2へ遷移するコードを記述します。&lt;/p&gt;
+
+&lt;p&gt;(IC1へ戻るリンクは自動で作成されます)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-swift&#34;&gt;@IBAction func onPushButton() {
+    pushControllerWithName(&amp;quot;IC2&amp;quot;, context: &amp;quot;some messages&amp;quot;)
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;シュミレーターで Apple Watch を選択し、[Command]-[R]キーを押すと数十秒後にプログラムが実行されます。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sankame.github.io/assets/posts/img/apple_watch_sample/run.png&#34; target=&#34;_blank&#34;&gt;&lt;img width=&#34;100%&#34; height=&#34;100%&#34; title=&#34;実行&#34; alt=&#34;実行&#34; src=&#34;https://sankame.github.io/assets/posts/img/apple_watch_sample/run.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;実機で起動させた際の&lt;a href=&#34;https://sankame.github.io/applewatch/running_it_on_apple_watch/&#34; target=&#34;_blank&#34;&gt;記事はこちら。&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;参考ページ&#34;&gt;参考ページ&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://blog.haranicle.net/watchkit_push/&#34; target=&#34;_blank&#34;&gt;WatchKitでpush画面遷移&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
