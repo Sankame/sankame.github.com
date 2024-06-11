@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Apex on プログラマー備忘録</title>
+    <link>https://sankame.github.io/tags/apex/</link>
+    <description>Recent content in Apex on プログラマー備忘録</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <lastBuildDate>Sun, 15 Jan 2023 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://sankame.github.io/tags/apex/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>【Apex】アバストによる起動時エラー</title>
+      <link>https://sankame.github.io/blog/2023-01-15-apex_runs_error_by_avast/</link>
+      <pubDate>Sun, 15 Jan 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2023-01-15-apex_runs_error_by_avast/</guid>
+      <description> 0. 環境 [OS] Windows11
+1. 課題 ゲームApexが急に起動しなくなりました。  「起動時エラー」メッセージの下にファイルパスが記載され、確か、Invalid file pathとなってたと思います。
+ 調べてみると、指定されたその実行ファイルへのパスが存在してませんでした。(消された？)
+  ２. 対策 下記の情報を順に行うことで回復しました。  Avastがマルウェアと間違えてチェスト(検疫)に移動してしまったようです。これを元の場所に戻してください。
+ Apex Legendsが起動できない場合  それだけだとダメでした。
+ おそらく、起動ファイルがない状態で何度も起動しようとしたため、ファイルの整合性がおかしくなったようです。(たぶん)
+ 下記の「対処法①APEXを修復する」を実施して下さい。
+ Apex エンジンエラーの対処法  「ファイルを再取得します」という旨のメッセージが出たまま、何も動きがなかったので、下記ページの内容を確認したところ修復は完了してました。
+ ファイルの再取得はどうやって？  これで直りました。
+   </description>
+    </item>
+    
+  </channel>
+</rss>

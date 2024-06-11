@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>SSL-TLS on プログラマー備忘録</title>
+    <link>https://sankame.github.io/tags/ssl-tls/</link>
+    <description>Recent content in SSL-TLS on プログラマー備忘録</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <lastBuildDate>Mon, 30 Apr 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://sankame.github.io/tags/ssl-tls/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Let&#39;s Encrypt - ドメイン削除</title>
+      <link>https://sankame.github.io/blog/2018-04-30-letsencrypt_delete_domain/</link>
+      <pubDate>Mon, 30 Apr 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2018-04-30-letsencrypt_delete_domain/</guid>
+      <description>&amp;nbsp;更新日：2018年05月01日
+0. 環境 [CentOS] 6.4 (64bit版カーネル)
+[Apache] 2.2.15
+1. 問題  あるドメインが不要になったのでDNSから削除しました。
+Let&amp;rsquo;s Encryptで証明書を発行していたドメインだったので、証明書の更新時に下記エラーが出るようになりました。
+(&amp;ldquo;example.net&amp;rdquo;は読み替えて下さい)
+それ以外のドメインについては成功メッセージが出ているにも関わらず、ブラウザで確認すると証明書が更新されず、困りました。
+1 renew failure(s), 0 parse failure(s) IMPORTANT NOTES: - The following errors were reported by the server: Domain: example.net Type: None Detail: DNS problem: NXDOMAIN looking up A for example.net Automated renewal failed   2. 対策  下記を撤去することで、certbot-autoで証明書を更新する際にエラーは出なくなりました。
+# mv /etc/letsencrypt/live/example.net/ /tmp/ # mv /etc/letsencrypt/renewal/example.net.conf /tmp/  さらにApache設定ファイルから、証明書などを指定した箇所を削除します。
+この状態で起動するかチェックするため、Apacheを再起動しておきましょう。
+&amp;lt;VirtualHost *:4430&amp;gt; ServerAdmin admin@example.</description>
+    </item>
+    
+    <item>
+      <title>Let&#39;s Encrypt - certbotコマンド</title>
+      <link>https://sankame.github.io/blog/2016-05-15-letsencrypt_certbot_command/</link>
+      <pubDate>Sun, 15 May 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2016-05-15-letsencrypt_certbot_command/</guid>
+      <description>&amp;nbsp;更新日：2016年08月06日
+0. 環境 [CentOS] 6.4 (64bit版カーネル) [Apache] 2.2.15 [Firefox] 46.0.1  1. Let&amp;rsquo;s Encryptのコマンド変更  証明書を更新した際、 「letsencrypt-autoコマンドはもう古いよ」という警告が出たので、更新したいと思います。  2. 更新作業(【】はマスク情報)  Let&amp;rsquo;s Encryptがβ版の時はgit cloneして /usr/local/src/letsencrypt ディレクトリを作成しましたが、今回はそれとは別ディレクトリを作成します。
+# cd /usr/local/src # git clone https://github.com/certbot/certbot # cd certbot  疑似実行したところ成功したようなので、証明書の期限が迫ってきたら dry-run なしで実行してみたいと思います。
+# ./certbot-auto renew --dry-run ： (省略) ： Congratulations, all renewals succeeded. The following certs have been renewed: /etc/letsencrypt/live/【ドメイン名】/fullchain.pem (success) ** DRY RUN: simulating &#39;certbot renew&#39; close to cert expiry ** (The test certificates above have not been saved.</description>
+    </item>
+    
+    <item>
+      <title>Let&#39;s Encrypt - 証明書の更新と自動化</title>
+      <link>https://sankame.github.io/blog/2016-02-21-letsencrypt_renewal/</link>
+      <pubDate>Sun, 21 Feb 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2016-02-21-letsencrypt_renewal/</guid>
+      <description>&amp;nbsp;更新日：2016年11月09日
+0.環境 [CentOS] 6.4 (64bit版カーネル) [Apache] 2.2.15 [Firefox] 44.0.2  1.期限通知  (文中【】はマスク情報)
+ 年末に設定した Let&amp;rsquo;s Encrypt のSSL証明書の期限が迫り、下記のお知らせメールが届きました。
+Let&#39;s Encrypt certificate expiration notice Hello, Your certificate (or certificates) for the names listed below will expire in 17 days (on 04 Mar 16 17:44 +0000). Please make sure to renew your certificate before then, or visitors to your website will encounter errors. 【以下省略】  ブラウザで有効期限を確認するとそろそろ切れそうです。
+ブラウザ(Firefox)のアドレスバーの鍵マークをクリックし、[ &amp;gt; ] - [詳細を表示] - [セキュリティ] - [証明書を表示] - [有効期限]</description>
+    </item>
+    
+    <item>
+      <title>お薦め無料SSL証明書 - Let&#39;s Encrypt</title>
+      <link>https://sankame.github.io/blog/2015-12-07-letsencrypt_setup/</link>
+      <pubDate>Mon, 07 Dec 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2015-12-07-letsencrypt_setup/</guid>
+      <description>&amp;nbsp;更新日：2017年04月30日
+0.環境 [CentOS] 6.4 (64bit版カーネル) [Apache] 2.2.15  1.セットアップ  個人利用のレンタルサーバーでは有料のSSL証明書を使っていたのですが、 有効期限切れを機にフリーのものに乗り換えてみました。
+ Let&amp;rsquo;s Encrypt というサービスを利用します。
+
+下記のマニュアルに沿って進めました。(その他の参考ページは末尾に記載)
+Let&amp;rsquo;s Encrypt 操作方法
+まずは、任意のディレクトリに Let&amp;rsquo;s Encrypt クライアントをダウンロード。
+# cd /usr/local/src # git clone https://github.com/letsencrypt/letsencrypt # cd letsencrypt # ./letsencrypt-auto --help  お！ helpだから使い方が表示されるかと思いきや、依存関係のあるパッケージがダウンロードされた・・・
+しかも下記メッセージによると、どうやらPythonのバージョンが古くて失敗してるっぽい。
+： (省略) ： Complete! WARNING: Python 2.6 support is very experimental at present... if you would like to work on improving it, please ensure you have backups and then run this script again with the --debug flag!</description>
+    </item>
+    
+  </channel>
+</rss>

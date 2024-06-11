@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>NTP on プログラマー備忘録</title>
+    <link>https://sankame.github.io/tags/ntp/</link>
+    <description>Recent content in NTP on プログラマー備忘録</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <lastBuildDate>Wed, 25 Jun 2014 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://sankame.github.io/tags/ntp/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>開発環境用 NTP 設定</title>
+      <link>https://sankame.github.io/blog/2014-06-25-ntp_for_dev/</link>
+      <pubDate>Wed, 25 Jun 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2014-06-25-ntp_for_dev/</guid>
+      <description>0.環境  [VMware Player] 3.0.0 [CentOS] 5.6 (32bit版カーネル) (Windows上でゲストOSとして使用) [NTP] 4.2.6  1.セットアップ  ソース取得
+任意のディレクトリにNTPのソース(ntpd)をダウンロード。
+  	# cd /usr/local/src/ # wget http://www.eecis.udel.edu/~ntp/ntp_spool/ntp4/ntp-4.2/ntp-4.2.6p5.tar.gz   インストール  	# tar xzf ntp-4.2.6p5.tar.gz # cd ntp-4.2.6p5 # ./configure # make # make install   設定
+下記URL①の設定を行ったところうまく時刻同期されませんでした。
+(VMwareをサスペンドすると時刻が離れ過ぎるため？)
+結局、自分用の開発環境で、ログイン時に1回同期させれば十分なので下記のようにしました。
+  	# echo &#39;ntpdate -u ntp.nict.jp&#39; &amp;gt;&amp;gt; ~/.bash_profile  2.参考URL  ①ntpdのインストールと設定
+ ②ntpd の起動と動作確認
+ ③ntpdate コマンドについて</description>
+    </item>
+    
+  </channel>
+</rss>

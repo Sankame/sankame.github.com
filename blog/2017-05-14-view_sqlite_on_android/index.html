@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <title>AndroidのSQLite DBを参照</title>
+    <meta name="generator" content="Hugo 0.55.0" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    
+    
+
+    
+    
+
+    <script src="https://sankame.github.io/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="https://sankame.github.io/bower_components/bootstrap/js/bootstrap.min.js"></script>
+    <script src="https://sankame.github.io/bower_components/bootstrap/js/dropdowns-enhancement.js"></script>
+    <script src="https://sankame.github.io/bower_components/bluebird/js/browser/bluebird.js"></script>
+    
+    
+    
+    <script src="https://sankame.github.io/bower_components/d3/d3.min.js" charset="utf-8"></script>
+    <script src="https://sankame.github.io/bower_components/cal-heatmap/cal-heatmap.min.js"></script>
+    <script src="https://sankame.github.io/bower_components/highlightjs/highlight.pack.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']]}
+      });
+    </script>
+
+    <link rel="icon" href="https://sankame.github.io/favicon.ico" />
+    <link rel="apple-touch-icon" href="https://sankame.github.io/apple-touch-icon.png" />
+    <link rel="stylesheet" href="https://sankame.github.io/bower_components/highlightjs/styles/monokai.css" />
+    <link rel="stylesheet" href="https://sankame.github.io/bower_components/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://sankame.github.io/bower_components/bootstrap/css/dropdowns-enhancement.css" />
+    <link rel="stylesheet" href="https://sankame.github.io/bower_components/talaria/dist/talaria.css" />   
+    <link rel="stylesheet" href="https://sankame.github.io/bower_components/createjs/createjs.css" />
+    <link rel="stylesheet" href="https://sankame.github.io/bower_components/font-awesome/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="https://sankame.github.io/bower_components/icomoon/css/icomoon.css" />
+    <link rel="stylesheet" href="https://sankame.github.io/css/style.css" />
+    <link rel="stylesheet" href="https://sankame.github.io/css/mobile.css" />
+    <link rel="stylesheet" href="https://sankame.github.io/bower_components/cal-heatmap/cal-heatmap.css" />
+    <link rel="stylesheet" href="https://sankame.github.io/css/sankame.css" />
+
+    <link rel="alternate" type="application/rss+xml" title="プログラマー備忘録" href=""/>
+    <link rel="feed" type="application/rss+xml" title="プログラマー備忘録" href="" />
+
+    
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-7938855665302783",
+          enable_page_level_ads: true
+     });
+</script>
+</head>
+<body>
+<div class="container">
+
+
+
+<header id="header">
+  <div id="header-main" class="header-inner">
+    <div class="outer">
+
+	<nav class="navbar navbar-default">
+	  <div class="container-fluid">
+
+    	    <div class="navbar-header">
+      		<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+      		  <span class="sr-only">Toggle navigation</span>
+      		  <span class="icon-bar"></span>
+      		  <span class="icon-bar"></span>
+      		  <span class="icon-bar"></span>
+      		</button>
+		    <h1>
+			    <a class="navbar-brand" href="https://sankame.github.io/">
+				    
+				    
+				    <span class="site-title">プログラマー備忘録</span>
+				    
+			    </a>
+		    </h1>
+	    </div>
+
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+    
+    <li>
+	<a href="https://twitter.com/handycola" target="_blank">
+		<i class="fa fa-twitter" aria-hidden="true"></i>
+	</a>
+
+</li>
+<li>
+	<a href="https://facebook.com/100014073908728" target="_blank">
+		<i class="fa fa-facebook" aria-hidden="true"></i>
+	</a>
+</li>
+<li>
+	<a href="https://stackoverflow.com/users/2849068/sankame" target="_blank">
+		<i class="fa fa-stack-overflow" aria-hidden="true"></i>
+	</a>
+</li>
+<li>
+	<a href="/index.xml" type="application/rss+xml" target="_blank">
+		<i class="fa fa-rss-square" aria-hidden="true"></i>
+	</a>
+</li>
+
+    
+      </ul>
+    </div>
+
+  </div>
+</nav>
+
+</header>
+
+
+
+
+<div id="container">
+   <div class="outer">
+    <section id="main">
+    <article>
+        <div class="article-inner">
+            
+
+            
+            <header class="article-header">
+    
+    <h1 class="article-title" itemprop="name">
+	<a href="https://sankame.github.io/blog/2017-05-14-view_sqlite_on_android/" class="permalink">AndroidのSQLite DBを参照</a>
+    </h1>
+	<time datetime="2017-05-14 00:00:00 &#43;0000 UTC" itemprop="datePublished">2017-05-14</time>
+    <div class="article-meta">
+
+        
+    </div>
+</header>
+
+
+            
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-7938855665302783"
+     data-ad-slot="5752348355"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+
+            <div class="article-entry" itemprop="articleBody">
+                
+
+<p>
+<span>&nbsp;</span>
+<a href="/blog/2024-02-23-view_sqlite_on_androidstudio" style="color:#d14; float:left;" target="_blank">
+<u>こちらが最新です。(2024/02/23)</u>
+</a>
+</p>
+
+<h1 id="0-環境">0.環境</h1>
+
+<ul>
+<li><p>PC側</p>
+
+<pre><code>[OS]             Windows7 (32bit 版)
+[Android Studio] 1.5.1
+</code></pre></li>
+
+<li><p>スマホ側</p>
+
+<pre><code>[OS]             Android 5.1.1
+[SQLite]         3.8.6.1
+</code></pre></li>
+</ul>
+
+<h1 id="1-前提">1. 前提</h1>
+
+<ul>
+<li><p>まずSQLiteのデータをファイル形式で保存するよう設定します。</p></li>
+
+<li><p>例として、SQLiteを操作するライブラリにSQLiteOpenHelperを使用した場合について記載します。</p></li>
+
+<li><p>コンストラクタの第二引数でDBファイル名を指定します。</p></li>
+
+<li><p>(未指定の場合、データはメモリにのみ保持されます)</p>
+
+<pre><code class="language-java">class DatabaseHelper extends SQLiteOpenHelper {
+
+    public DatabaseHelper(Context context) {
+        //DBファイル名を指定。
+        super(context, &quot;example.db&quot;, null, 1);
+    }
+</code></pre></li>
+
+<li><p>PCからAndroid端末にあるSQLiteのDBファイルを見る方法を調べました。</p></li>
+
+<li><p>試行錯誤した内容を書いているため、結論だけ知りたい場合は、4まで読み飛ばして下さい。</p></li>
+</ul>
+
+<h1 id="2-adb-androidデバッグ用インターフェース-利用">2. ADB(Androidデバッグ用インターフェース) 利用</h1>
+
+<ul>
+<li><p>ネットを検索して結構あったのが、ADBを使ってSQLiteのDBファイルをAndroid端末からPCへコピーし、その後DBビューワーで参照するというものです。</p></li>
+
+<li><p>PCでコマンドプロンプトから下記コマンドを実行すると、カレントディレクトリにtarget.db(任意)というファイルができます。</p>
+
+<pre><code class="language-console">C:\Users\【ユーザー名】&gt;adb -d shell &quot;run-as 【アプリケーションID】 cat databases/【DBファイル名】&quot;&gt;target.db
+</code></pre></li>
+
+<li><p>【】内は読み替えて下さい。</p>
+
+<ul>
+<li><p>【アプリケーションID】: Android Studioの[File]-[Project Structure]-[Flavors]-[Application Id]</p></li>
+
+<li><p>【DBファイル名】: 上記1で指定したファイル名。</p></li>
+</ul></li>
+
+<li><p>Database BrowserやPupSQLiteというビューワーでtarget.dbを開いても、下記エラーが出てレコードが表示されません。</p>
+
+<p><code>database disk image is malformed</code></p></li>
+
+<li><p><a href="http://qiita.com/tsunet111/items/2c21706fd67f5ecb047d" target="_blank">この修復方法</a>を試しましたが次のエラーが出て、上記ビューワーで見てもレコードが0件でした。</p>
+
+<pre><code class="language-console">Error: near line 6: NOT NULL constraint failed: 【テーブル名】.【カラム名】
+</code></pre></li>
+
+<li><p>Android(Linux系)とWindowsだからリダイレクションでデータの受け渡しがうまくいってないのかな？と推測し、Linuxコマンドも使えるPower Shellを使ってみたところ、最初の結果と異なり、target.dbのファイルサイズは倍になりました。</p></li>
+
+<li><p>再度、上記のビューワーで開こうとしたところ、復号化パスワードを求められ開けませんでした…</p></li>
+</ul>
+
+<h1 id="3-android-device-monitor-利用">3. Android Device Monitor 利用</h1>
+
+<ul>
+<li><p>方針を変え、Android Studioの付属ツールを使ってDBファイルをPCへコピーする方法を試しました。</p>
+
+<pre><code class="language-text">Android Studioのメニューで[Tools]-[Android]-[Android Device Monitor]-[File Explorer]タブ
+</code></pre></li>
+
+<li><p>&ldquo;data&rdquo;ディレクトリはあるのですが、その下のディレクトリが表示されず、DBファイルまでたどり着けなかったため諦めました。</p></li>
+</ul>
+
+<h1 id="4-stetho-利用">4. stetho 利用</h1>
+
+<ul>
+<li><p>facebookが提供している<a href="https://github.com/facebook/stetho" target="_blank">stetho</a>というデバッグツールを使いました。</p>
+
+<ul>
+<li><p>(4-1) 準備</p>
+
+<ul>
+<li><p><a href="http://facebook.github.io/stetho/#download" target="_blank">このページ</a>からjarをダウンロードし、下記ディレクトリへコピーします。</p>
+
+<p><code>[アプリのルート]-[mobile]-[libs]</code></p></li>
+
+<li><p>僕のbuild.gradleは、もともとlibsの全jarを読み込み対象にしていたのでひとまずそのままにしました。</p></li>
+
+<li><p>(build.gradle抜粋)</p>
+
+<pre><code class="language-java">    dependencies {
+        compile fileTree(dir: 'libs', include: ['*.jar'])
+        wearApp project(':wear')
+        compile 'com.android.support:appcompat-v7:21.0.3'
+        compile 'com.google.android.gms:play-services:6.5.87'
+        compile &quot;com.android.support:support-v4:20.0.+&quot;
+        compile files('libs/gson-2.5.jar')
+    }
+</code></pre></li>
+
+<li><p>さらに、ソースコードへ下記①、②を追記します。</p>
+
+<pre><code class="language-java">//①
+import com.facebook.stetho.Stetho;
+
+public class MainActivity extends ActionBarActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+
+        super.onCreate(savedInstanceState);
+        //②
+        Stetho.initializeWithDefaults(this);
+
+        // 以下省略
+</code></pre></li>
+</ul></li>
+
+<li><p>(4-2) エラー対応</p>
+
+<ul>
+<li><p>ビルドしたところ、下記エラーが発生しました。</p></li>
+
+<li><p>ライブラリを重複して読み込もうとする際に出るエラーのようです。</p>
+
+<pre><code class="language-console">:mobile:dexDebug
+AGPBI: {&quot;kind&quot;:&quot;simple&quot;,&quot;text&quot;:&quot;UNEXPECTED TOP-LEVEL EXCEPTION:&quot;,&quot;sources&quot;:[{}]}
+AGPBI: {&quot;kind&quot;:&quot;simple&quot;,&quot;text&quot;:&quot;com.android.dex.DexException: Multiple dex files define Landroid/support/v7/appcompat/R$anim;&quot;,&quot;sources&quot;:[{}]}
+AGPBI: {&quot;kind&quot;:&quot;simple&quot;,&quot;text&quot;:&quot;\tat com.android.dx.merge.DexMerger.readSortableTypes(DexMerger.java:596)&quot;,&quot;sources&quot;:[{}]}
+AGPBI: {&quot;kind&quot;:&quot;simple&quot;,&quot;text&quot;:&quot;\tat com.android.dx.merge.DexMerger.getSortedTypes(DexMerger.java:554)&quot;,&quot;sources&quot;:[{}]}
+AGPBI: {&quot;kind&quot;:&quot;simple&quot;,&quot;text&quot;:&quot;\tat com.android.dx.merge.DexMerger.mergeClassDefs(DexMerger.java:535)&quot;,&quot;sources&quot;:[{}]}
+AGPBI: {&quot;kind&quot;:&quot;simple&quot;,&quot;text&quot;:&quot;\tat com.android.dx.merge.DexMerger.mergeDexes(DexMerger.java:171)&quot;,&quot;sources&quot;:[{}]}
+AGPBI: {&quot;kind&quot;:&quot;simple&quot;,&quot;text&quot;:&quot;\tat com.android.dx.merge.DexMerger.merge(DexMerger.java:189)&quot;,&quot;sources&quot;:[{}]}
+AGPBI: {&quot;kind&quot;:&quot;simple&quot;,&quot;text&quot;:&quot;\tat com.android.dx.command.dexer.Main.mergeLibraryDexBuffers(Main.java:454)&quot;,&quot;sources&quot;:[{}]}
+AGPBI: {&quot;kind&quot;:&quot;simple&quot;,&quot;text&quot;:&quot;\tat com.android.dx.command.dexer.Main.runMonoDex(Main.java:303)&quot;,&quot;sources&quot;:[{}]}
+AGPBI: {&quot;kind&quot;:&quot;simple&quot;,&quot;text&quot;:&quot;\tat com.android.dx.command.dexer.Main.run(Main.java:246)&quot;,&quot;sources&quot;:[{}]}
+AGPBI: {&quot;kind&quot;:&quot;simple&quot;,&quot;text&quot;:&quot;\tat com.android.dx.command.dexer.Main.main(Main.java:215)&quot;,&quot;sources&quot;:[{}]}
+AGPBI: {&quot;kind&quot;:&quot;simple&quot;,&quot;text&quot;:&quot;\tat com.android.dx.command.Main.main(Main.java:106)&quot;,&quot;sources&quot;:[{}]}
+
+FAILED
+
+FAILURE: Build failed with an exception.
+</code></pre></li>
+
+<li><p>下記のようにbuild.gradleを変更し、stethoを個別に定義するようにしました。</p></li>
+
+<li><p><s>さらに上記エラーメッセージの3行目から推測して、除外設定も追加しています。(<a href="http://stackoverflow.com/questions/27719436/how-to-remove-duplicate-libraries-added-via-gradle/27773664" target="_blank">参考ページ</a>)</s></p></li>
+
+<li><p><font color="red">(2017/05/16,追記)除外設定はなくてもOKでした。まだ追いきれてませんが、fileTreeによる指定がまずかったようです。</font></p></li>
+
+<li><p>(build.gradle抜粋)</p>
+
+<pre><code class="language-java">dependencies {
+    //この指定はやめる。
+    //compile fileTree(dir: 'libs', include: ['*.jar'])
+    wearApp project(':wear')
+    compile 'com.android.support:appcompat-v7:21.0.3'
+    compile 'com.google.android.gms:play-services:6.5.87'
+    compile &quot;com.android.support:support-v4:20.0.+&quot;
+    compile files('libs/gson-2.5.jar')
+                
+    //これを含めるのはデバッグ時のみにし、重複エラーが出たので除外設定を追加。
+    //debugCompile ('com.facebook.stetho:stetho:1.5.0') {
+    //  exclude group: 'android.support', module: 'library'
+    //}
+                
+    //(2017/05/16,追記) この指定で十分でした。
+    debugCompile ('com.facebook.stetho:stetho:1.5.0')
+}
+</code></pre></li>
+</ul></li>
+
+<li><p>(4-3) 使い方</p>
+
+<ul>
+<li><p>アプリをビルドして、<span style="color:#d14;"><s>Chrome</s> Brave</span>のアドレスバーに下記URLを入力します。
+<span style="color:#d14;">Chromeでは画面が崩れるようになったため、代わりに
+<a href="https://brave.com/ja/" target="_blank">Brave</a>というブラウザを使用。
+</span></p>
+
+<p><s><code>chrome://inspect</code></s></p>
+
+<p><code>brave://inspect/#devices</code></p></li>
+
+<li><p>Android端末名の下にアプリ名が表示されるので、&rdquo;inspect&rdquo;をクリック。</p>
+
+<p><a href="/assets/posts/img/view_sqlite_on_android/chrome.jpg" target="_blank"><img width="80%" height="80%" title="chrome" alt="chrome" src="/assets/posts/img/view_sqlite_on_android/chrome.jpg"></a></p></li>
+
+<li><p><s>新しいウィンドウが開き、[Web SQL]-【アプリケーションID】-【テーブル名】を開くとSQLiteのデータが参照できました。</s></p></li>
+
+<li><p><span style="color:#d14;">新しいウィンドウが開き、[Application]-[Storage]-[Web SQL]-【DB名】-【テーブル名】を
+開くとSQLiteのデータが参照できました。</span></p></li>
+
+<li><p><s>さらに、【アプリケーションID】をクリックすると右ペインにプロンプト(&gt;)が表示され、そこでSQL文も実行できるのでかなり使えそうです。</s></p></li>
+
+<li><p><span style="color:#d14;">さらに、上記の【DB名】をクリックすると右ペインにプロンプト(&gt;)が表示され、
+そこでSQL文も実行できるのでかなり使えそうです。</span></p>
+
+<p><a href="/assets/posts/img/view_sqlite_on_android/view_sqlite_db.jpg" target="_blank"><img width="80%" height="80%" title="chrome" alt="chrome" src="/assets/posts/img/view_sqlite_on_android/view_sqlite_db.jpg"></a></p></li>
+</ul></li>
+</ul></li>
+</ul>
+
+            </div>
+
+            
+<script type="text/javascript">amazon_ad_tag ="azsankame-22"; amazon_ad_width ="300"; amazon_ad_height ="250"; amazon_ad_logo ="hide"; amazon_ad_link_target ="new"; amazon_ad_border ="hide"; </script><script src="http://ir-jp.amazon-adsystem.com/s/ads.js"></script>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-7938855665302783"
+     data-ad-slot="4136014354"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+            <div class="tweet-footer">
+<a href="http://twitter.com/share?url=https%3a%2f%2fsankame.github.io%2fblog%2f2017-05-14-view_sqlite_on_android%2f&text=Android%e3%81%aeSQLite%20DB%e3%82%92%e5%8f%82%e7%85%a7" target="_blank" title="Twitter" >
+<span class="tweet-botton">
+        <i class="fa fa-twitter" aria-hidden="true"></i>
+        この記事をツイート
+    </span>
+    </a>
+</div>
+
+<footer class="article-footer">
+
+    
+    
+</footer>
+
+        </div>
+
+        
+
+
+  <script type="text/javascript">
+   talaria.init({REPOSITORY_NAME: 'syui.gitlab.io-comment',
+                 GITHUB_USERNAME: 'mba-hack'});
+  </script>
+    </article>
+
+    <section id="comments">
+
+        <div id="disqus_thread">
+            
+        </div>
+    </section>
+</section>
+
+    
+<aside id="sidebar">
+    
+
+<div class="widget-wrap">
+    <div class="widget">
+        <ul id="recent-post">
+		<li id="first-recent"><a href="/index.xml" id="firstmove" class="move"><h3 class="widget-title">
+			最近の投稿
+    </h3></a></li>
+    		
+            
+<li><a href="https://sankame.github.io/blog/2024-06-11-git_push_errors/" class="move">  大量ファイルをgit pushする際のエラー回避3パターン</a> </li>
+            
+<li><a href="https://sankame.github.io/blog/2024-02-23-view_sqlite_on_androidstudio/" class="move">  AndroidStudioでSQLiteを扱う</a> </li>
+            
+<li><a href="https://sankame.github.io/blog/2024-02-18-admob_alert_contents_over_ads/" class="move">  AdMob広告にコンテンツが被ったという警告を回避</a> </li>
+            
+        </ul>
+    </div>
+</div>
+
+
+
+    
+
+<div class="widget-wrap">
+    <div class="widget">
+        <ul class="category-list">
+    <h3 class="widget-title">Categories </h3>
+            
+                <a class="category-list-link" href="https://sankame.github.io/categories/tips">
+            <li class="category-list-item">
+                    tips
+                <span class="category-list-count">28</span>
+            </li>
+                </a>
+            
+                <a class="category-list-link" href="https://sankame.github.io/categories/%e3%82%a8%e3%83%a9%e3%83%bc%e8%a7%a3%e6%b1%ba">
+            <li class="category-list-item">
+                    エラー解決
+                <span class="category-list-count">32</span>
+            </li>
+                </a>
+            
+                <a class="category-list-link" href="https://sankame.github.io/categories/%e3%82%bb%e3%83%83%e3%83%88%e3%82%a2%e3%83%83%e3%83%97">
+            <li class="category-list-item">
+                    セットアップ
+                <span class="category-list-count">42</span>
+            </li>
+                </a>
+            
+                <a class="category-list-link" href="https://sankame.github.io/categories/%e3%83%81%e3%83%a5%e3%83%bc%e3%83%8b%e3%83%b3%e3%82%b0">
+            <li class="category-list-item">
+                    チューニング
+                <span class="category-list-count">3</span>
+            </li>
+                </a>
+            
+                <a class="category-list-link" href="https://sankame.github.io/categories/%e3%83%97%e3%83%ad%e3%82%b0%e3%83%a9%e3%83%9f%e3%83%b3%e3%82%b0">
+            <li class="category-list-item">
+                    プログラミング
+                <span class="category-list-count">7</span>
+            </li>
+                </a>
+            
+        </ul>
+    </div>
+</div>
+
+
+
+    
+
+<div class="widget-wrap">
+	<ul class="category-list">
+    <h3 class="widget-title">Tags  </h3>
+    <div class="widget tagcloud">
+    	
+        
+        <a href="https://sankame.github.io/tags/ab" style="font-size: 12px;">ab</a>
+        
+        <a href="https://sankame.github.io/tags/admob" style="font-size: 12px;">admob</a>
+        
+        <a href="https://sankame.github.io/tags/android" style="font-size: 12px;">android</a>
+        
+        <a href="https://sankame.github.io/tags/androidstudio" style="font-size: 12px;">androidstudio</a>
+        
+        <a href="https://sankame.github.io/tags/androidwear" style="font-size: 12px;">androidwear</a>
+        
+        <a href="https://sankame.github.io/tags/angular2" style="font-size: 12px;">angular2</a>
+        
+        <a href="https://sankame.github.io/tags/apache" style="font-size: 12px;">apache</a>
+        
+        <a href="https://sankame.github.io/tags/apachebench" style="font-size: 12px;">apachebench</a>
+        
+        <a href="https://sankame.github.io/tags/apex" style="font-size: 12px;">apex</a>
+        
+        <a href="https://sankame.github.io/tags/applewatch" style="font-size: 12px;">applewatch</a>
+        
+        <a href="https://sankame.github.io/tags/bash" style="font-size: 12px;">bash</a>
+        
+        <a href="https://sankame.github.io/tags/bitbucket" style="font-size: 12px;">bitbucket</a>
+        
+        <a href="https://sankame.github.io/tags/centos" style="font-size: 12px;">centos</a>
+        
+        <a href="https://sankame.github.io/tags/cocoapods" style="font-size: 12px;">cocoapods</a>
+        
+        <a href="https://sankame.github.io/tags/composer" style="font-size: 12px;">composer</a>
+        
+        <a href="https://sankame.github.io/tags/cron" style="font-size: 12px;">cron</a>
+        
+        <a href="https://sankame.github.io/tags/dell" style="font-size: 12px;">dell</a>
+        
+        <a href="https://sankame.github.io/tags/eclipse" style="font-size: 12px;">eclipse</a>
+        
+        <a href="https://sankame.github.io/tags/fitbit" style="font-size: 12px;">fitbit</a>
+        
+        <a href="https://sankame.github.io/tags/flutter" style="font-size: 12px;">flutter</a>
+        
+        <a href="https://sankame.github.io/tags/freemind" style="font-size: 12px;">freemind</a>
+        
+        <a href="https://sankame.github.io/tags/git" style="font-size: 12px;">git</a>
+        
+        <a href="https://sankame.github.io/tags/github" style="font-size: 12px;">github</a>
+        
+        <a href="https://sankame.github.io/tags/googlesheets" style="font-size: 12px;">googlesheets</a>
+        
+        <a href="https://sankame.github.io/tags/gradle" style="font-size: 12px;">gradle</a>
+        
+        <a href="https://sankame.github.io/tags/gulp" style="font-size: 12px;">gulp</a>
+        
+        <a href="https://sankame.github.io/tags/hive" style="font-size: 12px;">hive</a>
+        
+        <a href="https://sankame.github.io/tags/hugo" style="font-size: 12px;">hugo</a>
+        
+        <a href="https://sankame.github.io/tags/java" style="font-size: 12px;">java</a>
+        
+        <a href="https://sankame.github.io/tags/javascript" style="font-size: 12px;">javascript</a>
+        
+        <a href="https://sankame.github.io/tags/jekyll" style="font-size: 12px;">jekyll</a>
+        
+        <a href="https://sankame.github.io/tags/jenkins" style="font-size: 12px;">jenkins</a>
+        
+        <a href="https://sankame.github.io/tags/jqgrid" style="font-size: 12px;">jqgrid</a>
+        
+        <a href="https://sankame.github.io/tags/kitura" style="font-size: 12px;">kitura</a>
+        
+        <a href="https://sankame.github.io/tags/laravel" style="font-size: 12px;">laravel</a>
+        
+        <a href="https://sankame.github.io/tags/letsencrypt" style="font-size: 12px;">letsencrypt</a>
+        
+        <a href="https://sankame.github.io/tags/mecab" style="font-size: 12px;">mecab</a>
+        
+        <a href="https://sankame.github.io/tags/mindmapmemo" style="font-size: 12px;">mindmapmemo</a>
+        
+        <a href="https://sankame.github.io/tags/mockery" style="font-size: 12px;">mockery</a>
+        
+        <a href="https://sankame.github.io/tags/monit" style="font-size: 12px;">monit</a>
+        
+        <a href="https://sankame.github.io/tags/mysql" style="font-size: 12px;">mysql</a>
+        
+        <a href="https://sankame.github.io/tags/nextjs" style="font-size: 12px;">nextjs</a>
+        
+        <a href="https://sankame.github.io/tags/nexus7" style="font-size: 12px;">nexus7</a>
+        
+        <a href="https://sankame.github.io/tags/nginx" style="font-size: 12px;">nginx</a>
+        
+        <a href="https://sankame.github.io/tags/node.js" style="font-size: 12px;">node.js</a>
+        
+        <a href="https://sankame.github.io/tags/npm" style="font-size: 12px;">npm</a>
+        
+        <a href="https://sankame.github.io/tags/ntp" style="font-size: 12px;">ntp</a>
+        
+        <a href="https://sankame.github.io/tags/openx" style="font-size: 12px;">openx</a>
+        
+        <a href="https://sankame.github.io/tags/phalcon" style="font-size: 12px;">phalcon</a>
+        
+        <a href="https://sankame.github.io/tags/php" style="font-size: 12px;">php</a>
+        
+        <a href="https://sankame.github.io/tags/phpdebugbar" style="font-size: 12px;">phpdebugbar</a>
+        
+        <a href="https://sankame.github.io/tags/phpunit" style="font-size: 12px;">phpunit</a>
+        
+        <a href="https://sankame.github.io/tags/programming-practice" style="font-size: 12px;">programming-practice</a>
+        
+        <a href="https://sankame.github.io/tags/reactnative" style="font-size: 12px;">reactnative</a>
+        
+        <a href="https://sankame.github.io/tags/redis" style="font-size: 12px;">redis</a>
+        
+        <a href="https://sankame.github.io/tags/reviveadserver" style="font-size: 12px;">reviveadserver</a>
+        
+        <a href="https://sankame.github.io/tags/ruby" style="font-size: 12px;">ruby</a>
+        
+        <a href="https://sankame.github.io/tags/rubygems" style="font-size: 12px;">rubygems</a>
+        
+        <a href="https://sankame.github.io/tags/rundeck" style="font-size: 12px;">rundeck</a>
+        
+        <a href="https://sankame.github.io/tags/selenium" style="font-size: 12px;">selenium</a>
+        
+        <a href="https://sankame.github.io/tags/shell" style="font-size: 12px;">shell</a>
+        
+        <a href="https://sankame.github.io/tags/smarty" style="font-size: 12px;">smarty</a>
+        
+        <a href="https://sankame.github.io/tags/sqlite" style="font-size: 12px;">sqlite</a>
+        
+        <a href="https://sankame.github.io/tags/ssh" style="font-size: 12px;">ssh</a>
+        
+        <a href="https://sankame.github.io/tags/ssl-tls" style="font-size: 12px;">ssl-tls</a>
+        
+        <a href="https://sankame.github.io/tags/stetho" style="font-size: 12px;">stetho</a>
+        
+        <a href="https://sankame.github.io/tags/subversion" style="font-size: 12px;">subversion</a>
+        
+        <a href="https://sankame.github.io/tags/swift" style="font-size: 12px;">swift</a>
+        
+        <a href="https://sankame.github.io/tags/touchpad" style="font-size: 12px;">touchpad</a>
+        
+        <a href="https://sankame.github.io/tags/typescript" style="font-size: 12px;">typescript</a>
+        
+        <a href="https://sankame.github.io/tags/ubuntu" style="font-size: 12px;">ubuntu</a>
+        
+        <a href="https://sankame.github.io/tags/unittest" style="font-size: 12px;">unittest</a>
+        
+        <a href="https://sankame.github.io/tags/vagrant" style="font-size: 12px;">vagrant</a>
+        
+        <a href="https://sankame.github.io/tags/vbscript" style="font-size: 12px;">vbscript</a>
+        
+        <a href="https://sankame.github.io/tags/virtualbox" style="font-size: 12px;">virtualbox</a>
+        
+        <a href="https://sankame.github.io/tags/vscode" style="font-size: 12px;">vscode</a>
+        
+        <a href="https://sankame.github.io/tags/website-optimization" style="font-size: 12px;">website-optimization</a>
+        
+        <a href="https://sankame.github.io/tags/wget" style="font-size: 12px;">wget</a>
+        
+        <a href="https://sankame.github.io/tags/windows" style="font-size: 12px;">windows</a>
+        
+        <a href="https://sankame.github.io/tags/xcode" style="font-size: 12px;">xcode</a>
+        
+        <a href="https://sankame.github.io/tags/%e3%83%97%e3%83%ad%e3%82%b8%e3%82%a7%e3%82%af%e3%82%bf%e3%83%bc" style="font-size: 12px;">プロジェクター</a>
+        
+        <a href="https://sankame.github.io/tags/%e5%93%81%e8%b3%aa%e7%ae%a1%e7%90%86" style="font-size: 12px;">品質管理</a>
+        
+    </div>
+</ul>
+</div>
+
+
+
+    <br>
+    
+
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-7938855665302783"
+     data-ad-slot="7089480753"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+
+</aside>
+
+</div>
+</div>
+
+<footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+
+	<footer id="footer-left">
+	    &copy; 2024 Webプログラマー <a href="/about" target="_blank">Sankame.</a> <br>
+	    Powered by <a href="//gohugo.io">Hugo</a>. Theme by <a href="https://github.com/syui/hugo-theme-wave">hugo-theme-wave</a>.
+	</footer>
+
+    </div>
+  </div>
+</footer>
+
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-37675354-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+</body>
+</html>

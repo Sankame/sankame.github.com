@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>AndroidWear on プログラマー備忘録</title>
+    <link>https://sankame.github.io/tags/androidwear/</link>
+    <description>Recent content in AndroidWear on プログラマー備忘録</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <lastBuildDate>Sat, 26 Jul 2014 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://sankame.github.io/tags/androidwear/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>【Android Wear】ホーム画面の時計を変更</title>
+      <link>https://sankame.github.io/blog/2014-07-26-android_wear_chage_face/</link>
+      <pubDate>Sat, 26 Jul 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2014-07-26-android_wear_chage_face/</guid>
+      <description> 0.環境 [スマートフォン(OS)] GALAXY S4 (Android 4.4.2) [スマートウォッチ(OS)] Gear Live (4.4W) ※以降、スマートフォンは「スマホ」、スマートウォッチは「ウォッチ」と記載。  1.ホーム画面の時計(ウォッチフェイス)を変更  Samsung Gear Live のホーム画面の時計デザインを変える方法は下記の通りです。
+ (スマホとウォッチはBluetoothで同期されている前提)
+ ①【スマホ】Playストアから好みのデザインの時計アプリをインストールします。(参考リンク)
+(例) Playストアで &amp;quot;WearFaces&amp;quot; で検索。
+ ②【スマホ】Android Wearアプリを起動し、右上のネジマークをタップ。
+
+ ③【スマホ】一番下までスクロールし、「アプリの再同期」をタップ。
+
+ ④【ウォッチ】ホーム画面をタップし、メニュー画面を一番下までスクロールした後「設定」をタップ。
+(2014/07/30, 追記) 後日気づきました。ホーム画面で時計を長押し(ロングタップ)すると一気に時計変更画面に行けます。(下記⑦)
+
+ ⑤【ウォッチ】設定画面で上にフリック。
+
+ ⑥【ウォッチ】一番下までスクロールした後、「ウォッチフェイスの変更」をタップ。
+
+ ⑦【ウォッチ】上記でPlayストアからインストールした時計アプリを見つけ、タップするとホーム画面に設定されます。
+   </description>
+    </item>
+    
+  </channel>
+</rss>
