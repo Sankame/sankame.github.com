@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <title>プログラマー備忘録</title>
+    <meta name="generator" content="Hugo 0.55.0" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    
+    
+
+    
+    
+    <meta name="robots" content="noindex">
+    
+
+    <script src="https://sankame.github.io/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="https://sankame.github.io/bower_components/bootstrap/js/bootstrap.min.js"></script>
+    <script src="https://sankame.github.io/bower_components/bootstrap/js/dropdowns-enhancement.js"></script>
+    <script src="https://sankame.github.io/bower_components/bluebird/js/browser/bluebird.js"></script>
+    
+    
+    
+    <script src="https://sankame.github.io/bower_components/d3/d3.min.js" charset="utf-8"></script>
+    <script src="https://sankame.github.io/bower_components/cal-heatmap/cal-heatmap.min.js"></script>
+    <script src="https://sankame.github.io/bower_components/highlightjs/highlight.pack.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']]}
+      });
+    </script>
+
+    <link rel="icon" href="https://sankame.github.io/favicon.ico" />
+    <link rel="apple-touch-icon" href="https://sankame.github.io/apple-touch-icon.png" />
+    <link rel="stylesheet" href="https://sankame.github.io/bower_components/highlightjs/styles/monokai.css" />
+    <link rel="stylesheet" href="https://sankame.github.io/bower_components/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://sankame.github.io/bower_components/bootstrap/css/dropdowns-enhancement.css" />
+    <link rel="stylesheet" href="https://sankame.github.io/bower_components/talaria/dist/talaria.css" />   
+    <link rel="stylesheet" href="https://sankame.github.io/bower_components/createjs/createjs.css" />
+    <link rel="stylesheet" href="https://sankame.github.io/bower_components/font-awesome/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="https://sankame.github.io/bower_components/icomoon/css/icomoon.css" />
+    <link rel="stylesheet" href="https://sankame.github.io/css/style.css" />
+    <link rel="stylesheet" href="https://sankame.github.io/css/mobile.css" />
+    <link rel="stylesheet" href="https://sankame.github.io/bower_components/cal-heatmap/cal-heatmap.css" />
+    <link rel="stylesheet" href="https://sankame.github.io/css/sankame.css" />
+
+    <link rel="alternate" type="application/rss+xml" title="プログラマー備忘録" href="https://sankame.github.io/index.xml"/>
+    <link rel="feed" type="application/rss+xml" title="プログラマー備忘録" href="https://sankame.github.io/index.xml" />
+
+    
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-7938855665302783",
+          enable_page_level_ads: true
+     });
+</script>
+</head>
+<body>
+<div class="container">
+
+
+<div id="container">
+    
+
+<header id="header">
+  <div id="header-main" class="header-inner">
+    <div class="outer">
+
+	<nav class="navbar navbar-default">
+	  <div class="container-fluid">
+
+    	    <div class="navbar-header">
+      		<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+      		  <span class="sr-only">Toggle navigation</span>
+      		  <span class="icon-bar"></span>
+      		  <span class="icon-bar"></span>
+      		  <span class="icon-bar"></span>
+      		</button>
+		    <h1>
+			    <a class="navbar-brand" href="https://sankame.github.io/">
+				    
+				    
+				    <span class="site-title">プログラマー備忘録</span>
+				    
+			    </a>
+		    </h1>
+	    </div>
+
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+    
+    <li>
+	<a href="https://twitter.com/handycola" target="_blank">
+		<i class="fa fa-twitter" aria-hidden="true"></i>
+	</a>
+
+</li>
+<li>
+	<a href="https://facebook.com/100014073908728" target="_blank">
+		<i class="fa fa-facebook" aria-hidden="true"></i>
+	</a>
+</li>
+<li>
+	<a href="https://stackoverflow.com/users/2849068/sankame" target="_blank">
+		<i class="fa fa-stack-overflow" aria-hidden="true"></i>
+	</a>
+</li>
+<li>
+	<a href="/index.xml" type="application/rss+xml" target="_blank">
+		<i class="fa fa-rss-square" aria-hidden="true"></i>
+	</a>
+</li>
+
+    
+      </ul>
+    </div>
+
+  </div>
+</nav>
+
+</header>
+
+
+
+
+    <div id="top-image">
+	<div id="top-image-wrap">
+		<iframe src="https://sankame.github.io/bower_components/particlesjs/particlesjs.html"></iframe>
+	</div>
+</div>
+
+    <div class="outer">
+
+    <section id="main">
+
+    
+    
+    <article class="article article-type-post" itemscope="" itemprop="blogPost">
+
+	    <div class="article-inner">
+
+            
+            </a>
+
+            <header class="article-header">
+    
+    <h1 class="article-title" itemprop="name">
+	<a href="https://sankame.github.io/blog/2020-04-01-mysql8_not_support_querycache/" class="permalink">MySQLでquery_cache系パラメータを設定すると起動エラー</a>
+    </h1>
+	<time datetime="2020-04-01 00:00:00 &#43;0000 UTC" itemprop="datePublished">2020-04-01</time>
+    <div class="article-meta">
+
+        
+    </div>
+</header>
+
+
+            <div class="article-entry" itemprop="articleBody">
+                <p>
+                    0. 環境 [MySQL] 8.0.17
+1. 経緯  GCP無料枠のメモリ約500MBという貧弱な環境でWordPressを運用してます。
+少しでもパフォーマンス改善したく、MySQLのクエリキャッシュを設定しました。(下記要点のみ記載)
+# vim /etc/my.cnf.d/mysql-server.cnf : : [mysqld] query_cache_type=1 query_cache_limit=1M query_cache_size=20M  MySQLを再起動。
+# mysql -u hoge -phoge -e&quot;SET GLOBAL innodb_fast_shutdown = 1&quot; # service mysqld stop # service mysqld start  起動しなくなりました…
+ログを見ると下記エラーが出てました。(要点のみ記載)
+# tail -F /var/log/mysql/mysqld.log : : [Server] unknown variable 'query_cache_type=1'.   2. 対応  ネットで情報を漁ったところ、MySQL8からはクエリキャッシュが使えなくなったようです。
+MySQL 8.0: Retiring Support for the Query Cache
+代わりにProxySQLというのが紹介されてましたが、ミドルウェアを追加するとメンテするポイントも増えるので今回は見送りました。
+一旦は、WordPressのプラグイン(WP Super Cache)とphp-fpmのチューニングで、DBより手前で何とかする方向で進めます。 ...
+                </p>
+                <p class="article-more-link">
+                    <a href="https://sankame.github.io/blog/2020-04-01-mysql8_not_support_querycache/">
+			    Read more
+			    
+                    </a>
+                </p>
+            </div>
+	    
+        </div>
+    </article>
+    
+    <article class="article article-type-post" itemscope="" itemprop="blogPost">
+
+	    <div class="article-inner">
+
+            
+            </a>
+
+            <header class="article-header">
+    
+    <h1 class="article-title" itemprop="name">
+	<a href="https://sankame.github.io/blog/2020-03-20-mysql_compare_datetime_timestamp/" class="permalink">MySQLのdatetimeとtimestampの値比較</a>
+    </h1>
+	<time datetime="2020-03-20 00:00:00 &#43;0000 UTC" itemprop="datePublished">2020-03-20</time>
+    <div class="article-meta">
+
+        
+    </div>
+</header>
+
+
+            <div class="article-entry" itemprop="articleBody">
+                <p>
+                     MySQLで日付系のカラムを比較するときにちょっと手間取ったのでメモ。
+0. 環境 [MySQL] 5.7.14
+1. 前提  2つのテーブルに型が異なるカラムがあったとします。()内は小数秒の桁数の精度を表してます。
+ テーブルAの定義抜粋
+CreateDate datetime(3) # 小数秒あり  テーブルBの定義抜粋
+created_at timestamp # 小数秒なし    2. 手順  この2カラムが一致していることをWHERE句で指定するには、日付フォーマットを揃えるとうまくいきました。
+ SQL文の抜粋
+AND IFNULL(DATE_FORMAT(a.CreateDate, '%Y%m%d%H%i%S'), '') = IFNULL(DATE_FORMAT(b.created_at, '%Y%m%d%H%i%S'), '')  今回は秒まで比較できれば十分でしたが、もし小数秒以下も含める場合は、下記を参照してフォーマットを追加して下さい。
+ MySQLにおける日付変換    3. 日付型の違い  そもそもdatetimeとtimestampの使い分けは？というのはこの記事によくまとまっていました。
+ MySQL: DATETIME vs TIMESTAMP
+ ざっくり言うと、こんな感じですね。
+ [datetime] 格納できる値の範囲が広いが、その分容量が必要。 [timestamp] インデックス、UTC変換、タイムゾーン対応など、機能性を求めるならこっち。    4. 参考  日付と時間型の概要   ...
+                </p>
+                <p class="article-more-link">
+                    <a href="https://sankame.github.io/blog/2020-03-20-mysql_compare_datetime_timestamp/">
+			    Read more
+			    
+                    </a>
+                </p>
+            </div>
+	    
+        </div>
+    </article>
+    
+    <article class="article article-type-post" itemscope="" itemprop="blogPost">
+
+	    <div class="article-inner">
+
+            
+            </a>
+
+            <header class="article-header">
+    
+    <h1 class="article-title" itemprop="name">
+	<a href="https://sankame.github.io/blog/2020-03-06-lets_encrypt_bug_avoid/" class="permalink">Let&#39;s Encryptのバグに伴う証明書更新</a>
+    </h1>
+	<time datetime="2020-03-06 00:00:00 &#43;0000 UTC" itemprop="datePublished">2020-03-06</time>
+    <div class="article-meta">
+
+        
+    </div>
+</header>
+
+
+            <div class="article-entry" itemprop="articleBody">
+                <p>
+                    「バグ対応のため、Let&rsquo;s Encryptの一部証明書が3/4までになる」と同僚が教えてくれました。
+&ldquo;「バグの影響で特定のサーバー証明書を失効させる」とLet’s Encryptが発表、影響を受けるのは全体の2.6%&rdquo;
+0. 環境 [OS] CentOS 7.5
+1. 確認 まず、Let’s Encryptから提供されている下記ツールに対象ホスト名(ドメイン)を入れて影響有無を確認します。
+Check whether a host&rsquo;s certificate needs replacement
+2. 手順  影響ありの場合、対応方法は証明書を更新すればよいとのことなので、こちらを実行しました。
+certbot renew
+ よくログを見ると処理がスキップされ、更新されてない様子。
+The following certs are not due for renewal yet: /path/to/pemfile expires on 2020-05-07 (skipped) /path/to/pemfile expires on 2020-05-14 (skipped) No renewals were attempted.  サーバー負荷を下げるため、有効期限まで余裕があると更新されない仕様になってるようです。
+ なので強制的に更新するコマンドを実行しました。
+certbot renew --force-renewal
+ 今回は下記のメッセージが出てたので大丈夫そう。
+Congratulations, all renewals succeeded. The following certs have been renewed:  前述のツールでOKが出るのと、ブラウザ上で証明書の期限が延びていることを確認しました。 ...
+                </p>
+                <p class="article-more-link">
+                    <a href="https://sankame.github.io/blog/2020-03-06-lets_encrypt_bug_avoid/">
+			    Read more
+			    
+                    </a>
+                </p>
+            </div>
+	    
+        </div>
+    </article>
+    
+    <article class="article article-type-post" itemscope="" itemprop="blogPost">
+
+	    <div class="article-inner">
+
+            
+            </a>
+
+            <header class="article-header">
+    
+    <h1 class="article-title" itemprop="name">
+	<a href="https://sankame.github.io/blog/2019-11-03-vscode_shift_jis/" class="permalink">VSCodeでShift_JISファイルを開く</a>
+    </h1>
+	<time datetime="2019-11-03 00:00:00 &#43;0000 UTC" itemprop="datePublished">2019-11-03</time>
+    <div class="article-meta">
+
+        
+    </div>
+</header>
+
+
+            <div class="article-entry" itemprop="articleBody">
+                <p>
+                     昔秀丸エディタなどで保存したShift_JISのファイルをVisual Studio Codeで開くと文字化けしたので設定方法をメモ。
+0. 環境 [Visual Studio Code] 1.39.2
+1. 手順  設定画面を開きます。
+ Windowsの場合、[Ctrl] + [,]
+ Macの場合、[⌘ command] + [,]
+  検索ボックスにfiles.autoGuessEncodingを入力。
+ 表示された&rdquo;Auto Guess Encoding&rdquo;のチェックボックスをONにする。
+   ...
+                </p>
+                <p class="article-more-link">
+                    <a href="https://sankame.github.io/blog/2019-11-03-vscode_shift_jis/">
+			    Read more
+			    
+                    </a>
+                </p>
+            </div>
+	    
+        </div>
+    </article>
+    
+    <article class="article article-type-post" itemscope="" itemprop="blogPost">
+
+	    <div class="article-inner">
+
+            
+            </a>
+
+            <header class="article-header">
+    
+    <h1 class="article-title" itemprop="name">
+	<a href="https://sankame.github.io/blog/2019-10-19-install_php_in_centos8/" class="permalink">CentOS8にバージョン指定でphpインストール</a>
+    </h1>
+	<time datetime="2019-10-19 00:00:00 &#43;0000 UTC" itemprop="datePublished">2019-10-19</time>
+    <div class="article-meta">
+
+        
+    </div>
+</header>
+
+
+            <div class="article-entry" itemprop="articleBody">
+                <p>
+                     CentOS8にphpを入れるときのコマンドが分からなかったので要点だけメモ。
+0. 環境 [OS] CentOS8 (64bit)
+[PHP] 7.4
+1. 手順  デフォルトのパッケージにはphp7.2までしか含まれていないので、remiリポジトリを足しました。
+# dnf -y install https://rpms.remirepo.net/enterprise/remi-release-8.rpm  下記コマンドでインストール可能なphpバージョンを調べます。
+# dnf module list php  &ldquo;Stream&rdquo;という欄に表示された名前を指定してインストールします。
+ 下記は7.4を指定してますが、2019/10/19時点の安定版は7.3なので、本番環境の場合は注意して下さい。
+# dnf module install php:remi-7.4   パッケージの操作方法については、下記に詳細がまとまっています。
+  2. 参考記事  How to install php on RHEL 8 / CentOS 8 Linux   ...
+                </p>
+                <p class="article-more-link">
+                    <a href="https://sankame.github.io/blog/2019-10-19-install_php_in_centos8/">
+			    Read more
+			    
+                    </a>
+                </p>
+            </div>
+	    
+        </div>
+    </article>
+    
+    <article class="article article-type-post" itemscope="" itemprop="blogPost">
+
+	    <div class="article-inner">
+
+            
+            </a>
+
+            <header class="article-header">
+    
+    <h1 class="article-title" itemprop="name">
+	<a href="https://sankame.github.io/blog/2019-10-05-virtualbox_does_not_start/" class="permalink">VirtualBox起動エラー(rc=-22838)</a>
+    </h1>
+	<time datetime="2019-10-05 00:00:00 &#43;0000 UTC" itemprop="datePublished">2019-10-05</time>
+    <div class="article-meta">
+
+        
+    </div>
+</header>
+
+
+            <div class="article-entry" itemprop="articleBody">
+                <p>
+                    4ヶ月くらい起動していなかったVirtualBoxで久々に開発をしようと思ったらエラーが発生しました。 ネット上の情報はあまりなく、下記のいずれかでした。Bはいつの時点に戻すか分からなかったので、Aでやることにしました。
+(A)VirtualBoxを再インストール。
+(B)Windowsの復元機能を使って、Windowsアップデート前の状態にする。
+0. 環境 [OS] Windows7 (32bit)
+[VirtualBox] 4.3.26 -&gt; 5.2.32
+[Vagrant] 1.7.2 -&gt; 2.2.5
+1. 問題  VagrantからVirtualBoxを起動する構成です。(詳細はこちら)
+ いつものようにvagrant upやvagrant resumeでVirtualBoxを起動しようとしたところ、このエラーが出ました。
+
+ エラーメッセージ
+supHardenedWinVerifyProcess failed with VERR_ASN1_CURSOR_TAG_MISMATCH: (rc=-22838)    2. 対応  内部エラーで複雑そうなので、一度VirtualBoxをアンインストールし、新しいバージョンをインストールしました。
+ 32bit OSに対応してて、新し目のバージョン5.2.32を選択しました。(5.2.32のWindows hostsをクリック)
+ 64bit OSを使ってる方は、もっと新しいバージョンの方がいいと思います。
+  VirtualBoxを再インストール後、vagrant upを実行すると下記エラーメッセージが表示されました。
+ エラーメッセージ
+The provider 'virtualbox' that was requested to back the machine 'default' is reporting that it isn't usable on this system. ...
+                </p>
+                <p class="article-more-link">
+                    <a href="https://sankame.github.io/blog/2019-10-05-virtualbox_does_not_start/">
+			    Read more
+			    
+                    </a>
+                </p>
+            </div>
+	    
+        </div>
+    </article>
+    
+    <article class="article article-type-post" itemscope="" itemprop="blogPost">
+
+	    <div class="article-inner">
+
+            
+            </a>
+
+            <header class="article-header">
+    
+    <h1 class="article-title" itemprop="name">
+	<a href="https://sankame.github.io/blog/2019-09-23-js_change_kana/" class="permalink">【JavaScript】半角カナと全角カナの相互変換クラス(コピペ用)</a>
+    </h1>
+	<time datetime="2019-09-23 00:00:00 &#43;0000 UTC" itemprop="datePublished">2019-09-23</time>
+    <div class="article-meta">
+
+        
+    </div>
+</header>
+
+
+            <div class="article-entry" itemprop="articleBody">
+                <p>
+                     JavaScriptで半角・全角カナの相互変換を行う疑似クラスです。シンプルなロジックなのでカスタマイズも簡単にできます。 下記ブラウザで確認していますが、何かあればこちらから連絡いただけると嬉しいです。
+0. 環境 [OS] Windows7
+[Browser] Chrome, Firefox(69.0), IE11
+1. サンプル  使い方は下記サンプル内の&rdquo;Test&rdquo;を見て下さい。記載した2つのメソッドに文字列を渡すだけです。   2. 参考にした記事  JavaScriptで正規表現（文字列置換え編）
+ Objectのkeyとvalueを反転させる。もしくはJSでenum的なものを作る。
+   ...
+                </p>
+                <p class="article-more-link">
+                    <a href="https://sankame.github.io/blog/2019-09-23-js_change_kana/">
+			    Read more
+			    
+                    </a>
+                </p>
+            </div>
+	    
+        </div>
+    </article>
+    
+    <article class="article article-type-post" itemscope="" itemprop="blogPost">
+
+	    <div class="article-inner">
+
+            
+            </a>
+
+            <header class="article-header">
+    
+    <h1 class="article-title" itemprop="name">
+	<a href="https://sankame.github.io/blog/2018-08-05-android_cursor_error/" class="permalink">【Androidアプリ開発】CursorWindowAllocationException エラー</a>
+    </h1>
+	<time datetime="2018-08-05 00:00:00 &#43;0000 UTC" itemprop="datePublished">2018-08-05</time>
+    <div class="article-meta">
+
+        
+    </div>
+</header>
+
+
+            <div class="article-entry" itemprop="articleBody">
+                <p>
+                    CursorWindowAllocationException が発生した時の対処方法です。
+0. 環境 [Windows] 7
+[Java] 1.8
+[Android] 5.1.1
+[Android API] 26
+1. 問題  開発中のAndroidアプリでSQLiteを使ってます。
+サブクエリを使って、今までより抽出データが多くなるSQLを書いたところ、画面遷移中に頻繁にクラッシュするようになりました。
+しかも、特定のテスト機(Galaxy S4(Android5.0.1))のみです。
+ (A)エラー内容
+Fatal Exception: android.database.CursorWindowAllocationException Cursor window allocation of 2048 kb failed. # Open Cursors=700 (# cursors opened by this proc=700)  (B)エラー箇所
+ 前述のサブクエリを適用した箇所とは全く別の箇所が毎回落ちるポイントでした。(下記2行目)
+Cursor cursorCountUsers = db.rawQuery(&quot;SELECT COUNT(user_id) FROM users&quot;, null); cursorCountUsers.moveToFirst(); int countUserId = cursorCountUsers.getInt(0); return countUserId;     2. 対策  Slackoverflowで同じ問題を見つけました。
+まず、毎回同じ箇所で落ちるので、上記(B)にcursorCountUsers.close();を入れたけど直りませんでした。 ...
+                </p>
+                <p class="article-more-link">
+                    <a href="https://sankame.github.io/blog/2018-08-05-android_cursor_error/">
+			    Read more
+			    
+                    </a>
+                </p>
+            </div>
+	    
+        </div>
+    </article>
+    
+    <article class="article article-type-post" itemscope="" itemprop="blogPost">
+
+	    <div class="article-inner">
+
+            
+            </a>
+
+            <header class="article-header">
+    
+    <h1 class="article-title" itemprop="name">
+	<a href="https://sankame.github.io/blog/2018-07-23-android_use_fileprovider/" class="permalink">【Androidアプリ開発】FileUriExposedException エラー</a>
+    </h1>
+	<time datetime="2018-07-23 00:00:00 &#43;0000 UTC" itemprop="datePublished">2018-07-23</time>
+    <div class="article-meta">
+
+        
+    </div>
+</header>
+
+
+            <div class="article-entry" itemprop="articleBody">
+                <p>
+                     Android7 で android.os.FileUriExposedException が発生した時の対処方法です。
+(文中の【】は読み替えて下さい)
+0. 環境 [Windows] 7
+[Java] 1.8
+[Android] 5.1.1
+[Android API] 26
+1. 問題  Androidアプリから一時ファイルを作成して、そのURIを外部のアプリに渡すという処理を実装してました。
+(ファイルを作成して、Gmailに添付するなど)
+Android7からfile://による指定ができなくなったため、下記のエラーが発生します。
+android.os.FileUriExposedException: file:///storage/emulated/0/Android/data/【アプリのパッケージ名】/temporary/【一時ファイル名】 exposed beyond app through ClipData.Item.getUri()  URIはFileProviderで作らないといけないそうです。
+  2. 対策 2-1. AndroidManifest.xml  まず、AndroidManifest.xmlにFileProviderの定義を追加します。
+android:resourceには、2-2で作成するファイル名を指定。
+   2-2. res/xml/provider_paths.xml  次に、res/xml/provider_paths.xml を作成します。
+後述の2-3でfileの保存先を Environment.getExternalStorageDirectory() の直下にしたので、それを表すexternal-pathを指定します。
+また、直下なのでpathはカレントディレクトリになります。
+   2-3. 該当処理を行っているActivity  最後に、URIの生成を下記(1)から(2)に変更しました。   3. 参考  FileProviderリファレンス   ...
+                </p>
+                <p class="article-more-link">
+                    <a href="https://sankame.github.io/blog/2018-07-23-android_use_fileprovider/">
+			    Read more
+			    
+                    </a>
+                </p>
+            </div>
+	    
+        </div>
+    </article>
+    
+    <article class="article article-type-post" itemscope="" itemprop="blogPost">
+
+	    <div class="article-inner">
+
+            
+            </a>
+
+            <header class="article-header">
+    
+    <h1 class="article-title" itemprop="name">
+	<a href="https://sankame.github.io/blog/2018-05-11-monit_for_apache_mysql/" class="permalink">MonitでApacheとMySQLを復旧</a>
+    </h1>
+	<time datetime="2018-05-11 00:00:00 &#43;0000 UTC" itemprop="datePublished">2018-05-11</time>
+    <div class="article-meta">
+
+        
+    </div>
+</header>
+
+
+            <div class="article-entry" itemprop="articleBody">
+                <p>
+                    MonitでApacheとMySQLを復旧させる最低限の設定です。
+(文中のドメイン名やメールアドレスは読み替えて下さい)
+0. 環境 [CentOS] 6.4 (64bit版カーネル) [Monit] 5.25.1 [Apache] 2.2.15 [MySQL] 5.1.73  1. セットアップ  インストール
+# yum install monit  自動起動を設定
+# chkconfig monit on   2. 設定 2-1. Apacheの監視設定  httpd.conf を開いて、
+# vim /etc/monit.d/httpd.conf  下記を記載。
+check process httpd with pidfile /var/run/httpd/httpd.pid start program = &quot;/etc/init.d/httpd start&quot; stop program = &quot;/etc/init.d/httpd stop&quot; if 5 restarts within 5 cycles then timeout if failed host example. ...
+                </p>
+                <p class="article-more-link">
+                    <a href="https://sankame.github.io/blog/2018-05-11-monit_for_apache_mysql/">
+			    Read more
+			    
+                    </a>
+                </p>
+            </div>
+	    
+        </div>
+    </article>
+    
+
+    <nav id="page-nav">
+
+    
+        <a class="extend prev" rel="prev" href="/page/2/">
+            « 
+        </a>
+    
+    
+        <a class="extend next" rel="next" href="/page/4/">
+             »
+        </a>
+    
+
+</nav>
+
+</section>
+
+
+    
+<aside id="sidebar">
+    
+
+<div class="widget-wrap">
+    <div class="widget">
+        <ul id="recent-post">
+		<li id="first-recent"><a href="/index.xml" id="firstmove" class="move"><h3 class="widget-title">
+			最近の投稿
+    </h3></a></li>
+    		
+            
+<li><a href="https://sankame.github.io/blog/2024-06-15_fail_to_make_sl_in_vm_2/" class="move">  VMでシンボリックリンクが作成できない(自動マウントOFFでmountコマンドを使用している場合)</a> </li>
+            
+<li><a href="https://sankame.github.io/blog/2024-06-11-git_push_errors/" class="move">  大量ファイルをgit pushする際のエラー回避3パターン</a> </li>
+            
+<li><a href="https://sankame.github.io/blog/2024-02-23-view_sqlite_on_androidstudio/" class="move">  AndroidStudioでSQLiteを扱う</a> </li>
+            
+        </ul>
+    </div>
+</div>
+
+
+
+    
+
+<div class="widget-wrap">
+    <div class="widget">
+        <ul class="category-list">
+    <h3 class="widget-title">Categories </h3>
+            
+                <a class="category-list-link" href="https://sankame.github.io/categories/tips">
+            <li class="category-list-item">
+                    tips
+                <span class="category-list-count">28</span>
+            </li>
+                </a>
+            
+                <a class="category-list-link" href="https://sankame.github.io/categories/%e3%82%a8%e3%83%a9%e3%83%bc%e8%a7%a3%e6%b1%ba">
+            <li class="category-list-item">
+                    エラー解決
+                <span class="category-list-count">33</span>
+            </li>
+                </a>
+            
+                <a class="category-list-link" href="https://sankame.github.io/categories/%e3%82%bb%e3%83%83%e3%83%88%e3%82%a2%e3%83%83%e3%83%97">
+            <li class="category-list-item">
+                    セットアップ
+                <span class="category-list-count">42</span>
+            </li>
+                </a>
+            
+                <a class="category-list-link" href="https://sankame.github.io/categories/%e3%83%81%e3%83%a5%e3%83%bc%e3%83%8b%e3%83%b3%e3%82%b0">
+            <li class="category-list-item">
+                    チューニング
+                <span class="category-list-count">3</span>
+            </li>
+                </a>
+            
+                <a class="category-list-link" href="https://sankame.github.io/categories/%e3%83%97%e3%83%ad%e3%82%b0%e3%83%a9%e3%83%9f%e3%83%b3%e3%82%b0">
+            <li class="category-list-item">
+                    プログラミング
+                <span class="category-list-count">7</span>
+            </li>
+                </a>
+            
+        </ul>
+    </div>
+</div>
+
+
+
+    
+
+<div class="widget-wrap">
+	<ul class="category-list">
+    <h3 class="widget-title">Tags  </h3>
+    <div class="widget tagcloud">
+    	
+        
+        <a href="https://sankame.github.io/tags/ab" style="font-size: 12px;">ab</a>
+        
+        <a href="https://sankame.github.io/tags/admob" style="font-size: 12px;">admob</a>
+        
+        <a href="https://sankame.github.io/tags/android" style="font-size: 12px;">android</a>
+        
+        <a href="https://sankame.github.io/tags/androidstudio" style="font-size: 12px;">androidstudio</a>
+        
+        <a href="https://sankame.github.io/tags/androidwear" style="font-size: 12px;">androidwear</a>
+        
+        <a href="https://sankame.github.io/tags/angular2" style="font-size: 12px;">angular2</a>
+        
+        <a href="https://sankame.github.io/tags/apache" style="font-size: 12px;">apache</a>
+        
+        <a href="https://sankame.github.io/tags/apachebench" style="font-size: 12px;">apachebench</a>
+        
+        <a href="https://sankame.github.io/tags/apex" style="font-size: 12px;">apex</a>
+        
+        <a href="https://sankame.github.io/tags/applewatch" style="font-size: 12px;">applewatch</a>
+        
+        <a href="https://sankame.github.io/tags/bash" style="font-size: 12px;">bash</a>
+        
+        <a href="https://sankame.github.io/tags/bitbucket" style="font-size: 12px;">bitbucket</a>
+        
+        <a href="https://sankame.github.io/tags/centos" style="font-size: 12px;">centos</a>
+        
+        <a href="https://sankame.github.io/tags/cocoapods" style="font-size: 12px;">cocoapods</a>
+        
+        <a href="https://sankame.github.io/tags/composer" style="font-size: 12px;">composer</a>
+        
+        <a href="https://sankame.github.io/tags/cron" style="font-size: 12px;">cron</a>
+        
+        <a href="https://sankame.github.io/tags/dell" style="font-size: 12px;">dell</a>
+        
+        <a href="https://sankame.github.io/tags/eclipse" style="font-size: 12px;">eclipse</a>
+        
+        <a href="https://sankame.github.io/tags/fitbit" style="font-size: 12px;">fitbit</a>
+        
+        <a href="https://sankame.github.io/tags/flutter" style="font-size: 12px;">flutter</a>
+        
+        <a href="https://sankame.github.io/tags/freemind" style="font-size: 12px;">freemind</a>
+        
+        <a href="https://sankame.github.io/tags/git" style="font-size: 12px;">git</a>
+        
+        <a href="https://sankame.github.io/tags/github" style="font-size: 12px;">github</a>
+        
+        <a href="https://sankame.github.io/tags/googlesheets" style="font-size: 12px;">googlesheets</a>
+        
+        <a href="https://sankame.github.io/tags/gradle" style="font-size: 12px;">gradle</a>
+        
+        <a href="https://sankame.github.io/tags/gulp" style="font-size: 12px;">gulp</a>
+        
+        <a href="https://sankame.github.io/tags/hive" style="font-size: 12px;">hive</a>
+        
+        <a href="https://sankame.github.io/tags/hugo" style="font-size: 12px;">hugo</a>
+        
+        <a href="https://sankame.github.io/tags/java" style="font-size: 12px;">java</a>
+        
+        <a href="https://sankame.github.io/tags/javascript" style="font-size: 12px;">javascript</a>
+        
+        <a href="https://sankame.github.io/tags/jekyll" style="font-size: 12px;">jekyll</a>
+        
+        <a href="https://sankame.github.io/tags/jenkins" style="font-size: 12px;">jenkins</a>
+        
+        <a href="https://sankame.github.io/tags/jqgrid" style="font-size: 12px;">jqgrid</a>
+        
+        <a href="https://sankame.github.io/tags/kitura" style="font-size: 12px;">kitura</a>
+        
+        <a href="https://sankame.github.io/tags/laravel" style="font-size: 12px;">laravel</a>
+        
+        <a href="https://sankame.github.io/tags/letsencrypt" style="font-size: 12px;">letsencrypt</a>
+        
+        <a href="https://sankame.github.io/tags/mecab" style="font-size: 12px;">mecab</a>
+        
+        <a href="https://sankame.github.io/tags/mindmapmemo" style="font-size: 12px;">mindmapmemo</a>
+        
+        <a href="https://sankame.github.io/tags/mockery" style="font-size: 12px;">mockery</a>
+        
+        <a href="https://sankame.github.io/tags/monit" style="font-size: 12px;">monit</a>
+        
+        <a href="https://sankame.github.io/tags/mysql" style="font-size: 12px;">mysql</a>
+        
+        <a href="https://sankame.github.io/tags/nextjs" style="font-size: 12px;">nextjs</a>
+        
+        <a href="https://sankame.github.io/tags/nexus7" style="font-size: 12px;">nexus7</a>
+        
+        <a href="https://sankame.github.io/tags/nginx" style="font-size: 12px;">nginx</a>
+        
+        <a href="https://sankame.github.io/tags/node.js" style="font-size: 12px;">node.js</a>
+        
+        <a href="https://sankame.github.io/tags/npm" style="font-size: 12px;">npm</a>
+        
+        <a href="https://sankame.github.io/tags/ntp" style="font-size: 12px;">ntp</a>
+        
+        <a href="https://sankame.github.io/tags/openx" style="font-size: 12px;">openx</a>
+        
+        <a href="https://sankame.github.io/tags/phalcon" style="font-size: 12px;">phalcon</a>
+        
+        <a href="https://sankame.github.io/tags/php" style="font-size: 12px;">php</a>
+        
+        <a href="https://sankame.github.io/tags/phpdebugbar" style="font-size: 12px;">phpdebugbar</a>
+        
+        <a href="https://sankame.github.io/tags/phpunit" style="font-size: 12px;">phpunit</a>
+        
+        <a href="https://sankame.github.io/tags/programming-practice" style="font-size: 12px;">programming-practice</a>
+        
+        <a href="https://sankame.github.io/tags/reactnative" style="font-size: 12px;">reactnative</a>
+        
+        <a href="https://sankame.github.io/tags/redis" style="font-size: 12px;">redis</a>
+        
+        <a href="https://sankame.github.io/tags/reviveadserver" style="font-size: 12px;">reviveadserver</a>
+        
+        <a href="https://sankame.github.io/tags/ruby" style="font-size: 12px;">ruby</a>
+        
+        <a href="https://sankame.github.io/tags/rubygems" style="font-size: 12px;">rubygems</a>
+        
+        <a href="https://sankame.github.io/tags/rundeck" style="font-size: 12px;">rundeck</a>
+        
+        <a href="https://sankame.github.io/tags/selenium" style="font-size: 12px;">selenium</a>
+        
+        <a href="https://sankame.github.io/tags/shell" style="font-size: 12px;">shell</a>
+        
+        <a href="https://sankame.github.io/tags/smarty" style="font-size: 12px;">smarty</a>
+        
+        <a href="https://sankame.github.io/tags/sqlite" style="font-size: 12px;">sqlite</a>
+        
+        <a href="https://sankame.github.io/tags/ssh" style="font-size: 12px;">ssh</a>
+        
+        <a href="https://sankame.github.io/tags/ssl-tls" style="font-size: 12px;">ssl-tls</a>
+        
+        <a href="https://sankame.github.io/tags/stetho" style="font-size: 12px;">stetho</a>
+        
+        <a href="https://sankame.github.io/tags/subversion" style="font-size: 12px;">subversion</a>
+        
+        <a href="https://sankame.github.io/tags/swift" style="font-size: 12px;">swift</a>
+        
+        <a href="https://sankame.github.io/tags/touchpad" style="font-size: 12px;">touchpad</a>
+        
+        <a href="https://sankame.github.io/tags/typescript" style="font-size: 12px;">typescript</a>
+        
+        <a href="https://sankame.github.io/tags/ubuntu" style="font-size: 12px;">ubuntu</a>
+        
+        <a href="https://sankame.github.io/tags/unittest" style="font-size: 12px;">unittest</a>
+        
+        <a href="https://sankame.github.io/tags/vagrant" style="font-size: 12px;">vagrant</a>
+        
+        <a href="https://sankame.github.io/tags/vbscript" style="font-size: 12px;">vbscript</a>
+        
+        <a href="https://sankame.github.io/tags/virtualbox" style="font-size: 12px;">virtualbox</a>
+        
+        <a href="https://sankame.github.io/tags/vscode" style="font-size: 12px;">vscode</a>
+        
+        <a href="https://sankame.github.io/tags/website-optimization" style="font-size: 12px;">website-optimization</a>
+        
+        <a href="https://sankame.github.io/tags/wget" style="font-size: 12px;">wget</a>
+        
+        <a href="https://sankame.github.io/tags/windows" style="font-size: 12px;">windows</a>
+        
+        <a href="https://sankame.github.io/tags/xcode" style="font-size: 12px;">xcode</a>
+        
+        <a href="https://sankame.github.io/tags/%e3%83%97%e3%83%ad%e3%82%b8%e3%82%a7%e3%82%af%e3%82%bf%e3%83%bc" style="font-size: 12px;">プロジェクター</a>
+        
+        <a href="https://sankame.github.io/tags/%e5%93%81%e8%b3%aa%e7%ae%a1%e7%90%86" style="font-size: 12px;">品質管理</a>
+        
+    </div>
+</ul>
+</div>
+
+
+
+    <br>
+    
+
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-7938855665302783"
+     data-ad-slot="7089480753"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+
+</aside>
+
+
+    </div>
+</div>
+
+<footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+
+	<footer id="footer-left">
+	    &copy; 2024 Webプログラマー <a href="/about" target="_blank">Sankame.</a> <br>
+	    Powered by <a href="//gohugo.io">Hugo</a>. Theme by <a href="https://github.com/syui/hugo-theme-wave">hugo-theme-wave</a>.
+	</footer>
+
+    </div>
+  </div>
+</footer>
+
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-37675354-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+</body>
+</html>

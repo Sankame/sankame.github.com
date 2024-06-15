@@ -1,0 +1,1947 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>プログラマー備忘録</title>
+    <link>https://sankame.github.io/</link>
+    <description>Recent content on プログラマー備忘録</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <lastBuildDate>Sat, 15 Jun 2024 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://sankame.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>VMでシンボリックリンクが作成できない(自動マウントOFFでmountコマンドを使用している場合)</title>
+      <link>https://sankame.github.io/blog/2024-06-15_fail_to_make_sl_in_vm_2/</link>
+      <pubDate>Sat, 15 Jun 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2024-06-15_fail_to_make_sl_in_vm_2/</guid>
+      <description>環境  [Host OS] Windows 11 Home [Oracle VM VirtualBox] 7.0.18 [Gust OS] Ubuntu 22.04.4 LTS  前提  Virtualboxの[設定]-[共有フォルダー]で共有フォルダーの設定はあるが「自動マウント」はOFF。 VM(Gust OS)側で起動時にマウントする設定になっている。(本来は/etc/fstabでやるべきですが上手くいかなかったので下記で代替)
+# cat ~/.bashrc|grep mount mount -t vboxsf share /share   内容  課題
+ NextJSのインストール時にシンボリックリンク作成でエラー。
+# npm install --save react react-dom next : (中略) : npm error code EPERM npm error syscall symlink npm error path ../@mapbox/node-pre-gyp/bin/node-pre-gyp npm error dest /apps/simple-flashcard-nextjs/node_modules/.bin/node-pre-gyp npm error errno -1 npm error Error: EPERM: operation not permitted, symlink &#39;.</description>
+    </item>
+    
+    <item>
+      <title>大量ファイルをgit pushする際のエラー回避3パターン</title>
+      <link>https://sankame.github.io/blog/2024-06-11-git_push_errors/</link>
+      <pubDate>Tue, 11 Jun 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2024-06-11-git_push_errors/</guid>
+      <description>環境  [OS] Ubuntu 22.04.4 LTS [Git] 2.34.1  エラー1回目(Bitbucket)  課題
+ Bitbucketにソースをpushしようとしたらエラーが起きました。
+# git push origin master : (中略) : Counting objects: 100% (1244/1244), done. Delta compression using up to 2 threads Compressing objects: 100% (1232/1232), done. client_loop: send disconnect: Broken pipeiB | 5.36 MiB/s send-pack: unexpected disconnect while reading sideband packet fatal: the remote end hung up unexpectedly   解決策
+ ページ末尾の*aを実行しつつ、バッファサイズを適当に増やしたら直りました。
+# git config --global http.</description>
+    </item>
+    
+    <item>
+      <title>AndroidStudioでSQLiteを扱う</title>
+      <link>https://sankame.github.io/blog/2024-02-23-view_sqlite_on_androidstudio/</link>
+      <pubDate>Fri, 23 Feb 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2024-02-23-view_sqlite_on_androidstudio/</guid>
+      <description> 0.環境  PC側
+[OS] Windows11 (64bit 版) [Android Studio] Giraffe 2022.3.1 Patch 1  スマホ側
+[OS] Android 13 [SQLite] 3.32.2   1. 手順  気付いたらAndroidStudioでAndroidアプリ内のSQLiteを操作できるようになってたので、UIについてメモしておきます。
+
+ (1) テスト端末名(Android実機) (2) App Inspectionをクリック (3) テスト端末名 (4) Database Inspectorを選択 (5) 新しいクエリをクリック (6) アプリ内で使用しているDBを選択 (7) SQL文を記載 (8) Runをクリック (9) SQLの結果が表示されます (10) またテーブル名をダブルクリックすると、 (11) タブが開きレコードを参照できます   </description>
+    </item>
+    
+    <item>
+      <title>AdMob広告にコンテンツが被ったという警告を回避</title>
+      <link>https://sankame.github.io/blog/2024-02-18-admob_alert_contents_over_ads/</link>
+      <pubDate>Sun, 18 Feb 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2024-02-18-admob_alert_contents_over_ads/</guid>
+      <description> 0. 環境 [OS] Android 13 (その他)
+1. 課題  AdMobからの警告
+AdMob管理画面の「ポリシーセンター」で下記の警告が上がりました。
+Google が配信する広告の前面に重なって表示されるコンテンツの扱い
+AdMobに登録済みのメアドにも、同内容のメールが届いていました。 (「広告配信が中断されないよう、早急にご対応をお願いいたします」という文面で修正までの猶予は確か2-3週間)
+  2. 対策  下記2点を対応後「ポリシーセンター」から承認依頼したところ、警告は数日で止まりました。
+
+ (1) 広告の上下に十分なスペースを確保。
+ (2) 広告を囲む要素の高さを予め固定しておく。
+ それによって、広告のロード後にAdViewの高さがビョンと伸びて、下にあるListViewなどが押し下げられるのを防ぎます。
+ 僕のアプリではAdViewを内包するLinearLayoutに「android:layout_height=&amp;ldquo;65dp&amp;rdquo;」を設定しました。(高さ65dpのバナー広告のみを対象としているため)
+    x. 参考リンク  具体的な修正方法が分からず手探りでしたが、下記の規約に抵触したと思われます。
+ コンテンツに重なった広告（ポリシー違反）   </description>
+    </item>
+    
+    <item>
+      <title>CentOS7にMySQL5.1.7インストール</title>
+      <link>https://sankame.github.io/blog/2023-03-20-how_to_install_mysql517_in_centos7/</link>
+      <pubDate>Mon, 20 Mar 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2023-03-20-how_to_install_mysql517_in_centos7/</guid>
+      <description> 0. 環境 [OS] CentOS7 (x86_64)
+1. 手順  元々入ってるMariaDBは競合を起こすので削除。
+# yum remove mariadb-libs # rm -rf /var/lib/mysql/  インストール(サーバー、クライアントの順)
+# yum localinstall http://dev.mysql.com/get/MySQL-server-community-5.1.73-1.rhel5.x86_64.rpm # yum localinstall http://dev.mysql.com/get/MySQL-client-community-5.1.73-1.rhel5.x86_64.rpm # mysqld --version mysqld Ver 5.1.73-community for unknown-linux-gnu on x86_64 (MySQL Community Server (GPL))  他のバージョンはここで調べて、http://dev.mysql.com/get/ の後につなげてダウンロードして下さい。
+  </description>
+    </item>
+    
+    <item>
+      <title>【Apex】アバストによる起動時エラー</title>
+      <link>https://sankame.github.io/blog/2023-01-15-apex_runs_error_by_avast/</link>
+      <pubDate>Sun, 15 Jan 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2023-01-15-apex_runs_error_by_avast/</guid>
+      <description> 0. 環境 [OS] Windows11
+1. 課題 ゲームApexが急に起動しなくなりました。  「起動時エラー」メッセージの下にファイルパスが記載され、確か、Invalid file pathとなってたと思います。
+ 調べてみると、指定されたその実行ファイルへのパスが存在してませんでした。(消された？)
+  ２. 対策 下記の情報を順に行うことで回復しました。  Avastがマルウェアと間違えてチェスト(検疫)に移動してしまったようです。これを元の場所に戻してください。
+ Apex Legendsが起動できない場合  それだけだとダメでした。
+ おそらく、起動ファイルがない状態で何度も起動しようとしたため、ファイルの整合性がおかしくなったようです。(たぶん)
+ 下記の「対処法①APEXを修復する」を実施して下さい。
+ Apex エンジンエラーの対処法  「ファイルを再取得します」という旨のメッセージが出たまま、何も動きがなかったので、下記ページの内容を確認したところ修復は完了してました。
+ ファイルの再取得はどうやって？  これで直りました。
+   </description>
+    </item>
+    
+    <item>
+      <title>【Next.js】ハイフンを含むクエリ文字列</title>
+      <link>https://sankame.github.io/blog/2023-01-04-get_hyphenated_querystring_in_nextjs/</link>
+      <pubDate>Wed, 04 Jan 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2023-01-04-get_hyphenated_querystring_in_nextjs/</guid>
+      <description> 0. 環境 [Next.js] 12.0.10
+1. 課題 既存システムのリプレースなどで、どうしてもハイフンを含むQueryStringをNext.jsで扱わなければならない場合。 (例) https://example.com/index?user-id=100
+ この書き方だと
+const { query: { user-id }, } = req;  エラーになります。
+Error: error: Expected &#39;,&#39;, got &#39;-&#39; | 22 | query: { user-id }, | ^ Caused by: 0: failed to process js file 1: Syntax Error   2. 対策  これで回避できました。
+const userId = req.query[&#39;user-id&#39;];   </description>
+    </item>
+    
+    <item>
+      <title>Android APIレベル31対応</title>
+      <link>https://sankame.github.io/blog/2022-10-09-android_api_level_31/</link>
+      <pubDate>Sun, 09 Oct 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2022-10-09-android_api_level_31/</guid>
+      <description>0. 環境 [Host OS] Windows 11 Home
+1. 手順  Playストアの規約変更があったので、AndroidアプリのSDKバージョンを31に上げました。
+ (アプリルート)/mobile/build.gradle
+ 抜粋 (diff)   android { - compileSdkVersion 30 + compileSdkVersion 31 defaultConfig { - targetSdkVersion 30 + targetSdkVersion 31 }    ２. ビルドエラー (2-1) ビルドと実機へのインストールでエラーが発生  エラー内容
+Installation did not succeed. The application could not be installed: INSTALL_PARSE_FAILED_MANIFEST_MALFORMED Installation failed due to: &#39;null&#39;   (2-2) マニフェスト修正  &amp;lt;intent-filter&amp;gt;を使っているActivityなどに「android:exported=&amp;ldquo;true&amp;rdquo;」が必要になったようです。 (デフォルト値が変わったため、今までと同じにするには、この指定が必要)
+ (アプリルート)/mobile/src/main/AndroidManifest.xml</description>
+    </item>
+    
+    <item>
+      <title>VMでシンボリックリンクが作成できない</title>
+      <link>https://sankame.github.io/blog/2022-08-20-fail_to_make_sl_in_vm/</link>
+      <pubDate>Sat, 20 Aug 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2022-08-20-fail_to_make_sl_in_vm/</guid>
+      <description>  Virtualboxの[設定]-[共有フォルダー]で「自動マウント」がOFFの場合は こちら(2024/06/15)  &amp;nbsp;
+0. 環境 [Host OS] Windows 11 Home
+[Oracle VM VirtualBox] 6.1.32
+[Gust OS] ubuntu 16.04
+1. 問題  VirtualBoxに入れたLinux上で、シンボリック・リンク(Symbolic link)の作成に失敗する。
+下記の例は、node.jsのライブラリをインストールするときに発生してますが、根本の問題は上記の通り。
+root@hoge:/dev/blockchain# npm i express --save npm ERR! code EPROTO npm ERR! syscall symlink npm ERR! path ../mime/cli.js npm ERR! dest /dev/blockchain/node_modules/.bin/mime npm ERR! errno -71 npm ERR! EPROTO: protocol error, symlink &#39;../mime/cli.js&#39; -&amp;gt; &#39;/dev/blockchain/node_modules/.bin/mime&#39;   2. 対応  ネットで調べたら、いろんな情報が出てきましたが、VMを管理者モードで起動するだけで解決しました。
+タスクバーにあるVMのアイコンを2回右クリックして、「管理者として実行」を選択。
+
+  </description>
+    </item>
+    
+    <item>
+      <title>Next.jsが遅い</title>
+      <link>https://sankame.github.io/blog/2022-05-21-nextjs_so_slow/</link>
+      <pubDate>Sat, 21 May 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2022-05-21-nextjs_so_slow/</guid>
+      <description> 0. 環境 [OS] ubuntu 16.04
+[Node.js] 17.1.0
+[Next.js] 12.1.6
+[Prisma] 3.13.0
+1. 問題  Next.jsを勉強するため、下記構成のサンプルアプリをいじってたのですが、とにかく画面ロード時間が遅くて使い物にならない。
+ 構成
+ [Next.js] -&amp;gt; [Prisma] -&amp;gt; [PlanetScale(サーバーレスDB)]  起動コマンド
+# npm run dev    2. 対応  最初、当てずっぽうで、PlanetScaleへの通信が遅いのかと考え、DBをローカルに持ってきましたが変わりませんでした。
+ その後、Prismaの処理をコメントアウトしても重かったので、Next.jsに照準を絞りました。
+原因の切り分けをしないと、ググることすらできないです。 (最初、「Prisma 遅い」とかで調べてました・・・)
+ 最終的にポーリングの間隔を長くしたら、画面の表示は軽くなりました。
+ 自分が知らない技術を勉強する際、最初の環境設定が面倒なので、ついつい、Githubなどから公開されてるソースを落としてきて動かすことが多いです。
+各パラメーターの意味を知らないまま始めるので、今回のようにハマることがあります。
+  </description>
+    </item>
+    
+    <item>
+      <title>WindowsUpdate後に再度VirtualBoxでVM起動エラー</title>
+      <link>https://sankame.github.io/blog/2022-03-26-virtualbox_does_not_start_after_windows_update/</link>
+      <pubDate>Sat, 26 Mar 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2022-03-26-virtualbox_does_not_start_after_windows_update/</guid>
+      <description>0. 環境 [OS] Windows11 Home
+[VirtualBox] 6.1.22 -&amp;gt; 6.1.32
+1. 問題  VirtualBoxから仮想マシンが起動できなくなりました。
+
+ エラーメッセージ
+仮想マシン&amp;quot;ubuntu_64&amp;quot;のセッションを開けませんでした。 Failed to get device handle and/or partition ID for 0000000001b5bc40 (hPartitionDevice=0000000000000b95, Last=0xc0000002/1) (VERR_NEM_VM_CREATE_FAILED). 終了コード : E_FAIL (0x80004005) コンポーネント: ConsoleWrap インターフェース: IConsole {872da645-4a9b-1727-bee2-5585105b9eed}   2. 原因  たぶん、Windows11のUpdateが原因。
+ 因果関係は確かではないですが、下記WindowsUpdateの前後があやしい。
+Cumulative Update for Windows 11, version 22H2 Insider Preview (10.0.22581.100) (KB5013283) Microsoft Defender Antivirus のセキュリティ インテリジェンス更新プログラム - KB2267602 (バージョン 1.361.759.0)   3.</description>
+    </item>
+    
+    <item>
+      <title>Error: Unable to &#39;pub upgrade&#39; flutter tool.</title>
+      <link>https://sankame.github.io/blog/2021-11-20-flutter_pub_upgrade_error/</link>
+      <pubDate>Sat, 20 Nov 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2021-11-20-flutter_pub_upgrade_error/</guid>
+      <description>0. 環境 [OS] MacOS 10.11.6
+[Flutter] 2.2.3
+1. 問題  flutterアプリの修正中に、&amp;rdquo;flutter upgrade&amp;rdquo;を実行したら、いつものコマンドでアプリが起動しなくなってしまいました。
+ (いつものコマンド)
+flutter run -d chrome --web-port=5000
+ (エラー内容)
+Error: Unable to &#39;pub upgrade&#39; flutter tool. Retrying in five seconds
+ コンソールいっぱいにエラーメッセージが出ましたが、代表させて上記のみ記載。   ググると同じエラーに関する情報がありました。
+ ここに書いてある方法では直らなかったので、flutterを以前のバージョンに戻すことにしました。   2. 対応  flutterを配置している場所を確認。
+$ which flutter [path_to_flutter]/flutter/bin/flutter  [path_to_flutter] にあるflutterディレクトリをバックアップとしてリネーム。
+ [path_to_flutter] に古いバージョンのflutterをダウンロード。
+ 前のバージョンのflutter(僕は2.2.3を取得しました)
+ OSごとにタブが分かれているので注意。
+  ダウンロードしたファイルを解凍し、下記のように元のディレクトリ名と同じになっているか確認。(こうすればPATHの変更も不要)
+[path_to_flutter]/flutter/
+ 任意の場所で下記コマンドを実行。
+$ flutter precache $ flutter doctor  最後にアプリのルートで下記を実行。</description>
+    </item>
+    
+    <item>
+      <title>MySQLでSlowQueryLogを有効にする</title>
+      <link>https://sankame.github.io/blog/2021-09-11-mysql_setting_slow_query/</link>
+      <pubDate>Sat, 11 Sep 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2021-09-11-mysql_setting_slow_query/</guid>
+      <description>0. 環境 [OS] CentOS 6.10
+[MySQL] 5.1
+1. 前提  MySQLシステム変数は、SESSIONとGLOBALがあるので注意。
+ 有効範囲はそれぞれ「SESSIONは接続ごと」「GLOBALはMySQL起動中」というふうに異なります。
+ GLOBALスコープで設定した値は、MySQL再起動で消失します。(これを防ぎたい場合、mysql.cnfに直接記載)
+ MySQL8からは、SET PERSIST .. とすることで消失を防げる。    2. 接続  MySQLに接続。mysql -u root -p  3. コマンド (SESSIONスコープ)  下記は、SHOW SESSION VARIABLES ..と書いたのと同義。
+ 現在の値
+-- SlowQueryを出力するか？ SHOW VARIABLES LIKE &#39;slow_query_log&#39;; -- 何秒を超えたらSlowQueryとして出力するか？ SHOW VARIABLES LIKE &#39;long_query_time&#39;; -- SlowQuery出力先のファイル名 SHOW VARIABLES LIKE &#39;slow_query_log_file&#39;;  更新
+SET long_query_time = 3;  (注)slow_query_logとslow_query_log_fileはGLOBALスコープでのみ変更可能。
+  4.</description>
+    </item>
+    
+    <item>
+      <title>Android App Bundleに対応</title>
+      <link>https://sankame.github.io/blog/2021-08-10-android_app_bundle/</link>
+      <pubDate>Tue, 10 Aug 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2021-08-10-android_app_bundle/</guid>
+      <description> 0. 環境 [OS] Windows 11 Home
+[Android Studio] 3.6.3
+1. ビルド  期日が迫ってたので、App Bundle対応を行いました。いくつか「あれ？」と思ったので記載しておきます。
+ いつものように、Android Studioでメニューから[Build]-[Generate Signed Bundle / APK&amp;hellip;]を選択。
+ ビルド用のダイアログで「Android App Bundle」を選択し、[Next]ボタンをクリックすると下記が開きます。
+
+ [Export encryped&amp;hellip;]にチェックを入れ、直下に表示された秘密鍵の保存場所を覚えておきます。(*a)
+ [Next]ボタンを押して先に進むと、aabという拡張子のファイルが生成されます。(*b)
+   2. アプリ公開  いつものようにブラウザでPlay Consoleを開いて、対象のアプリを選択。
+ 左メニュー[製品版]-[新しいリリースを作成]をクリックし、[App Bundle]を選択すると下記画面に来ます。
+
+ 前述(*a)の登録がまだなので、[オプトイン]リンクをクリック。  
+ ここで前述の(*a)をアップロード。  
+ そのままこの画面に戻ってきて上記(*b)をアップロードするとエラーが出ました。
+app bundle 予期しないエラーが発生しました。もう一度お試しください（40B24C00）。  エラーコードをググっても出てこなかったので、作成中のリリースを一度破棄し、ブラウザを再起動してやり直したらうまくいきました。 (秘密鍵のアップロードはやり直さなくてOKでした)
+  あとはいつものように必要項目を入力し、フッター部分のボタンを押していくと公開設定が完了します。しばらく「審査中」の後、無事公開されました。
+[保存]　→　[リリースのレビュー] → [製品版としての公開を開始] → 確認ダイアログで[公開]クリック   </description>
+    </item>
+    
+    <item>
+      <title>WindowsUpdate後のVirtualBox起動エラー</title>
+      <link>https://sankame.github.io/blog/2021-08-06-windows_update_causes_vm_error/</link>
+      <pubDate>Fri, 06 Aug 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2021-08-06-windows_update_causes_vm_error/</guid>
+      <description> 0. 環境 [OS] Windows 11 Home
+[VirtualBox] 6.1.22
+1. 問題  1週間くらい前にWindowsUpdateしたら、下記エラーでVMが起動しなくなりました。
+仮想マシン&amp;quot;ubuntu_64&amp;quot;のセッションを開けませんでした。 Failed to get device handle and/or partition ID for 00000000027d6520 (hPartitionDevice=0000000000000bd1, Last=0xc0000002/1) (VERR_NEM_VM_CREATE_FAILED). 終了コード : E_FAIL (0x80004005) コンポーネント: ConsoleWrap インターフェース: IConsole {872da645-4a9b-1727-bee2-5585105b9eed}  WindowsUpdate後にUIが変わってたのでたぶん「Windows 11 Insider Preview」のせいだと思います。
+ Windowsタスクバーの虫眼鏡マークをクリックし「設定」と入力。 設定画面が開くので左メニューから「Windows Update」をクリックすると履歴が参照可能。   2. 対応  Windowsタスクバーの虫眼鏡マークをクリックし「コントロールパネル」と入力。
+ 「コントロールパネル」内の「プログラムと機能」をクリック。
+ 「プログラムと機能」内の左のメニュー「Windowsの機能の有効化または無効化」をクリック。
+ 下記が開くので、「Windows ハイパーバイザー プラットフォーム」にチェックし、Windowsを再起動したら直りました。(WindowsUpdateでデフォルトのOffに戻ってしまったようです…)
+
+  </description>
+    </item>
+    
+    <item>
+      <title>【Flutter】ローカルDBの選択-Hive-</title>
+      <link>https://sankame.github.io/blog/2021-07-25-flutter_local_db/</link>
+      <pubDate>Sun, 25 Jul 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2021-07-25-flutter_local_db/</guid>
+      <description> 0. 環境 [OS] MacOS 10.11.6
+[Flutter] 2.2.3
+[Dart] 2.13.4
+1. 背景 React NativeでiOSアプリを作成してたんですが、環境周りの不具合に時間を取られ、肝心の実装がほとんどできない状態が続いてました。 そこで、試しにFlutterをやってみたら、シュミレーターで動かすところまでは比較的楽にできたので乗り換えることにしました。
+JSを使えるエンジニアが多いという理由で、React Nativeが支持されるかな？と予想してたのですが、 最近、TwitterなどでReact離れを 見かけることが増えてきて、そろそろ潮時かなと思ってきました。
+2. 検討  作成したいアプリがローカルDBを使用しているので、何が良いのかいろいろ見てみました。
+ こちらのページがよくまとまってます。  まず、僕の環境で、sqflite、Realm、Moor、ObjectBoxはサンプルアプリすら動かなかったので諦めました。
+ 作ろうとしてるアプリのAndroid版がSQLite3を使ってるので、sqfliteやそれをラッピングしてるというMoorがいいかなと思ったのですが、下記のエラーが解決できず諦めました。同様のエラーで開発者に対する質問が結構挙がってましたが、いまいち決定的な解決方法はなさそうでした。
+Error: MissingPluginException(No implementation found for method getDatabasesPath on channel com.tekartik.sqflite)
+  3. Hiveサンプルアプリ  上記ページで紹介されてるHiveがさくっと動きました。
+ サンプルページの「Code」ボタンからファイルアイコンをクリックしてURLをコピー。(画像参照)
+
+ 適当なディレクトリにソースをダウンロードしてアプリを起動します。
+$ git clone https://github.com/hivedb/samples.git $ cd samples/todo/ $ flutter create . $ flutter run  To-Doアプリが起動しました。
+  
+  </description>
+    </item>
+    
+    <item>
+      <title>【ReactNative】expo-sqliteのテーブルを開発ツールから参照する方法</title>
+      <link>https://sankame.github.io/blog/2020-07-23-expo_sqlite_db_browsing/</link>
+      <pubDate>Thu, 23 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2020-07-23-expo_sqlite_db_browsing/</guid>
+      <description> 0. 環境 [OS] MacOS 10.11.6
+[React Native] 0.61.4
+[SQLite Studio] 3.2.1
+1. 背景 React NativeでiOSアプリを作成中です。 ローカルストレージとしてExpoのSQLiteを使っていますが、開発ツールからテーブル参照する方法が分からず調べてました。 アプリから登録されたレコードの確認など、なにかとこの手のツールは必要です。 Androidアプリ開発のStethoみたいなのがないかなーと思ってましたが、結局こんな感じにしました。
+2. 手順(DBファイルの格納先)  expo-sqliteが作成するDBファイルの保存先は${FileSystem.documentDirectory}/SQLite/${name}」なので、まず${FileSystem.documentDirectory}がどこなのか調べます。
+ (詳細はこちらのページの&amp;rdquo;SQLite.openDatabase&amp;rdquo;参照)  アプリ実行時に必ず通る箇所にログを仕込みます。(importとconsoleの行だけあればどこでもOK)
+import * as FileSystem from &#39;expo-file-system&#39; class DB { static db; static getDB(){ console.log(&amp;quot;FileSystem; &amp;quot; + FileSystem.documentDirectory); :  コンソールに出力されたパスからfile://を削ったものが${FileSystem.documentDirectory}です。
+ さらに上記${name}は、SQLite.openDatabase();の引数で指定しているDB名になります。
+  3. 手順(SQLiteStudio)  MacにSQLiteStudioをインストール。
+ SQLiteStudioのメニューで[Database]-[Add a database]を選び、上記2で調べたパスを[File]に入力して[OK]をクリック。
+  
+ 左ペインにテーブルが表示されれば成功です。  </description>
+    </item>
+    
+    <item>
+      <title>Androidビルド時のクラス重複エラー</title>
+      <link>https://sankame.github.io/blog/2020-06-13-android_class_duplicated/</link>
+      <pubDate>Sat, 13 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2020-06-13-android_class_duplicated/</guid>
+      <description>0. 環境 [Gradle] 5.6.4
+1. 問題 こちらの情報を元にFabricからFirebaseへの移行を行いました。
+Android プロジェクトに Firebase を追加する
+Upgrade to the Firebase Crashlytics SDK
+コード修正後、エラーが発生してビルドできず・・・
+Duplicate class com.google.android.gms.measurement.AppMeasurement found in modules jetified-firebase-analytics-impl-12.0.1-runtime.jar (com.google.firebase:firebase-analytics-impl:12.0.1) and jetified-play-services-measurement-impl-17.4.3-runtime.jar (com.google.android.gms:play-services-measurement-impl:17.4.3) Duplicate class com.google.android.gms.measurement.AppMeasurement$ConditionalUserProperty found in modules jetified-firebase-analytics-impl-12.0.1-runtime.jar (com.google.firebase:firebase-analytics-impl:12.0.1) and jetified-play-services-measurement-impl-17.4.3-runtime.jar (com.google.android.gms:play-services-measurement-impl:17.4.3) Duplicate class com.google.android.gms.measurement.AppMeasurement$Event found in modules jetified-firebase-analytics-impl-12.0.1-runtime.jar (com.google.firebase:firebase-analytics-impl:12.0.1) and jetified-play-services-measurement-impl-17.4.3-runtime.jar (com.google.android.gms:play-services-measurement-impl:17.4.3) Duplicate class com.google.android.gms.measurement.AppMeasurement$EventInterceptor found in modules jetified-firebase-analytics-impl-12.0.1-runtime.jar (com.google.firebase:firebase-analytics-impl:12.0.1) and jetified-play-services-measurement-impl-17.4.3-runtime.jar (com.google.android.gms:play-services-measurement-impl:17.4.3) Duplicate class com.google.android.gms.measurement.AppMeasurement$OnEventListener found in modules jetified-firebase-analytics-impl-12.0.1-runtime.jar (com.</description>
+    </item>
+    
+    <item>
+      <title>About</title>
+      <link>https://sankame.github.io/about/</link>
+      <pubDate>Thu, 21 May 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/about/</guid>
+      <description> Sankame  1976年生まれ 千葉県在住 ITエンジニア、プログラマー  職歴  (2001-2011) 受託系システム会社に所属 (2011-2020) Webメディア会社に所属 (2020-) Webサービス提供会社に所属  好きな言語  Java php  連絡先  m2ad0504@outlook.jp  </description>
+    </item>
+    
+    <item>
+      <title>品質管理とUnitTest(Laravel&#43;PHPUnit&#43;Mockeryによるサンプルコード付き)</title>
+      <link>https://sankame.github.io/blog/2020-05-05-laravel_phpunit_mockery/</link>
+      <pubDate>Tue, 05 May 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2020-05-05-laravel_phpunit_mockery/</guid>
+      <description>環境 [OS] Debian 10
+[PHP] 7.3.13
+[Laravel] 7.6.2
+[PHPUnit] 8.5.3
+[Mockery] 1.3.1
+はじめに ソフトウェアやアプリケーション開発にとって品質管理は切っても切り離せない存在です。 日本の従来の品質管理は散布図やPB曲線などを用いて定量化を重視してきました。
+しかし、それらは品質を数値化し分析することに寄りすぎていると感じるのは僕だけでしょうか？ 品質管理の本来の目的は「品質を上げること」にあるはずです。
+一言で品質と言っても様々ですが、「品質 = 要求仕様に則った実装」と定義すると、品質向上のための必要十分な施策はUnitTestによるホワイトボックステストが一番の近道だと考えています。 実際、ネットの情報を見ても、Googleなどのテック企業はUnitTestを中心に据えているように見えます。 その上で、報告などの目的でどうしても品質を定量化したいのであれば、UnitTestのカバレッジ計測ツールを使ったら良いのではないでしょうか。
+1. 方針 下記の方針でユニットテストを書いていきますが、自分のプロジェクトと合わない部分は変えて下さい。
+ 1-1. 後々CIで動かすことも考慮し、DB接続はモックで代替する。 1-2. フレームワークを含めず実装した箇所だけのテストコードを書く。 1-3. プロダクションコードの全ロジックを通すテストコードを書く。(「3. テスト記載方法」で後述) 1-4. 上記1-2の範囲でツールを用いてカバレッジを計測し、なるべく100%に近づける。(一般的にツールは評価が甘めのため) 1-5. テストコードの構成はフレームワークやデファクトスタンダードに合わせる。  2. 設定 2-1. PHPUnit  LaravelにはPHPUnitが最初から入ってるので、アプリのルートで下記コマンドを実行するとサンプルのテストコードが実行されます。
+composer exec -v phpunit  アプリルートにあるtestsディレクトリにテストコードを格納していきます。同ディレクトリ内はさらにFeatureとUnitに分かれてます。
+tests |-- CreatesApplication.php |-- Feature | `-- ExampleTest.php |-- TestCase.php `-- Unit `-- ExampleTest.php   Laravelの方針に合わせて、下記の区分けでテストを書いていきます。
+ Feature</description>
+    </item>
+    
+    <item>
+      <title>VirtualBoxでWindows10とUbuntu間のファイル共有</title>
+      <link>https://sankame.github.io/blog/2020-04-30-virtualbox_share_folder/</link>
+      <pubDate>Thu, 30 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2020-04-30-virtualbox_share_folder/</guid>
+      <description>0. 環境 [VirtualBox] 6.1.6
+[ホストOS] Windows 10 Home
+[ゲストOS] Ubuntu 16.4
+1. やりたいこと Windows10(ホストOS)にVirtualBoxを入れて、その上でUbuntu(ゲストOS)を動かします。
+その際、ホストOS上のファイルをゲストOSからも操作したい。
+IDEやエディタはホストOS上で起動し、バージョン管理やWebサーバー経由の確認などはゲストOSで行いたいというのが意図です。
+2. インストール VirtualBoxとUbuntuのインストール&amp;amp;設定はこの記事が分かりやすかったです。
+VirtualBoxのサイトで下記リンクからダウンロード。
+[VirtualBox 6.1.6 platform packages]-[Windows hosts]
+また、Ubuntuはこちらのサイトから「64-bit PC (AMD64) desktop image」をダウンロードしました。
+1.6Gあるので僕の環境だと数時間かかりました。
+3. 共有フォルダ設定 Ubuntuのインストールが終わったら、VirtualBoxのホーム画面からインストールした仮想マシンを選択して「設定」をクリック。
+下記のウィンドウが起動するので、左メニューの「共有フォルダー」をクリックします。
+さらに右端にあるプラスマークをクリック。 
+下記ウィンドウに必要項目を入力します。
+・「フォルダーのパス」は「その他」を選んで、ホストOS側で共有したいフォルダーを選択。 ・「フォルダー名」は自動で入るのでさわらず。(1) ・「自動マウント」をチェックONにします。 ・「マウントポイント」はゲストOSの任意のディレクトリを指定。(2) ・「永続化する」というチェックボックスがある場合、それもON。  
+こんな感じに追加されました。 
+ゲストOSを再起動します。
+これだけだとゲストOSからホストOSの共有フォルダが見えませんでした。
+調べてるといろんなページで「Ubuntuに&amp;rdquo;Gust Additions&amp;rdquo;をインストールする必要がある」と書いてましたが、入れなくても後述の手順でできました。 (以前はそうだったのかもしれません)
+&amp;ldquo;mount.vboxsf&amp;rdquo;コマンドを使いたいので、ゲストOS上でrootになるかsudoをつけて下記コマンドを実行。
+# apt install virtualbox-guest-utils  次にゲストOS側で予めマウントポイントのディレクトリを作成しておきます。(上記(2))
+最後に、第一引数に前述の(1)、第二引数に(2)を指定してこのコマンドを実行するとホスト側のフォルダが参照できました。(下記のshareは読み替えて下さい)
+# mount.vboxsf share /share  仮想マシンを落とすと設定が消えてしまったので、~/.bashrcに上記コマンドを書いておきました。</description>
+    </item>
+    
+    <item>
+      <title>MySQLでquery_cache系パラメータを設定すると起動エラー</title>
+      <link>https://sankame.github.io/blog/2020-04-01-mysql8_not_support_querycache/</link>
+      <pubDate>Wed, 01 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2020-04-01-mysql8_not_support_querycache/</guid>
+      <description>0. 環境 [MySQL] 8.0.17
+1. 経緯  GCP無料枠のメモリ約500MBという貧弱な環境でWordPressを運用してます。
+少しでもパフォーマンス改善したく、MySQLのクエリキャッシュを設定しました。(下記要点のみ記載)
+# vim /etc/my.cnf.d/mysql-server.cnf : : [mysqld] query_cache_type=1 query_cache_limit=1M query_cache_size=20M  MySQLを再起動。
+# mysql -u hoge -phoge -e&amp;quot;SET GLOBAL innodb_fast_shutdown = 1&amp;quot; # service mysqld stop # service mysqld start  起動しなくなりました…
+ログを見ると下記エラーが出てました。(要点のみ記載)
+# tail -F /var/log/mysql/mysqld.log : : [Server] unknown variable &#39;query_cache_type=1&#39;.   2. 対応  ネットで情報を漁ったところ、MySQL8からはクエリキャッシュが使えなくなったようです。
+MySQL 8.0: Retiring Support for the Query Cache
+代わりにProxySQLというのが紹介されてましたが、ミドルウェアを追加するとメンテするポイントも増えるので今回は見送りました。
+一旦は、WordPressのプラグイン(WP Super Cache)とphp-fpmのチューニングで、DBより手前で何とかする方向で進めます。</description>
+    </item>
+    
+    <item>
+      <title>MySQLのdatetimeとtimestampの値比較</title>
+      <link>https://sankame.github.io/blog/2020-03-20-mysql_compare_datetime_timestamp/</link>
+      <pubDate>Fri, 20 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2020-03-20-mysql_compare_datetime_timestamp/</guid>
+      <description> MySQLで日付系のカラムを比較するときにちょっと手間取ったのでメモ。
+0. 環境 [MySQL] 5.7.14
+1. 前提  2つのテーブルに型が異なるカラムがあったとします。()内は小数秒の桁数の精度を表してます。
+ テーブルAの定義抜粋
+CreateDate datetime(3) # 小数秒あり  テーブルBの定義抜粋
+created_at timestamp # 小数秒なし    2. 手順  この2カラムが一致していることをWHERE句で指定するには、日付フォーマットを揃えるとうまくいきました。
+ SQL文の抜粋
+AND IFNULL(DATE_FORMAT(a.CreateDate, &#39;%Y%m%d%H%i%S&#39;), &#39;&#39;) = IFNULL(DATE_FORMAT(b.created_at, &#39;%Y%m%d%H%i%S&#39;), &#39;&#39;)  今回は秒まで比較できれば十分でしたが、もし小数秒以下も含める場合は、下記を参照してフォーマットを追加して下さい。
+ MySQLにおける日付変換    3. 日付型の違い  そもそもdatetimeとtimestampの使い分けは？というのはこの記事によくまとまっていました。
+ MySQL: DATETIME vs TIMESTAMP
+ ざっくり言うと、こんな感じですね。
+ [datetime] 格納できる値の範囲が広いが、その分容量が必要。 [timestamp] インデックス、UTC変換、タイムゾーン対応など、機能性を求めるならこっち。    4. 参考  日付と時間型の概要  </description>
+    </item>
+    
+    <item>
+      <title>Let&#39;s Encryptのバグに伴う証明書更新</title>
+      <link>https://sankame.github.io/blog/2020-03-06-lets_encrypt_bug_avoid/</link>
+      <pubDate>Fri, 06 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2020-03-06-lets_encrypt_bug_avoid/</guid>
+      <description>「バグ対応のため、Let&amp;rsquo;s Encryptの一部証明書が3/4までになる」と同僚が教えてくれました。
+&amp;ldquo;「バグの影響で特定のサーバー証明書を失効させる」とLet’s Encryptが発表、影響を受けるのは全体の2.6%&amp;rdquo;
+0. 環境 [OS] CentOS 7.5
+1. 確認 まず、Let’s Encryptから提供されている下記ツールに対象ホスト名(ドメイン)を入れて影響有無を確認します。
+Check whether a host&amp;rsquo;s certificate needs replacement
+2. 手順  影響ありの場合、対応方法は証明書を更新すればよいとのことなので、こちらを実行しました。
+certbot renew
+ よくログを見ると処理がスキップされ、更新されてない様子。
+The following certs are not due for renewal yet: /path/to/pemfile expires on 2020-05-07 (skipped) /path/to/pemfile expires on 2020-05-14 (skipped) No renewals were attempted.  サーバー負荷を下げるため、有効期限まで余裕があると更新されない仕様になってるようです。
+ なので強制的に更新するコマンドを実行しました。
+certbot renew --force-renewal
+ 今回は下記のメッセージが出てたので大丈夫そう。
+Congratulations, all renewals succeeded. The following certs have been renewed:  前述のツールでOKが出るのと、ブラウザ上で証明書の期限が延びていることを確認しました。</description>
+    </item>
+    
+    <item>
+      <title>VSCodeでShift_JISファイルを開く</title>
+      <link>https://sankame.github.io/blog/2019-11-03-vscode_shift_jis/</link>
+      <pubDate>Sun, 03 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2019-11-03-vscode_shift_jis/</guid>
+      <description> 昔秀丸エディタなどで保存したShift_JISのファイルをVisual Studio Codeで開くと文字化けしたので設定方法をメモ。
+0. 環境 [Visual Studio Code] 1.39.2
+1. 手順  設定画面を開きます。
+ Windowsの場合、[Ctrl] + [,]
+ Macの場合、[⌘ command] + [,]
+  検索ボックスにfiles.autoGuessEncodingを入力。
+ 表示された&amp;rdquo;Auto Guess Encoding&amp;rdquo;のチェックボックスをONにする。
+  </description>
+    </item>
+    
+    <item>
+      <title>CentOS8にバージョン指定でphpインストール</title>
+      <link>https://sankame.github.io/blog/2019-10-19-install_php_in_centos8/</link>
+      <pubDate>Sat, 19 Oct 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2019-10-19-install_php_in_centos8/</guid>
+      <description> CentOS8にphpを入れるときのコマンドが分からなかったので要点だけメモ。
+0. 環境 [OS] CentOS8 (64bit)
+[PHP] 7.4
+1. 手順  デフォルトのパッケージにはphp7.2までしか含まれていないので、remiリポジトリを足しました。
+# dnf -y install https://rpms.remirepo.net/enterprise/remi-release-8.rpm  下記コマンドでインストール可能なphpバージョンを調べます。
+# dnf module list php  &amp;ldquo;Stream&amp;rdquo;という欄に表示された名前を指定してインストールします。
+ 下記は7.4を指定してますが、2019/10/19時点の安定版は7.3なので、本番環境の場合は注意して下さい。
+# dnf module install php:remi-7.4   パッケージの操作方法については、下記に詳細がまとまっています。
+  2. 参考記事  How to install php on RHEL 8 / CentOS 8 Linux  </description>
+    </item>
+    
+    <item>
+      <title>VirtualBox起動エラー(rc=-22838)</title>
+      <link>https://sankame.github.io/blog/2019-10-05-virtualbox_does_not_start/</link>
+      <pubDate>Sat, 05 Oct 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2019-10-05-virtualbox_does_not_start/</guid>
+      <description>4ヶ月くらい起動していなかったVirtualBoxで久々に開発をしようと思ったらエラーが発生しました。 ネット上の情報はあまりなく、下記のいずれかでした。Bはいつの時点に戻すか分からなかったので、Aでやることにしました。
+(A)VirtualBoxを再インストール。
+(B)Windowsの復元機能を使って、Windowsアップデート前の状態にする。
+0. 環境 [OS] Windows7 (32bit)
+[VirtualBox] 4.3.26 -&amp;gt; 5.2.32
+[Vagrant] 1.7.2 -&amp;gt; 2.2.5
+1. 問題  VagrantからVirtualBoxを起動する構成です。(詳細はこちら)
+ いつものようにvagrant upやvagrant resumeでVirtualBoxを起動しようとしたところ、このエラーが出ました。
+
+ エラーメッセージ
+supHardenedWinVerifyProcess failed with VERR_ASN1_CURSOR_TAG_MISMATCH: (rc=-22838)    2. 対応  内部エラーで複雑そうなので、一度VirtualBoxをアンインストールし、新しいバージョンをインストールしました。
+ 32bit OSに対応してて、新し目のバージョン5.2.32を選択しました。(5.2.32のWindows hostsをクリック)
+ 64bit OSを使ってる方は、もっと新しいバージョンの方がいいと思います。
+  VirtualBoxを再インストール後、vagrant upを実行すると下記エラーメッセージが表示されました。
+ エラーメッセージ
+The provider &#39;virtualbox&#39; that was requested to back the machine &#39;default&#39; is reporting that it isn&#39;t usable on this system.</description>
+    </item>
+    
+    <item>
+      <title>【JavaScript】半角カナと全角カナの相互変換クラス(コピペ用)</title>
+      <link>https://sankame.github.io/blog/2019-09-23-js_change_kana/</link>
+      <pubDate>Mon, 23 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2019-09-23-js_change_kana/</guid>
+      <description> JavaScriptで半角・全角カナの相互変換を行う疑似クラスです。シンプルなロジックなのでカスタマイズも簡単にできます。 下記ブラウザで確認していますが、何かあればこちらから連絡いただけると嬉しいです。
+0. 環境 [OS] Windows7
+[Browser] Chrome, Firefox(69.0), IE11
+1. サンプル  使い方は下記サンプル内の&amp;rdquo;Test&amp;rdquo;を見て下さい。記載した2つのメソッドに文字列を渡すだけです。   2. 参考にした記事  JavaScriptで正規表現（文字列置換え編）
+ Objectのkeyとvalueを反転させる。もしくはJSでenum的なものを作る。
+  </description>
+    </item>
+    
+    <item>
+      <title>【Androidアプリ開発】CursorWindowAllocationException エラー</title>
+      <link>https://sankame.github.io/blog/2018-08-05-android_cursor_error/</link>
+      <pubDate>Sun, 05 Aug 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2018-08-05-android_cursor_error/</guid>
+      <description>CursorWindowAllocationException が発生した時の対処方法です。
+0. 環境 [Windows] 7
+[Java] 1.8
+[Android] 5.1.1
+[Android API] 26
+1. 問題  開発中のAndroidアプリでSQLiteを使ってます。
+サブクエリを使って、今までより抽出データが多くなるSQLを書いたところ、画面遷移中に頻繁にクラッシュするようになりました。
+しかも、特定のテスト機(Galaxy S4(Android5.0.1))のみです。
+ (A)エラー内容
+Fatal Exception: android.database.CursorWindowAllocationException Cursor window allocation of 2048 kb failed. # Open Cursors=700 (# cursors opened by this proc=700)  (B)エラー箇所
+ 前述のサブクエリを適用した箇所とは全く別の箇所が毎回落ちるポイントでした。(下記2行目)
+Cursor cursorCountUsers = db.rawQuery(&amp;quot;SELECT COUNT(user_id) FROM users&amp;quot;, null); cursorCountUsers.moveToFirst(); int countUserId = cursorCountUsers.getInt(0); return countUserId;     2. 対策  Slackoverflowで同じ問題を見つけました。
+まず、毎回同じ箇所で落ちるので、上記(B)にcursorCountUsers.close();を入れたけど直りませんでした。</description>
+    </item>
+    
+    <item>
+      <title>【Androidアプリ開発】FileUriExposedException エラー</title>
+      <link>https://sankame.github.io/blog/2018-07-23-android_use_fileprovider/</link>
+      <pubDate>Mon, 23 Jul 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2018-07-23-android_use_fileprovider/</guid>
+      <description> Android7 で android.os.FileUriExposedException が発生した時の対処方法です。
+(文中の【】は読み替えて下さい)
+0. 環境 [Windows] 7
+[Java] 1.8
+[Android] 5.1.1
+[Android API] 26
+1. 問題  Androidアプリから一時ファイルを作成して、そのURIを外部のアプリに渡すという処理を実装してました。
+(ファイルを作成して、Gmailに添付するなど)
+Android7からfile://による指定ができなくなったため、下記のエラーが発生します。
+android.os.FileUriExposedException: file:///storage/emulated/0/Android/data/【アプリのパッケージ名】/temporary/【一時ファイル名】 exposed beyond app through ClipData.Item.getUri()  URIはFileProviderで作らないといけないそうです。
+  2. 対策 2-1. AndroidManifest.xml  まず、AndroidManifest.xmlにFileProviderの定義を追加します。
+android:resourceには、2-2で作成するファイル名を指定。
+   2-2. res/xml/provider_paths.xml  次に、res/xml/provider_paths.xml を作成します。
+後述の2-3でfileの保存先を Environment.getExternalStorageDirectory() の直下にしたので、それを表すexternal-pathを指定します。
+また、直下なのでpathはカレントディレクトリになります。
+   2-3. 該当処理を行っているActivity  最後に、URIの生成を下記(1)から(2)に変更しました。   3. 参考  FileProviderリファレンス  </description>
+    </item>
+    
+    <item>
+      <title>MonitでApacheとMySQLを復旧</title>
+      <link>https://sankame.github.io/blog/2018-05-11-monit_for_apache_mysql/</link>
+      <pubDate>Fri, 11 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2018-05-11-monit_for_apache_mysql/</guid>
+      <description>MonitでApacheとMySQLを復旧させる最低限の設定です。
+(文中のドメイン名やメールアドレスは読み替えて下さい)
+0. 環境 [CentOS] 6.4 (64bit版カーネル) [Monit] 5.25.1 [Apache] 2.2.15 [MySQL] 5.1.73  1. セットアップ  インストール
+# yum install monit  自動起動を設定
+# chkconfig monit on   2. 設定 2-1. Apacheの監視設定  httpd.conf を開いて、
+# vim /etc/monit.d/httpd.conf  下記を記載。
+check process httpd with pidfile /var/run/httpd/httpd.pid start program = &amp;quot;/etc/init.d/httpd start&amp;quot; stop program = &amp;quot;/etc/init.d/httpd stop&amp;quot; if 5 restarts within 5 cycles then timeout if failed host example.</description>
+    </item>
+    
+    <item>
+      <title>【Androidアプリ開発】 &#34;Socket is closed&#34; エラー</title>
+      <link>https://sankame.github.io/blog/2018-05-07-android_socket_is_closed/</link>
+      <pubDate>Mon, 07 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2018-05-07-android_socket_is_closed/</guid>
+      <description> 0. 環境 [Windows] 7 [Java] 1.8 [Android] 5.1.1 [Android API] 26  1. 問題  Androidアプリの開発で、自前のAPIからデータを取得する処理を組んでいたところ、下記エラーが発生するようになりました。
+java.net.SocketException: Socket is closed  コードはこちら。
+  2. 対策  まずAPI側でApacheのログを確認したところ、ステータスコード200で問題なしでした。
+127.0.0.1 - - [05/May/2018:22:55:02 +0900] &amp;quot;POST /api/test HTTP/1.0&amp;quot; 200 11130  正常終了するケースとの違いは、レスポンスのデータ量が多くなってることかな。(上記ログ右端)
+ 次にAndroidアプリ側の処理があやしいと考えて、いろいろ試した結果、HttpsURLConnectionのクローズのタイミングが問題だと分かりました。
+同オブジェクトを参照しているオブジェクトを全て使い終わってから、クローズする必要がありそうです。(上記(1)→(2)に移す)
+また、クローズ処理を消すだけでも冒頭のエラーは出なくなりましたが、なるべくオブジェクトは明示的に閉じた方が良いと思います。
+なので、最終的にオブジェクトの作成順とは逆にクローズしていく処理を入れました。(下記(3)(4))
+  </description>
+    </item>
+    
+    <item>
+      <title>Let&#39;s Encrypt - ドメイン削除</title>
+      <link>https://sankame.github.io/blog/2018-04-30-letsencrypt_delete_domain/</link>
+      <pubDate>Mon, 30 Apr 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2018-04-30-letsencrypt_delete_domain/</guid>
+      <description>&amp;nbsp;更新日：2018年05月01日
+0. 環境 [CentOS] 6.4 (64bit版カーネル)
+[Apache] 2.2.15
+1. 問題  あるドメインが不要になったのでDNSから削除しました。
+Let&amp;rsquo;s Encryptで証明書を発行していたドメインだったので、証明書の更新時に下記エラーが出るようになりました。
+(&amp;ldquo;example.net&amp;rdquo;は読み替えて下さい)
+それ以外のドメインについては成功メッセージが出ているにも関わらず、ブラウザで確認すると証明書が更新されず、困りました。
+1 renew failure(s), 0 parse failure(s) IMPORTANT NOTES: - The following errors were reported by the server: Domain: example.net Type: None Detail: DNS problem: NXDOMAIN looking up A for example.net Automated renewal failed   2. 対策  下記を撤去することで、certbot-autoで証明書を更新する際にエラーは出なくなりました。
+# mv /etc/letsencrypt/live/example.net/ /tmp/ # mv /etc/letsencrypt/renewal/example.net.conf /tmp/  さらにApache設定ファイルから、証明書などを指定した箇所を削除します。
+この状態で起動するかチェックするため、Apacheを再起動しておきましょう。
+&amp;lt;VirtualHost *:4430&amp;gt; ServerAdmin admin@example.</description>
+    </item>
+    
+    <item>
+      <title>regファイルでvbscriptを有効にする</title>
+      <link>https://sankame.github.io/blog/2018-01-17-enable_vbscript/</link>
+      <pubDate>Wed, 17 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2018-01-17-enable_vbscript/</guid>
+      <description> 0. 環境 [OS] Windows 10  1. 問題  Windows UpdateしたらIE11でvbscriptが動かなくなりました。
+おそらくバージョン1709から。
+ バージョンはWindows左下のボックスでwinverと入力すると表示されます。
+
+ 前から予告されてたみたいですが、急に来た感が否めません。
+僕みたいにレガシーシステムの保守をしてて困った人はいるのでは？
+  2. 対策  MicroSoft(以下MS)の下記ページに従ってグループポリシーの値を変えたら、vbscriptが有効になりました。
+ Internet Explorer のインターネット ゾーンおよび制限付きサイト ゾーン内の VBScript の実行を無効にするオプション  もっと簡単な操作で変更したかったので、GUIではなく、同ページ内のレジストリファイルでのやり方を試しました。
+ここでハマってしまい、いろいろ調べた結果、こちらのページのおかげで解決できました。
+上記MSページのレジストリパスが違っていることが原因でした・・・
+こちらのファイルをWindows上の適当な場所に置いてダブルクリックするとvbscriptが有効になります。
+ 他にも調べたら、正しいレジストリパスを書いたページがありました。
+うーん、MS本家が間違ってるってどういうことなんだろう？
+  </description>
+    </item>
+    
+    <item>
+      <title>ERROR 2002 (HY000): Can&#39;t connect to local MySQL server through socket &#39;/tmp/mysql.sock&#39; (38)</title>
+      <link>https://sankame.github.io/blog/2017-11-20-fail_to_connect_mysql/</link>
+      <pubDate>Mon, 20 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2017-11-20-fail_to_connect_mysql/</guid>
+      <description> 0. 環境 [Mac] 10.11.6 [MySQL] 5.7.20  1. 問題  MacにMySQLをインストール後、接続しようとするとエラーが出ました。
+$ brew install mysql $ mysql -uroot ERROR 2002 (HY000): Can&#39;t connect to local MySQL server through socket &#39;/tmp/mysql.sock&#39; (38)   2. 対策  ネットの情報をヒントに、エラーが出ているファイルの所有者を変えたら直りました。(ログインユーザー名は読み替えて下さい)
+$ ll /tmp/mysql.sock -rw-r--r-- 1 root wheel 0 11 19 23:46 /tmp/mysql.sock $ sudo chown [ログインユーザー名] /tmp/mysql.sock  念のためリスタート。
+$ brew services restart mysql  接続できました。
+$ mysql -uroot   </description>
+    </item>
+    
+    <item>
+      <title>【Androidアプリ開発】onPrepareActionModeが呼ばれない</title>
+      <link>https://sankame.github.io/blog/2017-10-17-android_onprepareactionmode_not_called/</link>
+      <pubDate>Tue, 17 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2017-10-17-android_onprepareactionmode_not_called/</guid>
+      <description>0. 環境 [Windows] 7 [Java] 1.8 [Android] 5.1.1 [Android API] 26  1. 問題  build.gradleで下記の値を上げたところ、onPrepareActionModeが実行されなくなってました。
+onPrepareActionModeは、ListViewのロングタップ時にアクションモードへ切り替えた後、アクションバー内のあるアイコンを隠す処理で使っていたので、困りました。
+ compileSdkVersion : 21 → 26
+ buildToolsVersion : 21.1.2 → 26.0.2
+   2. 対策  試しに下記 (A) にあった処理を (B) へ移してみたところ、思った通りの動きをしてくれました。
+うーん、前はダメだったからonPrepareActionModeを使ったんだけどなあ。。
+他にネットで情報を見つけられなかったので、一旦これにしておくか。
+list1 = findViewById(R.id.listView1); list1.setMultiChoiceModeListener(new AbsListView.MultiChoiceModeListener() { @Override public boolean onPrepareActionMode(ActionMode mode, Menu menu) { //(A) //MenuItem menuItem1 = menu.findItem(R.id.menu_item1); //menuItem1.setVisible(false); return false; } @Override public boolean onCreateActionMode(ActionMode mode, Menu menu) { MenuInflater inflater = getMenuInflater(); inflater.</description>
+    </item>
+    
+    <item>
+      <title>【Androidアプリ開発】ライブラリ追加時にビルドエラー</title>
+      <link>https://sankame.github.io/blog/2017-10-13-android_duplicate_files_error/</link>
+      <pubDate>Fri, 13 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2017-10-13-android_duplicate_files_error/</guid>
+      <description>0. 環境 [Windows] 7 [Java] 1.8 [Android] 5.1.1 [Android API] 21  1. エラー内容  commons-langを使いたくなったので下記のように追記してビルドしたら、エラーが発生しました。 (文中の【】は読み替えて下さい)
+ (アプリルート)/mobile/build.gradle
+dependencies { compile &#39;【他のライブラリ】&#39; compile &#39;【他のライブラリ】&#39; compile &#39;【他のライブラリ】&#39; compile &#39;org.apache.commons:commons-lang3:3.4&#39; }  エラー
+Error:duplicate files during packaging of APK C:\【パス】\mobile-debug-unaligned.apk Path in archive: META-INF/LICENSE.txt Origin 1: C:\【パス】\commons-cli-1.2.jar Origin 2: C:\【パス】\commons-lang3-3.4.jar You can ignore those files in your build.gradle: android { packagingOptions { exclude &#39;META-INF/LICENSE.txt&#39; } } Error:Execution failed for task &#39;:mobile:packageDebug&#39;.</description>
+    </item>
+    
+    <item>
+      <title>【Androidアプリ開発】「次回から表示しない」ボタン</title>
+      <link>https://sankame.github.io/blog/2017-10-03-android_handling_dialog_using_preference/</link>
+      <pubDate>Tue, 03 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2017-10-03-android_handling_dialog_using_preference/</guid>
+      <description> 0. 環境 [Android] 5.1.1
+[Android API] 21
+1. Preferenceで実装  Preferenceを使ってダイアログに「次回から表示しない」ボタンをつける方法をメモ。
+ユーザーに1回だけ何かを伝えたい場合を想定しています。
+(MainActivity.thisなど、適宜読み替えて下さい)
+  2. stethoでPreferenceを編集  開発中にPreferenceの値を変えたり、消したりしたくなると思いますが、そんな時はstethoが便利です。
+stethoを起動し、[Local Storage]で該当のActivityを選択すると右側にPreferenceの値(上記コード17行目)が出ます。
+右クリックで編集や削除が可能です。
+
+stethoの設定方法は下記記事の「4. stetho 利用」を参照して下さい。
+  関連記事  AndroidのSQLite DBを参照  </description>
+    </item>
+    
+    <item>
+      <title>【Androidアプリ開発】SQLiteのDB定義を変更する際の注意点</title>
+      <link>https://sankame.github.io/blog/2017-09-05-android_sqlite_db_upgrade/</link>
+      <pubDate>Tue, 05 Sep 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2017-09-05-android_sqlite_db_upgrade/</guid>
+      <description>0.環境 [Android] 5.1.1
+[Android API] 21
+1.準備  Androidアプリ開発で、SQLiteのライブラリを使う際にハマった点をメモ。
+まずコンストラクターでDBを使う準備をします。
+import android.content.Context; import android.database.sqlite.SQLiteDatabase; import android.database.sqlite.SQLiteOpenHelper; class DatabaseHelper extends SQLiteOpenHelper { public DatabaseHelper(Context context) { super(context, &amp;quot;test.db&amp;quot;, null, 1); //(A)既存のDBを消すには下記コードを使用。 //context.deleteDatabase(&amp;quot;DB name is here.&amp;quot;); } //以下省略  第2引数でDB名を指定するとDBファイルがAndroid端末に作成されます。
+第4引数ではDBバージョンを指定し、DB定義を変える際はこれを1つ上げるようにします。
+(バージョンを下げるとクラッシュするので注意)
+また、開発中にDBを作り直したい場合は、上記(A)で削除しましょう。
+  2.ハマりポイント - DDL記載箇所  このライブラリは主に使うメソッドが2つあり、DBのバージョンによって下記の通り実行タイミングが異なります。
+DBファイルが未作成の場合 : onCreate
+DBファイルが既にある場合(DBバージョン1以上) : onUpgrade
+ミスりやすいのが、DBバージョン2以降は、onCreateとonUpgradeの両方にDDLを書く必要があるという点です。
+下記のようにusersテーブルがDBバージョン2で追加されたとして、もし、onUpgradeだけに書いてしまうと、DBバージョン1のユーザーにとっては問題ないですが、初期インストールの場合はonCreateしか実行されないため、usersテーブルが作られないことになります。
+なので、DBバージョン2以降に追加するDDLはprivateメソッドに書いて、上記の両メソッドから呼ぶようにしたらいいと思います。
+@Override public void onCreate(SQLiteDatabase db) { db.beginTransaction(); try { //DBバージョン1でcitiesテーブル作成。 String ddlCities = &amp;quot;CREATE TABLE IF NOT EXISTS cities (&amp;quot; + &amp;quot;city_id INTEGER PRIMARY KEY AUTOINCREMENT&amp;quot; + &amp;quot;, city_name TEXT&amp;quot; + &amp;quot;);&amp;quot;; db.</description>
+    </item>
+    
+    <item>
+      <title>【Androidアプリ開発】起動アイコンのタイトルにアプリ名を表示</title>
+      <link>https://sankame.github.io/blog/2017-08-21-android_app_set_activity_title/</link>
+      <pubDate>Mon, 21 Aug 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2017-08-21-android_app_set_activity_title/</guid>
+      <description>0.環境 [Android] 5.1.1
+ 文中、【】内は読み替えて下さい。  1.問題  Androidホーム画面の起動アイコンのタイトルをアプリ名にしたくて、下記(3)を追記したのですが変わりません・・・
+ AndroidManifest.xml
+&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;utf-8&amp;quot;?&amp;gt; &amp;lt;manifest xmlns:android=&amp;quot;http://schemas.android.com/apk/res/android&amp;quot; package=&amp;quot;【パッケージ名】&amp;quot; &amp;gt; &amp;lt;application android:allowBackup=&amp;quot;true&amp;quot; android:icon=&amp;quot;@mipmap/ic_launcher&amp;quot; android:label=&amp;quot;(1) App Name&amp;quot; android:theme=&amp;quot;@style/AppTheme&amp;quot; &amp;gt; &amp;lt;activity android:name=&amp;quot;.MyActivity&amp;quot; android:label=&amp;quot;(2) My Activity&#39;s Title&amp;quot; &amp;gt; &amp;lt;intent-filter android:label=&amp;quot;(3) App Name&amp;quot;&amp;gt; &amp;lt;action android:name=&amp;quot;android.intent.action.MAIN&amp;quot; /&amp;gt; &amp;lt;category android:name=&amp;quot;android.intent.category.LAUNCHER&amp;quot; /&amp;gt; &amp;lt;/intent-filter&amp;gt; &amp;lt;/activity&amp;gt; &amp;lt;/application&amp;gt; &amp;lt;/manifest&amp;gt;  ネットで調べたところ、Android 5.1.1 だと(3)が無視され、下図のように起動アイコンにも(2)が表示されてしまうようです。
+
+
+   2. 対策  まず&amp;rdquo;AndroidManifest.xml&amp;rdquo;では、Activityのlabelを下記(3)に変更することで、起動アイコンはアプリ名になります。(intent-filterのlabel指定はやめる)
+ そのままだと、Activityのタイトルもアプリ名になってしまうため、起動時にタイトルを書き換えることにしました。(下記 &amp;ldquo;MyActivity.java&amp;rdquo; 参照)
+ AndroidManifest.xml
+&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;utf-8&amp;quot;?&amp;gt; &amp;lt;manifest xmlns:android=&amp;quot;http://schemas.</description>
+    </item>
+    
+    <item>
+      <title>【Java】Listから配列へ変換</title>
+      <link>https://sankame.github.io/blog/2017-08-14-java_list_to_array/</link>
+      <pubDate>Mon, 14 Aug 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2017-08-14-java_list_to_array/</guid>
+      <description> 0.環境 [Java] 1.8  1. 内容  いつも忘れるので、JavaでList型からString型配列へ変換する方法をメモ。   </description>
+    </item>
+    
+    <item>
+      <title>AndroidのSQLite DBを参照</title>
+      <link>https://sankame.github.io/blog/2017-05-14-view_sqlite_on_android/</link>
+      <pubDate>Sun, 14 May 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2017-05-14-view_sqlite_on_android/</guid>
+      <description>&amp;nbsp; こちらが最新です。(2024/02/23)  0.環境  PC側
+[OS] Windows7 (32bit 版) [Android Studio] 1.5.1  スマホ側
+[OS] Android 5.1.1 [SQLite] 3.8.6.1   1. 前提  まずSQLiteのデータをファイル形式で保存するよう設定します。
+ 例として、SQLiteを操作するライブラリにSQLiteOpenHelperを使用した場合について記載します。
+ コンストラクタの第二引数でDBファイル名を指定します。
+ (未指定の場合、データはメモリにのみ保持されます)
+class DatabaseHelper extends SQLiteOpenHelper { public DatabaseHelper(Context context) { //DBファイル名を指定。 super(context, &amp;quot;example.db&amp;quot;, null, 1); }  PCからAndroid端末にあるSQLiteのDBファイルを見る方法を調べました。
+ 試行錯誤した内容を書いているため、結論だけ知りたい場合は、4まで読み飛ばして下さい。
+  2. ADB(Androidデバッグ用インターフェース) 利用  ネットを検索して結構あったのが、ADBを使ってSQLiteのDBファイルをAndroid端末からPCへコピーし、その後DBビューワーで参照するというものです。
+ PCでコマンドプロンプトから下記コマンドを実行すると、カレントディレクトリにtarget.db(任意)というファイルができます。
+C:\Users\【ユーザー名】&amp;gt;adb -d shell &amp;quot;run-as 【アプリケーションID】 cat databases/【DBファイル名】&amp;quot;&amp;gt;target.db  【】内は読み替えて下さい。</description>
+    </item>
+    
+    <item>
+      <title>Webサイト・スピードアップ - ブラウザキャッシュ利用</title>
+      <link>https://sankame.github.io/blog/2017-04-16-speed_up_website_use_browser_cache/</link>
+      <pubDate>Sun, 16 Apr 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2017-04-16-speed_up_website_use_browser_cache/</guid>
+      <description>0. 前提  環境などの前提条件は前回の1から3と同じです。
+今回は教科書の[1. Reduce number of HTTP requests]-[Use Browser Cache]をやってみました。
+修正が少ない静的ファイルはブラウザキャッシュの期間を延ばし、2回目以降のアクセスはキャッシュから読み込むことで速度向上につなげます。
+作業は下記の2点です。
+(1) キャッシュ期間延長
+　Webサーバーの設定でjs、cssのブラウザ・キャッシュ期間を延ばします。
+(2) ファイル名のユニーク化
+　上記1によって修正がすぐに反映されないという状況を避けるため、ファイル名に修正ごとのハッシュ値を付けてキャッシュが効かないようにします。(gulpの機能を利用)
+  1. キャッシュ期間延長  nginxの設定ファイルにjs、cssの設定とキャッシュ期間を追記しました。
+記述が冗長なのは追って別の書き方を調べたいと思います。
+server { listen 443 ssl; server_name [ドメイン名]; ssl_certificate [ファイルパス]; ssl_certificate_key [ファイルパス]; location / { proxy_pass http://[ホスト名]:[ポート番号]; proxy_set_header X-Real-IP $remote_addr; proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; proxy_set_header X-Forwarded-Proto https; proxy_set_header X-Forwarded-Port 443; proxy_set_header Host $host; } # --- css/jsの指定を追加。 --- location ~* .(css|js)$ { proxy_pass http://[ホスト名]:[ポート番号]; proxy_set_header X-Real-IP $remote_addr; proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; proxy_set_header X-Forwarded-Proto https; proxy_set_header X-Forwarded-Port 443; proxy_set_header Host $host; # キャッシュ期間を設定。 expires 365d; } # --- css/jsの指定を追加。 --- }  ChromeのDeveloper Toolsで見て、Expiresヘッダーの追加とjs、cssがキャッシュから読み込まれていることを確認します。(下図オレンジの枠線)</description>
+    </item>
+    
+    <item>
+      <title>Hugoクイックスタート</title>
+      <link>https://sankame.github.io/blog/2017-03-19-hugo_quickstart/</link>
+      <pubDate>Sun, 19 Mar 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2017-03-19-hugo_quickstart/</guid>
+      <description>0. 環境 [Mac] 10.11.6 [Hugo] 0.19  1.インストール  ここ数年、ブログウェアはjekyllを使ってましたが、下記の点が不便だったので、評判の良いHugoを試してみました。まずはサンプルを動かすところまで。
+ 初期構築やバージョンアップが大変だったので、他のPCに環境を作る気になれない。(今ならDockerという手もありますが…)
+ 記事の生成に時間がかかるようになってきた。
+ 記事の更新後、2～3回リロードしないとブラウザに反映されない。
+  インストール・マニュアルに従って進めました。
+僕の場合、Homebrewは既に入っていたのでStep2からやりました。
+$ brew update $ brew install hugo  「インストール後にバージョンを調べてね」と書いてあるので念のためチェックです。
+$ ls -l $( which hugo ) lrwxr-xr-x 1 mx admin 28 3 19 03:08 /usr/local/bin/hugo -&amp;gt; ../Cellar/hugo/0.19/bin/hugo $ hugo version Hugo Static Site Generator v0.19 darwin/amd64 BuildDate: 2017-02-27T19:21:29+09:00  2行とも0.19なので問題なさそうです。
+  2.サンプル作成  こちらのページに沿ってサンプルを作成しました。
+ 適当なディレクトリで下記を実行します。(僕の場合 /app/hugo-test/ なので読み替えて下さい)</description>
+    </item>
+    
+    <item>
+      <title>Webサイト・スピードアップ - gulp</title>
+      <link>https://sankame.github.io/blog/2017-02-26-speed_up_website_gulp/</link>
+      <pubDate>Sun, 26 Feb 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2017-02-26-speed_up_website_gulp/</guid>
+      <description>&amp;nbsp;更新日：2017年03月07日
+0. 環境  フロントエンドの話なのでサーバー環境はあまり関係ないのですが、参考まで。
+ サーバー
+[Nginx] 1.10.2 [Kitura] 1.1.2 [Swift] 3.0.1  ローカル
+[Mac] 10.11.6 [Node.js] 7.6.0 [gulp] 3.9.1    1.準備  仕事でやっているWebサイトのスピードアップを個人でもやってみたくて、適当なページを1つ作ってみました。
+シンプルカレンダー
+そしてパフォーマンス改善の教科書に選んだのはこちらです。
+Speed Up Your Website
+  2.現状  Apacheで運用しているWebアプリが他にあるため、下記のようなちょっと珍しい構成になっています。
+Nginx(リバースプロキシとして使用) + ServerSide-Swift(Kitura)  僕のネット環境(下り57Mbps/上り18Mbps)(※1)だとシンプルカレンダーのロードタイムが約2.5秒(※2)でそこまでストレスは感じませんが、DBを使ってないわりにこの数字なので改善の余地ありです。
+(※1) 回線速度はSPEEDTESTで計測。
+(※2) Chrome Developer Tools で計測。
+  3.ブラウザからのリクエスト削減  Chrome Developer ToolsのNetworkタブで見るとCSS、JavaScript(以下JS)のダウンロードに時間がかかっているので、教科書の[1. Reduce number of HTTP requests]-[Combine files]から取り掛かってみました。
+HTMLから静的ファイル(CSS、JSなど)を複数ダウンロードする際、ブラウザが並列でリクエストできる数が決まっているため、なるべくそれを減らしましょうという内容です。
+複数の静的ファイルをまとめるためのツール(※3)を検討しましたが、一番簡単に実現できそうだったgulpを使いました。
+(※3) webpack、gulp、Grunt
+  4.</description>
+    </item>
+    
+    <item>
+      <title>crontabを安全に編集したい</title>
+      <link>https://sankame.github.io/blog/2017-01-10-edit_crontab/</link>
+      <pubDate>Tue, 10 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2017-01-10-edit_crontab/</guid>
+      <description> &amp;nbsp;更新日：2019年09月26日
+0. 環境 [CentOS] 6.5
+1. 手順  crontabの内容を適当な場所にコピー。(本文中ではユーザーのホームディレクトリ)
+usernameはcronを設定するユーザー名に読み替えて下さい。
+$ cp -p /var/spool/cron/[username] ~  上記ディレクトリの参照権限がない場合、これでもOK。
+$ crontab -l &amp;gt; ~/[username]  バックアップを取った後、内容を書き換えます。
+$ cp -p ~/[username] ~/[username].bak $ vim ~/[username]  crontabに取り込みます。
+$ crontab ~/[username]  最後に取り込んだ内容とバックアップを比較しておきます。
+差分として、修正箇所のみが表示されればOK。
+$ crontab -l | diff ~/[username].bak -   2. 注意  下記でも編集は可能ですが、できれば避けた方がいいと思います。
+キーボードで[E]の横には[R]があり、-r で誤ってcrontabの内容を削除する恐れがあるため。
+$ crontab -e   </description>
+    </item>
+    
+    <item>
+      <title>シェルで引数チェック</title>
+      <link>https://sankame.github.io/blog/2017-01-08-sh_check_args/</link>
+      <pubDate>Sun, 08 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2017-01-08-sh_check_args/</guid>
+      <description> 0. 環境 [Mac] 10.11.6 [GNU bash] 3.2.57  1. 内容  test.shの先頭で第一引数をチェックして、無い場合は処理を中断します。
+ test.sh  if [ &amp;quot;$1&amp;quot; = &amp;quot;&amp;quot; ] then echo &amp;quot;引数を指定して下さい。&amp;quot; # 処理を中断。 exit 1 fi echo &amp;quot;任意の処理&amp;quot; echo &amp;quot;引数は$1&amp;quot; exit 0   実行結果  $ sh test.sh 引数を指定して下さい。 $ sh test.sh hoge 任意の処理 引数はhoge   </description>
+    </item>
+    
+    <item>
+      <title>Swift3の大文字・小文字処理</title>
+      <link>https://sankame.github.io/blog/2017-01-03-swift3_uppercase_lowercase/</link>
+      <pubDate>Tue, 03 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2017-01-03-swift3_uppercase_lowercase/</guid>
+      <description> &amp;nbsp;更新日：2017年01月27日
+0. 環境 [Swift] 3.0.2  1. 大文字・小文字処理  Swift3から大文字・小文字の処理は下記のようになります。
+(明示的にするため入れていますが型宣言は省略可)
+    上記コードはIBM Swift Sandboxで動かせます。
+下記リンク先の真ん中にある三角ボタンをクリックして下さい。
+Swift3で大文字・小文字処理
+(ChromeまたはFirefox推奨)
+  2. 参考ページ  caseInsensitiveCompare
+ localizedCaseInsensitiveCompare
+  </description>
+    </item>
+    
+    <item>
+      <title>Swift3のforループ</title>
+      <link>https://sankame.github.io/blog/2016-12-30-swift3_loop/</link>
+      <pubDate>Fri, 30 Dec 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2016-12-30-swift3_loop/</guid>
+      <description> &amp;nbsp;更新日：2017年02月09日
+0. 環境 [Swift] 3.0.2  1. ループ  Swift3からループ処理は下記のようになります。    上記コードはIBM Swift Sandboxで実際に動かすことができます。
+下記リンク先の真ん中にある三角ボタンをクリックして下さい。
+Swift3でのforループ
+(ChromeまたはFirefox推奨)
+  </description>
+    </item>
+    
+    <item>
+      <title>ApacheのProxyPassでhtmlタグがそのまま表示される</title>
+      <link>https://sankame.github.io/blog/2016-12-25-mod_proxy_text_plain/</link>
+      <pubDate>Sun, 25 Dec 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2016-12-25-mod_proxy_text_plain/</guid>
+      <description>0. 環境 [CentOS] 6.8 (64bit版カーネル) [Apache] 2.2.15  1. 問題  ApacheのProxyPassディレクティブ(mod_proxy)を指定して、バックエンドから受け取ったコンテンツを表示しようとするとhtmlタグがそのまま表示されてしまいます。
+ Apache設定ファイルの抜粋
+NameVirtualHost *:80 # 省略 &amp;lt;VirtualHost *:80&amp;gt; ServerAdmin test@local ServerName test.local ProxyPreserveHost On ProxyPass / http://127.0.0.1:8080/ ProxyPassReverse / http://127.0.0.1:8080/ ErrorLog logs/test.local-error_log CustomLog logs/test.local-access_log combined &amp;lt;/VirtualHost&amp;gt;    2. 対策  ChromeのDeveloper Toolsなどで見ると、下記のようにHTTPレスポンスヘッダーで平文が指定されています。
+Content-Type text/plain; charset=UTF-8
+ デフォルトのMIMEタイプ指定を無効にすることで解消しました。
+ Apache設定ファイルの抜粋
+NameVirtualHost *:80 # 省略 &amp;lt;VirtualHost *:80&amp;gt; ServerAdmin test@local ServerName test.local # ----- この行を追加 ----- DefaultType None # ----- この行を追加 ----- ProxyPreserveHost On ProxyPass / http://127.</description>
+    </item>
+    
+    <item>
+      <title>AppleWatchアプリ開発におけるWCSessionのメソッド使用方法</title>
+      <link>https://sankame.github.io/blog/2016-11-21-wcsession_sendmessage_slow_in_swift3/</link>
+      <pubDate>Mon, 21 Nov 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2016-11-21-wcsession_sendmessage_slow_in_swift3/</guid>
+      <description>0. 環境 [OS] Mac OS X 10.11.6 [IDE] Xcode 8.1 [Swift] 3.0  1. 問題  WCSession#sendMessage()を使ってAppleWatchからiPhoneアプリへメッセージを送っても、30秒ほどしないと通知されない。
+ AppleWatch側
+@IBAction func tapButton() { let message = [ &amp;quot;fromChild&amp;quot;: &amp;quot;AppleWatchからのメッセージ&amp;quot; ] WCSession.default().sendMessage( message , replyHandler: { reply in } , errorHandler: { error in } ) }  iPhone側
+func session(_ session: WCSession, didReceiveMessage message: [String: Any], replyHandler: @escaping ([String: Any]) -&amp;gt; Void) { if let watchMessage = message[&amp;quot;fromChild&amp;quot;] as? String { print(watchMessage) } else{ print(&amp;quot;error&amp;quot;) } }    2.</description>
+    </item>
+    
+    <item>
+      <title>Type &#39;ViewController&#39; does not conform to protocol &#39;WCSessionDelegate&#39;</title>
+      <link>https://sankame.github.io/blog/2016-11-15-wcsessiondelegate_in_swift3/</link>
+      <pubDate>Tue, 15 Nov 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2016-11-15-wcsessiondelegate_in_swift3/</guid>
+      <description>0. 環境 [OS] Mac OS X 10.11.6 [IDE] Xcode 8.1 [Swift] 3.0  1. 問題  iPhone &amp;amp; AppleWatchアプリを作成中にSwiftを2.2から3へバージョンアップしたところ、iPhone側で下記のエラーが出るようになりました。
+Type &#39;ViewController&#39; does not conform to protocol &#39;WCSessionDelegate&#39;
+  2. 解決  ViewControllerに下記メソッドを追加するとエラーが消えました。
+public func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) { } func sessionDidBecomeInactive(_ session: WCSession) { } func sessionDidDeactivate(_ session: WCSession) { session.activate() }  下記の仕様書にもこれらのメソッドは必須と書かれています。
+[API Reference] WCSessionDelegate
+  3. 参考ページ  Migrating app from Swift 2.</description>
+    </item>
+    
+    <item>
+      <title>Eclipseでタブをスペースに置換</title>
+      <link>https://sankame.github.io/blog/2016-10-08-convert_tabs_to_spaces_on_eclipse/</link>
+      <pubDate>Sat, 08 Oct 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2016-10-08-convert_tabs_to_spaces_on_eclipse/</guid>
+      <description> 0. 環境 [OS] Mac OS X 10.11.4 [Eclipse] Mars.2 Release (4.5.2)  1. 問題  久々にEclipseをさわっていたら、タブをスペースに変換する設定に手間取ったのでメモ。
+(Windowsの場合、メニュー名を読み替えて下さい)
+プログラミングで使うインデントに関して、僕はタブ派ですが、職場や最近の流れからしてもスペースを使わざるを得ないでしょう。
+  2. 解決  Eclipseに標準でついている機能が動かなかったので、AnyEditToolsというプラグインを入れました。
+メニューの [ヘルプ]-[Install new software] をクリック。
+[作業対象]に下記を入力。(anyぐらいまで打つと補完されます)
+anyedit - http://andrei.gmxhome.de/eclipse/
+とりあえず最新バージョンのAnyEditToolsにチェック。
+
+[次へ]をクリック。
+途中ライセンスへの同意やセキュリティ警告が出ますが、最後までいくと再起動を求められるのでそのままOKをクリックします。
+起動後、Eclipse上で任意のファイルにタブを入力し、保存したタイミングでスペースに置換されます。
+変わらない場合や細かい設定をしたい場合は下記の設定画面から行って下さい。
+メニューの [Eclipse]-[環境設定] をクリック。
+[一般]-[エディタ]-[AnyEdit Tools]
+
+Eclipseでマークダウンを書く人は[Remove trailing whitespace]のチェックを外しておいたほうがいいかもしれません。
+ファイルフィルタ(上記の[Add Filter])で拡張子mdを除外したり、プロジェクトごとに設定(*1)を変えることもできます。
+(*1)プロジェクトごとの設定
+ プロジェクト・エクスプローラーの該当プロジェクトを右クリック。
+ [プロパティ]-[AnyEdit Tools] をクリック。
+ [Enable project specific settings]にチェックを入れる。
+   </description>
+    </item>
+    
+    <item>
+      <title>型 UrlValidator は使用すべきではありません</title>
+      <link>https://sankame.github.io/blog/2016-10-06-urlvalidator-is-deprecated/</link>
+      <pubDate>Thu, 06 Oct 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2016-10-06-urlvalidator-is-deprecated/</guid>
+      <description> 0. 環境 [OS] Mac OS X 10.11.4 [Java] 1.8.0  1. 問題  久々にJavaで実装する機会がありました。標準ライブラリのjava.net.URLクラスは、URLとして解釈できない文字列を渡すと例外が投げられるので扱いずらいですね。
+// IllegalArgumentException が発生。 url = URL.create(&amp;quot;不正なURL&amp;quot;);  うーん、最初、RFCを見て「URLとして許可されている文字列だけ渡す」という処理を入れようか迷いました。
+が、一から組むのも骨が折れるなあ～と思って、困った時のApache Commonsを探してみたら、しめしめApache Commons ValidatorにUrlValidatorクラスというのがありました。
+早速このクラスをimportして使おうと思ったら、下記の警告が出てしまいました。
+型 UrlValidator は使用すべきではありません
+  2. 解決  調べてみたところ、①のパッケージは非推奨で②に変えたら警告も消えました。
+ ①こっちは非推奨
+import org.apache.commons.validator.UrlValidator;
+ ②これを使って！
+import org.apache.commons.validator.routines.UrlValidator;
+   3. 参考  The type UrlValidator is deprecated  </description>
+    </item>
+    
+    <item>
+      <title>.gitignoreをaddできない</title>
+      <link>https://sankame.github.io/blog/2016-08-21-how-to-add-gitignore/</link>
+      <pubDate>Sun, 21 Aug 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2016-08-21-how-to-add-gitignore/</guid>
+      <description> 0. 環境 [git] 2.7.4 (Apple Git-66)  1. 問題  アプリのルートディレクトリに.gitignoreをおいたのですが、git status で見ても追加対象として出てきません。  2. 解決  最初(A)のように書いていたのですが、これだとダメで、[除外設定]→[例外] の順に書かないといけないようです。
+(「. が先頭にあるファイルは除外してね」→「但し .gitignore は例外だよ」)
+ (A) 修正前    (B) 修正後    </description>
+    </item>
+    
+    <item>
+      <title>AppleWatchアプリ開発におけるiOSアプリのデバッグ方法</title>
+      <link>https://sankame.github.io/blog/2016-08-07-debug-ios-app-with-watchkit/</link>
+      <pubDate>Sun, 07 Aug 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2016-08-07-debug-ios-app-with-watchkit/</guid>
+      <description> 0. 環境 [OS] Mac OS X 10.11.4 [IDE] Xcode 7.3 [Swift] 2.1.1  1. 課題  AppleWatchのアプリ開発で「WatchKit App」を起動すると、iOSアプリのブレークポイントで停止しない。  2. 対策  XcodeのデバッガーにiOSアプリを手動で追加する必要があります。
+ 「WatchKit App」を選択してアプリ実行。
+
+ iOSアプリのシュミレーターで、iOSアプリを起動。
+ Xcodeに戻って [Debug]-[Attach to Process] からiOSアプリを選択。
+
+ 左のパネルで[Debug navigator]を選択し、下記①②でiOSアプリが選択されていることを確認。
+
+   </description>
+    </item>
+    
+    <item>
+      <title>ショートカットのファイルパス</title>
+      <link>https://sankame.github.io/blog/2016-07-16-windows_shortcut_path/</link>
+      <pubDate>Sat, 16 Jul 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2016-07-16-windows_shortcut_path/</guid>
+      <description> 0. 環境 [OS] Windows 7  1. 課題  ファイル(①)に対してショートカット(②)を作った場合・・・
+① C:\tmp\test.txt
+② C:\tmp2\test.txt - ショートカット
+ エクスプローラーやスタートメニューの「ファイル名を指定して実行」から②を指定してもエラーになります。
+
+ これは下記のように &amp;rdquo;.lnk&amp;rdquo; をつけると解決します。
+C:\tmp2\test.txt - ショートカット.lnk
+ OSの内部的にはこのパスになっているんだと思います・・・
+  </description>
+    </item>
+    
+    <item>
+      <title>composer updateでUndefined indexエラー</title>
+      <link>https://sankame.github.io/blog/2016-06-25-composer_error_undefined_index/</link>
+      <pubDate>Sat, 25 Jun 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2016-06-25-composer_error_undefined_index/</guid>
+      <description> 0. 環境 [Laravel] 5.1  1. 問題  composer update を実行すると下記エラーが発生しました。
+Writing lock file Generating autoload files &amp;gt; php artisan clear-compiled [ErrorException] Undefined index: HTTP_HOST Script php artisan clear-compiled handling the post-update-cmd event returned with error code 1   2. 解決策  HTTP_HOST でソースをgrepし、 /app/Http/routes.php 内の下記箇所を修正しました。
+(修正前)
+$_SERVER[&#39;HTTP_HOST&#39;]  (修正後)
+Request::server(&#39;HTTP_HOST&#39;)   3. 参考  Composer returning mysterious error  </description>
+    </item>
+    
+    <item>
+      <title>トグル処理を楽に実装 (ビット演算)</title>
+      <link>https://sankame.github.io/blog/2016-05-27-bitwise_operator_toggle/</link>
+      <pubDate>Fri, 27 May 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2016-05-27-bitwise_operator_toggle/</guid>
+      <description> 0. 環境 [CentOS] 6.4 (64bit版カーネル) [PHP] 5.4.17  1. XORでトグル処理  押すたびにON/OFFが切り替わるようなトグル処理を実装する場合はXORが便利です。
+ 6行目、11行目 : 「XOR 1」するとビットが反転する性質を利用します。(下記)
+XOR
+入力①0011 入力②0101 出力0110   </description>
+    </item>
+    
+    <item>
+      <title>状態管理を楽に実装 (ビット演算)</title>
+      <link>https://sankame.github.io/blog/2016-05-27-bitwise_operator_status_control/</link>
+      <pubDate>Fri, 27 May 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2016-05-27-bitwise_operator_status_control/</guid>
+      <description> 0. 環境 [CentOS] 6.4 (64bit版カーネル) [PHP] 5.4.17  1. ORとANDで状態管理  複数の状態や権限をまとめて管理したい場合、2進数が便利です。
+ 2-5行目 : 2進数の定数(10進数表記)を用意します。
+7行目 : ORでプログラミング言語を足していきます。
+Aさんが使える言語の位にビットが立つイメージです。(下記)
+ 0001 (PHP) 0010 (Ruby) OR) 1000 (Perl) ---------- 1011 (Aさんが使えるプログラミング言語)  11行目以降 : Aさんが使えるプログラミング言語は何か、ANDで問い合わせます。
+右端の位にビットが立っていれば結果がtrueになり、PHPが使えることが分かります。(下記)
+ 1011 (Aさんが使えるプログラミング言語) AND) 0001 (PHP) ---------- 0001 (PHPが使える)   </description>
+    </item>
+    
+    <item>
+      <title>Let&#39;s Encrypt - certbotコマンド</title>
+      <link>https://sankame.github.io/blog/2016-05-15-letsencrypt_certbot_command/</link>
+      <pubDate>Sun, 15 May 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2016-05-15-letsencrypt_certbot_command/</guid>
+      <description>&amp;nbsp;更新日：2016年08月06日
+0. 環境 [CentOS] 6.4 (64bit版カーネル) [Apache] 2.2.15 [Firefox] 46.0.1  1. Let&amp;rsquo;s Encryptのコマンド変更  証明書を更新した際、 「letsencrypt-autoコマンドはもう古いよ」という警告が出たので、更新したいと思います。  2. 更新作業(【】はマスク情報)  Let&amp;rsquo;s Encryptがβ版の時はgit cloneして /usr/local/src/letsencrypt ディレクトリを作成しましたが、今回はそれとは別ディレクトリを作成します。
+# cd /usr/local/src # git clone https://github.com/certbot/certbot # cd certbot  疑似実行したところ成功したようなので、証明書の期限が迫ってきたら dry-run なしで実行してみたいと思います。
+# ./certbot-auto renew --dry-run ： (省略) ： Congratulations, all renewals succeeded. The following certs have been renewed: /etc/letsencrypt/live/【ドメイン名】/fullchain.pem (success) ** DRY RUN: simulating &#39;certbot renew&#39; close to cert expiry ** (The test certificates above have not been saved.</description>
+    </item>
+    
+    <item>
+      <title>watchOSのバージョンエラー</title>
+      <link>https://sankame.github.io/blog/2016-05-09-watchos_devices_not_available/</link>
+      <pubDate>Mon, 09 May 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2016-05-09-watchos_devices_not_available/</guid>
+      <description>0.環境 [OS] Mac OS X 10.11.4 [IDE] Xcode 7.3 [iOS] 9.3 [watchOS] 2.1 ※MacとiPhoneはUSBケーブルで接続。 ※iPhoneとAppleWatchはペアリング済み。  1.問題 (文中【】は読み替えて下さい)  AppleWatch用のサンプルプログラムを実機で動かそうとしたら、下記3つのエラーが出ました。
+ エラー1
+ A build only device cannot be used to run this target.
+ No supported watchOS devices are available. Pair a device to run your application or choose a simulated device as the destination.
+ エラー2
+ Could not launch &#39;【アプリ名】 WatchKit App&#39; on 【iPhoneデバイス名】
+ OS version lower than deployment target</description>
+    </item>
+    
+    <item>
+      <title>AppleWatch 開発中アプリのインストール制限を回避</title>
+      <link>https://sankame.github.io/blog/2016-05-08-unable_to_add_app_id/</link>
+      <pubDate>Sun, 08 May 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2016-05-08-unable_to_add_app_id/</guid>
+      <description>&amp;nbsp;更新日：2016年05月11日
+0.環境 [OS] Mac OS X 10.11.4 [IDE] Xcode 7.3 [iOS] 9.3 [watchOS] 2.1 ※ MacとiPhoneはUSBケーブルで接続。 ※ iPhoneとAppleWatchはペアリング済み。  1.問題  AppleWatch用のサンプルプログラムを実機で動かしていたら、下記エラーが出るようになりました。
+
+Unable to add App ID because the &#39;10&#39; App ID limit in &#39;7&#39; days has been exceeded.
+「7日間で10個のアプリID制限を超えたため、アプリIDを追加できません」か・・・
+Webで調べたところ回避策は2つありましたが、簡単そうな①をやってみました。
+① Xcodeに新しいApple IDを追加して、それを使ってインストール
+② 既に実機にインストール済みのアプリの Bundle ID を使い回す
+  2.手順  (画像内の【】は読み替えて下さい)
+ Xcodeに新しい Apple ID を追加
+アプリの[General]-[Team]をクリックし &amp;ldquo;Add an Account&amp;rdquo; を選択します。
+
+Xcodeに追加するApple IDを要求されますが、未作成なので&amp;rdquo;Create Apple ID&amp;rdquo;をクリック。</description>
+    </item>
+    
+    <item>
+      <title>AppleWatch実機でサンプル実行</title>
+      <link>https://sankame.github.io/blog/2016-05-05-running_it_on_apple_watch/</link>
+      <pubDate>Thu, 05 May 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2016-05-05-running_it_on_apple_watch/</guid>
+      <description>0.環境 [OS] Mac OS X 10.11.4 [IDE] Xcode 7.3 [iOS] 9.3 [watchOS] 2.1  1.問題  AppleWatch用のサンプルプログラムを実機でも動かしたくなりました。
+最初下記の環境だったのですが、Xcodeでサンプルプログラムを実行すると、&amp;rdquo;paired device unavailable for development&amp;rdquo; というエラー出ました。
+原因が分からなかったので、とりあえずiOSを9.3にバージョンアップしました。
+[OS] Mac OS X 10.11.4 [IDE] Xcode 7.2.1 [iOS (iPhone)] 9.1 [watchOS (AppleWatch)] 2.1 ※MacとiPhoneはUSBケーブルで接続。 ※iPhoneとAppleWatchはペアリング済み。  その後、今度は &amp;ldquo;Could not find Developer Disk Image&amp;rdquo; というエラーで先へ進めず。
+Xcodeの下記フォルダに9.3がないことが原因らしいのですが、そもそもXcode 7.2はiOS9.3には対応していないようです。
+Finderを開き、左ペインの&amp;quot;アプリケーション&amp;quot;を選択すると、右ペインにXcode.appが表示されるので右クリックで&amp;quot;パッケージの内容を表示&amp;quot; Contents/Developer/Platforms/iPhoneOS.platform/DeviceSupport/   2.Xcodeバージョンアップ  Xcodeを 7.3に上げることにしました。
+・LaunchpadでXcodeを長押し後、Xcodeの左上の×印をクリックしアンインストール。
+　(Dockに残っているけど無視)
+・OS再起動。
+・App StoreからXcodeをインストール。
+　(Macをwifiルーターの近くに持って行って、電源コードをつないで…　終わるまで1時間以上かかりました)
+Launchpadでインストールが終わったことを確認して、Xcodeを起動すると無事7.3になってました。</description>
+    </item>
+    
+    <item>
+      <title>AppleWatchサンプルプログラム</title>
+      <link>https://sankame.github.io/blog/2016-05-02-apple_watch_sample/</link>
+      <pubDate>Mon, 02 May 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2016-05-02-apple_watch_sample/</guid>
+      <description>0.環境 [OS] Mac OS X 10.11.4 [IDE] Xcode 7.2.1 [watchOS] 2.1 [Swift] 2.1.1  1.完成イメージ  メイン画面からサブ画面へ行って戻るサンプルを作成します。
+
+  2.プロジェクト作成  Xcodeのスプラッシュ画面で&amp;rdquo;Create a new Xcode project&amp;rdquo;を選択。
+
+ watchOS Applicationを選択。
+
+ 適当なプロジェクト名を入力して下さい。
+サンプルなので&amp;rdquo;Notification&amp;rdquo;と&amp;rdquo;Glance&amp;rdquo;のチェックは外します。
+
+ プロジェクトを作成するフォルダを選択して下さい。
+下記のように /app/ を指定するとプロジェクトのパスは /app/hello-watch/ になります。
+
+  3.実装  左のプロジェクトナビゲーターで&amp;rdquo;Interface.storyboard&amp;rdquo;を選択。(A-1)
+デフォルトで用意されている Interface Controller を選択して、Identifier に適当な値(例ではIC1)を入力。 (A-2、A-3、A-4)
+ドラッグ＆ドロップで Label と Button を Interface Controller 上に配置します。 (A-5)
+
+ ドラッグ＆ドロップで Interface Controller をもう一つ追加。(B-1)</description>
+    </item>
+    
+    <item>
+      <title>pod setup で SSLエラー</title>
+      <link>https://sankame.github.io/blog/2016-04-21-pod_setup_ssl_error/</link>
+      <pubDate>Thu, 21 Apr 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2016-04-21-pod_setup_ssl_error/</guid>
+      <description>0.環境 [OS] Mac OS X 10.11.4 [cocoapods] 1.0.0.beta.6  1.エラー内容  pod setupを実行すると下記エラーが発生。
+$ pod setup --verbose Setting up CocoaPods master repo Cloning spec repo `master` from `https://github.com/CocoaPods/Specs.git` (branch `master`) $ /usr/bin/git clone https://github.com/CocoaPods/Specs.git master Cloning into &#39;master&#39;... fatal: unable to access &#39;https://github.com/CocoaPods/Specs.git/&#39;: SSLRead() return error -9806 [!] /usr/bin/git clone https://github.com/CocoaPods/Specs.git master Cloning into &#39;master&#39;... fatal: unable to access &#39;https://github.com/CocoaPods/Specs.git/&#39;: SSLRead() return error -9806 ： 【省略】 ：   2.</description>
+    </item>
+    
+    <item>
+      <title>Let&#39;s Encrypt - 証明書の更新と自動化</title>
+      <link>https://sankame.github.io/blog/2016-02-21-letsencrypt_renewal/</link>
+      <pubDate>Sun, 21 Feb 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2016-02-21-letsencrypt_renewal/</guid>
+      <description>&amp;nbsp;更新日：2016年11月09日
+0.環境 [CentOS] 6.4 (64bit版カーネル) [Apache] 2.2.15 [Firefox] 44.0.2  1.期限通知  (文中【】はマスク情報)
+ 年末に設定した Let&amp;rsquo;s Encrypt のSSL証明書の期限が迫り、下記のお知らせメールが届きました。
+Let&#39;s Encrypt certificate expiration notice Hello, Your certificate (or certificates) for the names listed below will expire in 17 days (on 04 Mar 16 17:44 +0000). Please make sure to renew your certificate before then, or visitors to your website will encounter errors. 【以下省略】  ブラウザで有効期限を確認するとそろそろ切れそうです。
+ブラウザ(Firefox)のアドレスバーの鍵マークをクリックし、[ &amp;gt; ] - [詳細を表示] - [セキュリティ] - [証明書を表示] - [有効期限]</description>
+    </item>
+    
+    <item>
+      <title>Rundeckでssh接続エラー</title>
+      <link>https://sankame.github.io/blog/2016-02-15-rundeck_ssh_error/</link>
+      <pubDate>Mon, 15 Feb 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2016-02-15-rundeck_ssh_error/</guid>
+      <description>0.環境 [CentOS] 5.6
+1.問題  文中、画像内の【】は読み替えて下さい。
+ 下記ページ内の「リモートサーバでの実行」にそってRundeckのリモート接続を試してみました。
+&amp;ldquo;ジョブスケジューラ「Rundeck」を試してみる&amp;rdquo;
+ところが、このエラーが発生…
+
+ 上記画像内のテキストはこちら。
+22:34:10 remote 1. hogeと表示。 Authentication failure connecting to node: &amp;quot;remote&amp;quot;. Make sure your resource definitions and credentials are up to date. 22:34:10 Failed: AuthenticationFailure: Authentication failure connecting to node: &amp;quot;remote&amp;quot;. Make sure your resource definitions and credentials are up to date. 22:34:10 localhost Execution failed: 21: [Workflow result: , step failures: {1=Dispatch failed on 1 nodes: [remote: AuthenticationFailure: Authentication failure connecting to node: &amp;quot;remote&amp;quot;.</description>
+    </item>
+    
+    <item>
+      <title>setVibrateメソッドの使い方</title>
+      <link>https://sankame.github.io/blog/2016-02-08-notification_compat_builder_setvibrate/</link>
+      <pubDate>Mon, 08 Feb 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2016-02-08-notification_compat_builder_setvibrate/</guid>
+      <description> 環境 [Android SDK] API 21: Android 5.0(Lollipop)  実装  スマートウォッチ(Android Wear)に通知を送るため、NotificationCompat.Builder の
+setVibrateメソッドを使った際の自分用メモ。
+バイブレーション・パターンの設定は下記仕様ですが、
+long型配列の1つ目の要素を除いて、偶数は振動、奇数は休止
+と覚えておけば良さそうです。
+NotificationCompat.Builder builder = new NotificationCompat.Builder( getApplicationContext() ); // 単位はミリ秒 // // 要素1 : 振動開始までの時間 // 要素2 : 振動 // 要素3 : 休止 // 要素4 : (これ以降は要素2-3の繰り返し) builder.setVibrate(new long[]{0, 500, 250, 500, 250, 1000});  下記の例だと、ツー・ツ・ツ　みたいな感じになります。
+// 1秒振動、0.1秒休止、0.1秒振動、0.05秒休止、0.1秒振動 builder.setVibrate(new long[]{0, 1000, 100, 100, 50, 100});   関連リンク  API : NotificationCompat.Builder  </description>
+    </item>
+    
+    <item>
+      <title>プログラミング問題A</title>
+      <link>https://sankame.github.io/blog/2015-12-31-programming_practice_a/</link>
+      <pubDate>Thu, 31 Dec 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2015-12-31-programming_practice_a/</guid>
+      <description> 環境 [CentOS] 5.6 (32bit版カーネル) [PHP] 5.4.17  問題A-1  10進数の任意の値をn進数に変換する関数を作成して下さい。(nは1～16の正の整数)
+ サンプルはPHP。
+  サンプルA-1  実行方法
+$ php changeDecimalToBaseN.php  ソース
+  </description>
+    </item>
+    
+    <item>
+      <title>お薦め無料SSL証明書 - Let&#39;s Encrypt</title>
+      <link>https://sankame.github.io/blog/2015-12-07-letsencrypt_setup/</link>
+      <pubDate>Mon, 07 Dec 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2015-12-07-letsencrypt_setup/</guid>
+      <description>&amp;nbsp;更新日：2017年04月30日
+0.環境 [CentOS] 6.4 (64bit版カーネル) [Apache] 2.2.15  1.セットアップ  個人利用のレンタルサーバーでは有料のSSL証明書を使っていたのですが、 有効期限切れを機にフリーのものに乗り換えてみました。
+ Let&amp;rsquo;s Encrypt というサービスを利用します。
+
+下記のマニュアルに沿って進めました。(その他の参考ページは末尾に記載)
+Let&amp;rsquo;s Encrypt 操作方法
+まずは、任意のディレクトリに Let&amp;rsquo;s Encrypt クライアントをダウンロード。
+# cd /usr/local/src # git clone https://github.com/letsencrypt/letsencrypt # cd letsencrypt # ./letsencrypt-auto --help  お！ helpだから使い方が表示されるかと思いきや、依存関係のあるパッケージがダウンロードされた・・・
+しかも下記メッセージによると、どうやらPythonのバージョンが古くて失敗してるっぽい。
+： (省略) ： Complete! WARNING: Python 2.6 support is very experimental at present... if you would like to work on improving it, please ensure you have backups and then run this script again with the --debug flag!</description>
+    </item>
+    
+    <item>
+      <title>Googleスプレッドシート  行ごとに背景色を変える</title>
+      <link>https://sankame.github.io/blog/2015-11-28-google_sheets_colors_for_lines/</link>
+      <pubDate>Sat, 28 Nov 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2015-11-28-google_sheets_colors_for_lines/</guid>
+      <description> Googleスプレッドシート 設定方法  あるセルに値を入れることで、行全体の色を変える設定です。
+ 下記のようなリストを例に、完了日を入れるだけで行を自動でグレーアウトします。
+
+ メニューで「条件付き書式」を選択。
+
+ 右端に枠が表示されます。
+
+ まず範囲を選択します。今回はヘッダーを除いたデータ部分を指定。(A4:C6)
+ 次に書式設定の条件を指定します。
+例では「C列の4行目以降に値がある」場合にtrueを返すようにします。
+(C列を固定するため絶対参照の$マークをつけ、4行目からは相対参照にしたいため下記のように指定)
+=IF($C4 &amp;lt;&amp;gt; &amp;quot;&amp;quot;, true, false)  最後に書式設定で、上記がtrueの場合に適用される書式を選びます。
+ 以上で「完了日」に文字列を入れると行全体をグレーにすることができました。
+
+  </description>
+    </item>
+    
+    <item>
+      <title>Androidアプリのバージョンアップができない</title>
+      <link>https://sankame.github.io/blog/2015-10-07-android_app_version/</link>
+      <pubDate>Wed, 07 Oct 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2015-10-07-android_app_version/</guid>
+      <description> 0.環境 [OS] Windows7 (32bit 版) [AndroidStudio] 1.1.0  1.問題  Androidアプリをバージョンアップするため、Google Play Developer Console でapkファイルをアップしても下記のエラーが出ました。
+アップロードできませんでした
+マニフェストファイルに下記のように追記してもダメ。
+(app\【アプリ名】\mobile\src\main\AndroidManifest.xml)
+&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;utf-8&amp;quot;?&amp;gt; &amp;lt;manifest xmlns:android=&amp;quot;http://schemas.android.com/apk/res/android&amp;quot; package=&amp;quot;【パッケージ名】&amp;quot; android:versionCode=&amp;quot;2&amp;quot; android:versionName=&amp;quot;2.0.1&amp;quot;&amp;gt;   2.対策  しばらくして、AndroidManifest.xml にエラーメッセージが出てるのに気付きました。
+build.gradle を修正しなきゃいけない・・・
+(app\【アプリ名】\mobile\build.gradle)
+下記のようにバージョンを上げて再コンパイルしたらアップロードできました。
+android { : (省略) : defaultConfig { applicationId &amp;quot;【省略】&amp;quot; minSdkVersion 16 targetSdkVersion 21 versionCode 2 versionName &amp;quot;2.0.1&amp;quot; } : (省略) : }   </description>
+    </item>
+    
+    <item>
+      <title>【Angular2】クイックスタート</title>
+      <link>https://sankame.github.io/blog/2015-06-23-angular2_quick_start/</link>
+      <pubDate>Tue, 23 Jun 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2015-06-23-angular2_quick_start/</guid>
+      <description>0.環境 [CentOS] 6.5 [node.js] 0.12.4 [npm] 2.10.1 [tsd] 0.6.0 [tsc] 1.5.0-beta  1.インストール  GoogleのQuickStartページに沿って進めます。(以降、JavaScriptはJSと記述)
+Angular2はJSでも動かせますが、JSのスーパーセットTypeScriptに対応しているので、Googleのページ同様、後者を使ってみました。
+ 最終的に下記の構成になります。
+tscを使ってhello.tsをhello.jsへ変換します。
+
+ まずnode.jsとnpmの依存管理を楽にするため、nvmをインストールします。
+※CentOS 5系だとnode.jsを動かすのに苦労するので、こちらの記事を参考にCentOS6.x 環境構築を推奨します。
+# git clone git://github.com/creationix/nvm.git ~/.nvm # source ~/.nvm/nvm.sh  node.jsをバージョン指定でインストール。
+# nvm install 0.12.4  nvmでnode.jsのデフォルトバージョンを設定。
+# nvm alias default v0.12.4 # vi ~/.bash_profile  .bash_profile の末尾に下記を追記。
+if [[ -s ~/.nvm/nvm.sh ]]; then source ~/.nvm/nvm.sh fi  tsd (TypeScript用 型定義ファイル管理ツール) をインストール。
+※npmのバージョンが低いとtsdのインストールが止まってしまうので注意。
+# npm install tsd@0.</description>
+    </item>
+    
+    <item>
+      <title>【Laravel】integerメソッドの引数</title>
+      <link>https://sankame.github.io/blog/2015-05-27-laravel_migration_integer_args/</link>
+      <pubDate>Wed, 27 May 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2015-05-27-laravel_migration_integer_args/</guid>
+      <description> 0.環境 [PHP] 5.4.17 [Laravel] 4.1.30  1.内容  Fluentテーブルビルダーのintegerメソッドの引数について、意外と探すのに手間取ったのでメモ。
+ integerメソッド抜粋   /** * @param $column テーブルのカラム名 * @param $autoIncrement 自動採番するかどうか * @param $unsigned 0以上の正の整数とするか */ public function integer($column, $autoIncrement = false, $unsigned = false)   ※参考にしたページ  Laravel Migration incorrect table definition  </description>
+    </item>
+    
+    <item>
+      <title>【AndroidStudio】&#34;Failed to complete Gradle execution&#34;エラー</title>
+      <link>https://sankame.github.io/blog/2015-05-11-android_studio_heap_size_error/</link>
+      <pubDate>Mon, 11 May 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2015-05-11-android_studio_heap_size_error/</guid>
+      <description> 0.環境 [OS] Windows7 (32bit 版) [AndroidStudio] 1.1.0  1.エラー内容  「Run &amp;lsquo;app&amp;rsquo;」ボタンをクリックし、ビルド＆実行しようとすると下記エラーダイアログが表示される。
+Failed to complete Gradle execution Cause: A fatal exception has occurred. Program will exit   2.回避方法  メニューから [File] -&amp;gt; [Settings] -&amp;gt; [Gradle] とたどって、[Gradle VM options] に &amp;ldquo;-XX:MaxHeapSize=256m -Xmx256m&amp;rdquo; を入力。(下記画像のオレンジ枠線)
+
+  参考にしたページ  Failed to complete Gradle Execution  </description>
+    </item>
+    
+    <item>
+      <title>AndroidStudioでプロセス開始エラー</title>
+      <link>https://sankame.github.io/blog/2015-05-10-android_studio_process_error/</link>
+      <pubDate>Sun, 10 May 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2015-05-10-android_studio_process_error/</guid>
+      <description>0.環境 [OS] Windows7 (32bit 版) [AndroidStudio] 1.1.0  1.エラー内容  AndroidStudioで「Run &amp;lsquo;app&amp;rsquo;」ボタンをクリックし、ビルド＆実行しようとすると下記エラーが発生しました。
+Error:Unable to start the daemon process. This problem might be caused by incorrect configuration of the daemon. For example, an unrecognized jvm option is used. Please refer to the user guide chapter on the daemon at http://gradle.org/docs/2.2.1/userguide/gradle_daemon.html Please read the following process output to find out more: ----------------------- Error occurred during initialization of VM Could not reserve enough space for object heap Error: Could not create the Java Virtual Machine.</description>
+    </item>
+    
+    <item>
+      <title>Vagrant &#43; VirtualBox でCentOS開発環境構築</title>
+      <link>https://sankame.github.io/blog/2015-05-06-vagrant_setup/</link>
+      <pubDate>Wed, 06 May 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2015-05-06-vagrant_setup/</guid>
+      <description>&amp;nbsp;更新日：2017年01月28日
+0.環境 [PC] DELL LATITUDE E5500 [ホストOS] Windows 7 (32bit 版) [ゲストOS] CentOS 6.5 (64bit 版)  1.概要  Vagrantで開発環境を作りました。
+VirtualBoxを操作するためにVagrantというツールを使うイメージです。
+
+VirtualBox上に仮想マシン(以下VM)起動し、そこにCentOSをインストールして開発環境とします。
+  2.BIOS設定変更  VMを起動する準備として、BIOSの設定を変更します。
+PCの電源をONにし、OSが起動する前に特定のキーを押してBIOS設定画面を開きます。
+(PCによって異なるので、下記のキーは読み替えて下さい)
+OS起動時に[F2] または [F10]キーを押下。
+[Virtualization Support] - [Virtualization]を選択し、[Enable]にチェックをつけて[Apply]→[Exit]を選択。
+そのままOSが起動するのを待ちます。
+  3.VirtualBoxインストール  下記ページで&amp;rdquo;VirtualBox 4.3.26 for Windows hosts&amp;rdquo; をクリックしVirtualBoxをダウンロード。
+VirtualBoxダウンロード
+ダウンロード、インストールともに僕の環境では数分かかりました。
+途中何度かOracle社のコンポーネントをインストールしますか？と聞かれたので全てYesを選択。
+  4.Vagrantインストール  次のリンク先でWindows用を選択して Vagrantをダウンロード。
+Vagrantダウンロード
+インストールが終わったら再起動を求められます。
+コマンドプロンプトで下記を実行することで、boxファイル(用意されたVMイメージ)を取得し、VirtualBoxに追加します。
+C:\Users\【ユーザー名】&amp;gt; vagrant box add CentOS65 https://github.com/2creatives/vagrant-centos/releases/download/v6.5.3/centos65-x86_64-20140116.box   5.Vagrantを使ってVirtualBoxのVMを起動  適当なフォルダにVagrantファイルを作成し、VM起動時の設定を定義します。</description>
+    </item>
+    
+    <item>
+      <title>jqGridで表示する値と元の値を分ける</title>
+      <link>https://sankame.github.io/blog/2015-05-02-jqgrid_formatter/</link>
+      <pubDate>Sat, 02 May 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2015-05-02-jqgrid_formatter/</guid>
+      <description>0.環境 [jquery] 1.7.1 [jquery-ui] 1.10.3 [jqGrid] 4.5.2  1.コード  画面表示は formatter で定義し、処理では元の値を使いたいので unformat で定義します。
+jQuery(&amp;quot;#grid_id&amp;quot;).jqGrid({ // 省略 colModel: [ // 省略 {name:&#39;name&#39;, index:&#39;name&#39;, formatter: formatterName, unformat: unformatName}, // 省略 ] // 省略 }); /** リンクに変更 */ function formatterName(cellvalue, options, rowdata) { var val = &amp;quot;&amp;lt;a href=\&amp;quot;javascript:void(0);\&amp;quot; onclick=\&amp;quot;showItem(&#39;&amp;quot; + rowdata.item_id + &amp;quot;&#39;);\&amp;quot;&amp;gt;&amp;quot; + cellvalue + &amp;quot;&amp;lt;/a&amp;gt;&amp;quot;; return val; } /** 加工しない元の値 */ function unformatName(cellvalue, options) { return cellvalue; }   2.</description>
+    </item>
+    
+    <item>
+      <title>ベーシック認証設定 (VirtualHostの場合)</title>
+      <link>https://sankame.github.io/blog/2014-08-20-http_basic_authentication/</link>
+      <pubDate>Wed, 20 Aug 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2014-08-20-http_basic_authentication/</guid>
+      <description>0.環境 [CentOS] 5.6 (32bit版カーネル) [Apache] 2.2.3  1.パスワードファイル作成  適当な場所にパスワードファイルを作成。(&amp;ldquo;user1&amp;rdquo;は作成したいユーザー名で読み替えて下さい)
+# htpasswd -c /etc/httpd/conf/.htpasswd user1 New password: Re-type new password: Adding password for user user1   2.パスワードファイル設定  VirtualHostを設定している場合、Directoryディレクティブ内に下記を追加。
+AuthUserFileには上記1で作ったパスワードファイルを指定。
+AuthNameはブラウザの認証ダイアログに表示されるメッセージとなります。
+(マルチバイト文字は化ける可能性あり)
+下記はApache設定ファイル(/etc/httpd/conf/httpd.conf) の抜粋
+NameVirtualHost *:80 &amp;lt;Directory /web/test&amp;gt; Options FollowSymLinks AllowOverride FileInfo Options=All,MultiViews # --- ベーシック認証追加 --- AuthType Basic AuthUserFile &amp;quot;/etc/httpd/conf/.htpasswd&amp;quot; AuthName &amp;quot;Here is a message.&amp;quot; Require valid-user # --- ベーシック認証追加 --- &amp;lt;/Directory&amp;gt; &amp;lt;VirtualHost *:80&amp;gt; ServerAdmin test@sample.co.jp DocumentRoot &amp;quot;/web/test&amp;quot; ServerName test.</description>
+    </item>
+    
+    <item>
+      <title>【Android Wear】ホーム画面の時計を変更</title>
+      <link>https://sankame.github.io/blog/2014-07-26-android_wear_chage_face/</link>
+      <pubDate>Sat, 26 Jul 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2014-07-26-android_wear_chage_face/</guid>
+      <description> 0.環境 [スマートフォン(OS)] GALAXY S4 (Android 4.4.2) [スマートウォッチ(OS)] Gear Live (4.4W) ※以降、スマートフォンは「スマホ」、スマートウォッチは「ウォッチ」と記載。  1.ホーム画面の時計(ウォッチフェイス)を変更  Samsung Gear Live のホーム画面の時計デザインを変える方法は下記の通りです。
+ (スマホとウォッチはBluetoothで同期されている前提)
+ ①【スマホ】Playストアから好みのデザインの時計アプリをインストールします。(参考リンク)
+(例) Playストアで &amp;quot;WearFaces&amp;quot; で検索。
+ ②【スマホ】Android Wearアプリを起動し、右上のネジマークをタップ。
+
+ ③【スマホ】一番下までスクロールし、「アプリの再同期」をタップ。
+
+ ④【ウォッチ】ホーム画面をタップし、メニュー画面を一番下までスクロールした後「設定」をタップ。
+(2014/07/30, 追記) 後日気づきました。ホーム画面で時計を長押し(ロングタップ)すると一気に時計変更画面に行けます。(下記⑦)
+
+ ⑤【ウォッチ】設定画面で上にフリック。
+
+ ⑥【ウォッチ】一番下までスクロールした後、「ウォッチフェイスの変更」をタップ。
+
+ ⑦【ウォッチ】上記でPlayストアからインストールした時計アプリを見つけ、タップするとホーム画面に設定されます。
+   </description>
+    </item>
+    
+    <item>
+      <title>【Laravel】全てのビューに値を渡す</title>
+      <link>https://sankame.github.io/blog/2014-07-21-laravel_passing_data_from_basecontroller/</link>
+      <pubDate>Mon, 21 Jul 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2014-07-21-laravel_passing_data_from_basecontroller/</guid>
+      <description> 0.環境 [CentOS] 5.6 (32bit版カーネル) [Apache] 2.2.3 [PHP] 5.4.1 [Laravel] 4.1.23  1.課題  全ビュー(Bladeテンプレート)で使う値をBaseControllerから渡したい。  2.対策  Laravelの作法としてあっているか不明ですが、一旦これで値は渡せました。
+下記例では、設定ファイルの基底URL(app.php内のurl変数)をビューに渡しています。
+ ①　app/config/local/app.php
+(本番環境の場合、app/config/app.php に定義して下さい)
+ ②　app/controllers/BaseController.php
+getBaseUrl() メソッドを定義し、基底URLを返します。
+(staticでないとビューで実行できない)
+ 各コントローラは②を継承します。(コード抜粋)
+class EachController extends BaseController {  ③　app/views/layout.blade.php (コード抜粋)
+全てのビューで共通に使っているビューで、BaseControllerから値を取得します。
+   </description>
+    </item>
+    
+    <item>
+      <title>【Laravel】AjaxでPOSTできない</title>
+      <link>https://sankame.github.io/blog/2014-07-15-laravel_trailing_slash_redirect/</link>
+      <pubDate>Tue, 15 Jul 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2014-07-15-laravel_trailing_slash_redirect/</guid>
+      <description>0.環境 [CentOS] 5.6 (32bit版カーネル) [Apache] 2.2.3 [PHP] 5.4.1 [Laravel] 4.1.23  1.問題  PHPのLaravelフレームワークを使っていたら、AjaxでPOSTした値がサーバ側で取得できずにはまりました。
+①から②へ test という名前で hoge という値を送信します。
+ ① Javascript側
+ ② PHP側
+ ログ出力結果を見ると、下記のようにPOST値が取得できていません。
+[2014-07-16 12:09:36] local.DEBUG: [] []    2.原因  Firefox の &amp;ldquo;Live HTTP headers&amp;rdquo; アドオンでURLの遷移を見たところ、下記のようにリダイレクトしていることがわかりました。(違いは末尾のスラッシュ)
+http://local.vm/test/
+↓↓↓
+http://local.vm/test
+ ソースを grep したところ、.htaccessでリダイレクトしていました。
+ ■ ソース
+app-root/public/.htaccess
+ ■ 記述
+# Redirect Trailing Slashes... RewriteRule ^(.*)/$ /$1 [L,R=301]    3.対策  Laravel は trailing slash 非推奨なのか？ とにかく下記のように修正。</description>
+    </item>
+    
+    <item>
+      <title>wget ファイル名を指定してダウンロード</title>
+      <link>https://sankame.github.io/blog/2014-07-03-wget_option_o/</link>
+      <pubDate>Thu, 03 Jul 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2014-07-03-wget_option_o/</guid>
+      <description> -O オプションを使って、ダウンロードファイル名を指定します。  下記例では MyWget という名前に変更。
+# wget -O MyWget http://ftp.gnu.org/gnu/wget/wget-1.15.tar.gz # ls # -rw-r--r-- 1 root root 3417936 1月 19 19:17 MyWget   </description>
+    </item>
+    
+    <item>
+      <title>開発環境用 NTP 設定</title>
+      <link>https://sankame.github.io/blog/2014-06-25-ntp_for_dev/</link>
+      <pubDate>Wed, 25 Jun 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2014-06-25-ntp_for_dev/</guid>
+      <description>0.環境  [VMware Player] 3.0.0 [CentOS] 5.6 (32bit版カーネル) (Windows上でゲストOSとして使用) [NTP] 4.2.6  1.セットアップ  ソース取得
+任意のディレクトリにNTPのソース(ntpd)をダウンロード。
+  	# cd /usr/local/src/ # wget http://www.eecis.udel.edu/~ntp/ntp_spool/ntp4/ntp-4.2/ntp-4.2.6p5.tar.gz   インストール  	# tar xzf ntp-4.2.6p5.tar.gz # cd ntp-4.2.6p5 # ./configure # make # make install   設定
+下記URL①の設定を行ったところうまく時刻同期されませんでした。
+(VMwareをサスペンドすると時刻が離れ過ぎるため？)
+結局、自分用の開発環境で、ログイン時に1回同期させれば十分なので下記のようにしました。
+  	# echo &#39;ntpdate -u ntp.nict.jp&#39; &amp;gt;&amp;gt; ~/.bash_profile  2.参考URL  ①ntpdのインストールと設定
+ ②ntpd の起動と動作確認
+ ③ntpdate コマンドについて</description>
+    </item>
+    
+    <item>
+      <title>GithubからBitbucketへソース移行</title>
+      <link>https://sankame.github.io/blog/2014-06-21-github_to_bitbucket/</link>
+      <pubDate>Sat, 21 Jun 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2014-06-21-github_to_bitbucket/</guid>
+      <description>0.環境  [CentOS] 5.6 (32bit版カーネル) [Git] 1.9.4  1.ダウンロード  (1-1) Githubのソース取得
+ 
+ 任意のディレクトリでGitHubのリポジトリから対象ソースを取得します。
+ (上図の画面右下がURL)
+# git clone git@github.com:Sankame/repo-of-github.git  取得したソースの第1階層へ移動。
+# cd repo-of-github/   (1-2) Bitbucketへソースアップ
+ 予めBitbucket上で任意のリポジトリを作っておきます。
+ 
+ 空のリポジトリができました。
+ 
+ 上記(1-1)で GitHub から取得したソースは origin がGitHubになっているので、 Bitbucket へ変更します。
+# git remote -v origin git@github.com:Sankame/repo-of-github.git (fetch) origin git@github.com:Sankame/repo-of-github.git (push) # git remote rm origin # git remote add origin git@bitbucket.org:Sankame/repo-of-bitbucket.git # git push -u origin --all # pushes up the repo and its refs for the first time # git push -u origin --tags # pushes up any tags  GitHubにあったソースをBitbucketへプッシュできました。</description>
+    </item>
+    
+    <item>
+      <title>ポイントだけ ApacheBench</title>
+      <link>https://sankame.github.io/blog/2014-06-07-apache_bench/</link>
+      <pubDate>Sat, 07 Jun 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2014-06-07-apache_bench/</guid>
+      <description>0.環境  [CentOS] 5.6 (32bit版カーネル) [Apache] 2.2.3 [ApacheBench] 2.0.40-dev  1.基本  (1-1) 実行方法
+ Apacheをインストールすると ab というコマンドで負荷テストができます。
+ 主に使うのは2つのオプションで、下記のように実行します。
+ 後述の &amp;ldquo;Requests per second&amp;rdquo; が十分な値になるよう、n と c の値を増やして負荷をかけます。
+ (n : リクエスト数　c : 同時接続数)
+ab -n 10000 -c 100 &amp;quot;http://test.vm/test.php&amp;quot;  abでテストできるのはサーバ側の処理だけなので、HTMLレンダリングやJavascript実行等、トータルの計測を行いたい場合は、下記のようなツールを検討して下さい。
+ GTmetrix
+ PageSpeed
+   (1-2) 結果の確認
+ 実行すると下記サンプルのような結果が表示されるので、主に2つの項目を確認します。
+ ① Failed requests (失敗したリクエスト数)
+ この項目が0であることを確認します。
+ 但し、表示毎にHTMLのバイト数が異なるページの場合、この項目と内訳を表す &amp;ldquo;Length:&amp;rdquo; がともにカウントされます。(1つ前の結果とHTMLのバイト数を比較し、異なる場合は Length がカウントされる仕様)
+ このようなページの場合、&amp;rdquo;Failed requests&amp;rdquo; に数字があっても、全て Length が原因ならば無視してかまいませんが、念のため、Apacheのアクセスログを確認し、HTTP Response Code が全て200になっていることを確認しましょう。</description>
+    </item>
+    
+    <item>
+      <title>Jenkins から Seleniumを動かしてみる</title>
+      <link>https://sankame.github.io/blog/2014-06-04-jenkins_selenium/</link>
+      <pubDate>Wed, 04 Jun 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2014-06-04-jenkins_selenium/</guid>
+      <description>0.環境 ・親ノード端末 [CentOS] 5.6 (32bit版カーネル) [ruby] 2.1.1p76 [rvm] 1.25.25 [java] 1.7.0_51 [Jenkins] 1.562 ・子ノード端末 [Windows] Vista Home Premium (32bit) [java] 1.7.0_51 [IE] 8  1.準備  (1-1) 下記リンクを参考にJenkinsをインストールしました。
+ 俺の成長日記
+ OSCALOG
+ JenkinsをCentOSにインストールしたときのメモ
+  (1-2) Seleniumの設定は前回と同じです。(Selenium WebDriverを動かしてみる)
+ 前回と異なる点は、Jenkinsがデフォルトでポート4444を使うので、Selenium Serverは4445に変更しました。
+ 親ノード
+# java -jar selenium-server-standalone-2.41.0.jar -role hub -port 4445  子ノード
+&amp;gt; java -jar selenium-server-standalone-2.41.0.jar -role webdriver -hub http://192.168.130.130:4445/grid/register -Dwebdriver.ie.driver=./IEDriverServer.exe   (1-3) Jenkins プラグイン追加
+ rvmでrubyを使っているので、予めJenkinsにrvmプラグインを追加。</description>
+    </item>
+    
+    <item>
+      <title>Selenium WebDriverを動かしてみる</title>
+      <link>https://sankame.github.io/blog/2014-05-24-selenium_webdriver/</link>
+      <pubDate>Sat, 24 May 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2014-05-24-selenium_webdriver/</guid>
+      <description>0.環境 ・親ノード端末 [CentOS] 5.6 (32bit版カーネル) [ruby] 2.1.1p76 [rvm] 1.25.25 [java] 1.7.0_51 ・子ノード端末 [Windows] Vista Home Premium (32bit) [java] 1.7.0_51 [IE] 8  1.準備  ■ 目的
+ブラウザテストの自動化に興味があり、面白そうな記事があったので自分でも試してみました。
+(Jenkinsとの連携は今回やっていません)
+ ■ 親ノード
+親ノード端末の適当なディレクトリに Selenium Server をダウンロード後、起動します。
+# cd /usr/local/bin/ # wget http://selenium-release.storage.googleapis.com/2.41/selenium-server-standalone-2.41.0.jar # java -jar selenium-server-standalone-2.41.0.jar -role hub  ■ 子ノード
+子ノード端末の適当なフォルダに Selenium Server とIEドライバーをダウンロード後、起動します。
+ダウンロードページ
+まず&amp;rdquo;Selenium Server (formerly the Selenium RC Server)&amp;rdquo; をダウンロード。
+次に&amp;rdquo;The Internet Explorer Driver Server&amp;rdquo; をダウンロードします。</description>
+    </item>
+    
+    <item>
+      <title>Jekyllを1.0.2へバージョンアップ</title>
+      <link>https://sankame.github.io/blog/2014-05-18-jekyll_version_up/</link>
+      <pubDate>Sun, 18 May 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2014-05-18-jekyll_version_up/</guid>
+      <description>0.環境 [CentOS] 5.6 (32bit版カーネル) [ruby] 2.1.1p76 [rvm] 1.25.25 [jekyll] 0.11.2 =&amp;gt; 1.0.2  1.インストール 参考ページ  インストール
+本ブログはjekyll 0.11.2で作成してきましたが、別件でrubyのバージョンを上げたことでjekyllが動か
+なくなってしまったため、思い切って1.0.2への移行を行いました。初期インストールの内容
+いくつかハマった点を共有します。
+まず、複数バージョンのrubyを使いたかったので下記ページに沿ってrvmをインストール。
+rvmインストール
+rootで実行したためか /usr/local/rvm にインストールされたので、上記記事内のパスは読み替えました。
+ruby 2.1.1をインストール。
+# rvm install 2.1.1 # rvm use 2.1.1  適当な場所にGemfileを作成し、jekyllを追記してインストール開始。
+# bundle init # echo &amp;quot;gem &#39;jekyll&#39;, &#39;1.0.2&#39;&amp;quot; &amp;gt;&amp;gt; Gemfile # bundle install  インストールされたことを確認します。
+# gem list|grep jekyll jekyll (1.0.2) jekyll-coffeescript (1.0.0) jekyll-sass-converter (1.0.0)  起動
+任意の場所へ移動し、bootstrapをダウンロードします。bootstrapクイックスタート
+(前バージョンとは別の場所にしました)
+# cd /var/www/html/jekyll2/ # git clone https://github.</description>
+    </item>
+    
+    <item>
+      <title>Revive Ad Server インストール (旧OpenX)</title>
+      <link>https://sankame.github.io/blog/2014-05-04-revive_adserver_install/</link>
+      <pubDate>Sun, 04 May 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2014-05-04-revive_adserver_install/</guid>
+      <description>0.環境 [CentOS] 5.6 (32bit版カーネル) [Apache] 2.2.3 [PHP] 5.4.17 [Revive AdServer] 3.0.4  1.インストール  1-0.ダウンロード
+適当なディレクトリにソースをダウンロードし、Apache公開ディレクトリへ移動。
+(公開ディレクトリは自分の環境に読み替えて下さい)
+# wget http://download.revive-adserver.com/revive-adserver-3.0.4.tar.gz # tar xzf revive-adserver-3.0.4.tar.gz # mv revive-adserver-3.0.4 revive-adserver # mv revive-adserver /app/.  1-1.インストール開始
+ブラウザから、上記インストール先URLへアクセス。
+(例) http://localhost/revive-adserver
+ウィザードに従ってインストールを進めます。
+
+&amp;ldquo;I Agree &amp;gt;&amp;gt;&amp;ldquo;ボタンを押すと、&amp;rdquo;File Permissions - 7 errors&amp;rdquo; というエラーが表示されました。
+画面に表示されたコマンドをそのままコンソールで実行。
+# chmod -R a+w /app/revive-adserver/var # chmod -R a+w /app/revive-adserver/var/cache # chmod -R a+w /app/revive-adserver/var/plugins # chmod -R a+w /app/revive-adserver/var/templates_compiled # chmod -R a+w /app/revive-adserver/plugins # chmod -R a+w /app/revive-adserver/www/admin/plugins # chmod -R a+w /app/revive-adserver/www/images  再びインストール画面へ戻って&amp;rdquo;Retry&amp;rdquo;を押すと、次のステップへ進めます。</description>
+    </item>
+    
+    <item>
+      <title>PHPからfitbit API を使ってみる</title>
+      <link>https://sankame.github.io/blog/2014-02-04-php_fitbit_api/</link>
+      <pubDate>Tue, 04 Feb 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2014-02-04-php_fitbit_api/</guid>
+      <description>&amp;nbsp;更新日：2015年02月08日
+0.環境 [CentOS] 5.6 (32bit版カーネル) [Apache] 2.2.3 [PHP] 5.4.1 [device] Fitbit One  1.OAuth Extensionインストール → fitbit API実行  (1-1) fitbit(活動量計)のAPI使用手順にそって作業を進めます。
+ 下記コマンドを実行。
+# pecl install oauth-0.99.9  エラー発生。
+： （割愛） ： /var/tmp/oauth/oauth.c:2058: warning: assignment from incompatible pointer type /var/tmp/oauth/oauth.c: In function &#39;zm_shutdown_oauth&#39;: /var/tmp/oauth/oauth.c:2092: warning: implicit declaration of function &#39;curl_global_cleanup&#39; make: *** [oauth.lo] エラー 1 ERROR: `make&#39; failed  こんな情報を見つけ、下記コマンドを実行。
+# yum install curl-devel  エラーは変わらず、さらにこんな情報を見つけ、下記コマンドを実行。
+# yum install pcre pcre-devel   またまたエラー発生・・・</description>
+    </item>
+    
+    <item>
+      <title>PHPメモ</title>
+      <link>https://sankame.github.io/blog/2014-02-02-php_sample/</link>
+      <pubDate>Sun, 02 Feb 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2014-02-02-php_sample/</guid>
+      <description> PHPメモ (自分用) (1) extensionが追加されたかコマンドラインで確認  下記は例。OAuthの部分は任意のextension名に置き換える。
+# php -r &amp;quot;echo phpinfo();&amp;quot;|grep OAuth OAuth OAuth support =&amp;gt; enabled   </description>
+    </item>
+    
+    <item>
+      <title>スマホ(Android)とPCでMindMapを使う</title>
+      <link>https://sankame.github.io/blog/2013-10-04-mind_map_tools/</link>
+      <pubDate>Fri, 04 Oct 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2013-10-04-mind_map_tools/</guid>
+      <description> 0.環境 [スマホ端末/OS] GALAXY S SC-02B / Android2.2 [PC端末/OS] Gateway SX2800 / Windows Vista Home Premium  1.スマホでマインドマップ作成  1-1.スマホにMindMapMemoをインストールする。
+ 1-2.マインドマップのファイルを作成後、「オプション」-「メール送信(SD保存)」-「FreeMind(.mm)」を選択。
+ 1-3.共有するためのアプリ一覧が表示されるので、PCへファイルを送信できるアプリを選択。
+  2.PCにFreeMindをインストール  2-1.下記リンク先のページで[0.8.1]をクリック。
+(0.9.0では上記スマホで作成したファイルをうまく開けませんでした)
+FreeMindソース
+ 2-2.[freemind-bin-0_8_1.zip]をクリック。
+ 2-3.PCにダウンロード後、解凍してFreemind.exeをダブルクリック。
+ 2-4.メニューの「ファイル」-「開く」で、スマホから送信した拡張子がmmのファイルを選択。
+ 2-5.スマホではカラフルに作ったのにFreeMindで開くと白黒になっている。まあ内容が分かるからいいか…
+  </description>
+    </item>
+    
+    <item>
+      <title>PHP Debug Bar インストール</title>
+      <link>https://sankame.github.io/blog/2013-09-23-php_debug_bar_install/</link>
+      <pubDate>Mon, 23 Sep 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2013-09-23-php_debug_bar_install/</guid>
+      <description>0.環境 [CentOS] 5.6 (32bit版カーネル) [Apache] 2.2.3 [PHP] 5.4.1 [phalcon] 1.2.1  1.PHP Debug Barをインストール  (1-1) Webサーバーのドキュメントルートにcomposer.jsonを配置し、下記内容を記述します。(下図1-3参照)
+{ &amp;quot;require&amp;quot;: { &amp;quot;maximebf/debugbar&amp;quot;: &amp;quot;&amp;gt;=1.0.0&amp;quot; } }  (1-2) Webサーバーのドキュメントルートで次のコマンドを実行。
+# composer install  ※ composerが未インストールの場合、こちらを参考にインストールして下さい。
+ (1-3) ディレクトリ構成
+app_root : Webサイトのルートディレクトリ
+public : 公開ディレクトリ
+薄オレンジ : composerで設置されたディレクトリ
+  2.コードを記述 (要点以外は省略)  (2-0) index.php(フレームワークのエントリポイント)に次の内容を追記。
+  composer関係のファイルをバージョン管理(svn, git等)から除外した場合、 この記述だけ残してリリースしないよう注意して下さい。 
+ (2-1) ControllerBase(全コントローラの親クラス)に次の内容を追記。
+use DebugBar\StandardDebugBar; class ControllerBase extends Phalcon\Mvc\Controller { protected $debugbar; // Actionメソッドの後処理 public function afterExecuteRoute($dispatcher) { $debugbarRenderer = $this-&amp;gt;debugbar-&amp;gt;getJavascriptRenderer(); $this-&amp;gt;view-&amp;gt;setVar(&#39;debugbarHeader&#39;, $debugbarRenderer-&amp;gt;renderHead()); $this-&amp;gt;view-&amp;gt;setVar(&#39;debugbarBody&#39;, $debugbarRenderer-&amp;gt;render()); } }  (2-2) ContactControllerに次の内容を追記。</description>
+    </item>
+    
+    <item>
+      <title>Rubyを始める</title>
+      <link>https://sankame.github.io/blog/2013-09-16-ruby_hello_world/</link>
+      <pubDate>Mon, 16 Sep 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2013-09-16-ruby_hello_world/</guid>
+      <description>Rubyを始める 0.環境  [CentOS] 5.6 (32bit版カーネル) [Apache] 2.2.3  1.Rubyインストール  1-1.Rubyがすでにインストールされているか調べる。
+(インストールされている場合は下記のように表示される)
+# rpm -q ruby ruby-1.8.6.111-1  1-2.インストールされていない場合、下記コマンドでインストール。
+# yum install ruby ruby-devel rdoc irb   2.Apache設定  2-1.mod_cgiがロードされていることを確認。
+# cat /etc/httpd/conf/httpd.conf|grep mod_cgi LoadModule cgi_module modules/mod_cgi.so   3.htacess設定  3-1.Apacheドキュメントルートの.htaccessに下記を追記。
+(ドキュメントルートのパスは読み替えて下さい)
+# cat /var/www/html/.htaccess AddHandler cgi-script .cgi .rb Options +ExecCGI   4.動作確認  4-1.ファイル作成
+# touch /var/www/html/hello.rb  4-2.テストコード記述
+作成したファイルに下記コードを記述。
+(1行目のrubyのパスは、which ruby で調べて読み替えて下さい)
+#!/usr/bin/ruby print &amp;quot;Content-type:text/html\n\n&amp;quot; print &amp;lt;&amp;lt;EOS &amp;lt;HTML&amp;gt; &amp;lt;HEAD&amp;gt; &amp;lt;/HEAD&amp;gt; &amp;lt;BODY&amp;gt; Hello World!</description>
+    </item>
+    
+    <item>
+      <title>Gitコマンド メモ</title>
+      <link>https://sankame.github.io/blog/2013-09-09-git_command/</link>
+      <pubDate>Mon, 09 Sep 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2013-09-09-git_command/</guid>
+      <description>&amp;nbsp;更新日：2017年08月24日
+(1) .gitignoreファイル  gitの管理外にしたいファイルを定義。下記のようにディレクトリ指定も可能。
+# view .gitignore app/logs/   (2) インデックスから降ろす(git管理外にする)  インデックスから降ろすだけ。
+# git rm --cached -f hoge.txt  インデックスから降ろして、ファイルを物理削除。
+# git rm -f hoge.txt   (3) ブランチ操作(2013/10/07)  今いるブランチは？
+# git branch *　master  ブランチtest1を作って、test1へ切り替える。
+# git branch test1 # git checkout test1 Switched to branch &#39;test1&#39;  masterブランチへ戻る。
+# git checkout master Switched to branch &#39;master&#39;  使わなくなったブランチtest1を削除。
+# git branch -d test1 Deleted branch test1 (was 0854f22).</description>
+    </item>
+    
+    <item>
+      <title>Nexus7のスクリーンをプロジェクターに映す (Android Screen Cast)</title>
+      <link>https://sankame.github.io/blog/2013-09-02-nexus7_projected_to_pc/</link>
+      <pubDate>Sun, 01 Sep 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2013-09-02-nexus7_projected_to_pc/</guid>
+      <description>環境 [タブレット(OS)] Nexus7(Android 4.2.2) [PC(OS)] Gateway SX2800(Windows Vista Home Premium)  0. 検討  プレゼンでNexus7のスクリーンをプロジェクターに映したいと考え、検討した結果、下記C案にしました。
+ A.変換器を使う →Nexus7はMHL非対応…
+ B.アプリで解決 →PCに映像を送信する方法。有料かつNexus7のRoot化が必要。
+ C.アプリで解決 →PCに映像を送信する方法。無料かつRoot化の必要もなし。Nexus7の映像がPCに届くまで数秒のタイムラグあり。
+   1. PCにAndroid SDKをインストール  下記ページの[download here] - [Download the SDK]ボタンをクリック。
+ダウンロード
+ 規約に同意したら「I have read and agree…」にチェック。
+ 32ビットか64ビットかは、次の手順で調べます。
+[スタート]メニュー - [コンピュータ]右クリック - [プロパティ]
+[システムの種類]を確認。
+  2. Nexus7とPCをUSBケーブルで接続 3. Android Screen Cast  (3-1) Android Screen Castを下記リンクからダウンロードし、PCの任意のフォルダに保存します。
+ダウンロード
+ (3-2) コマンドプロンプトで上記3-1のフォルダに移動し、下記コマンドを実行。</description>
+    </item>
+    
+    <item>
+      <title>MySQLコマンド メモ</title>
+      <link>https://sankame.github.io/blog/2013-08-26-mysql_command/</link>
+      <pubDate>Mon, 26 Aug 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2013-08-26-mysql_command/</guid>
+      <description> MySQLコマンド メモ WebサーバとDBサーバが1台のマシンにある場合によく行う操作。 # そのマシンのMySQLサーバにrootで接続 # (パスワードを聞かれるので入力してEnter) # mysql -h 127.0.0.1 -u root -p mysql&amp;gt; -- UTF8でDBを作成し、接続ユーザを作成 (先頭がtestの文字は読み替えて下さい) mysql&amp;gt; create database testdb default character set utf8; mysql&amp;gt; grant all on testdb.* to &#39;testuser&#39;@&#39;localhost&#39; identified by &#39;testpassword&#39;; mysql&amp;gt; flush privileges; mysql&amp;gt; -- 別マシンからDBへ接続する必要がある場合は、以下のように別ユーザを作成 mysql&amp;gt; -- (192.168.0.1の部分を別マシンのIPに読み替える) mysql&amp;gt; grant all on testdb.* to testuser@192.168.0.1 identified by &#39;testpassword&#39;; mysql&amp;gt; -- 作成したDBに切り替え、テーブルを作成 mysql&amp;gt; use testdb; mysql&amp;gt; DROP TABLE IF EXISTS `users`; mysql&amp;gt; CREATE TABLE `users` ( mysql&amp;gt; `id` bigint unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY, mysql&amp;gt; `username` varchar(32) NOT NULL mysql&amp;gt; ) ENGINE=InnoDB;  </description>
+    </item>
+    
+    <item>
+      <title>Nexus7とGitHubでプログラミング環境を作る</title>
+      <link>https://sankame.github.io/blog/2013-08-11-nexus7_github_devenv/</link>
+      <pubDate>Sun, 11 Aug 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2013-08-11-nexus7_github_devenv/</guid>
+      <description>0.環境 [端末] Nexus7 [OS] Android 4.2.2 [BlueToothキーボード] ELECOM TK-FBP013  1.インストール  (1-1) Nexus7にBit Web Serverをインストールします。
+ダウンロード 
+Android上でPHPとMySQLを動かせるアプリ。(有料 約230円) root化しないで使用可能。  (1-2) Nexus7にTerminal IDEをインストールします。
+ダウンロード
+Android用の開発環境。(java、c、c++等のコンパイラを含む) root化しないで使用可能。   2.Hello World  Nexus7にBlueToothキーボードを接続。
+Nexus7でTerminal IDEを起動します。
+いくつかボタンが表示されるので、[Install System]をクリック。
+Overwrite ALLにチェックを入れ、[Install System]をクリックし、システムアップデート。
+[Terminal IDE]をクリック。
+コンソールが起動するので、ファイルを作成し、下記内容を書き込みます。
+$ cd $HOME/sdcard/wwww $ $ vim test_hello.php   Nexus7でBit Web Serverを起動。
+[Localhost]をクリック。
+ブラウザが起動し、表示されたファイル一覧から上記で作成したtest_hello.phpをクリック。
+ブラウザにhelloと表示されれば成功です。
+  3.GitHubにファイルをプッシュ(準備)  せっかくなのでNexus7からGitHubにファイルをプッシュしてみます。
+公開鍵と秘密鍵を作成。(Nexus7で下記コマンドを実行)
+$ dropbearkey -t rsa -f $HOME/.</description>
+    </item>
+    
+    <item>
+      <title>Redisインストール</title>
+      <link>https://sankame.github.io/blog/2013-07-10-redis_install/</link>
+      <pubDate>Wed, 10 Jul 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2013-07-10-redis_install/</guid>
+      <description>環境 [CentOS] 5.6 (32bit版カーネル)  インストール # ソース取得。 # wget http://redis.googlecode.com/files/redis-2.6.7.tar.gz # # tar xzf redis-2.6.7.tar.gz # # cd redis-2.6.7 # # 続いてmakeを実行すると下記エラーが発生。 # make cd src &amp;amp;&amp;amp; make all make[1]: ディレクトリ `/root/redis-2.6.7/src&#39; に入ります LINK redis-server zmalloc.o: In function `zmalloc_used_memory&#39;: /root/redis-2.6.7/src/zmalloc.c:223: undefined reference to `__sync_add_and_fetch_4&#39; collect2: ld はステータス 1 で終了しました make[1]: *** [redis-server] エラー 1 make[1]: ディレクトリ `/root/redis-2.6.7/src&#39; から出ます make: *** [all] エラー 2 # アーキテクチャを調べて、コンパイルオプションを指定。 # uname -m i686 # # export CFLAGS=-march=i686 # # make distclean # make # 下記メッセージが出てmakeは通ったらしい。 Hint: To run &#39;make test&#39; is a good idea ;) # 続いてmake testを実行すると下記エラーが発生。 # make test ERROR: *** [err]: SLOWLOG - RESET subcommand works in tests/unit/slowlog.</description>
+    </item>
+    
+    <item>
+      <title>DELL E5520 のタッチパッドをOFFにする</title>
+      <link>https://sankame.github.io/blog/2013-07-05-dell_e5520_touchpad/</link>
+      <pubDate>Fri, 05 Jul 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2013-07-05-dell_e5520_touchpad/</guid>
+      <description> 0. 環境 [PC] DELL E5520 [OS] Windows 7 Professional (SP1)  1. 手順  (1-1) ドライバーダウンロード
+ ダウンロードページ
+ 上記ダウンロードページで、&amp;rdquo;マウス、キーボード、入力デバイス&amp;rdquo; を開きます。
+ &amp;ldquo;Dell Multi-Touch Touchpad Driver&amp;rdquo; の右横にある「ファイルのダウンロード」をクリック。
+ Hard-Drive-ALPS_MULTI-TOUCH-TOUCHPAD_A06_GGY5W_SETUP_ZPE.exe を選択して「続行」をクリック。
+ &amp;ldquo;単一ファイルのダウンロード&amp;rdquo;を選択して「続行」をクリック。
+  (1-2) インストール
+ ダウンロード後、EXEファイルを実行します。
+ インストールが終わったら再起動します。
+  (1-3) 設定
+ Windows[スタートメニュー] - [コントロールパネル]を開き、Dell Touchpad が増えているのでダブルクリック。
+ DELLポインティングデバイス　というダイアログが起動。
+ 左メニューで任意のものを選択して、タッチパッドのOn/Offで O をクリックして、保存ボタンクリック。
+ こうするとタッチパッドがOffになります。
+ (見つからない場合は右上の「表示方法」を「小さいアイコン」または「大きいアイコン」に変更して下さい)
+   2. 参考ページ  http://detail.chiebukuro.yahoo.co.jp/qa/question_detail/q13104530838  </description>
+    </item>
+    
+    <item>
+      <title>Smartyで3点リーダー(省略)表現</title>
+      <link>https://sankame.github.io/blog/2013-05-12-smarty_ellipses/</link>
+      <pubDate>Sun, 12 May 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2013-05-12-smarty_ellipses/</guid>
+      <description> 10文字以上の場合、9文字目を…にして残りを切り捨てる。 (半角、全角ともに1文字として扱う) {if mb_strlen($keyword) &amp;gt; 9} {assign var=cutKeyword value=$keyword|mb_substr:0:8|cat:&#39;…&#39;} {else} {assign var=cutKeyword value=$keyword} {/if} &amp;lt;a class=&amp;quot;keyword-link&amp;quot; href=&amp;quot;#&amp;quot; title=&amp;quot;{$keyword}&amp;quot;&amp;gt;{$cutKeyword}&amp;lt;/a&amp;gt;  上記コードで各文字列を変換した場合。 (&amp;ldquo;→&amp;rdquo; は変換前後を表す) １２３４５６７８　→　１２３４５６７８ １２３４５６７８９　→　１２３４５６７８９ １２３４５６７８９Ａ　→　１２３４５６７８… 123456789 →　123456789 123456789A →　12345678…  </description>
+    </item>
+    
+    <item>
+      <title>PHPでMeCabを利用</title>
+      <link>https://sankame.github.io/blog/2013-04-29-php_mecab/</link>
+      <pubDate>Mon, 29 Apr 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2013-04-29-php_mecab/</guid>
+      <description>0.環境 [CentOS] 5.6 (32bit版カーネル) [PHP] 5.3.3  1.MeCabインストール  まずは下記の手順でMeCabをインストール。
+MeCabインストール方法
+  2.php_mecabインストール # wget -O php_mecab-0.5.zip https://nodeload.github.com/rsky/php-mecab/zip/master --no-check-certificate # # unzip php_mecab-0.5.zip # # mv -f php-mecab-master php_mecab-0.5 # # cd php_mecab-0.5/mecab # # phpize # # ./configure # # make # # make test # # make install  3.テスト  インストールが成功したら、phpからテストします。
+(Apache経由で動かす場合はhttpdを再起動して下さい)
+# echo &amp;quot;extension=mecab.so&amp;quot; &amp;gt; /etc/php.d/mecab.ini # vim mecabtest.php    4.作成したphpファイルを実行 # php mecabtest.</description>
+    </item>
+    
+    <item>
+      <title>MeCabインストール</title>
+      <link>https://sankame.github.io/blog/2013-01-28-mecab_install/</link>
+      <pubDate>Mon, 28 Jan 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2013-01-28-mecab_install/</guid>
+      <description>形態素解析エンジンMeCabをインストールしてみる。 環境 [CentOS] 5.6 (32bit版カーネル)  1.インストール # mecabのソースを取得 # wget http://mecab.googlecode.com/files/mecab-0.98.tar.gz # tar xzf mecab-0.98.tar.gz # cd mecab-0.98 # cd src # mecab.hを開いて点線で囲んだ部分を修正する。数字に付けられている()を削除する。 # vim mecab.h -------------------------------------- #define MECAB_NOR_NODE 0 #define MECAB_UNK_NODE 1 #define MECAB_BOS_NODE 2 #define MECAB_EOS_NODE 3 #define MECAB_EON_NODE 4 #define MECAB_USR_DIC 1 #define MECAB_SYS_DIC 0 #define MECAB_UNK_DIC 2 -------------------------------------- # cd .. # ./configure --with-charset=utf-8 # make # make install # cd .. # 辞書のソースを取得 # wget http://downloads.</description>
+    </item>
+    
+    <item>
+      <title>OpenX仕組み1 配信処理</title>
+      <link>https://sankame.github.io/blog/2013-01-20-openx_structure1/</link>
+      <pubDate>Sun, 20 Jan 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2013-01-20-openx_structure1/</guid>
+      <description> OpenX仕組みに関する自分用メモ　配信処理 1.テーブル定義 テーブル定義？
+2.インプレッションカウント PHP : plugins/deliveryLog/oxLogImpression/logImpression.delivery.php →lib/OA/Dal/Delivery/mysql.php:function OX_bucket_updateTable DB : ox_data_bkt_m 処理: INSERT(1レコード) 概要:  </description>
+    </item>
+    
+    <item>
+      <title>かんたんSubversionリポジトリ作成</title>
+      <link>https://sankame.github.io/blog/2013-01-19-svn_create_repos/</link>
+      <pubDate>Sat, 19 Jan 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2013-01-19-svn_create_repos/</guid>
+      <description>&amp;nbsp;更新日：2015年05月08日
+0.環境 [CentOS] 5.6 (32bit版カーネル) [Apache] 2.2.3 [Subversion] 1.6.11  1.作成手順  SVNはインストール済みとします。
+ (1-1) リポジトリ作成
+ ブラウザ経由でリポジトリを見るため、予め mod_dav_svn をインストール。(初回のみ)
+# yum install mod_dav_svn  データが壊れにくいfsfsを指定し、リポジトリ作成。
+# svnadmin create /var/svn/repos/test --fs-type fsfs  SVNの作法通り、下記3つを用意します。
+svn mkdir file:///var/svn/repos/test/trunk -m &amp;quot;create&amp;quot; svn mkdir file:///var/svn/repos/test/tags -m &amp;quot;create&amp;quot; svn mkdir file:///var/svn/repos/test/branches -m &amp;quot;create&amp;quot;   (1-2) 既存リポジトリのソースを引き継ぐ場合
+ (例)test_orgリポジトリのソースを一時ディレクトリに出力。
+# svn export file:///var/svn/repos/test_org/ /tmp/test_org  上記で出力したソースをtestリポジトリへ取り込みます。
+# svn import /tmp/test_org/trunk file:///var/svn/repos/test/trunk -m &amp;quot;first import&amp;quot;   (1-3) アクセス設定</description>
+    </item>
+    
+    <item>
+      <title>OpenX配信テスト</title>
+      <link>https://sankame.github.io/blog/2013-01-15-openx_delivery_test/</link>
+      <pubDate>Tue, 15 Jan 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2013-01-15-openx_delivery_test/</guid>
+      <description>OpenX(ver2.8.10)で広告配信テストをしてみる。 1.管理画面ログイン 管理画面にログイン後、画面右上でログインユーザが「Working as Default manager」であることを確認。
+「インベントリ」タブをクリックし、左メニューの上から順に登録していく。
+2.広告主 「インベントリ」-「広告主」-「広告主の追加」とリンクを辿り、下記項目に入力して「変更の保存」クリック。
+名称、担当者名、メールアドレス  上記で登録した広告主をクリックすると広告主の詳細画面が表示されるので、
+「ユーザアクセス」タブ -「アクション▼」-「ユーザを追加する」からユーザを追加。
+※ログアウト後、入力した「ユーザー名」と「パスワード」で広告主ユーザーとしてログインできる。
+3.キャンペーン 「インベントリ」-「広告主」で登録済みの広告主の「キャンペーンの追加」をクリック。
+キャンペーン追加画面で下記項目を入力して「変更の保存」をクリック。
+名称 : (任意) キャンペーン名 ： 担当者名 (※各選択肢の意味は未確認) 「日付」以下の項目はとりあえずデフォルトのまま。 (2013/01/20,追記) 「他のキャンペーンに対する優先度」が未設定だとアラートメッセージが出るので下記のように設定。 優先度レベル=10、Limit=インプレッション、終了=15000/日  4.バナー 「インベントリ」-「キャンペーン」で登録済みキャンペーンの「バナーの追加」をクリック。
+バナーの追加画面で下記項目を入力して「Save changes」をクリック。(今回はGoogle AdSenseを配信してみる)
+バナーの種別 : html OpenX Generic HTML Banner 名称 : (任意) HTMLバナー - banner code : (ここにGoogle AdSenseの広告ユニットコードを張り付ける) Alter HTML to enable click tracking for: Rich Media - Google AdSense Banner display : (Google AdSenseの広告ユニットコードと同じサイズを指定)  「インベントリ」-「バナー」で、登録済みバナーをクリックし、バナー詳細画面を表示。</description>
+    </item>
+    
+    <item>
+      <title>CentOSコマンド メモ</title>
+      <link>https://sankame.github.io/blog/2012-12-31-centos_command/</link>
+      <pubDate>Mon, 31 Dec 2012 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2012-12-31-centos_command/</guid>
+      <description>&amp;nbsp;更新日：2015年03月18日
+CentOSコマンド メモ ・ファイル検索  find / -name filename  ・locateインストール (更新日：2013/01/01) # which locate /usr/bin/which: no locate in ・・・以下省略 # パッケージ名がlocateではないので注意。 # yum install mlocate # which locate /usr/bin/locate # 下記コマンドでDBを更新するとlocateが使えるようになる。 # updatedb  ・dateで日時設定 (更新日：2013/01/27) # 引数を次の順番に設定。→ date [月][日][時間][分][年] # date 012723232013 2013年 1月 27日 日曜日 23:23:00 JST  ・CentOSバージョン (更新日：2013/07/07) # cat /etc/redhat-release  ・CPUアーキテクチャ確認 (更新日：2013/07/07) # grep flags /proc/cpuinfo | grep lm | wc -l # 上記が0ならCPU 32bit、1ならCPU 64bit # lm(long mode)フラグがあれば64bit  ・カーネルバージョン確認 (更新日：2013/07/07) # uname -a|grep x86_64|wc -l # 上記が0なら32bitカーネル、1ならCPU 64bitカーネル # (x86_64 の場合、64bit) # (i386/i486/i586/i686 の場合、32bit)  参考ページ</description>
+    </item>
+    
+    <item>
+      <title>PHPサンプル isset関数化</title>
+      <link>https://sankame.github.io/blog/2012-12-28-php_sample_viaisset/</link>
+      <pubDate>Fri, 28 Dec 2012 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2012-12-28-php_sample_viaisset/</guid>
+      <description> &amp;ldquo;Undefined index&amp;rdquo; Noticeを防ぐためのissetが冗長なので関数化。  </description>
+    </item>
+    
+    <item>
+      <title>GitHubPagesが動かない</title>
+      <link>https://sankame.github.io/blog/2012-12-27-github_pages_doesnt_work/</link>
+      <pubDate>Thu, 27 Dec 2012 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2012-12-27-github_pages_doesnt_work/</guid>
+      <description>GitHubPagesでブログを公開しようと、下記ページに従って作業したがindex.htmlすら表示されない… 参考ページ 1.GitHubに登録したメールアドレスの受信箱をチェック &amp;ldquo;Page build failure&amp;rdquo;というサブジェクトでGitHubからメールが届いていた。
+The page build failed with the following error: You need a verified email address in your GitHub account to publish Pages. You can verify your email addresses from your Settings panel: https://github.com/settings/emails  設定パネルであなたのメアドが正しいことを確認してください、と書いてある。
+上記メール内のリンクを押してページ遷移した後、メールアドレスの確認ボタンをクリック。
+その後、github pagesのページ作成ボタンを押すと下記URLにアクセスできた。 (usernameは読み替え)
+http://username.github.com/</description>
+    </item>
+    
+    <item>
+      <title>OpenXインストール</title>
+      <link>https://sankame.github.io/blog/2012-12-24-openx_install/</link>
+      <pubDate>Mon, 24 Dec 2012 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2012-12-24-openx_install/</guid>
+      <description>&amp;nbsp;更新日：2015年06月27日
+ OSS版のOpenXは製品名がRevive AdServerに変わりました。
+インストールはこちらをご確認下さい。(2015/06/27)  ローカルPCのVmwarePlayerにOpenXをインストール。 [マニュアル]に従ってインストールしました。 1.ソース取得  マニュアルの下記リンクからソースをダウンロード。(アンケートがあるためwgetでは落とせない)
+Download the latest installation archive from: here
+ソースをWebサーバへアップし、解凍して公開ディレクトリへ配置する。
+# mv openx-2.8.10 openx # mv openx /var/www/html/  /var/www/html/openx/varと/var/www/html/openx/www/images　に777を与える。
+# cd /var/www/html/openx/ # chmod -R 777 var # chmod -R 777 ./www/images/  ブラウザでhttp://localhost/openx/ へアクセスし、Webのインストーラを起動する。
+下記のディレクトリにも書き込み権限が必要というエラーが出た。
+/var/www/html/openx/plugins
+/var/www/html/openx/www/admin/plugins
+画面にコマンドが書いてあったのでそのまま実行。
+# chmod -R a+w /var/www/html/openx/plugins # chmod -R a+w /var/www/html/openx/www/admin/plugins   2.Registration  Webインストーラを続行、下記項目に入力。
+name, password, e-mail
+  3.</description>
+    </item>
+    
+    <item>
+      <title>Jekyllとgithubでブログ作成</title>
+      <link>https://sankame.github.io/blog/2012-12-23-jekyll_and_github/</link>
+      <pubDate>Sun, 23 Dec 2012 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2012-12-23-jekyll_and_github/</guid>
+      <description>ローカルPCのVmwarePlayerにRuby, RubyGems, Jekyllをインストール。 Jekyllで作ったブログをGitHubに設置する。 1.Rubyインストール # インストール済みか？ # rpm -q ruby # インストールされていない場合、インストールを行う。 # yum install ruby ruby-devel rdoc irb  2.RubyGemsインストール # wget http://rubyforge.org/frs/download.php/60718/rubygems-1.3.5.tgz # tar xzf rubygems-1.3.5.tgz # cd rubygems-1.3.5 # ruby setup.rb # インストールされたgemsのバージョン確認。 # gem -v  3.Jekyllインストール # gem install jekyll  下記メッセージ(抜粋)でインストール失敗…
+buffer overflow detected
+3-1. vmware playerの割り当てメモリ変更。192MB -&amp;gt; 256MB (問題の解決とは無関係と思われる) 3-2. Ruby再インストール # cd /etc/yum.repos.d/ # wget http://rubyworks.rubyforge.org/RubyWorks.repo # yum install ruby # ruby -v ruby 1.</description>
+    </item>
+    
+    <item>
+      <title>Jekyll Tips1</title>
+      <link>https://sankame.github.io/blog/2012-12-17-jekyll_tips1/</link>
+      <pubDate>Mon, 17 Dec 2012 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2012-12-17-jekyll_tips1/</guid>
+      <description>Jekyllの設定に関するメモ。 JekyllBootstrapの配置先は下記ディレクトリ。(関連記事) /var/www/html/jekyll/JEKYLL_HOME/ ・画面ヘッダ部分のナビゲーションを変更したい。 (例) 画面ヘッダ部分にArchiveを表示したくない場合 下記ファイルのヘッダ部分の&amp;quot;group: navigation&amp;quot;を#でコメントアウトする。 /var/www/html/jekyll/JEKYLL_HOME/archive.html  ・記事タイトルに日本語を使いたい。 記事のファイル名に日本語は使えないので、YAMLのFront Matterでtitleを指定する。 (例) --- layout: page category: Jekyll tags: [Ruby, RubyGems, Jekyll, GitHub] date: 2012-12-23 00:00:00 title: Jekyllとgithubでブログ作成 ---  ・ループ回数を制限したい。 limitを使う。 (例)最近の5件だけ記事を表示。 {% raw %} &amp;lt;ul class=&amp;quot;posts&amp;quot;&amp;gt; {% for post in site.posts limit:5 %} &amp;lt;li&amp;gt;&amp;lt;span&amp;gt;{{ post.date | date_to_string }}&amp;lt;/span&amp;gt; &amp;amp;raquo; &amp;lt;a href=&amp;quot;{{ BASE_PATH }}{{ post.url }}&amp;quot;&amp;gt;{{ post.title }}&amp;lt;/a&amp;gt;&amp;lt;/li&amp;gt; {% endfor %} &amp;lt;/ul&amp;gt; {% endraw %}  ・liquidの文法をエスケープしたい。参考ページ Markdownの中でif文やliquidの文法をそのまま出力したい場合、下記のタグを使用する。 {{ &amp;quot;{% raw &amp;quot; }}%} エスケープしたい表現 {{ &amp;quot;{% endraw &amp;quot; }}%}  ・日付のフォーマット(書式)を変更したい。参考ページ 日本語を使う場合、ファイルをUTF8で保存する。 (例) {% raw %} { post.</description>
+    </item>
+    
+  </channel>
+</rss>

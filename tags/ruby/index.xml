@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ruby on プログラマー備忘録</title>
+    <link>https://sankame.github.io/tags/ruby/</link>
+    <description>Recent content in Ruby on プログラマー備忘録</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <lastBuildDate>Sat, 24 May 2014 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://sankame.github.io/tags/ruby/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Selenium WebDriverを動かしてみる</title>
+      <link>https://sankame.github.io/blog/2014-05-24-selenium_webdriver/</link>
+      <pubDate>Sat, 24 May 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2014-05-24-selenium_webdriver/</guid>
+      <description>0.環境 ・親ノード端末 [CentOS] 5.6 (32bit版カーネル) [ruby] 2.1.1p76 [rvm] 1.25.25 [java] 1.7.0_51 ・子ノード端末 [Windows] Vista Home Premium (32bit) [java] 1.7.0_51 [IE] 8  1.準備  ■ 目的
+ブラウザテストの自動化に興味があり、面白そうな記事があったので自分でも試してみました。
+(Jenkinsとの連携は今回やっていません)
+ ■ 親ノード
+親ノード端末の適当なディレクトリに Selenium Server をダウンロード後、起動します。
+# cd /usr/local/bin/ # wget http://selenium-release.storage.googleapis.com/2.41/selenium-server-standalone-2.41.0.jar # java -jar selenium-server-standalone-2.41.0.jar -role hub  ■ 子ノード
+子ノード端末の適当なフォルダに Selenium Server とIEドライバーをダウンロード後、起動します。
+ダウンロードページ
+まず&amp;rdquo;Selenium Server (formerly the Selenium RC Server)&amp;rdquo; をダウンロード。
+次に&amp;rdquo;The Internet Explorer Driver Server&amp;rdquo; をダウンロードします。</description>
+    </item>
+    
+    <item>
+      <title>Jekyllを1.0.2へバージョンアップ</title>
+      <link>https://sankame.github.io/blog/2014-05-18-jekyll_version_up/</link>
+      <pubDate>Sun, 18 May 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2014-05-18-jekyll_version_up/</guid>
+      <description>0.環境 [CentOS] 5.6 (32bit版カーネル) [ruby] 2.1.1p76 [rvm] 1.25.25 [jekyll] 0.11.2 =&amp;gt; 1.0.2  1.インストール 参考ページ  インストール
+本ブログはjekyll 0.11.2で作成してきましたが、別件でrubyのバージョンを上げたことでjekyllが動か
+なくなってしまったため、思い切って1.0.2への移行を行いました。初期インストールの内容
+いくつかハマった点を共有します。
+まず、複数バージョンのrubyを使いたかったので下記ページに沿ってrvmをインストール。
+rvmインストール
+rootで実行したためか /usr/local/rvm にインストールされたので、上記記事内のパスは読み替えました。
+ruby 2.1.1をインストール。
+# rvm install 2.1.1 # rvm use 2.1.1  適当な場所にGemfileを作成し、jekyllを追記してインストール開始。
+# bundle init # echo &amp;quot;gem &#39;jekyll&#39;, &#39;1.0.2&#39;&amp;quot; &amp;gt;&amp;gt; Gemfile # bundle install  インストールされたことを確認します。
+# gem list|grep jekyll jekyll (1.0.2) jekyll-coffeescript (1.0.0) jekyll-sass-converter (1.0.0)  起動
+任意の場所へ移動し、bootstrapをダウンロードします。bootstrapクイックスタート
+(前バージョンとは別の場所にしました)
+# cd /var/www/html/jekyll2/ # git clone https://github.</description>
+    </item>
+    
+    <item>
+      <title>Rubyを始める</title>
+      <link>https://sankame.github.io/blog/2013-09-16-ruby_hello_world/</link>
+      <pubDate>Mon, 16 Sep 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2013-09-16-ruby_hello_world/</guid>
+      <description>Rubyを始める 0.環境  [CentOS] 5.6 (32bit版カーネル) [Apache] 2.2.3  1.Rubyインストール  1-1.Rubyがすでにインストールされているか調べる。
+(インストールされている場合は下記のように表示される)
+# rpm -q ruby ruby-1.8.6.111-1  1-2.インストールされていない場合、下記コマンドでインストール。
+# yum install ruby ruby-devel rdoc irb   2.Apache設定  2-1.mod_cgiがロードされていることを確認。
+# cat /etc/httpd/conf/httpd.conf|grep mod_cgi LoadModule cgi_module modules/mod_cgi.so   3.htacess設定  3-1.Apacheドキュメントルートの.htaccessに下記を追記。
+(ドキュメントルートのパスは読み替えて下さい)
+# cat /var/www/html/.htaccess AddHandler cgi-script .cgi .rb Options +ExecCGI   4.動作確認  4-1.ファイル作成
+# touch /var/www/html/hello.rb  4-2.テストコード記述
+作成したファイルに下記コードを記述。
+(1行目のrubyのパスは、which ruby で調べて読み替えて下さい)
+#!/usr/bin/ruby print &amp;quot;Content-type:text/html\n\n&amp;quot; print &amp;lt;&amp;lt;EOS &amp;lt;HTML&amp;gt; &amp;lt;HEAD&amp;gt; &amp;lt;/HEAD&amp;gt; &amp;lt;BODY&amp;gt; Hello World!</description>
+    </item>
+    
+    <item>
+      <title>Jekyllとgithubでブログ作成</title>
+      <link>https://sankame.github.io/blog/2012-12-23-jekyll_and_github/</link>
+      <pubDate>Sun, 23 Dec 2012 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2012-12-23-jekyll_and_github/</guid>
+      <description>ローカルPCのVmwarePlayerにRuby, RubyGems, Jekyllをインストール。 Jekyllで作ったブログをGitHubに設置する。 1.Rubyインストール # インストール済みか？ # rpm -q ruby # インストールされていない場合、インストールを行う。 # yum install ruby ruby-devel rdoc irb  2.RubyGemsインストール # wget http://rubyforge.org/frs/download.php/60718/rubygems-1.3.5.tgz # tar xzf rubygems-1.3.5.tgz # cd rubygems-1.3.5 # ruby setup.rb # インストールされたgemsのバージョン確認。 # gem -v  3.Jekyllインストール # gem install jekyll  下記メッセージ(抜粋)でインストール失敗…
+buffer overflow detected
+3-1. vmware playerの割り当てメモリ変更。192MB -&amp;gt; 256MB (問題の解決とは無関係と思われる) 3-2. Ruby再インストール # cd /etc/yum.repos.d/ # wget http://rubyworks.rubyforge.org/RubyWorks.repo # yum install ruby # ruby -v ruby 1.</description>
+    </item>
+    
+  </channel>
+</rss>

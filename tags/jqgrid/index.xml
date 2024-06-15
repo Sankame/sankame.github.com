@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>jqGrid on プログラマー備忘録</title>
+    <link>https://sankame.github.io/tags/jqgrid/</link>
+    <description>Recent content in jqGrid on プログラマー備忘録</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <lastBuildDate>Sat, 02 May 2015 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://sankame.github.io/tags/jqgrid/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>jqGridで表示する値と元の値を分ける</title>
+      <link>https://sankame.github.io/blog/2015-05-02-jqgrid_formatter/</link>
+      <pubDate>Sat, 02 May 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2015-05-02-jqgrid_formatter/</guid>
+      <description>0.環境 [jquery] 1.7.1 [jquery-ui] 1.10.3 [jqGrid] 4.5.2  1.コード  画面表示は formatter で定義し、処理では元の値を使いたいので unformat で定義します。
+jQuery(&amp;quot;#grid_id&amp;quot;).jqGrid({ // 省略 colModel: [ // 省略 {name:&#39;name&#39;, index:&#39;name&#39;, formatter: formatterName, unformat: unformatName}, // 省略 ] // 省略 }); /** リンクに変更 */ function formatterName(cellvalue, options, rowdata) { var val = &amp;quot;&amp;lt;a href=\&amp;quot;javascript:void(0);\&amp;quot; onclick=\&amp;quot;showItem(&#39;&amp;quot; + rowdata.item_id + &amp;quot;&#39;);\&amp;quot;&amp;gt;&amp;quot; + cellvalue + &amp;quot;&amp;lt;/a&amp;gt;&amp;quot;; return val; } /** 加工しない元の値 */ function unformatName(cellvalue, options) { return cellvalue; }   2.</description>
+    </item>
+    
+  </channel>
+</rss>

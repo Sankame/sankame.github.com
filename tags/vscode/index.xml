@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>VSCode on プログラマー備忘録</title>
+    <link>https://sankame.github.io/tags/vscode/</link>
+    <description>Recent content in VSCode on プログラマー備忘録</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <lastBuildDate>Sun, 03 Nov 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://sankame.github.io/tags/vscode/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>VSCodeでShift_JISファイルを開く</title>
+      <link>https://sankame.github.io/blog/2019-11-03-vscode_shift_jis/</link>
+      <pubDate>Sun, 03 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2019-11-03-vscode_shift_jis/</guid>
+      <description> 昔秀丸エディタなどで保存したShift_JISのファイルをVisual Studio Codeで開くと文字化けしたので設定方法をメモ。
+0. 環境 [Visual Studio Code] 1.39.2
+1. 手順  設定画面を開きます。
+ Windowsの場合、[Ctrl] + [,]
+ Macの場合、[⌘ command] + [,]
+  検索ボックスにfiles.autoGuessEncodingを入力。
+ 表示された&amp;rdquo;Auto Guess Encoding&amp;rdquo;のチェックボックスをONにする。
+  </description>
+    </item>
+    
+  </channel>
+</rss>

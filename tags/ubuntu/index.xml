@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ubuntu on プログラマー備忘録</title>
+    <link>https://sankame.github.io/tags/ubuntu/</link>
+    <description>Recent content in Ubuntu on プログラマー備忘録</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <lastBuildDate>Thu, 30 Apr 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://sankame.github.io/tags/ubuntu/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>VirtualBoxでWindows10とUbuntu間のファイル共有</title>
+      <link>https://sankame.github.io/blog/2020-04-30-virtualbox_share_folder/</link>
+      <pubDate>Thu, 30 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2020-04-30-virtualbox_share_folder/</guid>
+      <description>0. 環境 [VirtualBox] 6.1.6
+[ホストOS] Windows 10 Home
+[ゲストOS] Ubuntu 16.4
+1. やりたいこと Windows10(ホストOS)にVirtualBoxを入れて、その上でUbuntu(ゲストOS)を動かします。
+その際、ホストOS上のファイルをゲストOSからも操作したい。
+IDEやエディタはホストOS上で起動し、バージョン管理やWebサーバー経由の確認などはゲストOSで行いたいというのが意図です。
+2. インストール VirtualBoxとUbuntuのインストール&amp;amp;設定はこの記事が分かりやすかったです。
+VirtualBoxのサイトで下記リンクからダウンロード。
+[VirtualBox 6.1.6 platform packages]-[Windows hosts]
+また、Ubuntuはこちらのサイトから「64-bit PC (AMD64) desktop image」をダウンロードしました。
+1.6Gあるので僕の環境だと数時間かかりました。
+3. 共有フォルダ設定 Ubuntuのインストールが終わったら、VirtualBoxのホーム画面からインストールした仮想マシンを選択して「設定」をクリック。
+下記のウィンドウが起動するので、左メニューの「共有フォルダー」をクリックします。
+さらに右端にあるプラスマークをクリック。 
+下記ウィンドウに必要項目を入力します。
+・「フォルダーのパス」は「その他」を選んで、ホストOS側で共有したいフォルダーを選択。 ・「フォルダー名」は自動で入るのでさわらず。(1) ・「自動マウント」をチェックONにします。 ・「マウントポイント」はゲストOSの任意のディレクトリを指定。(2) ・「永続化する」というチェックボックスがある場合、それもON。  
+こんな感じに追加されました。 
+ゲストOSを再起動します。
+これだけだとゲストOSからホストOSの共有フォルダが見えませんでした。
+調べてるといろんなページで「Ubuntuに&amp;rdquo;Gust Additions&amp;rdquo;をインストールする必要がある」と書いてましたが、入れなくても後述の手順でできました。 (以前はそうだったのかもしれません)
+&amp;ldquo;mount.vboxsf&amp;rdquo;コマンドを使いたいので、ゲストOS上でrootになるかsudoをつけて下記コマンドを実行。
+# apt install virtualbox-guest-utils  次にゲストOS側で予めマウントポイントのディレクトリを作成しておきます。(上記(2))
+最後に、第一引数に前述の(1)、第二引数に(2)を指定してこのコマンドを実行するとホスト側のフォルダが参照できました。(下記のshareは読み替えて下さい)
+# mount.vboxsf share /share  仮想マシンを落とすと設定が消えてしまったので、~/.bashrcに上記コマンドを書いておきました。</description>
+    </item>
+    
+  </channel>
+</rss>
