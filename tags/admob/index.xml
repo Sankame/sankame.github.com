@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>AdMob on プログラマー備忘録</title>
+    <link>https://sankame.github.io/tags/admob/</link>
+    <description>Recent content in AdMob on プログラマー備忘録</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <lastBuildDate>Sun, 18 Feb 2024 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://sankame.github.io/tags/admob/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>AdMob広告にコンテンツが被ったという警告を回避</title>
+      <link>https://sankame.github.io/blog/2024-02-18-admob_alert_contents_over_ads/</link>
+      <pubDate>Sun, 18 Feb 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2024-02-18-admob_alert_contents_over_ads/</guid>
+      <description> 0. 環境 [OS] Android 13 (その他)
+1. 課題  AdMobからの警告
+AdMob管理画面の「ポリシーセンター」で下記の警告が上がりました。
+Google が配信する広告の前面に重なって表示されるコンテンツの扱い
+AdMobに登録済みのメアドにも、同内容のメールが届いていました。 (「広告配信が中断されないよう、早急にご対応をお願いいたします」という文面で修正までの猶予は確か2-3週間)
+  2. 対策  下記2点を対応後「ポリシーセンター」から承認依頼したところ、警告は数日で止まりました。
+
+ (1) 広告の上下に十分なスペースを確保。
+ (2) 広告を囲む要素の高さを予め固定しておく。
+ それによって、広告のロード後にAdViewの高さがビョンと伸びて、下にあるListViewなどが押し下げられるのを防ぎます。
+ 僕のアプリではAdViewを内包するLinearLayoutに「android:layout_height=&amp;ldquo;65dp&amp;rdquo;」を設定しました。(高さ65dpのバナー広告のみを対象としているため)
+    x. 参考リンク  具体的な修正方法が分からず手探りでしたが、下記の規約に抵触したと思われます。
+ コンテンツに重なった広告（ポリシー違反）   </description>
+    </item>
+    
+  </channel>
+</rss>
