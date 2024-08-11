@@ -1,0 +1,584 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>エラー解決 on プログラマー備忘録</title>
+    <link>https://sankame.github.io/categories/%E3%82%A8%E3%83%A9%E3%83%BC%E8%A7%A3%E6%B1%BA/</link>
+    <description>Recent content in エラー解決 on プログラマー備忘録</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <lastBuildDate>Sat, 27 Jul 2024 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://sankame.github.io/categories/%E3%82%A8%E3%83%A9%E3%83%BC%E8%A7%A3%E6%B1%BA/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Unity Hubで個人開発ライセンスを追加できない</title>
+      <link>https://sankame.github.io/blog/2024-07-27-unity_cant_activate_a_personal_license/</link>
+      <pubDate>Sat, 27 Jul 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2024-07-27-unity_cant_activate_a_personal_license/</guid>
+      <description>環境  [OS] Windows 11 Home [Unity Hub] 3.8.0 [Unity Editor] 2021.3.41f1  エラー内容  課題
+ Unity HubやUnity Editorで設定をいじりすぎて、ライセンスエラーが出るようになった。
+No active licenses To create and open projects, you need an active license.
+ 下記の手順を踏んでライセンス追加をしようとしても何も起きない。
+[Manage licenses]-[Add]-[Get a free personal license]-[Agree and get personal edition license]
+
+
+  解決策
+ 「管理者として実行」でUnity Hubを起動したら解決しました。  下記の参考記事で権限が原因っぽかったので、試しにやったら成功しました。 但し、Unityは管理者権限での実行は推奨してないようなので、自己責任でお願い致します。   参考
+ Unable to activate Unity Personal License on fresh email.</description>
+    </item>
+    
+    <item>
+      <title>VMでシンボリックリンクが作成できない(自動マウントOFFでmountコマンドを使用している場合)</title>
+      <link>https://sankame.github.io/blog/2024-06-15_fail_to_make_sl_in_vm_2/</link>
+      <pubDate>Sat, 15 Jun 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2024-06-15_fail_to_make_sl_in_vm_2/</guid>
+      <description>環境  [Host OS] Windows 11 Home [Oracle VM VirtualBox] 7.0.18 [Gust OS] Ubuntu 22.04.4 LTS  前提  Virtualboxの[設定]-[共有フォルダー]で共有フォルダーの設定はあるが「自動マウント」はOFF。 VM(Gust OS)側で起動時にマウントする設定になっている。(本来は/etc/fstabでやるべきですが上手くいかなかったので下記で代替)
+# cat ~/.bashrc|grep mount mount -t vboxsf share /share   内容  課題
+ NextJSのインストール時にシンボリックリンク作成でエラー。
+# npm install --save react react-dom next : (中略) : npm error code EPERM npm error syscall symlink npm error path ../@mapbox/node-pre-gyp/bin/node-pre-gyp npm error dest /apps/simple-flashcard-nextjs/node_modules/.bin/node-pre-gyp npm error errno -1 npm error Error: EPERM: operation not permitted, symlink &#39;.</description>
+    </item>
+    
+    <item>
+      <title>大量ファイルをgit pushする際のエラー回避3パターン</title>
+      <link>https://sankame.github.io/blog/2024-06-11-git_push_errors/</link>
+      <pubDate>Tue, 11 Jun 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2024-06-11-git_push_errors/</guid>
+      <description>環境  [OS] Ubuntu 22.04.4 LTS [Git] 2.34.1  エラー1回目(Bitbucket)  課題
+ Bitbucketにソースをpushしようとしたらエラーが起きました。
+# git push origin master : (中略) : Counting objects: 100% (1244/1244), done. Delta compression using up to 2 threads Compressing objects: 100% (1232/1232), done. client_loop: send disconnect: Broken pipeiB | 5.36 MiB/s send-pack: unexpected disconnect while reading sideband packet fatal: the remote end hung up unexpectedly   解決策
+ ページ末尾の*aを実行しつつ、バッファサイズを適当に増やしたら直りました。
+# git config --global http.</description>
+    </item>
+    
+    <item>
+      <title>AdMob広告にコンテンツが被ったという警告を回避</title>
+      <link>https://sankame.github.io/blog/2024-02-18-admob_alert_contents_over_ads/</link>
+      <pubDate>Sun, 18 Feb 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2024-02-18-admob_alert_contents_over_ads/</guid>
+      <description> 0. 環境 [OS] Android 13 (その他)
+1. 課題  AdMobからの警告
+AdMob管理画面の「ポリシーセンター」で下記の警告が上がりました。
+Google が配信する広告の前面に重なって表示されるコンテンツの扱い
+AdMobに登録済みのメアドにも、同内容のメールが届いていました。 (「広告配信が中断されないよう、早急にご対応をお願いいたします」という文面で修正までの猶予は確か2-3週間)
+  2. 対策  下記2点を対応後「ポリシーセンター」から承認依頼したところ、警告は数日で止まりました。
+
+ (1) 広告の上下に十分なスペースを確保。
+ (2) 広告を囲む要素の高さを予め固定しておく。
+ それによって、広告のロード後にAdViewの高さがビョンと伸びて、下にあるListViewなどが押し下げられるのを防ぎます。
+ 僕のアプリではAdViewを内包するLinearLayoutに「android:layout_height=&amp;ldquo;65dp&amp;rdquo;」を設定しました。(高さ65dpのバナー広告のみを対象としているため)
+    x. 参考リンク  具体的な修正方法が分からず手探りでしたが、下記の規約に抵触したと思われます。
+ コンテンツに重なった広告（ポリシー違反）   </description>
+    </item>
+    
+    <item>
+      <title>【Apex】アバストによる起動時エラー</title>
+      <link>https://sankame.github.io/blog/2023-01-15-apex_runs_error_by_avast/</link>
+      <pubDate>Sun, 15 Jan 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2023-01-15-apex_runs_error_by_avast/</guid>
+      <description> 0. 環境 [OS] Windows11
+1. 課題 ゲームApexが急に起動しなくなりました。  「起動時エラー」メッセージの下にファイルパスが記載され、確か、Invalid file pathとなってたと思います。
+ 調べてみると、指定されたその実行ファイルへのパスが存在してませんでした。(消された？)
+  ２. 対策 下記の情報を順に行うことで回復しました。  Avastがマルウェアと間違えてチェスト(検疫)に移動してしまったようです。これを元の場所に戻してください。
+ Apex Legendsが起動できない場合  それだけだとダメでした。
+ おそらく、起動ファイルがない状態で何度も起動しようとしたため、ファイルの整合性がおかしくなったようです。(たぶん)
+ 下記の「対処法①APEXを修復する」を実施して下さい。
+ Apex エンジンエラーの対処法  「ファイルを再取得します」という旨のメッセージが出たまま、何も動きがなかったので、下記ページの内容を確認したところ修復は完了してました。
+ ファイルの再取得はどうやって？  これで直りました。
+   </description>
+    </item>
+    
+    <item>
+      <title>Android APIレベル31対応</title>
+      <link>https://sankame.github.io/blog/2022-10-09-android_api_level_31/</link>
+      <pubDate>Sun, 09 Oct 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2022-10-09-android_api_level_31/</guid>
+      <description>0. 環境 [Host OS] Windows 11 Home
+1. 手順  Playストアの規約変更があったので、AndroidアプリのSDKバージョンを31に上げました。
+ (アプリルート)/mobile/build.gradle
+ 抜粋 (diff)   android { - compileSdkVersion 30 + compileSdkVersion 31 defaultConfig { - targetSdkVersion 30 + targetSdkVersion 31 }    ２. ビルドエラー (2-1) ビルドと実機へのインストールでエラーが発生  エラー内容
+Installation did not succeed. The application could not be installed: INSTALL_PARSE_FAILED_MANIFEST_MALFORMED Installation failed due to: &#39;null&#39;   (2-2) マニフェスト修正  &amp;lt;intent-filter&amp;gt;を使っているActivityなどに「android:exported=&amp;ldquo;true&amp;rdquo;」が必要になったようです。 (デフォルト値が変わったため、今までと同じにするには、この指定が必要)
+ (アプリルート)/mobile/src/main/AndroidManifest.xml</description>
+    </item>
+    
+    <item>
+      <title>VMでシンボリックリンクが作成できない</title>
+      <link>https://sankame.github.io/blog/2022-08-20-fail_to_make_sl_in_vm/</link>
+      <pubDate>Sat, 20 Aug 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2022-08-20-fail_to_make_sl_in_vm/</guid>
+      <description>  Virtualboxの[設定]-[共有フォルダー]で「自動マウント」がOFFの場合は こちら(2024/06/15)  &amp;nbsp;
+0. 環境 [Host OS] Windows 11 Home
+[Oracle VM VirtualBox] 6.1.32
+[Gust OS] ubuntu 16.04
+1. 問題  VirtualBoxに入れたLinux上で、シンボリック・リンク(Symbolic link)の作成に失敗する。
+下記の例は、node.jsのライブラリをインストールするときに発生してますが、根本の問題は上記の通り。
+root@hoge:/dev/blockchain# npm i express --save npm ERR! code EPROTO npm ERR! syscall symlink npm ERR! path ../mime/cli.js npm ERR! dest /dev/blockchain/node_modules/.bin/mime npm ERR! errno -71 npm ERR! EPROTO: protocol error, symlink &#39;../mime/cli.js&#39; -&amp;gt; &#39;/dev/blockchain/node_modules/.bin/mime&#39;   2. 対応  ネットで調べたら、いろんな情報が出てきましたが、VMを管理者モードで起動するだけで解決しました。
+タスクバーにあるVMのアイコンを2回右クリックして、「管理者として実行」を選択。
+
+  </description>
+    </item>
+    
+    <item>
+      <title>WindowsUpdate後に再度VirtualBoxでVM起動エラー</title>
+      <link>https://sankame.github.io/blog/2022-03-26-virtualbox_does_not_start_after_windows_update/</link>
+      <pubDate>Sat, 26 Mar 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2022-03-26-virtualbox_does_not_start_after_windows_update/</guid>
+      <description>0. 環境 [OS] Windows11 Home
+[VirtualBox] 6.1.22 -&amp;gt; 6.1.32
+1. 問題  VirtualBoxから仮想マシンが起動できなくなりました。
+
+ エラーメッセージ
+仮想マシン&amp;quot;ubuntu_64&amp;quot;のセッションを開けませんでした。 Failed to get device handle and/or partition ID for 0000000001b5bc40 (hPartitionDevice=0000000000000b95, Last=0xc0000002/1) (VERR_NEM_VM_CREATE_FAILED). 終了コード : E_FAIL (0x80004005) コンポーネント: ConsoleWrap インターフェース: IConsole {872da645-4a9b-1727-bee2-5585105b9eed}   2. 原因  たぶん、Windows11のUpdateが原因。
+ 因果関係は確かではないですが、下記WindowsUpdateの前後があやしい。
+Cumulative Update for Windows 11, version 22H2 Insider Preview (10.0.22581.100) (KB5013283) Microsoft Defender Antivirus のセキュリティ インテリジェンス更新プログラム - KB2267602 (バージョン 1.361.759.0)   3.</description>
+    </item>
+    
+    <item>
+      <title>Error: Unable to &#39;pub upgrade&#39; flutter tool.</title>
+      <link>https://sankame.github.io/blog/2021-11-20-flutter_pub_upgrade_error/</link>
+      <pubDate>Sat, 20 Nov 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2021-11-20-flutter_pub_upgrade_error/</guid>
+      <description>0. 環境 [OS] MacOS 10.11.6
+[Flutter] 2.2.3
+1. 問題  flutterアプリの修正中に、&amp;rdquo;flutter upgrade&amp;rdquo;を実行したら、いつものコマンドでアプリが起動しなくなってしまいました。
+ (いつものコマンド)
+flutter run -d chrome --web-port=5000
+ (エラー内容)
+Error: Unable to &#39;pub upgrade&#39; flutter tool. Retrying in five seconds
+ コンソールいっぱいにエラーメッセージが出ましたが、代表させて上記のみ記載。   ググると同じエラーに関する情報がありました。
+ ここに書いてある方法では直らなかったので、flutterを以前のバージョンに戻すことにしました。   2. 対応  flutterを配置している場所を確認。
+$ which flutter [path_to_flutter]/flutter/bin/flutter  [path_to_flutter] にあるflutterディレクトリをバックアップとしてリネーム。
+ [path_to_flutter] に古いバージョンのflutterをダウンロード。
+ 前のバージョンのflutter(僕は2.2.3を取得しました)
+ OSごとにタブが分かれているので注意。
+  ダウンロードしたファイルを解凍し、下記のように元のディレクトリ名と同じになっているか確認。(こうすればPATHの変更も不要)
+[path_to_flutter]/flutter/
+ 任意の場所で下記コマンドを実行。
+$ flutter precache $ flutter doctor  最後にアプリのルートで下記を実行。</description>
+    </item>
+    
+    <item>
+      <title>WindowsUpdate後のVirtualBox起動エラー</title>
+      <link>https://sankame.github.io/blog/2021-08-06-windows_update_causes_vm_error/</link>
+      <pubDate>Fri, 06 Aug 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2021-08-06-windows_update_causes_vm_error/</guid>
+      <description> 0. 環境 [OS] Windows 11 Home
+[VirtualBox] 6.1.22
+1. 問題  1週間くらい前にWindowsUpdateしたら、下記エラーでVMが起動しなくなりました。
+仮想マシン&amp;quot;ubuntu_64&amp;quot;のセッションを開けませんでした。 Failed to get device handle and/or partition ID for 00000000027d6520 (hPartitionDevice=0000000000000bd1, Last=0xc0000002/1) (VERR_NEM_VM_CREATE_FAILED). 終了コード : E_FAIL (0x80004005) コンポーネント: ConsoleWrap インターフェース: IConsole {872da645-4a9b-1727-bee2-5585105b9eed}  WindowsUpdate後にUIが変わってたのでたぶん「Windows 11 Insider Preview」のせいだと思います。
+ Windowsタスクバーの虫眼鏡マークをクリックし「設定」と入力。 設定画面が開くので左メニューから「Windows Update」をクリックすると履歴が参照可能。   2. 対応  Windowsタスクバーの虫眼鏡マークをクリックし「コントロールパネル」と入力。
+ 「コントロールパネル」内の「プログラムと機能」をクリック。
+ 「プログラムと機能」内の左のメニュー「Windowsの機能の有効化または無効化」をクリック。
+ 下記が開くので、「Windows ハイパーバイザー プラットフォーム」にチェックし、Windowsを再起動したら直りました。(WindowsUpdateでデフォルトのOffに戻ってしまったようです…)
+
+  </description>
+    </item>
+    
+    <item>
+      <title>Androidビルド時のクラス重複エラー</title>
+      <link>https://sankame.github.io/blog/2020-06-13-android_class_duplicated/</link>
+      <pubDate>Sat, 13 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2020-06-13-android_class_duplicated/</guid>
+      <description>0. 環境 [Gradle] 5.6.4
+1. 問題 こちらの情報を元にFabricからFirebaseへの移行を行いました。
+Android プロジェクトに Firebase を追加する
+Upgrade to the Firebase Crashlytics SDK
+コード修正後、エラーが発生してビルドできず・・・
+Duplicate class com.google.android.gms.measurement.AppMeasurement found in modules jetified-firebase-analytics-impl-12.0.1-runtime.jar (com.google.firebase:firebase-analytics-impl:12.0.1) and jetified-play-services-measurement-impl-17.4.3-runtime.jar (com.google.android.gms:play-services-measurement-impl:17.4.3) Duplicate class com.google.android.gms.measurement.AppMeasurement$ConditionalUserProperty found in modules jetified-firebase-analytics-impl-12.0.1-runtime.jar (com.google.firebase:firebase-analytics-impl:12.0.1) and jetified-play-services-measurement-impl-17.4.3-runtime.jar (com.google.android.gms:play-services-measurement-impl:17.4.3) Duplicate class com.google.android.gms.measurement.AppMeasurement$Event found in modules jetified-firebase-analytics-impl-12.0.1-runtime.jar (com.google.firebase:firebase-analytics-impl:12.0.1) and jetified-play-services-measurement-impl-17.4.3-runtime.jar (com.google.android.gms:play-services-measurement-impl:17.4.3) Duplicate class com.google.android.gms.measurement.AppMeasurement$EventInterceptor found in modules jetified-firebase-analytics-impl-12.0.1-runtime.jar (com.google.firebase:firebase-analytics-impl:12.0.1) and jetified-play-services-measurement-impl-17.4.3-runtime.jar (com.google.android.gms:play-services-measurement-impl:17.4.3) Duplicate class com.google.android.gms.measurement.AppMeasurement$OnEventListener found in modules jetified-firebase-analytics-impl-12.0.1-runtime.jar (com.</description>
+    </item>
+    
+    <item>
+      <title>MySQLでquery_cache系パラメータを設定すると起動エラー</title>
+      <link>https://sankame.github.io/blog/2020-04-01-mysql8_not_support_querycache/</link>
+      <pubDate>Wed, 01 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2020-04-01-mysql8_not_support_querycache/</guid>
+      <description>0. 環境 [MySQL] 8.0.17
+1. 経緯  GCP無料枠のメモリ約500MBという貧弱な環境でWordPressを運用してます。
+少しでもパフォーマンス改善したく、MySQLのクエリキャッシュを設定しました。(下記要点のみ記載)
+# vim /etc/my.cnf.d/mysql-server.cnf : : [mysqld] query_cache_type=1 query_cache_limit=1M query_cache_size=20M  MySQLを再起動。
+# mysql -u hoge -phoge -e&amp;quot;SET GLOBAL innodb_fast_shutdown = 1&amp;quot; # service mysqld stop # service mysqld start  起動しなくなりました…
+ログを見ると下記エラーが出てました。(要点のみ記載)
+# tail -F /var/log/mysql/mysqld.log : : [Server] unknown variable &#39;query_cache_type=1&#39;.   2. 対応  ネットで情報を漁ったところ、MySQL8からはクエリキャッシュが使えなくなったようです。
+MySQL 8.0: Retiring Support for the Query Cache
+代わりにProxySQLというのが紹介されてましたが、ミドルウェアを追加するとメンテするポイントも増えるので今回は見送りました。
+一旦は、WordPressのプラグイン(WP Super Cache)とphp-fpmのチューニングで、DBより手前で何とかする方向で進めます。</description>
+    </item>
+    
+    <item>
+      <title>Let&#39;s Encryptのバグに伴う証明書更新</title>
+      <link>https://sankame.github.io/blog/2020-03-06-lets_encrypt_bug_avoid/</link>
+      <pubDate>Fri, 06 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2020-03-06-lets_encrypt_bug_avoid/</guid>
+      <description>「バグ対応のため、Let&amp;rsquo;s Encryptの一部証明書が3/4までになる」と同僚が教えてくれました。
+&amp;ldquo;「バグの影響で特定のサーバー証明書を失効させる」とLet’s Encryptが発表、影響を受けるのは全体の2.6%&amp;rdquo;
+0. 環境 [OS] CentOS 7.5
+1. 確認 まず、Let’s Encryptから提供されている下記ツールに対象ホスト名(ドメイン)を入れて影響有無を確認します。
+Check whether a host&amp;rsquo;s certificate needs replacement
+2. 手順  影響ありの場合、対応方法は証明書を更新すればよいとのことなので、こちらを実行しました。
+certbot renew
+ よくログを見ると処理がスキップされ、更新されてない様子。
+The following certs are not due for renewal yet: /path/to/pemfile expires on 2020-05-07 (skipped) /path/to/pemfile expires on 2020-05-14 (skipped) No renewals were attempted.  サーバー負荷を下げるため、有効期限まで余裕があると更新されない仕様になってるようです。
+ なので強制的に更新するコマンドを実行しました。
+certbot renew --force-renewal
+ 今回は下記のメッセージが出てたので大丈夫そう。
+Congratulations, all renewals succeeded. The following certs have been renewed:  前述のツールでOKが出るのと、ブラウザ上で証明書の期限が延びていることを確認しました。</description>
+    </item>
+    
+    <item>
+      <title>VirtualBox起動エラー(rc=-22838)</title>
+      <link>https://sankame.github.io/blog/2019-10-05-virtualbox_does_not_start/</link>
+      <pubDate>Sat, 05 Oct 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2019-10-05-virtualbox_does_not_start/</guid>
+      <description>4ヶ月くらい起動していなかったVirtualBoxで久々に開発をしようと思ったらエラーが発生しました。 ネット上の情報はあまりなく、下記のいずれかでした。Bはいつの時点に戻すか分からなかったので、Aでやることにしました。
+(A)VirtualBoxを再インストール。
+(B)Windowsの復元機能を使って、Windowsアップデート前の状態にする。
+0. 環境 [OS] Windows7 (32bit)
+[VirtualBox] 4.3.26 -&amp;gt; 5.2.32
+[Vagrant] 1.7.2 -&amp;gt; 2.2.5
+1. 問題  VagrantからVirtualBoxを起動する構成です。(詳細はこちら)
+ いつものようにvagrant upやvagrant resumeでVirtualBoxを起動しようとしたところ、このエラーが出ました。
+
+ エラーメッセージ
+supHardenedWinVerifyProcess failed with VERR_ASN1_CURSOR_TAG_MISMATCH: (rc=-22838)    2. 対応  内部エラーで複雑そうなので、一度VirtualBoxをアンインストールし、新しいバージョンをインストールしました。
+ 32bit OSに対応してて、新し目のバージョン5.2.32を選択しました。(5.2.32のWindows hostsをクリック)
+ 64bit OSを使ってる方は、もっと新しいバージョンの方がいいと思います。
+  VirtualBoxを再インストール後、vagrant upを実行すると下記エラーメッセージが表示されました。
+ エラーメッセージ
+The provider &#39;virtualbox&#39; that was requested to back the machine &#39;default&#39; is reporting that it isn&#39;t usable on this system.</description>
+    </item>
+    
+    <item>
+      <title>【Androidアプリ開発】CursorWindowAllocationException エラー</title>
+      <link>https://sankame.github.io/blog/2018-08-05-android_cursor_error/</link>
+      <pubDate>Sun, 05 Aug 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2018-08-05-android_cursor_error/</guid>
+      <description>CursorWindowAllocationException が発生した時の対処方法です。
+0. 環境 [Windows] 7
+[Java] 1.8
+[Android] 5.1.1
+[Android API] 26
+1. 問題  開発中のAndroidアプリでSQLiteを使ってます。
+サブクエリを使って、今までより抽出データが多くなるSQLを書いたところ、画面遷移中に頻繁にクラッシュするようになりました。
+しかも、特定のテスト機(Galaxy S4(Android5.0.1))のみです。
+ (A)エラー内容
+Fatal Exception: android.database.CursorWindowAllocationException Cursor window allocation of 2048 kb failed. # Open Cursors=700 (# cursors opened by this proc=700)  (B)エラー箇所
+ 前述のサブクエリを適用した箇所とは全く別の箇所が毎回落ちるポイントでした。(下記2行目)
+Cursor cursorCountUsers = db.rawQuery(&amp;quot;SELECT COUNT(user_id) FROM users&amp;quot;, null); cursorCountUsers.moveToFirst(); int countUserId = cursorCountUsers.getInt(0); return countUserId;     2. 対策  Slackoverflowで同じ問題を見つけました。
+まず、毎回同じ箇所で落ちるので、上記(B)にcursorCountUsers.close();を入れたけど直りませんでした。</description>
+    </item>
+    
+    <item>
+      <title>【Androidアプリ開発】FileUriExposedException エラー</title>
+      <link>https://sankame.github.io/blog/2018-07-23-android_use_fileprovider/</link>
+      <pubDate>Mon, 23 Jul 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2018-07-23-android_use_fileprovider/</guid>
+      <description> Android7 で android.os.FileUriExposedException が発生した時の対処方法です。
+(文中の【】は読み替えて下さい)
+0. 環境 [Windows] 7
+[Java] 1.8
+[Android] 5.1.1
+[Android API] 26
+1. 問題  Androidアプリから一時ファイルを作成して、そのURIを外部のアプリに渡すという処理を実装してました。
+(ファイルを作成して、Gmailに添付するなど)
+Android7からfile://による指定ができなくなったため、下記のエラーが発生します。
+android.os.FileUriExposedException: file:///storage/emulated/0/Android/data/【アプリのパッケージ名】/temporary/【一時ファイル名】 exposed beyond app through ClipData.Item.getUri()  URIはFileProviderで作らないといけないそうです。
+  2. 対策 2-1. AndroidManifest.xml  まず、AndroidManifest.xmlにFileProviderの定義を追加します。
+android:resourceには、2-2で作成するファイル名を指定。
+   2-2. res/xml/provider_paths.xml  次に、res/xml/provider_paths.xml を作成します。
+後述の2-3でfileの保存先を Environment.getExternalStorageDirectory() の直下にしたので、それを表すexternal-pathを指定します。
+また、直下なのでpathはカレントディレクトリになります。
+   2-3. 該当処理を行っているActivity  最後に、URIの生成を下記(1)から(2)に変更しました。   3. 参考  FileProviderリファレンス  </description>
+    </item>
+    
+    <item>
+      <title>【Androidアプリ開発】 &#34;Socket is closed&#34; エラー</title>
+      <link>https://sankame.github.io/blog/2018-05-07-android_socket_is_closed/</link>
+      <pubDate>Mon, 07 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2018-05-07-android_socket_is_closed/</guid>
+      <description> 0. 環境 [Windows] 7 [Java] 1.8 [Android] 5.1.1 [Android API] 26  1. 問題  Androidアプリの開発で、自前のAPIからデータを取得する処理を組んでいたところ、下記エラーが発生するようになりました。
+java.net.SocketException: Socket is closed  コードはこちら。
+  2. 対策  まずAPI側でApacheのログを確認したところ、ステータスコード200で問題なしでした。
+127.0.0.1 - - [05/May/2018:22:55:02 +0900] &amp;quot;POST /api/test HTTP/1.0&amp;quot; 200 11130  正常終了するケースとの違いは、レスポンスのデータ量が多くなってることかな。(上記ログ右端)
+ 次にAndroidアプリ側の処理があやしいと考えて、いろいろ試した結果、HttpsURLConnectionのクローズのタイミングが問題だと分かりました。
+同オブジェクトを参照しているオブジェクトを全て使い終わってから、クローズする必要がありそうです。(上記(1)→(2)に移す)
+また、クローズ処理を消すだけでも冒頭のエラーは出なくなりましたが、なるべくオブジェクトは明示的に閉じた方が良いと思います。
+なので、最終的にオブジェクトの作成順とは逆にクローズしていく処理を入れました。(下記(3)(4))
+  </description>
+    </item>
+    
+    <item>
+      <title>ERROR 2002 (HY000): Can&#39;t connect to local MySQL server through socket &#39;/tmp/mysql.sock&#39; (38)</title>
+      <link>https://sankame.github.io/blog/2017-11-20-fail_to_connect_mysql/</link>
+      <pubDate>Mon, 20 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2017-11-20-fail_to_connect_mysql/</guid>
+      <description> 0. 環境 [Mac] 10.11.6 [MySQL] 5.7.20  1. 問題  MacにMySQLをインストール後、接続しようとするとエラーが出ました。
+$ brew install mysql $ mysql -uroot ERROR 2002 (HY000): Can&#39;t connect to local MySQL server through socket &#39;/tmp/mysql.sock&#39; (38)   2. 対策  ネットの情報をヒントに、エラーが出ているファイルの所有者を変えたら直りました。(ログインユーザー名は読み替えて下さい)
+$ ll /tmp/mysql.sock -rw-r--r-- 1 root wheel 0 11 19 23:46 /tmp/mysql.sock $ sudo chown [ログインユーザー名] /tmp/mysql.sock  念のためリスタート。
+$ brew services restart mysql  接続できました。
+$ mysql -uroot   </description>
+    </item>
+    
+    <item>
+      <title>【Androidアプリ開発】onPrepareActionModeが呼ばれない</title>
+      <link>https://sankame.github.io/blog/2017-10-17-android_onprepareactionmode_not_called/</link>
+      <pubDate>Tue, 17 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2017-10-17-android_onprepareactionmode_not_called/</guid>
+      <description>0. 環境 [Windows] 7 [Java] 1.8 [Android] 5.1.1 [Android API] 26  1. 問題  build.gradleで下記の値を上げたところ、onPrepareActionModeが実行されなくなってました。
+onPrepareActionModeは、ListViewのロングタップ時にアクションモードへ切り替えた後、アクションバー内のあるアイコンを隠す処理で使っていたので、困りました。
+ compileSdkVersion : 21 → 26
+ buildToolsVersion : 21.1.2 → 26.0.2
+   2. 対策  試しに下記 (A) にあった処理を (B) へ移してみたところ、思った通りの動きをしてくれました。
+うーん、前はダメだったからonPrepareActionModeを使ったんだけどなあ。。
+他にネットで情報を見つけられなかったので、一旦これにしておくか。
+list1 = findViewById(R.id.listView1); list1.setMultiChoiceModeListener(new AbsListView.MultiChoiceModeListener() { @Override public boolean onPrepareActionMode(ActionMode mode, Menu menu) { //(A) //MenuItem menuItem1 = menu.findItem(R.id.menu_item1); //menuItem1.setVisible(false); return false; } @Override public boolean onCreateActionMode(ActionMode mode, Menu menu) { MenuInflater inflater = getMenuInflater(); inflater.</description>
+    </item>
+    
+    <item>
+      <title>ApacheのProxyPassでhtmlタグがそのまま表示される</title>
+      <link>https://sankame.github.io/blog/2016-12-25-mod_proxy_text_plain/</link>
+      <pubDate>Sun, 25 Dec 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2016-12-25-mod_proxy_text_plain/</guid>
+      <description>0. 環境 [CentOS] 6.8 (64bit版カーネル) [Apache] 2.2.15  1. 問題  ApacheのProxyPassディレクティブ(mod_proxy)を指定して、バックエンドから受け取ったコンテンツを表示しようとするとhtmlタグがそのまま表示されてしまいます。
+ Apache設定ファイルの抜粋
+NameVirtualHost *:80 # 省略 &amp;lt;VirtualHost *:80&amp;gt; ServerAdmin test@local ServerName test.local ProxyPreserveHost On ProxyPass / http://127.0.0.1:8080/ ProxyPassReverse / http://127.0.0.1:8080/ ErrorLog logs/test.local-error_log CustomLog logs/test.local-access_log combined &amp;lt;/VirtualHost&amp;gt;    2. 対策  ChromeのDeveloper Toolsなどで見ると、下記のようにHTTPレスポンスヘッダーで平文が指定されています。
+Content-Type text/plain; charset=UTF-8
+ デフォルトのMIMEタイプ指定を無効にすることで解消しました。
+ Apache設定ファイルの抜粋
+NameVirtualHost *:80 # 省略 &amp;lt;VirtualHost *:80&amp;gt; ServerAdmin test@local ServerName test.local # ----- この行を追加 ----- DefaultType None # ----- この行を追加 ----- ProxyPreserveHost On ProxyPass / http://127.</description>
+    </item>
+    
+    <item>
+      <title>AppleWatchアプリ開発におけるWCSessionのメソッド使用方法</title>
+      <link>https://sankame.github.io/blog/2016-11-21-wcsession_sendmessage_slow_in_swift3/</link>
+      <pubDate>Mon, 21 Nov 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2016-11-21-wcsession_sendmessage_slow_in_swift3/</guid>
+      <description>0. 環境 [OS] Mac OS X 10.11.6 [IDE] Xcode 8.1 [Swift] 3.0  1. 問題  WCSession#sendMessage()を使ってAppleWatchからiPhoneアプリへメッセージを送っても、30秒ほどしないと通知されない。
+ AppleWatch側
+@IBAction func tapButton() { let message = [ &amp;quot;fromChild&amp;quot;: &amp;quot;AppleWatchからのメッセージ&amp;quot; ] WCSession.default().sendMessage( message , replyHandler: { reply in } , errorHandler: { error in } ) }  iPhone側
+func session(_ session: WCSession, didReceiveMessage message: [String: Any], replyHandler: @escaping ([String: Any]) -&amp;gt; Void) { if let watchMessage = message[&amp;quot;fromChild&amp;quot;] as? String { print(watchMessage) } else{ print(&amp;quot;error&amp;quot;) } }    2.</description>
+    </item>
+    
+    <item>
+      <title>Type &#39;ViewController&#39; does not conform to protocol &#39;WCSessionDelegate&#39;</title>
+      <link>https://sankame.github.io/blog/2016-11-15-wcsessiondelegate_in_swift3/</link>
+      <pubDate>Tue, 15 Nov 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2016-11-15-wcsessiondelegate_in_swift3/</guid>
+      <description>0. 環境 [OS] Mac OS X 10.11.6 [IDE] Xcode 8.1 [Swift] 3.0  1. 問題  iPhone &amp;amp; AppleWatchアプリを作成中にSwiftを2.2から3へバージョンアップしたところ、iPhone側で下記のエラーが出るようになりました。
+Type &#39;ViewController&#39; does not conform to protocol &#39;WCSessionDelegate&#39;
+  2. 解決  ViewControllerに下記メソッドを追加するとエラーが消えました。
+public func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) { } func sessionDidBecomeInactive(_ session: WCSession) { } func sessionDidDeactivate(_ session: WCSession) { session.activate() }  下記の仕様書にもこれらのメソッドは必須と書かれています。
+[API Reference] WCSessionDelegate
+  3. 参考ページ  Migrating app from Swift 2.</description>
+    </item>
+    
+    <item>
+      <title>型 UrlValidator は使用すべきではありません</title>
+      <link>https://sankame.github.io/blog/2016-10-06-urlvalidator-is-deprecated/</link>
+      <pubDate>Thu, 06 Oct 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2016-10-06-urlvalidator-is-deprecated/</guid>
+      <description> 0. 環境 [OS] Mac OS X 10.11.4 [Java] 1.8.0  1. 問題  久々にJavaで実装する機会がありました。標準ライブラリのjava.net.URLクラスは、URLとして解釈できない文字列を渡すと例外が投げられるので扱いずらいですね。
+// IllegalArgumentException が発生。 url = URL.create(&amp;quot;不正なURL&amp;quot;);  うーん、最初、RFCを見て「URLとして許可されている文字列だけ渡す」という処理を入れようか迷いました。
+が、一から組むのも骨が折れるなあ～と思って、困った時のApache Commonsを探してみたら、しめしめApache Commons ValidatorにUrlValidatorクラスというのがありました。
+早速このクラスをimportして使おうと思ったら、下記の警告が出てしまいました。
+型 UrlValidator は使用すべきではありません
+  2. 解決  調べてみたところ、①のパッケージは非推奨で②に変えたら警告も消えました。
+ ①こっちは非推奨
+import org.apache.commons.validator.UrlValidator;
+ ②これを使って！
+import org.apache.commons.validator.routines.UrlValidator;
+   3. 参考  The type UrlValidator is deprecated  </description>
+    </item>
+    
+    <item>
+      <title>composer updateでUndefined indexエラー</title>
+      <link>https://sankame.github.io/blog/2016-06-25-composer_error_undefined_index/</link>
+      <pubDate>Sat, 25 Jun 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2016-06-25-composer_error_undefined_index/</guid>
+      <description> 0. 環境 [Laravel] 5.1  1. 問題  composer update を実行すると下記エラーが発生しました。
+Writing lock file Generating autoload files &amp;gt; php artisan clear-compiled [ErrorException] Undefined index: HTTP_HOST Script php artisan clear-compiled handling the post-update-cmd event returned with error code 1   2. 解決策  HTTP_HOST でソースをgrepし、 /app/Http/routes.php 内の下記箇所を修正しました。
+(修正前)
+$_SERVER[&#39;HTTP_HOST&#39;]  (修正後)
+Request::server(&#39;HTTP_HOST&#39;)   3. 参考  Composer returning mysterious error  </description>
+    </item>
+    
+    <item>
+      <title>watchOSのバージョンエラー</title>
+      <link>https://sankame.github.io/blog/2016-05-09-watchos_devices_not_available/</link>
+      <pubDate>Mon, 09 May 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2016-05-09-watchos_devices_not_available/</guid>
+      <description>0.環境 [OS] Mac OS X 10.11.4 [IDE] Xcode 7.3 [iOS] 9.3 [watchOS] 2.1 ※MacとiPhoneはUSBケーブルで接続。 ※iPhoneとAppleWatchはペアリング済み。  1.問題 (文中【】は読み替えて下さい)  AppleWatch用のサンプルプログラムを実機で動かそうとしたら、下記3つのエラーが出ました。
+ エラー1
+ A build only device cannot be used to run this target.
+ No supported watchOS devices are available. Pair a device to run your application or choose a simulated device as the destination.
+ エラー2
+ Could not launch &#39;【アプリ名】 WatchKit App&#39; on 【iPhoneデバイス名】
+ OS version lower than deployment target</description>
+    </item>
+    
+    <item>
+      <title>AppleWatch 開発中アプリのインストール制限を回避</title>
+      <link>https://sankame.github.io/blog/2016-05-08-unable_to_add_app_id/</link>
+      <pubDate>Sun, 08 May 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2016-05-08-unable_to_add_app_id/</guid>
+      <description>&amp;nbsp;更新日：2016年05月11日
+0.環境 [OS] Mac OS X 10.11.4 [IDE] Xcode 7.3 [iOS] 9.3 [watchOS] 2.1 ※ MacとiPhoneはUSBケーブルで接続。 ※ iPhoneとAppleWatchはペアリング済み。  1.問題  AppleWatch用のサンプルプログラムを実機で動かしていたら、下記エラーが出るようになりました。
+
+Unable to add App ID because the &#39;10&#39; App ID limit in &#39;7&#39; days has been exceeded.
+「7日間で10個のアプリID制限を超えたため、アプリIDを追加できません」か・・・
+Webで調べたところ回避策は2つありましたが、簡単そうな①をやってみました。
+① Xcodeに新しいApple IDを追加して、それを使ってインストール
+② 既に実機にインストール済みのアプリの Bundle ID を使い回す
+  2.手順  (画像内の【】は読み替えて下さい)
+ Xcodeに新しい Apple ID を追加
+アプリの[General]-[Team]をクリックし &amp;ldquo;Add an Account&amp;rdquo; を選択します。
+
+Xcodeに追加するApple IDを要求されますが、未作成なので&amp;rdquo;Create Apple ID&amp;rdquo;をクリック。</description>
+    </item>
+    
+    <item>
+      <title>pod setup で SSLエラー</title>
+      <link>https://sankame.github.io/blog/2016-04-21-pod_setup_ssl_error/</link>
+      <pubDate>Thu, 21 Apr 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2016-04-21-pod_setup_ssl_error/</guid>
+      <description>0.環境 [OS] Mac OS X 10.11.4 [cocoapods] 1.0.0.beta.6  1.エラー内容  pod setupを実行すると下記エラーが発生。
+$ pod setup --verbose Setting up CocoaPods master repo Cloning spec repo `master` from `https://github.com/CocoaPods/Specs.git` (branch `master`) $ /usr/bin/git clone https://github.com/CocoaPods/Specs.git master Cloning into &#39;master&#39;... fatal: unable to access &#39;https://github.com/CocoaPods/Specs.git/&#39;: SSLRead() return error -9806 [!] /usr/bin/git clone https://github.com/CocoaPods/Specs.git master Cloning into &#39;master&#39;... fatal: unable to access &#39;https://github.com/CocoaPods/Specs.git/&#39;: SSLRead() return error -9806 ： 【省略】 ：   2.</description>
+    </item>
+    
+    <item>
+      <title>Rundeckでssh接続エラー</title>
+      <link>https://sankame.github.io/blog/2016-02-15-rundeck_ssh_error/</link>
+      <pubDate>Mon, 15 Feb 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2016-02-15-rundeck_ssh_error/</guid>
+      <description>0.環境 [CentOS] 5.6
+1.問題  文中、画像内の【】は読み替えて下さい。
+ 下記ページ内の「リモートサーバでの実行」にそってRundeckのリモート接続を試してみました。
+&amp;ldquo;ジョブスケジューラ「Rundeck」を試してみる&amp;rdquo;
+ところが、このエラーが発生…
+
+ 上記画像内のテキストはこちら。
+22:34:10 remote 1. hogeと表示。 Authentication failure connecting to node: &amp;quot;remote&amp;quot;. Make sure your resource definitions and credentials are up to date. 22:34:10 Failed: AuthenticationFailure: Authentication failure connecting to node: &amp;quot;remote&amp;quot;. Make sure your resource definitions and credentials are up to date. 22:34:10 localhost Execution failed: 21: [Workflow result: , step failures: {1=Dispatch failed on 1 nodes: [remote: AuthenticationFailure: Authentication failure connecting to node: &amp;quot;remote&amp;quot;.</description>
+    </item>
+    
+    <item>
+      <title>Androidアプリのバージョンアップができない</title>
+      <link>https://sankame.github.io/blog/2015-10-07-android_app_version/</link>
+      <pubDate>Wed, 07 Oct 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2015-10-07-android_app_version/</guid>
+      <description> 0.環境 [OS] Windows7 (32bit 版) [AndroidStudio] 1.1.0  1.問題  Androidアプリをバージョンアップするため、Google Play Developer Console でapkファイルをアップしても下記のエラーが出ました。
+アップロードできませんでした
+マニフェストファイルに下記のように追記してもダメ。
+(app\【アプリ名】\mobile\src\main\AndroidManifest.xml)
+&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;utf-8&amp;quot;?&amp;gt; &amp;lt;manifest xmlns:android=&amp;quot;http://schemas.android.com/apk/res/android&amp;quot; package=&amp;quot;【パッケージ名】&amp;quot; android:versionCode=&amp;quot;2&amp;quot; android:versionName=&amp;quot;2.0.1&amp;quot;&amp;gt;   2.対策  しばらくして、AndroidManifest.xml にエラーメッセージが出てるのに気付きました。
+build.gradle を修正しなきゃいけない・・・
+(app\【アプリ名】\mobile\build.gradle)
+下記のようにバージョンを上げて再コンパイルしたらアップロードできました。
+android { : (省略) : defaultConfig { applicationId &amp;quot;【省略】&amp;quot; minSdkVersion 16 targetSdkVersion 21 versionCode 2 versionName &amp;quot;2.0.1&amp;quot; } : (省略) : }   </description>
+    </item>
+    
+    <item>
+      <title>【AndroidStudio】&#34;Failed to complete Gradle execution&#34;エラー</title>
+      <link>https://sankame.github.io/blog/2015-05-11-android_studio_heap_size_error/</link>
+      <pubDate>Mon, 11 May 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2015-05-11-android_studio_heap_size_error/</guid>
+      <description> 0.環境 [OS] Windows7 (32bit 版) [AndroidStudio] 1.1.0  1.エラー内容  「Run &amp;lsquo;app&amp;rsquo;」ボタンをクリックし、ビルド＆実行しようとすると下記エラーダイアログが表示される。
+Failed to complete Gradle execution Cause: A fatal exception has occurred. Program will exit   2.回避方法  メニューから [File] -&amp;gt; [Settings] -&amp;gt; [Gradle] とたどって、[Gradle VM options] に &amp;ldquo;-XX:MaxHeapSize=256m -Xmx256m&amp;rdquo; を入力。(下記画像のオレンジ枠線)
+
+  参考にしたページ  Failed to complete Gradle Execution  </description>
+    </item>
+    
+    <item>
+      <title>AndroidStudioでプロセス開始エラー</title>
+      <link>https://sankame.github.io/blog/2015-05-10-android_studio_process_error/</link>
+      <pubDate>Sun, 10 May 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2015-05-10-android_studio_process_error/</guid>
+      <description>0.環境 [OS] Windows7 (32bit 版) [AndroidStudio] 1.1.0  1.エラー内容  AndroidStudioで「Run &amp;lsquo;app&amp;rsquo;」ボタンをクリックし、ビルド＆実行しようとすると下記エラーが発生しました。
+Error:Unable to start the daemon process. This problem might be caused by incorrect configuration of the daemon. For example, an unrecognized jvm option is used. Please refer to the user guide chapter on the daemon at http://gradle.org/docs/2.2.1/userguide/gradle_daemon.html Please read the following process output to find out more: ----------------------- Error occurred during initialization of VM Could not reserve enough space for object heap Error: Could not create the Java Virtual Machine.</description>
+    </item>
+    
+    <item>
+      <title>【Laravel】全てのビューに値を渡す</title>
+      <link>https://sankame.github.io/blog/2014-07-21-laravel_passing_data_from_basecontroller/</link>
+      <pubDate>Mon, 21 Jul 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2014-07-21-laravel_passing_data_from_basecontroller/</guid>
+      <description> 0.環境 [CentOS] 5.6 (32bit版カーネル) [Apache] 2.2.3 [PHP] 5.4.1 [Laravel] 4.1.23  1.課題  全ビュー(Bladeテンプレート)で使う値をBaseControllerから渡したい。  2.対策  Laravelの作法としてあっているか不明ですが、一旦これで値は渡せました。
+下記例では、設定ファイルの基底URL(app.php内のurl変数)をビューに渡しています。
+ ①　app/config/local/app.php
+(本番環境の場合、app/config/app.php に定義して下さい)
+ ②　app/controllers/BaseController.php
+getBaseUrl() メソッドを定義し、基底URLを返します。
+(staticでないとビューで実行できない)
+ 各コントローラは②を継承します。(コード抜粋)
+class EachController extends BaseController {  ③　app/views/layout.blade.php (コード抜粋)
+全てのビューで共通に使っているビューで、BaseControllerから値を取得します。
+   </description>
+    </item>
+    
+    <item>
+      <title>【Laravel】AjaxでPOSTできない</title>
+      <link>https://sankame.github.io/blog/2014-07-15-laravel_trailing_slash_redirect/</link>
+      <pubDate>Tue, 15 Jul 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2014-07-15-laravel_trailing_slash_redirect/</guid>
+      <description>0.環境 [CentOS] 5.6 (32bit版カーネル) [Apache] 2.2.3 [PHP] 5.4.1 [Laravel] 4.1.23  1.問題  PHPのLaravelフレームワークを使っていたら、AjaxでPOSTした値がサーバ側で取得できずにはまりました。
+①から②へ test という名前で hoge という値を送信します。
+ ① Javascript側
+ ② PHP側
+ ログ出力結果を見ると、下記のようにPOST値が取得できていません。
+[2014-07-16 12:09:36] local.DEBUG: [] []    2.原因  Firefox の &amp;ldquo;Live HTTP headers&amp;rdquo; アドオンでURLの遷移を見たところ、下記のようにリダイレクトしていることがわかりました。(違いは末尾のスラッシュ)
+http://local.vm/test/
+↓↓↓
+http://local.vm/test
+ ソースを grep したところ、.htaccessでリダイレクトしていました。
+ ■ ソース
+app-root/public/.htaccess
+ ■ 記述
+# Redirect Trailing Slashes... RewriteRule ^(.*)/$ /$1 [L,R=301]    3.対策  Laravel は trailing slash 非推奨なのか？ とにかく下記のように修正。</description>
+    </item>
+    
+    <item>
+      <title>GitHubPagesが動かない</title>
+      <link>https://sankame.github.io/blog/2012-12-27-github_pages_doesnt_work/</link>
+      <pubDate>Thu, 27 Dec 2012 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2012-12-27-github_pages_doesnt_work/</guid>
+      <description>GitHubPagesでブログを公開しようと、下記ページに従って作業したがindex.htmlすら表示されない… 参考ページ 1.GitHubに登録したメールアドレスの受信箱をチェック &amp;ldquo;Page build failure&amp;rdquo;というサブジェクトでGitHubからメールが届いていた。
+The page build failed with the following error: You need a verified email address in your GitHub account to publish Pages. You can verify your email addresses from your Settings panel: https://github.com/settings/emails  設定パネルであなたのメアドが正しいことを確認してください、と書いてある。
+上記メール内のリンクを押してページ遷移した後、メールアドレスの確認ボタンをクリック。
+その後、github pagesのページ作成ボタンを押すと下記URLにアクセスできた。 (usernameは読み替え)
+http://username.github.com/</description>
+    </item>
+    
+  </channel>
+</rss>

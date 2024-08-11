@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>programming-practice on プログラマー備忘録</title>
+    <link>https://sankame.github.io/tags/programming-practice/</link>
+    <description>Recent content in programming-practice on プログラマー備忘録</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <lastBuildDate>Fri, 27 May 2016 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://sankame.github.io/tags/programming-practice/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>トグル処理を楽に実装 (ビット演算)</title>
+      <link>https://sankame.github.io/blog/2016-05-27-bitwise_operator_toggle/</link>
+      <pubDate>Fri, 27 May 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2016-05-27-bitwise_operator_toggle/</guid>
+      <description> 0. 環境 [CentOS] 6.4 (64bit版カーネル) [PHP] 5.4.17  1. XORでトグル処理  押すたびにON/OFFが切り替わるようなトグル処理を実装する場合はXORが便利です。
+ 6行目、11行目 : 「XOR 1」するとビットが反転する性質を利用します。(下記)
+XOR
+入力①0011 入力②0101 出力0110   </description>
+    </item>
+    
+    <item>
+      <title>状態管理を楽に実装 (ビット演算)</title>
+      <link>https://sankame.github.io/blog/2016-05-27-bitwise_operator_status_control/</link>
+      <pubDate>Fri, 27 May 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2016-05-27-bitwise_operator_status_control/</guid>
+      <description> 0. 環境 [CentOS] 6.4 (64bit版カーネル) [PHP] 5.4.17  1. ORとANDで状態管理  複数の状態や権限をまとめて管理したい場合、2進数が便利です。
+ 2-5行目 : 2進数の定数(10進数表記)を用意します。
+7行目 : ORでプログラミング言語を足していきます。
+Aさんが使える言語の位にビットが立つイメージです。(下記)
+ 0001 (PHP) 0010 (Ruby) OR) 1000 (Perl) ---------- 1011 (Aさんが使えるプログラミング言語)  11行目以降 : Aさんが使えるプログラミング言語は何か、ANDで問い合わせます。
+右端の位にビットが立っていれば結果がtrueになり、PHPが使えることが分かります。(下記)
+ 1011 (Aさんが使えるプログラミング言語) AND) 0001 (PHP) ---------- 0001 (PHPが使える)   </description>
+    </item>
+    
+    <item>
+      <title>プログラミング問題A</title>
+      <link>https://sankame.github.io/blog/2015-12-31-programming_practice_a/</link>
+      <pubDate>Thu, 31 Dec 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2015-12-31-programming_practice_a/</guid>
+      <description> 環境 [CentOS] 5.6 (32bit版カーネル) [PHP] 5.4.17  問題A-1  10進数の任意の値をn進数に変換する関数を作成して下さい。(nは1～16の正の整数)
+ サンプルはPHP。
+  サンプルA-1  実行方法
+$ php changeDecimalToBaseN.php  ソース
+  </description>
+    </item>
+    
+  </channel>
+</rss>

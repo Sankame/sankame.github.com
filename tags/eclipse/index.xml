@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Eclipse on プログラマー備忘録</title>
+    <link>https://sankame.github.io/tags/eclipse/</link>
+    <description>Recent content in Eclipse on プログラマー備忘録</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <lastBuildDate>Sat, 08 Oct 2016 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://sankame.github.io/tags/eclipse/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Eclipseでタブをスペースに置換</title>
+      <link>https://sankame.github.io/blog/2016-10-08-convert_tabs_to_spaces_on_eclipse/</link>
+      <pubDate>Sat, 08 Oct 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2016-10-08-convert_tabs_to_spaces_on_eclipse/</guid>
+      <description> 0. 環境 [OS] Mac OS X 10.11.4 [Eclipse] Mars.2 Release (4.5.2)  1. 問題  久々にEclipseをさわっていたら、タブをスペースに変換する設定に手間取ったのでメモ。
+(Windowsの場合、メニュー名を読み替えて下さい)
+プログラミングで使うインデントに関して、僕はタブ派ですが、職場や最近の流れからしてもスペースを使わざるを得ないでしょう。
+  2. 解決  Eclipseに標準でついている機能が動かなかったので、AnyEditToolsというプラグインを入れました。
+メニューの [ヘルプ]-[Install new software] をクリック。
+[作業対象]に下記を入力。(anyぐらいまで打つと補完されます)
+anyedit - http://andrei.gmxhome.de/eclipse/
+とりあえず最新バージョンのAnyEditToolsにチェック。
+
+[次へ]をクリック。
+途中ライセンスへの同意やセキュリティ警告が出ますが、最後までいくと再起動を求められるのでそのままOKをクリックします。
+起動後、Eclipse上で任意のファイルにタブを入力し、保存したタイミングでスペースに置換されます。
+変わらない場合や細かい設定をしたい場合は下記の設定画面から行って下さい。
+メニューの [Eclipse]-[環境設定] をクリック。
+[一般]-[エディタ]-[AnyEdit Tools]
+
+Eclipseでマークダウンを書く人は[Remove trailing whitespace]のチェックを外しておいたほうがいいかもしれません。
+ファイルフィルタ(上記の[Add Filter])で拡張子mdを除外したり、プロジェクトごとに設定(*1)を変えることもできます。
+(*1)プロジェクトごとの設定
+ プロジェクト・エクスプローラーの該当プロジェクトを右クリック。
+ [プロパティ]-[AnyEdit Tools] をクリック。
+ [Enable project specific settings]にチェックを入れる。
+   </description>
+    </item>
+    
+  </channel>
+</rss>
