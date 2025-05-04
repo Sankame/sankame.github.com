@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Vagrant on プログラマー備忘録</title>
+    <link>https://sankame.github.io/tags/vagrant/</link>
+    <description>Recent content in Vagrant on プログラマー備忘録</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <lastBuildDate>Sat, 05 Oct 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://sankame.github.io/tags/vagrant/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>VirtualBox起動エラー(rc=-22838)</title>
+      <link>https://sankame.github.io/blog/2019-10-05-virtualbox_does_not_start/</link>
+      <pubDate>Sat, 05 Oct 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2019-10-05-virtualbox_does_not_start/</guid>
+      <description>4ヶ月くらい起動していなかったVirtualBoxで久々に開発をしようと思ったらエラーが発生しました。 ネット上の情報はあまりなく、下記のいずれかでした。Bはいつの時点に戻すか分からなかったので、Aでやることにしました。
+(A)VirtualBoxを再インストール。
+(B)Windowsの復元機能を使って、Windowsアップデート前の状態にする。
+0. 環境 [OS] Windows7 (32bit)
+[VirtualBox] 4.3.26 -&amp;gt; 5.2.32
+[Vagrant] 1.7.2 -&amp;gt; 2.2.5
+1. 問題  VagrantからVirtualBoxを起動する構成です。(詳細はこちら)
+ いつものようにvagrant upやvagrant resumeでVirtualBoxを起動しようとしたところ、このエラーが出ました。
+
+ エラーメッセージ
+supHardenedWinVerifyProcess failed with VERR_ASN1_CURSOR_TAG_MISMATCH: (rc=-22838)    2. 対応  内部エラーで複雑そうなので、一度VirtualBoxをアンインストールし、新しいバージョンをインストールしました。
+ 32bit OSに対応してて、新し目のバージョン5.2.32を選択しました。(5.2.32のWindows hostsをクリック)
+ 64bit OSを使ってる方は、もっと新しいバージョンの方がいいと思います。
+  VirtualBoxを再インストール後、vagrant upを実行すると下記エラーメッセージが表示されました。
+ エラーメッセージ
+The provider &#39;virtualbox&#39; that was requested to back the machine &#39;default&#39; is reporting that it isn&#39;t usable on this system.</description>
+    </item>
+    
+    <item>
+      <title>Vagrant &#43; VirtualBox でCentOS開発環境構築</title>
+      <link>https://sankame.github.io/blog/2015-05-06-vagrant_setup/</link>
+      <pubDate>Wed, 06 May 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2015-05-06-vagrant_setup/</guid>
+      <description>&amp;nbsp;更新日：2017年01月28日
+0.環境 [PC] DELL LATITUDE E5500 [ホストOS] Windows 7 (32bit 版) [ゲストOS] CentOS 6.5 (64bit 版)  1.概要  Vagrantで開発環境を作りました。
+VirtualBoxを操作するためにVagrantというツールを使うイメージです。
+
+VirtualBox上に仮想マシン(以下VM)起動し、そこにCentOSをインストールして開発環境とします。
+  2.BIOS設定変更  VMを起動する準備として、BIOSの設定を変更します。
+PCの電源をONにし、OSが起動する前に特定のキーを押してBIOS設定画面を開きます。
+(PCによって異なるので、下記のキーは読み替えて下さい)
+OS起動時に[F2] または [F10]キーを押下。
+[Virtualization Support] - [Virtualization]を選択し、[Enable]にチェックをつけて[Apply]→[Exit]を選択。
+そのままOSが起動するのを待ちます。
+  3.VirtualBoxインストール  下記ページで&amp;rdquo;VirtualBox 4.3.26 for Windows hosts&amp;rdquo; をクリックしVirtualBoxをダウンロード。
+VirtualBoxダウンロード
+ダウンロード、インストールともに僕の環境では数分かかりました。
+途中何度かOracle社のコンポーネントをインストールしますか？と聞かれたので全てYesを選択。
+  4.Vagrantインストール  次のリンク先でWindows用を選択して Vagrantをダウンロード。
+Vagrantダウンロード
+インストールが終わったら再起動を求められます。
+コマンドプロンプトで下記を実行することで、boxファイル(用意されたVMイメージ)を取得し、VirtualBoxに追加します。
+C:\Users\【ユーザー名】&amp;gt; vagrant box add CentOS65 https://github.com/2creatives/vagrant-centos/releases/download/v6.5.3/centos65-x86_64-20140116.box   5.Vagrantを使ってVirtualBoxのVMを起動  適当なフォルダにVagrantファイルを作成し、VM起動時の設定を定義します。</description>
+    </item>
+    
+  </channel>
+</rss>
