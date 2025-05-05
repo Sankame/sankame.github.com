@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Swift on プログラマー備忘録</title>
+    <link>https://sankame.github.io/tags/swift/</link>
+    <description>Recent content in Swift on プログラマー備忘録</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <lastBuildDate>Sun, 16 Apr 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://sankame.github.io/tags/swift/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Webサイト・スピードアップ - ブラウザキャッシュ利用</title>
+      <link>https://sankame.github.io/blog/2017-04-16-speed_up_website_use_browser_cache/</link>
+      <pubDate>Sun, 16 Apr 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2017-04-16-speed_up_website_use_browser_cache/</guid>
+      <description>0. 前提  環境などの前提条件は前回の1から3と同じです。
+今回は教科書の[1. Reduce number of HTTP requests]-[Use Browser Cache]をやってみました。
+修正が少ない静的ファイルはブラウザキャッシュの期間を延ばし、2回目以降のアクセスはキャッシュから読み込むことで速度向上につなげます。
+作業は下記の2点です。
+(1) キャッシュ期間延長
+　Webサーバーの設定でjs、cssのブラウザ・キャッシュ期間を延ばします。
+(2) ファイル名のユニーク化
+　上記1によって修正がすぐに反映されないという状況を避けるため、ファイル名に修正ごとのハッシュ値を付けてキャッシュが効かないようにします。(gulpの機能を利用)
+  1. キャッシュ期間延長  nginxの設定ファイルにjs、cssの設定とキャッシュ期間を追記しました。
+記述が冗長なのは追って別の書き方を調べたいと思います。
+server { listen 443 ssl; server_name [ドメイン名]; ssl_certificate [ファイルパス]; ssl_certificate_key [ファイルパス]; location / { proxy_pass http://[ホスト名]:[ポート番号]; proxy_set_header X-Real-IP $remote_addr; proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; proxy_set_header X-Forwarded-Proto https; proxy_set_header X-Forwarded-Port 443; proxy_set_header Host $host; } # --- css/jsの指定を追加。 --- location ~* .(css|js)$ { proxy_pass http://[ホスト名]:[ポート番号]; proxy_set_header X-Real-IP $remote_addr; proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; proxy_set_header X-Forwarded-Proto https; proxy_set_header X-Forwarded-Port 443; proxy_set_header Host $host; # キャッシュ期間を設定。 expires 365d; } # --- css/jsの指定を追加。 --- }  ChromeのDeveloper Toolsで見て、Expiresヘッダーの追加とjs、cssがキャッシュから読み込まれていることを確認します。(下図オレンジの枠線)</description>
+    </item>
+    
+    <item>
+      <title>Webサイト・スピードアップ - gulp</title>
+      <link>https://sankame.github.io/blog/2017-02-26-speed_up_website_gulp/</link>
+      <pubDate>Sun, 26 Feb 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2017-02-26-speed_up_website_gulp/</guid>
+      <description>&amp;nbsp;更新日：2017年03月07日
+0. 環境  フロントエンドの話なのでサーバー環境はあまり関係ないのですが、参考まで。
+ サーバー
+[Nginx] 1.10.2 [Kitura] 1.1.2 [Swift] 3.0.1  ローカル
+[Mac] 10.11.6 [Node.js] 7.6.0 [gulp] 3.9.1    1.準備  仕事でやっているWebサイトのスピードアップを個人でもやってみたくて、適当なページを1つ作ってみました。
+シンプルカレンダー
+そしてパフォーマンス改善の教科書に選んだのはこちらです。
+Speed Up Your Website
+  2.現状  Apacheで運用しているWebアプリが他にあるため、下記のようなちょっと珍しい構成になっています。
+Nginx(リバースプロキシとして使用) + ServerSide-Swift(Kitura)  僕のネット環境(下り57Mbps/上り18Mbps)(※1)だとシンプルカレンダーのロードタイムが約2.5秒(※2)でそこまでストレスは感じませんが、DBを使ってないわりにこの数字なので改善の余地ありです。
+(※1) 回線速度はSPEEDTESTで計測。
+(※2) Chrome Developer Tools で計測。
+  3.ブラウザからのリクエスト削減  Chrome Developer ToolsのNetworkタブで見るとCSS、JavaScript(以下JS)のダウンロードに時間がかかっているので、教科書の[1. Reduce number of HTTP requests]-[Combine files]から取り掛かってみました。
+HTMLから静的ファイル(CSS、JSなど)を複数ダウンロードする際、ブラウザが並列でリクエストできる数が決まっているため、なるべくそれを減らしましょうという内容です。
+複数の静的ファイルをまとめるためのツール(※3)を検討しましたが、一番簡単に実現できそうだったgulpを使いました。
+(※3) webpack、gulp、Grunt
+  4.</description>
+    </item>
+    
+    <item>
+      <title>Swift3の大文字・小文字処理</title>
+      <link>https://sankame.github.io/blog/2017-01-03-swift3_uppercase_lowercase/</link>
+      <pubDate>Tue, 03 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2017-01-03-swift3_uppercase_lowercase/</guid>
+      <description> &amp;nbsp;更新日：2017年01月27日
+0. 環境 [Swift] 3.0.2  1. 大文字・小文字処理  Swift3から大文字・小文字の処理は下記のようになります。
+(明示的にするため入れていますが型宣言は省略可)
+    上記コードはIBM Swift Sandboxで動かせます。
+下記リンク先の真ん中にある三角ボタンをクリックして下さい。
+Swift3で大文字・小文字処理
+(ChromeまたはFirefox推奨)
+  2. 参考ページ  caseInsensitiveCompare
+ localizedCaseInsensitiveCompare
+  </description>
+    </item>
+    
+    <item>
+      <title>Swift3のforループ</title>
+      <link>https://sankame.github.io/blog/2016-12-30-swift3_loop/</link>
+      <pubDate>Fri, 30 Dec 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2016-12-30-swift3_loop/</guid>
+      <description> &amp;nbsp;更新日：2017年02月09日
+0. 環境 [Swift] 3.0.2  1. ループ  Swift3からループ処理は下記のようになります。    上記コードはIBM Swift Sandboxで実際に動かすことができます。
+下記リンク先の真ん中にある三角ボタンをクリックして下さい。
+Swift3でのforループ
+(ChromeまたはFirefox推奨)
+  </description>
+    </item>
+    
+    <item>
+      <title>AppleWatchアプリ開発におけるWCSessionのメソッド使用方法</title>
+      <link>https://sankame.github.io/blog/2016-11-21-wcsession_sendmessage_slow_in_swift3/</link>
+      <pubDate>Mon, 21 Nov 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2016-11-21-wcsession_sendmessage_slow_in_swift3/</guid>
+      <description>0. 環境 [OS] Mac OS X 10.11.6 [IDE] Xcode 8.1 [Swift] 3.0  1. 問題  WCSession#sendMessage()を使ってAppleWatchからiPhoneアプリへメッセージを送っても、30秒ほどしないと通知されない。
+ AppleWatch側
+@IBAction func tapButton() { let message = [ &amp;quot;fromChild&amp;quot;: &amp;quot;AppleWatchからのメッセージ&amp;quot; ] WCSession.default().sendMessage( message , replyHandler: { reply in } , errorHandler: { error in } ) }  iPhone側
+func session(_ session: WCSession, didReceiveMessage message: [String: Any], replyHandler: @escaping ([String: Any]) -&amp;gt; Void) { if let watchMessage = message[&amp;quot;fromChild&amp;quot;] as? String { print(watchMessage) } else{ print(&amp;quot;error&amp;quot;) } }    2.</description>
+    </item>
+    
+    <item>
+      <title>Type &#39;ViewController&#39; does not conform to protocol &#39;WCSessionDelegate&#39;</title>
+      <link>https://sankame.github.io/blog/2016-11-15-wcsessiondelegate_in_swift3/</link>
+      <pubDate>Tue, 15 Nov 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2016-11-15-wcsessiondelegate_in_swift3/</guid>
+      <description>0. 環境 [OS] Mac OS X 10.11.6 [IDE] Xcode 8.1 [Swift] 3.0  1. 問題  iPhone &amp;amp; AppleWatchアプリを作成中にSwiftを2.2から3へバージョンアップしたところ、iPhone側で下記のエラーが出るようになりました。
+Type &#39;ViewController&#39; does not conform to protocol &#39;WCSessionDelegate&#39;
+  2. 解決  ViewControllerに下記メソッドを追加するとエラーが消えました。
+public func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) { } func sessionDidBecomeInactive(_ session: WCSession) { } func sessionDidDeactivate(_ session: WCSession) { session.activate() }  下記の仕様書にもこれらのメソッドは必須と書かれています。
+[API Reference] WCSessionDelegate
+  3. 参考ページ  Migrating app from Swift 2.</description>
+    </item>
+    
+    <item>
+      <title>AppleWatchアプリ開発におけるiOSアプリのデバッグ方法</title>
+      <link>https://sankame.github.io/blog/2016-08-07-debug-ios-app-with-watchkit/</link>
+      <pubDate>Sun, 07 Aug 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2016-08-07-debug-ios-app-with-watchkit/</guid>
+      <description> 0. 環境 [OS] Mac OS X 10.11.4 [IDE] Xcode 7.3 [Swift] 2.1.1  1. 課題  AppleWatchのアプリ開発で「WatchKit App」を起動すると、iOSアプリのブレークポイントで停止しない。  2. 対策  XcodeのデバッガーにiOSアプリを手動で追加する必要があります。
+ 「WatchKit App」を選択してアプリ実行。
+
+ iOSアプリのシュミレーターで、iOSアプリを起動。
+ Xcodeに戻って [Debug]-[Attach to Process] からiOSアプリを選択。
+
+ 左のパネルで[Debug navigator]を選択し、下記①②でiOSアプリが選択されていることを確認。
+
+   </description>
+    </item>
+    
+    <item>
+      <title>AppleWatchサンプルプログラム</title>
+      <link>https://sankame.github.io/blog/2016-05-02-apple_watch_sample/</link>
+      <pubDate>Mon, 02 May 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2016-05-02-apple_watch_sample/</guid>
+      <description>0.環境 [OS] Mac OS X 10.11.4 [IDE] Xcode 7.2.1 [watchOS] 2.1 [Swift] 2.1.1  1.完成イメージ  メイン画面からサブ画面へ行って戻るサンプルを作成します。
+
+  2.プロジェクト作成  Xcodeのスプラッシュ画面で&amp;rdquo;Create a new Xcode project&amp;rdquo;を選択。
+
+ watchOS Applicationを選択。
+
+ 適当なプロジェクト名を入力して下さい。
+サンプルなので&amp;rdquo;Notification&amp;rdquo;と&amp;rdquo;Glance&amp;rdquo;のチェックは外します。
+
+ プロジェクトを作成するフォルダを選択して下さい。
+下記のように /app/ を指定するとプロジェクトのパスは /app/hello-watch/ になります。
+
+  3.実装  左のプロジェクトナビゲーターで&amp;rdquo;Interface.storyboard&amp;rdquo;を選択。(A-1)
+デフォルトで用意されている Interface Controller を選択して、Identifier に適当な値(例ではIC1)を入力。 (A-2、A-3、A-4)
+ドラッグ＆ドロップで Label と Button を Interface Controller 上に配置します。 (A-5)
+
+ ドラッグ＆ドロップで Interface Controller をもう一つ追加。(B-1)</description>
+    </item>
+    
+  </channel>
+</rss>

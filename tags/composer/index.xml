@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>composer on プログラマー備忘録</title>
+    <link>https://sankame.github.io/tags/composer/</link>
+    <description>Recent content in composer on プログラマー備忘録</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <lastBuildDate>Sat, 25 Jun 2016 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://sankame.github.io/tags/composer/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>composer updateでUndefined indexエラー</title>
+      <link>https://sankame.github.io/blog/2016-06-25-composer_error_undefined_index/</link>
+      <pubDate>Sat, 25 Jun 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2016-06-25-composer_error_undefined_index/</guid>
+      <description> 0. 環境 [Laravel] 5.1  1. 問題  composer update を実行すると下記エラーが発生しました。
+Writing lock file Generating autoload files &amp;gt; php artisan clear-compiled [ErrorException] Undefined index: HTTP_HOST Script php artisan clear-compiled handling the post-update-cmd event returned with error code 1   2. 解決策  HTTP_HOST でソースをgrepし、 /app/Http/routes.php 内の下記箇所を修正しました。
+(修正前)
+$_SERVER[&#39;HTTP_HOST&#39;]  (修正後)
+Request::server(&#39;HTTP_HOST&#39;)   3. 参考  Composer returning mysterious error  </description>
+    </item>
+    
+    <item>
+      <title>PHP Debug Bar インストール</title>
+      <link>https://sankame.github.io/blog/2013-09-23-php_debug_bar_install/</link>
+      <pubDate>Mon, 23 Sep 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2013-09-23-php_debug_bar_install/</guid>
+      <description>0.環境 [CentOS] 5.6 (32bit版カーネル) [Apache] 2.2.3 [PHP] 5.4.1 [phalcon] 1.2.1  1.PHP Debug Barをインストール  (1-1) Webサーバーのドキュメントルートにcomposer.jsonを配置し、下記内容を記述します。(下図1-3参照)
+{ &amp;quot;require&amp;quot;: { &amp;quot;maximebf/debugbar&amp;quot;: &amp;quot;&amp;gt;=1.0.0&amp;quot; } }  (1-2) Webサーバーのドキュメントルートで次のコマンドを実行。
+# composer install  ※ composerが未インストールの場合、こちらを参考にインストールして下さい。
+ (1-3) ディレクトリ構成
+app_root : Webサイトのルートディレクトリ
+public : 公開ディレクトリ
+薄オレンジ : composerで設置されたディレクトリ
+  2.コードを記述 (要点以外は省略)  (2-0) index.php(フレームワークのエントリポイント)に次の内容を追記。
+  composer関係のファイルをバージョン管理(svn, git等)から除外した場合、 この記述だけ残してリリースしないよう注意して下さい。 
+ (2-1) ControllerBase(全コントローラの親クラス)に次の内容を追記。
+use DebugBar\StandardDebugBar; class ControllerBase extends Phalcon\Mvc\Controller { protected $debugbar; // Actionメソッドの後処理 public function afterExecuteRoute($dispatcher) { $debugbarRenderer = $this-&amp;gt;debugbar-&amp;gt;getJavascriptRenderer(); $this-&amp;gt;view-&amp;gt;setVar(&#39;debugbarHeader&#39;, $debugbarRenderer-&amp;gt;renderHead()); $this-&amp;gt;view-&amp;gt;setVar(&#39;debugbarBody&#39;, $debugbarRenderer-&amp;gt;render()); } }  (2-2) ContactControllerに次の内容を追記。</description>
+    </item>
+    
+  </channel>
+</rss>

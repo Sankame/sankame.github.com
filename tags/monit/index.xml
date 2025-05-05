@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Monit on プログラマー備忘録</title>
+    <link>https://sankame.github.io/tags/monit/</link>
+    <description>Recent content in Monit on プログラマー備忘録</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <lastBuildDate>Fri, 11 May 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://sankame.github.io/tags/monit/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>MonitでApacheとMySQLを復旧</title>
+      <link>https://sankame.github.io/blog/2018-05-11-monit_for_apache_mysql/</link>
+      <pubDate>Fri, 11 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2018-05-11-monit_for_apache_mysql/</guid>
+      <description>MonitでApacheとMySQLを復旧させる最低限の設定です。
+(文中のドメイン名やメールアドレスは読み替えて下さい)
+0. 環境 [CentOS] 6.4 (64bit版カーネル) [Monit] 5.25.1 [Apache] 2.2.15 [MySQL] 5.1.73  1. セットアップ  インストール
+# yum install monit  自動起動を設定
+# chkconfig monit on   2. 設定 2-1. Apacheの監視設定  httpd.conf を開いて、
+# vim /etc/monit.d/httpd.conf  下記を記載。
+check process httpd with pidfile /var/run/httpd/httpd.pid start program = &amp;quot;/etc/init.d/httpd start&amp;quot; stop program = &amp;quot;/etc/init.d/httpd stop&amp;quot; if 5 restarts within 5 cycles then timeout if failed host example.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>DELL on プログラマー備忘録</title>
+    <link>https://sankame.github.io/tags/dell/</link>
+    <description>Recent content in DELL on プログラマー備忘録</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <lastBuildDate>Fri, 05 Jul 2013 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://sankame.github.io/tags/dell/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>DELL E5520 のタッチパッドをOFFにする</title>
+      <link>https://sankame.github.io/blog/2013-07-05-dell_e5520_touchpad/</link>
+      <pubDate>Fri, 05 Jul 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2013-07-05-dell_e5520_touchpad/</guid>
+      <description> 0. 環境 [PC] DELL E5520 [OS] Windows 7 Professional (SP1)  1. 手順  (1-1) ドライバーダウンロード
+ ダウンロードページ
+ 上記ダウンロードページで、&amp;rdquo;マウス、キーボード、入力デバイス&amp;rdquo; を開きます。
+ &amp;ldquo;Dell Multi-Touch Touchpad Driver&amp;rdquo; の右横にある「ファイルのダウンロード」をクリック。
+ Hard-Drive-ALPS_MULTI-TOUCH-TOUCHPAD_A06_GGY5W_SETUP_ZPE.exe を選択して「続行」をクリック。
+ &amp;ldquo;単一ファイルのダウンロード&amp;rdquo;を選択して「続行」をクリック。
+  (1-2) インストール
+ ダウンロード後、EXEファイルを実行します。
+ インストールが終わったら再起動します。
+  (1-3) 設定
+ Windows[スタートメニュー] - [コントロールパネル]を開き、Dell Touchpad が増えているのでダブルクリック。
+ DELLポインティングデバイス　というダイアログが起動。
+ 左メニューで任意のものを選択して、タッチパッドのOn/Offで O をクリックして、保存ボタンクリック。
+ こうするとタッチパッドがOffになります。
+ (見つからない場合は右上の「表示方法」を「小さいアイコン」または「大きいアイコン」に変更して下さい)
+   2. 参考ページ  http://detail.chiebukuro.yahoo.co.jp/qa/question_detail/q13104530838  </description>
+    </item>
+    
+  </channel>
+</rss>
