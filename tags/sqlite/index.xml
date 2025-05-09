@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>SQLite on プログラマー備忘録</title>
+    <link>https://sankame.github.io/tags/sqlite/</link>
+    <description>Recent content in SQLite on プログラマー備忘録</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <lastBuildDate>Sun, 11 Aug 2024 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://sankame.github.io/tags/sqlite/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>UnityでARM64用のSQLiteライブラリを使用</title>
+      <link>https://sankame.github.io/blog/2024-08-11-unity_sqlite_for_arm64/</link>
+      <pubDate>Sun, 11 Aug 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2024-08-11-unity_sqlite_for_arm64/</guid>
+      <description> 環境  [OS] Windows 11 Home [Unity Editor] 2021.3.41f1 [SQLite] 3.41.2 [Android] 13  課題  UnityでAndroid向けのゲーム制作をしています。
+ ゲーム内のDBはSQLiteを使用。(費用をかけられない個人開発なので、従量課金のFirebaseは候補から除外)
+ ライブラリはここにある「Plugins」をダウンロードし、.meta 以外のファイルをUnityの[Assets]-[Plugins]に格納。(.meta はUnityが自動作成するファイルなので)
+ しかし、上記にはARM64用のライブラリが入ってなかったので、仕方なくビルド時に下記チェックを外していました。
+(A)
+[File]-[Build Settings]-[Android]-[Player Settings]-[Other Settings]-[Configuration] [Scripting Backend]で&amp;quot;IL2CPP&amp;quot;を選択した上で、[ARMv7]のみONで、[ARM64]はOFF  出来上がった App Bundle を Google Play Console にアップロードすると、ARM64未対応のアラートが出ます。
+  解決  ここにある libsqlite3.so のみをUnity Editorから下記へDrag &amp;amp; Drop。(metaファイルは不要)
+Assets/Plugins/Android/libs/arm64-v8a/libsqlite3.so  上記(A)の[ARM64]をONにして再ビルド。
+ これでPlay Consoleに上げることもでき、SQLiteの処理も動くようになりました。
+  参考  SQLite and Unity  </description>
+    </item>
+    
+    <item>
+      <title>AndroidStudioでSQLiteを扱う</title>
+      <link>https://sankame.github.io/blog/2024-02-23-view_sqlite_on_androidstudio/</link>
+      <pubDate>Fri, 23 Feb 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2024-02-23-view_sqlite_on_androidstudio/</guid>
+      <description> 0.環境  PC側
+[OS] Windows11 (64bit 版) [Android Studio] Giraffe 2022.3.1 Patch 1  スマホ側
+[OS] Android 13 [SQLite] 3.32.2   1. 手順  気付いたらAndroidStudioでAndroidアプリ内のSQLiteを操作できるようになってたので、UIについてメモしておきます。
+
+ (1) テスト端末名(Android実機) (2) App Inspectionをクリック (3) テスト端末名 (4) Database Inspectorを選択 (5) 新しいクエリをクリック (6) アプリ内で使用しているDBを選択 (7) SQL文を記載 (8) Runをクリック (9) SQLの結果が表示されます (10) またテーブル名をダブルクリックすると、 (11) タブが開きレコードを参照できます   </description>
+    </item>
+    
+    <item>
+      <title>【ReactNative】expo-sqliteのテーブルを開発ツールから参照する方法</title>
+      <link>https://sankame.github.io/blog/2020-07-23-expo_sqlite_db_browsing/</link>
+      <pubDate>Thu, 23 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2020-07-23-expo_sqlite_db_browsing/</guid>
+      <description> 0. 環境 [OS] MacOS 10.11.6
+[React Native] 0.61.4
+[SQLite Studio] 3.2.1
+1. 背景 React NativeでiOSアプリを作成中です。 ローカルストレージとしてExpoのSQLiteを使っていますが、開発ツールからテーブル参照する方法が分からず調べてました。 アプリから登録されたレコードの確認など、なにかとこの手のツールは必要です。 Androidアプリ開発のStethoみたいなのがないかなーと思ってましたが、結局こんな感じにしました。
+2. 手順(DBファイルの格納先)  expo-sqliteが作成するDBファイルの保存先は${FileSystem.documentDirectory}/SQLite/${name}」なので、まず${FileSystem.documentDirectory}がどこなのか調べます。
+ (詳細はこちらのページの&amp;rdquo;SQLite.openDatabase&amp;rdquo;参照)  アプリ実行時に必ず通る箇所にログを仕込みます。(importとconsoleの行だけあればどこでもOK)
+import * as FileSystem from &#39;expo-file-system&#39; class DB { static db; static getDB(){ console.log(&amp;quot;FileSystem; &amp;quot; + FileSystem.documentDirectory); :  コンソールに出力されたパスからfile://を削ったものが${FileSystem.documentDirectory}です。
+ さらに上記${name}は、SQLite.openDatabase();の引数で指定しているDB名になります。
+  3. 手順(SQLiteStudio)  MacにSQLiteStudioをインストール。
+ SQLiteStudioのメニューで[Database]-[Add a database]を選び、上記2で調べたパスを[File]に入力して[OK]をクリック。
+  
+ 左ペインにテーブルが表示されれば成功です。  </description>
+    </item>
+    
+    <item>
+      <title>【Androidアプリ開発】SQLiteのDB定義を変更する際の注意点</title>
+      <link>https://sankame.github.io/blog/2017-09-05-android_sqlite_db_upgrade/</link>
+      <pubDate>Tue, 05 Sep 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2017-09-05-android_sqlite_db_upgrade/</guid>
+      <description>0.環境 [Android] 5.1.1
+[Android API] 21
+1.準備  Androidアプリ開発で、SQLiteのライブラリを使う際にハマった点をメモ。
+まずコンストラクターでDBを使う準備をします。
+import android.content.Context; import android.database.sqlite.SQLiteDatabase; import android.database.sqlite.SQLiteOpenHelper; class DatabaseHelper extends SQLiteOpenHelper { public DatabaseHelper(Context context) { super(context, &amp;quot;test.db&amp;quot;, null, 1); //(A)既存のDBを消すには下記コードを使用。 //context.deleteDatabase(&amp;quot;DB name is here.&amp;quot;); } //以下省略  第2引数でDB名を指定するとDBファイルがAndroid端末に作成されます。
+第4引数ではDBバージョンを指定し、DB定義を変える際はこれを1つ上げるようにします。
+(バージョンを下げるとクラッシュするので注意)
+また、開発中にDBを作り直したい場合は、上記(A)で削除しましょう。
+  2.ハマりポイント - DDL記載箇所  このライブラリは主に使うメソッドが2つあり、DBのバージョンによって下記の通り実行タイミングが異なります。
+DBファイルが未作成の場合 : onCreate
+DBファイルが既にある場合(DBバージョン1以上) : onUpgrade
+ミスりやすいのが、DBバージョン2以降は、onCreateとonUpgradeの両方にDDLを書く必要があるという点です。
+下記のようにusersテーブルがDBバージョン2で追加されたとして、もし、onUpgradeだけに書いてしまうと、DBバージョン1のユーザーにとっては問題ないですが、初期インストールの場合はonCreateしか実行されないため、usersテーブルが作られないことになります。
+なので、DBバージョン2以降に追加するDDLはprivateメソッドに書いて、上記の両メソッドから呼ぶようにしたらいいと思います。
+@Override public void onCreate(SQLiteDatabase db) { db.beginTransaction(); try { //DBバージョン1でcitiesテーブル作成。 String ddlCities = &amp;quot;CREATE TABLE IF NOT EXISTS cities (&amp;quot; + &amp;quot;city_id INTEGER PRIMARY KEY AUTOINCREMENT&amp;quot; + &amp;quot;, city_name TEXT&amp;quot; + &amp;quot;);&amp;quot;; db.</description>
+    </item>
+    
+    <item>
+      <title>AndroidのSQLite DBを参照</title>
+      <link>https://sankame.github.io/blog/2017-05-14-view_sqlite_on_android/</link>
+      <pubDate>Sun, 14 May 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2017-05-14-view_sqlite_on_android/</guid>
+      <description>&amp;nbsp; こちらが最新です。(2024/02/23)  0.環境  PC側
+[OS] Windows7 (32bit 版) [Android Studio] 1.5.1  スマホ側
+[OS] Android 5.1.1 [SQLite] 3.8.6.1   1. 前提  まずSQLiteのデータをファイル形式で保存するよう設定します。
+ 例として、SQLiteを操作するライブラリにSQLiteOpenHelperを使用した場合について記載します。
+ コンストラクタの第二引数でDBファイル名を指定します。
+ (未指定の場合、データはメモリにのみ保持されます)
+class DatabaseHelper extends SQLiteOpenHelper { public DatabaseHelper(Context context) { //DBファイル名を指定。 super(context, &amp;quot;example.db&amp;quot;, null, 1); }  PCからAndroid端末にあるSQLiteのDBファイルを見る方法を調べました。
+ 試行錯誤した内容を書いているため、結論だけ知りたい場合は、4まで読み飛ばして下さい。
+  2. ADB(Androidデバッグ用インターフェース) 利用  ネットを検索して結構あったのが、ADBを使ってSQLiteのDBファイルをAndroid端末からPCへコピーし、その後DBビューワーで参照するというものです。
+ PCでコマンドプロンプトから下記コマンドを実行すると、カレントディレクトリにtarget.db(任意)というファイルができます。
+C:\Users\【ユーザー名】&amp;gt;adb -d shell &amp;quot;run-as 【アプリケーションID】 cat databases/【DBファイル名】&amp;quot;&amp;gt;target.db  【】内は読み替えて下さい。</description>
+    </item>
+    
+  </channel>
+</rss>

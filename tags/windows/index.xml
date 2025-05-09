@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>windows on プログラマー備忘録</title>
+    <link>https://sankame.github.io/tags/windows/</link>
+    <description>Recent content in windows on プログラマー備忘録</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <lastBuildDate>Sat, 15 Jun 2024 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://sankame.github.io/tags/windows/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>VMでシンボリックリンクが作成できない(自動マウントOFFでmountコマンドを使用している場合)</title>
+      <link>https://sankame.github.io/blog/2024-06-15_fail_to_make_sl_in_vm_2/</link>
+      <pubDate>Sat, 15 Jun 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2024-06-15_fail_to_make_sl_in_vm_2/</guid>
+      <description>環境  [Host OS] Windows 11 Home [Oracle VM VirtualBox] 7.0.18 [Gust OS] Ubuntu 22.04.4 LTS  前提  Virtualboxの[設定]-[共有フォルダー]で共有フォルダーの設定はあるが「自動マウント」はOFF。 VM(Gust OS)側で起動時にマウントする設定になっている。(本来は/etc/fstabでやるべきですが上手くいかなかったので下記で代替)
+# cat ~/.bashrc|grep mount mount -t vboxsf share /share   内容  課題
+ NextJSのインストール時にシンボリックリンク作成でエラー。
+# npm install --save react react-dom next : (中略) : npm error code EPERM npm error syscall symlink npm error path ../@mapbox/node-pre-gyp/bin/node-pre-gyp npm error dest /apps/simple-flashcard-nextjs/node_modules/.bin/node-pre-gyp npm error errno -1 npm error Error: EPERM: operation not permitted, symlink &#39;.</description>
+    </item>
+    
+    <item>
+      <title>VMでシンボリックリンクが作成できない</title>
+      <link>https://sankame.github.io/blog/2022-08-20-fail_to_make_sl_in_vm/</link>
+      <pubDate>Sat, 20 Aug 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2022-08-20-fail_to_make_sl_in_vm/</guid>
+      <description>  Virtualboxの[設定]-[共有フォルダー]で「自動マウント」がOFFの場合は こちら(2024/06/15)  &amp;nbsp;
+0. 環境 [Host OS] Windows 11 Home
+[Oracle VM VirtualBox] 6.1.32
+[Gust OS] ubuntu 16.04
+1. 問題  VirtualBoxに入れたLinux上で、シンボリック・リンク(Symbolic link)の作成に失敗する。
+下記の例は、node.jsのライブラリをインストールするときに発生してますが、根本の問題は上記の通り。
+root@hoge:/dev/blockchain# npm i express --save npm ERR! code EPROTO npm ERR! syscall symlink npm ERR! path ../mime/cli.js npm ERR! dest /dev/blockchain/node_modules/.bin/mime npm ERR! errno -71 npm ERR! EPROTO: protocol error, symlink &#39;../mime/cli.js&#39; -&amp;gt; &#39;/dev/blockchain/node_modules/.bin/mime&#39;   2. 対応  ネットで調べたら、いろんな情報が出てきましたが、VMを管理者モードで起動するだけで解決しました。
+タスクバーにあるVMのアイコンを2回右クリックして、「管理者として実行」を選択。
+
+  </description>
+    </item>
+    
+    <item>
+      <title>WindowsUpdate後のVirtualBox起動エラー</title>
+      <link>https://sankame.github.io/blog/2021-08-06-windows_update_causes_vm_error/</link>
+      <pubDate>Fri, 06 Aug 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2021-08-06-windows_update_causes_vm_error/</guid>
+      <description> 0. 環境 [OS] Windows 11 Home
+[VirtualBox] 6.1.22
+1. 問題  1週間くらい前にWindowsUpdateしたら、下記エラーでVMが起動しなくなりました。
+仮想マシン&amp;quot;ubuntu_64&amp;quot;のセッションを開けませんでした。 Failed to get device handle and/or partition ID for 00000000027d6520 (hPartitionDevice=0000000000000bd1, Last=0xc0000002/1) (VERR_NEM_VM_CREATE_FAILED). 終了コード : E_FAIL (0x80004005) コンポーネント: ConsoleWrap インターフェース: IConsole {872da645-4a9b-1727-bee2-5585105b9eed}  WindowsUpdate後にUIが変わってたのでたぶん「Windows 11 Insider Preview」のせいだと思います。
+ Windowsタスクバーの虫眼鏡マークをクリックし「設定」と入力。 設定画面が開くので左メニューから「Windows Update」をクリックすると履歴が参照可能。   2. 対応  Windowsタスクバーの虫眼鏡マークをクリックし「コントロールパネル」と入力。
+ 「コントロールパネル」内の「プログラムと機能」をクリック。
+ 「プログラムと機能」内の左のメニュー「Windowsの機能の有効化または無効化」をクリック。
+ 下記が開くので、「Windows ハイパーバイザー プラットフォーム」にチェックし、Windowsを再起動したら直りました。(WindowsUpdateでデフォルトのOffに戻ってしまったようです…)
+
+  </description>
+    </item>
+    
+    <item>
+      <title>regファイルでvbscriptを有効にする</title>
+      <link>https://sankame.github.io/blog/2018-01-17-enable_vbscript/</link>
+      <pubDate>Wed, 17 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2018-01-17-enable_vbscript/</guid>
+      <description> 0. 環境 [OS] Windows 10  1. 問題  Windows UpdateしたらIE11でvbscriptが動かなくなりました。
+おそらくバージョン1709から。
+ バージョンはWindows左下のボックスでwinverと入力すると表示されます。
+
+ 前から予告されてたみたいですが、急に来た感が否めません。
+僕みたいにレガシーシステムの保守をしてて困った人はいるのでは？
+  2. 対策  MicroSoft(以下MS)の下記ページに従ってグループポリシーの値を変えたら、vbscriptが有効になりました。
+ Internet Explorer のインターネット ゾーンおよび制限付きサイト ゾーン内の VBScript の実行を無効にするオプション  もっと簡単な操作で変更したかったので、GUIではなく、同ページ内のレジストリファイルでのやり方を試しました。
+ここでハマってしまい、いろいろ調べた結果、こちらのページのおかげで解決できました。
+上記MSページのレジストリパスが違っていることが原因でした・・・
+こちらのファイルをWindows上の適当な場所に置いてダブルクリックするとvbscriptが有効になります。
+ 他にも調べたら、正しいレジストリパスを書いたページがありました。
+うーん、MS本家が間違ってるってどういうことなんだろう？
+  </description>
+    </item>
+    
+    <item>
+      <title>ショートカットのファイルパス</title>
+      <link>https://sankame.github.io/blog/2016-07-16-windows_shortcut_path/</link>
+      <pubDate>Sat, 16 Jul 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2016-07-16-windows_shortcut_path/</guid>
+      <description> 0. 環境 [OS] Windows 7  1. 課題  ファイル(①)に対してショートカット(②)を作った場合・・・
+① C:\tmp\test.txt
+② C:\tmp2\test.txt - ショートカット
+ エクスプローラーやスタートメニューの「ファイル名を指定して実行」から②を指定してもエラーになります。
+
+ これは下記のように &amp;rdquo;.lnk&amp;rdquo; をつけると解決します。
+C:\tmp2\test.txt - ショートカット.lnk
+ OSの内部的にはこのパスになっているんだと思います・・・
+  </description>
+    </item>
+    
+  </channel>
+</rss>

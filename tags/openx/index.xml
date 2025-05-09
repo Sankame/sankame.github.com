@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>OpenX on プログラマー備忘録</title>
+    <link>https://sankame.github.io/tags/openx/</link>
+    <description>Recent content in OpenX on プログラマー備忘録</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <lastBuildDate>Sun, 04 May 2014 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://sankame.github.io/tags/openx/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Revive Ad Server インストール (旧OpenX)</title>
+      <link>https://sankame.github.io/blog/2014-05-04-revive_adserver_install/</link>
+      <pubDate>Sun, 04 May 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2014-05-04-revive_adserver_install/</guid>
+      <description>0.環境 [CentOS] 5.6 (32bit版カーネル) [Apache] 2.2.3 [PHP] 5.4.17 [Revive AdServer] 3.0.4  1.インストール  1-0.ダウンロード
+適当なディレクトリにソースをダウンロードし、Apache公開ディレクトリへ移動。
+(公開ディレクトリは自分の環境に読み替えて下さい)
+# wget http://download.revive-adserver.com/revive-adserver-3.0.4.tar.gz # tar xzf revive-adserver-3.0.4.tar.gz # mv revive-adserver-3.0.4 revive-adserver # mv revive-adserver /app/.  1-1.インストール開始
+ブラウザから、上記インストール先URLへアクセス。
+(例) http://localhost/revive-adserver
+ウィザードに従ってインストールを進めます。
+
+&amp;ldquo;I Agree &amp;gt;&amp;gt;&amp;ldquo;ボタンを押すと、&amp;rdquo;File Permissions - 7 errors&amp;rdquo; というエラーが表示されました。
+画面に表示されたコマンドをそのままコンソールで実行。
+# chmod -R a+w /app/revive-adserver/var # chmod -R a+w /app/revive-adserver/var/cache # chmod -R a+w /app/revive-adserver/var/plugins # chmod -R a+w /app/revive-adserver/var/templates_compiled # chmod -R a+w /app/revive-adserver/plugins # chmod -R a+w /app/revive-adserver/www/admin/plugins # chmod -R a+w /app/revive-adserver/www/images  再びインストール画面へ戻って&amp;rdquo;Retry&amp;rdquo;を押すと、次のステップへ進めます。</description>
+    </item>
+    
+    <item>
+      <title>OpenX仕組み1 配信処理</title>
+      <link>https://sankame.github.io/blog/2013-01-20-openx_structure1/</link>
+      <pubDate>Sun, 20 Jan 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2013-01-20-openx_structure1/</guid>
+      <description> OpenX仕組みに関する自分用メモ　配信処理 1.テーブル定義 テーブル定義？
+2.インプレッションカウント PHP : plugins/deliveryLog/oxLogImpression/logImpression.delivery.php →lib/OA/Dal/Delivery/mysql.php:function OX_bucket_updateTable DB : ox_data_bkt_m 処理: INSERT(1レコード) 概要:  </description>
+    </item>
+    
+    <item>
+      <title>OpenX配信テスト</title>
+      <link>https://sankame.github.io/blog/2013-01-15-openx_delivery_test/</link>
+      <pubDate>Tue, 15 Jan 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2013-01-15-openx_delivery_test/</guid>
+      <description>OpenX(ver2.8.10)で広告配信テストをしてみる。 1.管理画面ログイン 管理画面にログイン後、画面右上でログインユーザが「Working as Default manager」であることを確認。
+「インベントリ」タブをクリックし、左メニューの上から順に登録していく。
+2.広告主 「インベントリ」-「広告主」-「広告主の追加」とリンクを辿り、下記項目に入力して「変更の保存」クリック。
+名称、担当者名、メールアドレス  上記で登録した広告主をクリックすると広告主の詳細画面が表示されるので、
+「ユーザアクセス」タブ -「アクション▼」-「ユーザを追加する」からユーザを追加。
+※ログアウト後、入力した「ユーザー名」と「パスワード」で広告主ユーザーとしてログインできる。
+3.キャンペーン 「インベントリ」-「広告主」で登録済みの広告主の「キャンペーンの追加」をクリック。
+キャンペーン追加画面で下記項目を入力して「変更の保存」をクリック。
+名称 : (任意) キャンペーン名 ： 担当者名 (※各選択肢の意味は未確認) 「日付」以下の項目はとりあえずデフォルトのまま。 (2013/01/20,追記) 「他のキャンペーンに対する優先度」が未設定だとアラートメッセージが出るので下記のように設定。 優先度レベル=10、Limit=インプレッション、終了=15000/日  4.バナー 「インベントリ」-「キャンペーン」で登録済みキャンペーンの「バナーの追加」をクリック。
+バナーの追加画面で下記項目を入力して「Save changes」をクリック。(今回はGoogle AdSenseを配信してみる)
+バナーの種別 : html OpenX Generic HTML Banner 名称 : (任意) HTMLバナー - banner code : (ここにGoogle AdSenseの広告ユニットコードを張り付ける) Alter HTML to enable click tracking for: Rich Media - Google AdSense Banner display : (Google AdSenseの広告ユニットコードと同じサイズを指定)  「インベントリ」-「バナー」で、登録済みバナーをクリックし、バナー詳細画面を表示。</description>
+    </item>
+    
+    <item>
+      <title>OpenXインストール</title>
+      <link>https://sankame.github.io/blog/2012-12-24-openx_install/</link>
+      <pubDate>Mon, 24 Dec 2012 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2012-12-24-openx_install/</guid>
+      <description>&amp;nbsp;更新日：2015年06月27日
+ OSS版のOpenXは製品名がRevive AdServerに変わりました。
+インストールはこちらをご確認下さい。(2015/06/27)  ローカルPCのVmwarePlayerにOpenXをインストール。 [マニュアル]に従ってインストールしました。 1.ソース取得  マニュアルの下記リンクからソースをダウンロード。(アンケートがあるためwgetでは落とせない)
+Download the latest installation archive from: here
+ソースをWebサーバへアップし、解凍して公開ディレクトリへ配置する。
+# mv openx-2.8.10 openx # mv openx /var/www/html/  /var/www/html/openx/varと/var/www/html/openx/www/images　に777を与える。
+# cd /var/www/html/openx/ # chmod -R 777 var # chmod -R 777 ./www/images/  ブラウザでhttp://localhost/openx/ へアクセスし、Webのインストーラを起動する。
+下記のディレクトリにも書き込み権限が必要というエラーが出た。
+/var/www/html/openx/plugins
+/var/www/html/openx/www/admin/plugins
+画面にコマンドが書いてあったのでそのまま実行。
+# chmod -R a+w /var/www/html/openx/plugins # chmod -R a+w /var/www/html/openx/www/admin/plugins   2.Registration  Webインストーラを続行、下記項目に入力。
+name, password, e-mail
+  3.</description>
+    </item>
+    
+  </channel>
+</rss>
