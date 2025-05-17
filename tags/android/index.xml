@@ -1,0 +1,389 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Android on プログラマー備忘録</title>
+    <link>https://sankame.github.io/tags/android/</link>
+    <description>Recent content in Android on プログラマー備忘録</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <lastBuildDate>Sun, 11 Aug 2024 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://sankame.github.io/tags/android/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>UnityでARM64用のSQLiteライブラリを使用</title>
+      <link>https://sankame.github.io/blog/2024-08-11-unity_sqlite_for_arm64/</link>
+      <pubDate>Sun, 11 Aug 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2024-08-11-unity_sqlite_for_arm64/</guid>
+      <description> 環境  [OS] Windows 11 Home [Unity Editor] 2021.3.41f1 [SQLite] 3.41.2 [Android] 13  課題  UnityでAndroid向けのゲーム制作をしています。
+ ゲーム内のDBはSQLiteを使用。(費用をかけられない個人開発なので、従量課金のFirebaseは候補から除外)
+ ライブラリはここにある「Plugins」をダウンロードし、.meta 以外のファイルをUnityの[Assets]-[Plugins]に格納。(.meta はUnityが自動作成するファイルなので)
+ しかし、上記にはARM64用のライブラリが入ってなかったので、仕方なくビルド時に下記チェックを外していました。
+(A)
+[File]-[Build Settings]-[Android]-[Player Settings]-[Other Settings]-[Configuration] [Scripting Backend]で&amp;quot;IL2CPP&amp;quot;を選択した上で、[ARMv7]のみONで、[ARM64]はOFF  出来上がった App Bundle を Google Play Console にアップロードすると、ARM64未対応のアラートが出ます。
+  解決  ここにある libsqlite3.so のみをUnity Editorから下記へDrag &amp;amp; Drop。(metaファイルは不要)
+Assets/Plugins/Android/libs/arm64-v8a/libsqlite3.so  上記(A)の[ARM64]をONにして再ビルド。
+ これでPlay Consoleに上げることもでき、SQLiteの処理も動くようになりました。
+  参考  SQLite and Unity  </description>
+    </item>
+    
+    <item>
+      <title>AndroidStudioでSQLiteを扱う</title>
+      <link>https://sankame.github.io/blog/2024-02-23-view_sqlite_on_androidstudio/</link>
+      <pubDate>Fri, 23 Feb 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2024-02-23-view_sqlite_on_androidstudio/</guid>
+      <description> 0.環境  PC側
+[OS] Windows11 (64bit 版) [Android Studio] Giraffe 2022.3.1 Patch 1  スマホ側
+[OS] Android 13 [SQLite] 3.32.2   1. 手順  気付いたらAndroidStudioでAndroidアプリ内のSQLiteを操作できるようになってたので、UIについてメモしておきます。
+
+ (1) テスト端末名(Android実機) (2) App Inspectionをクリック (3) テスト端末名 (4) Database Inspectorを選択 (5) 新しいクエリをクリック (6) アプリ内で使用しているDBを選択 (7) SQL文を記載 (8) Runをクリック (9) SQLの結果が表示されます (10) またテーブル名をダブルクリックすると、 (11) タブが開きレコードを参照できます   </description>
+    </item>
+    
+    <item>
+      <title>AdMob広告にコンテンツが被ったという警告を回避</title>
+      <link>https://sankame.github.io/blog/2024-02-18-admob_alert_contents_over_ads/</link>
+      <pubDate>Sun, 18 Feb 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2024-02-18-admob_alert_contents_over_ads/</guid>
+      <description> 0. 環境 [OS] Android 13 (その他)
+1. 課題  AdMobからの警告
+AdMob管理画面の「ポリシーセンター」で下記の警告が上がりました。
+Google が配信する広告の前面に重なって表示されるコンテンツの扱い
+AdMobに登録済みのメアドにも、同内容のメールが届いていました。 (「広告配信が中断されないよう、早急にご対応をお願いいたします」という文面で修正までの猶予は確か2-3週間)
+  2. 対策  下記2点を対応後「ポリシーセンター」から承認依頼したところ、警告は数日で止まりました。
+
+ (1) 広告の上下に十分なスペースを確保。
+ (2) 広告を囲む要素の高さを予め固定しておく。
+ それによって、広告のロード後にAdViewの高さがビョンと伸びて、下にあるListViewなどが押し下げられるのを防ぎます。
+ 僕のアプリではAdViewを内包するLinearLayoutに「android:layout_height=&amp;ldquo;65dp&amp;rdquo;」を設定しました。(高さ65dpのバナー広告のみを対象としているため)
+    x. 参考リンク  具体的な修正方法が分からず手探りでしたが、下記の規約に抵触したと思われます。
+ コンテンツに重なった広告（ポリシー違反）   </description>
+    </item>
+    
+    <item>
+      <title>Android APIレベル31対応</title>
+      <link>https://sankame.github.io/blog/2022-10-09-android_api_level_31/</link>
+      <pubDate>Sun, 09 Oct 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2022-10-09-android_api_level_31/</guid>
+      <description>0. 環境 [Host OS] Windows 11 Home
+1. 手順  Playストアの規約変更があったので、AndroidアプリのSDKバージョンを31に上げました。
+ (アプリルート)/mobile/build.gradle
+ 抜粋 (diff)   android { - compileSdkVersion 30 + compileSdkVersion 31 defaultConfig { - targetSdkVersion 30 + targetSdkVersion 31 }    ２. ビルドエラー (2-1) ビルドと実機へのインストールでエラーが発生  エラー内容
+Installation did not succeed. The application could not be installed: INSTALL_PARSE_FAILED_MANIFEST_MALFORMED Installation failed due to: &#39;null&#39;   (2-2) マニフェスト修正  &amp;lt;intent-filter&amp;gt;を使っているActivityなどに「android:exported=&amp;ldquo;true&amp;rdquo;」が必要になったようです。 (デフォルト値が変わったため、今までと同じにするには、この指定が必要)
+ (アプリルート)/mobile/src/main/AndroidManifest.xml</description>
+    </item>
+    
+    <item>
+      <title>Android App Bundleに対応</title>
+      <link>https://sankame.github.io/blog/2021-08-10-android_app_bundle/</link>
+      <pubDate>Tue, 10 Aug 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2021-08-10-android_app_bundle/</guid>
+      <description> 0. 環境 [OS] Windows 11 Home
+[Android Studio] 3.6.3
+1. ビルド  期日が迫ってたので、App Bundle対応を行いました。いくつか「あれ？」と思ったので記載しておきます。
+ いつものように、Android Studioでメニューから[Build]-[Generate Signed Bundle / APK&amp;hellip;]を選択。
+ ビルド用のダイアログで「Android App Bundle」を選択し、[Next]ボタンをクリックすると下記が開きます。
+
+ [Export encryped&amp;hellip;]にチェックを入れ、直下に表示された秘密鍵の保存場所を覚えておきます。(*a)
+ [Next]ボタンを押して先に進むと、aabという拡張子のファイルが生成されます。(*b)
+   2. アプリ公開  いつものようにブラウザでPlay Consoleを開いて、対象のアプリを選択。
+ 左メニュー[製品版]-[新しいリリースを作成]をクリックし、[App Bundle]を選択すると下記画面に来ます。
+
+ 前述(*a)の登録がまだなので、[オプトイン]リンクをクリック。  
+ ここで前述の(*a)をアップロード。  
+ そのままこの画面に戻ってきて上記(*b)をアップロードするとエラーが出ました。
+app bundle 予期しないエラーが発生しました。もう一度お試しください（40B24C00）。  エラーコードをググっても出てこなかったので、作成中のリリースを一度破棄し、ブラウザを再起動してやり直したらうまくいきました。 (秘密鍵のアップロードはやり直さなくてOKでした)
+  あとはいつものように必要項目を入力し、フッター部分のボタンを押していくと公開設定が完了します。しばらく「審査中」の後、無事公開されました。
+[保存]　→　[リリースのレビュー] → [製品版としての公開を開始] → 確認ダイアログで[公開]クリック   </description>
+    </item>
+    
+    <item>
+      <title>Androidビルド時のクラス重複エラー</title>
+      <link>https://sankame.github.io/blog/2020-06-13-android_class_duplicated/</link>
+      <pubDate>Sat, 13 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2020-06-13-android_class_duplicated/</guid>
+      <description>0. 環境 [Gradle] 5.6.4
+1. 問題 こちらの情報を元にFabricからFirebaseへの移行を行いました。
+Android プロジェクトに Firebase を追加する
+Upgrade to the Firebase Crashlytics SDK
+コード修正後、エラーが発生してビルドできず・・・
+Duplicate class com.google.android.gms.measurement.AppMeasurement found in modules jetified-firebase-analytics-impl-12.0.1-runtime.jar (com.google.firebase:firebase-analytics-impl:12.0.1) and jetified-play-services-measurement-impl-17.4.3-runtime.jar (com.google.android.gms:play-services-measurement-impl:17.4.3) Duplicate class com.google.android.gms.measurement.AppMeasurement$ConditionalUserProperty found in modules jetified-firebase-analytics-impl-12.0.1-runtime.jar (com.google.firebase:firebase-analytics-impl:12.0.1) and jetified-play-services-measurement-impl-17.4.3-runtime.jar (com.google.android.gms:play-services-measurement-impl:17.4.3) Duplicate class com.google.android.gms.measurement.AppMeasurement$Event found in modules jetified-firebase-analytics-impl-12.0.1-runtime.jar (com.google.firebase:firebase-analytics-impl:12.0.1) and jetified-play-services-measurement-impl-17.4.3-runtime.jar (com.google.android.gms:play-services-measurement-impl:17.4.3) Duplicate class com.google.android.gms.measurement.AppMeasurement$EventInterceptor found in modules jetified-firebase-analytics-impl-12.0.1-runtime.jar (com.google.firebase:firebase-analytics-impl:12.0.1) and jetified-play-services-measurement-impl-17.4.3-runtime.jar (com.google.android.gms:play-services-measurement-impl:17.4.3) Duplicate class com.google.android.gms.measurement.AppMeasurement$OnEventListener found in modules jetified-firebase-analytics-impl-12.0.1-runtime.jar (com.</description>
+    </item>
+    
+    <item>
+      <title>【Androidアプリ開発】CursorWindowAllocationException エラー</title>
+      <link>https://sankame.github.io/blog/2018-08-05-android_cursor_error/</link>
+      <pubDate>Sun, 05 Aug 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2018-08-05-android_cursor_error/</guid>
+      <description>CursorWindowAllocationException が発生した時の対処方法です。
+0. 環境 [Windows] 7
+[Java] 1.8
+[Android] 5.1.1
+[Android API] 26
+1. 問題  開発中のAndroidアプリでSQLiteを使ってます。
+サブクエリを使って、今までより抽出データが多くなるSQLを書いたところ、画面遷移中に頻繁にクラッシュするようになりました。
+しかも、特定のテスト機(Galaxy S4(Android5.0.1))のみです。
+ (A)エラー内容
+Fatal Exception: android.database.CursorWindowAllocationException Cursor window allocation of 2048 kb failed. # Open Cursors=700 (# cursors opened by this proc=700)  (B)エラー箇所
+ 前述のサブクエリを適用した箇所とは全く別の箇所が毎回落ちるポイントでした。(下記2行目)
+Cursor cursorCountUsers = db.rawQuery(&amp;quot;SELECT COUNT(user_id) FROM users&amp;quot;, null); cursorCountUsers.moveToFirst(); int countUserId = cursorCountUsers.getInt(0); return countUserId;     2. 対策  Slackoverflowで同じ問題を見つけました。
+まず、毎回同じ箇所で落ちるので、上記(B)にcursorCountUsers.close();を入れたけど直りませんでした。</description>
+    </item>
+    
+    <item>
+      <title>【Androidアプリ開発】FileUriExposedException エラー</title>
+      <link>https://sankame.github.io/blog/2018-07-23-android_use_fileprovider/</link>
+      <pubDate>Mon, 23 Jul 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2018-07-23-android_use_fileprovider/</guid>
+      <description> Android7 で android.os.FileUriExposedException が発生した時の対処方法です。
+(文中の【】は読み替えて下さい)
+0. 環境 [Windows] 7
+[Java] 1.8
+[Android] 5.1.1
+[Android API] 26
+1. 問題  Androidアプリから一時ファイルを作成して、そのURIを外部のアプリに渡すという処理を実装してました。
+(ファイルを作成して、Gmailに添付するなど)
+Android7からfile://による指定ができなくなったため、下記のエラーが発生します。
+android.os.FileUriExposedException: file:///storage/emulated/0/Android/data/【アプリのパッケージ名】/temporary/【一時ファイル名】 exposed beyond app through ClipData.Item.getUri()  URIはFileProviderで作らないといけないそうです。
+  2. 対策 2-1. AndroidManifest.xml  まず、AndroidManifest.xmlにFileProviderの定義を追加します。
+android:resourceには、2-2で作成するファイル名を指定。
+   2-2. res/xml/provider_paths.xml  次に、res/xml/provider_paths.xml を作成します。
+後述の2-3でfileの保存先を Environment.getExternalStorageDirectory() の直下にしたので、それを表すexternal-pathを指定します。
+また、直下なのでpathはカレントディレクトリになります。
+   2-3. 該当処理を行っているActivity  最後に、URIの生成を下記(1)から(2)に変更しました。   3. 参考  FileProviderリファレンス  </description>
+    </item>
+    
+    <item>
+      <title>【Androidアプリ開発】 &#34;Socket is closed&#34; エラー</title>
+      <link>https://sankame.github.io/blog/2018-05-07-android_socket_is_closed/</link>
+      <pubDate>Mon, 07 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2018-05-07-android_socket_is_closed/</guid>
+      <description> 0. 環境 [Windows] 7 [Java] 1.8 [Android] 5.1.1 [Android API] 26  1. 問題  Androidアプリの開発で、自前のAPIからデータを取得する処理を組んでいたところ、下記エラーが発生するようになりました。
+java.net.SocketException: Socket is closed  コードはこちら。
+  2. 対策  まずAPI側でApacheのログを確認したところ、ステータスコード200で問題なしでした。
+127.0.0.1 - - [05/May/2018:22:55:02 +0900] &amp;quot;POST /api/test HTTP/1.0&amp;quot; 200 11130  正常終了するケースとの違いは、レスポンスのデータ量が多くなってることかな。(上記ログ右端)
+ 次にAndroidアプリ側の処理があやしいと考えて、いろいろ試した結果、HttpsURLConnectionのクローズのタイミングが問題だと分かりました。
+同オブジェクトを参照しているオブジェクトを全て使い終わってから、クローズする必要がありそうです。(上記(1)→(2)に移す)
+また、クローズ処理を消すだけでも冒頭のエラーは出なくなりましたが、なるべくオブジェクトは明示的に閉じた方が良いと思います。
+なので、最終的にオブジェクトの作成順とは逆にクローズしていく処理を入れました。(下記(3)(4))
+  </description>
+    </item>
+    
+    <item>
+      <title>【Androidアプリ開発】onPrepareActionModeが呼ばれない</title>
+      <link>https://sankame.github.io/blog/2017-10-17-android_onprepareactionmode_not_called/</link>
+      <pubDate>Tue, 17 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2017-10-17-android_onprepareactionmode_not_called/</guid>
+      <description>0. 環境 [Windows] 7 [Java] 1.8 [Android] 5.1.1 [Android API] 26  1. 問題  build.gradleで下記の値を上げたところ、onPrepareActionModeが実行されなくなってました。
+onPrepareActionModeは、ListViewのロングタップ時にアクションモードへ切り替えた後、アクションバー内のあるアイコンを隠す処理で使っていたので、困りました。
+ compileSdkVersion : 21 → 26
+ buildToolsVersion : 21.1.2 → 26.0.2
+   2. 対策  試しに下記 (A) にあった処理を (B) へ移してみたところ、思った通りの動きをしてくれました。
+うーん、前はダメだったからonPrepareActionModeを使ったんだけどなあ。。
+他にネットで情報を見つけられなかったので、一旦これにしておくか。
+list1 = findViewById(R.id.listView1); list1.setMultiChoiceModeListener(new AbsListView.MultiChoiceModeListener() { @Override public boolean onPrepareActionMode(ActionMode mode, Menu menu) { //(A) //MenuItem menuItem1 = menu.findItem(R.id.menu_item1); //menuItem1.setVisible(false); return false; } @Override public boolean onCreateActionMode(ActionMode mode, Menu menu) { MenuInflater inflater = getMenuInflater(); inflater.</description>
+    </item>
+    
+    <item>
+      <title>【Androidアプリ開発】ライブラリ追加時にビルドエラー</title>
+      <link>https://sankame.github.io/blog/2017-10-13-android_duplicate_files_error/</link>
+      <pubDate>Fri, 13 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2017-10-13-android_duplicate_files_error/</guid>
+      <description>0. 環境 [Windows] 7 [Java] 1.8 [Android] 5.1.1 [Android API] 21  1. エラー内容  commons-langを使いたくなったので下記のように追記してビルドしたら、エラーが発生しました。 (文中の【】は読み替えて下さい)
+ (アプリルート)/mobile/build.gradle
+dependencies { compile &#39;【他のライブラリ】&#39; compile &#39;【他のライブラリ】&#39; compile &#39;【他のライブラリ】&#39; compile &#39;org.apache.commons:commons-lang3:3.4&#39; }  エラー
+Error:duplicate files during packaging of APK C:\【パス】\mobile-debug-unaligned.apk Path in archive: META-INF/LICENSE.txt Origin 1: C:\【パス】\commons-cli-1.2.jar Origin 2: C:\【パス】\commons-lang3-3.4.jar You can ignore those files in your build.gradle: android { packagingOptions { exclude &#39;META-INF/LICENSE.txt&#39; } } Error:Execution failed for task &#39;:mobile:packageDebug&#39;.</description>
+    </item>
+    
+    <item>
+      <title>【Androidアプリ開発】「次回から表示しない」ボタン</title>
+      <link>https://sankame.github.io/blog/2017-10-03-android_handling_dialog_using_preference/</link>
+      <pubDate>Tue, 03 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2017-10-03-android_handling_dialog_using_preference/</guid>
+      <description> 0. 環境 [Android] 5.1.1
+[Android API] 21
+1. Preferenceで実装  Preferenceを使ってダイアログに「次回から表示しない」ボタンをつける方法をメモ。
+ユーザーに1回だけ何かを伝えたい場合を想定しています。
+(MainActivity.thisなど、適宜読み替えて下さい)
+  2. stethoでPreferenceを編集  開発中にPreferenceの値を変えたり、消したりしたくなると思いますが、そんな時はstethoが便利です。
+stethoを起動し、[Local Storage]で該当のActivityを選択すると右側にPreferenceの値(上記コード17行目)が出ます。
+右クリックで編集や削除が可能です。
+
+stethoの設定方法は下記記事の「4. stetho 利用」を参照して下さい。
+  関連記事  AndroidのSQLite DBを参照  </description>
+    </item>
+    
+    <item>
+      <title>【Androidアプリ開発】SQLiteのDB定義を変更する際の注意点</title>
+      <link>https://sankame.github.io/blog/2017-09-05-android_sqlite_db_upgrade/</link>
+      <pubDate>Tue, 05 Sep 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2017-09-05-android_sqlite_db_upgrade/</guid>
+      <description>0.環境 [Android] 5.1.1
+[Android API] 21
+1.準備  Androidアプリ開発で、SQLiteのライブラリを使う際にハマった点をメモ。
+まずコンストラクターでDBを使う準備をします。
+import android.content.Context; import android.database.sqlite.SQLiteDatabase; import android.database.sqlite.SQLiteOpenHelper; class DatabaseHelper extends SQLiteOpenHelper { public DatabaseHelper(Context context) { super(context, &amp;quot;test.db&amp;quot;, null, 1); //(A)既存のDBを消すには下記コードを使用。 //context.deleteDatabase(&amp;quot;DB name is here.&amp;quot;); } //以下省略  第2引数でDB名を指定するとDBファイルがAndroid端末に作成されます。
+第4引数ではDBバージョンを指定し、DB定義を変える際はこれを1つ上げるようにします。
+(バージョンを下げるとクラッシュするので注意)
+また、開発中にDBを作り直したい場合は、上記(A)で削除しましょう。
+  2.ハマりポイント - DDL記載箇所  このライブラリは主に使うメソッドが2つあり、DBのバージョンによって下記の通り実行タイミングが異なります。
+DBファイルが未作成の場合 : onCreate
+DBファイルが既にある場合(DBバージョン1以上) : onUpgrade
+ミスりやすいのが、DBバージョン2以降は、onCreateとonUpgradeの両方にDDLを書く必要があるという点です。
+下記のようにusersテーブルがDBバージョン2で追加されたとして、もし、onUpgradeだけに書いてしまうと、DBバージョン1のユーザーにとっては問題ないですが、初期インストールの場合はonCreateしか実行されないため、usersテーブルが作られないことになります。
+なので、DBバージョン2以降に追加するDDLはprivateメソッドに書いて、上記の両メソッドから呼ぶようにしたらいいと思います。
+@Override public void onCreate(SQLiteDatabase db) { db.beginTransaction(); try { //DBバージョン1でcitiesテーブル作成。 String ddlCities = &amp;quot;CREATE TABLE IF NOT EXISTS cities (&amp;quot; + &amp;quot;city_id INTEGER PRIMARY KEY AUTOINCREMENT&amp;quot; + &amp;quot;, city_name TEXT&amp;quot; + &amp;quot;);&amp;quot;; db.</description>
+    </item>
+    
+    <item>
+      <title>【Androidアプリ開発】起動アイコンのタイトルにアプリ名を表示</title>
+      <link>https://sankame.github.io/blog/2017-08-21-android_app_set_activity_title/</link>
+      <pubDate>Mon, 21 Aug 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2017-08-21-android_app_set_activity_title/</guid>
+      <description>0.環境 [Android] 5.1.1
+ 文中、【】内は読み替えて下さい。  1.問題  Androidホーム画面の起動アイコンのタイトルをアプリ名にしたくて、下記(3)を追記したのですが変わりません・・・
+ AndroidManifest.xml
+&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;utf-8&amp;quot;?&amp;gt; &amp;lt;manifest xmlns:android=&amp;quot;http://schemas.android.com/apk/res/android&amp;quot; package=&amp;quot;【パッケージ名】&amp;quot; &amp;gt; &amp;lt;application android:allowBackup=&amp;quot;true&amp;quot; android:icon=&amp;quot;@mipmap/ic_launcher&amp;quot; android:label=&amp;quot;(1) App Name&amp;quot; android:theme=&amp;quot;@style/AppTheme&amp;quot; &amp;gt; &amp;lt;activity android:name=&amp;quot;.MyActivity&amp;quot; android:label=&amp;quot;(2) My Activity&#39;s Title&amp;quot; &amp;gt; &amp;lt;intent-filter android:label=&amp;quot;(3) App Name&amp;quot;&amp;gt; &amp;lt;action android:name=&amp;quot;android.intent.action.MAIN&amp;quot; /&amp;gt; &amp;lt;category android:name=&amp;quot;android.intent.category.LAUNCHER&amp;quot; /&amp;gt; &amp;lt;/intent-filter&amp;gt; &amp;lt;/activity&amp;gt; &amp;lt;/application&amp;gt; &amp;lt;/manifest&amp;gt;  ネットで調べたところ、Android 5.1.1 だと(3)が無視され、下図のように起動アイコンにも(2)が表示されてしまうようです。
+
+
+   2. 対策  まず&amp;rdquo;AndroidManifest.xml&amp;rdquo;では、Activityのlabelを下記(3)に変更することで、起動アイコンはアプリ名になります。(intent-filterのlabel指定はやめる)
+ そのままだと、Activityのタイトルもアプリ名になってしまうため、起動時にタイトルを書き換えることにしました。(下記 &amp;ldquo;MyActivity.java&amp;rdquo; 参照)
+ AndroidManifest.xml
+&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;utf-8&amp;quot;?&amp;gt; &amp;lt;manifest xmlns:android=&amp;quot;http://schemas.</description>
+    </item>
+    
+    <item>
+      <title>AndroidのSQLite DBを参照</title>
+      <link>https://sankame.github.io/blog/2017-05-14-view_sqlite_on_android/</link>
+      <pubDate>Sun, 14 May 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2017-05-14-view_sqlite_on_android/</guid>
+      <description>&amp;nbsp; こちらが最新です。(2024/02/23)  0.環境  PC側
+[OS] Windows7 (32bit 版) [Android Studio] 1.5.1  スマホ側
+[OS] Android 5.1.1 [SQLite] 3.8.6.1   1. 前提  まずSQLiteのデータをファイル形式で保存するよう設定します。
+ 例として、SQLiteを操作するライブラリにSQLiteOpenHelperを使用した場合について記載します。
+ コンストラクタの第二引数でDBファイル名を指定します。
+ (未指定の場合、データはメモリにのみ保持されます)
+class DatabaseHelper extends SQLiteOpenHelper { public DatabaseHelper(Context context) { //DBファイル名を指定。 super(context, &amp;quot;example.db&amp;quot;, null, 1); }  PCからAndroid端末にあるSQLiteのDBファイルを見る方法を調べました。
+ 試行錯誤した内容を書いているため、結論だけ知りたい場合は、4まで読み飛ばして下さい。
+  2. ADB(Androidデバッグ用インターフェース) 利用  ネットを検索して結構あったのが、ADBを使ってSQLiteのDBファイルをAndroid端末からPCへコピーし、その後DBビューワーで参照するというものです。
+ PCでコマンドプロンプトから下記コマンドを実行すると、カレントディレクトリにtarget.db(任意)というファイルができます。
+C:\Users\【ユーザー名】&amp;gt;adb -d shell &amp;quot;run-as 【アプリケーションID】 cat databases/【DBファイル名】&amp;quot;&amp;gt;target.db  【】内は読み替えて下さい。</description>
+    </item>
+    
+    <item>
+      <title>setVibrateメソッドの使い方</title>
+      <link>https://sankame.github.io/blog/2016-02-08-notification_compat_builder_setvibrate/</link>
+      <pubDate>Mon, 08 Feb 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2016-02-08-notification_compat_builder_setvibrate/</guid>
+      <description> 環境 [Android SDK] API 21: Android 5.0(Lollipop)  実装  スマートウォッチ(Android Wear)に通知を送るため、NotificationCompat.Builder の
+setVibrateメソッドを使った際の自分用メモ。
+バイブレーション・パターンの設定は下記仕様ですが、
+long型配列の1つ目の要素を除いて、偶数は振動、奇数は休止
+と覚えておけば良さそうです。
+NotificationCompat.Builder builder = new NotificationCompat.Builder( getApplicationContext() ); // 単位はミリ秒 // // 要素1 : 振動開始までの時間 // 要素2 : 振動 // 要素3 : 休止 // 要素4 : (これ以降は要素2-3の繰り返し) builder.setVibrate(new long[]{0, 500, 250, 500, 250, 1000});  下記の例だと、ツー・ツ・ツ　みたいな感じになります。
+// 1秒振動、0.1秒休止、0.1秒振動、0.05秒休止、0.1秒振動 builder.setVibrate(new long[]{0, 1000, 100, 100, 50, 100});   関連リンク  API : NotificationCompat.Builder  </description>
+    </item>
+    
+    <item>
+      <title>Androidアプリのバージョンアップができない</title>
+      <link>https://sankame.github.io/blog/2015-10-07-android_app_version/</link>
+      <pubDate>Wed, 07 Oct 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2015-10-07-android_app_version/</guid>
+      <description> 0.環境 [OS] Windows7 (32bit 版) [AndroidStudio] 1.1.0  1.問題  Androidアプリをバージョンアップするため、Google Play Developer Console でapkファイルをアップしても下記のエラーが出ました。
+アップロードできませんでした
+マニフェストファイルに下記のように追記してもダメ。
+(app\【アプリ名】\mobile\src\main\AndroidManifest.xml)
+&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;utf-8&amp;quot;?&amp;gt; &amp;lt;manifest xmlns:android=&amp;quot;http://schemas.android.com/apk/res/android&amp;quot; package=&amp;quot;【パッケージ名】&amp;quot; android:versionCode=&amp;quot;2&amp;quot; android:versionName=&amp;quot;2.0.1&amp;quot;&amp;gt;   2.対策  しばらくして、AndroidManifest.xml にエラーメッセージが出てるのに気付きました。
+build.gradle を修正しなきゃいけない・・・
+(app\【アプリ名】\mobile\build.gradle)
+下記のようにバージョンを上げて再コンパイルしたらアップロードできました。
+android { : (省略) : defaultConfig { applicationId &amp;quot;【省略】&amp;quot; minSdkVersion 16 targetSdkVersion 21 versionCode 2 versionName &amp;quot;2.0.1&amp;quot; } : (省略) : }   </description>
+    </item>
+    
+    <item>
+      <title>【AndroidStudio】&#34;Failed to complete Gradle execution&#34;エラー</title>
+      <link>https://sankame.github.io/blog/2015-05-11-android_studio_heap_size_error/</link>
+      <pubDate>Mon, 11 May 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2015-05-11-android_studio_heap_size_error/</guid>
+      <description> 0.環境 [OS] Windows7 (32bit 版) [AndroidStudio] 1.1.0  1.エラー内容  「Run &amp;lsquo;app&amp;rsquo;」ボタンをクリックし、ビルド＆実行しようとすると下記エラーダイアログが表示される。
+Failed to complete Gradle execution Cause: A fatal exception has occurred. Program will exit   2.回避方法  メニューから [File] -&amp;gt; [Settings] -&amp;gt; [Gradle] とたどって、[Gradle VM options] に &amp;ldquo;-XX:MaxHeapSize=256m -Xmx256m&amp;rdquo; を入力。(下記画像のオレンジ枠線)
+
+  参考にしたページ  Failed to complete Gradle Execution  </description>
+    </item>
+    
+    <item>
+      <title>AndroidStudioでプロセス開始エラー</title>
+      <link>https://sankame.github.io/blog/2015-05-10-android_studio_process_error/</link>
+      <pubDate>Sun, 10 May 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2015-05-10-android_studio_process_error/</guid>
+      <description>0.環境 [OS] Windows7 (32bit 版) [AndroidStudio] 1.1.0  1.エラー内容  AndroidStudioで「Run &amp;lsquo;app&amp;rsquo;」ボタンをクリックし、ビルド＆実行しようとすると下記エラーが発生しました。
+Error:Unable to start the daemon process. This problem might be caused by incorrect configuration of the daemon. For example, an unrecognized jvm option is used. Please refer to the user guide chapter on the daemon at http://gradle.org/docs/2.2.1/userguide/gradle_daemon.html Please read the following process output to find out more: ----------------------- Error occurred during initialization of VM Could not reserve enough space for object heap Error: Could not create the Java Virtual Machine.</description>
+    </item>
+    
+    <item>
+      <title>【Android Wear】ホーム画面の時計を変更</title>
+      <link>https://sankame.github.io/blog/2014-07-26-android_wear_chage_face/</link>
+      <pubDate>Sat, 26 Jul 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2014-07-26-android_wear_chage_face/</guid>
+      <description> 0.環境 [スマートフォン(OS)] GALAXY S4 (Android 4.4.2) [スマートウォッチ(OS)] Gear Live (4.4W) ※以降、スマートフォンは「スマホ」、スマートウォッチは「ウォッチ」と記載。  1.ホーム画面の時計(ウォッチフェイス)を変更  Samsung Gear Live のホーム画面の時計デザインを変える方法は下記の通りです。
+ (スマホとウォッチはBluetoothで同期されている前提)
+ ①【スマホ】Playストアから好みのデザインの時計アプリをインストールします。(参考リンク)
+(例) Playストアで &amp;quot;WearFaces&amp;quot; で検索。
+ ②【スマホ】Android Wearアプリを起動し、右上のネジマークをタップ。
+
+ ③【スマホ】一番下までスクロールし、「アプリの再同期」をタップ。
+
+ ④【ウォッチ】ホーム画面をタップし、メニュー画面を一番下までスクロールした後「設定」をタップ。
+(2014/07/30, 追記) 後日気づきました。ホーム画面で時計を長押し(ロングタップ)すると一気に時計変更画面に行けます。(下記⑦)
+
+ ⑤【ウォッチ】設定画面で上にフリック。
+
+ ⑥【ウォッチ】一番下までスクロールした後、「ウォッチフェイスの変更」をタップ。
+
+ ⑦【ウォッチ】上記でPlayストアからインストールした時計アプリを見つけ、タップするとホーム画面に設定されます。
+   </description>
+    </item>
+    
+    <item>
+      <title>Nexus7のスクリーンをプロジェクターに映す (Android Screen Cast)</title>
+      <link>https://sankame.github.io/blog/2013-09-02-nexus7_projected_to_pc/</link>
+      <pubDate>Sun, 01 Sep 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2013-09-02-nexus7_projected_to_pc/</guid>
+      <description>環境 [タブレット(OS)] Nexus7(Android 4.2.2) [PC(OS)] Gateway SX2800(Windows Vista Home Premium)  0. 検討  プレゼンでNexus7のスクリーンをプロジェクターに映したいと考え、検討した結果、下記C案にしました。
+ A.変換器を使う →Nexus7はMHL非対応…
+ B.アプリで解決 →PCに映像を送信する方法。有料かつNexus7のRoot化が必要。
+ C.アプリで解決 →PCに映像を送信する方法。無料かつRoot化の必要もなし。Nexus7の映像がPCに届くまで数秒のタイムラグあり。
+   1. PCにAndroid SDKをインストール  下記ページの[download here] - [Download the SDK]ボタンをクリック。
+ダウンロード
+ 規約に同意したら「I have read and agree…」にチェック。
+ 32ビットか64ビットかは、次の手順で調べます。
+[スタート]メニュー - [コンピュータ]右クリック - [プロパティ]
+[システムの種類]を確認。
+  2. Nexus7とPCをUSBケーブルで接続 3. Android Screen Cast  (3-1) Android Screen Castを下記リンクからダウンロードし、PCの任意のフォルダに保存します。
+ダウンロード
+ (3-2) コマンドプロンプトで上記3-1のフォルダに移動し、下記コマンドを実行。</description>
+    </item>
+    
+  </channel>
+</rss>

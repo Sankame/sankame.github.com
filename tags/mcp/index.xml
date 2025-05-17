@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>mcp on プログラマー備忘録</title>
+    <link>https://sankame.github.io/tags/mcp/</link>
+    <description>Recent content in mcp on プログラマー備忘録</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <lastBuildDate>Sun, 04 May 2025 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://sankame.github.io/tags/mcp/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Amazon Q Developer(CLI Chat)からPlaywright MCPを使用してブラウザ自動テスト</title>
+      <link>https://sankame.github.io/blog/2025-05-04-q_cli_agent_playwright_mcp/</link>
+      <pubDate>Sun, 04 May 2025 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2025-05-04-q_cli_agent_playwright_mcp/</guid>
+      <description>環境  [OS] Windows 11 Home (VirtualBox: Ubuntu 22.04) [Amazon Q Developer(CLI Chat)] 1.7.3 → 1.9.1 [Node.js] 20.14.0 [Playwright] 1.52.0  前提 Amazon Q Developerには「CLI Chat」と「IDE版」がありますが、本記事では前者を扱っています。
+ (CLI Chat) ターミナルソフトなどから利用。オープンソースプロジェクト (IDE版) VSCodeなどのExtensionとして利用。非オープンソース  MCPの概要を理解する 始めにMCP(Model Context Protocol)の概要を押さえておくと作業を進めやすいです。 構成は下記の図が参考になります。
+MCP Architecture
+この中で:
+ 「Host with MCP client」が「CLI Chat」 「MCP Server A」が「Playwright MCPサーバー」 「Local Data Source A」が「Playwrightとそれを通じて操作するブラウザ」  に該当します。 MCPの「Server」は必ずしもインターネット上のサーバーではなく「サービスを提供する役割」と捉えておいた方が良さそうです。
+CLI Chatのアップデート  まず、MCPに対応しているのは1.9.0以上なので、アップデートを試みましたが、僕の環境ではうまくいきませんでした。
+&amp;gt; q update A new version of q is available: 1.</description>
+    </item>
+    
+  </channel>
+</rss>

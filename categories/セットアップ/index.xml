@@ -1,0 +1,806 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>セットアップ on プログラマー備忘録</title>
+    <link>https://sankame.github.io/categories/%E3%82%BB%E3%83%83%E3%83%88%E3%82%A2%E3%83%83%E3%83%97/</link>
+    <description>Recent content in セットアップ on プログラマー備忘録</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <lastBuildDate>Sun, 04 May 2025 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://sankame.github.io/categories/%E3%82%BB%E3%83%83%E3%83%88%E3%82%A2%E3%83%83%E3%83%97/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Amazon Q Developer(CLI Chat)からPlaywright MCPを使用してブラウザ自動テスト</title>
+      <link>https://sankame.github.io/blog/2025-05-04-q_cli_agent_playwright_mcp/</link>
+      <pubDate>Sun, 04 May 2025 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2025-05-04-q_cli_agent_playwright_mcp/</guid>
+      <description>環境  [OS] Windows 11 Home (VirtualBox: Ubuntu 22.04) [Amazon Q Developer(CLI Chat)] 1.7.3 → 1.9.1 [Node.js] 20.14.0 [Playwright] 1.52.0  前提 Amazon Q Developerには「CLI Chat」と「IDE版」がありますが、本記事では前者を扱っています。
+ (CLI Chat) ターミナルソフトなどから利用。オープンソースプロジェクト (IDE版) VSCodeなどのExtensionとして利用。非オープンソース  MCPの概要を理解する 始めにMCP(Model Context Protocol)の概要を押さえておくと作業を進めやすいです。 構成は下記の図が参考になります。
+MCP Architecture
+この中で:
+ 「Host with MCP client」が「CLI Chat」 「MCP Server A」が「Playwright MCPサーバー」 「Local Data Source A」が「Playwrightとそれを通じて操作するブラウザ」  に該当します。 MCPの「Server」は必ずしもインターネット上のサーバーではなく「サービスを提供する役割」と捉えておいた方が良さそうです。
+CLI Chatのアップデート  まず、MCPに対応しているのは1.9.0以上なので、アップデートを試みましたが、僕の環境ではうまくいきませんでした。
+&amp;gt; q update A new version of q is available: 1.</description>
+    </item>
+    
+    <item>
+      <title>UnityでARM64用のSQLiteライブラリを使用</title>
+      <link>https://sankame.github.io/blog/2024-08-11-unity_sqlite_for_arm64/</link>
+      <pubDate>Sun, 11 Aug 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2024-08-11-unity_sqlite_for_arm64/</guid>
+      <description> 環境  [OS] Windows 11 Home [Unity Editor] 2021.3.41f1 [SQLite] 3.41.2 [Android] 13  課題  UnityでAndroid向けのゲーム制作をしています。
+ ゲーム内のDBはSQLiteを使用。(費用をかけられない個人開発なので、従量課金のFirebaseは候補から除外)
+ ライブラリはここにある「Plugins」をダウンロードし、.meta 以外のファイルをUnityの[Assets]-[Plugins]に格納。(.meta はUnityが自動作成するファイルなので)
+ しかし、上記にはARM64用のライブラリが入ってなかったので、仕方なくビルド時に下記チェックを外していました。
+(A)
+[File]-[Build Settings]-[Android]-[Player Settings]-[Other Settings]-[Configuration] [Scripting Backend]で&amp;quot;IL2CPP&amp;quot;を選択した上で、[ARMv7]のみONで、[ARM64]はOFF  出来上がった App Bundle を Google Play Console にアップロードすると、ARM64未対応のアラートが出ます。
+  解決  ここにある libsqlite3.so のみをUnity Editorから下記へDrag &amp;amp; Drop。(metaファイルは不要)
+Assets/Plugins/Android/libs/arm64-v8a/libsqlite3.so  上記(A)の[ARM64]をONにして再ビルド。
+ これでPlay Consoleに上げることもでき、SQLiteの処理も動くようになりました。
+  参考  SQLite and Unity  </description>
+    </item>
+    
+    <item>
+      <title>CentOS7にMySQL5.1.7インストール</title>
+      <link>https://sankame.github.io/blog/2023-03-20-how_to_install_mysql517_in_centos7/</link>
+      <pubDate>Mon, 20 Mar 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2023-03-20-how_to_install_mysql517_in_centos7/</guid>
+      <description> 0. 環境 [OS] CentOS7 (x86_64)
+1. 手順  元々入ってるMariaDBは競合を起こすので削除。
+# yum remove mariadb-libs # rm -rf /var/lib/mysql/  インストール(サーバー、クライアントの順)
+# yum localinstall http://dev.mysql.com/get/MySQL-server-community-5.1.73-1.rhel5.x86_64.rpm # yum localinstall http://dev.mysql.com/get/MySQL-client-community-5.1.73-1.rhel5.x86_64.rpm # mysqld --version mysqld Ver 5.1.73-community for unknown-linux-gnu on x86_64 (MySQL Community Server (GPL))  他のバージョンはここで調べて、http://dev.mysql.com/get/ の後につなげてダウンロードして下さい。
+  </description>
+    </item>
+    
+    <item>
+      <title>MySQLでSlowQueryLogを有効にする</title>
+      <link>https://sankame.github.io/blog/2021-09-11-mysql_setting_slow_query/</link>
+      <pubDate>Sat, 11 Sep 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2021-09-11-mysql_setting_slow_query/</guid>
+      <description>0. 環境 [OS] CentOS 6.10
+[MySQL] 5.1
+1. 前提  MySQLシステム変数は、SESSIONとGLOBALがあるので注意。
+ 有効範囲はそれぞれ「SESSIONは接続ごと」「GLOBALはMySQL起動中」というふうに異なります。
+ GLOBALスコープで設定した値は、MySQL再起動で消失します。(これを防ぎたい場合、mysql.cnfに直接記載)
+ MySQL8からは、SET PERSIST .. とすることで消失を防げる。    2. 接続  MySQLに接続。mysql -u root -p  3. コマンド (SESSIONスコープ)  下記は、SHOW SESSION VARIABLES ..と書いたのと同義。
+ 現在の値
+-- SlowQueryを出力するか？ SHOW VARIABLES LIKE &#39;slow_query_log&#39;; -- 何秒を超えたらSlowQueryとして出力するか？ SHOW VARIABLES LIKE &#39;long_query_time&#39;; -- SlowQuery出力先のファイル名 SHOW VARIABLES LIKE &#39;slow_query_log_file&#39;;  更新
+SET long_query_time = 3;  (注)slow_query_logとslow_query_log_fileはGLOBALスコープでのみ変更可能。
+  4.</description>
+    </item>
+    
+    <item>
+      <title>Android App Bundleに対応</title>
+      <link>https://sankame.github.io/blog/2021-08-10-android_app_bundle/</link>
+      <pubDate>Tue, 10 Aug 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2021-08-10-android_app_bundle/</guid>
+      <description> 0. 環境 [OS] Windows 11 Home
+[Android Studio] 3.6.3
+1. ビルド  期日が迫ってたので、App Bundle対応を行いました。いくつか「あれ？」と思ったので記載しておきます。
+ いつものように、Android Studioでメニューから[Build]-[Generate Signed Bundle / APK&amp;hellip;]を選択。
+ ビルド用のダイアログで「Android App Bundle」を選択し、[Next]ボタンをクリックすると下記が開きます。
+
+ [Export encryped&amp;hellip;]にチェックを入れ、直下に表示された秘密鍵の保存場所を覚えておきます。(*a)
+ [Next]ボタンを押して先に進むと、aabという拡張子のファイルが生成されます。(*b)
+   2. アプリ公開  いつものようにブラウザでPlay Consoleを開いて、対象のアプリを選択。
+ 左メニュー[製品版]-[新しいリリースを作成]をクリックし、[App Bundle]を選択すると下記画面に来ます。
+
+ 前述(*a)の登録がまだなので、[オプトイン]リンクをクリック。  
+ ここで前述の(*a)をアップロード。  
+ そのままこの画面に戻ってきて上記(*b)をアップロードするとエラーが出ました。
+app bundle 予期しないエラーが発生しました。もう一度お試しください（40B24C00）。  エラーコードをググっても出てこなかったので、作成中のリリースを一度破棄し、ブラウザを再起動してやり直したらうまくいきました。 (秘密鍵のアップロードはやり直さなくてOKでした)
+  あとはいつものように必要項目を入力し、フッター部分のボタンを押していくと公開設定が完了します。しばらく「審査中」の後、無事公開されました。
+[保存]　→　[リリースのレビュー] → [製品版としての公開を開始] → 確認ダイアログで[公開]クリック   </description>
+    </item>
+    
+    <item>
+      <title>【Flutter】ローカルDBの選択-Hive-</title>
+      <link>https://sankame.github.io/blog/2021-07-25-flutter_local_db/</link>
+      <pubDate>Sun, 25 Jul 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2021-07-25-flutter_local_db/</guid>
+      <description> 0. 環境 [OS] MacOS 10.11.6
+[Flutter] 2.2.3
+[Dart] 2.13.4
+1. 背景 React NativeでiOSアプリを作成してたんですが、環境周りの不具合に時間を取られ、肝心の実装がほとんどできない状態が続いてました。 そこで、試しにFlutterをやってみたら、シュミレーターで動かすところまでは比較的楽にできたので乗り換えることにしました。
+JSを使えるエンジニアが多いという理由で、React Nativeが支持されるかな？と予想してたのですが、 最近、TwitterなどでReact離れを 見かけることが増えてきて、そろそろ潮時かなと思ってきました。
+2. 検討  作成したいアプリがローカルDBを使用しているので、何が良いのかいろいろ見てみました。
+ こちらのページがよくまとまってます。  まず、僕の環境で、sqflite、Realm、Moor、ObjectBoxはサンプルアプリすら動かなかったので諦めました。
+ 作ろうとしてるアプリのAndroid版がSQLite3を使ってるので、sqfliteやそれをラッピングしてるというMoorがいいかなと思ったのですが、下記のエラーが解決できず諦めました。同様のエラーで開発者に対する質問が結構挙がってましたが、いまいち決定的な解決方法はなさそうでした。
+Error: MissingPluginException(No implementation found for method getDatabasesPath on channel com.tekartik.sqflite)
+  3. Hiveサンプルアプリ  上記ページで紹介されてるHiveがさくっと動きました。
+ サンプルページの「Code」ボタンからファイルアイコンをクリックしてURLをコピー。(画像参照)
+
+ 適当なディレクトリにソースをダウンロードしてアプリを起動します。
+$ git clone https://github.com/hivedb/samples.git $ cd samples/todo/ $ flutter create . $ flutter run  To-Doアプリが起動しました。
+  
+  </description>
+    </item>
+    
+    <item>
+      <title>【ReactNative】expo-sqliteのテーブルを開発ツールから参照する方法</title>
+      <link>https://sankame.github.io/blog/2020-07-23-expo_sqlite_db_browsing/</link>
+      <pubDate>Thu, 23 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2020-07-23-expo_sqlite_db_browsing/</guid>
+      <description> 0. 環境 [OS] MacOS 10.11.6
+[React Native] 0.61.4
+[SQLite Studio] 3.2.1
+1. 背景 React NativeでiOSアプリを作成中です。 ローカルストレージとしてExpoのSQLiteを使っていますが、開発ツールからテーブル参照する方法が分からず調べてました。 アプリから登録されたレコードの確認など、なにかとこの手のツールは必要です。 Androidアプリ開発のStethoみたいなのがないかなーと思ってましたが、結局こんな感じにしました。
+2. 手順(DBファイルの格納先)  expo-sqliteが作成するDBファイルの保存先は${FileSystem.documentDirectory}/SQLite/${name}」なので、まず${FileSystem.documentDirectory}がどこなのか調べます。
+ (詳細はこちらのページの&amp;rdquo;SQLite.openDatabase&amp;rdquo;参照)  アプリ実行時に必ず通る箇所にログを仕込みます。(importとconsoleの行だけあればどこでもOK)
+import * as FileSystem from &#39;expo-file-system&#39; class DB { static db; static getDB(){ console.log(&amp;quot;FileSystem; &amp;quot; + FileSystem.documentDirectory); :  コンソールに出力されたパスからfile://を削ったものが${FileSystem.documentDirectory}です。
+ さらに上記${name}は、SQLite.openDatabase();の引数で指定しているDB名になります。
+  3. 手順(SQLiteStudio)  MacにSQLiteStudioをインストール。
+ SQLiteStudioのメニューで[Database]-[Add a database]を選び、上記2で調べたパスを[File]に入力して[OK]をクリック。
+  
+ 左ペインにテーブルが表示されれば成功です。  </description>
+    </item>
+    
+    <item>
+      <title>VirtualBoxでWindows10とUbuntu間のファイル共有</title>
+      <link>https://sankame.github.io/blog/2020-04-30-virtualbox_share_folder/</link>
+      <pubDate>Thu, 30 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2020-04-30-virtualbox_share_folder/</guid>
+      <description>0. 環境 [VirtualBox] 6.1.6
+[ホストOS] Windows 10 Home
+[ゲストOS] Ubuntu 16.4
+1. やりたいこと Windows10(ホストOS)にVirtualBoxを入れて、その上でUbuntu(ゲストOS)を動かします。
+その際、ホストOS上のファイルをゲストOSからも操作したい。
+IDEやエディタはホストOS上で起動し、バージョン管理やWebサーバー経由の確認などはゲストOSで行いたいというのが意図です。
+2. インストール VirtualBoxとUbuntuのインストール&amp;amp;設定はこの記事が分かりやすかったです。
+VirtualBoxのサイトで下記リンクからダウンロード。
+[VirtualBox 6.1.6 platform packages]-[Windows hosts]
+また、Ubuntuはこちらのサイトから「64-bit PC (AMD64) desktop image」をダウンロードしました。
+1.6Gあるので僕の環境だと数時間かかりました。
+3. 共有フォルダ設定 Ubuntuのインストールが終わったら、VirtualBoxのホーム画面からインストールした仮想マシンを選択して「設定」をクリック。
+下記のウィンドウが起動するので、左メニューの「共有フォルダー」をクリックします。
+さらに右端にあるプラスマークをクリック。 
+下記ウィンドウに必要項目を入力します。
+・「フォルダーのパス」は「その他」を選んで、ホストOS側で共有したいフォルダーを選択。 ・「フォルダー名」は自動で入るのでさわらず。(1) ・「自動マウント」をチェックONにします。 ・「マウントポイント」はゲストOSの任意のディレクトリを指定。(2) ・「永続化する」というチェックボックスがある場合、それもON。  
+こんな感じに追加されました。 
+ゲストOSを再起動します。
+これだけだとゲストOSからホストOSの共有フォルダが見えませんでした。
+調べてるといろんなページで「Ubuntuに&amp;rdquo;Gust Additions&amp;rdquo;をインストールする必要がある」と書いてましたが、入れなくても後述の手順でできました。 (以前はそうだったのかもしれません)
+&amp;ldquo;mount.vboxsf&amp;rdquo;コマンドを使いたいので、ゲストOS上でrootになるかsudoをつけて下記コマンドを実行。
+# apt install virtualbox-guest-utils  次にゲストOS側で予めマウントポイントのディレクトリを作成しておきます。(上記(2))
+最後に、第一引数に前述の(1)、第二引数に(2)を指定してこのコマンドを実行するとホスト側のフォルダが参照できました。(下記のshareは読み替えて下さい)
+# mount.vboxsf share /share  仮想マシンを落とすと設定が消えてしまったので、~/.bashrcに上記コマンドを書いておきました。</description>
+    </item>
+    
+    <item>
+      <title>CentOS8にバージョン指定でphpインストール</title>
+      <link>https://sankame.github.io/blog/2019-10-19-install_php_in_centos8/</link>
+      <pubDate>Sat, 19 Oct 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2019-10-19-install_php_in_centos8/</guid>
+      <description> CentOS8にphpを入れるときのコマンドが分からなかったので要点だけメモ。
+0. 環境 [OS] CentOS8 (64bit)
+[PHP] 7.4
+1. 手順  デフォルトのパッケージにはphp7.2までしか含まれていないので、remiリポジトリを足しました。
+# dnf -y install https://rpms.remirepo.net/enterprise/remi-release-8.rpm  下記コマンドでインストール可能なphpバージョンを調べます。
+# dnf module list php  &amp;ldquo;Stream&amp;rdquo;という欄に表示された名前を指定してインストールします。
+ 下記は7.4を指定してますが、2019/10/19時点の安定版は7.3なので、本番環境の場合は注意して下さい。
+# dnf module install php:remi-7.4   パッケージの操作方法については、下記に詳細がまとまっています。
+  2. 参考記事  How to install php on RHEL 8 / CentOS 8 Linux  </description>
+    </item>
+    
+    <item>
+      <title>MonitでApacheとMySQLを復旧</title>
+      <link>https://sankame.github.io/blog/2018-05-11-monit_for_apache_mysql/</link>
+      <pubDate>Fri, 11 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2018-05-11-monit_for_apache_mysql/</guid>
+      <description>MonitでApacheとMySQLを復旧させる最低限の設定です。
+(文中のドメイン名やメールアドレスは読み替えて下さい)
+0. 環境 [CentOS] 6.4 (64bit版カーネル) [Monit] 5.25.1 [Apache] 2.2.15 [MySQL] 5.1.73  1. セットアップ  インストール
+# yum install monit  自動起動を設定
+# chkconfig monit on   2. 設定 2-1. Apacheの監視設定  httpd.conf を開いて、
+# vim /etc/monit.d/httpd.conf  下記を記載。
+check process httpd with pidfile /var/run/httpd/httpd.pid start program = &amp;quot;/etc/init.d/httpd start&amp;quot; stop program = &amp;quot;/etc/init.d/httpd stop&amp;quot; if 5 restarts within 5 cycles then timeout if failed host example.</description>
+    </item>
+    
+    <item>
+      <title>AndroidのSQLite DBを参照</title>
+      <link>https://sankame.github.io/blog/2017-05-14-view_sqlite_on_android/</link>
+      <pubDate>Sun, 14 May 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2017-05-14-view_sqlite_on_android/</guid>
+      <description>&amp;nbsp; こちらが最新です。(2024/02/23)  0.環境  PC側
+[OS] Windows7 (32bit 版) [Android Studio] 1.5.1  スマホ側
+[OS] Android 5.1.1 [SQLite] 3.8.6.1   1. 前提  まずSQLiteのデータをファイル形式で保存するよう設定します。
+ 例として、SQLiteを操作するライブラリにSQLiteOpenHelperを使用した場合について記載します。
+ コンストラクタの第二引数でDBファイル名を指定します。
+ (未指定の場合、データはメモリにのみ保持されます)
+class DatabaseHelper extends SQLiteOpenHelper { public DatabaseHelper(Context context) { //DBファイル名を指定。 super(context, &amp;quot;example.db&amp;quot;, null, 1); }  PCからAndroid端末にあるSQLiteのDBファイルを見る方法を調べました。
+ 試行錯誤した内容を書いているため、結論だけ知りたい場合は、4まで読み飛ばして下さい。
+  2. ADB(Androidデバッグ用インターフェース) 利用  ネットを検索して結構あったのが、ADBを使ってSQLiteのDBファイルをAndroid端末からPCへコピーし、その後DBビューワーで参照するというものです。
+ PCでコマンドプロンプトから下記コマンドを実行すると、カレントディレクトリにtarget.db(任意)というファイルができます。
+C:\Users\【ユーザー名】&amp;gt;adb -d shell &amp;quot;run-as 【アプリケーションID】 cat databases/【DBファイル名】&amp;quot;&amp;gt;target.db  【】内は読み替えて下さい。</description>
+    </item>
+    
+    <item>
+      <title>Hugoクイックスタート</title>
+      <link>https://sankame.github.io/blog/2017-03-19-hugo_quickstart/</link>
+      <pubDate>Sun, 19 Mar 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2017-03-19-hugo_quickstart/</guid>
+      <description>0. 環境 [Mac] 10.11.6 [Hugo] 0.19  1.インストール  ここ数年、ブログウェアはjekyllを使ってましたが、下記の点が不便だったので、評判の良いHugoを試してみました。まずはサンプルを動かすところまで。
+ 初期構築やバージョンアップが大変だったので、他のPCに環境を作る気になれない。(今ならDockerという手もありますが…)
+ 記事の生成に時間がかかるようになってきた。
+ 記事の更新後、2～3回リロードしないとブラウザに反映されない。
+  インストール・マニュアルに従って進めました。
+僕の場合、Homebrewは既に入っていたのでStep2からやりました。
+$ brew update $ brew install hugo  「インストール後にバージョンを調べてね」と書いてあるので念のためチェックです。
+$ ls -l $( which hugo ) lrwxr-xr-x 1 mx admin 28 3 19 03:08 /usr/local/bin/hugo -&amp;gt; ../Cellar/hugo/0.19/bin/hugo $ hugo version Hugo Static Site Generator v0.19 darwin/amd64 BuildDate: 2017-02-27T19:21:29+09:00  2行とも0.19なので問題なさそうです。
+  2.サンプル作成  こちらのページに沿ってサンプルを作成しました。
+ 適当なディレクトリで下記を実行します。(僕の場合 /app/hugo-test/ なので読み替えて下さい)</description>
+    </item>
+    
+    <item>
+      <title>AppleWatchアプリ開発におけるiOSアプリのデバッグ方法</title>
+      <link>https://sankame.github.io/blog/2016-08-07-debug-ios-app-with-watchkit/</link>
+      <pubDate>Sun, 07 Aug 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2016-08-07-debug-ios-app-with-watchkit/</guid>
+      <description> 0. 環境 [OS] Mac OS X 10.11.4 [IDE] Xcode 7.3 [Swift] 2.1.1  1. 課題  AppleWatchのアプリ開発で「WatchKit App」を起動すると、iOSアプリのブレークポイントで停止しない。  2. 対策  XcodeのデバッガーにiOSアプリを手動で追加する必要があります。
+ 「WatchKit App」を選択してアプリ実行。
+
+ iOSアプリのシュミレーターで、iOSアプリを起動。
+ Xcodeに戻って [Debug]-[Attach to Process] からiOSアプリを選択。
+
+ 左のパネルで[Debug navigator]を選択し、下記①②でiOSアプリが選択されていることを確認。
+
+   </description>
+    </item>
+    
+    <item>
+      <title>Let&#39;s Encrypt - certbotコマンド</title>
+      <link>https://sankame.github.io/blog/2016-05-15-letsencrypt_certbot_command/</link>
+      <pubDate>Sun, 15 May 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2016-05-15-letsencrypt_certbot_command/</guid>
+      <description>&amp;nbsp;更新日：2016年08月06日
+0. 環境 [CentOS] 6.4 (64bit版カーネル) [Apache] 2.2.15 [Firefox] 46.0.1  1. Let&amp;rsquo;s Encryptのコマンド変更  証明書を更新した際、 「letsencrypt-autoコマンドはもう古いよ」という警告が出たので、更新したいと思います。  2. 更新作業(【】はマスク情報)  Let&amp;rsquo;s Encryptがβ版の時はgit cloneして /usr/local/src/letsencrypt ディレクトリを作成しましたが、今回はそれとは別ディレクトリを作成します。
+# cd /usr/local/src # git clone https://github.com/certbot/certbot # cd certbot  疑似実行したところ成功したようなので、証明書の期限が迫ってきたら dry-run なしで実行してみたいと思います。
+# ./certbot-auto renew --dry-run ： (省略) ： Congratulations, all renewals succeeded. The following certs have been renewed: /etc/letsencrypt/live/【ドメイン名】/fullchain.pem (success) ** DRY RUN: simulating &#39;certbot renew&#39; close to cert expiry ** (The test certificates above have not been saved.</description>
+    </item>
+    
+    <item>
+      <title>Let&#39;s Encrypt - 証明書の更新と自動化</title>
+      <link>https://sankame.github.io/blog/2016-02-21-letsencrypt_renewal/</link>
+      <pubDate>Sun, 21 Feb 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2016-02-21-letsencrypt_renewal/</guid>
+      <description>&amp;nbsp;更新日：2016年11月09日
+0.環境 [CentOS] 6.4 (64bit版カーネル) [Apache] 2.2.15 [Firefox] 44.0.2  1.期限通知  (文中【】はマスク情報)
+ 年末に設定した Let&amp;rsquo;s Encrypt のSSL証明書の期限が迫り、下記のお知らせメールが届きました。
+Let&#39;s Encrypt certificate expiration notice Hello, Your certificate (or certificates) for the names listed below will expire in 17 days (on 04 Mar 16 17:44 +0000). Please make sure to renew your certificate before then, or visitors to your website will encounter errors. 【以下省略】  ブラウザで有効期限を確認するとそろそろ切れそうです。
+ブラウザ(Firefox)のアドレスバーの鍵マークをクリックし、[ &amp;gt; ] - [詳細を表示] - [セキュリティ] - [証明書を表示] - [有効期限]</description>
+    </item>
+    
+    <item>
+      <title>お薦め無料SSL証明書 - Let&#39;s Encrypt</title>
+      <link>https://sankame.github.io/blog/2015-12-07-letsencrypt_setup/</link>
+      <pubDate>Mon, 07 Dec 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2015-12-07-letsencrypt_setup/</guid>
+      <description>&amp;nbsp;更新日：2017年04月30日
+0.環境 [CentOS] 6.4 (64bit版カーネル) [Apache] 2.2.15  1.セットアップ  個人利用のレンタルサーバーでは有料のSSL証明書を使っていたのですが、 有効期限切れを機にフリーのものに乗り換えてみました。
+ Let&amp;rsquo;s Encrypt というサービスを利用します。
+
+下記のマニュアルに沿って進めました。(その他の参考ページは末尾に記載)
+Let&amp;rsquo;s Encrypt 操作方法
+まずは、任意のディレクトリに Let&amp;rsquo;s Encrypt クライアントをダウンロード。
+# cd /usr/local/src # git clone https://github.com/letsencrypt/letsencrypt # cd letsencrypt # ./letsencrypt-auto --help  お！ helpだから使い方が表示されるかと思いきや、依存関係のあるパッケージがダウンロードされた・・・
+しかも下記メッセージによると、どうやらPythonのバージョンが古くて失敗してるっぽい。
+： (省略) ： Complete! WARNING: Python 2.6 support is very experimental at present... if you would like to work on improving it, please ensure you have backups and then run this script again with the --debug flag!</description>
+    </item>
+    
+    <item>
+      <title>【Angular2】クイックスタート</title>
+      <link>https://sankame.github.io/blog/2015-06-23-angular2_quick_start/</link>
+      <pubDate>Tue, 23 Jun 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2015-06-23-angular2_quick_start/</guid>
+      <description>0.環境 [CentOS] 6.5 [node.js] 0.12.4 [npm] 2.10.1 [tsd] 0.6.0 [tsc] 1.5.0-beta  1.インストール  GoogleのQuickStartページに沿って進めます。(以降、JavaScriptはJSと記述)
+Angular2はJSでも動かせますが、JSのスーパーセットTypeScriptに対応しているので、Googleのページ同様、後者を使ってみました。
+ 最終的に下記の構成になります。
+tscを使ってhello.tsをhello.jsへ変換します。
+
+ まずnode.jsとnpmの依存管理を楽にするため、nvmをインストールします。
+※CentOS 5系だとnode.jsを動かすのに苦労するので、こちらの記事を参考にCentOS6.x 環境構築を推奨します。
+# git clone git://github.com/creationix/nvm.git ~/.nvm # source ~/.nvm/nvm.sh  node.jsをバージョン指定でインストール。
+# nvm install 0.12.4  nvmでnode.jsのデフォルトバージョンを設定。
+# nvm alias default v0.12.4 # vi ~/.bash_profile  .bash_profile の末尾に下記を追記。
+if [[ -s ~/.nvm/nvm.sh ]]; then source ~/.nvm/nvm.sh fi  tsd (TypeScript用 型定義ファイル管理ツール) をインストール。
+※npmのバージョンが低いとtsdのインストールが止まってしまうので注意。
+# npm install tsd@0.</description>
+    </item>
+    
+    <item>
+      <title>Vagrant &#43; VirtualBox でCentOS開発環境構築</title>
+      <link>https://sankame.github.io/blog/2015-05-06-vagrant_setup/</link>
+      <pubDate>Wed, 06 May 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2015-05-06-vagrant_setup/</guid>
+      <description>&amp;nbsp;更新日：2017年01月28日
+0.環境 [PC] DELL LATITUDE E5500 [ホストOS] Windows 7 (32bit 版) [ゲストOS] CentOS 6.5 (64bit 版)  1.概要  Vagrantで開発環境を作りました。
+VirtualBoxを操作するためにVagrantというツールを使うイメージです。
+
+VirtualBox上に仮想マシン(以下VM)起動し、そこにCentOSをインストールして開発環境とします。
+  2.BIOS設定変更  VMを起動する準備として、BIOSの設定を変更します。
+PCの電源をONにし、OSが起動する前に特定のキーを押してBIOS設定画面を開きます。
+(PCによって異なるので、下記のキーは読み替えて下さい)
+OS起動時に[F2] または [F10]キーを押下。
+[Virtualization Support] - [Virtualization]を選択し、[Enable]にチェックをつけて[Apply]→[Exit]を選択。
+そのままOSが起動するのを待ちます。
+  3.VirtualBoxインストール  下記ページで&amp;rdquo;VirtualBox 4.3.26 for Windows hosts&amp;rdquo; をクリックしVirtualBoxをダウンロード。
+VirtualBoxダウンロード
+ダウンロード、インストールともに僕の環境では数分かかりました。
+途中何度かOracle社のコンポーネントをインストールしますか？と聞かれたので全てYesを選択。
+  4.Vagrantインストール  次のリンク先でWindows用を選択して Vagrantをダウンロード。
+Vagrantダウンロード
+インストールが終わったら再起動を求められます。
+コマンドプロンプトで下記を実行することで、boxファイル(用意されたVMイメージ)を取得し、VirtualBoxに追加します。
+C:\Users\【ユーザー名】&amp;gt; vagrant box add CentOS65 https://github.com/2creatives/vagrant-centos/releases/download/v6.5.3/centos65-x86_64-20140116.box   5.Vagrantを使ってVirtualBoxのVMを起動  適当なフォルダにVagrantファイルを作成し、VM起動時の設定を定義します。</description>
+    </item>
+    
+    <item>
+      <title>jqGridで表示する値と元の値を分ける</title>
+      <link>https://sankame.github.io/blog/2015-05-02-jqgrid_formatter/</link>
+      <pubDate>Sat, 02 May 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2015-05-02-jqgrid_formatter/</guid>
+      <description>0.環境 [jquery] 1.7.1 [jquery-ui] 1.10.3 [jqGrid] 4.5.2  1.コード  画面表示は formatter で定義し、処理では元の値を使いたいので unformat で定義します。
+jQuery(&amp;quot;#grid_id&amp;quot;).jqGrid({ // 省略 colModel: [ // 省略 {name:&#39;name&#39;, index:&#39;name&#39;, formatter: formatterName, unformat: unformatName}, // 省略 ] // 省略 }); /** リンクに変更 */ function formatterName(cellvalue, options, rowdata) { var val = &amp;quot;&amp;lt;a href=\&amp;quot;javascript:void(0);\&amp;quot; onclick=\&amp;quot;showItem(&#39;&amp;quot; + rowdata.item_id + &amp;quot;&#39;);\&amp;quot;&amp;gt;&amp;quot; + cellvalue + &amp;quot;&amp;lt;/a&amp;gt;&amp;quot;; return val; } /** 加工しない元の値 */ function unformatName(cellvalue, options) { return cellvalue; }   2.</description>
+    </item>
+    
+    <item>
+      <title>ベーシック認証設定 (VirtualHostの場合)</title>
+      <link>https://sankame.github.io/blog/2014-08-20-http_basic_authentication/</link>
+      <pubDate>Wed, 20 Aug 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2014-08-20-http_basic_authentication/</guid>
+      <description>0.環境 [CentOS] 5.6 (32bit版カーネル) [Apache] 2.2.3  1.パスワードファイル作成  適当な場所にパスワードファイルを作成。(&amp;ldquo;user1&amp;rdquo;は作成したいユーザー名で読み替えて下さい)
+# htpasswd -c /etc/httpd/conf/.htpasswd user1 New password: Re-type new password: Adding password for user user1   2.パスワードファイル設定  VirtualHostを設定している場合、Directoryディレクティブ内に下記を追加。
+AuthUserFileには上記1で作ったパスワードファイルを指定。
+AuthNameはブラウザの認証ダイアログに表示されるメッセージとなります。
+(マルチバイト文字は化ける可能性あり)
+下記はApache設定ファイル(/etc/httpd/conf/httpd.conf) の抜粋
+NameVirtualHost *:80 &amp;lt;Directory /web/test&amp;gt; Options FollowSymLinks AllowOverride FileInfo Options=All,MultiViews # --- ベーシック認証追加 --- AuthType Basic AuthUserFile &amp;quot;/etc/httpd/conf/.htpasswd&amp;quot; AuthName &amp;quot;Here is a message.&amp;quot; Require valid-user # --- ベーシック認証追加 --- &amp;lt;/Directory&amp;gt; &amp;lt;VirtualHost *:80&amp;gt; ServerAdmin test@sample.co.jp DocumentRoot &amp;quot;/web/test&amp;quot; ServerName test.</description>
+    </item>
+    
+    <item>
+      <title>【Android Wear】ホーム画面の時計を変更</title>
+      <link>https://sankame.github.io/blog/2014-07-26-android_wear_chage_face/</link>
+      <pubDate>Sat, 26 Jul 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2014-07-26-android_wear_chage_face/</guid>
+      <description> 0.環境 [スマートフォン(OS)] GALAXY S4 (Android 4.4.2) [スマートウォッチ(OS)] Gear Live (4.4W) ※以降、スマートフォンは「スマホ」、スマートウォッチは「ウォッチ」と記載。  1.ホーム画面の時計(ウォッチフェイス)を変更  Samsung Gear Live のホーム画面の時計デザインを変える方法は下記の通りです。
+ (スマホとウォッチはBluetoothで同期されている前提)
+ ①【スマホ】Playストアから好みのデザインの時計アプリをインストールします。(参考リンク)
+(例) Playストアで &amp;quot;WearFaces&amp;quot; で検索。
+ ②【スマホ】Android Wearアプリを起動し、右上のネジマークをタップ。
+
+ ③【スマホ】一番下までスクロールし、「アプリの再同期」をタップ。
+
+ ④【ウォッチ】ホーム画面をタップし、メニュー画面を一番下までスクロールした後「設定」をタップ。
+(2014/07/30, 追記) 後日気づきました。ホーム画面で時計を長押し(ロングタップ)すると一気に時計変更画面に行けます。(下記⑦)
+
+ ⑤【ウォッチ】設定画面で上にフリック。
+
+ ⑥【ウォッチ】一番下までスクロールした後、「ウォッチフェイスの変更」をタップ。
+
+ ⑦【ウォッチ】上記でPlayストアからインストールした時計アプリを見つけ、タップするとホーム画面に設定されます。
+   </description>
+    </item>
+    
+    <item>
+      <title>開発環境用 NTP 設定</title>
+      <link>https://sankame.github.io/blog/2014-06-25-ntp_for_dev/</link>
+      <pubDate>Wed, 25 Jun 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2014-06-25-ntp_for_dev/</guid>
+      <description>0.環境  [VMware Player] 3.0.0 [CentOS] 5.6 (32bit版カーネル) (Windows上でゲストOSとして使用) [NTP] 4.2.6  1.セットアップ  ソース取得
+任意のディレクトリにNTPのソース(ntpd)をダウンロード。
+  	# cd /usr/local/src/ # wget http://www.eecis.udel.edu/~ntp/ntp_spool/ntp4/ntp-4.2/ntp-4.2.6p5.tar.gz   インストール  	# tar xzf ntp-4.2.6p5.tar.gz # cd ntp-4.2.6p5 # ./configure # make # make install   設定
+下記URL①の設定を行ったところうまく時刻同期されませんでした。
+(VMwareをサスペンドすると時刻が離れ過ぎるため？)
+結局、自分用の開発環境で、ログイン時に1回同期させれば十分なので下記のようにしました。
+  	# echo &#39;ntpdate -u ntp.nict.jp&#39; &amp;gt;&amp;gt; ~/.bash_profile  2.参考URL  ①ntpdのインストールと設定
+ ②ntpd の起動と動作確認
+ ③ntpdate コマンドについて</description>
+    </item>
+    
+    <item>
+      <title>GithubからBitbucketへソース移行</title>
+      <link>https://sankame.github.io/blog/2014-06-21-github_to_bitbucket/</link>
+      <pubDate>Sat, 21 Jun 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2014-06-21-github_to_bitbucket/</guid>
+      <description>0.環境  [CentOS] 5.6 (32bit版カーネル) [Git] 1.9.4  1.ダウンロード  (1-1) Githubのソース取得
+ 
+ 任意のディレクトリでGitHubのリポジトリから対象ソースを取得します。
+ (上図の画面右下がURL)
+# git clone git@github.com:Sankame/repo-of-github.git  取得したソースの第1階層へ移動。
+# cd repo-of-github/   (1-2) Bitbucketへソースアップ
+ 予めBitbucket上で任意のリポジトリを作っておきます。
+ 
+ 空のリポジトリができました。
+ 
+ 上記(1-1)で GitHub から取得したソースは origin がGitHubになっているので、 Bitbucket へ変更します。
+# git remote -v origin git@github.com:Sankame/repo-of-github.git (fetch) origin git@github.com:Sankame/repo-of-github.git (push) # git remote rm origin # git remote add origin git@bitbucket.org:Sankame/repo-of-bitbucket.git # git push -u origin --all # pushes up the repo and its refs for the first time # git push -u origin --tags # pushes up any tags  GitHubにあったソースをBitbucketへプッシュできました。</description>
+    </item>
+    
+    <item>
+      <title>ポイントだけ ApacheBench</title>
+      <link>https://sankame.github.io/blog/2014-06-07-apache_bench/</link>
+      <pubDate>Sat, 07 Jun 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2014-06-07-apache_bench/</guid>
+      <description>0.環境  [CentOS] 5.6 (32bit版カーネル) [Apache] 2.2.3 [ApacheBench] 2.0.40-dev  1.基本  (1-1) 実行方法
+ Apacheをインストールすると ab というコマンドで負荷テストができます。
+ 主に使うのは2つのオプションで、下記のように実行します。
+ 後述の &amp;ldquo;Requests per second&amp;rdquo; が十分な値になるよう、n と c の値を増やして負荷をかけます。
+ (n : リクエスト数　c : 同時接続数)
+ab -n 10000 -c 100 &amp;quot;http://test.vm/test.php&amp;quot;  abでテストできるのはサーバ側の処理だけなので、HTMLレンダリングやJavascript実行等、トータルの計測を行いたい場合は、下記のようなツールを検討して下さい。
+ GTmetrix
+ PageSpeed
+   (1-2) 結果の確認
+ 実行すると下記サンプルのような結果が表示されるので、主に2つの項目を確認します。
+ ① Failed requests (失敗したリクエスト数)
+ この項目が0であることを確認します。
+ 但し、表示毎にHTMLのバイト数が異なるページの場合、この項目と内訳を表す &amp;ldquo;Length:&amp;rdquo; がともにカウントされます。(1つ前の結果とHTMLのバイト数を比較し、異なる場合は Length がカウントされる仕様)
+ このようなページの場合、&amp;rdquo;Failed requests&amp;rdquo; に数字があっても、全て Length が原因ならば無視してかまいませんが、念のため、Apacheのアクセスログを確認し、HTTP Response Code が全て200になっていることを確認しましょう。</description>
+    </item>
+    
+    <item>
+      <title>Jenkins から Seleniumを動かしてみる</title>
+      <link>https://sankame.github.io/blog/2014-06-04-jenkins_selenium/</link>
+      <pubDate>Wed, 04 Jun 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2014-06-04-jenkins_selenium/</guid>
+      <description>0.環境 ・親ノード端末 [CentOS] 5.6 (32bit版カーネル) [ruby] 2.1.1p76 [rvm] 1.25.25 [java] 1.7.0_51 [Jenkins] 1.562 ・子ノード端末 [Windows] Vista Home Premium (32bit) [java] 1.7.0_51 [IE] 8  1.準備  (1-1) 下記リンクを参考にJenkinsをインストールしました。
+ 俺の成長日記
+ OSCALOG
+ JenkinsをCentOSにインストールしたときのメモ
+  (1-2) Seleniumの設定は前回と同じです。(Selenium WebDriverを動かしてみる)
+ 前回と異なる点は、Jenkinsがデフォルトでポート4444を使うので、Selenium Serverは4445に変更しました。
+ 親ノード
+# java -jar selenium-server-standalone-2.41.0.jar -role hub -port 4445  子ノード
+&amp;gt; java -jar selenium-server-standalone-2.41.0.jar -role webdriver -hub http://192.168.130.130:4445/grid/register -Dwebdriver.ie.driver=./IEDriverServer.exe   (1-3) Jenkins プラグイン追加
+ rvmでrubyを使っているので、予めJenkinsにrvmプラグインを追加。</description>
+    </item>
+    
+    <item>
+      <title>Selenium WebDriverを動かしてみる</title>
+      <link>https://sankame.github.io/blog/2014-05-24-selenium_webdriver/</link>
+      <pubDate>Sat, 24 May 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2014-05-24-selenium_webdriver/</guid>
+      <description>0.環境 ・親ノード端末 [CentOS] 5.6 (32bit版カーネル) [ruby] 2.1.1p76 [rvm] 1.25.25 [java] 1.7.0_51 ・子ノード端末 [Windows] Vista Home Premium (32bit) [java] 1.7.0_51 [IE] 8  1.準備  ■ 目的
+ブラウザテストの自動化に興味があり、面白そうな記事があったので自分でも試してみました。
+(Jenkinsとの連携は今回やっていません)
+ ■ 親ノード
+親ノード端末の適当なディレクトリに Selenium Server をダウンロード後、起動します。
+# cd /usr/local/bin/ # wget http://selenium-release.storage.googleapis.com/2.41/selenium-server-standalone-2.41.0.jar # java -jar selenium-server-standalone-2.41.0.jar -role hub  ■ 子ノード
+子ノード端末の適当なフォルダに Selenium Server とIEドライバーをダウンロード後、起動します。
+ダウンロードページ
+まず&amp;rdquo;Selenium Server (formerly the Selenium RC Server)&amp;rdquo; をダウンロード。
+次に&amp;rdquo;The Internet Explorer Driver Server&amp;rdquo; をダウンロードします。</description>
+    </item>
+    
+    <item>
+      <title>Jekyllを1.0.2へバージョンアップ</title>
+      <link>https://sankame.github.io/blog/2014-05-18-jekyll_version_up/</link>
+      <pubDate>Sun, 18 May 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2014-05-18-jekyll_version_up/</guid>
+      <description>0.環境 [CentOS] 5.6 (32bit版カーネル) [ruby] 2.1.1p76 [rvm] 1.25.25 [jekyll] 0.11.2 =&amp;gt; 1.0.2  1.インストール 参考ページ  インストール
+本ブログはjekyll 0.11.2で作成してきましたが、別件でrubyのバージョンを上げたことでjekyllが動か
+なくなってしまったため、思い切って1.0.2への移行を行いました。初期インストールの内容
+いくつかハマった点を共有します。
+まず、複数バージョンのrubyを使いたかったので下記ページに沿ってrvmをインストール。
+rvmインストール
+rootで実行したためか /usr/local/rvm にインストールされたので、上記記事内のパスは読み替えました。
+ruby 2.1.1をインストール。
+# rvm install 2.1.1 # rvm use 2.1.1  適当な場所にGemfileを作成し、jekyllを追記してインストール開始。
+# bundle init # echo &amp;quot;gem &#39;jekyll&#39;, &#39;1.0.2&#39;&amp;quot; &amp;gt;&amp;gt; Gemfile # bundle install  インストールされたことを確認します。
+# gem list|grep jekyll jekyll (1.0.2) jekyll-coffeescript (1.0.0) jekyll-sass-converter (1.0.0)  起動
+任意の場所へ移動し、bootstrapをダウンロードします。bootstrapクイックスタート
+(前バージョンとは別の場所にしました)
+# cd /var/www/html/jekyll2/ # git clone https://github.</description>
+    </item>
+    
+    <item>
+      <title>Revive Ad Server インストール (旧OpenX)</title>
+      <link>https://sankame.github.io/blog/2014-05-04-revive_adserver_install/</link>
+      <pubDate>Sun, 04 May 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2014-05-04-revive_adserver_install/</guid>
+      <description>0.環境 [CentOS] 5.6 (32bit版カーネル) [Apache] 2.2.3 [PHP] 5.4.17 [Revive AdServer] 3.0.4  1.インストール  1-0.ダウンロード
+適当なディレクトリにソースをダウンロードし、Apache公開ディレクトリへ移動。
+(公開ディレクトリは自分の環境に読み替えて下さい)
+# wget http://download.revive-adserver.com/revive-adserver-3.0.4.tar.gz # tar xzf revive-adserver-3.0.4.tar.gz # mv revive-adserver-3.0.4 revive-adserver # mv revive-adserver /app/.  1-1.インストール開始
+ブラウザから、上記インストール先URLへアクセス。
+(例) http://localhost/revive-adserver
+ウィザードに従ってインストールを進めます。
+
+&amp;ldquo;I Agree &amp;gt;&amp;gt;&amp;ldquo;ボタンを押すと、&amp;rdquo;File Permissions - 7 errors&amp;rdquo; というエラーが表示されました。
+画面に表示されたコマンドをそのままコンソールで実行。
+# chmod -R a+w /app/revive-adserver/var # chmod -R a+w /app/revive-adserver/var/cache # chmod -R a+w /app/revive-adserver/var/plugins # chmod -R a+w /app/revive-adserver/var/templates_compiled # chmod -R a+w /app/revive-adserver/plugins # chmod -R a+w /app/revive-adserver/www/admin/plugins # chmod -R a+w /app/revive-adserver/www/images  再びインストール画面へ戻って&amp;rdquo;Retry&amp;rdquo;を押すと、次のステップへ進めます。</description>
+    </item>
+    
+    <item>
+      <title>PHPからfitbit API を使ってみる</title>
+      <link>https://sankame.github.io/blog/2014-02-04-php_fitbit_api/</link>
+      <pubDate>Tue, 04 Feb 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2014-02-04-php_fitbit_api/</guid>
+      <description>&amp;nbsp;更新日：2015年02月08日
+0.環境 [CentOS] 5.6 (32bit版カーネル) [Apache] 2.2.3 [PHP] 5.4.1 [device] Fitbit One  1.OAuth Extensionインストール → fitbit API実行  (1-1) fitbit(活動量計)のAPI使用手順にそって作業を進めます。
+ 下記コマンドを実行。
+# pecl install oauth-0.99.9  エラー発生。
+： （割愛） ： /var/tmp/oauth/oauth.c:2058: warning: assignment from incompatible pointer type /var/tmp/oauth/oauth.c: In function &#39;zm_shutdown_oauth&#39;: /var/tmp/oauth/oauth.c:2092: warning: implicit declaration of function &#39;curl_global_cleanup&#39; make: *** [oauth.lo] エラー 1 ERROR: `make&#39; failed  こんな情報を見つけ、下記コマンドを実行。
+# yum install curl-devel  エラーは変わらず、さらにこんな情報を見つけ、下記コマンドを実行。
+# yum install pcre pcre-devel   またまたエラー発生・・・</description>
+    </item>
+    
+    <item>
+      <title>スマホ(Android)とPCでMindMapを使う</title>
+      <link>https://sankame.github.io/blog/2013-10-04-mind_map_tools/</link>
+      <pubDate>Fri, 04 Oct 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2013-10-04-mind_map_tools/</guid>
+      <description> 0.環境 [スマホ端末/OS] GALAXY S SC-02B / Android2.2 [PC端末/OS] Gateway SX2800 / Windows Vista Home Premium  1.スマホでマインドマップ作成  1-1.スマホにMindMapMemoをインストールする。
+ 1-2.マインドマップのファイルを作成後、「オプション」-「メール送信(SD保存)」-「FreeMind(.mm)」を選択。
+ 1-3.共有するためのアプリ一覧が表示されるので、PCへファイルを送信できるアプリを選択。
+  2.PCにFreeMindをインストール  2-1.下記リンク先のページで[0.8.1]をクリック。
+(0.9.0では上記スマホで作成したファイルをうまく開けませんでした)
+FreeMindソース
+ 2-2.[freemind-bin-0_8_1.zip]をクリック。
+ 2-3.PCにダウンロード後、解凍してFreemind.exeをダブルクリック。
+ 2-4.メニューの「ファイル」-「開く」で、スマホから送信した拡張子がmmのファイルを選択。
+ 2-5.スマホではカラフルに作ったのにFreeMindで開くと白黒になっている。まあ内容が分かるからいいか…
+  </description>
+    </item>
+    
+    <item>
+      <title>PHP Debug Bar インストール</title>
+      <link>https://sankame.github.io/blog/2013-09-23-php_debug_bar_install/</link>
+      <pubDate>Mon, 23 Sep 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2013-09-23-php_debug_bar_install/</guid>
+      <description>0.環境 [CentOS] 5.6 (32bit版カーネル) [Apache] 2.2.3 [PHP] 5.4.1 [phalcon] 1.2.1  1.PHP Debug Barをインストール  (1-1) Webサーバーのドキュメントルートにcomposer.jsonを配置し、下記内容を記述します。(下図1-3参照)
+{ &amp;quot;require&amp;quot;: { &amp;quot;maximebf/debugbar&amp;quot;: &amp;quot;&amp;gt;=1.0.0&amp;quot; } }  (1-2) Webサーバーのドキュメントルートで次のコマンドを実行。
+# composer install  ※ composerが未インストールの場合、こちらを参考にインストールして下さい。
+ (1-3) ディレクトリ構成
+app_root : Webサイトのルートディレクトリ
+public : 公開ディレクトリ
+薄オレンジ : composerで設置されたディレクトリ
+  2.コードを記述 (要点以外は省略)  (2-0) index.php(フレームワークのエントリポイント)に次の内容を追記。
+  composer関係のファイルをバージョン管理(svn, git等)から除外した場合、 この記述だけ残してリリースしないよう注意して下さい。 
+ (2-1) ControllerBase(全コントローラの親クラス)に次の内容を追記。
+use DebugBar\StandardDebugBar; class ControllerBase extends Phalcon\Mvc\Controller { protected $debugbar; // Actionメソッドの後処理 public function afterExecuteRoute($dispatcher) { $debugbarRenderer = $this-&amp;gt;debugbar-&amp;gt;getJavascriptRenderer(); $this-&amp;gt;view-&amp;gt;setVar(&#39;debugbarHeader&#39;, $debugbarRenderer-&amp;gt;renderHead()); $this-&amp;gt;view-&amp;gt;setVar(&#39;debugbarBody&#39;, $debugbarRenderer-&amp;gt;render()); } }  (2-2) ContactControllerに次の内容を追記。</description>
+    </item>
+    
+    <item>
+      <title>Rubyを始める</title>
+      <link>https://sankame.github.io/blog/2013-09-16-ruby_hello_world/</link>
+      <pubDate>Mon, 16 Sep 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2013-09-16-ruby_hello_world/</guid>
+      <description>Rubyを始める 0.環境  [CentOS] 5.6 (32bit版カーネル) [Apache] 2.2.3  1.Rubyインストール  1-1.Rubyがすでにインストールされているか調べる。
+(インストールされている場合は下記のように表示される)
+# rpm -q ruby ruby-1.8.6.111-1  1-2.インストールされていない場合、下記コマンドでインストール。
+# yum install ruby ruby-devel rdoc irb   2.Apache設定  2-1.mod_cgiがロードされていることを確認。
+# cat /etc/httpd/conf/httpd.conf|grep mod_cgi LoadModule cgi_module modules/mod_cgi.so   3.htacess設定  3-1.Apacheドキュメントルートの.htaccessに下記を追記。
+(ドキュメントルートのパスは読み替えて下さい)
+# cat /var/www/html/.htaccess AddHandler cgi-script .cgi .rb Options +ExecCGI   4.動作確認  4-1.ファイル作成
+# touch /var/www/html/hello.rb  4-2.テストコード記述
+作成したファイルに下記コードを記述。
+(1行目のrubyのパスは、which ruby で調べて読み替えて下さい)
+#!/usr/bin/ruby print &amp;quot;Content-type:text/html\n\n&amp;quot; print &amp;lt;&amp;lt;EOS &amp;lt;HTML&amp;gt; &amp;lt;HEAD&amp;gt; &amp;lt;/HEAD&amp;gt; &amp;lt;BODY&amp;gt; Hello World!</description>
+    </item>
+    
+    <item>
+      <title>Nexus7のスクリーンをプロジェクターに映す (Android Screen Cast)</title>
+      <link>https://sankame.github.io/blog/2013-09-02-nexus7_projected_to_pc/</link>
+      <pubDate>Sun, 01 Sep 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2013-09-02-nexus7_projected_to_pc/</guid>
+      <description>環境 [タブレット(OS)] Nexus7(Android 4.2.2) [PC(OS)] Gateway SX2800(Windows Vista Home Premium)  0. 検討  プレゼンでNexus7のスクリーンをプロジェクターに映したいと考え、検討した結果、下記C案にしました。
+ A.変換器を使う →Nexus7はMHL非対応…
+ B.アプリで解決 →PCに映像を送信する方法。有料かつNexus7のRoot化が必要。
+ C.アプリで解決 →PCに映像を送信する方法。無料かつRoot化の必要もなし。Nexus7の映像がPCに届くまで数秒のタイムラグあり。
+   1. PCにAndroid SDKをインストール  下記ページの[download here] - [Download the SDK]ボタンをクリック。
+ダウンロード
+ 規約に同意したら「I have read and agree…」にチェック。
+ 32ビットか64ビットかは、次の手順で調べます。
+[スタート]メニュー - [コンピュータ]右クリック - [プロパティ]
+[システムの種類]を確認。
+  2. Nexus7とPCをUSBケーブルで接続 3. Android Screen Cast  (3-1) Android Screen Castを下記リンクからダウンロードし、PCの任意のフォルダに保存します。
+ダウンロード
+ (3-2) コマンドプロンプトで上記3-1のフォルダに移動し、下記コマンドを実行。</description>
+    </item>
+    
+    <item>
+      <title>Nexus7とGitHubでプログラミング環境を作る</title>
+      <link>https://sankame.github.io/blog/2013-08-11-nexus7_github_devenv/</link>
+      <pubDate>Sun, 11 Aug 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2013-08-11-nexus7_github_devenv/</guid>
+      <description>0.環境 [端末] Nexus7 [OS] Android 4.2.2 [BlueToothキーボード] ELECOM TK-FBP013  1.インストール  (1-1) Nexus7にBit Web Serverをインストールします。
+ダウンロード 
+Android上でPHPとMySQLを動かせるアプリ。(有料 約230円) root化しないで使用可能。  (1-2) Nexus7にTerminal IDEをインストールします。
+ダウンロード
+Android用の開発環境。(java、c、c++等のコンパイラを含む) root化しないで使用可能。   2.Hello World  Nexus7にBlueToothキーボードを接続。
+Nexus7でTerminal IDEを起動します。
+いくつかボタンが表示されるので、[Install System]をクリック。
+Overwrite ALLにチェックを入れ、[Install System]をクリックし、システムアップデート。
+[Terminal IDE]をクリック。
+コンソールが起動するので、ファイルを作成し、下記内容を書き込みます。
+$ cd $HOME/sdcard/wwww $ $ vim test_hello.php   Nexus7でBit Web Serverを起動。
+[Localhost]をクリック。
+ブラウザが起動し、表示されたファイル一覧から上記で作成したtest_hello.phpをクリック。
+ブラウザにhelloと表示されれば成功です。
+  3.GitHubにファイルをプッシュ(準備)  せっかくなのでNexus7からGitHubにファイルをプッシュしてみます。
+公開鍵と秘密鍵を作成。(Nexus7で下記コマンドを実行)
+$ dropbearkey -t rsa -f $HOME/.</description>
+    </item>
+    
+    <item>
+      <title>Redisインストール</title>
+      <link>https://sankame.github.io/blog/2013-07-10-redis_install/</link>
+      <pubDate>Wed, 10 Jul 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2013-07-10-redis_install/</guid>
+      <description>環境 [CentOS] 5.6 (32bit版カーネル)  インストール # ソース取得。 # wget http://redis.googlecode.com/files/redis-2.6.7.tar.gz # # tar xzf redis-2.6.7.tar.gz # # cd redis-2.6.7 # # 続いてmakeを実行すると下記エラーが発生。 # make cd src &amp;amp;&amp;amp; make all make[1]: ディレクトリ `/root/redis-2.6.7/src&#39; に入ります LINK redis-server zmalloc.o: In function `zmalloc_used_memory&#39;: /root/redis-2.6.7/src/zmalloc.c:223: undefined reference to `__sync_add_and_fetch_4&#39; collect2: ld はステータス 1 で終了しました make[1]: *** [redis-server] エラー 1 make[1]: ディレクトリ `/root/redis-2.6.7/src&#39; から出ます make: *** [all] エラー 2 # アーキテクチャを調べて、コンパイルオプションを指定。 # uname -m i686 # # export CFLAGS=-march=i686 # # make distclean # make # 下記メッセージが出てmakeは通ったらしい。 Hint: To run &#39;make test&#39; is a good idea ;) # 続いてmake testを実行すると下記エラーが発生。 # make test ERROR: *** [err]: SLOWLOG - RESET subcommand works in tests/unit/slowlog.</description>
+    </item>
+    
+    <item>
+      <title>DELL E5520 のタッチパッドをOFFにする</title>
+      <link>https://sankame.github.io/blog/2013-07-05-dell_e5520_touchpad/</link>
+      <pubDate>Fri, 05 Jul 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2013-07-05-dell_e5520_touchpad/</guid>
+      <description> 0. 環境 [PC] DELL E5520 [OS] Windows 7 Professional (SP1)  1. 手順  (1-1) ドライバーダウンロード
+ ダウンロードページ
+ 上記ダウンロードページで、&amp;rdquo;マウス、キーボード、入力デバイス&amp;rdquo; を開きます。
+ &amp;ldquo;Dell Multi-Touch Touchpad Driver&amp;rdquo; の右横にある「ファイルのダウンロード」をクリック。
+ Hard-Drive-ALPS_MULTI-TOUCH-TOUCHPAD_A06_GGY5W_SETUP_ZPE.exe を選択して「続行」をクリック。
+ &amp;ldquo;単一ファイルのダウンロード&amp;rdquo;を選択して「続行」をクリック。
+  (1-2) インストール
+ ダウンロード後、EXEファイルを実行します。
+ インストールが終わったら再起動します。
+  (1-3) 設定
+ Windows[スタートメニュー] - [コントロールパネル]を開き、Dell Touchpad が増えているのでダブルクリック。
+ DELLポインティングデバイス　というダイアログが起動。
+ 左メニューで任意のものを選択して、タッチパッドのOn/Offで O をクリックして、保存ボタンクリック。
+ こうするとタッチパッドがOffになります。
+ (見つからない場合は右上の「表示方法」を「小さいアイコン」または「大きいアイコン」に変更して下さい)
+   2. 参考ページ  http://detail.chiebukuro.yahoo.co.jp/qa/question_detail/q13104530838  </description>
+    </item>
+    
+    <item>
+      <title>Smartyで3点リーダー(省略)表現</title>
+      <link>https://sankame.github.io/blog/2013-05-12-smarty_ellipses/</link>
+      <pubDate>Sun, 12 May 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2013-05-12-smarty_ellipses/</guid>
+      <description> 10文字以上の場合、9文字目を…にして残りを切り捨てる。 (半角、全角ともに1文字として扱う) {if mb_strlen($keyword) &amp;gt; 9} {assign var=cutKeyword value=$keyword|mb_substr:0:8|cat:&#39;…&#39;} {else} {assign var=cutKeyword value=$keyword} {/if} &amp;lt;a class=&amp;quot;keyword-link&amp;quot; href=&amp;quot;#&amp;quot; title=&amp;quot;{$keyword}&amp;quot;&amp;gt;{$cutKeyword}&amp;lt;/a&amp;gt;  上記コードで各文字列を変換した場合。 (&amp;ldquo;→&amp;rdquo; は変換前後を表す) １２３４５６７８　→　１２３４５６７８ １２３４５６７８９　→　１２３４５６７８９ １２３４５６７８９Ａ　→　１２３４５６７８… 123456789 →　123456789 123456789A →　12345678…  </description>
+    </item>
+    
+    <item>
+      <title>PHPでMeCabを利用</title>
+      <link>https://sankame.github.io/blog/2013-04-29-php_mecab/</link>
+      <pubDate>Mon, 29 Apr 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2013-04-29-php_mecab/</guid>
+      <description>0.環境 [CentOS] 5.6 (32bit版カーネル) [PHP] 5.3.3  1.MeCabインストール  まずは下記の手順でMeCabをインストール。
+MeCabインストール方法
+  2.php_mecabインストール # wget -O php_mecab-0.5.zip https://nodeload.github.com/rsky/php-mecab/zip/master --no-check-certificate # # unzip php_mecab-0.5.zip # # mv -f php-mecab-master php_mecab-0.5 # # cd php_mecab-0.5/mecab # # phpize # # ./configure # # make # # make test # # make install  3.テスト  インストールが成功したら、phpからテストします。
+(Apache経由で動かす場合はhttpdを再起動して下さい)
+# echo &amp;quot;extension=mecab.so&amp;quot; &amp;gt; /etc/php.d/mecab.ini # vim mecabtest.php    4.作成したphpファイルを実行 # php mecabtest.</description>
+    </item>
+    
+    <item>
+      <title>MeCabインストール</title>
+      <link>https://sankame.github.io/blog/2013-01-28-mecab_install/</link>
+      <pubDate>Mon, 28 Jan 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2013-01-28-mecab_install/</guid>
+      <description>形態素解析エンジンMeCabをインストールしてみる。 環境 [CentOS] 5.6 (32bit版カーネル)  1.インストール # mecabのソースを取得 # wget http://mecab.googlecode.com/files/mecab-0.98.tar.gz # tar xzf mecab-0.98.tar.gz # cd mecab-0.98 # cd src # mecab.hを開いて点線で囲んだ部分を修正する。数字に付けられている()を削除する。 # vim mecab.h -------------------------------------- #define MECAB_NOR_NODE 0 #define MECAB_UNK_NODE 1 #define MECAB_BOS_NODE 2 #define MECAB_EOS_NODE 3 #define MECAB_EON_NODE 4 #define MECAB_USR_DIC 1 #define MECAB_SYS_DIC 0 #define MECAB_UNK_DIC 2 -------------------------------------- # cd .. # ./configure --with-charset=utf-8 # make # make install # cd .. # 辞書のソースを取得 # wget http://downloads.</description>
+    </item>
+    
+    <item>
+      <title>OpenX仕組み1 配信処理</title>
+      <link>https://sankame.github.io/blog/2013-01-20-openx_structure1/</link>
+      <pubDate>Sun, 20 Jan 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2013-01-20-openx_structure1/</guid>
+      <description> OpenX仕組みに関する自分用メモ　配信処理 1.テーブル定義 テーブル定義？
+2.インプレッションカウント PHP : plugins/deliveryLog/oxLogImpression/logImpression.delivery.php →lib/OA/Dal/Delivery/mysql.php:function OX_bucket_updateTable DB : ox_data_bkt_m 処理: INSERT(1レコード) 概要:  </description>
+    </item>
+    
+    <item>
+      <title>かんたんSubversionリポジトリ作成</title>
+      <link>https://sankame.github.io/blog/2013-01-19-svn_create_repos/</link>
+      <pubDate>Sat, 19 Jan 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2013-01-19-svn_create_repos/</guid>
+      <description>&amp;nbsp;更新日：2015年05月08日
+0.環境 [CentOS] 5.6 (32bit版カーネル) [Apache] 2.2.3 [Subversion] 1.6.11  1.作成手順  SVNはインストール済みとします。
+ (1-1) リポジトリ作成
+ ブラウザ経由でリポジトリを見るため、予め mod_dav_svn をインストール。(初回のみ)
+# yum install mod_dav_svn  データが壊れにくいfsfsを指定し、リポジトリ作成。
+# svnadmin create /var/svn/repos/test --fs-type fsfs  SVNの作法通り、下記3つを用意します。
+svn mkdir file:///var/svn/repos/test/trunk -m &amp;quot;create&amp;quot; svn mkdir file:///var/svn/repos/test/tags -m &amp;quot;create&amp;quot; svn mkdir file:///var/svn/repos/test/branches -m &amp;quot;create&amp;quot;   (1-2) 既存リポジトリのソースを引き継ぐ場合
+ (例)test_orgリポジトリのソースを一時ディレクトリに出力。
+# svn export file:///var/svn/repos/test_org/ /tmp/test_org  上記で出力したソースをtestリポジトリへ取り込みます。
+# svn import /tmp/test_org/trunk file:///var/svn/repos/test/trunk -m &amp;quot;first import&amp;quot;   (1-3) アクセス設定</description>
+    </item>
+    
+    <item>
+      <title>OpenX配信テスト</title>
+      <link>https://sankame.github.io/blog/2013-01-15-openx_delivery_test/</link>
+      <pubDate>Tue, 15 Jan 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2013-01-15-openx_delivery_test/</guid>
+      <description>OpenX(ver2.8.10)で広告配信テストをしてみる。 1.管理画面ログイン 管理画面にログイン後、画面右上でログインユーザが「Working as Default manager」であることを確認。
+「インベントリ」タブをクリックし、左メニューの上から順に登録していく。
+2.広告主 「インベントリ」-「広告主」-「広告主の追加」とリンクを辿り、下記項目に入力して「変更の保存」クリック。
+名称、担当者名、メールアドレス  上記で登録した広告主をクリックすると広告主の詳細画面が表示されるので、
+「ユーザアクセス」タブ -「アクション▼」-「ユーザを追加する」からユーザを追加。
+※ログアウト後、入力した「ユーザー名」と「パスワード」で広告主ユーザーとしてログインできる。
+3.キャンペーン 「インベントリ」-「広告主」で登録済みの広告主の「キャンペーンの追加」をクリック。
+キャンペーン追加画面で下記項目を入力して「変更の保存」をクリック。
+名称 : (任意) キャンペーン名 ： 担当者名 (※各選択肢の意味は未確認) 「日付」以下の項目はとりあえずデフォルトのまま。 (2013/01/20,追記) 「他のキャンペーンに対する優先度」が未設定だとアラートメッセージが出るので下記のように設定。 優先度レベル=10、Limit=インプレッション、終了=15000/日  4.バナー 「インベントリ」-「キャンペーン」で登録済みキャンペーンの「バナーの追加」をクリック。
+バナーの追加画面で下記項目を入力して「Save changes」をクリック。(今回はGoogle AdSenseを配信してみる)
+バナーの種別 : html OpenX Generic HTML Banner 名称 : (任意) HTMLバナー - banner code : (ここにGoogle AdSenseの広告ユニットコードを張り付ける) Alter HTML to enable click tracking for: Rich Media - Google AdSense Banner display : (Google AdSenseの広告ユニットコードと同じサイズを指定)  「インベントリ」-「バナー」で、登録済みバナーをクリックし、バナー詳細画面を表示。</description>
+    </item>
+    
+    <item>
+      <title>OpenXインストール</title>
+      <link>https://sankame.github.io/blog/2012-12-24-openx_install/</link>
+      <pubDate>Mon, 24 Dec 2012 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2012-12-24-openx_install/</guid>
+      <description>&amp;nbsp;更新日：2015年06月27日
+ OSS版のOpenXは製品名がRevive AdServerに変わりました。
+インストールはこちらをご確認下さい。(2015/06/27)  ローカルPCのVmwarePlayerにOpenXをインストール。 [マニュアル]に従ってインストールしました。 1.ソース取得  マニュアルの下記リンクからソースをダウンロード。(アンケートがあるためwgetでは落とせない)
+Download the latest installation archive from: here
+ソースをWebサーバへアップし、解凍して公開ディレクトリへ配置する。
+# mv openx-2.8.10 openx # mv openx /var/www/html/  /var/www/html/openx/varと/var/www/html/openx/www/images　に777を与える。
+# cd /var/www/html/openx/ # chmod -R 777 var # chmod -R 777 ./www/images/  ブラウザでhttp://localhost/openx/ へアクセスし、Webのインストーラを起動する。
+下記のディレクトリにも書き込み権限が必要というエラーが出た。
+/var/www/html/openx/plugins
+/var/www/html/openx/www/admin/plugins
+画面にコマンドが書いてあったのでそのまま実行。
+# chmod -R a+w /var/www/html/openx/plugins # chmod -R a+w /var/www/html/openx/www/admin/plugins   2.Registration  Webインストーラを続行、下記項目に入力。
+name, password, e-mail
+  3.</description>
+    </item>
+    
+    <item>
+      <title>Jekyllとgithubでブログ作成</title>
+      <link>https://sankame.github.io/blog/2012-12-23-jekyll_and_github/</link>
+      <pubDate>Sun, 23 Dec 2012 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2012-12-23-jekyll_and_github/</guid>
+      <description>ローカルPCのVmwarePlayerにRuby, RubyGems, Jekyllをインストール。 Jekyllで作ったブログをGitHubに設置する。 1.Rubyインストール # インストール済みか？ # rpm -q ruby # インストールされていない場合、インストールを行う。 # yum install ruby ruby-devel rdoc irb  2.RubyGemsインストール # wget http://rubyforge.org/frs/download.php/60718/rubygems-1.3.5.tgz # tar xzf rubygems-1.3.5.tgz # cd rubygems-1.3.5 # ruby setup.rb # インストールされたgemsのバージョン確認。 # gem -v  3.Jekyllインストール # gem install jekyll  下記メッセージ(抜粋)でインストール失敗…
+buffer overflow detected
+3-1. vmware playerの割り当てメモリ変更。192MB -&amp;gt; 256MB (問題の解決とは無関係と思われる) 3-2. Ruby再インストール # cd /etc/yum.repos.d/ # wget http://rubyworks.rubyforge.org/RubyWorks.repo # yum install ruby # ruby -v ruby 1.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>stetho on プログラマー備忘録</title>
+    <link>https://sankame.github.io/tags/stetho/</link>
+    <description>Recent content in stetho on プログラマー備忘録</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <lastBuildDate>Tue, 03 Oct 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://sankame.github.io/tags/stetho/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>【Androidアプリ開発】「次回から表示しない」ボタン</title>
+      <link>https://sankame.github.io/blog/2017-10-03-android_handling_dialog_using_preference/</link>
+      <pubDate>Tue, 03 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2017-10-03-android_handling_dialog_using_preference/</guid>
+      <description> 0. 環境 [Android] 5.1.1
+[Android API] 21
+1. Preferenceで実装  Preferenceを使ってダイアログに「次回から表示しない」ボタンをつける方法をメモ。
+ユーザーに1回だけ何かを伝えたい場合を想定しています。
+(MainActivity.thisなど、適宜読み替えて下さい)
+  2. stethoでPreferenceを編集  開発中にPreferenceの値を変えたり、消したりしたくなると思いますが、そんな時はstethoが便利です。
+stethoを起動し、[Local Storage]で該当のActivityを選択すると右側にPreferenceの値(上記コード17行目)が出ます。
+右クリックで編集や削除が可能です。
+
+stethoの設定方法は下記記事の「4. stetho 利用」を参照して下さい。
+  関連記事  AndroidのSQLite DBを参照  </description>
+    </item>
+    
+    <item>
+      <title>AndroidのSQLite DBを参照</title>
+      <link>https://sankame.github.io/blog/2017-05-14-view_sqlite_on_android/</link>
+      <pubDate>Sun, 14 May 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2017-05-14-view_sqlite_on_android/</guid>
+      <description>&amp;nbsp; こちらが最新です。(2024/02/23)  0.環境  PC側
+[OS] Windows7 (32bit 版) [Android Studio] 1.5.1  スマホ側
+[OS] Android 5.1.1 [SQLite] 3.8.6.1   1. 前提  まずSQLiteのデータをファイル形式で保存するよう設定します。
+ 例として、SQLiteを操作するライブラリにSQLiteOpenHelperを使用した場合について記載します。
+ コンストラクタの第二引数でDBファイル名を指定します。
+ (未指定の場合、データはメモリにのみ保持されます)
+class DatabaseHelper extends SQLiteOpenHelper { public DatabaseHelper(Context context) { //DBファイル名を指定。 super(context, &amp;quot;example.db&amp;quot;, null, 1); }  PCからAndroid端末にあるSQLiteのDBファイルを見る方法を調べました。
+ 試行錯誤した内容を書いているため、結論だけ知りたい場合は、4まで読み飛ばして下さい。
+  2. ADB(Androidデバッグ用インターフェース) 利用  ネットを検索して結構あったのが、ADBを使ってSQLiteのDBファイルをAndroid端末からPCへコピーし、その後DBビューワーで参照するというものです。
+ PCでコマンドプロンプトから下記コマンドを実行すると、カレントディレクトリにtarget.db(任意)というファイルができます。
+C:\Users\【ユーザー名】&amp;gt;adb -d shell &amp;quot;run-as 【アプリケーションID】 cat databases/【DBファイル名】&amp;quot;&amp;gt;target.db  【】内は読み替えて下さい。</description>
+    </item>
+    
+  </channel>
+</rss>

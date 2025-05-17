@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Laravel on プログラマー備忘録</title>
+    <link>https://sankame.github.io/tags/laravel/</link>
+    <description>Recent content in Laravel on プログラマー備忘録</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <lastBuildDate>Tue, 05 May 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://sankame.github.io/tags/laravel/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>品質管理とUnitTest(Laravel&#43;PHPUnit&#43;Mockeryによるサンプルコード付き)</title>
+      <link>https://sankame.github.io/blog/2020-05-05-laravel_phpunit_mockery/</link>
+      <pubDate>Tue, 05 May 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2020-05-05-laravel_phpunit_mockery/</guid>
+      <description>環境 [OS] Debian 10
+[PHP] 7.3.13
+[Laravel] 7.6.2
+[PHPUnit] 8.5.3
+[Mockery] 1.3.1
+はじめに ソフトウェアやアプリケーション開発にとって品質管理は切っても切り離せない存在です。 日本の従来の品質管理は散布図やPB曲線などを用いて定量化を重視してきました。
+しかし、それらは品質を数値化し分析することに寄りすぎていると感じるのは僕だけでしょうか？ 品質管理の本来の目的は「品質を上げること」にあるはずです。
+一言で品質と言っても様々ですが、「品質 = 要求仕様に則った実装」と定義すると、品質向上のための必要十分な施策はUnitTestによるホワイトボックステストが一番の近道だと考えています。 実際、ネットの情報を見ても、Googleなどのテック企業はUnitTestを中心に据えているように見えます。 その上で、報告などの目的でどうしても品質を定量化したいのであれば、UnitTestのカバレッジ計測ツールを使ったら良いのではないでしょうか。
+1. 方針 下記の方針でユニットテストを書いていきますが、自分のプロジェクトと合わない部分は変えて下さい。
+ 1-1. 後々CIで動かすことも考慮し、DB接続はモックで代替する。 1-2. フレームワークを含めず実装した箇所だけのテストコードを書く。 1-3. プロダクションコードの全ロジックを通すテストコードを書く。(「3. テスト記載方法」で後述) 1-4. 上記1-2の範囲でツールを用いてカバレッジを計測し、なるべく100%に近づける。(一般的にツールは評価が甘めのため) 1-5. テストコードの構成はフレームワークやデファクトスタンダードに合わせる。  2. 設定 2-1. PHPUnit  LaravelにはPHPUnitが最初から入ってるので、アプリのルートで下記コマンドを実行するとサンプルのテストコードが実行されます。
+composer exec -v phpunit  アプリルートにあるtestsディレクトリにテストコードを格納していきます。同ディレクトリ内はさらにFeatureとUnitに分かれてます。
+tests |-- CreatesApplication.php |-- Feature | `-- ExampleTest.php |-- TestCase.php `-- Unit `-- ExampleTest.php   Laravelの方針に合わせて、下記の区分けでテストを書いていきます。
+ Feature</description>
+    </item>
+    
+    <item>
+      <title>composer updateでUndefined indexエラー</title>
+      <link>https://sankame.github.io/blog/2016-06-25-composer_error_undefined_index/</link>
+      <pubDate>Sat, 25 Jun 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2016-06-25-composer_error_undefined_index/</guid>
+      <description> 0. 環境 [Laravel] 5.1  1. 問題  composer update を実行すると下記エラーが発生しました。
+Writing lock file Generating autoload files &amp;gt; php artisan clear-compiled [ErrorException] Undefined index: HTTP_HOST Script php artisan clear-compiled handling the post-update-cmd event returned with error code 1   2. 解決策  HTTP_HOST でソースをgrepし、 /app/Http/routes.php 内の下記箇所を修正しました。
+(修正前)
+$_SERVER[&#39;HTTP_HOST&#39;]  (修正後)
+Request::server(&#39;HTTP_HOST&#39;)   3. 参考  Composer returning mysterious error  </description>
+    </item>
+    
+    <item>
+      <title>【Laravel】integerメソッドの引数</title>
+      <link>https://sankame.github.io/blog/2015-05-27-laravel_migration_integer_args/</link>
+      <pubDate>Wed, 27 May 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2015-05-27-laravel_migration_integer_args/</guid>
+      <description> 0.環境 [PHP] 5.4.17 [Laravel] 4.1.30  1.内容  Fluentテーブルビルダーのintegerメソッドの引数について、意外と探すのに手間取ったのでメモ。
+ integerメソッド抜粋   /** * @param $column テーブルのカラム名 * @param $autoIncrement 自動採番するかどうか * @param $unsigned 0以上の正の整数とするか */ public function integer($column, $autoIncrement = false, $unsigned = false)   ※参考にしたページ  Laravel Migration incorrect table definition  </description>
+    </item>
+    
+    <item>
+      <title>【Laravel】全てのビューに値を渡す</title>
+      <link>https://sankame.github.io/blog/2014-07-21-laravel_passing_data_from_basecontroller/</link>
+      <pubDate>Mon, 21 Jul 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2014-07-21-laravel_passing_data_from_basecontroller/</guid>
+      <description> 0.環境 [CentOS] 5.6 (32bit版カーネル) [Apache] 2.2.3 [PHP] 5.4.1 [Laravel] 4.1.23  1.課題  全ビュー(Bladeテンプレート)で使う値をBaseControllerから渡したい。  2.対策  Laravelの作法としてあっているか不明ですが、一旦これで値は渡せました。
+下記例では、設定ファイルの基底URL(app.php内のurl変数)をビューに渡しています。
+ ①　app/config/local/app.php
+(本番環境の場合、app/config/app.php に定義して下さい)
+ ②　app/controllers/BaseController.php
+getBaseUrl() メソッドを定義し、基底URLを返します。
+(staticでないとビューで実行できない)
+ 各コントローラは②を継承します。(コード抜粋)
+class EachController extends BaseController {  ③　app/views/layout.blade.php (コード抜粋)
+全てのビューで共通に使っているビューで、BaseControllerから値を取得します。
+   </description>
+    </item>
+    
+    <item>
+      <title>【Laravel】AjaxでPOSTできない</title>
+      <link>https://sankame.github.io/blog/2014-07-15-laravel_trailing_slash_redirect/</link>
+      <pubDate>Tue, 15 Jul 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2014-07-15-laravel_trailing_slash_redirect/</guid>
+      <description>0.環境 [CentOS] 5.6 (32bit版カーネル) [Apache] 2.2.3 [PHP] 5.4.1 [Laravel] 4.1.23  1.問題  PHPのLaravelフレームワークを使っていたら、AjaxでPOSTした値がサーバ側で取得できずにはまりました。
+①から②へ test という名前で hoge という値を送信します。
+ ① Javascript側
+ ② PHP側
+ ログ出力結果を見ると、下記のようにPOST値が取得できていません。
+[2014-07-16 12:09:36] local.DEBUG: [] []    2.原因  Firefox の &amp;ldquo;Live HTTP headers&amp;rdquo; アドオンでURLの遷移を見たところ、下記のようにリダイレクトしていることがわかりました。(違いは末尾のスラッシュ)
+http://local.vm/test/
+↓↓↓
+http://local.vm/test
+ ソースを grep したところ、.htaccessでリダイレクトしていました。
+ ■ ソース
+app-root/public/.htaccess
+ ■ 記述
+# Redirect Trailing Slashes... RewriteRule ^(.*)/$ /$1 [L,R=301]    3.対策  Laravel は trailing slash 非推奨なのか？ とにかく下記のように修正。</description>
+    </item>
+    
+  </channel>
+</rss>

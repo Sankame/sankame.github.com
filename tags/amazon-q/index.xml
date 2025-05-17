@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>amazon-q on プログラマー備忘録</title>
+    <link>http://localhost:1313/tags/amazon-q/</link>
+    <description>Recent content in amazon-q on プログラマー備忘録</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <lastBuildDate>Sat, 04 May 2024 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://localhost:1313/tags/amazon-q/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Amazon Q DeveloperでPlaywright MCPを使ってみた</title>
+      <link>http://localhost:1313/blog/2025-05-04-q_playwright_mcp/</link>
+      <pubDate>Sat, 04 May 2024 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/blog/2025-05-04-q_playwright_mcp/</guid>
+      <description>環境  [OS] Windows 11 Home (WSL2: Ubuntu 22.04) [Amazon Q Developer] 1.9.1 [Node.js] 18.16.0 [Playwright] 1.41.1  Amazon Q Developerのアップデート Amazon Q Developer CLIの更新を試みましたが、うまくいきませんでした。
+&amp;gt; q update A new version of q is available: 1.9.1 &amp;gt; q --version q 1.7.3  そのため、一度アンインストールしてから再インストールを行いました。
+# アンインストール sudo apt-get remove amazon-q # 最新版をダウンロードして再インストール wget https://desktop-release.q.us-east-1.amazonaws.com/latest/amazon-q.deb sudo apt-get install -f sudo dpkg -i amazon-q.deb  これでバージョン1.9.1にアップデートできました。
+MCPについて理解する MCP (Model Context Protocol)の構成は下記の図が参考になります。
+MCP Architecture</description>
+    </item>
+    
+  </channel>
+</rss>

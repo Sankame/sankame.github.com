@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Hugo on プログラマー備忘録</title>
+    <link>https://sankame.github.io/tags/hugo/</link>
+    <description>Recent content in Hugo on プログラマー備忘録</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <lastBuildDate>Sun, 19 Mar 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://sankame.github.io/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Hugoクイックスタート</title>
+      <link>https://sankame.github.io/blog/2017-03-19-hugo_quickstart/</link>
+      <pubDate>Sun, 19 Mar 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://sankame.github.io/blog/2017-03-19-hugo_quickstart/</guid>
+      <description>0. 環境 [Mac] 10.11.6 [Hugo] 0.19  1.インストール  ここ数年、ブログウェアはjekyllを使ってましたが、下記の点が不便だったので、評判の良いHugoを試してみました。まずはサンプルを動かすところまで。
+ 初期構築やバージョンアップが大変だったので、他のPCに環境を作る気になれない。(今ならDockerという手もありますが…)
+ 記事の生成に時間がかかるようになってきた。
+ 記事の更新後、2～3回リロードしないとブラウザに反映されない。
+  インストール・マニュアルに従って進めました。
+僕の場合、Homebrewは既に入っていたのでStep2からやりました。
+$ brew update $ brew install hugo  「インストール後にバージョンを調べてね」と書いてあるので念のためチェックです。
+$ ls -l $( which hugo ) lrwxr-xr-x 1 mx admin 28 3 19 03:08 /usr/local/bin/hugo -&amp;gt; ../Cellar/hugo/0.19/bin/hugo $ hugo version Hugo Static Site Generator v0.19 darwin/amd64 BuildDate: 2017-02-27T19:21:29+09:00  2行とも0.19なので問題なさそうです。
+  2.サンプル作成  こちらのページに沿ってサンプルを作成しました。
+ 適当なディレクトリで下記を実行します。(僕の場合 /app/hugo-test/ なので読み替えて下さい)</description>
+    </item>
+    
+  </channel>
+</rss>
